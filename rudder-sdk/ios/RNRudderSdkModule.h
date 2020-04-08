@@ -5,7 +5,7 @@
 #import <React/RCTBridgeModule.h>
 #endif
 
-@interface RNRudderSdk : NSObject <RCTBridgeModule>
+@interface RNRudderSdkModule : NSObject <RCTBridgeModule>
 
 
 @end

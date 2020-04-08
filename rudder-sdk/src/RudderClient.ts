@@ -1,31 +1,55 @@
-import nativeBridge, { NativeBridge } from './NativeBridge';
+import { configure } from "./RudderConfiguaration";
+import bridge from "./NativeBridge";
 
-export interface RudderConfig {
-    endPointUrl: string,
-    flushQueueSize: number,
-    dbCountThreshod: number,
-    sleepTimeOut: number
+export interface Configuration {
+  endPointUrl?: string;
+  flushQueueSize?: number;
+  dbCountThreshold?: number;
+  sleepTimeOut?: number;
+  logLevel?: number;
+  configRefreshInterval?: number;
+  trackAppLifecycleEvents?: boolean;
+  recordScreenViews?: boolean;
 }
 
 export class RudderClient {
-    public getInstance(writeKey: string, config: RudderConfig) {
-        nativeBridge._initiateInstance(
-            writeKey,
-            config.endPointUrl,
-            config.flushQueueSize,
-            config.dbCountThreshod,
-            config.sleepTimeOut
-        );
-    }
+  public readonly ready = false;
 
-    public track(eventName: string) {
-        nativeBridge._logEvent(
-            "track",
-            eventName,
-            null,
-            null,
-            null,
-            null
-        );
-    }
+  public async setup(writeKey: string, configuration: Configuration = {}) {
+    await bridge.setup(await configure(writeKey, configuration));
+  }
+
+  public async track(
+    event: string,
+    properties: Object = {},
+    userProperties: Object = {},
+    options: Object = {}
+  ) {
+    bridge.track(event, properties, userProperties, options);
+  }
+
+  public async screen(
+    name: string,
+    properties: Object = {},
+    userProperties: Object = {},
+    options: Object = {}
+  ) {
+    bridge.screen(name, properties, userProperties, options);
+  }
+
+  public async identify(
+    userId: string,
+    traits: Object = {},
+    options: Object = {}
+  ) {
+    bridge.identify(userId, traits, options);
+  }
+
+  public async reset() {
+    bridge.reset();
+  }
+
+  public async getAnonymousId(): Promise<string> {
+    return bridge.getAnonymousId();
+  }
 }

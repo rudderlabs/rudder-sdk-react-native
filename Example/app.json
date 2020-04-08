@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "Example application for Rudderlabs React Native SDK",
+    "name": "RudderSDK example application",
     "slug": "Example",
     "privacy": "public",
     "sdkVersion": "35.0.0",

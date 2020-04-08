@@ -33,41 +33,4 @@ public class RNRudderSdkPackage implements ReactPackage {
     public List<ViewManager> createViewManagers(ReactApplicationContext reactContext) {
         return Collections.emptyList();
     }
-
-    @ReactMethod
-    public static void _initiateInstance(
-            String _writeKey,
-            String _endPointUrl,
-            int _flushQueueSize,
-            int _dbCountThreshold,
-            int _sleepTimeout
-    ) {
-        RudderClient._initiateInstance(
-                applicationContext,
-                _writeKey,
-                _endPointUrl,
-                _flushQueueSize,
-                _dbCountThreshold,
-                _sleepTimeout
-        );
-    }
-
-    @ReactMethod
-    public static void _logEvent(
-            String _eventType,
-            String _eventName,
-            String _userId,
-            String _eventPropsJson,
-            String _userPropsJson,
-            String _integrationsJson
-    ) {
-        RudderClient._logEvent(
-                _eventType,
-                _eventName,
-                _userId,
-                _eventPropsJson,
-                _userPropsJson,
-                _integrationsJson
-        );
-    }
 }

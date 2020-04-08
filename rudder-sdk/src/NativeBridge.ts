@@ -1,28 +1,39 @@
-import { NativeModules } from 'react-native';
+import {NativeModules} from 'react-native';
 
-export interface NativeBridge {
-    _initiateInstance(
-        _writeKey: string,
-        _endPointUrl: string,
-        _flushQueueSize: number,
-        _dbCountThreshold: number,
-        _sleepTimeOut: number
-    ): Promise<void>;
-
-    _logEvent(
-        _eventType: string,
-        _eventName: String,
-        _userId: string,
-        _eventPropsJson: string,
-        _userPropsJson: string,
-        _integrationJson: string
-    ): Promise<void>;
+export interface Configuration {
+  endPointUrl?: string;
+  flushQueueSize?: number;
+  dbCountThreshold?: number;
+  sleepTimeOut?: number;
+  logLevel?: number;
+  configRefreshInterval?: number;
+  trackAppLifecycleEvents?: boolean;
+  recordScreenViews?: boolean;
 }
 
-const nativeBridge: NativeBridge = NativeModules.RNRudderSdk;
-
-if (!nativeBridge) {
-	throw new Error('Failed to load Rudder.')
+export interface Bridge {
+  setup(configuration: Configuration): Promise<void>;
+  track(
+    event: string,
+    properties: Object,
+    userProperties: Object,
+    options: Object
+  ): Promise<void>;
+  screen(
+    name: string,
+    properties: Object,
+    userProperties: Object,
+    options: Object
+  ): Promise<void>;
+  identify(user: string, traits: Object, options: Object): Promise<void>;
+  reset(): Promise<void>;
+  getAnonymousId(): Promise<string>;
 }
 
-export default nativeBridge;
+const bridge: Bridge = NativeModules.RNRudderSdkModule;
+
+if (!bridge) {
+  throw new Error("Failed to load Rudderlabs native module.");
+}
+
+export default bridge;
