@@ -1,9 +1,6 @@
 
 package com.reactlibrary;
 
-import android.icu.text.RelativeDateTimeFormatter;
-import android.support.annotation.RequiresPermission;
-import android.telecom.Conference;
 import android.text.TextUtils;
 
 import com.facebook.react.bridge.Promise;
@@ -11,9 +8,11 @@ import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.ReadableMap;
-import com.rudderlabs.android.sdk.core.RudderClient;
-import com.rudderlabs.android.sdk.core.RudderConfig;
-import com.rudderlabs.android.sdk.core.RudderMessageBuilder;
+import com.rudderstack.android.sdk.core.RudderClient;
+import com.rudderstack.android.sdk.core.RudderConfig;
+import com.rudderstack.android.sdk.core.RudderLogger;
+import com.rudderstack.android.sdk.core.RudderMessageBuilder;
+import com.rudderstack.android.sdk.core.RudderTraits;
 
 public class RNRudderSdkModule extends ReactContextBaseJavaModule {
 
@@ -41,8 +40,11 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
 
         // build RudderConfig to get RudderClient instance
         RudderConfig.Builder configBuilder = new RudderConfig.Builder();
-        if (options.hasKey("endPointUrl")) {
-            configBuilder.withEndPointUri(options.getString("endPointUrl"));
+        if (options.hasKey("dataPlaneUrl")) {
+            configBuilder.withDataPlaneUrl(options.getString("dataPlaneUrl"));
+        }
+        if (options.hasKey("controlPlaneUrl")) {
+            configBuilder.withControlPlaneUrl(options.getString("controlPlaneUrl"));
         }
         if (options.hasKey("flushQueueSize")) {
             configBuilder.withFlushQueueSize(options.getInt("flushQueueSize"));
@@ -67,9 +69,12 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
     @ReactMethod
     public void track(String event, ReadableMap properties, ReadableMap userProperties, ReadableMap options) {
         if (rudderClient == null) return;
+        if (event == null) {
+            RudderLogger.logError("Track: Mandatory field missing: Event name");
+            return;
+        }
         rudderClient.track(new RudderMessageBuilder()
                 .setEventName(event)
-                .setUserId(userId)
                 .setProperty(Utility.convertReadableMapToMap(properties))
                 .setUserProperty(Utility.convertReadableMapToMap(userProperties))
                 .build());
@@ -78,6 +83,10 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
     @ReactMethod
     public void screen(String event, ReadableMap properties, ReadableMap userProperties, ReadableMap options) {
         if (rudderClient == null) return;
+        if (event == null) {
+            RudderLogger.logError("Screen: Mandatory field missing: Event name");
+            return;
+        }
         rudderClient.screen(new RudderMessageBuilder()
                 .setEventName(event)
                 .setProperty(Utility.convertReadableMapToMap(properties))
@@ -88,12 +97,16 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
     @ReactMethod
     public void identify(String userId, ReadableMap traits, ReadableMap options) {
         if (rudderClient == null) return;
-        rudderClient.identify(new RudderMessageBuilder()
-                .setEventName("identify")
-                .setUserId(userId)
-                .setProperty(Utility.convertReadableMapToMap(properties))
-                .setUserProperty(Utility.convertReadableMapToMap(userProperties))
-                .build());
+        if(userId.length() > 0) {
+            rudderClient.identify(userId, Utility.convertReadableMapToTraits(traits), null);
+        } else {
+            RudderTraits _traits = Utility.convertReadableMapToTraits(traits);
+            if (_traits == null) {
+                RudderLogger.logError("Identify: Mandatory field missing: Atleast one of userId or Traits is mandatory");
+                return;
+            }
+            rudderClient.identify(_traits, null);
+        }
     }
 
     @ReactMethod
@@ -105,6 +118,6 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
     @ReactMethod
     public String getAnonymousId () {
         if (rudderClient == null) return null;
-        return rudderClient.getAnonymousId();
+        return "0000";
     }
 }
