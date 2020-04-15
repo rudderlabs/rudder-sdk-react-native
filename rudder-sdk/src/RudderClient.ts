@@ -2,7 +2,7 @@ import { configure } from "./RudderConfiguaration";
 import bridge, { Configuration } from "./NativeBridge";
 
 const log = (error) => {
-  console.warn(`RudderSDK : Error : ${error}`);
+  console.log(`RudderSDK : Error : ${error}`);
 };
 
 export class RudderClient {
