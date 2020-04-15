@@ -6,15 +6,16 @@ Pod::Spec.new do |s|
   s.description  = <<-DESC
                   RNRudderSdk
                    DESC
-  s.homepage     = ""
+  s.homepage     = "https://rudderstack.com/"
   s.license      = "MIT"
   s.author       = { "author" => "author@domain.cn" }
   s.platform     = :ios, "7.0"
   s.source       = { :git => "https://github.com/author/RNRudderSdk.git", :tag => "master" }
-  s.source_files  = "RNRudderSdk/**/*.{h,m}"
+  s.source_files  = "**.{h,m}"
   s.requires_arc = true
 
   s.dependency "React"
+  s.dependency "Rudder","1.0.1"
 end
 
   

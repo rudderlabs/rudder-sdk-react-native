@@ -1,6 +1,8 @@
 //
 #import "RNRudderSdkModule.h"
 #import "RudderClient.h"
+#import "RudderConfig.h"
+#import "RudderLogger.h"
 
 @implementation RNRudderSdkModule
 
@@ -13,34 +15,75 @@ RCT_EXPORT_MODULE();
     return dispatch_get_main_queue();
 }
 
-RCT_EXPORT_METHOD(_initiateInstance:(NSString*) _writeKey
-                        endPointUrl:(NSString*) _endPointUrl
-                     flushQueueSize:(int) _flushQueueSize
-                   dbCountThreshold:(int) _dbCountThreshold
-                       sleepTimeOut:(int) _sleepTimeOut
-                           logLevel:(int) _logLevel)
+RCT_EXPORT_METHOD(setup:(NSDictionary*)config resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
 {
-    [RudderClient _initiateInstance:_writeKey
-                        endPointUrl:_endPointUrl
-                     flushQueueSize:_flushQueueSize
-                   dbCountThreshold:_dbCountThreshold
-                       sleepTimeout:_sleepTimeOut];
+    NSString* _writeKey = config[@"writeKey"];
+    
+    RudderConfigBuilder* configBuilder = [[RudderConfigBuilder alloc] init];
+    
+    if ([config objectForKey:@"dataPlaneUrl"]) {
+        [configBuilder withDataPlaneUrl:config[@"dataPlaneUrl"]];
+    }
+    if ([config objectForKey:@"controlPlaneUrl"]) {
+        [configBuilder withControlPlaneUrl:config[@"controlPlaneUrl"]];
+    }
+    if ([config objectForKey:@"flushQueueSize"]) {
+        [configBuilder withFlushQueueSize:[config[@"flushQueueSize"] intValue]];
+    }
+    if ([config objectForKey:@"dbCountThreshold"]) {
+        [configBuilder withDBCountThreshold:[config[@"dbCountThreshold"] intValue]];
+    }
+    if ([config objectForKey:@"sleepTimeOut"]) {
+        [configBuilder withSleepTimeOut:[config[@"sleepTimeOut"] intValue]];
+    }
+    if ([config objectForKey:@"logLevel"]) {
+        [configBuilder withLoglevel:[config[@"logLevel"] intValue]];
+    }
+    
+    [RudderClient getInstance:_writeKey config:[configBuilder build]];
+    
+    resolve(nil);
 }
 
-RCT_EXPORT_METHOD(_logEvent:(NSString*) _eventType
-                  eventName:(NSString*) _eventName
-                     userId:(NSString*) _userId
-             eventPropsJson:(NSString*) _eventPropsJson
-              userPropsJson:(NSString*) _userPropsJson
-           integrationsJson:(NSString*) _integrationsJson)
+RCT_EXPORT_METHOD(track:(NSString*)_event properties:(NSDictionary*)_properties userProperties:(NSDictionary*)_userProperties options:(NSDictionary*)_options)
 {
-    [RudderClient _logEvent:_eventType
-                  eventName:_eventName
-                     userId:_userId
-        eventPropertiesJson:_eventPropsJson
-         userPropertiesJson:_userPropsJson
-           integrationsJson:_integrationsJson];
+    if ([RudderClient sharedInstance] == nil) return;
+    RudderMessageBuilder* builder = [[RudderMessageBuilder alloc] init];
+    [builder setEventName:_event];
+    [builder setPropertyDict:_properties];
+    [builder setUserProperty:_userProperties];
+    [builder setRudderOption:[[RudderOption alloc] initWithDict:_options]];
+    
+    [[RudderClient sharedInstance] trackWithBuilder:builder];
 }
+RCT_EXPORT_METHOD(screen:(NSString*)_event properties:(NSDictionary*)_properties userProperties:(NSDictionary*)_userProperties options:(NSDictionary*)_options)
+{
+    if ([RudderClient sharedInstance] == nil) return;
+    RudderMessageBuilder* builder = [[RudderMessageBuilder alloc] init];
+    [builder setEventName:_event];
+    [builder setPropertyDict:_properties];
+    [builder setUserProperty:_userProperties];
+    [builder setRudderOption:[[RudderOption alloc] initWithDict:_options]];
+    
+    [[RudderClient sharedInstance] screenWithBuilder:builder];
+}
+
+RCT_EXPORT_METHOD(identify:(NSString*)_userId traits:(NSDictionary*)_traits options:(NSDictionary*)_options)
+{
+    if ([RudderClient sharedInstance] == nil) return;
+    [[RudderClient sharedInstance] identify:_userId traits:_traits options:_options];
+}
+
+RCT_EXPORT_METHOD(reset)
+{
+    if ([RudderClient sharedInstance] == nil) return;
+    [[RudderClient sharedInstance] reset];
+}
+
+// RCT_EXPORT_METHOD((NSString*)getAnonymousId)
+// {
+//     if ([RudderClient sharedInstance] == nil) return;
+//     return @"0000";
+// }
 
 @end
-  
