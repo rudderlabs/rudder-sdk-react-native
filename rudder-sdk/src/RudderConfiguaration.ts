@@ -3,7 +3,8 @@ import { Configuration } from "./NativeBridge";
 export const configure = async (
   writeKey: string,
   {
-    endPointUrl = "https://api.rudderlabs.com",
+    dataPlaneUrl = "https://api.rudderlabs.com",
+    controlPlaneUrl = "https://api.rudderlabs.com",
     flushQueueSize = 30,
     dbCountThreshold = 10000,
     sleepTimeOut = 10,
@@ -14,7 +15,9 @@ export const configure = async (
   }: Configuration
 ): Promise<Configuration> => {
   const config = {
-    endPointUrl,
+    writeKey,
+    dataPlaneUrl,
+    controlPlaneUrl,
     flushQueueSize,
     dbCountThreshold,
     sleepTimeOut,

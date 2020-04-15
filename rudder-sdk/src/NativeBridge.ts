@@ -1,7 +1,8 @@
 import {NativeModules} from 'react-native';
 
 export interface Configuration {
-  endPointUrl?: string;
+  dataPlaneUrl?: string;
+  controlPlaneUrl?: string;
   flushQueueSize?: number;
   dbCountThreshold?: number;
   sleepTimeOut?: number;
@@ -25,7 +26,8 @@ export interface Bridge {
     userProperties: Object,
     options: Object
   ): Promise<void>;
-  identify(user: string, traits: Object, options: Object): Promise<void>;
+  identify(userId: string, traits: Object, options: Object): Promise<void>;
+  identify(traits: Object, options: Object): Promise<void>;
   reset(): Promise<void>;
   getAnonymousId(): Promise<string>;
 }
