@@ -33,10 +33,6 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
     @ReactMethod
     public void setup(ReadableMap options, Promise promise) {
         String writeKey = options.getString("writeKey");
-        // check for the writeKey
-        if (TextUtils.isEmpty(writeKey)) {
-            promise.reject("E_RUDDER_SDK", "WriteKey can't be null");
-        }
 
         // build RudderConfig to get RudderClient instance
         RudderConfig.Builder configBuilder = new RudderConfig.Builder();
@@ -69,10 +65,6 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
     @ReactMethod
     public void track(String event, ReadableMap properties, ReadableMap userProperties, ReadableMap options) {
         if (rudderClient == null) return;
-        if (event == null) {
-            RudderLogger.logError("Track: Mandatory field missing: Event name");
-            return;
-        }
         rudderClient.track(new RudderMessageBuilder()
                 .setEventName(event)
                 .setProperty(Utility.convertReadableMapToMap(properties))
@@ -83,10 +75,6 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
     @ReactMethod
     public void screen(String event, ReadableMap properties, ReadableMap userProperties, ReadableMap options) {
         if (rudderClient == null) return;
-        if (event == null) {
-            RudderLogger.logError("Screen: Mandatory field missing: Event name");
-            return;
-        }
         rudderClient.screen(new RudderMessageBuilder()
                 .setEventName(event)
                 .setProperty(Utility.convertReadableMapToMap(properties))
@@ -97,16 +85,7 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
     @ReactMethod
     public void identify(String userId, ReadableMap traits, ReadableMap options) {
         if (rudderClient == null) return;
-        if(userId.length() > 0) {
-            rudderClient.identify(userId, Utility.convertReadableMapToTraits(traits), null);
-        } else {
-            RudderTraits _traits = Utility.convertReadableMapToTraits(traits);
-            if (_traits == null) {
-                RudderLogger.logError("Identify: Mandatory field missing: Atleast one of userId or Traits is mandatory");
-                return;
-            }
-            rudderClient.identify(_traits, null);
-        }
+        rudderClient.identify(userId, Utility.convertReadableMapToTraits(traits), null);
     }
 
     @ReactMethod
@@ -115,9 +94,9 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
         rudderClient.reset();
     }
 
-    @ReactMethod
-    public String getAnonymousId () {
-        if (rudderClient == null) return null;
-        return "0000";
-    }
+//    @ReactMethod
+//    public String getAnonymousId () {
+//        if (rudderClient == null) return null;
+//        return "0000";
+//     }
 }
