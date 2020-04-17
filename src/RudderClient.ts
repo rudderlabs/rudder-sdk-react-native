@@ -88,6 +88,30 @@ export class RudderClient {
     bridge.identify(_userId, _traits, options);
   }
 
+  public static group(groupId: string, traits: Object = null) {
+    if (groupId == undefined) {
+      log("group: Mandatory field \'groupId\' missing");
+      return;
+    }
+    if (typeof groupId != "string") {
+      log("group: \'groupId\' must be a string");
+      return;
+    }
+    bridge.group(groupId, traits);
+  }
+
+  public static alias(previousId: string, userId: string) {
+    if (previousId == undefined) {
+      log("alias: Mandatory field \'previousId\' missing");
+      return;
+    }
+    if (typeof previousId != "string") {
+      log("alias: \'previousID\' must be a string");
+      return;
+    }
+    bridge.alias(previousId, userId);
+  }
+    
   public async reset() {
     bridge.reset();
   }
