@@ -1,45 +1,55 @@
+# What is Rudder?
 
-# react-native-rudder-sdk
+**Short answer:** 
+Rudder is an open-source Segment alternative written in Go, built for the enterprise. .
 
-## Getting started
+**Long answer:** 
+Rudder is a platform for collecting, storing and routing customer event data to dozens of tools. Rudder is open-source, can run in your cloud environment (AWS, GCP, Azure or even your data-centre) and provides a powerful transformation framework to process your event data on the fly.
 
-`$ npm install react-native-rudder-sdk --save`
+Released under [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0)
 
-### Mostly automatic installation
+## Getting Started with ReactNative SDK
 
-`$ react-native link react-native-rudder-sdk`
-
-### Manual installation
-
-
-#### iOS
-
-1. In XCode, in the project navigator, right click `Libraries` ➜ `Add Files to [your project's name]`
-2. Go to `node_modules` ➜ `react-native-rudder-sdk` and add `RNRudderSdk.xcodeproj`
-3. In XCode, in the project navigator, select your project. Add `libRNRudderSdk.a` to your project's `Build Phases` ➜ `Link Binary With Libraries`
-4. Run your project (`Cmd+R`)<
-
-#### Android
-
-1. Open up `android/app/src/main/java/[...]/MainActivity.java`
-  - Add `import com.reactlibrary.RNRudderSdkPackage;` to the imports at the top of the file
-  - Add `new RNRudderSdkPackage()` to the list returned by the `getPackages()` method
-2. Append the following lines to `android/settings.gradle`:
-  	```
-  	include ':react-native-rudder-sdk'
-  	project(':react-native-rudder-sdk').projectDir = new File(rootProject.projectDir, 	'../node_modules/react-native-rudder-sdk/android')
-  	```
-3. Insert the following lines inside the dependencies block in `android/app/build.gradle`:
-  	```
-      compile project(':react-native-rudder-sdk')
-  	```
-
-
-## Usage
-```javascript
-import RNRudderSdk from 'react-native-rudder-sdk';
-
-// TODO: What to do with the module?
-RNRudderSdk;
+1. Add the sdk to your ReactNative application with
 ```
-  
+yarn add @rudderstack/rudder-sdk-react-native
+```
+2. For Android: Navigate to the `android` folder of your application and add the following to your project's `build.gradle` file: 
+```
+maven { 
+    url  "https://dl.bintray.com/rudderstack/rudderstack" 
+}
+```
+3. For iOs: Navigate to the `ios` folder of your application and install all the dependencies with:
+```
+pod install
+```
+
+## Initialize ```RudderClient```
+Somewhere in your Application, add the following code
+```
+await rudderClient.setup( "WRITE_KEY", {
+    dataPlaneUrl: "https://hosted.rudderlabs.com",
+    recordScreenViews: true
+});
+```
+Remember to import the SDK wherever you use it with:
+```
+import rudderClient from '@rudderstack/rudder-sdk-react-native';
+```
+
+## Send Events
+```
+rudderClient.track("some_custom_event", {
+  "key1":"val1",
+  "key2":{
+    "child_key1":"child_val1"
+  }
+});
+```
+
+
+For more detailed documentation check [the documentation page](https://docs.rudderstack.com/sdk-integration-guide/getting-started-with-reactnative-sdk).
+
+## Contact Us
+If you come across any issues while configuring or using RudderStack, please feel free to [contact us](https://rudderstack.com/contact/) or start a conversation on our [Discord](https://discordapp.com/invite/xNEdEGw) channel. We will be happy to help you.
