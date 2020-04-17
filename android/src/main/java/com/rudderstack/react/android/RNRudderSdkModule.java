@@ -1,5 +1,4 @@
-
-package com.reactlibrary;
+package com.rudderstack.react.android;
 
 import android.text.TextUtils;
 
@@ -51,6 +50,15 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
         if (options.hasKey("sleepTimeOut")) {
             configBuilder.withSleepCount(options.getInt("sleepTimeOut"));
         }
+        if (options.hasKey("configRefreshInterval")) {
+            configBuilder.withConfigRefreshInterval(options.getInt("configRefreshInterval"));
+        }
+        if (options.hasKey("trackAppLifecycleEvents")) {
+            configBuilder.withTrackLifecycleEvents(options.getBoolean("trackAppLifecycleEvents"));
+        }
+        if (options.hasKey("recordScreenViews")) {
+            configBuilder.withRecordScreenViews(options.getBoolean("recordScreenViews"));
+        }
         if (options.hasKey("logLevel")) {
             configBuilder.withLogLevel(options.getInt("logLevel"));
         }
@@ -63,22 +71,20 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void track(String event, ReadableMap properties, ReadableMap userProperties, ReadableMap options) {
+    public void track(String event, ReadableMap properties, ReadableMap options) {
         if (rudderClient == null) return;
         rudderClient.track(new RudderMessageBuilder()
                 .setEventName(event)
                 .setProperty(Utility.convertReadableMapToMap(properties))
-                .setUserProperty(Utility.convertReadableMapToMap(userProperties))
                 .build());
     }
 
     @ReactMethod
-    public void screen(String event, ReadableMap properties, ReadableMap userProperties, ReadableMap options) {
+    public void screen(String event, ReadableMap properties, ReadableMap options) {
         if (rudderClient == null) return;
         rudderClient.screen(new RudderMessageBuilder()
                 .setEventName(event)
                 .setProperty(Utility.convertReadableMapToMap(properties))
-                .setUserProperty(Utility.convertReadableMapToMap(userProperties))
                 .build());
     }
 
@@ -93,10 +99,4 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
         if (rudderClient == null) return;
         rudderClient.reset();
     }
-
-//    @ReactMethod
-//    public String getAnonymousId () {
-//        if (rudderClient == null) return null;
-//        return "0000";
-//     }
 }

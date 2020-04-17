@@ -77,6 +77,8 @@ target 'testExample' do
   pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
 
+  pod 'RNRudderSdk', :path => '../node_modules/react-native-rudder-sdk'
+
   target 'testExampleTests' do
     inherit! :complete
     # Pods for testing

@@ -1,4 +1,6 @@
-package com.reactlibrary;
+package com.rudderstack.react.android;
+
+import android.icu.text.RelativeDateTimeFormatter;
 
 import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.bridge.ReadableMap;
@@ -13,36 +15,38 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import static com.facebook.react.bridge.ReadableType.Null;
+
 class Utility {
     static Map<String, Object> convertReadableMapToMap(ReadableMap readableMap) {
         if (readableMap == null) return null;
 
-        Map<String, Object> object = new HashMap<>();
+        Map<String, Object> map = new HashMap<>();
         ReadableMapKeySetIterator iterator = readableMap.keySetIterator();
         while (iterator.hasNextKey()) {
             String key = iterator.nextKey();
             switch (readableMap.getType(key)) {
                 case Null:
-                    object.put(key, JSONObject.NULL);
+                    map.put(key, JSONObject.NULL);
                     break;
                 case Boolean:
-                    object.put(key, readableMap.getBoolean(key));
+                    map.put(key, readableMap.getBoolean(key));
                     break;
                 case Number:
-                    object.put(key, readableMap.getDouble(key));
+                    map.put(key, readableMap.getDouble(key));
                     break;
                 case String:
-                    object.put(key, readableMap.getString(key));
+                    map.put(key, readableMap.getString(key));
                     break;
                 case Map:
-                    object.put(key, convertReadableMapToMap(readableMap.getMap(key)));
+                    map.put(key, convertReadableMapToMap(readableMap.getMap(key)));
                     break;
                 case Array:
-                    object.put(key, convertReadableArrayToList(readableMap.getArray(key)));
+                    map.put(key, convertReadableArrayToList(readableMap.getArray(key)));
                     break;
             }
         }
-        return object;
+        return map;
     }
 
     private static List<Object> convertReadableArrayToList(ReadableArray readableArray) {
@@ -75,34 +79,11 @@ class Utility {
 
     static RudderTraits convertReadableMapToTraits(ReadableMap readableMap) {
         if (readableMap == null) return null;
-
         RudderTraits traits = new RudderTraits();
-
-        ReadableMapKeySetIterator iterator = readableMap.keySetIterator();
-        while (iterator.hasNextKey()) {
-            String key = iterator.nextKey();
-            switch (readableMap.getType(key)) {
-                case Null:
-                    traits.put(key, JSONObject.NULL);
-                    break;
-                case Boolean:
-                    traits.put(key, readableMap.getBoolean(key));
-                    break;
-                case Number:
-                    traits.put(key, readableMap.getDouble(key));
-                    break;
-                case String:
-                    traits.put(key, readableMap.getString(key));
-                    break;
-                case Map:
-                    traits.put(key, convertReadableMapToMap(readableMap.getMap(key)));
-                    break;
-                case Array:
-                    traits.put(key, convertReadableArrayToList(readableMap.getArray(key)));
-                    break;
-            }
+        Map<String, Object> map = convertReadableMapToMap(readableMap);
+        for (String key : map.keySet()) {
+            traits.put(key, map.get(key));
         }
-
         return traits;
     }
 }
