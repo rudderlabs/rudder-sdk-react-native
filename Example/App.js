@@ -24,7 +24,7 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
-import RNRudderSdk from 'rudder-sdk-react-native';
+import RNRudderSdk, { RUDDER_LOG_LEVEL } from 'rudder-sdk-react-native';
 
 const App: () => React$Node = () => {
   let rc = new RNRudderSdk();
@@ -32,7 +32,7 @@ const App: () => React$Node = () => {
     const config = {
       dataPlaneUrl: "https://hosted.rudderlabs.com",
       trackAppLifecycleEvents: true,
-      logLevel: RUDDER_LOG_LEVEL_DEBUG
+      logLevel: RUDDER_LOG_LEVEL.DEBUG
     };
     await rc.setup("1XI9Niof0vuKt5XTLurbWh9KkXn", config);
     const child_props = {
