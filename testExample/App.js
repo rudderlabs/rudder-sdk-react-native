@@ -24,7 +24,7 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
-import RNRudderSdk from 'react-native-rudder-sdk';
+import RNRudderSdk from 'rudder-sdk-react-native';
 
 const App: () => React$Node = () => {
   let rc = new RNRudderSdk();

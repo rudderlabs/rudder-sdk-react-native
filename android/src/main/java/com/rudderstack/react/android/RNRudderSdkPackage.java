@@ -1,5 +1,4 @@
-
-package com.reactlibrary;
+package com.rudderstack.react.android;
 
 import android.app.Application;
 import android.content.Context;
