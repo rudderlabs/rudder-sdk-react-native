@@ -25,29 +25,32 @@ maven {
 pod install
 ```
 
+## Import `RudderClient`
+Add the below line to `import` the rudderClient.
+```
+import rudderClient, { RUDDER_LOG_LEVEL } from '@rudderstack/rudder-sdk-react-native';
+```
+
 ## Initialize ```RudderClient```
 Somewhere in your Application, add the following code
 ```
-await rudderClient.setup( "WRITE_KEY", {
-    dataPlaneUrl: "https://hosted.rudderlabs.com",
-    recordScreenViews: true
-});
-```
-Remember to import the SDK wherever you use it with:
-```
-import rudderClient from '@rudderstack/rudder-sdk-react-native';
+const config = {
+  dataPlaneUrl: <DATA_PLANE_URL>,
+  trackAppLifecycleEvents: true,
+  logLevel: RUDDER_LOG_LEVEL.DEBUG
+};
+await rudderClient.setup(<WRITE_KEY>, config);
 ```
 
 ## Send Events
 ```
-rudderClient.track("some_custom_event", {
+rudderClient.track("simple_track_event", {
   "key1":"val1",
   "key2":{
     "child_key1":"child_val1"
   }
 });
 ```
-
 
 For more detailed documentation check [the documentation page](https://docs.rudderstack.com/sdk-integration-guide/getting-started-with-reactnative-sdk).
 
