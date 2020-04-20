@@ -1,6 +1,58 @@
 import { configure } from "./RudderConfiguaration";
 import bridge, { Configuration } from "./NativeBridge";
-import { logDebug, logError } from "./Logger";
+import { logDebug, logError, logWarn } from "./Logger";
+
+function validateConfiguration(configuration: Configuration) {
+  if (configuration.controlPlaneUrl &&
+    typeof configuration.controlPlaneUrl != "string"
+  ) {
+      logWarn("setup : \'controlPlaneUrl\' must be a string.Falling back to the default value");
+      delete configuration.controlPlaneUrl;
+  }
+  if (configuration.flushQueueSize &&
+    !(Number.isInteger(configuration.flushQueueSize))
+    ) {
+     logWarn("setup : \'flushQueueSize\' must be an integer.Falling back to the default value");
+     delete configuration.flushQueueSize;
+  }
+  if (configuration.dbCountThreshold &&
+    !(Number.isInteger(configuration.dbCountThreshold))
+    ) {
+     logWarn("setup : \'dbCountThreshold\' must be an integer.Falling back to the default value");
+     delete configuration.dbCountThreshold;
+  }
+  if (configuration.sleepTimeOut &&
+    !(Number.isInteger(configuration.sleepTimeOut))
+    ) {
+     logWarn("setup : \'sleepTimeOut\' must be an integer.Falling back to the default value");
+     delete configuration.sleepTimeOut;
+  }
+  if (configuration.logLevel &&
+    !(Number.isInteger(configuration.logLevel))
+    ) {
+     logWarn(
+       "setup : \'logLevel\' must be an integer.Use RUDDER_LOG_LEVEL to set this value.Falling back to the default value");
+     delete configuration.logLevel;
+  }
+  if (configuration.configRefreshInterval &&
+    !(Number.isInteger(configuration.configRefreshInterval))
+    ) {
+     logWarn("setup : \'configRefreshInterval\' must be an integer.Falling back to the default value");
+     delete configuration.configRefreshInterval;
+  }
+  if (configuration.trackAppLifecycleEvents &&
+    typeof configuration.trackAppLifecycleEvents != "boolean")
+    {
+     logWarn("setup : \'trackAppLifecycleEvents\' must be a boolen.Falling back to the default value");
+     delete configuration.trackAppLifecycleEvents;
+  }
+  if (configuration.recordScreenViews &&
+    typeof configuration.recordScreenViews != "boolean")
+    {
+     logWarn("setup : \'recordScreenViews\' must be a boolen.Falling back to the default value");
+     delete configuration.recordScreenViews;
+  }
+}
 
 // setup the RudderSDK with writeKey and Config
 async function setup(writeKey: string, configuration: Configuration = {}) {
@@ -16,6 +68,8 @@ async function setup(writeKey: string, configuration: Configuration = {}) {
     logError("setup: dataPlaneUrl is incorrect. Aborting");
     return;
   }
+  validateConfiguration(configuration);
+  
   const config = await configure(writeKey, configuration);
   logDebug("setup: created config")
   await bridge.setup(config);
