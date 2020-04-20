@@ -37,10 +37,10 @@ RCT_EXPORT_METHOD(setup:(NSDictionary*)config resolver:(RCTPromiseResolveBlock)r
         [configBuilder withSleepTimeOut:[config[@"sleepTimeOut"] intValue]];
     }
     if ([config objectForKey:@"configRefreshInterval"]) {
-        [configBuilder withConfigRefreshInterval:[config[@"configRefreshInterval"] intValue]];
+        [configBuilder withConfigRefreshInteval:[config[@"configRefreshInterval"] intValue]];
     }
     if ([config objectForKey:@"trackAppLifecycleEvents"]) {
-        [configBuilder withTrackAppLifecycleEvents:[config[@"trackAppLifecycleEvents"] boolValue]];
+        [configBuilder withTrackLifecycleEvens:[config[@"trackAppLifecycleEvents"] boolValue]];
     }
     if ([config objectForKey:@"recordScreenViews"]) {
         [configBuilder withRecordScreenViews:[config[@"recordScreenViews"] boolValue]];
@@ -60,7 +60,6 @@ RCT_EXPORT_METHOD(track:(NSString*)_event properties:(NSDictionary*)_properties 
     RudderMessageBuilder* builder = [[RudderMessageBuilder alloc] init];
     [builder setEventName:_event];
     [builder setPropertyDict:_properties];
-    [builder setUserProperty:_userProperties];
     [builder setRudderOption:[[RudderOption alloc] initWithDict:_options]];
     
     [[RudderClient sharedInstance] trackWithBuilder:builder];
@@ -71,7 +70,6 @@ RCT_EXPORT_METHOD(screen:(NSString*)_event properties:(NSDictionary*)_properties
     RudderMessageBuilder* builder = [[RudderMessageBuilder alloc] init];
     [builder setEventName:_event];
     [builder setPropertyDict:_properties];
-    [builder setUserProperty:_userProperties];
     [builder setRudderOption:[[RudderOption alloc] initWithDict:_options]];
     
     [[RudderClient sharedInstance] screenWithBuilder:builder];

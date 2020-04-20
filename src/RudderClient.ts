@@ -7,22 +7,26 @@ export class RudderClient {
 
   // setup the RudderSDK with writeKey and Config
   public async setup(writeKey: string, configuration: Configuration = {}) {
-    if (writeKey == undefined || typeof writeKey != "string" || writeKey == '') {
+    if (
+      writeKey == undefined ||
+      typeof writeKey != "string" ||
+      writeKey == ""
+    ) {
       logError("setup: writeKey is incorrect. Aborting");
       return;
     }
     if (
       !configuration.dataPlaneUrl ||
       typeof configuration.dataPlaneUrl != "string" ||
-      configuration.dataPlaneUrl! == ''
+      configuration.dataPlaneUrl! == ""
     ) {
       logError("setup: dataPlaneUrl is incorrect. Aborting");
       return;
     }
     const config = await configure(writeKey, configuration);
-    logDebug("setup: created config")
+    logDebug("setup: created config");
     await bridge.setup(config);
-    logDebug("setup: setup completed")
+    logDebug("setup: setup completed");
   }
 
   // wrapper for `track` method
@@ -59,7 +63,7 @@ export class RudderClient {
     bridge.screen(name, properties, options);
   }
 
-  // wrapper for `identify` method 
+  // wrapper for `identify` method
   identify(userId: string, traits: Object, options: Object): Promise<void>;
   identify(traits: Object, options: Object): Promise<void>;
   public async identify(
@@ -95,11 +99,11 @@ export class RudderClient {
 
   public static group(groupId: string, traits: Object = null) {
     if (groupId == undefined) {
-      log("group: Mandatory field \'groupId\' missing");
+      log("group: Mandatory field 'groupId' missing");
       return;
     }
     if (typeof groupId != "string") {
-      log("group: \'groupId\' must be a string");
+      log("group: 'groupId' must be a string");
       return;
     }
     bridge.group(groupId, traits);
@@ -107,16 +111,16 @@ export class RudderClient {
 
   public static alias(previousId: string, userId: string) {
     if (previousId == undefined) {
-      log("alias: Mandatory field \'previousId\' missing");
+      log("alias: Mandatory field 'previousId' missing");
       return;
     }
     if (typeof previousId != "string") {
-      log("alias: \'previousID\' must be a string");
+      log("alias: 'previousID' must be a string");
       return;
     }
     bridge.alias(previousId, userId);
   }
-    
+
   public async reset() {
     bridge.reset();
   }
