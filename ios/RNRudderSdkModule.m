@@ -1,8 +1,8 @@
 //
 #import "RNRudderSdkModule.h"
-#import "RudderClient.h"
-#import "RudderConfig.h"
-#import "RudderLogger.h"
+#import "RSClient.h"
+#import "RSConfig.h"
+#import "RSLogger.h"
 
 @implementation RNRudderSdkModule
 
@@ -19,7 +19,7 @@ RCT_EXPORT_METHOD(setup:(NSDictionary*)config resolver:(RCTPromiseResolveBlock)r
 {
     NSString* _writeKey = config[@"writeKey"];
     
-    RudderConfigBuilder* configBuilder = [[RudderConfigBuilder alloc] init];
+    RSConfigBuilder* configBuilder = [[RSConfigBuilder alloc] init];
     
     if ([config objectForKey:@"dataPlaneUrl"]) {
         [configBuilder withDataPlaneUrl:config[@"dataPlaneUrl"]];
@@ -49,42 +49,42 @@ RCT_EXPORT_METHOD(setup:(NSDictionary*)config resolver:(RCTPromiseResolveBlock)r
         [configBuilder withLoglevel:[config[@"logLevel"] intValue]];
     }
     
-    [RudderClient getInstance:_writeKey config:[configBuilder build]];
+    [RSClient getInstance:_writeKey config:[configBuilder build]];
     
     resolve(nil);
 }
 
 RCT_EXPORT_METHOD(track:(NSString*)_event properties:(NSDictionary*)_properties options:(NSDictionary*)_options)
 {
-    if ([RudderClient sharedInstance] == nil) return;
-    RudderMessageBuilder* builder = [[RudderMessageBuilder alloc] init];
+    if ([RSClient sharedInstance] == nil) return;
+    RSMessageBuilder* builder = [[RSMessageBuilder alloc] init];
     [builder setEventName:_event];
     [builder setPropertyDict:_properties];
-    [builder setRudderOption:[[RudderOption alloc] initWithDict:_options]];
+    [builder setRSOption:[[RSOption alloc] initWithDict:_options]];
     
-    [[RudderClient sharedInstance] trackWithBuilder:builder];
+    [[RSClient sharedInstance] trackWithBuilder:builder];
 }
 RCT_EXPORT_METHOD(screen:(NSString*)_event properties:(NSDictionary*)_properties options:(NSDictionary*)_options)
 {
-    if ([RudderClient sharedInstance] == nil) return;
-    RudderMessageBuilder* builder = [[RudderMessageBuilder alloc] init];
+    if ([RSClient sharedInstance] == nil) return;
+    RSMessageBuilder* builder = [[RSMessageBuilder alloc] init];
     [builder setEventName:_event];
     [builder setPropertyDict:_properties];
-    [builder setRudderOption:[[RudderOption alloc] initWithDict:_options]];
+    [builder setRSOption:[[RSOption alloc] initWithDict:_options]];
     
-    [[RudderClient sharedInstance] screenWithBuilder:builder];
+    [[RSClient sharedInstance] screenWithBuilder:builder];
 }
 
 RCT_EXPORT_METHOD(identify:(NSString*)_userId traits:(NSDictionary*)_traits options:(NSDictionary*)_options)
 {
-    if ([RudderClient sharedInstance] == nil) return;
-    [[RudderClient sharedInstance] identify:_userId traits:_traits options:_options];
+    if ([RSClient sharedInstance] == nil) return;
+    [[RSClient sharedInstance] identify:_userId traits:_traits options:[[RSOption alloc] initWithDict:_options]];
 }
 
 RCT_EXPORT_METHOD(reset)
 {
-    if ([RudderClient sharedInstance] == nil) return;
-    [[RudderClient sharedInstance] reset];
+    if ([RSClient sharedInstance] == nil) return;
+    [[RSClient sharedInstance] reset];
 }
 
 @end

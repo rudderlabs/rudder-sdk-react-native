@@ -1,6 +1,6 @@
 import { RUDDER_LOG_LEVEL } from "./Logger";
 
-export const DATA_PLANE_URL = "https://api.rudderlabs.com"
+export const DATA_PLANE_URL = "https://hosted.rudderlabs.com"
 export const CONTROL_PLANE_URL = "https://api.rudderlabs.com"
 export const FLUSH_QUEUE_SIZE = 30
 export const DB_COUNT_THRESHOLD = 10000
