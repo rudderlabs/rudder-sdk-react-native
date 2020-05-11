@@ -17,13 +17,11 @@ export interface Bridge {
   track(
     event: string,
     properties: Object,
-    userProperties: Object,
     options: Object
   ): Promise<void>;
   screen(
     name: string,
     properties: Object,
-    userProperties: Object,
     options: Object
   ): Promise<void>;
   identify(userId: string, traits: Object, options: Object): Promise<void>;

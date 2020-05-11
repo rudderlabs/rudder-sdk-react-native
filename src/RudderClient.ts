@@ -83,11 +83,11 @@ async function track(
   options: Object = null
 ) {
   if (event == undefined) {
-    log("track: Mandatory field 'event' missing");
+    logWarn("track: Mandatory field 'event' missing");
     return;
   }
   if (typeof event != "string") {
-    log("track: 'event' must be a string");
+    logWarn("track: 'event' must be a string");
     return;
   }
   bridge.track(event, properties, options);
@@ -100,11 +100,11 @@ async function screen(
   options: Object = null
 ) {
   if (name == undefined) {
-    log("screen: Mandatory field 'name' missing");
+    logWarn("screen: Mandatory field 'name' missing");
     return;
   }
   if (typeof name != "string") {
-    log("screen: 'name' must be a string");
+    logWarn("screen: 'name' must be a string");
     return;
   }
   bridge.screen(name, properties, options);
@@ -119,7 +119,7 @@ async function identify(
   options: Object = null
 ) {
   if (userIdOrTraits == undefined) {
-    log("identify: atleast one of userId or traits is required");
+    logWarn("identify: atleast one of userId or traits is required");
     return;
   }
 
@@ -137,7 +137,7 @@ async function identify(
     _traits = userIdOrTraits;
     _options = traitsOrOptions;
   } else {
-    log("identify : Unsupported argument type passed to identify");
+    logWarn("identify : Unsupported argument type passed to identify");
     return;
   }
 
@@ -146,26 +146,26 @@ async function identify(
 
 async function group(groupId: string, traits: Object = null) {
   if (groupId == undefined) {
-    log("group: Mandatory field \'groupId\' missing");
+    logWarn("group: Mandatory field \'groupId\' missing");
     return;
   }
   if (typeof groupId != "string") {
-    log("group: \'groupId\' must be a string");
+    logWarn("group: \'groupId\' must be a string");
     return;
   }
-  bridge.group(groupId, traits);
+  logWarn("group: Method not supported");
 }
 
 async function alias(previousId: string, userId: string) {
   if (previousId == undefined) {
-    log("alias: Mandatory field \'previousId\' missing");
+    logWarn("alias: Mandatory field \'previousId\' missing");
     return;
   }
   if (typeof previousId != "string") {
-    log("alias: \'previousID\' must be a string");
+    logWarn("alias: \'previousID\' must be a string");
     return;
   }
-  bridge.alias(previousId, userId);
+  logWarn("alias: Method not supported");
 }
   
 async function reset() {
