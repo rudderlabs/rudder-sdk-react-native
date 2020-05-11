@@ -44,7 +44,7 @@ const App: () => React$Node = () => {
       "k3":"v3",
       "c":child_props
     };
-    await rc.identify("new user11", props, null);
+    await rc.identify("new user", props, null);
     await rc.track("new event", props, child_props); 
     await rc.screen("new screen", props);
   })();
