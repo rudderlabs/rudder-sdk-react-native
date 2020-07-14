@@ -16,16 +16,15 @@ export interface Bridge {
   setup(configuration: Configuration): Promise<void>;
   track(
     event: string,
-    properties: Object,
-    options: Object
+    properties: Object | null,
+    options: Object | null
   ): Promise<void>;
   screen(
     name: string,
-    properties: Object,
-    options: Object
+    properties: Object | null,
+    options: Object | null
   ): Promise<void>;
-  identify(userId: string, traits: Object, options: Object): Promise<void>;
-  identify(traits: Object, options: Object): Promise<void>;
+  identify(userId: string, traits: Object | null, options: Object | null): Promise<void>;
   reset(): Promise<void>;
 }
 
