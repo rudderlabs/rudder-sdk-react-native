@@ -79,8 +79,8 @@ async function setup(writeKey: string, configuration: Configuration = {}) {
 // wrapper for `track` method
 async function track(
   event: string,
-  properties: Object = null,
-  options: Object = null
+  properties: Object | null = null,
+  options: Object | null = null
 ) {
   if (event == undefined) {
     logWarn("track: Mandatory field 'event' missing");
@@ -96,8 +96,8 @@ async function track(
 // wrapper for `screen` method
 async function screen(
   name: string,
-  properties: Object = null,
-  options: Object = null
+  properties: Object | null = null,
+  options: Object | null = null
 ) {
   if (name == undefined) {
     logWarn("screen: Mandatory field 'name' missing");
@@ -114,9 +114,9 @@ async function screen(
 async function identify(userId: string, traits: Object, options: Object): Promise<void>;
 async function identify(traits: Object, options: Object): Promise<void>;
 async function identify(
-  userIdOrTraits: any,
-  traitsOrOptions: Object = null,
-  options: Object = null
+  userIdOrTraits: string | Object,
+  traitsOrOptions: Object | null = null,
+  options: Object | null = null
 ) {
   if (userIdOrTraits == undefined) {
     logWarn("identify: atleast one of userId or traits is required");
@@ -144,7 +144,7 @@ async function identify(
   bridge.identify(_userId, _traits, options);
 }
 
-async function group(groupId: string, traits: Object = null) {
+async function group(groupId: string, traits: Object | null = null) {
   if (groupId == undefined) {
     logWarn("group: Mandatory field \'groupId\' missing");
     return;
