@@ -26,6 +26,8 @@ export interface Bridge {
   ): Promise<void>;
   identify(userId: string, traits: Object | null, options: Object | null): Promise<void>;
   reset(): Promise<void>;
+  putAndroidDeviceToken(token: string): Promise<void>;
+  putiOSDeviceToken(token: string): Promise<void>;
 }
 
 const bridge: Bridge = NativeModules.RNRudderSdkModule;

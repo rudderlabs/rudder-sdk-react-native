@@ -9,6 +9,7 @@ import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.ReadableMap;
 import com.rudderstack.android.sdk.core.RudderClient;
 import com.rudderstack.android.sdk.core.RudderConfig;
+import com.rudderstack.android.sdk.core.RudderContext;
 import com.rudderstack.android.sdk.core.RudderLogger;
 import com.rudderstack.android.sdk.core.RudderMessageBuilder;
 import com.rudderstack.android.sdk.core.RudderTraits;
@@ -88,6 +89,21 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
                 .build());
     }
 
+    @ReactMethod
+    public void putAndroidDeviceToken(String token) {
+        if (rudderClient == null) return;
+        RudderContext rudderContext = rudderClient.getRudderContext();
+        if (rudderContext != null && token != null) {
+            rudderContext.putDeviceToken(token);
+        }
+    }
+
+    @ReactMethod
+    public void putiOSDeviceToken(String token) {
+        // this function is not valid for Android
+        RudderLogger.logError("ReactNative SDK: putiOSDeviceToken called for an Android Device");
+    }
+    
     @ReactMethod
     public void identify(String userId, ReadableMap traits, ReadableMap options) {
         if (rudderClient == null) return;

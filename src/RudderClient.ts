@@ -168,9 +168,17 @@ async function alias(previousId: string, userId: string) {
   logWarn("alias: Method not supported");
 }
   
+async function putAndroidDeviceToken(token: string) {
+  bridge.putAndroidDeviceToken(token);
+}
+
+async function putiOSDeviceToken(token: string) {
+  bridge.putiOSDeviceToken(token);
+}
+
 async function reset() {
   bridge.reset();
 }
 
-const rudderClient = { setup , track, screen, identify, group, alias, reset };
+const rudderClient = { setup , track, screen, identify, group, alias, reset , putAndroidDeviceToken, putiOSDeviceToken };
 export default rudderClient;
