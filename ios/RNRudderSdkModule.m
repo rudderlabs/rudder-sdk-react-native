@@ -81,17 +81,11 @@ RCT_EXPORT_METHOD(identify:(NSString*)_userId traits:(NSDictionary*)_traits opti
     [[RSClient sharedInstance] identify:_userId traits:_traits options:[[RSOption alloc] initWithDict:_options]];
 }
 
-RCT_EXPORT_METHOD(putAndroidDeviceToken:(NSString*)token)
-{
-    // this function is not valid for iOS
-    [RSLogger logError:@"ReactNative SDK: putAndroidDeviceToken called for an iOS Device"];
-}
-
-RCT_EXPORT_METHOD(putiOSDeviceToken:(NSString*)token)
+RCT_EXPORT_METHOD(putDeviceToken:(NSString*)token)
 {
     if ([RSClient sharedInstance] == nil) return;
     RSContext* rudderContext = [[RSClient sharedInstance] getContext];
-    if (rudderContext != nil && token != nil) {
+    if (rudderContext != nil && [token length] != 0) {
         [rudderContext putDeviceToken:token];
     }
 }

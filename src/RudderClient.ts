@@ -1,3 +1,5 @@
+import { Platform } from "react-native";
+
 import { configure } from "./RudderConfiguaration";
 import bridge, { Configuration } from "./NativeBridge";
 import { logDebug, logError, logWarn } from "./Logger";
@@ -168,17 +170,18 @@ async function alias(previousId: string, userId: string) {
   logWarn("alias: Method not supported");
 }
   
-async function putAndroidDeviceToken(token: string) {
-  bridge.putAndroidDeviceToken(token);
-}
-
-async function putiOSDeviceToken(token: string) {
-  bridge.putiOSDeviceToken(token);
+async function putDeviceToken(androidToken: string, iOSToken: string) {
+  switch(Platform.OS) {
+    case "ios": bridge.putDeviceToken(iOSToken);
+                break;
+    case "android": bridge.putDeviceToken(androidToken);
+                    break;
+  }
 }
 
 async function reset() {
   bridge.reset();
 }
 
-const rudderClient = { setup , track, screen, identify, group, alias, reset , putAndroidDeviceToken, putiOSDeviceToken };
+const rudderClient = { setup , track, screen, identify, group, alias, reset , putDeviceToken };
 export default rudderClient;

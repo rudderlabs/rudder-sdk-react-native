@@ -90,18 +90,12 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void putAndroidDeviceToken(String token) {
+    public void putDeviceToken(String token) {
         if (rudderClient == null) return;
         RudderContext rudderContext = rudderClient.getRudderContext();
-        if (rudderContext != null && token != null) {
+        if (rudderContext != null && !TextUtils.isEmpty(token)) {
             rudderContext.putDeviceToken(token);
         }
-    }
-
-    @ReactMethod
-    public void putiOSDeviceToken(String token) {
-        // this function is not valid for Android
-        RudderLogger.logError("ReactNative SDK: putiOSDeviceToken called for an Android Device");
     }
     
     @ReactMethod
