@@ -81,6 +81,15 @@ RCT_EXPORT_METHOD(identify:(NSString*)_userId traits:(NSDictionary*)_traits opti
     [[RSClient sharedInstance] identify:_userId traits:_traits options:[[RSOption alloc] initWithDict:_options]];
 }
 
+RCT_EXPORT_METHOD(putDeviceToken:(NSString*)token)
+{
+    if ([RSClient sharedInstance] == nil) return;
+    RSContext* rudderContext = [[RSClient sharedInstance] getContext];
+    if (rudderContext != nil && [token length] != 0) {
+        [rudderContext putDeviceToken:token];
+    }
+}
+
 RCT_EXPORT_METHOD(reset)
 {
     if ([RSClient sharedInstance] == nil) return;

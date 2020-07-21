@@ -8,8 +8,8 @@ import {
   CONFIG_REFRESH_INTERVAL,
   TRACK_LIFECYCLE_EVENTS,
   RECORD_SCREEN_VIEWS,
-  LOG_LEVEL
-} from './Constants'
+  LOG_LEVEL,
+} from "./Constants";
 import { logInit } from "./Logger";
 
 export const configure = async (
@@ -23,7 +23,7 @@ export const configure = async (
     logLevel = LOG_LEVEL,
     configRefreshInterval = CONFIG_REFRESH_INTERVAL,
     trackAppLifecycleEvents = TRACK_LIFECYCLE_EVENTS,
-    recordScreenViews = RECORD_SCREEN_VIEWS
+    recordScreenViews = RECORD_SCREEN_VIEWS,
   }: Configuration
 ): Promise<Configuration> => {
   // init log level
@@ -39,7 +39,7 @@ export const configure = async (
     logLevel,
     configRefreshInterval,
     trackAppLifecycleEvents,
-    recordScreenViews
+    recordScreenViews,
   };
 
   return { ...config };
