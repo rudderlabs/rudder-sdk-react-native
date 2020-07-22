@@ -52,6 +52,19 @@ rudderClient.track("simple_track_event", {
 });
 ```
 
+## Device Tokens
+You can use the `putDeviceToken` method to pass your Android and iOS device tokens.
+`putDeviceToken` accepts two `string` arguments : 
+- `androidToken` : Your Android device token
+- `iOSToken` : Your iOS device token
+
+Example Usage:
+
+```
+rudderClient.putDeviceToken("<Your Android device token>", "<Your iOS device token>");
+```
+
+
 For more detailed documentation check [the documentation page](https://docs.rudderstack.com/sdk-integration-guide/getting-started-with-reactnative-sdk).
 
 ## Contact Us
