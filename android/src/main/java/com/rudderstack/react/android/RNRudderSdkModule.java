@@ -9,6 +9,7 @@ import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.ReadableMap;
 import com.rudderstack.android.sdk.core.RudderClient;
 import com.rudderstack.android.sdk.core.RudderConfig;
+import com.rudderstack.android.sdk.core.RudderContext;
 import com.rudderstack.android.sdk.core.RudderLogger;
 import com.rudderstack.android.sdk.core.RudderMessageBuilder;
 import com.rudderstack.android.sdk.core.RudderTraits;
@@ -93,6 +94,15 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
                 .build());
     }
 
+    @ReactMethod
+    public void putDeviceToken(String token) {
+        if (rudderClient == null) return;
+        RudderContext rudderContext = rudderClient.getRudderContext();
+        if (rudderContext != null && !TextUtils.isEmpty(token)) {
+            rudderContext.putDeviceToken(token);
+        }
+    }
+    
     @ReactMethod
     public void identify(String userId, ReadableMap traits, ReadableMap options) {
         if (rudderClient == null) return;

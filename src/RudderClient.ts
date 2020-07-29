@@ -1,79 +1,101 @@
+import { Platform } from "react-native";
+
 import { configure } from "./RudderConfiguaration";
 import bridge, { Configuration } from "./NativeBridge";
 import { logDebug, logError, logWarn } from "./Logger";
 
 function validateConfiguration(configuration: Configuration) {
-  if (configuration.controlPlaneUrl &&
+  if (
+    configuration.controlPlaneUrl &&
     typeof configuration.controlPlaneUrl != "string"
   ) {
-      logWarn("setup : \'controlPlaneUrl\' must be a string. Falling back to the default value");
-      delete configuration.controlPlaneUrl;
+    logWarn(
+      "setup : 'controlPlaneUrl' must be a string. Falling back to the default value"
+    );
+    delete configuration.controlPlaneUrl;
   }
-  if (configuration.flushQueueSize &&
-    !(Number.isInteger(configuration.flushQueueSize))
-    ) {
-     logWarn("setup : \'flushQueueSize\' must be an integer. Falling back to the default value");
-     delete configuration.flushQueueSize;
+  if (
+    configuration.flushQueueSize &&
+    !Number.isInteger(configuration.flushQueueSize)
+  ) {
+    logWarn(
+      "setup : 'flushQueueSize' must be an integer. Falling back to the default value"
+    );
+    delete configuration.flushQueueSize;
   }
-  if (configuration.dbCountThreshold &&
-    !(Number.isInteger(configuration.dbCountThreshold))
-    ) {
-     logWarn("setup : \'dbCountThreshold\' must be an integer. Falling back to the default value");
-     delete configuration.dbCountThreshold;
+  if (
+    configuration.dbCountThreshold &&
+    !Number.isInteger(configuration.dbCountThreshold)
+  ) {
+    logWarn(
+      "setup : 'dbCountThreshold' must be an integer. Falling back to the default value"
+    );
+    delete configuration.dbCountThreshold;
   }
-  if (configuration.sleepTimeOut &&
-    !(Number.isInteger(configuration.sleepTimeOut))
-    ) {
-     logWarn("setup : \'sleepTimeOut\' must be an integer. Falling back to the default value");
-     delete configuration.sleepTimeOut;
+  if (
+    configuration.sleepTimeOut &&
+    !Number.isInteger(configuration.sleepTimeOut)
+  ) {
+    logWarn(
+      "setup : 'sleepTimeOut' must be an integer. Falling back to the default value"
+    );
+    delete configuration.sleepTimeOut;
   }
-  if (configuration.logLevel &&
-    !(Number.isInteger(configuration.logLevel))
-    ) {
-     logWarn(
-       "setup : \'logLevel\' must be an integer. Use RUDDER_LOG_LEVEL to set this value.Falling back to the default value");
-     delete configuration.logLevel;
+  if (configuration.logLevel && !Number.isInteger(configuration.logLevel)) {
+    logWarn(
+      "setup : 'logLevel' must be an integer. Use RUDDER_LOG_LEVEL to set this value.Falling back to the default value"
+    );
+    delete configuration.logLevel;
   }
-  if (configuration.configRefreshInterval &&
-    !(Number.isInteger(configuration.configRefreshInterval))
-    ) {
-     logWarn("setup : \'configRefreshInterval\' must be an integer.  Falling back to the default value");
-     delete configuration.configRefreshInterval;
+  if (
+    configuration.configRefreshInterval &&
+    !Number.isInteger(configuration.configRefreshInterval)
+  ) {
+    logWarn(
+      "setup : 'configRefreshInterval' must be an integer.  Falling back to the default value"
+    );
+    delete configuration.configRefreshInterval;
   }
-  if (configuration.trackAppLifecycleEvents &&
-    typeof configuration.trackAppLifecycleEvents != "boolean")
-    {
-     logWarn("setup : \'trackAppLifecycleEvents\' must be a boolen. Falling back to the default value");
-     delete configuration.trackAppLifecycleEvents;
+  if (
+    configuration.trackAppLifecycleEvents &&
+    typeof configuration.trackAppLifecycleEvents != "boolean"
+  ) {
+    logWarn(
+      "setup : 'trackAppLifecycleEvents' must be a boolen. Falling back to the default value"
+    );
+    delete configuration.trackAppLifecycleEvents;
   }
-  if (configuration.recordScreenViews &&
-    typeof configuration.recordScreenViews != "boolean")
-    {
-     logWarn("setup : \'recordScreenViews\' must be a boolen. Falling back to the default value");
-     delete configuration.recordScreenViews;
+  if (
+    configuration.recordScreenViews &&
+    typeof configuration.recordScreenViews != "boolean"
+  ) {
+    logWarn(
+      "setup : 'recordScreenViews' must be a boolen. Falling back to the default value"
+    );
+    delete configuration.recordScreenViews;
   }
 }
 
 // setup the RudderSDK with writeKey and Config
 async function setup(writeKey: string, configuration: Configuration = {}) {
-  if (writeKey == undefined || typeof writeKey != "string" || writeKey == '') {
+  if (writeKey == undefined || typeof writeKey != "string" || writeKey == "") {
     logError("setup: writeKey is incorrect. Aborting");
     return;
   }
   if (
     !configuration.dataPlaneUrl ||
     typeof configuration.dataPlaneUrl != "string" ||
-    configuration.dataPlaneUrl! == ''
+    configuration.dataPlaneUrl! == ""
   ) {
     logError("setup: dataPlaneUrl is incorrect. Aborting");
     return;
   }
   validateConfiguration(configuration);
-  
+
   const config = await configure(writeKey, configuration);
-  logDebug("setup: created config")
+  logDebug("setup: created config");
   await bridge.setup(config);
-  logDebug("setup: setup completed")
+  logDebug("setup: setup completed");
 }
 
 // wrapper for `track` method
@@ -110,8 +132,12 @@ async function screen(
   bridge.screen(name, properties, options);
 }
 
-// wrapper for `identify` method 
-async function identify(userId: string, traits: Object, options: Object): Promise<void>;
+// wrapper for `identify` method
+async function identify(
+  userId: string,
+  traits: Object,
+  options: Object
+): Promise<void>;
 async function identify(traits: Object, options: Object): Promise<void>;
 async function identify(
   userIdOrTraits: string | Object,
@@ -146,11 +172,11 @@ async function identify(
 
 async function group(groupId: string, traits: Object | null = null) {
   if (groupId == undefined) {
-    logWarn("group: Mandatory field \'groupId\' missing");
+    logWarn("group: Mandatory field 'groupId' missing");
     return;
   }
   if (typeof groupId != "string") {
-    logWarn("group: \'groupId\' must be a string");
+    logWarn("group: 'groupId' must be a string");
     return;
   }
   logWarn("group: Method not supported");
@@ -158,19 +184,39 @@ async function group(groupId: string, traits: Object | null = null) {
 
 async function alias(previousId: string, userId: string) {
   if (previousId == undefined) {
-    logWarn("alias: Mandatory field \'previousId\' missing");
+    logWarn("alias: Mandatory field 'previousId' missing");
     return;
   }
   if (typeof previousId != "string") {
-    logWarn("alias: \'previousID\' must be a string");
+    logWarn("alias: 'previousID' must be a string");
     return;
   }
   logWarn("alias: Method not supported");
 }
-  
+
+async function putDeviceToken(androidToken: string, iOSToken: string) {
+  switch (Platform.OS) {
+    case "ios":
+      bridge.putDeviceToken(iOSToken);
+      break;
+    case "android":
+      bridge.putDeviceToken(androidToken);
+      break;
+  }
+}
+
 async function reset() {
   bridge.reset();
 }
 
-const rudderClient = { setup , track, screen, identify, group, alias, reset };
+const rudderClient = {
+  setup,
+  track,
+  screen,
+  identify,
+  group,
+  alias,
+  reset,
+  putDeviceToken,
+};
 export default rudderClient;
