@@ -1,5 +1,6 @@
 //
 #import "RNRudderSdkModule.h"
+#import "RNRudderAnalytics.h"
 #import "RSClient.h"
 #import "RSConfig.h"
 #import "RSLogger.h"
@@ -49,7 +50,7 @@ RCT_EXPORT_METHOD(setup:(NSDictionary*)config resolver:(RCTPromiseResolveBlock)r
         [configBuilder withLoglevel:[config[@"logLevel"] intValue]];
     }
     
-    [RSClient getInstance:_writeKey config:[configBuilder build]];
+    [RSClient getInstance:_writeKey config:[RNRudderAnalytics buildWithIntegrations:configBuilder]];
     
     resolve(nil);
 }

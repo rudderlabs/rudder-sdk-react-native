@@ -10,6 +10,7 @@ export interface Configuration {
   trackAppLifecycleEvents?: boolean;
   recordScreenViews?: boolean;
   logLevel?: number;
+  withFactories?: Array<Object>;
 }
 
 export interface Bridge {

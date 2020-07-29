@@ -9,7 +9,7 @@ import {
   TRACK_LIFECYCLE_EVENTS,
   RECORD_SCREEN_VIEWS,
   LOG_LEVEL
-} from './Constants'
+} from "./Constants";
 import { logInit } from "./Logger";
 
 export const configure = async (
@@ -23,11 +23,23 @@ export const configure = async (
     logLevel = LOG_LEVEL,
     configRefreshInterval = CONFIG_REFRESH_INTERVAL,
     trackAppLifecycleEvents = TRACK_LIFECYCLE_EVENTS,
-    recordScreenViews = RECORD_SCREEN_VIEWS
+    recordScreenViews = RECORD_SCREEN_VIEWS,
+    withFactories = []
   }: Configuration
 ): Promise<Configuration> => {
   // init log level
   logInit(logLevel);
+
+  // setup device mode integrations
+  let integrations = withFactories;
+  if (integrations && integrations.length != 0) {
+    // ask about await
+    await Promise.all(
+      integrations.map(async integration =>
+        typeof integration === "function" ? integration() : null
+      )
+    );
+  }
 
   const config = {
     writeKey,
