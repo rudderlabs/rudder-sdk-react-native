@@ -12,7 +12,10 @@
   "dependencies": {
     "react": "16.11.0",
     "react-native": "0.62.2",
-    "@rudderstack/rudder-sdk-react-native": "file:../"
+    "@rudderstack/rudder-sdk-react-native": "file:../",
+    "@react-native-community/cli-platform-ios":"4.11.0",
+    "rudder-integration-appsflyer-react-native": "file:../integrations/rudder-integration-appsflyer-react-native",
+    "rudder-integration-firebase-react-native": "file:../integrations/rudder-integration-firebase-react-native"
   },
   "devDependencies": {
     "@babel/core": "7.9.0",
