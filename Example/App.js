@@ -25,15 +25,18 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 
 import rc, { RUDDER_LOG_LEVEL } from '@rudderstack/rudder-sdk-react-native';
+import appsflyer from 'rudder-integration-appsflyer-react-native';
+import firebase from 'rudder-integration-firebase-react-native';
 
 const App: () => React$Node = () => {
   (async function(){
     const config = {
       dataPlaneUrl: "https://hosted.rudderlabs.com",
       trackAppLifecycleEvents: true,
-      logLevel: RUDDER_LOG_LEVEL.DEBUG
+      logLevel: RUDDER_LOG_LEVEL.DEBUG,
+      withFactories: [firebase, appsflyer]
     };
-    await rc.setup("1XI9Niof0vuKt5XTLurbWh9KkXn", config);
+    await rc.setup("1YyzMKUnUZJ6XNRkdHJCayV5fzM", config);
     const child_props = {
       "c1":"v1",
       "c2":"v2"

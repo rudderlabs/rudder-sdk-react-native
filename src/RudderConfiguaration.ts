@@ -24,10 +24,22 @@ export const configure = async (
     configRefreshInterval = CONFIG_REFRESH_INTERVAL,
     trackAppLifecycleEvents = TRACK_LIFECYCLE_EVENTS,
     recordScreenViews = RECORD_SCREEN_VIEWS,
+    withFactories = [],
   }: Configuration
 ): Promise<Configuration> => {
   // init log level
   logInit(logLevel);
+
+  // setup device mode integrations
+  let integrations = withFactories;
+  if (integrations && integrations.length != 0) {
+    // ask about await
+    await Promise.all(
+      integrations.map(async integration =>
+        typeof integration === "function" ? integration() : null
+      )
+    );
+  }
 
   const config = {
     writeKey,

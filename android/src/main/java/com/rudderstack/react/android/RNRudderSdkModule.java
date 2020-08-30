@@ -13,6 +13,7 @@ import com.rudderstack.android.sdk.core.RudderContext;
 import com.rudderstack.android.sdk.core.RudderLogger;
 import com.rudderstack.android.sdk.core.RudderMessageBuilder;
 import com.rudderstack.android.sdk.core.RudderTraits;
+import com.rudderstack.android.sdk.core.util.Utils;
 
 public class RNRudderSdkModule extends ReactContextBaseJavaModule {
 
@@ -65,7 +66,11 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
         }
 
         // get the instance of RudderClient
-        rudderClient = RudderClient.getInstance(reactContext, writeKey, configBuilder.build());
+        rudderClient = RudderClient.getInstance(
+                reactContext,
+                writeKey,
+                RNRudderAnalytics.buildWithIntegrations(configBuilder)
+        );
 
         // finally resolve the promise to mark as completed
         promise.resolve(null);
