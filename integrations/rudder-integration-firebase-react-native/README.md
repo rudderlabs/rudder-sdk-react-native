@@ -2,7 +2,7 @@
 
 ## Getting started
 
-`$ npm install rudder-integration-firebase-react-native --save`
+`$ npm install @rudderstack/rudder-integration-firebase-react-native --save`
 
 ### Mostly automatic installation
 
@@ -10,7 +10,7 @@
 
 ## Usage
 ```javascript
-import RudderIntegrationFirebaseReactNative from 'rudder-integration-firebase-react-native';
+import RudderIntegrationFirebaseReactNative from '@rudderstack/rudder-integration-firebase-react-native';
 
 // TODO: What to do with the module?
 RudderIntegrationFirebaseReactNative;

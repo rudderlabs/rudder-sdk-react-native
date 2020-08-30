@@ -78,7 +78,7 @@ dependencies {
     implementation project(path: ':rudderstack_rudder-sdk-react-native')  // From node_modules
 
     // rudderstack dependencies
-    implementation 'com.rudderstack.android.sdk:core:1.0.1'
+    implementation 'com.rudderstack.android.sdk:core:1+'
     implementation 'com.rudderstack.android.integration:firebase:0.1.1'
 
     // firebase dependencies

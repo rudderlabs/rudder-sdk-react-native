@@ -10,20 +10,14 @@ Pod::Spec.new do |s|
                   rudder-integration-appsflyer-react-native
                    DESC
   s.homepage     = "https://github.com/dhawal1248/rudder-integration-appsflyer-react-native"
-  # brief license entry:
   s.license      = "MIT"
-  # optional - use expanded license entry instead:
-  # s.license    = { :type => "MIT", :file => "LICENSE" }
-  s.authors      = { "Dhawal" => "sanghvi.dhawal101433@gmail.com" }
+  s.authors      = { "RudderStack" => "dhawal@rudderlabs.com" }
   s.platforms    = { :ios => "9.0" }
-  s.source       = { :git => "https://github.com/dhawal1248/rudder-integration-appsflyer-react-native.git", :tag => "#{s.version}" }
 
   s.source_files = "ios/**/*.{h,c,m,swift}"
   s.requires_arc = true
 
   s.dependency "React"
   s.dependency "Rudder-Appsflyer"
-  # ...
-  # s.dependency "..."
 end
 

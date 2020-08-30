@@ -2,7 +2,7 @@
 
 ## Getting started
 
-`$ npm install rudder-integration-appsflyer-react-native --save`
+`$ npm install @rudderstack/rudder-integration-appsflyer-react-native --save`
 
 ### Mostly automatic installation
 
@@ -10,7 +10,7 @@
 
 ## Usage
 ```javascript
-import RudderIntegrationAppsflyerReactNative from 'rudder-integration-appsflyer-react-native';
+import RudderIntegrationAppsflyerReactNative from '@rudderstack/rudder-integration-appsflyer-react-native';
 
 // TODO: What to do with the module?
 RudderIntegrationAppsflyerReactNative;
