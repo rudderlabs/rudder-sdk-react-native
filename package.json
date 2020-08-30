@@ -1,15 +1,31 @@
 {
   "name": "@rudderstack/rudder-sdk-react-native",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Rudder React Native SDK",
   "main": "index.ts",
-  "keywords": [ "react-native", "rudder" ],
+  "keywords": [
+    "react-native",
+    "rudder"
+  ],
   "author": "RudderStack",
   "license": "Apache-2.0",
-  "devDependencies": { "@babel/core": "^7.4.0", "prettier": "^1.14.2" },
-  "peerDependencies": { "react-native": "0.41.2" },
-  "dependencies": { "@babel/runtime": "^7.7.7", "@types/react-native": "^0.62.2" },
-  "repository": { "type": "git", "url": "git+https://github.com/rudderlabs/rudder-sdk-reactnative.git" },
-  "bugs": { "url": "https://github.com/rudderlabs/rudder-sdk-reactnative/issues" },
+  "devDependencies": {
+    "@babel/core": "^7.4.0",
+    "prettier": "^1.14.2"
+  },
+  "peerDependencies": {
+    "react-native": "0.41.2"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.7.7",
+    "@types/react-native": "^0.62.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rudderlabs/rudder-sdk-reactnative.git"
+  },
+  "bugs": {
+    "url": "https://github.com/rudderlabs/rudder-sdk-reactnative/issues"
+  },
   "homepage": "https://github.com/rudderlabs/rudder-sdk-reactnative#readme"
 }
