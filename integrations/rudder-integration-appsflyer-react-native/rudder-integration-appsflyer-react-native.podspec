@@ -9,10 +9,11 @@ Pod::Spec.new do |s|
   s.description  = <<-DESC
                   rudder-integration-appsflyer-react-native
                    DESC
-  s.homepage     = "https://github.com/dhawal1248/rudder-integration-appsflyer-react-native"
+  s.homepage     = "https://rudderstack.com/"
   s.license      = "MIT"
-  s.authors      = { "RudderStack" => "dhawal@rudderlabs.com" }
+  s.author       = { "RudderStack" => "dhawal@rudderlabs.com" }
   s.platforms    = { :ios => "9.0" }
+  s.source       = { :git => "https://github.com/dhawal1248/rudder-integration-firebase-react-native.git", :tag => "#{s.version}" }
 
   s.source_files = "ios/**/*.{h,c,m,swift}"
   s.requires_arc = true

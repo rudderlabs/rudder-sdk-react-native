@@ -9,21 +9,16 @@ Pod::Spec.new do |s|
   s.description  = <<-DESC
                   rudder-integration-firebase-react-native
                    DESC
-  s.homepage     = "https://github.com/dhawal1248/rudder-integration-firebase-react-native"
-  # brief license entry:
+  s.homepage     = "https://github.com/dhawal1248/rudder-integration-appsflyer-react-native"
   s.license      = "MIT"
-  # optional - use expanded license entry instead:
-  # s.license    = { :type => "MIT", :file => "LICENSE" }
-  s.authors      = { "dhawal1248" => "sanghvi.dhawal101433@gmail.com" }
+  s.authors      = { "RudderStack" => "dhawal@rudderlabs.com" }
   s.platforms    = { :ios => "9.0" }
-  s.source       = { :git => "https://github.com/dhawal1248/rudder-integration-firebase-react-native.git", :tag => "#{s.version}" }
+  s.source       = { :git => "https://github.com/rudderlabs/rudder-sdk-react-native.git", :tag => "master" }
 
   s.source_files = "ios/**/*.{h,c,m,swift}"
   s.requires_arc = true
 
   s.dependency "React"
   s.dependency "Rudder-Firebase"
-  # ...
-  # s.dependency "..."
 end
 
