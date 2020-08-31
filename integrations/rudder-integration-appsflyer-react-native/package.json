@@ -6,6 +6,7 @@
   "main": "index.js",
   "files": [
     "README.md",
+    "src",
     "android",
     "index.js",
     "ios",
