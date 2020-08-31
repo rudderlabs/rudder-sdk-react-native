@@ -14,7 +14,9 @@
     "ios",
     "rudder-integration-firebase-react-native.podspec"
   ],
-  "author": "RudderStack",
+  "author": {
+    "name": "RudderStack"
+  },
   "license": "Apache-2.0",
   "peerDependencies": {
     "react": "^16.8.1",
