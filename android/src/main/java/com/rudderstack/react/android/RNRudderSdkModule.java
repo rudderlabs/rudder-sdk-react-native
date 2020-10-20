@@ -71,6 +71,7 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
                 writeKey,
                 RNRudderAnalytics.buildWithIntegrations(configBuilder)
         );
+        rudderClient.track("Application Opened");
 
         // finally resolve the promise to mark as completed
         promise.resolve(null);

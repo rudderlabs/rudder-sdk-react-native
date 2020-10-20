@@ -3,6 +3,7 @@
 #import "RSClient.h"
 #import "RSConfig.h"
 #import "RSLogger.h"
+#import <React/RCTBridge.h>
 
 @implementation RNRudderSdkModule
 
@@ -49,7 +50,15 @@ RCT_EXPORT_METHOD(setup:(NSDictionary*)config resolver:(RCTPromiseResolveBlock)r
         [configBuilder withLoglevel:[config[@"logLevel"] intValue]];
     }
 
-    [RSClient getInstance:_writeKey config:[RNRudderAnalytics buildWithIntegrations:configBuilder]];
+    RSClient* rsClient = [RSClient getInstance:_writeKey config:[RNRudderAnalytics buildWithIntegrations:configBuilder]];
+    
+    if ([config objectForKey:@"trackAppLifecycleEvents"]) {
+        SEL selector = @selector(trackLifecycleEvents:);
+                
+        if ([rsClient respondsToSelector:selector]) {
+            [rsClient performSelector:selector withObject:_bridge.launchOptions];
+        }
+    }
 
     resolve(nil);
 }
