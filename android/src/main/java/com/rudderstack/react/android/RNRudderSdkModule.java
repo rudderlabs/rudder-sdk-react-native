@@ -71,6 +71,7 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
                 writeKey,
                 RNRudderAnalytics.buildWithIntegrations(configBuilder)
         );
+        rudderClient.track("Application Opened");
 
         // finally resolve the promise to mark as completed
         promise.resolve(null);
@@ -78,7 +79,9 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
 
     @ReactMethod
     public void track(String event, ReadableMap properties, ReadableMap options) {
-        if (rudderClient == null) return;
+        if (rudderClient == null) {
+          return;
+        }
         rudderClient.track(new RudderMessageBuilder()
                 .setEventName(event)
                 .setProperty(Utility.convertReadableMapToMap(properties))
@@ -87,7 +90,9 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
 
     @ReactMethod
     public void screen(String event, ReadableMap properties, ReadableMap options) {
-        if (rudderClient == null) return;
+        if (rudderClient == null) {
+          return;
+        }
         rudderClient.screen(new RudderMessageBuilder()
                 .setEventName(event)
                 .setProperty(Utility.convertReadableMapToMap(properties))
@@ -96,22 +101,27 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
 
     @ReactMethod
     public void putDeviceToken(String token) {
-        if (rudderClient == null) return;
-        RudderContext rudderContext = rudderClient.getRudderContext();
-        if (rudderContext != null && !TextUtils.isEmpty(token)) {
-            rudderContext.putDeviceToken(token);
+        if (rudderClient == null) {
+          return;
+        }
+        if (!TextUtils.isEmpty(token)) {
+            rudderClient.putDeviceToken(token);
         }
     }
-    
+
     @ReactMethod
     public void identify(String userId, ReadableMap traits, ReadableMap options) {
-        if (rudderClient == null) return;
+        if (rudderClient == null) {
+          return;
+        }
         rudderClient.identify(userId, Utility.convertReadableMapToTraits(traits), null);
     }
 
     @ReactMethod
     public void reset() {
-        if (rudderClient == null) return;
+        if (rudderClient == null) {
+          return;
+        }
         rudderClient.reset();
     }
 }
