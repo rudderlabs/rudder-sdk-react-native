@@ -104,7 +104,7 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
         if (rudderClient == null) {
           return;
         }
-        if (rudderContext != null && !TextUtils.isEmpty(token)) {
+        if (!TextUtils.isEmpty(token)) {
             rudderClient.putDeviceToken(token);
         }
     }
