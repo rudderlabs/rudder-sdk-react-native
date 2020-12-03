@@ -79,10 +79,10 @@ dependencies {
 
     // rudderstack dependencies
     implementation 'com.rudderstack.android.sdk:core:1+'
-    implementation 'com.rudderstack.android.integration:firebase:0.1.1'
+    implementation 'com.rudderstack.android.integration:firebase:1.0.1'
 
     // firebase dependencies
-    implementation 'com.google.firebase:firebase-analytics:17.5.0'
+    implementation 'com.google.firebase:firebase-analytics:18.0.0'
 }
 
 def configureReactNativePom(def pom) {
