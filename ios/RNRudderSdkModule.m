@@ -114,8 +114,7 @@ RCT_EXPORT_METHOD(setAdvertisingId:(NSString*)id) {
 }
 
 RCT_EXPORT_METHOD(setAnonymousId:(NSString*)id) {
-    if ([RSClient sharedInstance] == nil) return;
-    [[RSClient sharedInstance] setAnonymousId:id];
+    [RSClient setAnonymousId:id];
 }
 
 @end
