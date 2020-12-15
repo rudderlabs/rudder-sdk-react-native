@@ -124,4 +124,20 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
         }
         rudderClient.reset();
     }
+
+    @ReactMethod
+    public void setAdvertisingId(String id) {
+        if (rudderClient == null) {
+          return;
+        }
+        rudderClient.updateWithAdvertisingId(id);
+    }
+
+    @ReactMethod
+    public void setAnonymousId(String id) {
+        if (rudderClient == null) {
+          return;
+        }
+        rudderClient.setAnonymousId(id);
+    }
 }

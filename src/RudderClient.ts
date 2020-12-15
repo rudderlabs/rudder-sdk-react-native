@@ -205,6 +205,27 @@ async function putDeviceToken(androidToken: string, iOSToken: string) {
   }
 }
 
+async function setAdvertisingId(androidId: string, iOSId: string) {
+  switch (Platform.OS) {
+    case "ios":
+      if (iOSId) {
+        bridge.setAdvertisingId(iOSId);
+      }
+      break;
+    case "android":
+      if (androidId) {
+        bridge.setAdvertisingId(androidId);
+      }
+      break;
+  }
+}
+
+async function setAnonymousID(id: string) {
+  if (id) {
+    bridge.setAnonymousId(id);
+  }
+}
+
 async function reset() {
   bridge.reset();
 }
