@@ -220,7 +220,7 @@ async function setAdvertisingId(androidId: string, iOSId: string) {
   }
 }
 
-async function setAnonymousID(id: string) {
+async function setAnonymousId(id: string) {
   if (id) {
     bridge.setAnonymousId(id);
   }
@@ -239,5 +239,7 @@ const rudderClient = {
   alias,
   reset,
   putDeviceToken,
+  setAdvertisingId,
+  setAnonymousId
 };
 export default rudderClient;
