@@ -32,6 +32,8 @@ export interface Bridge {
   ): Promise<void>;
   reset(): Promise<void>;
   putDeviceToken(token: string): Promise<void>;
+  setAdvertisingId(id: string): Promise<void>;
+  setAnonymousId(id:string): Promise<void>;
 }
 
 const bridge: Bridge = NativeModules.RNRudderSdkModule;

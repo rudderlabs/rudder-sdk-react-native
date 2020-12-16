@@ -105,4 +105,16 @@ RCT_EXPORT_METHOD(reset)
     [[RSClient sharedInstance] reset];
 }
 
+RCT_EXPORT_METHOD(setAdvertisingId:(NSString*)id) {
+    if ([RSClient sharedInstance] == nil) return;
+    RSContext* rudderContext = [[RSClient sharedInstance] getContext];
+    if (rudderContext != nil) {
+        [rudderContext putAdvertisementId:id];
+    }
+}
+
+RCT_EXPORT_METHOD(setAnonymousId:(NSString*)id) {
+    [RSClient setAnonymousId:id];
+}
+
 @end
