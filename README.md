@@ -1,9 +1,9 @@
 # What is Rudder?
 
-**Short answer:** 
+**Short answer:**
 Rudder is an open-source Segment alternative written in Go, built for the enterprise.
 
-**Long answer:** 
+**Long answer:**
 Rudder is a platform for collecting, storing and routing customer event data to dozens of tools. Rudder is open-source, can run in your cloud environment (AWS, GCP, Azure or even your data-centre) and provides a powerful transformation framework to process your event data on the fly.
 
 Released under [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0)
@@ -14,10 +14,10 @@ Released under [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0)
 ```
 yarn add @rudderstack/rudder-sdk-react-native
 ```
-2. For Android: Navigate to the `android` folder of your application and add the following to your project's `build.gradle` file: 
+2. For Android: Navigate to the `android` folder of your application and add the following to your project's `build.gradle` file:
 ```
-maven { 
-    url  "https://dl.bintray.com/rudderstack/rudderstack" 
+maven {
+    url  "https://dl.bintray.com/rudderstack/rudderstack"
 }
 ```
 3. For iOs: Navigate to the `ios` folder of your application and install all the dependencies with:
@@ -54,7 +54,7 @@ rudderClient.track("simple_track_event", {
 
 ## Device Tokens
 You can use the `putDeviceToken` method to pass your Android and iOS device tokens.
-`putDeviceToken` accepts two `string` arguments : 
+`putDeviceToken` accepts two `string` arguments :
 - `androidToken` : Your Android device token
 - `iOSToken` : Your iOS device token
 
@@ -64,6 +64,28 @@ Example Usage:
 rudderClient.putDeviceToken("<Your Android device token>", "<Your iOS device token>");
 ```
 
+## AdvertisingId
+You can use the `setAdvertisingId` method to pass your Android and iOS AAID and IDFA respectively.
+`setAdvertisingId` accepts two `string` arguments :
+- `androidId` : Your Android advertisingId (AAID)
+- `iOSId` : Your iOS advertisingId (IDFA)
+
+Example Usage:
+
+```
+rudderClient.setAdvertisingId(AAID, IDFA);
+```
+
+## AnonymousId
+You can use the `setAnonymousId` method to pass your `anonymousId` and the SDK will use that instead of the `deviceId`.
+`setAnonymousId` accepts one `string` argument:
+- `id` : Your anonymousId
+
+Example Usage:
+
+```
+rudderClient.setAnonymousId(ANONYMOUS_ID);
+```
 
 For more detailed documentation check [the documentation page](https://docs.rudderstack.com/sdk-integration-guide/getting-started-with-reactnative-sdk).
 
