@@ -1,38 +1,47 @@
-# What is Rudder?
+# What is RudderStack?
 
-**Short answer:**
-Rudder is an open-source Segment alternative written in Go, built for the enterprise.
+[RudderStack](https://rudderstack.com/) is a **customer data pipeline** tool for collecting, routing and processing data from your websites, apps, cloud tools, and data warehouse.
 
-**Long answer:**
-Rudder is a platform for collecting, storing and routing customer event data to dozens of tools. Rudder is open-source, can run in your cloud environment (AWS, GCP, Azure or even your data-centre) and provides a powerful transformation framework to process your event data on the fly.
+More information on RudderStack can be found [here](https://github.com/rudderlabs/rudder-server).
 
-Released under [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0)
+## RudderStack React Native SDK
 
-## Getting Started with ReactNative SDK
+The RudderStack React Native SDK allows you to track event data from your app. It can be easily integrated into your React Native application. After integrating this SDK, you will also send the event data to your preferred analytics destination/s, such as Google Analytics, Amplitude, and more. 
 
-1. Add the sdk to your ReactNative application with
+## Getting Started with React Native SDK
+
+1. Add the SDK to your React Native application with the following command:
+
 ```
 yarn add @rudderstack/rudder-sdk-react-native
 ```
+
 2. For Android: Navigate to the `android` folder of your application and add the following to your project's `build.gradle` file:
+
 ```
 maven {
     url  "https://dl.bintray.com/rudderstack/rudderstack"
 }
 ```
-3. For iOs: Navigate to the `ios` folder of your application and install all the dependencies with:
+
+3. For iOS: Navigate to the `ios` folder of your application and install all the dependencies with:
+
 ```
 pod install
 ```
 
 ## Import `RudderClient`
+
 Add the below line to `import` the rudderClient.
+
 ```
 import rudderClient, { RUDDER_LOG_LEVEL } from '@rudderstack/rudder-sdk-react-native';
 ```
 
 ## Initialize ```RudderClient```
-Somewhere in your Application, add the following code
+
+Add the following code in your application:
+
 ```
 const config = {
   dataPlaneUrl: <DATA_PLANE_URL>,
@@ -43,6 +52,7 @@ await rudderClient.setup(<WRITE_KEY>, config);
 ```
 
 ## Send Events
+
 ```
 rudderClient.track("simple_track_event", {
   "key1":"val1",
@@ -53,18 +63,21 @@ rudderClient.track("simple_track_event", {
 ```
 
 ## Device Tokens
+
 You can use the `putDeviceToken` method to pass your Android and iOS device tokens.
+
 `putDeviceToken` accepts two `string` arguments :
 - `androidToken` : Your Android device token
 - `iOSToken` : Your iOS device token
 
-Example Usage:
+An example usage is as shown below:
 
 ```
 rudderClient.putDeviceToken("<Your Android device token>", "<Your iOS device token>");
 ```
 
 ## AdvertisingId
+
 You can use the `setAdvertisingId` method to pass your Android and iOS AAID and IDFA respectively.
 `setAdvertisingId` accepts two `string` arguments :
 - `androidId` : Your Android advertisingId (AAID)
@@ -77,6 +90,7 @@ rudderClient.setAdvertisingId(AAID, IDFA);
 ```
 
 ## AnonymousId
+
 You can use the `setAnonymousId` method to pass your `anonymousId` and the SDK will use that instead of the `deviceId`.
 `setAnonymousId` accepts one `string` argument:
 - `id` : Your anonymousId
@@ -87,7 +101,8 @@ Example Usage:
 rudderClient.setAnonymousId(ANONYMOUS_ID);
 ```
 
-For more detailed documentation check [the documentation page](https://docs.rudderstack.com/sdk-integration-guide/getting-started-with-reactnative-sdk).
+For more details, check out our [documentation](https://docs.rudderstack.com/rudderstack-sdk-integration-guides/rudderstack-react-native-sdk).
 
 ## Contact Us
-If you come across any issues while configuring or using RudderStack, please feel free to [contact us](https://rudderstack.com/contact/) or start a conversation on our [Slack](https://resources.rudderstack.com/join-rudderstack-slack) channel. We will be happy to help you.
+
+If you come across any issues while configuring or using RudderStack React Native SDK, please feel free to start a conversation on our [Slack](https://resources.rudderstack.com/join-rudderstack-slack) channel. We will be happy to help you.
