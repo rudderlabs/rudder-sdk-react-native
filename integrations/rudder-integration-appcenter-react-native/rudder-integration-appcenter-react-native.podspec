@@ -9,9 +9,9 @@ Pod::Spec.new do |s|
   s.description  = <<-DESC
                   rudder-integration-appcenter-react-native
                    DESC
-  s.homepage     = "https://github.com/dhawal1248/rudder-integration-appsflyer-react-native"
+  s.homepage     = "https://rudderstack.com/"
   s.license      = "MIT"
-  s.authors      = { "RudderStack" => "dhawal@rudderlabs.com" }
+  s.authors      = { "RudderStack" => "venkat@rudderstack.com" }
   s.platforms    = { :ios => "9.0" }
   s.source       = { :git => "https://github.com/rudderlabs/rudder-sdk-react-native.git", :tag => "master" }
 
@@ -19,6 +19,6 @@ Pod::Spec.new do |s|
   s.requires_arc = true
 
   s.dependency "React"
-  s.dependency "Rudder-Appcenter"
+  s.dependency "Rudder-AppCenter"
 end
 

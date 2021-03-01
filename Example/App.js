@@ -24,32 +24,34 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
-import rc, { RUDDER_LOG_LEVEL } from '@rudderstack/rudder-sdk-react-native';
+import rc, {RUDDER_LOG_LEVEL} from '@rudderstack/rudder-sdk-react-native';
 import appsflyer from 'rudder-integration-appsflyer-react-native';
 import firebase from 'rudder-integration-firebase-react-native';
+import appcenter from 'rudder-integration-appcenter-react-native';
 
 const App: () => React$Node = () => {
-  (async function(){
+  (async function () {
     const config = {
-      dataPlaneUrl: "https://hosted.rudderlabs.com",
+      dataPlaneUrl: 'https://b3a4b07c49f5.ngrok.io',
       trackAppLifecycleEvents: true,
       logLevel: RUDDER_LOG_LEVEL.DEBUG,
-      withFactories: [firebase, appsflyer]
+      withFactories: [appcenter],
     };
-    await rc.setup("1YyzMKUnUZJ6XNRkdHJCayV5fzM", config);
+    await rc.setup('1nYbaFkbmgtnOnJAmmo8TAfw4V6', config);
     const child_props = {
-      "c1":"v1",
-      "c2":"v2"
+      c1: 'v1',
+      c2: 'v2',
     };
     const props = {
-      "k1":"v1",
-      "k2":"v3",
-      "k3":"v3",
-      "c":child_props
+      k1: 'v1',
+      k2: 'v3',
+      k3: 'v3',
+      name: 'Miraj',
+      c: child_props,
     };
-    await rc.identify("new user", props, null);
-    await rc.track("new event", props, child_props); 
-    await rc.screen("new screen", props);
+    //await rc.identify('new user', props, null);
+    await rc.track('new event', props, child_props);
+    await rc.screen('new screen', props);
   })();
   return (
     <>
