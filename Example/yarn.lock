@@ -1032,7 +1032,7 @@
     prettier "1.16.4"
 
 "@rudderstack/rudder-sdk-react-native@file:..":
-  version "0.1.4"
+  version "1.0.4"
   dependencies:
     "@babel/runtime" "^7.7.7"
     "@types/react-native" "^0.62.2"
@@ -5290,11 +5290,14 @@ rsvp@^4.8.4:
   resolved "https://registry.yarnpkg.com/rsvp/-/rsvp-4.8.5.tgz#c8f155311d167f68f21e168df71ec5b083113734"
   integrity sha512-nfMOlASu9OnRJo1mbEk2cz0D56a1MBNrJ7orjRZQG10XDyuvwksKbuXNp6qa+kbn839HwjwhBzhFmdsaEAfauA==
 
+"rudder-integration-appcenter-react-native@file:../integrations/rudder-integration-appcenter-react-native":
+  version "1.0.4"
+
 "rudder-integration-appsflyer-react-native@file:../integrations/rudder-integration-appsflyer-react-native":
-  version "1.0.0"
+  version "1.0.2"
 
 "rudder-integration-firebase-react-native@file:../integrations/rudder-integration-firebase-react-native":
-  version "1.0.0"
+  version "1.0.4"
 
 run-async@^2.2.0, run-async@^2.4.0:
   version "2.4.1"
