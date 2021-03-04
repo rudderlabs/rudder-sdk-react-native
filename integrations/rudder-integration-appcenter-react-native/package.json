@@ -1,11 +1,12 @@
 {
   "name": "@rudderstack/rudder-integration-appcenter-react-native",
-  "version": "1.0.4",
+  "version": "1.0.0",
   "description": "Rudder React Native SDK Appcenter Device mode support for Android and iOS",
   "main": "index.js",
   "keywords": [
     "react-native",
-    "rudder"
+    "rudder",
+    "appcenter"
   ],
   "files": [
     "README.md",
@@ -29,10 +30,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/rudderlabs/rudder-sdk-reactnative.git"
+    "url": "git+https://github.com/rudderlabs/rudder-sdk-react-native.git"
   },
   "bugs": {
-    "url": "https://github.com/rudderlabs/rudder-sdk-reactnative/issues"
+    "url": "https://github.com/rudderlabs/rudder-sdk-react-native/issues"
   },
-  "homepage": "https://github.com/rudderlabs/rudder-sdk-reactnative#readme"
+  "homepage": "https://github.com/rudderlabs/rudder-sdk-react-native#readme"
 }
