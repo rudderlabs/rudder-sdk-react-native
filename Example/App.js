@@ -41,23 +41,23 @@ const App: () => React$Node = () => {
       withFactories: [appcenter],
     };
     await rc.setup('1pTxG1Tqxr7FCrqIy7j0p28AENV', config);
-    const integrationReady = await rc.checkIntegrationReady('App Center');
-    if(integrationReady)
-    {
-      // if the required integration is ready we are grabbing the user consent
-    Alert.alert(
-      "User Consent",
-      "Would you like to share your data with Appcenter",
-      [
-        {
-          text: "Cancel",
-          onPress: () => AppcenterIntegrationFactory.disableAnalytics(),
-          style: "cancel"
-        },
-        { text: "OK", onPress: () => AppcenterIntegrationFactory.enableAnalytics() }
-      ],
-      { cancelable: false });
-    }
+    // const integrationReady = await rc.checkIntegrationReady('App Center');
+    // if(integrationReady)
+    // {
+    //   // if the required integration is ready we are grabbing the user consent
+    // Alert.alert(
+    //   "User Consent",
+    //   "Would you like to share your data with Appcenter",
+    //   [
+    //     {
+    //       text: "Cancel",
+    //       onPress: () => AppcenterIntegrationFactory.disableAnalytics(),
+    //       style: "cancel"
+    //     },
+    //     { text: "OK", onPress: () => AppcenterIntegrationFactory.enableAnalytics() }
+    //   ],
+    //   { cancelable: false });
+    // }
     const child_props = {
       c1: 'v1',
       c2: 'v2',
@@ -77,6 +77,14 @@ const App: () => React$Node = () => {
   )();
   return (
     <>
+    <Button
+onPress = { async ()=> {
+console.log(await rc.checkIntegrationReady("App Center"));
+}}
+title= "check Integration Ready"
+color="#841584"
+></Button>
+
       <Button
   onPress={() => AppcenterIntegrationFactory.isEnabled()}
   title="Check Status "
@@ -93,13 +101,7 @@ const App: () => React$Node = () => {
   color="#841584"
 />
 
-<Button
-onPress = { async ()=> {
-console.log(await rc.checkIntegrationReady("App Center"));
-}}
-title= "check Integration Ready"
-color="#841584"
-></Button>
+
       <StatusBar barStyle="dark-content" />
       <SafeAreaView>
         <ScrollView
