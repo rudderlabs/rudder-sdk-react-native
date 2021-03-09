@@ -35,29 +35,29 @@ import AppcenterIntegrationFactory from 'rudder-integration-appcenter-react-nati
 const App: () => React$Node = () => {
   (async function () {
     const config = {
-      dataPlaneUrl: 'https://3b3f0cefa26b.ngrok.io',
+      dataPlaneUrl: 'https://c09b14e8d9d8.ngrok.io',
       trackAppLifecycleEvents: true,
       logLevel: RUDDER_LOG_LEVEL.DEBUG,
       withFactories: [appcenter],
     };
     await rc.setup('1pTxG1Tqxr7FCrqIy7j0p28AENV', config);
-    // const integrationReady = await rc.checkIntegrationReady('App Center');
-    // if(integrationReady)
-    // {
-    //   // if the required integration is ready we are grabbing the user consent
-    // Alert.alert(
-    //   "User Consent",
-    //   "Would you like to share your data with Appcenter",
-    //   [
-    //     {
-    //       text: "Cancel",
-    //       onPress: () => AppcenterIntegrationFactory.disableAnalytics(),
-    //       style: "cancel"
-    //     },
-    //     { text: "OK", onPress: () => AppcenterIntegrationFactory.enableAnalytics() }
-    //   ],
-    //   { cancelable: false });
-    // }
+    const integrationReady = await rc.checkIntegrationReady('App Center');
+    if(integrationReady)
+    {
+      // if the required integration is ready we are grabbing the user consent
+    Alert.alert(
+      "User Consent",
+      "Would you like to share your data with Appcenter",
+      [
+        {
+          text: "Cancel",
+          onPress: () => AppcenterIntegrationFactory.disableAnalytics(),
+          style: "cancel"
+        },
+        { text: "OK", onPress: () => AppcenterIntegrationFactory.enableAnalytics() }
+      ],
+      { cancelable: false });
+    }
     const child_props = {
       c1: 'v1',
       c2: 'v2',
@@ -77,32 +77,7 @@ const App: () => React$Node = () => {
   )();
   return (
     <>
-    <Button
-onPress = { async ()=> {
-console.log(await rc.checkIntegrationReady("App Center"));
-}}
-title= "check Integration Ready"
-color="#841584"
-></Button>
-
-      <Button
-  onPress={() => AppcenterIntegrationFactory.isEnabled()}
-  title="Check Status "
-  color="#841584"
-/>
-<Button
-  onPress={() => AppcenterIntegrationFactory.disableAnalytics()}
-  title="Disable"
-  color="#841584"
-/>
-<Button
-  onPress={() => AppcenterIntegrationFactory.enableAnalytics()}
-  title="Enable"
-  color="#841584"
-/>
-
-
-      <StatusBar barStyle="dark-content" />
+    <StatusBar barStyle="dark-content" />
       <SafeAreaView>
         <ScrollView
           contentInsetAdjustmentBehavior="automatic"

@@ -10,14 +10,20 @@ import com.facebook.react.bridge.ReadableMap;
 import com.rudderstack.android.sdk.core.RudderClient;
 import com.rudderstack.android.sdk.core.RudderConfig;
 import com.rudderstack.android.sdk.core.RudderContext;
+import com.rudderstack.android.sdk.core.RudderIntegration;
 import com.rudderstack.android.sdk.core.RudderLogger;
 import com.rudderstack.android.sdk.core.RudderMessageBuilder;
 import com.rudderstack.android.sdk.core.RudderTraits;
 import com.rudderstack.android.sdk.core.util.Utils;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class RNRudderSdkModule extends ReactContextBaseJavaModule {
 
     private final ReactApplicationContext reactContext;
+    public static Boolean integrationReady = null;
+    private static Map<String, Boolean> integrationStatusMap = new HashMap<>();
 
     private RudderClient rudderClient;
 

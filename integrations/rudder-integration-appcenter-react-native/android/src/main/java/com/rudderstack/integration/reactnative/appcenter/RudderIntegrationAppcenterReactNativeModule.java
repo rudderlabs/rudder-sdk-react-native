@@ -38,11 +38,4 @@ public class RudderIntegrationAppcenterReactNativeModule
   public void disableAnalytics() {
     Analytics.setEnabled(false);
   }
-
-  // just for serving the purpose of validation will remove it at the end
-  @ReactMethod
-  public void isEnabled() {
-    boolean enabled = Analytics.isEnabled().get();
-    System.out.println(enabled);
-  }
 }
