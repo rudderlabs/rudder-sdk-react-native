@@ -11,6 +11,7 @@ import com.rudderstack.android.sdk.core.RudderClient;
 import com.rudderstack.android.sdk.core.RudderConfig;
 import com.rudderstack.android.sdk.core.RudderContext;
 import com.rudderstack.android.sdk.core.RudderLogger;
+import com.rudderstack.android.sdk.core.RudderProperty;
 import com.rudderstack.android.sdk.core.RudderMessageBuilder;
 import com.rudderstack.android.sdk.core.RudderTraits;
 import com.rudderstack.android.sdk.core.util.Utils;
@@ -93,10 +94,9 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
         if (rudderClient == null) {
           return;
         }
-        rudderClient.screen(new RudderMessageBuilder()
-                .setEventName(event)
-                .setProperty(Utility.convertReadableMapToMap(properties))
-                .build());
+        RudderProperty property = new RudderProperty();
+        property.putValue(Utility.convertReadableMapToMap(properties));
+        rudderClient.screen(event,property);
     }
 
     @ReactMethod
