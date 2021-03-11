@@ -29,6 +29,10 @@
     "react-test-renderer": "16.11.0"
   },
   "jest": {
-    "preset": "react-native"
+    "preset": "react-native",
+    "transformIgnorePatterns": [
+      "/!node_modules\\/ky/"
+    ],
+    "setupFiles": ["./__mocks__/nativebridge.js"]
   }
 }
