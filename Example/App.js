@@ -35,7 +35,7 @@ const App: () => React$Node = () => {
       dataPlaneUrl: 'https://b3a4b07c49f5.ngrok.io',
       trackAppLifecycleEvents: true,
       logLevel: RUDDER_LOG_LEVEL.DEBUG,
-      withFactories: [appcenter],
+      withFactories: [appcenter,firebase,appsflyer],
     };
     await rc.setup('1nYbaFkbmgtnOnJAmmo8TAfw4V6', config);
     const child_props = {
