@@ -3,6 +3,7 @@ package com.rudderstack.integration.reactnative.appcenter;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
+import com.microsoft.appcenter.analytics.Analytics;
 import com.rudderstack.android.integrations.appcenter.AppcenterIntegrationFactory;
 import com.rudderstack.react.android.RNRudderAnalytics;
 
@@ -26,5 +27,15 @@ public class RudderIntegrationAppcenterReactNativeModule
   @ReactMethod
   public void setup() {
     RNRudderAnalytics.addIntegration(AppcenterIntegrationFactory.FACTORY);
+  }
+
+  @ReactMethod
+  public void enableAnalytics() {
+    Analytics.setEnabled(true);
+  }
+
+  @ReactMethod
+  public void disableAnalytics() {
+    Analytics.setEnabled(false);
   }
 }

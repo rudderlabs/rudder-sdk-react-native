@@ -226,6 +226,14 @@ async function setAnonymousId(id: string) {
   }
 }
 
+async function checkIntegrationReady(integrationName: string)
+{
+  if(integrationName)
+  {
+   return await bridge.checkIntegrationReady(integrationName);
+  }
+}
+
 async function reset() {
   bridge.reset();
 }
@@ -240,6 +248,7 @@ const rudderClient = {
   reset,
   putDeviceToken,
   setAdvertisingId,
-  setAnonymousId
+  setAnonymousId,
+  checkIntegrationReady
 };
 export default rudderClient;

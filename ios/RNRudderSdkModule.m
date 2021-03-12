@@ -117,4 +117,10 @@ RCT_EXPORT_METHOD(setAnonymousId:(NSString*)id) {
     [RSClient setAnonymousId:id];
 }
 
+RCT_EXPORT_METHOD(checkIntegrationReady:(NSString*)integrationName resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
+{
+    // we will return true directly because ios native sdk's deal with static references
+    resolve(@YES);
+}
+
 @end

@@ -10,15 +10,21 @@ import com.facebook.react.bridge.ReadableMap;
 import com.rudderstack.android.sdk.core.RudderClient;
 import com.rudderstack.android.sdk.core.RudderConfig;
 import com.rudderstack.android.sdk.core.RudderContext;
+import com.rudderstack.android.sdk.core.RudderIntegration;
 import com.rudderstack.android.sdk.core.RudderLogger;
 import com.rudderstack.android.sdk.core.RudderProperty;
 import com.rudderstack.android.sdk.core.RudderMessageBuilder;
 import com.rudderstack.android.sdk.core.RudderTraits;
 import com.rudderstack.android.sdk.core.util.Utils;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class RNRudderSdkModule extends ReactContextBaseJavaModule {
 
     private final ReactApplicationContext reactContext;
+    public static Boolean integrationReady = null;
+    private static Map<String, Boolean> integrationStatusMap = new HashMap<>();
 
     private RudderClient rudderClient;
 
@@ -73,7 +79,22 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
                 RNRudderAnalytics.buildWithIntegrations(configBuilder)
         );
         rudderClient.track("Application Opened");
+        // process all the factories passed and stores whether they were ready or not in the integrationStatusMap
+        for (RudderIntegration.Factory factory: RNRudderAnalytics.integrationList) {
+            String integrationName = factory.key();
+            RNRudderSdkModule.integrationReady = null;
+            RudderClient.Callback callback = new NativeCallBack();
+            rudderClient.onIntegrationReady(integrationName, callback);
+            while (RNRudderSdkModule.integrationReady == null) {
+                // just to pause here untill the integration is ready
+                // We can improve it
+            }
 
+            RNRudderSdkModule.integrationStatusMap.put(
+                integrationName,
+                RNRudderSdkModule.integrationReady
+            );
+        }
         // finally resolve the promise to mark as completed
         promise.resolve(null);
     }
@@ -133,5 +154,24 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
     @ReactMethod
     public void setAnonymousId(String id) {
         RudderClient.setAnonymousId(id);
+    }
+    // will check if the passed Integration exists or not and respond accordingly
+    @ReactMethod
+    public void checkIntegrationReady(String integrationName, Promise promise) {
+        if (rudderClient == null) {
+            promise.resolve(false);
+        }
+        if (RNRudderSdkModule.integrationStatusMap.containsKey(integrationName)) {
+            promise.resolve(RNRudderSdkModule.integrationStatusMap.get(integrationName));
+        }
+        promise.resolve(false);
+    }
+}
+
+class NativeCallBack implements RudderClient.Callback {
+
+    @Override
+    public void onReady(Object instance) {
+        RNRudderSdkModule.integrationReady = true;
     }
 }
