@@ -80,24 +80,29 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
         );
         rudderClient.track("Application Opened");
         // process all the factories passed and stores whether they were ready or not in the integrationStatusMap
-        for (RudderIntegration.Factory factory: RNRudderAnalytics.integrationList) {
-            String integrationName = factory.key();
-            RNRudderSdkModule.integrationReady = null;
-            RudderClient.Callback callback = new NativeCallBack();
-            rudderClient.onIntegrationReady(integrationName, callback);
-            while (RNRudderSdkModule.integrationReady == null) {
-                // just to pause here untill the integration is ready
-                // We can improve it
-            }
-
-            RNRudderSdkModule.integrationStatusMap.put(
-                integrationName,
-                RNRudderSdkModule.integrationReady
-            );
+    if (
+      RNRudderAnalytics.integrationList != null &&
+      RNRudderAnalytics.integrationList.size() > 0
+    ) {
+      for (RudderIntegration.Factory factory : RNRudderAnalytics.integrationList) {
+        String integrationName = factory.key();
+        RNRudderSdkModule.integrationReady = null;
+        RudderClient.Callback callback = new NativeCallBack();
+        rudderClient.onIntegrationReady(integrationName, callback);
+        while (RNRudderSdkModule.integrationReady == null) {
+          // just to pause here untill the integration is ready
+          // We can improve it
         }
-        // finally resolve the promise to mark as completed
-        promise.resolve(null);
+
+        RNRudderSdkModule.integrationStatusMap.put(
+          integrationName,
+          RNRudderSdkModule.integrationReady
+        );
+      }
     }
+    // finally resolve the promise to mark as completed
+    promise.resolve(null);
+  }
 
     @ReactMethod
     public void track(String event, ReadableMap properties, ReadableMap options) {
