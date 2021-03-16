@@ -12,8 +12,6 @@ import {
   StyleSheet,
   ScrollView,
   View,
-  Button,
-  Alert,
   Text,
   StatusBar,
 } from 'react-native';
@@ -30,7 +28,6 @@ import rc, {RUDDER_LOG_LEVEL} from '@rudderstack/rudder-sdk-react-native';
 import appsflyer from 'rudder-integration-appsflyer-react-native';
 import firebase from 'rudder-integration-firebase-react-native';
 import appcenter from 'rudder-integration-appcenter-react-native';
-import AppcenterIntegrationFactory from 'rudder-integration-appcenter-react-native/src/bridge';
 
 const App: () => React$Node = () => {
   (async function () {
@@ -40,24 +37,7 @@ const App: () => React$Node = () => {
       logLevel: RUDDER_LOG_LEVEL.DEBUG,
       withFactories: [appcenter,firebase,appsflyer],
     };
-    await rc.setup('1pTxG1Tqxr7FCrqIy7j0p28AENV', config);
-    const integrationReady = await rc.checkIntegrationReady('App Center');
-    if(integrationReady)
-    {
-      // if the required integration is ready we are grabbing the user consent
-    Alert.alert(
-      "User Consent",
-      "Would you like to share your data with Appcenter",
-      [
-        {
-          text: "Cancel",
-          onPress: () => AppcenterIntegrationFactory.disableAnalytics(),
-          style: "cancel"
-        },
-        { text: "OK", onPress: () => AppcenterIntegrationFactory.enableAnalytics() }
-      ],
-      { cancelable: false });
-    }
+    await rc.setup('1pAKRv50y15Ti6UWpYroGJaO0Dj', config);
     const child_props = {
       c1: 'v1',
       c2: 'v2',
@@ -69,7 +49,7 @@ const App: () => React$Node = () => {
       name: 'Miraj',
       c: child_props,
     };
-    //await rc.identify('new user', props, null);
+    await rc.identify('new user', props, null);
     await rc.track('React Native event', props, child_props);
     await rc.screen('React Native screen', props);
   }
