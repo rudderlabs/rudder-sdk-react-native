@@ -3,7 +3,7 @@ package com.rudderstack.integration.reactnative.clevertap;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
-import com.rudderstack.android.integration.clevertap.CleverTapIntegrationFactory;
+import com.rudderstack.android.integrations.clevertap.CleverTapIntegrationFactory;
 import com.rudderstack.react.android.RNRudderAnalytics;
 
 public class RudderIntegrationCleverTapReactNativeModule
