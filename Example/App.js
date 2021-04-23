@@ -28,16 +28,18 @@ import rc, {RUDDER_LOG_LEVEL} from '@rudderstack/rudder-sdk-react-native';
 import appsflyer from 'rudder-integration-appsflyer-react-native';
 import firebase from 'rudder-integration-firebase-react-native';
 import appcenter from 'rudder-integration-appcenter-react-native';
+import clevertap from 'rudder-integration-clevertap-react-native';
 
 const App: () => React$Node = () => {
   (async function () {
     const config = {
-      dataPlaneUrl: 'https://c09b14e8d9d8.ngrok.io',
+      dataPlaneUrl: 'http://localhost:8080',
+      controlPlaneUrl: 'https://dae76320e9b2.ngrok.io',
       trackAppLifecycleEvents: true,
       logLevel: RUDDER_LOG_LEVEL.DEBUG,
-      withFactories: [appcenter,firebase,appsflyer],
+      withFactories: [clevertap],
     };
-    await rc.setup('1pAKRv50y15Ti6UWpYroGJaO0Dj', config);
+    await rc.setup('1rWlD8n3YMNgHgs8gKfxKQ59FkK', config);
     const child_props = {
       c1: 'v1',
       c2: 'v2',
@@ -49,7 +51,7 @@ const App: () => React$Node = () => {
       name: 'Miraj',
       c: child_props,
     };
-    await rc.identify('new user', props, null);
+    await rc.identify('new ios user', props, null);
     await rc.track('React Native event', props, child_props);
     await rc.screen('React Native screen', props);
   }

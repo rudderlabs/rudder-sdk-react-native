@@ -24,3 +24,7 @@ NativeModules.RudderIntegrationAppsflyerReactNative = {
 NativeModules.RudderIntegrationFirebaseReactNative = {
     setup: jest.fn()
 }
+
+NativeModules.RudderIntegrationCleverTapReactNative = {
+    setup: jest.fn()
+}
