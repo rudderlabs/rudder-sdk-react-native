@@ -48,7 +48,7 @@ android {
         minSdkVersion safeExtGet('minSdkVersion', DEFAULT_MIN_SDK_VERSION)
         targetSdkVersion safeExtGet('targetSdkVersion', DEFAULT_TARGET_SDK_VERSION)
         versionCode 1
-        versionName "1.0"
+        versionName '1.0'
     }
     lintOptions {
         abortOnError false
@@ -77,13 +77,11 @@ dependencies {
     // rudderstack dependencies
     implementation project(path: ':rudderstack_rudder-sdk-react-native')
     implementation 'com.rudderstack.android.sdk:core:1+'
-    implementation 'com.rudderstack.android.integration:appsflyer:0.1.1'
-
+    implementation 'com.rudderstack.android.integration:appsflyer:1.+'
 
     // appsflyer dependencies
-    implementation 'com.appsflyer:af-android-sdk:5.1.1'
-    implementation 'com.android.installreferrer:installreferrer:1.1.1'
-
+    implementation 'com.appsflyer:af-android-sdk:6.2.3'
+    implementation 'com.android.installreferrer:installreferrer:2.2'
 }
 
 def configureReactNativePom(def pom) {
@@ -93,7 +91,7 @@ def configureReactNativePom(def pom) {
         name packageJson.title
         artifactId packageJson.name
         version = packageJson.version
-        group = "com.rudderstack.integration.reactnative.appsflyer"
+        group = 'com.rudderstack.integration.reactnative.appsflyer'
         description packageJson.description
         url packageJson.repository.baseUrl
 
