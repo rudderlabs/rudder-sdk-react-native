@@ -1032,7 +1032,7 @@
     prettier "1.16.4"
 
 "@rudderstack/rudder-sdk-react-native@file:..":
-  version "1.0.4"
+  version "1.0.6"
   dependencies:
     "@babel/runtime" "^7.7.7"
     "@types/react-native" "^0.62.2"
@@ -5291,10 +5291,13 @@ rsvp@^4.8.4:
   integrity sha512-nfMOlASu9OnRJo1mbEk2cz0D56a1MBNrJ7orjRZQG10XDyuvwksKbuXNp6qa+kbn839HwjwhBzhFmdsaEAfauA==
 
 "rudder-integration-appcenter-react-native@file:../integrations/rudder-integration-appcenter-react-native":
-  version "1.0.4"
+  version "1.0.0"
 
 "rudder-integration-appsflyer-react-native@file:../integrations/rudder-integration-appsflyer-react-native":
-  version "1.0.2"
+  version "1.0.3"
+
+"rudder-integration-clevertap-react-native@file:../integrations/rudder-integration-clevertap-react-native":
+  version "1.0.0"
 
 "rudder-integration-firebase-react-native@file:../integrations/rudder-integration-firebase-react-native":
   version "1.0.4"
@@ -5980,9 +5983,9 @@ typedarray@^0.0.6:
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
 
 ua-parser-js@^0.7.18:
-  version "0.7.21"
-  resolved "https://registry.yarnpkg.com/ua-parser-js/-/ua-parser-js-0.7.21.tgz#853cf9ce93f642f67174273cc34565ae6f308777"
-  integrity sha512-+O8/qh/Qj8CgC6eYBVBykMrNtp5Gebn4dlGD/kKXVkJNDwyrAwSIqwz8CDf+tsAIWVycKcku6gIXJ0qwx/ZXaQ==
+  version "0.7.28"
+  resolved "https://registry.yarnpkg.com/ua-parser-js/-/ua-parser-js-0.7.28.tgz#8ba04e653f35ce210239c64661685bf9121dec31"
+  integrity sha512-6Gurc1n//gjp9eQNXjD9O3M/sMwVtN5S8Lv9bvOYBfKfDNiIIhqiyi01vMBO45u4zkDE420w/e0se7Vs+sIg+g==
 
 uglify-es@^3.1.9:
   version "3.3.9"
