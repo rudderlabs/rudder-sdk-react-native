@@ -6,6 +6,7 @@ import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.bridge.ReadableMapKeySetIterator;
 import com.rudderstack.android.sdk.core.RudderTraits;
+import com.rudderstack.android.sdk.core.RudderOption;
 
 import org.json.JSONObject;
 
@@ -85,5 +86,29 @@ class Utility {
             traits.put(key, map.get(key));
         }
         return traits;
+    }
+
+    static RudderOption convertReadableMapToOptions(ReadableMap readableMap)
+    {
+        if (readableMap == null) return null;
+        RudderOption options = new RudderOption();
+        Map<String, Object> optionsMap = convertReadableMapToMap(readableMap);
+        if(readableMap.hasKey("externalIds"))
+        {
+        List<Object> externalIdsList = convertReadableArrayToList(readableMap.getArray("externalIds"));
+        for(int i=0;i<externalIdsList.size();i++)
+        {
+            Map<String,Object> externalId = (Map<String,Object>) externalIdsList.get(i);
+            options.putExternalId(type,id);
+        }
+       }
+       if(optionsMap.containsKey("integrations"))
+       {
+        Map<String,Object> integrationsMap = (Map<String,Object>)optionsMap.get("integrations");
+        for (String key : integrationsMap.keySet()) {
+            options.putIntegration(key, (boolean)integrationsMap.get(key));
+        }
+        }
+        return options;
     }
 }

@@ -39,7 +39,7 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void setup(ReadableMap options, Promise promise) {
+    public void setup(ReadableMap options, ReadableMap rudderOptionsMap, Promise promise) {
         String writeKey = options.getString("writeKey");
 
         // build RudderConfig to get RudderClient instance
@@ -76,7 +76,8 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
         rudderClient = RudderClient.getInstance(
                 reactContext,
                 writeKey,
-                RNRudderAnalytics.buildWithIntegrations(configBuilder)
+                RNRudderAnalytics.buildWithIntegrations(configBuilder),
+                Utility.convertReadableMapToOptions(rudderOptionsMap)
         );
         rudderClient.track("Application Opened");
         // process all the factories passed and stores whether they were ready or not in the integrationStatusMap
@@ -112,6 +113,7 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
         rudderClient.track(new RudderMessageBuilder()
                 .setEventName(event)
                 .setProperty(Utility.convertReadableMapToMap(properties))
+                .setRudderOption(Utility.convertReadableMapToOptions(options))
                 .build());
     }
 
@@ -122,7 +124,7 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
         }
         RudderProperty property = new RudderProperty();
         property.putValue(Utility.convertReadableMapToMap(properties));
-        rudderClient.screen(event,property);
+        rudderClient.screen(event,property,Utility.convertReadableMapToOptions(options));
     }
 
     @ReactMethod
@@ -140,7 +142,7 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
         if (rudderClient == null) {
           return;
         }
-        rudderClient.identify(userId, Utility.convertReadableMapToTraits(traits), null);
+        rudderClient.identify(userId, Utility.convertReadableMapToTraits(traits), Utility.convertReadableMapToOptions(options));
     }
 
     @ReactMethod
