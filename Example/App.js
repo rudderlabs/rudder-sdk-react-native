@@ -33,11 +33,11 @@ import clevertap from 'rudder-integration-clevertap-react-native';
 const App: () => React$Node = () => {
   (async function () {
     const config = {
-      dataPlaneUrl: 'https://fast-starfish-28.loca.lt',
-      controlPlaneUrl: 'https://shaggy-lion-66.loca.lt',
+      dataPlaneUrl: 'https://strange-grasshopper-44.loca.lt/',
+      controlPlaneUrl: 'https://tiny-zebra-29.loca.lt',
       trackAppLifecycleEvents: true,
       logLevel: RUDDER_LOG_LEVEL.DEBUG,
-      withFactories: [clevertap],
+      //withFactories: [clevertap],
     };
     const defaultOptions = {
       integrations: {

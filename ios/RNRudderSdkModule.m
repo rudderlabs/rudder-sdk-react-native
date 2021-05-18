@@ -3,6 +3,7 @@
 #import "RSClient.h"
 #import "RSConfig.h"
 #import "RSLogger.h"
+#import "RSOption.h"
 #import <React/RCTBridge.h>
 
 @implementation RNRudderSdkModule
@@ -16,7 +17,7 @@ RCT_EXPORT_MODULE();
     return dispatch_get_main_queue();
 }
 
-RCT_EXPORT_METHOD(setup:(NSDictionary*)config resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
+RCT_EXPORT_METHOD(setup:(NSDictionary*)config options:(NSDictionary*) _options resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
 {
     NSString* _writeKey = config[@"writeKey"];
 
@@ -50,7 +51,7 @@ RCT_EXPORT_METHOD(setup:(NSDictionary*)config resolver:(RCTPromiseResolveBlock)r
         [configBuilder withLoglevel:[config[@"logLevel"] intValue]];
     }
 
-    RSClient* rsClient = [RSClient getInstance:_writeKey config:[RNRudderAnalytics buildWithIntegrations:configBuilder]];
+    RSClient* rsClient = [RSClient getInstance:_writeKey config:[RNRudderAnalytics buildWithIntegrations:configBuilder] options:[self getRudderOptionsObject:_options]];
     
     if ([config objectForKey:@"trackAppLifecycleEvents"]) {
         SEL selector = @selector(trackLifecycleEvents:);
@@ -69,7 +70,7 @@ RCT_EXPORT_METHOD(track:(NSString*)_event properties:(NSDictionary*)_properties 
     RSMessageBuilder* builder = [[RSMessageBuilder alloc] init];
     [builder setEventName:_event];
     [builder setPropertyDict:_properties];
-    [builder setRSOption:[[RSOption alloc] init]];
+    [builder setRSOption:[self getRudderOptionsObject:_options]];
 
     [[RSClient sharedInstance] trackWithBuilder:builder];
 }
@@ -81,13 +82,13 @@ RCT_EXPORT_METHOD(screen:(NSString*)_event properties:(NSDictionary*)_properties
     // [builder setPropertyDict:_properties];
     // [builder setRSOption:[[RSOption alloc] init]];
 
-    [[RSClient sharedInstance] screen:_event properties:_properties];
+    [[RSClient sharedInstance] screen:_event properties:_properties options:[self getRudderOptionsObject:_options]];
 }
 
 RCT_EXPORT_METHOD(identify:(NSString*)_userId traits:(NSDictionary*)_traits options:(NSDictionary*)_options)
 {
     if ([RSClient sharedInstance] == nil) return;
-    [[RSClient sharedInstance] identify:_userId traits:_traits options:[[RSOption alloc] init]];
+    [[RSClient sharedInstance] identify:_userId traits:_traits options:[self getRudderOptionsObject:_options]];
 }
 
 RCT_EXPORT_METHOD(putDeviceToken:(NSString*)token)
@@ -121,6 +122,26 @@ RCT_EXPORT_METHOD(checkIntegrationReady:(NSString*)integrationName resolver:(RCT
 {
     // we will return true directly because ios native sdk's deal with static references
     resolve(@YES);
+}
+
+-(RSOption*) getRudderOptionsObject:(NSDictionary *) optionsDict {
+    RSOption * options = [[RSOption alloc]init];
+    if([optionsDict objectForKey:@"externalIds"])
+    {
+      NSArray *externalIdsArray =  [optionsDict objectForKey:@"externalIds"];
+      for(NSDictionary *externalId in externalIdsArray) {
+        [options putExternalId:[externalId objectForKey:@"type"] withId:[externalId objectForKey:@"id"]];
+       }
+    }
+    if([optionsDict objectForKey:@"integrations"])
+    {
+      NSDictionary *integrationsDict = [optionsDict objectForKey:@"integrations"];
+      for(NSString* key in integrationsDict)
+      {
+          [options putIntegration:key isEnabled:[[integrationsDict objectForKey:key] boolValue]];
+      }
+    }
+    return options;
 }
 
 @end
