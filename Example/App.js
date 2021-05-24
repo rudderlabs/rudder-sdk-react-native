@@ -33,8 +33,8 @@ import clevertap from 'rudder-integration-clevertap-react-native';
 const App: () => React$Node = () => {
   (async function () {
     const config = {
-      dataPlaneUrl: 'https://strange-grasshopper-44.loca.lt/',
-      controlPlaneUrl: 'https://tiny-zebra-29.loca.lt',
+      dataPlaneUrl: 'https://d4c177b23a56.ngrok.io',
+      // controlPlaneUrl: 'https://tiny-zebra-29.loca.lt',
       trackAppLifecycleEvents: true,
       logLevel: RUDDER_LOG_LEVEL.DEBUG,
       //withFactories: [clevertap],
@@ -44,7 +44,7 @@ const App: () => React$Node = () => {
         "App Center": true
       }
     }
-    await rc.setup('1qnO5R5NMgI5oRHToPsWmau2Jcz', config,defaultOptions);
+    await rc.setup('1pAKRv50y15Ti6UWpYroGJaO0Dj', config,defaultOptions);
     const child_props = {
       c1: 'v1',
       c2: 'v2',
@@ -73,7 +73,18 @@ const App: () => React$Node = () => {
         Mixpanel: false
       }
     }
-    await rc.identify('new ios user', props, options);
+    const idoptions = {
+      externalIds: [{
+              id: "some_external_id_1",
+              type: "brazeExternalId"
+          }
+      ]
+  }
+  await rc.identify("test_userId", {
+      "email":"testuser@example.com",
+      "location":"UK"
+  }, idoptions);
+    // await rc.identify('new ios user', props, options);
     await rc.track('React Native event', props, options);
     await rc.screen('React Native screen', props);
   }
