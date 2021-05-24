@@ -99,7 +99,7 @@ class Utility {
         for(int i=0;i<externalIdsList.size();i++)
         {
             Map<String,Object> externalId = (Map<String,Object>) externalIdsList.get(i);
-            options.putExternalId(type,id);
+            options.putExternalId((String)externalId.get("type"),(String)externalId.get("id"));
         }
        }
        if(optionsMap.containsKey("integrations"))
