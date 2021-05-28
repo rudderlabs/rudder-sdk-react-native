@@ -102,6 +102,8 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
                     );
                 }
             }
+        } else {
+            RudderLogger.logVerbose("Rudder Client already initialized, Ignoring the new setup call");
         }
         // finally resolve the promise to mark as completed
         promise.resolve(null);
