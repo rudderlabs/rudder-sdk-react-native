@@ -1,24 +1,12 @@
 import { Platform } from "react-native";
+import AsyncLock from "async-lock";
 
 import { configure } from "./RudderConfiguaration";
 import bridge, { Configuration } from "./NativeBridge";
 import { logDebug, logError, logWarn } from "./Logger";
 import { SDK_VERSION } from "./Constants";
 
-class AsyncLock {
-  disable: () => void;
-  promise: Promise<void>;
-  constructor () {
-    this.disable = () => {}
-    this.promise = Promise.resolve()
-  }
-
-  enable () {
-    this.promise = new Promise(resolve => this.disable = resolve)
-  }
-}
-
-const lock = new AsyncLock()
+const lock = new AsyncLock();
 
 function validateConfiguration(configuration: Configuration) {
   if (
@@ -94,10 +82,6 @@ function validateConfiguration(configuration: Configuration) {
 
 // setup the RudderSDK with writeKey and Config
 async function setup(writeKey: string, configuration: Configuration = {}, options: Object | null = null) {
-  // To check if any instance of setup method is under execution and if so wait untill it gets completed
-  await lock.promise
-  // Enabling the lock so that any other calls to setup will be on hold untill the current call gets completed
-  lock.enable()
   if (writeKey == undefined || typeof writeKey != "string" || writeKey == "") {
     logError("setup: writeKey is incorrect. Aborting");
     return;
@@ -112,12 +96,14 @@ async function setup(writeKey: string, configuration: Configuration = {}, option
   }
   validateConfiguration(configuration);
 
-  const config = await configure(writeKey, configuration);
-  logDebug("setup: created config");
-  await bridge.setup(config,options);
-  logDebug(`setup: setup completed of RudderSDK version ${SDK_VERSION}`);
-  // Releasing the lock so that the other calls to setup can be executed
-  lock.disable()
+  // Acquire a lock before calling the setup of Native Modules
+  lock.acquire("lock", async function(done) {
+    const config = await configure(writeKey, configuration);
+    logDebug("setup: created config");
+    await bridge.setup(config,options);
+    logDebug(`setup: setup completed of RudderSDK version ${SDK_VERSION}`);
+    done();
+  });
 }
 
 // wrapper for `track` method
