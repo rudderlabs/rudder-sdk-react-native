@@ -39,7 +39,7 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void setup(ReadableMap options, Promise promise) {
+    public void setup(ReadableMap options, ReadableMap rudderOptionsMap, Promise promise) {
         if (rudderClient == null) {
 
             String writeKey = options.getString("writeKey");
@@ -78,7 +78,8 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
             rudderClient = RudderClient.getInstance(
                     reactContext,
                     writeKey,
-                    RNRudderAnalytics.buildWithIntegrations(configBuilder)
+                    RNRudderAnalytics.buildWithIntegrations(configBuilder),
+                    Utility.convertReadableMapToOptions(rudderOptionsMap)
             );
             rudderClient.track("Application Opened");
             // process all the factories passed and stores whether they were ready or not in the integrationStatusMap
