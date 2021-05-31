@@ -94,6 +94,7 @@ async function setup(writeKey: string, configuration: Configuration = {}, option
     logError("setup: dataPlaneUrl is incorrect. Aborting");
     return;
   }
+  logDebug(`Initializing Rudder RN SDK version: ${SDK_VERSION}`);
   validateConfiguration(configuration);
 
   // Acquire a lock before calling the setup of Native Modules
@@ -101,7 +102,7 @@ async function setup(writeKey: string, configuration: Configuration = {}, option
     const config = await configure(writeKey, configuration);
     logDebug("setup: created config");
     await bridge.setup(config,options);
-    logDebug(`setup: setup completed of RudderSDK version ${SDK_VERSION}`);
+    logDebug("setup: setup completed");
     done();
   });
 }
