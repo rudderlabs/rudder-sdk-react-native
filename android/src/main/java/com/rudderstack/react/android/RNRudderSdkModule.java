@@ -128,7 +128,7 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
         }
         RudderProperty property = new RudderProperty();
         property.putValue(Utility.convertReadableMapToMap(properties));
-        rudderClient.screen(event,property,Utility.convertReadableMapToOptions(options));
+        rudderClient.screen(event,property, Utility.convertReadableMapToOptions(options));
     }
 
     @ReactMethod
