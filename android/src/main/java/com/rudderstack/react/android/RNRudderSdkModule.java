@@ -117,6 +117,7 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
         rudderClient.track(new RudderMessageBuilder()
                 .setEventName(event)
                 .setProperty(Utility.convertReadableMapToMap(properties))
+                .setRudderOption(Utility.convertReadableMapToOptions(options))
                 .build());
     }
 
@@ -127,7 +128,7 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
         }
         RudderProperty property = new RudderProperty();
         property.putValue(Utility.convertReadableMapToMap(properties));
-        rudderClient.screen(event, property);
+        rudderClient.screen(event,property, Utility.convertReadableMapToOptions(options));
     }
 
     @ReactMethod
@@ -145,7 +146,7 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
         if (rudderClient == null) {
             return;
         }
-        rudderClient.identify(userId, Utility.convertReadableMapToTraits(traits), null);
+        rudderClient.identify(userId, Utility.convertReadableMapToTraits(traits), Utility.convertReadableMapToOptions(options));
     }
 
     @ReactMethod

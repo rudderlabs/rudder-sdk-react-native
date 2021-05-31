@@ -33,13 +33,18 @@ import clevertap from 'rudder-integration-clevertap-react-native';
 const App: () => React$Node = () => {
   (async function () {
     const config = {
-      dataPlaneUrl: 'http://localhost:8080',
-      controlPlaneUrl: 'https://dae76320e9b2.ngrok.io',
+      dataPlaneUrl: 'https://d4c177b23a56.ngrok.io',
+      // controlPlaneUrl: 'https://tiny-zebra-29.loca.lt',
       trackAppLifecycleEvents: true,
       logLevel: RUDDER_LOG_LEVEL.DEBUG,
-      withFactories: [clevertap],
+      //withFactories: [clevertap],
     };
-    await rc.setup('1rWlD8n3YMNgHgs8gKfxKQ59FkK', config);
+    const defaultOptions = {
+      integrations: {
+        "App Center": true
+      }
+    }
+    await rc.setup('1pAKRv50y15Ti6UWpYroGJaO0Dj', config,defaultOptions);
     const child_props = {
       c1: 'v1',
       c2: 'v2',
@@ -51,8 +56,36 @@ const App: () => React$Node = () => {
       name: 'Miraj',
       c: child_props,
     };
-    await rc.identify('new ios user', props, null);
-    await rc.track('React Native event', props, child_props);
+    const options = {
+      externalIds: [
+        {
+          id: "some_external_id_1",
+          type: "brazeExternalId"
+        },
+        {
+          id: "some_braze_id_2",
+          type: "braze_id"
+        }
+      ],
+      integrations: {
+        All: false,
+        Amplitude: true,
+        Mixpanel: false
+      }
+    }
+    const idoptions = {
+      externalIds: [{
+              id: "some_external_id_1",
+              type: "brazeExternalId"
+          }
+      ]
+  }
+  await rc.identify("test_userId", {
+      "email":"testuser@example.com",
+      "location":"UK"
+  }, idoptions);
+    // await rc.identify('new ios user', props, options);
+    await rc.track('React Native event', props, options);
     await rc.screen('React Native screen', props);
   }
 

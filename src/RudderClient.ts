@@ -77,7 +77,7 @@ function validateConfiguration(configuration: Configuration) {
 }
 
 // setup the RudderSDK with writeKey and Config
-async function setup(writeKey: string, configuration: Configuration = {}) {
+async function setup(writeKey: string, configuration: Configuration = {}, options: Object | null = null) {
   if (writeKey == undefined || typeof writeKey != "string" || writeKey == "") {
     logError("setup: writeKey is incorrect. Aborting");
     return;
@@ -94,7 +94,7 @@ async function setup(writeKey: string, configuration: Configuration = {}) {
 
   const config = await configure(writeKey, configuration);
   logDebug("setup: created config");
-  await bridge.setup(config);
+  await bridge.setup(config,options);
   logDebug("setup: setup completed");
 }
 

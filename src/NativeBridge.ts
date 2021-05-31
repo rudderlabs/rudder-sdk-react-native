@@ -14,7 +14,10 @@ export interface Configuration {
 }
 
 export interface Bridge {
-  setup(configuration: Configuration): Promise<void>;
+  setup(
+    configuration: Configuration, 
+    options: Object | null
+    ): Promise<void>;
   track(
     event: string,
     properties: Object | null,
