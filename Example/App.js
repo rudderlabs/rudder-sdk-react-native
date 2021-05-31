@@ -44,8 +44,8 @@ const App: () => React$Node = () => {
         "App Center": true
       }
     }
-     rc.setup('1pAKRv50y15Ti6UWpYroGJaO0Dj', config, defaultOptions);
-     rc.setup('1pAKRv50y15Ti6UWpYroGJaO0Dj', config, defaultOptions);
+    await rc.setup('1pAKRv50y15Ti6UWpYroGJaO0Dj', config, defaultOptions);
+     
     const child_props = {
       c1: 'v1',
       c2: 'v2',
