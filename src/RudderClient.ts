@@ -3,7 +3,7 @@ import AsyncLock from "async-lock";
 
 import { configure } from "./RudderConfiguaration";
 import bridge, { Configuration } from "./NativeBridge";
-import { logDebug, logError, logWarn } from "./Logger";
+import { logInit, logDebug, logError, logWarn} from "./Logger";
 import { SDK_VERSION } from "./Constants";
 
 const lock = new AsyncLock();
@@ -103,6 +103,11 @@ async function setup(writeKey: string, configuration: Configuration = {}, option
     logError("setup: dataPlaneUrl is incorrect. Aborting");
     return;
   }
+  // init log level
+  if (configuration.logLevel && Number.isInteger(configuration.logLevel)) {
+    logInit(configuration.logLevel);
+  }
+  
   logDebug(`Initializing Rudder RN SDK version: ${SDK_VERSION}`);
   validateConfiguration(configuration);
 

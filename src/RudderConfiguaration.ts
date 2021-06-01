@@ -11,7 +11,6 @@ import {
   RECORD_SCREEN_VIEWS,
   LOG_LEVEL,
 } from "./Constants";
-import { logInit } from "./Logger";
 
 export const configure = async (
   writeKey: string,
@@ -29,9 +28,6 @@ export const configure = async (
     withFactories = [],
   }: Configuration
 ): Promise<Configuration> => {
-  // init log level
-  logInit(logLevel);
-
   // setup device mode integrations
   let integrations = withFactories;
   if (integrations && integrations.length != 0) {
