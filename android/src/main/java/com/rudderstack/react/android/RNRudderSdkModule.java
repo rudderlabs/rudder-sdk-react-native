@@ -19,11 +19,13 @@ import com.rudderstack.android.sdk.core.util.Utils;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.lang.InterruptedException;
 
 public class RNRudderSdkModule extends ReactContextBaseJavaModule {
 
     private final ReactApplicationContext reactContext;
     public static Boolean integrationReady = null;
+    private static int deviceModeCallBackThreshold;
     private static Map<String, Boolean> integrationStatusMap = new HashMap<>();
 
     private RudderClient rudderClient;
@@ -39,7 +41,7 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void setup(ReadableMap options, ReadableMap rudderOptionsMap, Promise promise) {
+    public void setup(ReadableMap options, ReadableMap rudderOptionsMap, Promise promise) throws InterruptedException {
         if (rudderClient == null) {
 
             String writeKey = options.getString("writeKey");
@@ -63,6 +65,9 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
             }
             if (options.hasKey("configRefreshInterval")) {
                 configBuilder.withConfigRefreshInterval(options.getInt("configRefreshInterval"));
+            }
+            if (options.hasKey("deviceModeCallBackThreshold")) {
+                deviceModeCallBackThreshold = options.getInt("deviceModeCallBackThreshold");
             }
             if (options.hasKey("trackAppLifecycleEvents")) {
                 configBuilder.withTrackLifecycleEvents(options.getBoolean("trackAppLifecycleEvents"));
@@ -92,11 +97,18 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
                     RNRudderSdkModule.integrationReady = null;
                     RudderClient.Callback callback = new NativeCallBack();
                     rudderClient.onIntegrationReady(integrationName, callback);
-                    while (RNRudderSdkModule.integrationReady == null) {
-                        // just to pause here untill the integration is ready
-                        // We can improve it
+                    for(int i=0;i<deviceModeCallBackThreshold;i++)
+                    {
+                       Thread.sleep(1000);
+                       if(RNRudderSdkModule.integrationReady != null)
+                       {
+                          break;
+                       }
                     }
-
+                    if(RNRudderSdkModule.integrationReady == null)
+                    {
+                        RNRudderSdkModule.integrationReady = false;
+                    }
                     RNRudderSdkModule.integrationStatusMap.put(
                             integrationName,
                             RNRudderSdkModule.integrationReady

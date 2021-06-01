@@ -1,8 +1,12 @@
 import { Platform } from "react-native";
+import AsyncLock from "async-lock";
 
 import { configure } from "./RudderConfiguaration";
 import bridge, { Configuration } from "./NativeBridge";
-import { logDebug, logError, logWarn } from "./Logger";
+import { logInit, logDebug, logError, logWarn} from "./Logger";
+import { SDK_VERSION } from "./Constants";
+
+const lock = new AsyncLock();
 
 function validateConfiguration(configuration: Configuration) {
   if (
@@ -57,6 +61,15 @@ function validateConfiguration(configuration: Configuration) {
     delete configuration.configRefreshInterval;
   }
   if (
+    configuration.deviceModeCallBackThreshold &&
+    (!Number.isInteger(configuration.deviceModeCallBackThreshold) || configuration.deviceModeCallBackThreshold < 0)
+  ) {
+    logWarn(
+        "setup : 'deviceModeCallBackThreshold' must be an integer and should be positive.  Falling back to the default value"
+    );
+    delete configuration.deviceModeCallBackThreshold;
+  }
+  if (
     configuration.trackAppLifecycleEvents &&
     typeof configuration.trackAppLifecycleEvents != "boolean"
   ) {
@@ -90,12 +103,22 @@ async function setup(writeKey: string, configuration: Configuration = {}, option
     logError("setup: dataPlaneUrl is incorrect. Aborting");
     return;
   }
+  // init log level
+  if (configuration.logLevel && Number.isInteger(configuration.logLevel)) {
+    logInit(configuration.logLevel);
+  }
+  
+  logDebug(`Initializing Rudder RN SDK version: ${SDK_VERSION}`);
   validateConfiguration(configuration);
 
-  const config = await configure(writeKey, configuration);
-  logDebug("setup: created config");
-  await bridge.setup(config,options);
-  logDebug("setup: setup completed");
+  // Acquire a lock before calling the setup of Native Modules
+  await lock.acquire("lock", async function(done) {
+    const config = await configure(writeKey, configuration);
+    logDebug("setup: created config");
+    await bridge.setup(config,options);
+    logDebug("setup: setup completed");
+    done();
+  });
 }
 
 // wrapper for `track` method
