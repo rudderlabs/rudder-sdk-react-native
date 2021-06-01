@@ -107,7 +107,7 @@ async function setup(writeKey: string, configuration: Configuration = {}, option
   validateConfiguration(configuration);
 
   // Acquire a lock before calling the setup of Native Modules
-  lock.acquire("lock", async function(done) {
+  await lock.acquire("lock", async function(done) {
     const config = await configure(writeKey, configuration);
     logDebug("setup: created config");
     await bridge.setup(config,options);
