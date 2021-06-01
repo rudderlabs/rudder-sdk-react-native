@@ -7,6 +7,7 @@ export interface Configuration {
   dbCountThreshold?: number;
   sleepTimeOut?: number;
   configRefreshInterval?: number;
+  deviceModeCallBackThreshold? : number;
   trackAppLifecycleEvents?: boolean;
   recordScreenViews?: boolean;
   logLevel?: number;

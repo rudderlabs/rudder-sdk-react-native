@@ -5,7 +5,7 @@ const WARN = 2;
 const ERROR = 1;
 const NONE = 0;
 
-let _logLevel = ERROR;
+let _logLevel = DEBUG;
 export const logInit = (logLevel: number) => {
   _logLevel = logLevel;
 };

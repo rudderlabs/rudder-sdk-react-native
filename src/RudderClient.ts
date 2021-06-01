@@ -61,6 +61,15 @@ function validateConfiguration(configuration: Configuration) {
     delete configuration.configRefreshInterval;
   }
   if (
+    configuration.deviceModeCallBackThreshold &&
+    (!Number.isInteger(configuration.deviceModeCallBackThreshold) || configuration.deviceModeCallBackThreshold < 0)
+  ) {
+    logWarn(
+        "setup : 'deviceModeCallBackThreshold' must be an integer and should be positive.  Falling back to the default value"
+    );
+    delete configuration.deviceModeCallBackThreshold;
+  }
+  if (
     configuration.trackAppLifecycleEvents &&
     typeof configuration.trackAppLifecycleEvents != "boolean"
   ) {

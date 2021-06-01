@@ -6,6 +6,7 @@ export const FLUSH_QUEUE_SIZE = 30;
 export const DB_COUNT_THRESHOLD = 10000;
 export const SLEEP_TIMEOUT = 10;
 export const CONFIG_REFRESH_INTERVAL = 2;
+export const DEVICE_MODE_CALLBACK_THRESHOLD = 5;
 export const TRACK_LIFECYCLE_EVENTS = true;
 export const RECORD_SCREEN_VIEWS = false;
 export const LOG_LEVEL = RUDDER_LOG_LEVEL.ERROR;
