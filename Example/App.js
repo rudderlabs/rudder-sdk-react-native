@@ -45,6 +45,10 @@ const App: () => React$Node = () => {
         "App Center": true
       }
     }
+    await rc.registerCallback('App Center', () => {
+      console.log("App Center is ready");
+    })
+    
     await rc.setup('1pAKRv50y15Ti6UWpYroGJaO0Dj', config, defaultOptions);
 
     const child_props = {
@@ -89,10 +93,6 @@ const App: () => React$Node = () => {
     // await rc.identify('new ios user', props, options);
     await rc.track('React Native event', props, options);
     await rc.screen('React Native screen', props);
-
-    await rc.registerCallback('App Center', () => {
-      console.log("App Center is ready");
-    })
   }
 
   )();

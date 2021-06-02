@@ -118,10 +118,10 @@ RCT_EXPORT_METHOD(setAnonymousId:(NSString*)id) {
     [RSClient setAnonymousId:id];
 }
 
-RCT_EXPORT_METHOD(checkIntegrationReady:(NSString*)integrationName resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
+RCT_EXPORT_METHOD(registerCallback:(NSString *)name callback: (RCTResponseSenderBlock)callback)
 {
-    // we will return true directly because ios native sdk's deal with static references
-    resolve(@YES);
+    // we will trigger the callback directly because ios native sdk's deal with static references
+    callback();
 }
 
 -(RSOption*) getRudderOptionsObject:(NSDictionary *) optionsDict {

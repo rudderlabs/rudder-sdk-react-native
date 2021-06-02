@@ -28,7 +28,6 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
 
   private final ReactApplicationContext reactContext;
   public static Boolean integrationReady = null;
-  private static int deviceModeCallBackThreshold;
   private static Map<String, Callback> integrationCallbacks = new HashMap<>();
 
   private RudderClient rudderClient;
@@ -69,9 +68,7 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
       if (options.hasKey("configRefreshInterval")) {
         configBuilder.withConfigRefreshInterval(options.getInt("configRefreshInterval"));
       }
-      if (options.hasKey("deviceModeCallBackThreshold")) {
-        deviceModeCallBackThreshold = options.getInt("deviceModeCallBackThreshold");
-      }
+      
       if (options.hasKey("trackAppLifecycleEvents")) {
         configBuilder.withTrackLifecycleEvents(options.getBoolean("trackAppLifecycleEvents"));
       }
@@ -163,27 +160,9 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
     RudderClient.setAnonymousId(id);
   }
 
-  // will check if the passed Integration exists or not and respond accordingly
   @ReactMethod
-  public void checkIntegrationReady(String integrationName, Promise promise) {
-    if (rudderClient == null) {
-      promise.resolve(false);
-    }
-    if (RNRudderSdkModule.integrationMap.containsKey(integrationName)) {
-      if (RNRudderSdkModule.integrationMap.get(integrationName) != null) {
-        promise.resolve(true);
-      }
-    }
-    promise.resolve(false);
-  }
-
-  @ReactMethod
-  public void registerCallback(String name, Callback callBack, Promise promise) {
-    if (rudderClient == null) {
-      promise.resolve(false);
-    }
-    integrationCallbacks.put(name, callBack);
-    promise.resolve(true);
+  public void registerCallback(String name, Callback callback) {
+    integrationCallbacks.put(name, callback);
   }
 
   class NativeCallBack implements RudderClient.Callback {
@@ -194,8 +173,8 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
 
     @Override
     public void onReady(Object instance) {
-      if (integrationCallbacks.containsKey(integrationName)){
-        integrationCallbacks.get(integrationName).invoke();
+      if (integrationCallbacks.containsKey(this.integrationName)){
+        integrationCallbacks.get(this.integrationName).invoke();
       }
     }
   }
