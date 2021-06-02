@@ -16,7 +16,7 @@ export interface Configuration {
 
 export interface Bridge {
   setup(
-    configuration: Configuration, 
+    configuration: Configuration,
     options: Object | null
     ): Promise<void>;
   track(
@@ -39,6 +39,7 @@ export interface Bridge {
   setAdvertisingId(id: string): Promise<void>;
   setAnonymousId(id:string): Promise<void>;
   checkIntegrationReady(integrationName :string): Promise<void>;
+  registerCallback(integrationName:string, callback:Object): Promise<void>;
 }
 
 const bridge: Bridge = NativeModules.RNRudderSdkModule;

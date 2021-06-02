@@ -107,7 +107,7 @@ async function setup(writeKey: string, configuration: Configuration = {}, option
   if (configuration.logLevel && Number.isInteger(configuration.logLevel)) {
     logInit(configuration.logLevel);
   }
-  
+
   logDebug(`Initializing Rudder RN SDK version: ${SDK_VERSION}`);
   validateConfiguration(configuration);
 
@@ -261,6 +261,12 @@ async function reset() {
   bridge.reset();
 }
 
+async function registerCallback(name: string, callback: Object) {
+  if (name) {
+    bridge.registerCallback(name, callback);
+  }
+}
+
 const rudderClient = {
   setup,
   track,
@@ -272,6 +278,7 @@ const rudderClient = {
   putDeviceToken,
   setAdvertisingId,
   setAnonymousId,
-  checkIntegrationReady
+  checkIntegrationReady,
+  registerCallback
 };
 export default rudderClient;
