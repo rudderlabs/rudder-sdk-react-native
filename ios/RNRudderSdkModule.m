@@ -121,7 +121,7 @@ RCT_EXPORT_METHOD(setAnonymousId:(NSString*)id) {
 RCT_EXPORT_METHOD(registerCallback:(NSString *)name callback: (RCTResponseSenderBlock)callback)
 {
     // we will trigger the callback directly because ios native sdk's deal with static references
-    callback();
+    callback(@[]);
 }
 
 -(RSOption*) getRudderOptionsObject:(NSDictionary *) optionsDict {
