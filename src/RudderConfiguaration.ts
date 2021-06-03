@@ -6,7 +6,6 @@ import {
   DB_COUNT_THRESHOLD,
   SLEEP_TIMEOUT,
   CONFIG_REFRESH_INTERVAL,
-  DEVICE_MODE_CALLBACK_THRESHOLD,
   TRACK_LIFECYCLE_EVENTS,
   RECORD_SCREEN_VIEWS,
   LOG_LEVEL,
@@ -22,7 +21,6 @@ export const configure = async (
     sleepTimeOut = SLEEP_TIMEOUT,
     logLevel = LOG_LEVEL,
     configRefreshInterval = CONFIG_REFRESH_INTERVAL,
-    deviceModeCallBackThreshold = DEVICE_MODE_CALLBACK_THRESHOLD,
     trackAppLifecycleEvents = TRACK_LIFECYCLE_EVENTS,
     recordScreenViews = RECORD_SCREEN_VIEWS,
     withFactories = [],
@@ -48,7 +46,6 @@ export const configure = async (
     sleepTimeOut,
     logLevel,
     configRefreshInterval,
-    deviceModeCallBackThreshold,
     trackAppLifecycleEvents,
     recordScreenViews,
   };

@@ -7,7 +7,6 @@ export interface Configuration {
   dbCountThreshold?: number;
   sleepTimeOut?: number;
   configRefreshInterval?: number;
-  deviceModeCallBackThreshold? : number;
   trackAppLifecycleEvents?: boolean;
   recordScreenViews?: boolean;
   logLevel?: number;
@@ -16,7 +15,7 @@ export interface Configuration {
 
 export interface Bridge {
   setup(
-    configuration: Configuration, 
+    configuration: Configuration,
     options: Object | null
     ): Promise<void>;
   track(
@@ -38,7 +37,7 @@ export interface Bridge {
   putDeviceToken(token: string): Promise<void>;
   setAdvertisingId(id: string): Promise<void>;
   setAnonymousId(id:string): Promise<void>;
-  checkIntegrationReady(integrationName :string): Promise<void>;
+  registerCallback(integrationName:string, callback:Function): Promise<void>;
 }
 
 const bridge: Bridge = NativeModules.RNRudderSdkModule;

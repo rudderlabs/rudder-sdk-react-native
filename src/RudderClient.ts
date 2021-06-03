@@ -61,15 +61,6 @@ function validateConfiguration(configuration: Configuration) {
     delete configuration.configRefreshInterval;
   }
   if (
-    configuration.deviceModeCallBackThreshold &&
-    (!Number.isInteger(configuration.deviceModeCallBackThreshold) || configuration.deviceModeCallBackThreshold < 0)
-  ) {
-    logWarn(
-        "setup : 'deviceModeCallBackThreshold' must be an integer and should be positive.  Falling back to the default value"
-    );
-    delete configuration.deviceModeCallBackThreshold;
-  }
-  if (
     configuration.trackAppLifecycleEvents &&
     typeof configuration.trackAppLifecycleEvents != "boolean"
   ) {
@@ -107,7 +98,7 @@ async function setup(writeKey: string, configuration: Configuration = {}, option
   if (configuration.logLevel && Number.isInteger(configuration.logLevel)) {
     logInit(configuration.logLevel);
   }
-  
+
   logDebug(`Initializing Rudder RN SDK version: ${SDK_VERSION}`);
   validateConfiguration(configuration);
 
@@ -249,16 +240,14 @@ async function setAnonymousId(id: string) {
   }
 }
 
-async function checkIntegrationReady(integrationName: string)
-{
-  if(integrationName)
-  {
-   return await bridge.checkIntegrationReady(integrationName);
-  }
-}
-
 async function reset() {
   bridge.reset();
+}
+
+async function registerCallback(name: string, callback:Function) {
+  if (name) {
+    bridge.registerCallback(name, callback);
+  }
 }
 
 const rudderClient = {
@@ -272,6 +261,6 @@ const rudderClient = {
   putDeviceToken,
   setAdvertisingId,
   setAnonymousId,
-  checkIntegrationReady
+  registerCallback
 };
 export default rudderClient;
