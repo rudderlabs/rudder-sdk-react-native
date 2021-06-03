@@ -7,6 +7,7 @@ import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.ReadableMap;
+import com.facebook.react.bridge.Callback;
 import com.rudderstack.android.sdk.core.RudderClient;
 import com.rudderstack.android.sdk.core.RudderConfig;
 import com.rudderstack.android.sdk.core.RudderContext;
@@ -19,8 +20,6 @@ import com.rudderstack.android.sdk.core.util.Utils;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import com.facebook.react.bridge.Callback;
 
 import java.lang.InterruptedException;
 
@@ -68,7 +67,7 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
       if (options.hasKey("configRefreshInterval")) {
         configBuilder.withConfigRefreshInterval(options.getInt("configRefreshInterval"));
       }
-      
+
       if (options.hasKey("trackAppLifecycleEvents")) {
         configBuilder.withTrackLifecycleEvents(options.getBoolean("trackAppLifecycleEvents"));
       }
@@ -174,7 +173,10 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
     @Override
     public void onReady(Object instance) {
       if (integrationCallbacks.containsKey(this.integrationName)){
-        integrationCallbacks.get(this.integrationName).invoke();
+        Callback callback = integrationCallbacks.get(this.integrationName);
+        if (callback != null) {
+          callback.invoke();
+        }
       }
     }
   }
