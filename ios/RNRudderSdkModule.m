@@ -6,6 +6,8 @@
 #import "RSOption.h"
 #import <React/RCTBridge.h>
 
+static RSClient *rsClient = nil;
+
 @implementation RNRudderSdkModule
 
 RCT_EXPORT_MODULE();
@@ -19,48 +21,52 @@ RCT_EXPORT_MODULE();
 
 RCT_EXPORT_METHOD(setup:(NSDictionary*)config options:(NSDictionary*) _options resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
 {
-    NSString* _writeKey = config[@"writeKey"];
-
-    RSConfigBuilder* configBuilder = [[RSConfigBuilder alloc] init];
-
-    if ([config objectForKey:@"dataPlaneUrl"]) {
-        [configBuilder withDataPlaneUrl:config[@"dataPlaneUrl"]];
-    }
-    if ([config objectForKey:@"controlPlaneUrl"]) {
-        [configBuilder withControlPlaneUrl:config[@"controlPlaneUrl"]];
-    }
-    if ([config objectForKey:@"flushQueueSize"]) {
-        [configBuilder withFlushQueueSize:[config[@"flushQueueSize"] intValue]];
-    }
-    if ([config objectForKey:@"dbCountThreshold"]) {
-        [configBuilder withDBCountThreshold:[config[@"dbCountThreshold"] intValue]];
-    }
-    if ([config objectForKey:@"sleepTimeOut"]) {
-        [configBuilder withSleepTimeOut:[config[@"sleepTimeOut"] intValue]];
-    }
-    if ([config objectForKey:@"configRefreshInterval"]) {
-        [configBuilder withConfigRefreshInteval:[config[@"configRefreshInterval"] intValue]];
-    }
-    if ([config objectForKey:@"trackAppLifecycleEvents"]) {
-        [configBuilder withTrackLifecycleEvens:[config[@"trackAppLifecycleEvents"] boolValue]];
-    }
-    if ([config objectForKey:@"recordScreenViews"]) {
-        [configBuilder withRecordScreenViews:[config[@"recordScreenViews"] boolValue]];
-    }
-    if ([config objectForKey:@"logLevel"]) {
-        [configBuilder withLoglevel:[config[@"logLevel"] intValue]];
-    }
-
-    RSClient* rsClient = [RSClient getInstance:_writeKey config:[RNRudderAnalytics buildWithIntegrations:configBuilder] options:[self getRudderOptionsObject:_options]];
+    if (rsClient == nil) {
     
-    if ([config objectForKey:@"trackAppLifecycleEvents"]) {
-        SEL selector = @selector(trackLifecycleEvents:);
-                
-        if ([rsClient respondsToSelector:selector]) {
-            [rsClient performSelector:selector withObject:_bridge.launchOptions];
+        NSString* _writeKey = config[@"writeKey"];
+        RSConfigBuilder* configBuilder = [[RSConfigBuilder alloc] init];
+
+        if ([config objectForKey:@"dataPlaneUrl"]) {
+            [configBuilder withDataPlaneUrl:config[@"dataPlaneUrl"]];
+        }
+        if ([config objectForKey:@"controlPlaneUrl"]) {
+            [configBuilder withControlPlaneUrl:config[@"controlPlaneUrl"]];
+        }
+        if ([config objectForKey:@"flushQueueSize"]) {
+            [configBuilder withFlushQueueSize:[config[@"flushQueueSize"] intValue]];
+        }
+        if ([config objectForKey:@"dbCountThreshold"]) {
+            [configBuilder withDBCountThreshold:[config[@"dbCountThreshold"] intValue]];
+        }
+        if ([config objectForKey:@"sleepTimeOut"]) {
+            [configBuilder withSleepTimeOut:[config[@"sleepTimeOut"] intValue]];
+        }
+        if ([config objectForKey:@"configRefreshInterval"]) {
+            [configBuilder withConfigRefreshInteval:[config[@"configRefreshInterval"] intValue]];
+        }
+        if ([config objectForKey:@"trackAppLifecycleEvents"]) {
+            [configBuilder withTrackLifecycleEvens:[config[@"trackAppLifecycleEvents"] boolValue]];
+        }
+        if ([config objectForKey:@"recordScreenViews"]) {
+            [configBuilder withRecordScreenViews:[config[@"recordScreenViews"] boolValue]];
+        }
+        if ([config objectForKey:@"logLevel"]) {
+            [configBuilder withLoglevel:[config[@"logLevel"] intValue]];
+        }
+
+        rsClient = [RSClient getInstance:_writeKey config:[RNRudderAnalytics buildWithIntegrations:configBuilder] options:[self getRudderOptionsObject:_options]];
+    
+        if ([config objectForKey:@"trackAppLifecycleEvents"]) {
+            SEL selector = @selector(trackLifecycleEvents:);
+            
+            if ([rsClient respondsToSelector:selector]) {
+                [rsClient performSelector:selector withObject:_bridge.launchOptions];
+            }
         }
     }
-
+    else{
+        [RSLogger logDebug:@"Rudder Client already initialized, Ignoring the new setup call"];
+    }
     resolve(nil);
 }
 
@@ -128,18 +134,18 @@ RCT_EXPORT_METHOD(registerCallback:(NSString *)name callback: (RCTResponseSender
     RSOption * options = [[RSOption alloc]init];
     if([optionsDict objectForKey:@"externalIds"])
     {
-      NSArray *externalIdsArray =  [optionsDict objectForKey:@"externalIds"];
-      for(NSDictionary *externalId in externalIdsArray) {
-        [options putExternalId:[externalId objectForKey:@"type"] withId:[externalId objectForKey:@"id"]];
-       }
+        NSArray *externalIdsArray =  [optionsDict objectForKey:@"externalIds"];
+        for(NSDictionary *externalId in externalIdsArray) {
+            [options putExternalId:[externalId objectForKey:@"type"] withId:[externalId objectForKey:@"id"]];
+        }
     }
     if([optionsDict objectForKey:@"integrations"])
     {
-      NSDictionary *integrationsDict = [optionsDict objectForKey:@"integrations"];
-      for(NSString* key in integrationsDict)
-      {
-          [options putIntegration:key isEnabled:[[integrationsDict objectForKey:key] boolValue]];
-      }
+        NSDictionary *integrationsDict = [optionsDict objectForKey:@"integrations"];
+        for(NSString* key in integrationsDict)
+        {
+            [options putIntegration:key isEnabled:[[integrationsDict objectForKey:key] boolValue]];
+        }
     }
     return options;
 }
