@@ -33,10 +33,10 @@ import clevertap from 'rudder-integration-clevertap-react-native';
 const App: () => React$Node = () => {
   (async function () {
     const config = {
-      dataPlaneUrl: 'https://96ff6884307e.ngrok.io',
-      // controlPlaneUrl: 'https://tiny-zebra-29.loca.lt',
+      dataPlaneUrl: 'https://8689096a2282.ngrok.io',
+      controlPlaneUrl: 'https://tiny-zebra-29.loca.lt',
       trackAppLifecycleEvents: true,
-      logLevel: RUDDER_LOG_LEVEL.DEBUG,
+      logLevel: RUDDER_LOG_LEVEL.VERBOSE,
       withFactories: [clevertap],
       deviceModeCallBackThreshold: 3
     };
@@ -90,9 +90,11 @@ const App: () => React$Node = () => {
       "email":"testuser@example.com",
       "location":"UK"
   }, idoptions);
-    // await rc.identify('new ios user', props, options);
-    await rc.track('React Native event', props, options);
-    await rc.screen('React Native screen', props);
+  await rc.track('React Native event', props, options);
+  await rc.screen('React Native screen', props);
+  await rc.getRudderContext((context) => {
+    console.log("Context in App.js is :"+JSON.stringify(context));
+  });
   }
 
   )();

@@ -250,6 +250,12 @@ async function registerCallback(name: string, callback:Function) {
   }
 }
 
+async function getRudderContext(callback:Function){
+  bridge.getRudderContext((context:Object)=> {
+     callback(context);
+   }) 
+}
+
 const rudderClient = {
   setup,
   track,
@@ -261,6 +267,7 @@ const rudderClient = {
   putDeviceToken,
   setAdvertisingId,
   setAnonymousId,
-  registerCallback
+  registerCallback,
+  getRudderContext,
 };
 export default rudderClient;

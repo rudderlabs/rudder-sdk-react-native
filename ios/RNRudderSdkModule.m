@@ -22,10 +22,10 @@ RCT_EXPORT_MODULE();
 RCT_EXPORT_METHOD(setup:(NSDictionary*)config options:(NSDictionary*) _options resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
 {
     if (rsClient == nil) {
-    
+        
         NSString* _writeKey = config[@"writeKey"];
         RSConfigBuilder* configBuilder = [[RSConfigBuilder alloc] init];
-
+        
         if ([config objectForKey:@"dataPlaneUrl"]) {
             [configBuilder withDataPlaneUrl:config[@"dataPlaneUrl"]];
         }
@@ -53,9 +53,9 @@ RCT_EXPORT_METHOD(setup:(NSDictionary*)config options:(NSDictionary*) _options r
         if ([config objectForKey:@"logLevel"]) {
             [configBuilder withLoglevel:[config[@"logLevel"] intValue]];
         }
-
+        
         rsClient = [RSClient getInstance:_writeKey config:[RNRudderAnalytics buildWithIntegrations:configBuilder] options:[self getRudderOptionsObject:_options]];
-    
+        
         if ([config objectForKey:@"trackAppLifecycleEvents"]) {
             SEL selector = @selector(trackLifecycleEvents:);
             
@@ -77,7 +77,7 @@ RCT_EXPORT_METHOD(track:(NSString*)_event properties:(NSDictionary*)_properties 
     [builder setEventName:_event];
     [builder setPropertyDict:_properties];
     [builder setRSOption:[self getRudderOptionsObject:_options]];
-
+    
     [[RSClient sharedInstance] trackWithBuilder:builder];
 }
 RCT_EXPORT_METHOD(screen:(NSString*)_event properties:(NSDictionary*)_properties options:(NSDictionary*)_options)
@@ -87,7 +87,7 @@ RCT_EXPORT_METHOD(screen:(NSString*)_event properties:(NSDictionary*)_properties
     // [builder setEventName:_event];
     // [builder setPropertyDict:_properties];
     // [builder setRSOption:[[RSOption alloc] init]];
-
+    
     [[RSClient sharedInstance] screen:_event properties:_properties options:[self getRudderOptionsObject:_options]];
 }
 
@@ -128,6 +128,16 @@ RCT_EXPORT_METHOD(registerCallback:(NSString *)name callback: (RCTResponseSender
 {
     // we will trigger the callback directly because ios native sdk's deal with static references
     callback(@[]);
+}
+
+RCT_EXPORT_METHOD(getRudderContext:(RCTResponseSenderBlock)callback)
+{
+    if ([RSClient sharedInstance] == nil)
+    {
+        callback(@[]);
+        return;
+    }
+    callback(@[[[[RSClient sharedInstance] getContext] dict]]);
 }
 
 -(RSOption*) getRudderOptionsObject:(NSDictionary *) optionsDict {
