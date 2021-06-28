@@ -34,10 +34,10 @@ const App: () => React$Node = () => {
   (async function () {
     const config = {
       dataPlaneUrl: 'https://e30f881e7abd.ngrok.io',
-      // controlPlaneUrl: 'https://tiny-zebra-29.loca.lt',
+      controlPlaneUrl: 'https://tiny-zebra-29.loca.lt',
       trackAppLifecycleEvents: true,
       logLevel: RUDDER_LOG_LEVEL.VERBOSE,
-      // withFactories: [clevertap],
+      withFactories: [clevertap],
       deviceModeCallBackThreshold: 3
     };
     const defaultOptions = {
@@ -45,9 +45,9 @@ const App: () => React$Node = () => {
         "App Center": true
       }
     }
-    // await rc.registerCallback('App Center', () => {
-    //   console.log("App Center is ready");
-    // })
+    await rc.registerCallback('App Center', () => {
+      console.log("App Center is ready");
+    })
     
     await rc.setup('1pAKRv50y15Ti6UWpYroGJaO0Dj', config, defaultOptions);
 
