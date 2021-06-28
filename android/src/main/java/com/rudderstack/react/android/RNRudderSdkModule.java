@@ -144,14 +144,14 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void getRudderContext(Callback callback) throws JSONException {
+    public void getRudderContext(Promise promise) throws JSONException {
         if (rudderClient == null) {
-            callback.invoke();
+            promise.resolve(null);
             return;
         }
         Gson gson = new Gson();
         JSONObject contextJson = new JSONObject(gson.toJson(rudderClient.getRudderContext()));
-        callback.invoke(Utility.convertJSONObjectToWriteAbleMap(contextJson));
+        promise.resolve(Utility.convertJSONObjectToWriteAbleMap(contextJson));
     }
 
     @ReactMethod

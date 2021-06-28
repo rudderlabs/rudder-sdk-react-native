@@ -130,14 +130,15 @@ RCT_EXPORT_METHOD(registerCallback:(NSString *)name callback: (RCTResponseSender
     callback(@[]);
 }
 
-RCT_EXPORT_METHOD(getRudderContext:(RCTResponseSenderBlock)callback)
+RCT_EXPORT_METHOD(getRudderContext:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
 {
     if ([RSClient sharedInstance] == nil)
     {
-        callback(@[]);
+        resolve(nil);
         return;
     }
-    callback(@[[[[RSClient sharedInstance] getContext] dict]]);
+    NSDictionary* context = [[[RSClient sharedInstance] getContext] dict];
+    resolve(context);
 }
 
 -(RSOption*) getRudderOptionsObject:(NSDictionary *) optionsDict {
