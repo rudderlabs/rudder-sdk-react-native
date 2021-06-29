@@ -129,7 +129,7 @@ RCT_EXPORT_METHOD(registerCallback:(NSString *)name callback: (RCTResponseSender
     // we will trigger the callback directly because ios native sdk's deal with static references
     callback(@[]);
 }
-
+// Migrated from Callbacks to Promise to support ES2016's async/await syntax on the RN Side
 RCT_EXPORT_METHOD(getRudderContext:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
 {
     if ([RSClient sharedInstance] == nil)

@@ -143,6 +143,7 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
         rudderClient.identify(userId, Utility.convertReadableMapToTraits(traits), Utility.convertReadableMapToOptions(options));
     }
 
+    // Migrated from Callbacks to Promise to support ES2016's async/await syntax on the RN Side
     @ReactMethod
     public void getRudderContext(Promise promise) throws JSONException {
         if (rudderClient == null) {
