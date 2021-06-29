@@ -250,10 +250,8 @@ async function registerCallback(name: string, callback:Function) {
   }
 }
 
-async function getRudderContext(callback:Function){
-  bridge.getRudderContext((context:Object)=> {
-     callback(context);
-   }) 
+async function getRudderContext(){
+  return await bridge.getRudderContext(); 
 }
 
 const rudderClient = {
