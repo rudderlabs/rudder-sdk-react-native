@@ -91,11 +91,11 @@ const App: () => React$Node = () => {
       "location":"UK"
   }, idoptions);
   await rc.track('React Native event', props, options);
-  const appsFlyerId = await AppsFlyerIntegrationFactory.getAppsFlyerId();
   await rc.screen('React Native screen', props);
+  
+  const appsFlyerId = await AppsFlyerIntegrationFactory.getAppsFlyerId();
   const rudderContext = await rc.getRudderContext();
-  console.log("Rudder Context is : "+JSON.stringify(rudderContext));
-  console.log("Traits is : "+JSON.stringify(rudderContext.traits));
+  const traits = rudderContext.traits;
   }
 
   )();
