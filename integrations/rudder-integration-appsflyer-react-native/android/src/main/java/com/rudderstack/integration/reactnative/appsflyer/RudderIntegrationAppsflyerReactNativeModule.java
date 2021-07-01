@@ -1,5 +1,8 @@
 package com.rudderstack.integration.reactnative.appsflyer;
 
+import com.appsflyer.AppsFlyerLib;
+import com.facebook.react.bridge.Promise;
+
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
@@ -24,5 +27,11 @@ public class RudderIntegrationAppsflyerReactNativeModule extends ReactContextBas
     @ReactMethod
     public void setup() {
           RNRudderAnalytics.addIntegration(AppsFlyerIntegrationFactory.FACTORY);
+    }
+
+    @ReactMethod
+    public void getAppsFlyerId(Promise promise) {
+        String appsFlyerId = AppsFlyerLib.getInstance().getAppsFlyerUID(reactContext);
+        promise.resolve(appsFlyerId);
     }
 }

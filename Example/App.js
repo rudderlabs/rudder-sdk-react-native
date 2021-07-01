@@ -30,31 +30,33 @@ import firebase from 'rudder-integration-firebase-react-native';
 import appcenter from 'rudder-integration-appcenter-react-native';
 import clevertap from 'rudder-integration-clevertap-react-native';
 
+import AppsFlyerIntegrationFactory from 'rudder-integration-appsflyer-react-native/src/bridge';
+
 const App: () => React$Node = () => {
   (async function () {
     const config = {
-      dataPlaneUrl: 'https://e30f881e7abd.ngrok.io',
-      controlPlaneUrl: 'https://tiny-zebra-29.loca.lt',
+      dataPlaneUrl: 'https://45c73d68b08e.ngrok.io',
       trackAppLifecycleEvents: true,
       logLevel: RUDDER_LOG_LEVEL.VERBOSE,
-      withFactories: [clevertap],
-      deviceModeCallBackThreshold: 3
+      withFactories: [appsflyer]
     };
     const defaultOptions = {
       integrations: {
         "App Center": true
       }
     }
+
+    await rc.setup('1pAKRv50y15Ti6UWpYroGJaO0Dj', config, defaultOptions);
+
     await rc.registerCallback('App Center', () => {
       console.log("App Center is ready");
     })
-    
-    await rc.setup('1pAKRv50y15Ti6UWpYroGJaO0Dj', config, defaultOptions);
 
     const child_props = {
       c1: 'v1',
       c2: 'v2',
     };
+
     const props = {
       k1: 'v1',
       k2: 'v3',
@@ -62,6 +64,7 @@ const App: () => React$Node = () => {
       name: 'Miraj',
       c: child_props,
     };
+    
     const options = {
       externalIds: [
         {
@@ -79,22 +82,31 @@ const App: () => React$Node = () => {
         Mixpanel: false
       }
     }
-    const idoptions = {
-      externalIds: [{
-              id: "some_external_id_1",
-              type: "brazeExternalId"
-          }
-      ]
-  }
+
   await rc.identify("test_userId", {
       "email":"testuser@example.com",
       "location":"UK"
   }, idoptions);
   await rc.track('React Native event', props, options);
   await rc.screen('React Native screen', props);
+  
+  const appsFlyerId = await AppsFlyerIntegrationFactory.getAppsFlyerId();
+  const appsFlyerOptions = {
+        externalIds: [{
+                id: appsFlyerId,
+                type: "appsflyerExternalId"
+            }
+        ]
+    }
+  await rc.identify("test_userId", {
+      "email":"testuser@example.com",
+      "location":"UK"
+  }, appsFlyerOptions);
+  await rc.track("case_request_created",null,appsFlyerOptions);
+  
   const rudderContext = await rc.getRudderContext();
-  console.log("Rudder Context is : "+JSON.stringify(rudderContext));
-  console.log("Traits is : "+JSON.stringify(rudderContext.traits));
+  const traits = rudderContext.traits;
+
   }
 
   )();
