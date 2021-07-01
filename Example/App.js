@@ -30,15 +30,15 @@ import firebase from 'rudder-integration-firebase-react-native';
 import appcenter from 'rudder-integration-appcenter-react-native';
 import clevertap from 'rudder-integration-clevertap-react-native';
 
+import AppsFlyerIntegrationFactory from 'rudder-integration-appsflyer-react-native/src/bridge';
+
 const App: () => React$Node = () => {
   (async function () {
     const config = {
-      dataPlaneUrl: 'https://e30f881e7abd.ngrok.io',
-      controlPlaneUrl: 'https://tiny-zebra-29.loca.lt',
+      dataPlaneUrl: 'https://45c73d68b08e.ngrok.io',
       trackAppLifecycleEvents: true,
       logLevel: RUDDER_LOG_LEVEL.VERBOSE,
-      withFactories: [clevertap],
-      deviceModeCallBackThreshold: 3
+      withFactories: [appsflyer]
     };
     const defaultOptions = {
       integrations: {
@@ -91,6 +91,7 @@ const App: () => React$Node = () => {
       "location":"UK"
   }, idoptions);
   await rc.track('React Native event', props, options);
+  const appsFlyerId = await AppsFlyerIntegrationFactory.getAppsFlyerId();
   await rc.screen('React Native screen', props);
   const rudderContext = await rc.getRudderContext();
   console.log("Rudder Context is : "+JSON.stringify(rudderContext));
