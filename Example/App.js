@@ -45,16 +45,18 @@ const App: () => React$Node = () => {
         "App Center": true
       }
     }
+
+    await rc.setup('1pAKRv50y15Ti6UWpYroGJaO0Dj', config, defaultOptions);
+
     await rc.registerCallback('App Center', () => {
       console.log("App Center is ready");
     })
-    
-    await rc.setup('1pAKRv50y15Ti6UWpYroGJaO0Dj', config, defaultOptions);
 
     const child_props = {
       c1: 'v1',
       c2: 'v2',
     };
+
     const props = {
       k1: 'v1',
       k2: 'v3',
@@ -62,6 +64,7 @@ const App: () => React$Node = () => {
       name: 'Miraj',
       c: child_props,
     };
+    
     const options = {
       externalIds: [
         {
@@ -79,13 +82,7 @@ const App: () => React$Node = () => {
         Mixpanel: false
       }
     }
-    const idoptions = {
-      externalIds: [{
-              id: "some_external_id_1",
-              type: "brazeExternalId"
-          }
-      ]
-  }
+
   await rc.identify("test_userId", {
       "email":"testuser@example.com",
       "location":"UK"
@@ -94,8 +91,22 @@ const App: () => React$Node = () => {
   await rc.screen('React Native screen', props);
   
   const appsFlyerId = await AppsFlyerIntegrationFactory.getAppsFlyerId();
+  const appsFlyerOptions = {
+        externalIds: [{
+                id: appsFlyerId,
+                type: "appsflyerExternalId"
+            }
+        ]
+    }
+  await rc.identify("test_userId", {
+      "email":"testuser@example.com",
+      "location":"UK"
+  }, appsFlyerOptions);
+  await rc.track("case_request_created",null,appsFlyerOptions);
+  
   const rudderContext = await rc.getRudderContext();
   const traits = rudderContext.traits;
+
   }
 
   )();
