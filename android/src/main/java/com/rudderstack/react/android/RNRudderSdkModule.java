@@ -140,6 +140,11 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
         if (rudderClient == null) {
             return;
         }
+        if(TextUtils.isEmpty(userId))
+        {
+            rudderClient.identify(Utility.convertReadableMapToTraits(traits), Utility.convertReadableMapToOptions(options));
+            return;
+        }
         rudderClient.identify(userId, Utility.convertReadableMapToTraits(traits), Utility.convertReadableMapToOptions(options));
     }
 
