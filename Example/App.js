@@ -35,77 +35,93 @@ import AppsFlyerIntegrationFactory from 'rudder-integration-appsflyer-react-nati
 const App: () => React$Node = () => {
   (async function () {
     const config = {
-      dataPlaneUrl: 'https://45c73d68b08e.ngrok.io',
-      trackAppLifecycleEvents: true,
-      logLevel: RUDDER_LOG_LEVEL.VERBOSE,
-      withFactories: [appsflyer]
+      dataPlaneUrl: 'https://164685213c7b.ngrok.io',
+      trackAppLifecycleEvents: false,
+      logLevel: RUDDER_LOG_LEVEL.VERBOSE
     };
-    const defaultOptions = {
-      integrations: {
-        "App Center": true
-      }
-    }
+    // const defaultOptions = {
+    //   integrations: {
+    //     "App Center": true
+    //   }
+    // }
 
-    await rc.setup('1pAKRv50y15Ti6UWpYroGJaO0Dj', config, defaultOptions);
+    await rc.setup('1pAKRv50y15Ti6UWpYroGJaO0Dj', config);
 
-    await rc.registerCallback('App Center', () => {
-      console.log("App Center is ready");
-    })
+    // await rc.registerCallback('App Center', () => {
+    //   console.log("App Center is ready");
+    // })
 
-    const child_props = {
-      c1: 'v1',
-      c2: 'v2',
-    };
+    // const child_props = {
+    //   c1: 'v1',
+    //   c2: 'v2',
+    // };
 
-    const props = {
-      k1: 'v1',
-      k2: 'v3',
-      k3: 'v3',
-      name: 'Miraj',
-      c: child_props,
-    };
+    // const props = {
+    //   k1: 'v1',
+    //   k2: 'v3',
+    //   k3: 'v3',
+    //   name: 'Miraj',
+    //   c: child_props,
+    // };
     
-    const options = {
-      externalIds: [
-        {
-          id: "some_external_id_1",
-          type: "brazeExternalId"
-        },
-        {
-          id: "some_braze_id_2",
-          type: "braze_id"
-        }
-      ],
-      integrations: {
-        All: false,
-        Amplitude: true,
-        Mixpanel: false
-      }
-    }
+    // const options = {
+    //   externalIds: [
+    //     {
+    //       id: "some_external_id_1",
+    //       type: "brazeExternalId"
+    //     },
+    //     {
+    //       id: "some_braze_id_2",
+    //       type: "braze_id"
+    //     }
+    //   ],
+    //   integrations: {
+    //     All: false,
+    //     Amplitude: true,
+    //     Mixpanel: false
+    //   }
+    // }
 
+  await rc.identify({"first name":"test"});  
   await rc.identify("test_userId", {
       "email":"testuser@example.com",
       "location":"UK"
-  }, idoptions);
-  await rc.track('React Native event', props, options);
-  await rc.screen('React Native screen', props);
+  });
+  await rc.identify({"full name":"test_user_id"});
+  await rc.identify("user2")
+  await rc.identify({"first name": "user 2",
+"last name": "test 2",
+"full name": "user2 test 2"});
+await rc.identify("user3",{"first name": "user 3",
+"last name": "test 3",
+"full name": "user3 test 3"})
+await rc.reset();
+await rc.identify({"first name": "user 4",
+"last name": "test 4",
+"full name": "user4 test 4"});
+await rc.identify("user4");
+
+
+
+  // await rc.track('React Native event', props, options);
+  // await rc.screen('React Native screen', props);
   
-  const appsFlyerId = await AppsFlyerIntegrationFactory.getAppsFlyerId();
-  const appsFlyerOptions = {
-        externalIds: [{
-                id: appsFlyerId,
-                type: "appsflyerExternalId"
-            }
-        ]
-    }
-  await rc.identify("test_userId", {
-      "email":"testuser@example.com",
-      "location":"UK"
-  }, appsFlyerOptions);
-  await rc.track("case_request_created",null,appsFlyerOptions);
+  // const appsFlyerId = await AppsFlyerIntegrationFactory.getAppsFlyerId();
+  // const appsFlyerOptions = {
+  //       externalIds: [{
+  //               id: appsFlyerId,
+  //               type: "appsflyerExternalId"
+  //           }
+  //       ]
+  //   }
+  // await rc.identify("test_userId", {
+  //     "email":"testuser@example.com",
+  //     "location":"UK"
+  // }, appsFlyerOptions);
+  // await rc.track("case_request_created",null,appsFlyerOptions);
   
-  const rudderContext = await rc.getRudderContext();
-  const traits = rudderContext.traits;
+  // const rudderContext = await rc.getRudderContext();
+  // const traits = rudderContext.traits;
 
   }
 

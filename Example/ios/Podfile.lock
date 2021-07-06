@@ -396,7 +396,7 @@ PODS:
   - RNRudderSdk (1.0.0):
     - React
     - Rudder
-  - Rudder (1.0.19)
+  - Rudder (1.0.20)
   - Rudder-AppCenter (1.0.1):
     - AppCenter
     - Rudder
@@ -413,7 +413,7 @@ PODS:
   - rudder-integration-appcenter-react-native (1.0.0):
     - React
     - Rudder-AppCenter
-  - rudder-integration-appsflyer-react-native (1.0.4):
+  - rudder-integration-appsflyer-react-native (1.0.5):
     - React
     - Rudder-Appsflyer
   - rudder-integration-clevertap-react-native (1.0.0):
@@ -630,13 +630,13 @@ SPEC CHECKSUMS:
   React-RCTVibration: 36a70f1015574284fa6770993c1e83a1f85dbabc
   ReactCommon: 3ea86417fa6e432b500579df40b057df54cfb4d4
   RNRudderSdk: 5d99b1a5a582ab55d6213b38018d35e98818af63
-  Rudder: d24246958000dc6bcfc05a9dc0e5b30623ccad1f
+  Rudder: 3eae52018e1a401d3610b3f16f6210026eb327c8
   Rudder-AppCenter: 9eca9241e3707a0e9610714dd91dc8da4bae7e1f
   Rudder-Appsflyer: a4295e422ca1812747e8bd1d015fb46c0d8ceeb7
   Rudder-CleverTap: 7c887be621f8c3c1d9fac87db34836be8ca03764
   Rudder-Firebase: 42b9a7d143cbe6d125f5bdf535cba73e24cba1c1
   rudder-integration-appcenter-react-native: 0c1fdf520ac1fdf43dbaff99e27b04f522594c7c
-  rudder-integration-appsflyer-react-native: 1bc0e76582b414ed53d7614b03ca2696489eb9b3
+  rudder-integration-appsflyer-react-native: e752805afcebe72f890766feeedda45d387bde34
   rudder-integration-clevertap-react-native: d964f1ed251096af8a91f389093a0e07e1303841
   rudder-integration-firebase-react-native: b7e3ef553a3fc6b120198b3e33f5e8fd17624b0b
   SDWebImage: a7f831e1a65eb5e285e3fb046a23fcfbf08e696d
