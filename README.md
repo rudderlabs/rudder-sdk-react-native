@@ -16,11 +16,18 @@ The RudderStack React Native SDK allows you to track event data from your app. I
 yarn add @rudderstack/rudder-sdk-react-native
 ```
 
-2. For Android: Navigate to the `android` folder of your application and add the following to your project's `build.gradle` file:
+2. For Android: Make sure you have added `mavenCentral()` as a repository in your project level `build.gradle` file, as shown below:
 
 ```
-maven {
-    url  "https://dl.bintray.com/rudderstack/rudderstack"
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+}
+allprojects {
+    repositories {
+        mavenCentral()
+    }
 }
 ```
 
