@@ -395,7 +395,7 @@ PODS:
     - ReactCommon/callinvoker (= 0.62.3)
   - RNRudderSdk (1.0.0):
     - React
-    - Rudder
+    - Rudder (>= 1.0.20)
   - Rudder (1.0.20)
   - Rudder-AppCenter (1.0.1):
     - AppCenter
@@ -629,7 +629,7 @@ SPEC CHECKSUMS:
   React-RCTText: fc8aaead300090f23dd0974545d75e3c43883922
   React-RCTVibration: 36a70f1015574284fa6770993c1e83a1f85dbabc
   ReactCommon: 3ea86417fa6e432b500579df40b057df54cfb4d4
-  RNRudderSdk: 5d99b1a5a582ab55d6213b38018d35e98818af63
+  RNRudderSdk: 9aa881c2bf754dc3b05e392340a5e3663a970f0a
   Rudder: 3eae52018e1a401d3610b3f16f6210026eb327c8
   Rudder-AppCenter: 9eca9241e3707a0e9610714dd91dc8da4bae7e1f
   Rudder-Appsflyer: a4295e422ca1812747e8bd1d015fb46c0d8ceeb7

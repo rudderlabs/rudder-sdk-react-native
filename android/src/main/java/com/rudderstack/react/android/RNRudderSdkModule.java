@@ -106,6 +106,7 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
     @ReactMethod
     public void track(String event, ReadableMap properties, ReadableMap options) {
         if (rudderClient == null) {
+            RudderLogger.logWarn("Dropping the Track call as RudderClient is not initialized yet, Please use `await` keyword with the setup call");
             return;
         }
         rudderClient.track(new RudderMessageBuilder()
@@ -118,6 +119,7 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
     @ReactMethod
     public void screen(String event, ReadableMap properties, ReadableMap options) {
         if (rudderClient == null) {
+            RudderLogger.logWarn("Dropping the Screen call as RudderClient is not initialized yet, Please use `await` keyword with the setup call");
             return;
         }
         RudderProperty property = new RudderProperty();
@@ -138,10 +140,10 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
     @ReactMethod
     public void identify(String userId, ReadableMap traits, ReadableMap options) {
         if (rudderClient == null) {
+            RudderLogger.logWarn("Dropping the Identify call as RudderClient is not initialized yet, Please use `await` keyword with the setup call");
             return;
         }
-        if(TextUtils.isEmpty(userId))
-        {
+        if (TextUtils.isEmpty(userId)) {
             rudderClient.identify(Utility.convertReadableMapToTraits(traits), Utility.convertReadableMapToOptions(options));
             return;
         }
@@ -163,6 +165,7 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
     @ReactMethod
     public void reset() {
         if (rudderClient == null) {
+            RudderLogger.logWarn("Dropping the Reset call as RudderClient is not initialized yet, Please use `await` keyword with the setup call");
             return;
         }
         rudderClient.reset();
