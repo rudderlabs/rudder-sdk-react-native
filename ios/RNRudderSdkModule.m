@@ -117,6 +117,12 @@ RCT_EXPORT_METHOD(reset)
     [[RSClient sharedInstance] reset];
 }
 
+RCT_EXPORT_METHOD(optOut:(BOOL)optOut)
+{
+    if ([RSClient sharedInstance] == nil) return;
+    [[RSClient sharedInstance] optOut:optOut];
+}
+
 RCT_EXPORT_METHOD(setAdvertisingId:(NSString*)id) {
     if ([RSClient sharedInstance] == nil) return;
     RSContext* rudderContext = [[RSClient sharedInstance] getContext];
