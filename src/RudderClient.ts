@@ -266,6 +266,7 @@ const rudderClient = {
   group,
   alias,
   reset,
+  optOut,
   putDeviceToken,
   setAdvertisingId,
   setAnonymousId,
