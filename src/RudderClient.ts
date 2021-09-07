@@ -244,6 +244,10 @@ async function reset() {
   bridge.reset();
 }
 
+async function optOut(optOut: boolean) {
+  bridge.optOut(optOut);
+}
+
 async function registerCallback(name: string, callback:Function) {
   if (name) {
     bridge.registerCallback(name, callback);
@@ -262,6 +266,7 @@ const rudderClient = {
   group,
   alias,
   reset,
+  optOut,
   putDeviceToken,
   setAdvertisingId,
   setAnonymousId,

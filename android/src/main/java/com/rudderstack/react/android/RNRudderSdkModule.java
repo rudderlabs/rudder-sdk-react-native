@@ -169,6 +169,14 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
+    public void optOut(boolean optOut) {
+        if (rudderClient == null) {
+            return;
+        }
+        rudderClient.optOut(optOut);
+    }
+
+    @ReactMethod
     public void setAdvertisingId(String id) {
         RudderClient.updateWithAdvertisingId(id);
     }
