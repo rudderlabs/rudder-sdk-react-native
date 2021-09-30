@@ -130,6 +130,7 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
     @ReactMethod
     public void putDeviceToken(String token) {
         if (rudderClient == null) {
+            RudderLogger.logWarn("Dropping the putDeviceToken call as RudderClient is not initialized yet, Please use `await` keyword with the setup call");
             return;
         }
         if (!TextUtils.isEmpty(token)) {
@@ -154,6 +155,7 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
     @ReactMethod
     public void getRudderContext(Promise promise) throws JSONException {
         if (rudderClient == null) {
+            RudderLogger.logWarn("Dropping the getRudderContext call as RudderClient is not initialized yet, Please use `await` keyword with the setup call");
             promise.resolve(null);
             return;
         }
