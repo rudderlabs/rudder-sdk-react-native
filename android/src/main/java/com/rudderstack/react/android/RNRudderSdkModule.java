@@ -171,6 +171,7 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
     @ReactMethod
     public void optOut(boolean optOut) {
         if (rudderClient == null) {
+            RudderLogger.logWarn("Dropping the optOut call as RudderClient is not initialized yet, Please use `await` keyword with the setup call");
             return;
         }
         rudderClient.optOut(optOut);
