@@ -72,7 +72,11 @@ RCT_EXPORT_METHOD(setup:(NSDictionary*)config options:(NSDictionary*) _options r
 
 RCT_EXPORT_METHOD(track:(NSString*)_event properties:(NSDictionary*)_properties options:(NSDictionary*)_options)
 {
-    if ([RSClient sharedInstance] == nil) return;
+    if ([RSClient sharedInstance] == nil)
+    {
+        [RSLogger logWarn:@"Dropping the Track call as RudderClient is not initialized yet, Please use `await` keyword with the setup call"];
+        return;
+    }
     RSMessageBuilder* builder = [[RSMessageBuilder alloc] init];
     [builder setEventName:_event];
     [builder setPropertyDict:_properties];
@@ -82,7 +86,11 @@ RCT_EXPORT_METHOD(track:(NSString*)_event properties:(NSDictionary*)_properties 
 }
 RCT_EXPORT_METHOD(screen:(NSString*)_event properties:(NSDictionary*)_properties options:(NSDictionary*)_options)
 {
-    if ([RSClient sharedInstance] == nil) return;
+    if ([RSClient sharedInstance] == nil)
+    {
+        [RSLogger logWarn:@"Dropping the Screen call as RudderClient is not initialized yet, Please use `await` keyword with the setup call"];
+        return;
+    }
     // RSMessageBuilder* builder = [[RSMessageBuilder alloc] init];
     // [builder setEventName:_event];
     // [builder setPropertyDict:_properties];
@@ -93,7 +101,11 @@ RCT_EXPORT_METHOD(screen:(NSString*)_event properties:(NSDictionary*)_properties
 
 RCT_EXPORT_METHOD(identify:(NSString*)_userId traits:(NSDictionary*)_traits options:(NSDictionary*)_options)
 {
-    if ([RSClient sharedInstance] == nil) return;
+    if ([RSClient sharedInstance] == nil)
+    {
+        [RSLogger logWarn:@"Dropping the Identify call as RudderClient is not initialized yet, Please use `await` keyword with the setup call"];
+        return;
+    }
     if([_userId isEqual:@""])
     {
         [[RSClient sharedInstance] identify:nil traits:_traits options:[self getRudderOptionsObject:_options]];
@@ -104,7 +116,11 @@ RCT_EXPORT_METHOD(identify:(NSString*)_userId traits:(NSDictionary*)_traits opti
 
 RCT_EXPORT_METHOD(putDeviceToken:(NSString*)token)
 {
-    if ([RSClient sharedInstance] == nil) return;
+    if ([RSClient sharedInstance] == nil)
+    {
+        [RSLogger logWarn:@"Dropping the putDeviceToken call as RudderClient is not initialized yet, Please use `await` keyword with the setup call"];
+        return;
+    }
     RSContext* rudderContext = [[RSClient sharedInstance] getContext];
     if (rudderContext != nil && [token length] != 0) {
         [rudderContext putDeviceToken:token];
@@ -113,18 +129,30 @@ RCT_EXPORT_METHOD(putDeviceToken:(NSString*)token)
 
 RCT_EXPORT_METHOD(reset)
 {
-    if ([RSClient sharedInstance] == nil) return;
+    if ([RSClient sharedInstance] == nil)
+    {
+        [RSLogger logWarn:@"Dropping the Reset call as RudderClient is not initialized yet, Please use `await` keyword with the setup call"];
+        return;
+    }
     [[RSClient sharedInstance] reset];
 }
 
 RCT_EXPORT_METHOD(optOut:(BOOL)optOut)
 {
-    if ([RSClient sharedInstance] == nil) return;
+    if ([RSClient sharedInstance] == nil)
+    {
+        [RSLogger logWarn:@"Dropping the optOut call as RudderClient is not initialized yet, Please use `await` keyword with the setup call"];
+        return;
+    }
     [[RSClient sharedInstance] optOut:optOut];
 }
 
 RCT_EXPORT_METHOD(setAdvertisingId:(NSString*)id) {
-    if ([RSClient sharedInstance] == nil) return;
+    if ([RSClient sharedInstance] == nil)
+    {
+        [RSLogger logWarn:@"Dropping the setAdvertisingId call as RudderClient is not initialized yet, Please use `await` keyword with the setup call"];
+        return;
+    }
     RSContext* rudderContext = [[RSClient sharedInstance] getContext];
     if (rudderContext != nil) {
         [rudderContext putAdvertisementId:id];
@@ -145,6 +173,7 @@ RCT_EXPORT_METHOD(getRudderContext:(RCTPromiseResolveBlock)resolve rejecter:(RCT
 {
     if ([RSClient sharedInstance] == nil)
     {
+        [RSLogger logWarn:@"Dropping the getRudderContext call as RudderClient is not initialized yet, Please use `await` keyword with the setup call"];
         resolve(nil);
         return;
     }
