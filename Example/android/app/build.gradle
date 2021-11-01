@@ -187,6 +187,10 @@ android {
     }
 }
 
+repositories {
+    maven { url "https://appboy.github.io/appboy-android-sdk/sdk" }
+}
+
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     //noinspection GradleDynamicVersion
