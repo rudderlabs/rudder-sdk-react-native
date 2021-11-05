@@ -181,7 +181,7 @@ async function identify(
     return;
   }
 
-  bridge.identify(_userId, _traits, options);
+  bridge.identify(_userId, _traits, _options);
 }
 
 async function group(groupId: string, traits: Object | null = null) {
