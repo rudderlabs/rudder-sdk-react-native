@@ -3,7 +3,7 @@ package com.rudderstack.integration.reactnative.braze;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
-import com.rudderstack.android.integrations.braze.BrazeIntegrationFactory;
+import com.rudderstack.android.integration.braze.BrazeIntegrationFactory;
 import com.rudderstack.react.android.RNRudderAnalytics;
 
 public class RudderIntegrationBrazeReactNativeModule

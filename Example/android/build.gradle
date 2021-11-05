@@ -31,7 +31,7 @@ allprojects {
             // Android JSC is installed from npm
             url("$rootDir/../node_modules/jsc-android/dist")
         }
-
+        maven { url "https://appboy.github.io/appboy-android-sdk/sdk" }
         google()
         jcenter()
         mavenCentral()
