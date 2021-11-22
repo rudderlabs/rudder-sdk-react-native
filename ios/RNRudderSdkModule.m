@@ -116,14 +116,8 @@ RCT_EXPORT_METHOD(identify:(NSString*)_userId traits:(NSDictionary*)_traits opti
 
 RCT_EXPORT_METHOD(putDeviceToken:(NSString*)token)
 {
-    if ([RSClient sharedInstance] == nil)
-    {
-        [RSLogger logWarn:@"Dropping the putDeviceToken call as RudderClient is not initialized yet, Please use `await` keyword with the setup call"];
-        return;
-    }
-    RSContext* rudderContext = [[RSClient sharedInstance] getContext];
-    if (rudderContext != nil && [token length] != 0) {
-        [rudderContext putDeviceToken:token];
+    if ([token length] != 0) {
+        [RSClient putDeviceToken:token];
     }
 }
 
