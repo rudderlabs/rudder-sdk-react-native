@@ -179,13 +179,13 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void setAdvertisingId(String id) {
-        RudderClient.updateWithAdvertisingId(id);
+    public void putAdvertisingId(String id) {
+        RudderClient.putAdvertisingId(id);
     }
 
     @ReactMethod
-    public void setAnonymousId(String id) {
-        RudderClient.setAnonymousId(id);
+    public void putAnonymousId(String id) {
+        RudderClient.putAnonymousId(id);
     }
 
     @ReactMethod

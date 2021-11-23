@@ -36,8 +36,8 @@ export interface Bridge {
   reset(): Promise<void>;
   optOut(optOut: boolean): Promise<void>;
   putDeviceToken(token: string): Promise<void>;
-  setAdvertisingId(id: string): Promise<void>;
-  setAnonymousId(id:string): Promise<void>;
+  putAdvertisingId(id: string): Promise<void>;
+  putAnonymousId(id:string): Promise<void>;
   registerCallback(integrationName:string, callback:Function): Promise<void>;
   getRudderContext(): Promise<void>;
 }

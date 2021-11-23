@@ -219,24 +219,24 @@ async function putDeviceToken(androidToken: string, iOSToken: string) {
   }
 }
 
-async function setAdvertisingId(androidId: string, iOSId: string) {
+async function putAdvertisingId(androidId: string, iOSId: string) {
   switch (Platform.OS) {
     case "ios":
       if (iOSId) {
-        bridge.setAdvertisingId(iOSId);
+        bridge.putAdvertisingId(iOSId);
       }
       break;
     case "android":
       if (androidId) {
-        bridge.setAdvertisingId(androidId);
+        bridge.putAdvertisingId(androidId);
       }
       break;
   }
 }
 
-async function setAnonymousId(id: string) {
+async function putAnonymousId(id: string) {
   if (id) {
-    bridge.setAnonymousId(id);
+    bridge.putAnonymousId(id);
   }
 }
 

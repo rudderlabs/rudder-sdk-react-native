@@ -141,7 +141,7 @@ RCT_EXPORT_METHOD(optOut:(BOOL)optOut)
     [[RSClient sharedInstance] optOut:optOut];
 }
 
-RCT_EXPORT_METHOD(setAdvertisingId:(NSString*)id) {
+RCT_EXPORT_METHOD(putAdvertisingId:(NSString*)id) {
     if ([RSClient sharedInstance] == nil)
     {
         [RSLogger logWarn:@"Dropping the setAdvertisingId call as RudderClient is not initialized yet, Please use `await` keyword with the setup call"];
@@ -153,8 +153,8 @@ RCT_EXPORT_METHOD(setAdvertisingId:(NSString*)id) {
     }
 }
 
-RCT_EXPORT_METHOD(setAnonymousId:(NSString*)id) {
-    [RSClient setAnonymousId:id];
+RCT_EXPORT_METHOD(putAnonymousId:(NSString*)id) {
+    [RSClient putAnonymousId:id];
 }
 
 RCT_EXPORT_METHOD(registerCallback:(NSString *)name callback: (RCTResponseSenderBlock)callback)
