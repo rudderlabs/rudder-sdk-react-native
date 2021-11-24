@@ -208,36 +208,40 @@ async function alias(previousId: string, userId: string) {
   logWarn("alias: Method not supported");
 }
 
-async function putDeviceToken(androidToken: string, iOSToken: string) {
-  switch (Platform.OS) {
-    case "ios":
-      bridge.putDeviceToken(iOSToken);
-      break;
-    case "android":
-      bridge.putDeviceToken(androidToken);
-      break;
+async function putDeviceToken(token: string) {
+  if (token == undefined) {
+    logWarn("putDeviceToken: Mandatory field 'token' missing");
+    return;
   }
+  if (typeof token != "string") {
+    logWarn("putDeviceToken: 'token' must be a string");
+    return;
+  }
+  bridge.putDeviceToken(token);
 }
 
-async function putAdvertisingId(androidId: string, iOSId: string) {
-  switch (Platform.OS) {
-    case "ios":
-      if (iOSId) {
-        bridge.putAdvertisingId(iOSId);
-      }
-      break;
-    case "android":
-      if (androidId) {
-        bridge.putAdvertisingId(androidId);
-      }
-      break;
+async function putAdvertisingId(advertisingId: string) {
+  if (advertisingId == undefined) {
+    logWarn("putAdvertisingId: Mandatory field 'advertisingId' missing");
+    return;
   }
+  if (typeof advertisingId != "string") {
+    logWarn("putAdvertisingId: 'advertisingId' must be a string");
+    return;
+  }
+  bridge.putAdvertisingId(advertisingId);
 }
 
-async function putAnonymousId(id: string) {
-  if (id) {
-    bridge.putAnonymousId(id);
+async function putAnonymousId(anonymousId: string) {
+  if (anonymousId == undefined) {
+    logWarn("putAnonymousId: Mandatory field 'anonymousId' missing");
+    return;
   }
+  if (typeof anonymousId != "string") {
+    logWarn("putAnonymousId: 'anonymousId' must be a string");
+    return;
+  }
+  bridge.putAnonymousId(anonymousId);
 }
 
 async function reset() {
@@ -268,8 +272,8 @@ const rudderClient = {
   reset,
   optOut,
   putDeviceToken,
-  setAdvertisingId,
-  setAnonymousId,
+  putAdvertisingId,
+  putAnonymousId,
   registerCallback,
   getRudderContext,
 };
