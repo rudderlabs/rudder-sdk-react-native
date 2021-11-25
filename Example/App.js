@@ -37,36 +37,85 @@ import AppsFlyerIntegrationFactory from 'rudder-integration-appsflyer-react-nati
 const App: () => React$Node = () => {
   (async function () {
     const config = {
-      dataPlaneUrl: 'https://eb78-61-95-158-116.ngrok.io',
+      dataPlaneUrl: 'https://8edb-175-101-36-4.ngrok.io',
       trackAppLifecycleEvents: true,
       logLevel: RUDDER_LOG_LEVEL.VERBOSE,
-      withFactories: [braze]
+      // withFactories: [braze]
     };
 
-    await rc.putDeviceToken("android","iOSToken");
-    await rc.putDeviceToken("token");
 
-    await rc.setAnonymousId("anonId");
-    await rc.putAnonymousId("anonId");
+    // await rc.track("Deprecated non-null")
+    // await rc.track("Deprecated null");
+    // await rc.track("Deprecated empty");
+    
+    // await rc.track("NonDep non-null")
+    // await rc.track("NonDep null");
+    // await rc.track("NonDep empty");
+    
 
-    await rc.setAdvertisingId("advertId");
-    await rc.putAdvertisingId("advertId");
+    await rc.putDeviceToken("devicetoken");
+    await rc.putAdvertisingId("advertisingId");
+    await rc.putAnonymousId("anonymousId");
 
-    await rc.setup('20JW1xIqZrpr0swwPsOqXLPiDj1', config);
+    await rc.setup('1pAKRv50y15Ti6UWpYroGJaO0Dj', config);
 
-    const props = {
-      k1: 'v1',
-      k2: 'v3',
-      k3: 'v3',
-      name: 'Miraj'
-    };
+    await rc.putDeviceToken("nondeptoken");
+    await rc.track("NonDep Device token non-null")
+    await rc.putDeviceToken(null);
+    await rc.track("NonDep Device token null");
+    await rc.putDeviceToken("");
+    await rc.track("NonDep Device token empty");
 
-    await rc.identify("test_userIdiOS", {
-      "email": "testuseriOS@example.com",
-      "location": "UK"
-    });
-    await rc.track('React Native event', props);
-    await rc.screen('React Native screen', props);
+    await rc.putDeviceToken("depandroid","depiOSToken");
+    await rc.track("Deprecated Device token non-null")
+    await rc.putDeviceToken(null, null);
+    await rc.track("Deprecated Device token null");
+    await rc.putDeviceToken("", "");
+    await rc.track("Deprecated Device token empty");
+    
+    await rc.putAnonymousId("nondepanonId");
+    await rc.track("NonDep AnonymousId non-null")
+    await rc.putAnonymousId(null);
+    await rc.track("NonDep AnonymousId null");
+    await rc.putAnonymousId("");
+    await rc.track("NonDep AnonymousId empty");
+
+    await rc.setAnonymousId("depanonId");
+    await rc.track("Deprecated AnonymousId non-null")
+    await rc.setAnonymousId(null);
+    await rc.track("Deprecated AnonymousId null");
+    await rc.setAnonymousId("");
+    await rc.track("Deprecated AnonymousId empty");
+
+
+    await rc.setAdvertisingId("depaddvertId");
+    await rc.track("Dep AdvertisingId non-null")
+    await rc.setAdvertisingId(null);
+    await rc.track("Dep AdvertisingId null");
+    await rc.setAdvertisingId("");
+    await rc.track("Dep AdvertisingId empty");
+
+
+    await rc.putAdvertisingId("nondepadvertId");
+    await rc.track("NonDeprecated AdvertisingId non-null")
+    await rc.putAdvertisingId(null);
+    await rc.track("NonDeprecated AdvertisingId null");
+    await rc.putAdvertisingId("");
+    await rc.track("NonDeprecated AdvertisingId empty");
+
+    // const props = {
+    //   k1: 'v1',
+    //   k2: 'v3',
+    //   k3: 'v3',
+    //   name: 'Miraj'
+    // };
+
+    // await rc.identify("test_userIdiOS", {
+    //   "email": "testuseriOS@example.com",
+    //   "location": "UK"
+    // });
+    // await rc.track('React Native event', props);
+    // await rc.screen('React Native screen', props);
   }
 
   )();
