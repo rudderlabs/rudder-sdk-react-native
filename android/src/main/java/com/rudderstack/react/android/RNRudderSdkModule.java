@@ -129,12 +129,8 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
 
     @ReactMethod
     public void putDeviceToken(String token) {
-        if (rudderClient == null) {
-            RudderLogger.logWarn("Dropping the putDeviceToken call as RudderClient is not initialized yet, Please use `await` keyword with the setup call");
-            return;
-        }
         if (!TextUtils.isEmpty(token)) {
-            rudderClient.putDeviceToken(token);
+            RudderClient.putDeviceToken(token);
         }
     }
 
@@ -183,13 +179,17 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void setAdvertisingId(String id) {
-        RudderClient.updateWithAdvertisingId(id);
+    public void putAdvertisingId(String id) {
+        if (!TextUtils.isEmpty(id)) {
+        RudderClient.putAdvertisingId(id);
+        }
     }
 
     @ReactMethod
-    public void setAnonymousId(String id) {
-        RudderClient.setAnonymousId(id);
+    public void putAnonymousId(String id) {
+        if (!TextUtils.isEmpty(id)) {
+        RudderClient.putAnonymousId(id);
+        }
     }
 
     @ReactMethod

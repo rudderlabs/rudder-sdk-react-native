@@ -116,14 +116,8 @@ RCT_EXPORT_METHOD(identify:(NSString*)_userId traits:(NSDictionary*)_traits opti
 
 RCT_EXPORT_METHOD(putDeviceToken:(NSString*)token)
 {
-    if ([RSClient sharedInstance] == nil)
-    {
-        [RSLogger logWarn:@"Dropping the putDeviceToken call as RudderClient is not initialized yet, Please use `await` keyword with the setup call"];
-        return;
-    }
-    RSContext* rudderContext = [[RSClient sharedInstance] getContext];
-    if (rudderContext != nil && [token length] != 0) {
-        [rudderContext putDeviceToken:token];
+    if ( token!=nil && [token length] != 0) {
+        [RSClient putDeviceToken:token];
     }
 }
 
@@ -147,20 +141,22 @@ RCT_EXPORT_METHOD(optOut:(BOOL)optOut)
     [[RSClient sharedInstance] optOut:optOut];
 }
 
-RCT_EXPORT_METHOD(setAdvertisingId:(NSString*)id) {
+RCT_EXPORT_METHOD(putAdvertisingId:(NSString*)id) {
     if ([RSClient sharedInstance] == nil)
     {
         [RSLogger logWarn:@"Dropping the setAdvertisingId call as RudderClient is not initialized yet, Please use `await` keyword with the setup call"];
         return;
     }
     RSContext* rudderContext = [[RSClient sharedInstance] getContext];
-    if (rudderContext != nil) {
+    if (rudderContext != nil && id != nil && [id length] != 0) {
         [rudderContext putAdvertisementId:id];
     }
 }
 
-RCT_EXPORT_METHOD(setAnonymousId:(NSString*)id) {
-    [RSClient setAnonymousId:id];
+RCT_EXPORT_METHOD(putAnonymousId:(NSString*)id) {
+    if (id != nil && [id length] != 0) {
+    [RSClient putAnonymousId:id];
+    }
 }
 
 RCT_EXPORT_METHOD(registerCallback:(NSString *)name callback: (RCTResponseSenderBlock)callback)

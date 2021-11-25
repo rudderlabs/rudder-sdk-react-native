@@ -208,35 +208,56 @@ async function alias(previousId: string, userId: string) {
   logWarn("alias: Method not supported");
 }
 
-async function putDeviceToken(androidToken: string, iOSToken: string) {
-  switch (Platform.OS) {
-    case "ios":
-      bridge.putDeviceToken(iOSToken);
-      break;
-    case "android":
-      bridge.putDeviceToken(androidToken);
-      break;
+async function putDeviceToken (token: string): Promise<void>;
+/**
+ * @deprecated use putDeviceToken{@link putDeviceToken(token: string)} instead
+ */
+async function putDeviceToken (androidToken: string, iOSToken: string):Promise<void>;
+async function putDeviceToken (token: string, iOSToken: string | null = null):Promise<void>
+{
+  if (Platform.OS == "ios" && iOSToken) {
+    bridge.putDeviceToken(iOSToken)
+  } else {
+    bridge.putDeviceToken(token)
   }
 }
 
-async function setAdvertisingId(androidId: string, iOSId: string) {
+/**
+ * @deprecated use putAdvertisingId{@link putAdvertisingId(advertisingId: string)} instead
+ */
+async function setAdvertisingId(androidId: string, iOSId: string)
+{
   switch (Platform.OS) {
     case "ios":
       if (iOSId) {
-        bridge.setAdvertisingId(iOSId);
+        putAdvertisingId(iOSId);
       }
       break;
     case "android":
       if (androidId) {
-        bridge.setAdvertisingId(androidId);
+        putAdvertisingId(androidId);
       }
       break;
   }
 }
 
-async function setAnonymousId(id: string) {
-  if (id) {
-    bridge.setAnonymousId(id);
+async function putAdvertisingId(advertisingId: string) {
+  bridge.putAdvertisingId(advertisingId);
+}
+
+/**
+ * @deprecated use putAnonymousId{@link putAnonymousId(anonymousId: string)} instead
+ */
+async function setAnonymousId(anonymousId: string) {
+  if (anonymousId) {
+    putAnonymousId(anonymousId);
+  }
+}
+
+async function putAnonymousId(anonymousId: string) {
+  if(anonymousId)
+  {
+    bridge.putAnonymousId(anonymousId);
   }
 }
 
