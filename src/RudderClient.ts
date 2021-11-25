@@ -257,8 +257,7 @@ async function setAnonymousId(anonymousId: string) {
 }
 
 async function putAnonymousId(anonymousId: string) {
-  if(anonymousId)
-  {
+  if(anonymousId) {
     bridge.putAnonymousId(anonymousId);
   }
 }
@@ -291,7 +290,9 @@ const rudderClient = {
   reset,
   optOut,
   putDeviceToken,
+  putAdvertisingId,
   setAdvertisingId,
+  putAnonymousId,
   setAnonymousId,
   registerCallback,
   getRudderContext,
