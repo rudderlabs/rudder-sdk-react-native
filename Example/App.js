@@ -43,6 +43,15 @@ const App: () => React$Node = () => {
       withFactories: [braze]
     };
 
+    await rc.putDeviceToken("android","iOSToken");
+    await rc.putDeviceToken("token");
+
+    await rc.setAnonymousId("anonId");
+    await rc.putAnonymousId("anonId");
+
+    await rc.setAdvertisingId("advertId");
+    await rc.putAdvertisingId("advertId");
+
     await rc.setup('20JW1xIqZrpr0swwPsOqXLPiDj1', config);
 
     const props = {

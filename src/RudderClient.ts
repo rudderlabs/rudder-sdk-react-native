@@ -217,7 +217,7 @@ async function putDeviceToken (token: string, iOSToken: string | null = null):Pr
 {
   if (Platform.OS == "ios" && iOSToken) {
     bridge.putDeviceToken(iOSToken)
-  } else {
+  } else if(token) {
     bridge.putDeviceToken(token)
   }
 }
@@ -242,7 +242,9 @@ async function setAdvertisingId(androidId: string, iOSId: string)
 }
 
 async function putAdvertisingId(advertisingId: string) {
-  bridge.putAdvertisingId(advertisingId);
+  if(advertisingId){
+    bridge.putAdvertisingId(advertisingId);
+  }
 }
 
 /**
