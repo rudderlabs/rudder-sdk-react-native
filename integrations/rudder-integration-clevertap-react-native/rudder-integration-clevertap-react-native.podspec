@@ -19,7 +19,7 @@ Pod::Spec.new do |s|
   s.requires_arc = true
 
   s.dependency "React"
-  s.dependency "Rudder-CleverTap"
+  s.dependency "Rudder-CleverTap", ">= 1.0.2"
   s.dependency 'CleverTap-iOS-SDK'
 end
 
