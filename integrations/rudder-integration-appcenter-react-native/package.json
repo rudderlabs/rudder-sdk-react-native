@@ -1,6 +1,6 @@
 {
   "name": "@rudderstack/rudder-integration-appcenter-react-native",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Rudder React Native SDK Appcenter Device mode support for Android and iOS",
   "main": "index.js",
   "keywords": [
