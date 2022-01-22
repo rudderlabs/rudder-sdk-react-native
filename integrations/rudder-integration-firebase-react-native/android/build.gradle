@@ -78,7 +78,7 @@ dependencies {
 
     // rudderstack dependencies
     implementation 'com.rudderstack.android.sdk:core:1+'
-    implementation 'com.rudderstack.android.integration:firebase::[2.0.1,)'
+    implementation 'com.rudderstack.android.integration:firebase:[2.0.1,)'
 
     // firebase dependencies
     implementation 'com.google.firebase:firebase-analytics:18.0.0'
