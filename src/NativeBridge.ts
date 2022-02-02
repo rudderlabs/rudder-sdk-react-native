@@ -33,6 +33,15 @@ export interface Bridge {
     traits: Object | null,
     options: Object | null
   ): Promise<void>;
+  alias(
+    newId: String,
+    options: Object | null
+  ): Promise<void>;
+  group(
+    groupId: string,
+    traits: Object | null,
+    options: Object | null
+  ): Promise<void>;
   reset(): Promise<void>;
   optOut(optOut: boolean): Promise<void>;
   putDeviceToken(token: string): Promise<void>;
