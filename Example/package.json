@@ -13,13 +13,13 @@
     "@react-native-community/cli-platform-ios": "4.11.0",
     "@rudderstack/rudder-sdk-react-native": "file:../",
     "react": "16.11.0",
-    "react-native": "^0.62.2",
+    "react-native": "^0.67.2",
+    "rudder-integration-amplitude-react-native": "file:../integrations/rudder-integration-amplitude-react-native",
     "rudder-integration-appcenter-react-native": "file:../integrations/rudder-integration-appcenter-react-native",
     "rudder-integration-appsflyer-react-native": "file:../integrations/rudder-integration-appsflyer-react-native",
+    "rudder-integration-braze-react-native": "file:../integrations/rudder-integration-braze-react-native",
     "rudder-integration-clevertap-react-native": "file:../integrations/rudder-integration-clevertap-react-native",
-    "rudder-integration-firebase-react-native": "file:../integrations/rudder-integration-firebase-react-native",
-    "rudder-integration-amplitude-react-native": "file:../integrations/rudder-integration-amplitude-react-native",
-    "rudder-integration-braze-react-native": "file:../integrations/rudder-integration-braze-react-native"
+    "rudder-integration-firebase-react-native": "file:../integrations/rudder-integration-firebase-react-native"
   },
   "devDependencies": {
     "@babel/core": "7.9.0",
@@ -28,7 +28,7 @@
     "babel-jest": "24.9.0",
     "eslint": "6.8.0",
     "jest": "24.9.0",
-    "metro-react-native-babel-preset": "0.58.0",
+    "metro-react-native-babel-preset": "0.59.0",
     "react-test-renderer": "16.11.0"
   },
   "jest": {
