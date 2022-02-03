@@ -147,6 +147,32 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
         rudderClient.identify(userId, Utility.convertReadableMapToTraits(traits), Utility.convertReadableMapToOptions(options));
     }
 
+    @ReactMethod
+    public void alias(String newId, ReadableMap options) {
+        if (rudderClient == null) {
+            RudderLogger.logWarn("Dropping the Alias call as RudderClient is not initialized yet, Please use `await` keyword with the setup call");
+            return;
+        }
+        if (TextUtils.isEmpty(newId)) {
+            rudderClient.alias(Utility.convertReadableMapToOptions(options));
+            return;
+        }
+        rudderClient.alias(newId, Utility.convertReadableMapToOptions(options));
+    }
+
+    @ReactMethod
+    public void group(String groupId, ReadableMap traits, ReadableMap options) {
+        if (rudderClient == null) {
+            RudderLogger.logWarn("Dropping the Group call as RudderClient is not initialized yet, Please use `await` keyword with the setup call");
+            return;
+        }
+        if (TextUtils.isEmpty(groupId)) {
+            rudderClient.group(Utility.convertReadableMapToTraits(traits), Utility.convertReadableMapToOptions(options));
+            return;
+        }
+        rudderClient.group(groupId, Utility.convertReadableMapToTraits(traits), Utility.convertReadableMapToOptions(options));
+    }
+
     // Migrated from Callbacks to Promise to support ES2016's async/await syntax on the RN Side
     @ReactMethod
     public void getRudderContext(Promise promise) throws JSONException {
