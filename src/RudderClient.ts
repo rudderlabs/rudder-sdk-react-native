@@ -206,7 +206,9 @@ async function alias(newId: string, options: Object | null = null) {
     logWarn("alias: 'newId' must be a string");
     return;
   }
-  if (typeof options == "object") { 
+  if (typeof options == "string") {
+    bridge.alias(options, null)
+  } else if (typeof options == "object") {
     bridge.alias(newId, options)
   } else {
     bridge.alias(newId, null)
