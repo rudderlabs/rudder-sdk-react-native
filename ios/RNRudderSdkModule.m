@@ -114,6 +114,36 @@ RCT_EXPORT_METHOD(identify:(NSString*)_userId traits:(NSDictionary*)_traits opti
     [[RSClient sharedInstance] identify:_userId traits:_traits options:[self getRudderOptionsObject:_options]];
 }
 
+RCT_EXPORT_METHOD(alias:(NSString*)_newId options:(NSDictionary*)_options)
+{
+    if ([RSClient sharedInstance] == nil)
+    {
+        [RSLogger logWarn:@"Dropping the Alias call as RudderClient is not initialized yet, Please use `await` keyword with the setup call"];
+        return;
+    }
+    if([_newId isEqual:@""])
+    {
+        [[RSClient sharedInstance] alias:nil options:[self getRudderOptionsObject:_options]];
+        return;
+    }
+    [[RSClient sharedInstance] alias:_newId options:[self getRudderOptionsObject:_options]];
+}
+
+RCT_EXPORT_METHOD(group:(NSString*)_groupId traits:(NSDictionary*)_traits options:(NSDictionary*)_options)
+{
+    if ([RSClient sharedInstance] == nil)
+    {
+        [RSLogger logWarn:@"Dropping the Group call as RudderClient is not initialized yet, Please use `await` keyword with the setup call"];
+        return;
+    }
+    if([_groupId isEqual:@""])
+    {
+        [[RSClient sharedInstance] group:nil traits:_traits options:[self getRudderOptionsObject:_options]];
+        return;
+    }
+    [[RSClient sharedInstance] group:_groupId traits:_traits options:[self getRudderOptionsObject:_options]];
+}
+
 RCT_EXPORT_METHOD(putDeviceToken:(NSString*)token)
 {
     if ( token!=nil && [token length] != 0) {
