@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
   s.author       = { "RudderStack" => "dhawal@rudderlabs.com" }
   s.platform     = :ios, "7.0"
   s.source       = { :git => "https://github.com/rudderlabs/rudder-sdk-react-native.git", :tag => "master" }
-  s.source_files  = "**.{h,m}"
+  s.source_files  = "ios/**/*.{h,c,m,swift}"
   s.requires_arc = true
 
   s.dependency "React"

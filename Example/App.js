@@ -37,7 +37,7 @@ import AppsFlyerIntegrationFactory from 'rudder-integration-appsflyer-react-nati
 const App: () => React$Node = () => {
   (async function () {
     const config = {
-      dataPlaneUrl: 'https://8edb-175-101-36-4.ngrok.io',
+      dataPlaneUrl: 'https://6999-61-95-158-116.ngrok.io',
       trackAppLifecycleEvents: true,
       logLevel: RUDDER_LOG_LEVEL.VERBOSE,
       // withFactories: [braze]
