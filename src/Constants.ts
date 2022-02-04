@@ -9,4 +9,4 @@ export const CONFIG_REFRESH_INTERVAL = 2;
 export const TRACK_LIFECYCLE_EVENTS = true;
 export const RECORD_SCREEN_VIEWS = false;
 export const LOG_LEVEL = RUDDER_LOG_LEVEL.ERROR;
-export const SDK_VERSION = "1.1.1";
+export const SDK_VERSION = "1.1.2";
