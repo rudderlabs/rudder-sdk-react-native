@@ -184,6 +184,7 @@ async function identify(
   bridge.identify(_userId, _traits, _options);
 }
 
+// wrapper for `group` method
 async function group(groupId: string, traits: Object | null = null, options: Object | null = null) {
   if (groupId == undefined) {
     logWarn("group: Mandatory field 'groupId' missing");
@@ -196,6 +197,7 @@ async function group(groupId: string, traits: Object | null = null, options: Obj
   bridge.group(groupId, traits, options)
 }
 
+// wrapper for `alias` method
 async function alias(previousId: string, userId: string): Promise<void>; 
 async function alias(newId: string, options: Object | null = null) {
   if (newId == undefined) {

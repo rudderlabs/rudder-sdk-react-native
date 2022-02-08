@@ -154,7 +154,7 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
             return;
         }
         if (TextUtils.isEmpty(newId)) {
-            rudderClient.alias(Utility.convertReadableMapToOptions(options));
+            RudderLogger.logWarn("Dropping the Alias call as newId can not be empty");
             return;
         }
         rudderClient.alias(newId, Utility.convertReadableMapToOptions(options));
@@ -167,7 +167,7 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
             return;
         }
         if (TextUtils.isEmpty(groupId)) {
-            rudderClient.group(Utility.convertReadableMapToTraits(traits), Utility.convertReadableMapToOptions(options));
+            RudderLogger.logWarn("Dropping the Group call as groupId can not be empty");
             return;
         }
         rudderClient.group(groupId, Utility.convertReadableMapToTraits(traits), Utility.convertReadableMapToOptions(options));

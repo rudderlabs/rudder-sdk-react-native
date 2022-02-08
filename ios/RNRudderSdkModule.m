@@ -123,7 +123,7 @@ RCT_EXPORT_METHOD(alias:(NSString*)_newId options:(NSDictionary*)_options)
     }
     if([_newId isEqual:@""])
     {
-        [[RSClient sharedInstance] alias:nil options:[self getRudderOptionsObject:_options]];
+        [RSLogger logWarn:@"Dropping the Alias call as newId can not be empty"];
         return;
     }
     [[RSClient sharedInstance] alias:_newId options:[self getRudderOptionsObject:_options]];
@@ -138,7 +138,7 @@ RCT_EXPORT_METHOD(group:(NSString*)_groupId traits:(NSDictionary*)_traits option
     }
     if([_groupId isEqual:@""])
     {
-        [[RSClient sharedInstance] group:nil traits:_traits options:[self getRudderOptionsObject:_options]];
+        [RSLogger logWarn:@"Dropping the Group call as groupId can not be empty"];        
         return;
     }
     [[RSClient sharedInstance] group:_groupId traits:_traits options:[self getRudderOptionsObject:_options]];
