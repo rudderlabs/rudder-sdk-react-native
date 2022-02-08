@@ -184,7 +184,8 @@ async function identify(
   bridge.identify(_userId, _traits, _options);
 }
 
-async function group(groupId: string, traits: Object | null = null) {
+// wrapper for `group` method
+async function group(groupId: string, traits: Object | null = null, options: Object | null = null) {
   if (groupId == undefined) {
     logWarn("group: Mandatory field 'groupId' missing");
     return;
@@ -193,19 +194,27 @@ async function group(groupId: string, traits: Object | null = null) {
     logWarn("group: 'groupId' must be a string");
     return;
   }
-  logWarn("group: Method not supported");
+  bridge.group(groupId, traits, options)
 }
 
-async function alias(previousId: string, userId: string) {
-  if (previousId == undefined) {
-    logWarn("alias: Mandatory field 'previousId' missing");
+// wrapper for `alias` method
+async function alias(previousId: string, userId: string): Promise<void>; 
+async function alias(newId: string, options: Object | null = null) {
+  if (newId == undefined) {
+    logWarn("alias: Mandatory field 'newId' missing");
     return;
   }
-  if (typeof previousId != "string") {
-    logWarn("alias: 'previousID' must be a string");
+  if (typeof newId != "string") {
+    logWarn("alias: 'newId' must be a string");
     return;
   }
-  logWarn("alias: Method not supported");
+  if (typeof options == "string") {
+    bridge.alias(options, null)
+  } else if (typeof options == "object") {
+    bridge.alias(newId, options)
+  } else {
+    bridge.alias(newId, null)
+  }
 }
 
 async function putDeviceToken (token: string): Promise<void>;
