@@ -31,11 +31,15 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
     public static Boolean integrationReady = null;
     private static Map<String, Callback> integrationCallbacks = new HashMap<>();
 
-    private RudderClient rudderClient;
+    static RudderClient rudderClient;
+    static boolean trackLifeCycleEvents = false;
+    static boolean initialized = false;
 
     public RNRudderSdkModule(ReactApplicationContext reactContext) {
         super(reactContext);
         this.reactContext = reactContext;
+        reactContext.addLifecycleEventListener(new RNLifeCycleEventListener());
+        ActivityLifeCycleHandler.registerActivityLifeCycleCallBacks(reactContext);
     }
 
     @Override
@@ -72,6 +76,7 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
 
             if (options.hasKey("trackAppLifecycleEvents")) {
                 configBuilder.withTrackLifecycleEvents(options.getBoolean("trackAppLifecycleEvents"));
+                trackLifeCycleEvents = options.getBoolean("trackAppLifecycleEvents");
             }
             if (options.hasKey("recordScreenViews")) {
                 configBuilder.withRecordScreenViews(options.getBoolean("recordScreenViews"));
@@ -87,7 +92,11 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
                     RNRudderAnalytics.buildWithIntegrations(configBuilder),
                     Utility.convertReadableMapToOptions(rudderOptionsMap)
             );
-            rudderClient.track("Application Opened");
+            for (Runnable runnableTask : ActivityLifeCycleHandler.runnableTasks) {
+                runnableTask.run();
+            }
+            initialized = true;
+
             // process all the factories passed and stores whether they were ready or not in the integrationMap
             if (RNRudderAnalytics.integrationList != null && RNRudderAnalytics.integrationList.size() > 0) {
                 for (RudderIntegration.Factory factory : RNRudderAnalytics.integrationList) {
