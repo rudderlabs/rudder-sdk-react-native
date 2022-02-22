@@ -1,5 +1,6 @@
 package com.rudderstack.react.android;
 
+import android.app.Activity;
 import android.text.TextUtils;
 
 import com.facebook.react.bridge.Promise;
@@ -31,15 +32,17 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
     public static Boolean integrationReady = null;
     private static Map<String, Callback> integrationCallbacks = new HashMap<>();
 
+    static RNRudderSdkModule instance;
     static RudderClient rudderClient;
     static boolean trackLifeCycleEvents = false;
+    static boolean recordScreenViews = false;
     static boolean initialized = false;
 
     public RNRudderSdkModule(ReactApplicationContext reactContext) {
         super(reactContext);
         this.reactContext = reactContext;
+        this.instance = this;
         reactContext.addLifecycleEventListener(new RNLifeCycleEventListener());
-        ActivityLifeCycleHandler.registerActivityLifeCycleCallBacks(reactContext);
     }
 
     @Override
@@ -80,6 +83,7 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
             }
             if (options.hasKey("recordScreenViews")) {
                 configBuilder.withRecordScreenViews(options.getBoolean("recordScreenViews"));
+                recordScreenViews = options.getBoolean("recordScreenViews");
             }
             if (options.hasKey("logLevel")) {
                 configBuilder.withLogLevel(options.getInt("logLevel"));
@@ -92,7 +96,7 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
                     RNRudderAnalytics.buildWithIntegrations(configBuilder),
                     Utility.convertReadableMapToOptions(rudderOptionsMap)
             );
-            for (Runnable runnableTask : ActivityLifeCycleHandler.runnableTasks) {
+            for (Runnable runnableTask : RNLifeCycleEventListener.runnableTasks) {
                 runnableTask.run();
             }
             initialized = true;
@@ -216,20 +220,24 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
     @ReactMethod
     public void putAdvertisingId(String id) {
         if (!TextUtils.isEmpty(id)) {
-        RudderClient.putAdvertisingId(id);
+            RudderClient.putAdvertisingId(id);
         }
     }
 
     @ReactMethod
     public void putAnonymousId(String id) {
         if (!TextUtils.isEmpty(id)) {
-        RudderClient.putAnonymousId(id);
+            RudderClient.putAnonymousId(id);
         }
     }
 
     @ReactMethod
     public void registerCallback(String name, Callback callback) {
         integrationCallbacks.put(name, callback);
+    }
+
+    Activity getCurrentActivityFromReact() {
+        return getCurrentActivity();
     }
 
     class NativeCallBack implements RudderClient.Callback {

@@ -1,6 +1,10 @@
 package com.rudderstack.react.android;
 
+import android.app.Activity;
+
 import com.facebook.react.bridge.LifecycleEventListener;
+import com.rudderstack.android.sdk.core.RudderProperty;
+import com.rudderstack.android.sdk.core.ScreenPropertyBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,10 +16,16 @@ public class RNLifeCycleEventListener implements LifecycleEventListener {
 
     @Override
     public void onHostResume() {
-        System.out.println("onHostResume");
         Runnable runnableTask = new Runnable() {
             @Override
             public void run() {
+                if (RNRudderSdkModule.recordScreenViews) {
+                    Activity activity = RNRudderSdkModule.instance.getCurrentActivityFromReact();
+                    RudderProperty property = new RudderProperty();
+                    property.put("name", activity.getLocalClassName());
+                    property.put("automatic", true);
+                    RNRudderSdkModule.rudderClient.screen(activity.getLocalClassName(), property);
+                }
                 if (RNRudderSdkModule.trackLifeCycleEvents) {
                     noOfActivities += 1;
                     if (noOfActivities == 1) {
@@ -34,7 +44,6 @@ public class RNLifeCycleEventListener implements LifecycleEventListener {
 
     @Override
     public void onHostPause() {
-        System.out.println("onHostPause");
         Runnable runnableTask = new Runnable() {
             @Override
             public void run() {
@@ -55,6 +64,5 @@ public class RNLifeCycleEventListener implements LifecycleEventListener {
 
     @Override
     public void onHostDestroy() {
-        System.out.println("onHostDestroy");
     }
 }

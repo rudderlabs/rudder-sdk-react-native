@@ -25,19 +25,14 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 
 import rc, { RUDDER_LOG_LEVEL } from '@rudderstack/rudder-sdk-react-native';
-import appsflyer from 'rudder-integration-appsflyer-react-native';
-import amplitude from 'rudder-integration-amplitude-react-native';
 import braze from 'rudder-integration-braze-react-native';
-import firebase from 'rudder-integration-firebase-react-native';
-import appcenter from 'rudder-integration-appcenter-react-native';
-import clevertap from 'rudder-integration-clevertap-react-native';
 
-import AppsFlyerIntegrationFactory from 'rudder-integration-appsflyer-react-native/src/bridge';
+
 
 const App: () => React$Node = () => {
   (async function () {
     const config = {
-      dataPlaneUrl: 'https://f74d-175-101-36-4.ngrok.io',
+      dataPlaneUrl: 'https://7e76-61-95-158-116.ngrok.io',
       trackAppLifecycleEvents: true,
       recordScreenViews: true,
       logLevel: RUDDER_LOG_LEVEL.VERBOSE,
