@@ -18,7 +18,12 @@
     "react-native": "^0.67.2",
     "react-native-safe-area-context": "^3.4.1",
     "react-native-screens": "^3.12.0",
-    "rudder-integration-braze-react-native": "file:../integrations/rudder-integration-braze-react-native"
+    "rudder-integration-amplitude-react-native": "file:../integrations/rudder-integration-amplitude-react-native",
+    "rudder-integration-appcenter-react-native": "file:../integrations/rudder-integration-appcenter-react-native",
+    "rudder-integration-appsflyer-react-native": "file:../integrations/rudder-integration-appsflyer-react-native",
+    "rudder-integration-braze-react-native": "file:../integrations/rudder-integration-braze-react-native",
+    "rudder-integration-clevertap-react-native": "file:../integrations/rudder-integration-clevertap-react-native",
+    "rudder-integration-firebase-react-native": "file:../integrations/rudder-integration-firebase-react-native"
   },
   "devDependencies": {
     "@babel/core": "7.9.0",
