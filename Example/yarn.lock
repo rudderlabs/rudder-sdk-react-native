@@ -5803,8 +5803,23 @@ rsvp@^4.8.4:
   resolved "https://registry.yarnpkg.com/rsvp/-/rsvp-4.8.5.tgz#c8f155311d167f68f21e168df71ec5b083113734"
   integrity sha512-nfMOlASu9OnRJo1mbEk2cz0D56a1MBNrJ7orjRZQG10XDyuvwksKbuXNp6qa+kbn839HwjwhBzhFmdsaEAfauA==
 
+"rudder-integration-amplitude-react-native@file:../integrations/rudder-integration-amplitude-react-native":
+  version "1.0.0"
+
+"rudder-integration-appcenter-react-native@file:../integrations/rudder-integration-appcenter-react-native":
+  version "1.0.1"
+
+"rudder-integration-appsflyer-react-native@file:../integrations/rudder-integration-appsflyer-react-native":
+  version "1.0.5"
+
 "rudder-integration-braze-react-native@file:../integrations/rudder-integration-braze-react-native":
   version "1.0.0"
+
+"rudder-integration-clevertap-react-native@file:../integrations/rudder-integration-clevertap-react-native":
+  version "1.0.1"
+
+"rudder-integration-firebase-react-native@file:../integrations/rudder-integration-firebase-react-native":
+  version "1.0.7"
 
 run-async@^2.4.0:
   version "2.4.1"

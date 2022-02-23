@@ -20,6 +20,9 @@ import braze from 'rudder-integration-braze-react-native';
 const Stack = createNativeStackNavigator();
 
 const App = () => {
+  const routeNameRef = React.useRef();
+  const navigationRef = React.useRef();
+
   (async function () {
     const config = {
       dataPlaneUrl: 'https://d433-61-95-158-116.ngrok.io',
@@ -48,7 +51,24 @@ const App = () => {
 
   )();
   return (
-    <NavigationContainer>
+    <NavigationContainer
+    ref={navigationRef}
+    onReady={() => {
+      routeNameRef.current = navigationRef.current.getCurrentRoute().name;
+    }}
+    onStateChange={async () => {
+      const previousRouteName = routeNameRef.current;
+      const currentRouteName = navigationRef.current.getCurrentRoute().name;
+
+      if (previousRouteName !== currentRouteName) {
+        await rc.screen(currentRouteName, {
+          screen_name: currentRouteName,
+          screen_class: currentRouteName,
+        });
+      }
+      routeNameRef.current = currentRouteName;
+    }}
+    >
       <Stack.Navigator>
         <Stack.Screen
           name="Home"
