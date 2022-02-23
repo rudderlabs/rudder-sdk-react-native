@@ -9,7 +9,6 @@ import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.bridge.Callback;
-import com.facebook.react.bridge.ReadableNativeMap;
 import com.google.gson.Gson;
 import com.rudderstack.android.sdk.core.RudderClient;
 import com.rudderstack.android.sdk.core.RudderConfig;
@@ -34,7 +33,7 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
 
     static RNRudderSdkModule instance;
     static RudderClient rudderClient;
-    static boolean trackLifeCycleEvents = false;
+    static boolean trackLifeCycleEvents = true;
     static boolean recordScreenViews = false;
     static boolean initialized = false;
 
@@ -78,13 +77,14 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
             }
 
             if (options.hasKey("trackAppLifecycleEvents")) {
-                configBuilder.withTrackLifecycleEvents(options.getBoolean("trackAppLifecycleEvents"));
                 trackLifeCycleEvents = options.getBoolean("trackAppLifecycleEvents");
+                configBuilder.withTrackLifecycleEvents(options.getBoolean("trackAppLifecycleEvents"));
             }
             if (options.hasKey("recordScreenViews")) {
-                configBuilder.withRecordScreenViews(options.getBoolean("recordScreenViews"));
                 recordScreenViews = options.getBoolean("recordScreenViews");
             }
+            configBuilder.withRecordScreenViews(false);
+
             if (options.hasKey("logLevel")) {
                 configBuilder.withLogLevel(options.getInt("logLevel"));
             }

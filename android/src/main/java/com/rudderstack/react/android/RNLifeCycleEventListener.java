@@ -19,19 +19,19 @@ public class RNLifeCycleEventListener implements LifecycleEventListener {
         Runnable runnableTask = new Runnable() {
             @Override
             public void run() {
-                if (RNRudderSdkModule.recordScreenViews) {
-                    Activity activity = RNRudderSdkModule.instance.getCurrentActivityFromReact();
-                    RudderProperty property = new RudderProperty();
-                    property.put("name", activity.getLocalClassName());
-                    property.put("automatic", true);
-                    RNRudderSdkModule.rudderClient.screen(activity.getLocalClassName(), property);
-                }
                 if (RNRudderSdkModule.trackLifeCycleEvents) {
                     noOfActivities += 1;
                     if (noOfActivities == 1) {
                         // no previous activity present. Application Opened
                         RNRudderSdkModule.rudderClient.track("Application Opened");
                     }
+                }
+                if (RNRudderSdkModule.recordScreenViews) {
+                    Activity activity = RNRudderSdkModule.instance.getCurrentActivityFromReact();
+                    RudderProperty property = new RudderProperty();
+                    property.put("name", activity.getLocalClassName());
+                    property.put("automatic", true);
+                    RNRudderSdkModule.rudderClient.screen(activity.getLocalClassName(), property);
                 }
             }
         };
