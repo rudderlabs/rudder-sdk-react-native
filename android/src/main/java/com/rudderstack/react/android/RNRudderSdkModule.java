@@ -1,5 +1,6 @@
 package com.rudderstack.react.android;
 
+import android.app.Activity;
 import android.text.TextUtils;
 
 import com.facebook.react.bridge.Promise;
@@ -8,7 +9,6 @@ import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.bridge.Callback;
-import com.facebook.react.bridge.ReadableNativeMap;
 import com.google.gson.Gson;
 import com.rudderstack.android.sdk.core.RudderClient;
 import com.rudderstack.android.sdk.core.RudderConfig;
@@ -31,11 +31,17 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
     public static Boolean integrationReady = null;
     private static Map<String, Callback> integrationCallbacks = new HashMap<>();
 
-    private RudderClient rudderClient;
+    static RNRudderSdkModule instance;
+    static RudderClient rudderClient;
+    static boolean trackLifeCycleEvents = true;
+    static boolean recordScreenViews = false;
+    static boolean initialized = false;
 
     public RNRudderSdkModule(ReactApplicationContext reactContext) {
         super(reactContext);
         this.reactContext = reactContext;
+        this.instance = this;
+        reactContext.addLifecycleEventListener(new RNLifeCycleEventListener());
     }
 
     @Override
@@ -71,11 +77,16 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
             }
 
             if (options.hasKey("trackAppLifecycleEvents")) {
+                trackLifeCycleEvents = options.getBoolean("trackAppLifecycleEvents");
                 configBuilder.withTrackLifecycleEvents(options.getBoolean("trackAppLifecycleEvents"));
             }
             if (options.hasKey("recordScreenViews")) {
-                configBuilder.withRecordScreenViews(options.getBoolean("recordScreenViews"));
+                recordScreenViews = options.getBoolean("recordScreenViews");
             }
+            
+            // we are relying on Screen View Recording implementation in RNLifeCycleEventListener.java hence we are explicitly setting it to false in Native Android SDK
+            configBuilder.withRecordScreenViews(false);
+
             if (options.hasKey("logLevel")) {
                 configBuilder.withLogLevel(options.getInt("logLevel"));
             }
@@ -87,7 +98,11 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
                     RNRudderAnalytics.buildWithIntegrations(configBuilder),
                     Utility.convertReadableMapToOptions(rudderOptionsMap)
             );
-            rudderClient.track("Application Opened");
+            for (Runnable runnableTask : RNLifeCycleEventListener.runnableTasks) {
+                runnableTask.run();
+            }
+            initialized = true;
+
             // process all the factories passed and stores whether they were ready or not in the integrationMap
             if (RNRudderAnalytics.integrationList != null && RNRudderAnalytics.integrationList.size() > 0) {
                 for (RudderIntegration.Factory factory : RNRudderAnalytics.integrationList) {
@@ -207,20 +222,24 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
     @ReactMethod
     public void putAdvertisingId(String id) {
         if (!TextUtils.isEmpty(id)) {
-        RudderClient.putAdvertisingId(id);
+            RudderClient.putAdvertisingId(id);
         }
     }
 
     @ReactMethod
     public void putAnonymousId(String id) {
         if (!TextUtils.isEmpty(id)) {
-        RudderClient.putAnonymousId(id);
+            RudderClient.putAnonymousId(id);
         }
     }
 
     @ReactMethod
     public void registerCallback(String name, Callback callback) {
         integrationCallbacks.put(name, callback);
+    }
+
+    Activity getCurrentActivityFromReact() {
+        return getCurrentActivity();
     }
 
     class NativeCallBack implements RudderClient.Callback {
