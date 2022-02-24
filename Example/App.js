@@ -25,7 +25,7 @@ const App = () => {
 
   (async function () {
     const config = {
-      dataPlaneUrl: 'https://d433-61-95-158-116.ngrok.io',
+      dataPlaneUrl: 'https://98fa-175-101-36-4.ngrok.io',
       trackAppLifecycleEvents: true,
       recordScreenViews: true,
       logLevel: RUDDER_LOG_LEVEL.VERBOSE,

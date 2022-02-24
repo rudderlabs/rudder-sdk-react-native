@@ -12,6 +12,7 @@ import java.util.List;
 public class RNLifeCycleEventListener implements LifecycleEventListener {
 
     private static int noOfActivities;
+    private static boolean fromBackground = false;
     static List<Runnable> runnableTasks = new ArrayList<>();
 
     @Override
@@ -23,7 +24,9 @@ public class RNLifeCycleEventListener implements LifecycleEventListener {
                     noOfActivities += 1;
                     if (noOfActivities == 1) {
                         // no previous activity present. Application Opened
-                        RNRudderSdkModule.rudderClient.track("Application Opened");
+                        RudderProperty property = new RudderProperty();
+                        property.put("from_background", fromBackground);
+                        RNRudderSdkModule.rudderClient.track("Application Opened", property);
                     }
                 }
                 if (RNRudderSdkModule.recordScreenViews) {
@@ -47,6 +50,7 @@ public class RNLifeCycleEventListener implements LifecycleEventListener {
         Runnable runnableTask = new Runnable() {
             @Override
             public void run() {
+                fromBackground = true;
                 if (RNRudderSdkModule.trackLifeCycleEvents) {
                     noOfActivities -= 1;
                     if (noOfActivities == 0) {

@@ -83,6 +83,8 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
             if (options.hasKey("recordScreenViews")) {
                 recordScreenViews = options.getBoolean("recordScreenViews");
             }
+            
+            // we are relying on Screen View Recording implementation in RNLifeCycleEventListener.java hence we are explicitly setting it to false in Native Android SDK
             configBuilder.withRecordScreenViews(false);
 
             if (options.hasKey("logLevel")) {
