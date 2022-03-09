@@ -14,7 +14,7 @@ Run `pod install` inside the `ios` directory of your project adding `@rudderstac
 
 ## Usage
 ```javascript
-import RudderIntegrationAppcenterReactNative from '@rudderstack/rudder-integration-singular-react-native';
+import RudderIntegrationSingularReactNative from '@rudderstack/rudder-integration-singular-react-native';
 ```
 
 
