@@ -23,7 +23,8 @@
     "rudder-integration-appsflyer-react-native": "file:../integrations/rudder-integration-appsflyer-react-native",
     "rudder-integration-braze-react-native": "file:../integrations/rudder-integration-braze-react-native",
     "rudder-integration-clevertap-react-native": "file:../integrations/rudder-integration-clevertap-react-native",
-    "rudder-integration-firebase-react-native": "file:../integrations/rudder-integration-firebase-react-native"
+    "rudder-integration-firebase-react-native": "file:../integrations/rudder-integration-firebase-react-native",
+    "rudder-integration-singular-react-native": "file:../integrations/rudder-integration-singular-react-native"
   },
   "devDependencies": {
     "@babel/core": "7.9.0",

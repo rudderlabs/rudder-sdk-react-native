@@ -500,9 +500,18 @@ PODS:
   - rudder-integration-firebase-react-native (1.0.7):
     - React
     - Rudder-Firebase (>= 2.0.3)
+  - rudder-integration-singular-react-native (1.0.0):
+    - React
+    - Rudder-Singular
+  - Rudder-Singular (1.0.0):
+    - Rudder (~> 1.0)
+    - Singular-SDK (= 11.0.4)
   - SDWebImage (5.12.3):
     - SDWebImage/Core (= 5.12.3)
   - SDWebImage/Core (5.12.3)
+  - Singular-SDK (11.0.4):
+    - Singular-SDK/Main (= 11.0.4)
+  - Singular-SDK/Main (11.0.4)
   - Yoga (1.14.0)
   - YogaKit (1.18.1):
     - Yoga (~> 1.14)
@@ -567,6 +576,7 @@ DEPENDENCIES:
   - rudder-integration-braze-react-native (from `../node_modules/rudder-integration-braze-react-native`)
   - rudder-integration-clevertap-react-native (from `../node_modules/rudder-integration-clevertap-react-native`)
   - rudder-integration-firebase-react-native (from `../node_modules/rudder-integration-firebase-react-native`)
+  - rudder-integration-singular-react-native (from `../node_modules/rudder-integration-singular-react-native`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
@@ -605,7 +615,9 @@ SPEC REPOS:
     - Rudder-Braze
     - Rudder-CleverTap
     - Rudder-Firebase
+    - Rudder-Singular
     - SDWebImage
+    - Singular-SDK
     - YogaKit
 
 EXTERNAL SOURCES:
@@ -685,6 +697,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/rudder-integration-clevertap-react-native"
   rudder-integration-firebase-react-native:
     :path: "../node_modules/rudder-integration-firebase-react-native"
+  rudder-integration-singular-react-native:
+    :path: "../node_modules/rudder-integration-singular-react-native"
   Yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
@@ -761,7 +775,10 @@ SPEC CHECKSUMS:
   rudder-integration-braze-react-native: 457f3089766bae4d04203d2743e381c7b93bbea3
   rudder-integration-clevertap-react-native: 2395a02f27584e7203347afe2b7f27687427d6a5
   rudder-integration-firebase-react-native: e5d0c589dc9379b847d2f65b0abc90c2c712d56e
+  rudder-integration-singular-react-native: e6ffd00883109140e67ccb92ee6b6934d7511331
+  Rudder-Singular: e22a4101ce043aded86b777bea873bf6a2af42b9
   SDWebImage: 53179a2dba77246efa8a9b85f5c5b21f8f43e38f
+  Singular-SDK: 614350e3ed21a06b02ab165b370b212f8aaacf2b
   Yoga: 90dcd029e45d8a7c1ff059e8b3c6612ff409061a
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
