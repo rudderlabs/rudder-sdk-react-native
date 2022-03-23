@@ -78,6 +78,15 @@ function validateConfiguration(configuration: Configuration) {
     );
     delete configuration.recordScreenViews;
   }
+  if (
+    configuration.autoCollectAdvertId &&
+    typeof configuration.autoCollectAdvertId != "boolean"
+  ) {
+    logWarn(
+      "setup : 'autoCollectAdvertId' must be a boolen. Falling back to the default value"
+    );
+    delete configuration.autoCollectAdvertId;
+  }
 }
 
 // setup the RudderSDK with writeKey and Config
