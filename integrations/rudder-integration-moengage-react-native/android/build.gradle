@@ -77,8 +77,8 @@ dependencies {
     implementation project(path: ':rudderstack_rudder-sdk-react-native')  // From node_modules
 
     // rudderstack dependencies
-    implementation 'com.rudderstack.android.sdk:core:1+'
-    implementation 'com.rudderstack.android.integration:moengage:1+'
+    implementation 'com.rudderstack.android.sdk:core:[1.0,2.0)'
+    implementation 'com.rudderstack.android.integration:moengage:[1.0,)'
 
     // moengage dependencies
     implementation 'com.moengage:moe-android-sdk:10.5.00'
