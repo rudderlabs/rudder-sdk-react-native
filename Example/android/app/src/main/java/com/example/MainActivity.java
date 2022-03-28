@@ -24,7 +24,7 @@ public class MainActivity extends ReactActivity {
 
     // MoEngage SDK initialisation: Replace "xxxxxxx" with your APP ID.
     MoEngage moEngage = new MoEngage
-            .Builder(MainActivity.this.getApplication(), "UC37PRFF3I8LGYDXK6ADJTL2")
+            .Builder(MainActivity.this.getApplication(), "xxxxxxx")
             .setNotificationSmallIcon(R.drawable.ic_launcher_background)
             .setNotificationLargeIcon(R.drawable.ic_launcher_background)
             .enableLogs(LogLevel.VERBOSE)
