@@ -5775,6 +5775,12 @@ rsvp@^4.8.4:
 "rudder-integration-clevertap-react-native@file:../integrations/rudder-integration-clevertap-react-native":
   version "1.0.1"
 
+"rudder-integration-firebase-react-native@file:../integrations/rudder-integration-firebase-react-native":
+  version "1.0.7"
+
+"rudder-integration-moengage-react-native@file:../integrations/rudder-integration-moengage-react-native":
+  version "1.0.0"
+
 "rudder-integration-singular-react-native@file:../integrations/rudder-integration-singular-react-native":
   version "1.0.0"
 
