@@ -25,8 +25,9 @@ const App = () => {
 
   (async function () {
     const config = {
-      dataPlaneUrl: 'https://98fa-175-101-36-4.ngrok.io',
+      dataPlaneUrl: 'https://38b5-175-101-36-4.ngrok.io',
       trackAppLifecycleEvents: true,
+      autoCollectAdvertId:true,
       recordScreenViews: true,
       logLevel: RUDDER_LOG_LEVEL.VERBOSE,
       withFactories: [braze]

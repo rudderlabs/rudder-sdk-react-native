@@ -6,6 +6,7 @@ import {
   DB_COUNT_THRESHOLD,
   SLEEP_TIMEOUT,
   CONFIG_REFRESH_INTERVAL,
+  AUTO_COLLECT_ADVERT_ID,
   TRACK_LIFECYCLE_EVENTS,
   RECORD_SCREEN_VIEWS,
   LOG_LEVEL,
@@ -21,6 +22,7 @@ export const configure = async (
     sleepTimeOut = SLEEP_TIMEOUT,
     logLevel = LOG_LEVEL,
     configRefreshInterval = CONFIG_REFRESH_INTERVAL,
+    autoCollectAdvertId = AUTO_COLLECT_ADVERT_ID,
     trackAppLifecycleEvents = TRACK_LIFECYCLE_EVENTS,
     recordScreenViews = RECORD_SCREEN_VIEWS,
     withFactories = [],
@@ -46,6 +48,7 @@ export const configure = async (
     sleepTimeOut,
     logLevel,
     configRefreshInterval,
+    autoCollectAdvertId,
     trackAppLifecycleEvents,
     recordScreenViews,
   };
