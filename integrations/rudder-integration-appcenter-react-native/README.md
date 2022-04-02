@@ -24,4 +24,25 @@ import RudderIntegrationAppcenterReactNative from '@rudderstack/rudder-integrati
 RudderIntegrationAppcenterReactNative;
 ```
 
+## Extra Step for minifyEnabled 
 
+if you are using `minifyEnabled true` then you will have to use proguard
+
+```
+ buildTypes {
+        debug {
+           ...
+        }
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+           
+        }
+    }
+```
+
+
+then you will have to use proguard `android/app/proguard-rules.pro`
+```
+-keep class com.rudderstack.android.integrations.appcenter.** { *; }
+```
