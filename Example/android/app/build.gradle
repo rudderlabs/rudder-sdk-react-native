@@ -1,6 +1,6 @@
 apply plugin: "com.android.application"
 // MoEngage: For Push Notification
-apply plugin: 'com.google.gms.google-services'
+//apply plugin: 'com.google.gms.google-services'
 
 import com.android.build.OutputFile
 
@@ -225,7 +225,7 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-process:2.2.0'
 
     implementation 'com.google.code.gson:gson:2.8.6'
-    implementation 'com.google.firebase:firebase-messaging:21.0.0'
+//    implementation 'com.google.firebase:firebase-messaging:21.0.0'
 
 }
 

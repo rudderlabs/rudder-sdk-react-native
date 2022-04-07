@@ -14,9 +14,8 @@ import {
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import rc, { RUDDER_LOG_LEVEL } from '@rudderstack/rudder-sdk-react-native';
-import braze from 'rudder-integration-braze-react-native';
-
-
+import clevertap from 'rudder-integration-clevertap-react-native'
+import appsflyer from 'rudder-integration-appsflyer-react-native'
 const Stack = createNativeStackNavigator();
 
 const App = () => {
@@ -25,12 +24,12 @@ const App = () => {
 
   (async function () {
     const config = {
-      dataPlaneUrl: 'https://38b5-175-101-36-4.ngrok.io',
+      dataPlaneUrl: 'https://88bb-175-101-36-4.ngrok.io',
       trackAppLifecycleEvents: true,
       autoCollectAdvertId:true,
       recordScreenViews: true,
       logLevel: RUDDER_LOG_LEVEL.VERBOSE,
-      withFactories: [braze]
+      withFactories: [clevertap, appsflyer]
     };
 
     const props = {
