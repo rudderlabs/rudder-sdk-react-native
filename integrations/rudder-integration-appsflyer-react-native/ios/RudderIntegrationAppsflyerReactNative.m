@@ -6,12 +6,15 @@
 
 RCT_EXPORT_MODULE()
 
-RCT_EXPORT_METHOD(setup)
+RCT_EXPORT_METHOD(setup: (BOOL)registerForConversionListeners withRegisterForDeepLinkListeners: (BOOL)registerForDeepLinkListeners)
 {
     [RNRudderAnalytics addIntegration:[RudderAppsflyerFactory instance]];
-     [AppsFlyerLib shared].delegate = self;
-     [AppsFlyerLib shared].deepLinkDelegate = self;
-      
+    if(registerForConversionListeners) {
+      [AppsFlyerLib shared].delegate = self;
+    }
+    if(registerForDeepLinkListeners) {
+       [AppsFlyerLib shared].deepLinkDelegate = self;
+    }
 }
 
 RCT_EXPORT_METHOD(getAppsFlyerId:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
@@ -141,5 +144,8 @@ RCT_EXPORT_METHOD(getAppsFlyerId:(RCTPromiseResolveBlock)resolve rejecter:(RCTPr
     }
 }
 
+- (NSArray<NSString *> *)supportedEvents {
+    return @[afOnAttributionFailure,afOnAppOpenAttribution,afOnInstallConversionFailure, afOnInstallConversionDataLoaded, afOnDeepLinking];
+}
 
 @end

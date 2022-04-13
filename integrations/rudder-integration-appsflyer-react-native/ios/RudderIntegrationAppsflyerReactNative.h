@@ -1,7 +1,15 @@
+#if __has_include(<React/RCTBridgeModule.h>) //ver >= 0.40
 #import <React/RCTBridgeModule.h>
+#import <React/RCTEventEmitter.h>
+#import <React/RCTEventDispatcher.h>
+#else //ver < 0.40
+#import "RCTBridgeModule.h"
+#import "RCTEventDispatcher.h"
+#endif
+
 #import <AppsFlyerLib/AppsFlyerLib.h>
 
-@interface RudderIntegrationAppsflyerReactNative : NSObject <RCTBridgeModule, AppsFlyerLibDelegate, AppsFlyerDeepLinkDelegate>
+@interface RudderIntegrationAppsflyerReactNative : RCTEventEmitter <RCTBridgeModule, AppsFlyerLibDelegate, AppsFlyerDeepLinkDelegate>
 
   #define afConversionData                @"onInstallConversionDataListener"
   #define afOnInstallConversionData       @"onInstallConversionData"

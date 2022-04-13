@@ -1,0 +1,40 @@
+
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 30
+
+    defaultConfig {
+        minSdkVersion 19
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0.4"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    // rudder core sdk
+    implementation 'com.rudderstack.android.sdk:core:[1.2.1,)'
+
+    // appsflyer dependencies
+    implementation 'com.appsflyer:af-android-sdk:6.4.3'
+    implementation 'com.android.installreferrer:installreferrer:2.2'
+}
+
+ext {
+    PUBLISH_GROUP_ID = 'com.rudderstack.android.integration'
+    PUBLISH_VERSION = '1.0.4'
+    PUBLISH_ARTIFACT_ID = 'appsflyer'
+}
+
+//apply from: "${rootProject.projectDir}/scripts/publish-module.gradle"
+
+

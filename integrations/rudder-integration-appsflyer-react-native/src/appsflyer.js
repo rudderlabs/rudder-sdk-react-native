@@ -4,8 +4,19 @@ import { NativeEventEmitter, NativeModules } from 'react-native';
 const { RudderIntegrationAppsflyerReactNative } = NativeModules;
 const appsFlyerEventEmitter = new NativeEventEmitter(RudderIntegrationAppsflyerReactNative);
 
+var registerConvListener = false;
+var registerDeepLinkListener = false;
+
 async function setup() {
-    await bridge.setup();
+    await bridge.setup(registerConvListener === true, registerDeepLinkListener === true);
+}
+
+function registerForConversionListeners() {
+    registerConvListener = true;
+}
+
+function registerForDeepLinkListeners() {
+    registerDeepLinkListener = true;
 }
 
 function onInstallConversionData(callback) {
@@ -98,5 +109,5 @@ function onDeepLink(callback) {
     };
 };
 
-export { onDeepLink, onInstallConversionData, onInstallConversionFailure, onAppOpenAttribution, onAttributionFailure };
+export { onDeepLink, onInstallConversionData, onInstallConversionFailure, onAppOpenAttribution, onAttributionFailure, registerForConversionListeners, registerForDeepLinkListeners };
 export default setup;

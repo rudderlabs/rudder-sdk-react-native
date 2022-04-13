@@ -48,11 +48,17 @@ public class RudderIntegrationAppsflyerReactNativeModule extends ReactContextBas
     }
 
     @ReactMethod
-    public void setup() {
-        RNRudderAnalytics.addIntegration(AppsFlyerIntegrationFactory.FACTORY);
+    public void setup(boolean registerForConversionListeners, boolean registerForDeepLinkListeners) {
         AppsFlyerLib instance = AppsFlyerLib.getInstance();
+        if(registerForDeepLinkListeners) {
+        System.out.println("Registered for deep link listeners");
         instance.subscribeForDeepLink(registerDeepLinkListener());
+        }
+        if(registerForConversionListeners) {
+        System.out.println("Registered for conversion listeners");
         instance.registerConversionListener(reactContext, registerConversionListener());
+        }
+        RNRudderAnalytics.addIntegration(AppsFlyerIntegrationFactory.FACTORY);
     }
 
     @ReactMethod
