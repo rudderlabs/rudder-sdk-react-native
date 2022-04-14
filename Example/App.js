@@ -16,11 +16,19 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import rc, { RUDDER_LOG_LEVEL } from '@rudderstack/rudder-sdk-react-native';
 import clevertap from 'rudder-integration-clevertap-react-native'
 import appsflyer from 'rudder-integration-appsflyer-react-native'
-import { onAppOpenAttribution, onAttributionFailure, onDeepLink, onInstallConversionData, onInstallConversionFailure, registerForConversionListeners, registerForDeepLinkListeners } from 'rudder-integration-appsflyer-react-native/src/appsflyer';
+import { onAppOpenAttribution, onAttributionFailure, onDeepLink, onInstallConversionData, onInstallConversionFailure, setOptions } from 'rudder-integration-appsflyer-react-native/src/appsflyer';
 const Stack = createNativeStackNavigator();
 const initialization = async () => {
+
+  setOptions({
+    "devKey": "tZGiwrAUq8xLuNYb99q2VT",
+    "isDebug": true,
+    "onInstallConversionDataListener": true,
+    // "onDeepLinkListener": true
+  })
+
   const config = {
-    dataPlaneUrl: 'https://cd88-175-101-36-4.ngrok.io',
+    dataPlaneUrl: 'https://dd86-175-101-36-4.ngrok.io',
     trackAppLifecycleEvents: true,
     autoCollectAdvertId:true,
     recordScreenViews: true,
@@ -35,10 +43,7 @@ const initialization = async () => {
     name: 'Miraj'
   };
 
-  registerForConversionListeners();
-
-  //registerForDeepLinkListeners();
-
+  
   onAppOpenAttribution((data) => {
    console.log("On App Open Attribution Success and the data is ", data); 
   })

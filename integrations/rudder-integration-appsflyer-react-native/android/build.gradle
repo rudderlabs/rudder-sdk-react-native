@@ -77,8 +77,8 @@ dependencies {
     // rudderstack dependencies
     implementation project(path: ':rudderstack_rudder-sdk-react-native')
     implementation 'com.rudderstack.android.sdk:core:1+'
-    implementation project(':appsflyer')
-    // implementation 'com.rudderstack.android.integration:appsflyer:1.+'
+    // implementation project(':appsflyer')
+    implementation 'com.rudderstack.android.integration:appsflyer:1.+'
 
     // appsflyer dependencies
     implementation 'com.appsflyer:af-android-sdk:6.2.3'

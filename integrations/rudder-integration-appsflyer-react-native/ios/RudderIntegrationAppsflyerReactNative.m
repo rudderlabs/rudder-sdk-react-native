@@ -6,15 +6,18 @@
 
 RCT_EXPORT_MODULE()
 
-RCT_EXPORT_METHOD(setup: (BOOL)registerForConversionListeners withRegisterForDeepLinkListeners: (BOOL)registerForDeepLinkListeners)
+RCT_EXPORT_METHOD(setup: (NSString*)devKey withDebug: (BOOL) isDebug withConversionDataListener: (BOOL) onInstallConversionDataListener withDeepLinkListener: (BOOL) onDeepLinkListener) 
 {
-    [RNRudderAnalytics addIntegration:[RudderAppsflyerFactory instance]];
-    if(registerForConversionListeners) {
+    if(isDebug) {
+        [AppsFlyerLib shared].isDebug = YES;
+    }
+    if(onInstallConversionDataListener) {
       [AppsFlyerLib shared].delegate = self;
     }
-    if(registerForDeepLinkListeners) {
+    if(onDeepLinkListener) {
        [AppsFlyerLib shared].deepLinkDelegate = self;
     }
+    [RNRudderAnalytics addIntegration:[RudderAppsflyerFactory instance]];
 }
 
 RCT_EXPORT_METHOD(getAppsFlyerId:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)

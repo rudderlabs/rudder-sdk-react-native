@@ -1,5 +1,8 @@
 package com.rudderstack.integration.reactnative.appsflyer;
 
+import android.app.Activity;
+import android.app.Application;
+
 import com.appsflyer.AppsFlyerLib;
 import com.facebook.react.bridge.Promise;
 
@@ -7,7 +10,6 @@ import androidx.annotation.NonNull;
 
 import java.util.Map;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -15,19 +17,19 @@ import com.facebook.react.bridge.ReactContext;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
-import com.facebook.react.bridge.Callback;
 import com.rudderstack.android.integrations.appsflyer.AppsFlyerIntegrationFactory;
 import com.rudderstack.react.android.RNRudderAnalytics;
 
 import com.appsflyer.AppsFlyerConversionListener;
 import com.appsflyer.deeplink.DeepLinkListener;
 import com.appsflyer.deeplink.DeepLinkResult;
-import com.appsflyer.attribution.AppsFlyerRequestListener;
 import com.facebook.react.modules.core.DeviceEventManagerModule;
 
 public class RudderIntegrationAppsflyerReactNativeModule extends ReactContextBaseJavaModule {
 
     private final ReactApplicationContext reactContext;
+    private Application application;
+
     private final static String afSuccess = "success";
     private final static String afFailure = "failure";
     private final static String afOnAttributionFailure = "onAttributionFailure";
@@ -40,6 +42,7 @@ public class RudderIntegrationAppsflyerReactNativeModule extends ReactContextBas
     public RudderIntegrationAppsflyerReactNativeModule(ReactApplicationContext reactContext) {
         super(reactContext);
         this.reactContext = reactContext;
+        this.application = (Application) reactContext.getApplicationContext();
     }
 
     @Override
@@ -48,15 +51,22 @@ public class RudderIntegrationAppsflyerReactNativeModule extends ReactContextBas
     }
 
     @ReactMethod
-    public void setup(boolean registerForConversionListeners, boolean registerForDeepLinkListeners) {
+    public void setup(String devKey, boolean isDebug, boolean onInstallConversionDataListener, boolean onDeepLinkListener) {
         AppsFlyerLib instance = AppsFlyerLib.getInstance();
-        if(registerForDeepLinkListeners) {
-        System.out.println("Registered for deep link listeners");
-        instance.subscribeForDeepLink(registerDeepLinkListener());
+        instance.setDebugLog(isDebug);
+        instance.init(devKey, (onInstallConversionDataListener == true) ? registerConversionListener() : null, application.getApplicationContext());
+        if (onDeepLinkListener) {
+            instance.subscribeForDeepLink(registerDeepLinkListener());
         }
-        if(registerForConversionListeners) {
-        System.out.println("Registered for conversion listeners");
-        instance.registerConversionListener(reactContext, registerConversionListener());
+        Activity currentActivity = getCurrentActivity();
+        if (currentActivity != null) {
+            // register for lifecycle with Activity (automatically fetching deeplink from Activity if present)
+            instance.start(currentActivity, devKey);
+        } else {
+            // register for lifecycle with Application (cannot fetch deeplink without access to the Activity,
+            // also sending first session manually)
+            instance.logEvent(application, null, null);
+            instance.start(application, devKey);
         }
         RNRudderAnalytics.addIntegration(AppsFlyerIntegrationFactory.FACTORY);
     }

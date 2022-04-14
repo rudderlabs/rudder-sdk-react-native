@@ -4,19 +4,46 @@ import { NativeEventEmitter, NativeModules } from 'react-native';
 const { RudderIntegrationAppsflyerReactNative } = NativeModules;
 const appsFlyerEventEmitter = new NativeEventEmitter(RudderIntegrationAppsflyerReactNative);
 
-var registerConvListener = false;
-var registerDeepLinkListener = false;
+var devKey = "";
+var isDebug = false;
+var onInstallConversionDataListener = true;
+var onDeepLinkListener = false;
 
 async function setup() {
-    await bridge.setup(registerConvListener === true, registerDeepLinkListener === true);
+    await bridge.setup(devkey, isDebug === true, onInstallConversionDataListener === true, onDeepLinkListener === true);
 }
 
-function registerForConversionListeners() {
-    registerConvListener = true;
-}
-
-function registerForDeepLinkListeners() {
-    registerDeepLinkListener = true;
+function setOptions(options) {
+    if (options == null) {
+        throw new Error('RudderSDK: Warn: Options is Invalid, Aborting Appsflyer Initialization');
+    }
+    if (options.devKey) {
+        if (typeof options.devKey !== 'string' || typeof options.devKey === 'undefined') {
+            throw new Error('RudderSDK: Warn: devKey should be a string!');
+        }
+        devKey = options.devKey;
+    }
+    if (options.isDebug) {
+        if (typeof options.isDebug !== 'boolean') {
+            console.log('RudderSDK: Warn: isDebug should be a boolean!');
+            return;
+        }
+        isDebug = options.isDebug
+    }
+    if (options.onInstallConversionDataListener) {
+        if (typeof options.onInstallConversionDataListener !== 'boolean') {
+            console.log('RudderSDK: Warn: onInstallConversionDataListener should be a boolean!');
+            return;
+        }
+        onInstallConversionDataListener = options.onInstallConversionDataListener
+    }
+    if (options.onDeepLinkListener) {
+        if (typeof options.onDeepLinkListener !== 'boolean') {
+            console.log('RudderSDK: Warn: onDeepLinkListener should be a boolean!');
+            return;
+        }
+        onDeepLinkListener = options.onDeepLinkListener
+    }
 }
 
 function onInstallConversionData(callback) {
@@ -109,5 +136,5 @@ function onDeepLink(callback) {
     };
 };
 
-export { onDeepLink, onInstallConversionData, onInstallConversionFailure, onAppOpenAttribution, onAttributionFailure, registerForConversionListeners, registerForDeepLinkListeners };
+export { onDeepLink, onInstallConversionData, onInstallConversionFailure, onAppOpenAttribution, onAttributionFailure, setOptions };
 export default setup;
