@@ -131,7 +131,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.example"
+        applicationId "com.example.rudder"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

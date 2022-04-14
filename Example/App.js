@@ -16,37 +16,72 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import rc, { RUDDER_LOG_LEVEL } from '@rudderstack/rudder-sdk-react-native';
 import clevertap from 'rudder-integration-clevertap-react-native'
 import appsflyer from 'rudder-integration-appsflyer-react-native'
+import { onAppOpenAttribution, onAttributionFailure, onDeepLink, onInstallConversionData, onInstallConversionFailure, setOptions } from 'rudder-integration-appsflyer-react-native/src/appsflyer';
 const Stack = createNativeStackNavigator();
+const initialization = async () => {
+
+  setOptions({
+    "devKey": "tZGiwrAUq8xLuNYb99q2VT",
+    "isDebug": true,
+    "onInstallConversionDataListener": true,
+    // "onDeepLinkListener": true
+  })
+
+  const config = {
+    dataPlaneUrl: 'https://dd86-175-101-36-4.ngrok.io',
+    trackAppLifecycleEvents: true,
+    autoCollectAdvertId:true,
+    recordScreenViews: true,
+    logLevel: RUDDER_LOG_LEVEL.VERBOSE,
+    withFactories: [clevertap, appsflyer]
+  };
+
+  const props = {
+    k1: 'v1',
+    k2: 'v3',
+    k3: 'v3',
+    name: 'Miraj'
+  };
+
+  
+  onAppOpenAttribution((data) => {
+   console.log("On App Open Attribution Success and the data is ", data); 
+  })
+
+  onAttributionFailure((data) => {
+    console.log("On App Attribution Failure and the data is ", data);
+  })
+
+  onInstallConversionData((data) => {
+    console.log("On Install conversion Success data is ", data);
+  })
+
+  onInstallConversionFailure((data) => {
+    console.log("On Install conversion Failure data is ", data);
+  })
+
+  onDeepLink((data) => {
+    console.log("On Deeplink data is ", data);
+  })
+
+  await rc.setup('1pAKRv50y15Ti6UWpYroGJaO0Dj', config);
+
+  await rc.identify("test_userIdiOS", {
+    "email": "testuseriOS@example.com",
+    "location": "UK"
+  });
+  await rc.track('React Native event', props);
+  await rc.screen('React Native screen', props);
+}
 
 const App = () => {
   const routeNameRef = React.useRef();
   const navigationRef = React.useRef();
 
+  
+
   (async function () {
-    const config = {
-      dataPlaneUrl: 'https://88bb-175-101-36-4.ngrok.io',
-      trackAppLifecycleEvents: true,
-      autoCollectAdvertId:true,
-      recordScreenViews: true,
-      logLevel: RUDDER_LOG_LEVEL.VERBOSE,
-      withFactories: [clevertap, appsflyer]
-    };
-
-    const props = {
-      k1: 'v1',
-      k2: 'v3',
-      k3: 'v3',
-      name: 'Miraj'
-    };
-
-    await rc.setup('1pAKRv50y15Ti6UWpYroGJaO0Dj', config);
-
-    await rc.identify("test_userIdiOS", {
-      "email": "testuseriOS@example.com",
-      "location": "UK"
-    });
-    await rc.track('React Native event', props);
-    await rc.screen('React Native screen', props);
+    initialization()
   }
 
   )();
@@ -97,12 +132,13 @@ const HomeScreen = ({ navigation }) => {
 
   )();
   return (
-    <Button
+    <><Button
       title="Go to Jane's profile"
-      onPress={() =>
-        navigation.navigate('Profile', { name: 'Jane' })
-      }
-    />
+      onPress={() => navigation.navigate('Profile', { name: 'Jane' })} />
+      <Button
+        title="Initialization"
+        onPress={async () => await initialization()}/>
+        </>
   );
 };
 const ProfileScreen = ({ navigation, route }) => {
