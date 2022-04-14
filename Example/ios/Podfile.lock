@@ -1,33 +1,7 @@
 PODS:
-  - Amplitude (7.2.2)
-  - Appboy-iOS-SDK (4.4.2):
-    - Appboy-iOS-SDK/UI (= 4.4.2)
-  - Appboy-iOS-SDK/ContentCards (4.4.2):
-    - Appboy-iOS-SDK/Core
-    - SDWebImage (< 6, >= 5.8.2)
-  - Appboy-iOS-SDK/Core (4.4.2)
-  - Appboy-iOS-SDK/InAppMessage (4.4.2):
-    - Appboy-iOS-SDK/Core
-    - SDWebImage (< 6, >= 5.8.2)
-  - Appboy-iOS-SDK/NewsFeed (4.4.2):
-    - Appboy-iOS-SDK/Core
-    - SDWebImage (< 6, >= 5.8.2)
-  - Appboy-iOS-SDK/UI (4.4.2):
-    - Appboy-iOS-SDK/ContentCards
-    - Appboy-iOS-SDK/Core
-    - Appboy-iOS-SDK/InAppMessage
-    - Appboy-iOS-SDK/NewsFeed
-  - AppCenter (4.4.2):
-    - AppCenter/Analytics (= 4.4.2)
-    - AppCenter/Crashes (= 4.4.2)
-  - AppCenter/Analytics (4.4.2):
-    - AppCenter/Core
-  - AppCenter/Core (4.4.2)
-  - AppCenter/Crashes (4.4.2):
-    - AppCenter/Core
-  - AppsFlyerFramework (6.4.3):
-    - AppsFlyerFramework/Main (= 6.4.3)
-  - AppsFlyerFramework/Main (6.4.3)
+  - AppsFlyerFramework (6.4.4):
+    - AppsFlyerFramework/Main (= 6.4.4)
+  - AppsFlyerFramework/Main (6.4.4)
   - boost (1.76.0)
   - boost-for-react-native (1.63.0)
   - CleverTap-iOS-SDK (3.10.0):
@@ -374,50 +348,23 @@ PODS:
   - RNScreens (3.13.1):
     - React-Core
     - React-RCTImage
-  - Rudder (1.5.2)
-  - Rudder-Amplitude (1.0.2):
-    - Amplitude (~> 7.2.0)
-    - Rudder
-  - Rudder-AppCenter (1.0.1):
-    - AppCenter
-    - Rudder
-  - Rudder-Appsflyer (1.0.4):
-    - AppsFlyerFramework (= 6.4.3)
-    - Rudder (~> 1.0)
-  - Rudder-Braze (1.0.3):
-    - Appboy-iOS-SDK (= 4.4.2)
+  - Rudder (1.5.3)
+  - Rudder-Appsflyer (1.0.6):
+    - AppsFlyerFramework (~> 6.4.3)
     - Rudder (~> 1.0)
   - Rudder-CleverTap (1.0.3):
     - CleverTap-iOS-SDK (~> 3.0)
     - Rudder (~> 1.0)
-  - rudder-integration-amplitude-react-native (1.0.0):
-    - React
-    - Rudder-Amplitude
-  - rudder-integration-appcenter-react-native (1.0.1):
-    - React
-    - Rudder-AppCenter
   - rudder-integration-appsflyer-react-native (1.0.5):
     - React
     - Rudder-Appsflyer
-  - rudder-integration-braze-react-native (1.0.0):
-    - React
-    - Rudder-Braze
   - rudder-integration-clevertap-react-native (1.0.1):
     - CleverTap-iOS-SDK
     - React
     - Rudder-CleverTap (~> 1.0)
-  - rudder-integration-singular-react-native (1.0.0):
-    - React
-    - Rudder-Singular
-  - Rudder-Singular (1.0.0):
-    - Rudder (~> 1.0)
-    - Singular-SDK (= 11.0.4)
   - SDWebImage (5.12.5):
     - SDWebImage/Core (= 5.12.5)
   - SDWebImage/Core (5.12.5)
-  - Singular-SDK (11.0.4):
-    - Singular-SDK/Main (= 11.0.4)
-  - Singular-SDK/Main (11.0.4)
   - Yoga (1.14.0)
   - YogaKit (1.18.1):
     - Yoga (~> 1.14)
@@ -476,19 +423,12 @@ DEPENDENCIES:
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
   - "RNRudderSdk (from `../node_modules/@rudderstack/rudder-sdk-react-native`)"
   - RNScreens (from `../node_modules/react-native-screens`)
-  - rudder-integration-amplitude-react-native (from `../node_modules/rudder-integration-amplitude-react-native`)
-  - rudder-integration-appcenter-react-native (from `../node_modules/rudder-integration-appcenter-react-native`)
   - rudder-integration-appsflyer-react-native (from `../node_modules/rudder-integration-appsflyer-react-native`)
-  - rudder-integration-braze-react-native (from `../node_modules/rudder-integration-braze-react-native`)
   - rudder-integration-clevertap-react-native (from `../node_modules/rudder-integration-clevertap-react-native`)
-  - rudder-integration-singular-react-native (from `../node_modules/rudder-integration-singular-react-native`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
   trunk:
-    - Amplitude
-    - Appboy-iOS-SDK
-    - AppCenter
     - AppsFlyerFramework
     - boost-for-react-native
     - CleverTap-iOS-SDK
@@ -504,14 +444,9 @@ SPEC REPOS:
     - libevent
     - OpenSSL-Universal
     - Rudder
-    - Rudder-Amplitude
-    - Rudder-AppCenter
     - Rudder-Appsflyer
-    - Rudder-Braze
     - Rudder-CleverTap
-    - Rudder-Singular
     - SDWebImage
-    - Singular-SDK
     - YogaKit
 
 EXTERNAL SOURCES:
@@ -579,26 +514,15 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@rudderstack/rudder-sdk-react-native"
   RNScreens:
     :path: "../node_modules/react-native-screens"
-  rudder-integration-amplitude-react-native:
-    :path: "../node_modules/rudder-integration-amplitude-react-native"
-  rudder-integration-appcenter-react-native:
-    :path: "../node_modules/rudder-integration-appcenter-react-native"
   rudder-integration-appsflyer-react-native:
     :path: "../node_modules/rudder-integration-appsflyer-react-native"
-  rudder-integration-braze-react-native:
-    :path: "../node_modules/rudder-integration-braze-react-native"
   rudder-integration-clevertap-react-native:
     :path: "../node_modules/rudder-integration-clevertap-react-native"
-  rudder-integration-singular-react-native:
-    :path: "../node_modules/rudder-integration-singular-react-native"
   Yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
 SPEC CHECKSUMS:
-  Amplitude: 517cdc7c485bda64b685174426ecbf17746eb16a
-  Appboy-iOS-SDK: 4a7dfe908639da81e5e85849355f6066b58b4cc6
-  AppCenter: b0eca112a27b71e97488ffa1949ee38c7abd4b79
-  AppsFlyerFramework: ce218e29f57ea92e461ca1b6f418148a1be2e0dc
+  AppsFlyerFramework: 6ea252ecb04cf443550576922cddb95b35c958ed
   boost: a7c83b31436843459a1961bfd74b96033dc77234
   boost-for-react-native: 39c7adb57c4e60d6c5479dd8623128eb5b3f0f2c
   CleverTap-iOS-SDK: 1e38a25eee5bdb3e525c5c8497504bc64b7d695d
@@ -644,21 +568,12 @@ SPEC CHECKSUMS:
   ReactCommon: 07d0c460b9ba9af3eaf1b8f5abe7daaad28c9c4e
   RNRudderSdk: 006efe311ea3d2dd2dcd200521d33715f7144d1e
   RNScreens: 40a2cb40a02a609938137a1e0acfbf8fc9eebf19
-  Rudder: 557cc105d77f365821d78403b1abacfd2e3018de
-  Rudder-Amplitude: f845cc125a1a58d4de6155391a2b0392815ae898
-  Rudder-AppCenter: 9eca9241e3707a0e9610714dd91dc8da4bae7e1f
-  Rudder-Appsflyer: e070a12a5ff094b922a513b21a0f8a185f948ef9
-  Rudder-Braze: e58e0e8163a2dcf0d45ec2d12bdb0ec3329c3681
+  Rudder: 600311814a186067b0c3d996b83342bb0b2a43e7
+  Rudder-Appsflyer: 939b41d488973a11ef5c608b1590e175c1890e03
   Rudder-CleverTap: f1429a62c26b6db1d4b0c7ea50b7bd8f907625e5
-  rudder-integration-amplitude-react-native: a5f29e090c1ed497f98a9e6e1857dd9f739aa520
-  rudder-integration-appcenter-react-native: 5255138950531976617ab31cf39aa430f27e631b
   rudder-integration-appsflyer-react-native: e752805afcebe72f890766feeedda45d387bde34
-  rudder-integration-braze-react-native: 457f3089766bae4d04203d2743e381c7b93bbea3
   rudder-integration-clevertap-react-native: 2395a02f27584e7203347afe2b7f27687427d6a5
-  rudder-integration-singular-react-native: e6ffd00883109140e67ccb92ee6b6934d7511331
-  Rudder-Singular: e22a4101ce043aded86b777bea873bf6a2af42b9
   SDWebImage: 0905f1b7760fc8ac4198cae0036600d67478751e
-  Singular-SDK: 614350e3ed21a06b02ab165b370b212f8aaacf2b
   Yoga: d6b6a80659aa3e91aaba01d0012e7edcbedcbecd
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
