@@ -10,7 +10,7 @@ var onInstallConversionDataListener = true;
 var onDeepLinkListener = false;
 
 async function setup() {
-    await bridge.setup(devkey, isDebug === true, onInstallConversionDataListener === true, onDeepLinkListener === true);
+    await bridge.setup(devKey, isDebug === true, onInstallConversionDataListener === true, onDeepLinkListener === true);
 }
 
 function setOptions(options) {
