@@ -5,6 +5,7 @@
 #else //ver < 0.40
 #import "RCTBridgeModule.h"
 #import "RCTEventDispatcher.h"
+#import "AppsFlyerAttribution.h"
 #endif
 
 #import <AppsFlyerLib/AppsFlyerLib.h>

@@ -8,6 +8,8 @@ RCT_EXPORT_MODULE()
 
 RCT_EXPORT_METHOD(setup: (NSString*)devKey withDebug: (BOOL) isDebug withConversionDataListener: (BOOL) onInstallConversionDataListener withDeepLinkListener: (BOOL) onDeepLinkListener) 
 {
+    [[AppsFlyerLib shared] setAppsFlyerDevKey:@"devKey"];
+    [[AppsFlyerLib shared] setAppleAppID:@"appID"];
     if(isDebug) {
         [AppsFlyerLib shared].isDebug = YES;
     }
@@ -17,6 +19,15 @@ RCT_EXPORT_METHOD(setup: (NSString*)devKey withDebug: (BOOL) isDebug withConvers
     if(onDeepLinkListener) {
        [AppsFlyerLib shared].deepLinkDelegate = self;
     }
+    //post notification for the deep link object that the bridge is initialized and he can handle deep link
+    [[AppsFlyerAttribution shared] setRNAFBridgeReady:YES];
+    [[NSNotificationCenter defaultCenter] postNotificationName:RNAFBridgeInitializedNotification object:self];
+    // Register for background-foreground transitions natively instead of doing this in JavaScript
+    // [[NSNotificationCenter defaultCenter] addObserver:self
+    //                                             selector:@selector(sendLaunch:)
+    //                                                 name:UIApplicationDidBecomeActiveNotification
+    //                                             object:nil];
+    [[AppsFlyerLib shared] start];
     [RNRudderAnalytics addIntegration:[RudderAppsflyerFactory instance]];
 }
 
