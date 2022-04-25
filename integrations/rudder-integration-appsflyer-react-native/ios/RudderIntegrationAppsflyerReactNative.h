@@ -5,9 +5,9 @@
 #else //ver < 0.40
 #import "RCTBridgeModule.h"
 #import "RCTEventDispatcher.h"
-#import "AppsFlyerAttribution.h"
 #endif
 
+#import "AppsFlyerAttribution.h"
 #import <AppsFlyerLib/AppsFlyerLib.h>
 
 @interface RudderIntegrationAppsflyerReactNative : RCTEventEmitter <RCTBridgeModule, AppsFlyerLibDelegate, AppsFlyerDeepLinkDelegate>

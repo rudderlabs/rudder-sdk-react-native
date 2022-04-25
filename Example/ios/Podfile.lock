@@ -355,7 +355,7 @@ PODS:
   - Rudder-CleverTap (1.0.3):
     - CleverTap-iOS-SDK (~> 3.0)
     - Rudder (~> 1.0)
-  - rudder-integration-appsflyer-react-native (1.1.0):
+  - rudder-integration-appsflyer-react-native (1.2.0):
     - React
     - Rudder-Appsflyer
   - rudder-integration-clevertap-react-native (1.0.1):
@@ -571,7 +571,7 @@ SPEC CHECKSUMS:
   Rudder: 600311814a186067b0c3d996b83342bb0b2a43e7
   Rudder-Appsflyer: 939b41d488973a11ef5c608b1590e175c1890e03
   Rudder-CleverTap: f1429a62c26b6db1d4b0c7ea50b7bd8f907625e5
-  rudder-integration-appsflyer-react-native: caa61374d2cfc2282aa992dd0a8633d238571d9b
+  rudder-integration-appsflyer-react-native: 9478391ceb7db8b99899a23d4e732d7416a6cddf
   rudder-integration-clevertap-react-native: 2395a02f27584e7203347afe2b7f27687427d6a5
   SDWebImage: 0905f1b7760fc8ac4198cae0036600d67478751e
   Yoga: d6b6a80659aa3e91aaba01d0012e7edcbedcbecd

@@ -5,12 +5,13 @@ const { RudderIntegrationAppsflyerReactNative } = NativeModules;
 const appsFlyerEventEmitter = new NativeEventEmitter(RudderIntegrationAppsflyerReactNative);
 
 var devKey = "";
+var appleAppId = "";
 var isDebug = false;
 var onInstallConversionDataListener = true;
 var onDeepLinkListener = false;
 
 async function setup() {
-    await bridge.setup(devKey, isDebug === true, onInstallConversionDataListener === true, onDeepLinkListener === true);
+    await bridge.setup(devKey, isDebug === true, onInstallConversionDataListener === true, onDeepLinkListener === true, appleAppId);
 }
 
 function setOptions(options) {
@@ -22,6 +23,12 @@ function setOptions(options) {
             throw new Error('RudderSDK: Warn: devKey should be a string!');
         }
         devKey = options.devKey;
+    }
+    if (options.appleAppId) {
+        if (typeof options.appleAppId !== 'string' || typeof options.appleAppId === 'undefined') {
+            throw new Error('RudderSDK: Warn: appleAppId should be a string!');
+        }
+        appleAppId = options.appleAppId;
     }
     if (options.isDebug) {
         if (typeof options.isDebug !== 'boolean') {

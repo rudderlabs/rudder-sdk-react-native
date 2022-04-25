@@ -23,11 +23,12 @@ const initialization = async () => {
     "devKey": "tZGiwrAUq8xLuNYb99q2VT",
     "isDebug": true,
     "onInstallConversionDataListener": true,
+    "appleAppId": "1618934842"
     // "onDeepLinkListener": true
   })
 
   const config = {
-    dataPlaneUrl: 'https://8f26-103-159-32-38.ngrok.io',
+    dataPlaneUrl: 'https://9c98-175-101-36-93.ngrok.io',
     trackAppLifecycleEvents: true,
     autoCollectAdvertId:true,
     recordScreenViews: true,

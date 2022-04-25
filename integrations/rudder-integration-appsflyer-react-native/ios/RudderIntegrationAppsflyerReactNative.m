@@ -6,10 +6,10 @@
 
 RCT_EXPORT_MODULE()
 
-RCT_EXPORT_METHOD(setup: (NSString*)devKey withDebug: (BOOL) isDebug withConversionDataListener: (BOOL) onInstallConversionDataListener withDeepLinkListener: (BOOL) onDeepLinkListener) 
+RCT_EXPORT_METHOD(setup: (NSString*)devKey withDebug: (BOOL) isDebug withConversionDataListener: (BOOL) onInstallConversionDataListener withDeepLinkListener: (BOOL) onDeepLinkListener withAppleAppId: (NSString*) appleAppId) 
 {
-    [[AppsFlyerLib shared] setAppsFlyerDevKey:@"devKey"];
-    [[AppsFlyerLib shared] setAppleAppID:@"appID"];
+    [[AppsFlyerLib shared] setAppsFlyerDevKey:devKey];
+    [[AppsFlyerLib shared] setAppleAppID:appleAppId];
     if(isDebug) {
         [AppsFlyerLib shared].isDebug = YES;
     }
