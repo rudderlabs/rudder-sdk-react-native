@@ -51,7 +51,7 @@ public class RudderIntegrationAppsflyerReactNativeModule extends ReactContextBas
     }
 
     @ReactMethod
-    public void setup(String devKey, boolean isDebug, boolean onInstallConversionDataListener, boolean onDeepLinkListener) {
+    public void setup(String devKey, boolean isDebug, boolean onInstallConversionDataListener, boolean onDeepLinkListener, String appleAppId) {
         AppsFlyerLib instance = AppsFlyerLib.getInstance();
         instance.setDebugLog(isDebug);
         instance.init(devKey, (onInstallConversionDataListener == true) ? registerConversionListener() : null, application.getApplicationContext());

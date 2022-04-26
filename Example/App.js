@@ -14,7 +14,6 @@ import {
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import rc, { RUDDER_LOG_LEVEL } from '@rudderstack/rudder-sdk-react-native';
-import clevertap from 'rudder-integration-clevertap-react-native'
 import appsflyer from 'rudder-integration-appsflyer-react-native'
 import { onAppOpenAttribution, onAttributionFailure, onDeepLink, onInstallConversionData, onInstallConversionFailure, setOptions } from 'rudder-integration-appsflyer-react-native/src/appsflyer';
 const Stack = createNativeStackNavigator();
@@ -24,16 +23,17 @@ const initialization = async () => {
     "devKey": "tZGiwrAUq8xLuNYb99q2VT",
     "isDebug": true,
     "onInstallConversionDataListener": true,
+    "appleAppId": "1618934842"
     // "onDeepLinkListener": true
   })
 
   const config = {
-    dataPlaneUrl: 'https://dd86-175-101-36-4.ngrok.io',
+    dataPlaneUrl: 'https://9c98-175-101-36-93.ngrok.io',
     trackAppLifecycleEvents: true,
     autoCollectAdvertId:true,
     recordScreenViews: true,
     logLevel: RUDDER_LOG_LEVEL.VERBOSE,
-    withFactories: [clevertap, appsflyer]
+    withFactories: [appsflyer]
   };
 
   const props = {
