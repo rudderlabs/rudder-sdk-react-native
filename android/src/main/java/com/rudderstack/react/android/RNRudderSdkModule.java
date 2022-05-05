@@ -213,6 +213,15 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
+    public void flush() {
+        if (rudderClient == null) {
+            RudderLogger.logWarn("Dropping the Flush call as RudderClient is not initialized yet, Please use `await` keyword with the setup call");
+            return;
+        }
+        rudderClient.flush();
+    }
+
+    @ReactMethod
     public void optOut(boolean optOut) {
         if (rudderClient == null) {
             RudderLogger.logWarn("Dropping the optOut call as RudderClient is not initialized yet, Please use `await` keyword with the setup call");
