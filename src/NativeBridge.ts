@@ -44,6 +44,7 @@ export interface Bridge {
     options: Object | null
   ): Promise<void>;
   reset(): Promise<void>;
+  flush(): Promise<void>;
   optOut(optOut: boolean): Promise<void>;
   putDeviceToken(token: string): Promise<void>;
   putAdvertisingId(id: string): Promise<void>;
