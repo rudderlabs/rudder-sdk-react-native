@@ -284,6 +284,10 @@ async function reset() {
   bridge.reset();
 }
 
+async function flush() {
+  bridge.flush();
+}
+
 async function optOut(optOut: boolean) {
   bridge.optOut(optOut);
 }
