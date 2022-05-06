@@ -75,7 +75,9 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
             if (options.hasKey("configRefreshInterval")) {
                 configBuilder.withConfigRefreshInterval(options.getInt("configRefreshInterval"));
             }
-
+            if (options.hasKey("autoCollectAdvertId")) {
+                configBuilder.withAutoCollectAdvertId(options.getBoolean("autoCollectAdvertId"));
+            }
             if (options.hasKey("trackAppLifecycleEvents")) {
                 trackLifeCycleEvents = options.getBoolean("trackAppLifecycleEvents");
                 configBuilder.withTrackLifecycleEvents(options.getBoolean("trackAppLifecycleEvents"));

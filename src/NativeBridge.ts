@@ -7,6 +7,7 @@ export interface Configuration {
   dbCountThreshold?: number;
   sleepTimeOut?: number;
   configRefreshInterval?: number;
+  autoCollectAdvertId?: boolean;
   trackAppLifecycleEvents?: boolean;
   recordScreenViews?: boolean;
   logLevel?: number;
