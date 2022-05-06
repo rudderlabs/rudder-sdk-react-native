@@ -161,6 +161,16 @@ RCT_EXPORT_METHOD(reset)
     [[RSClient sharedInstance] reset];
 }
 
+RCT_EXPORT_METHOD(flush)
+{
+    if ([RSClient sharedInstance] == nil)
+    {
+        [RSLogger logWarn:@"Dropping the Flush call as RudderClient is not initialized yet, Please use `await` keyword with the setup call"];
+        return;
+    }
+    [[RSClient sharedInstance] flush];
+}
+
 RCT_EXPORT_METHOD(optOut:(BOOL)optOut)
 {
     if ([RSClient sharedInstance] == nil)
