@@ -20,24 +20,22 @@ import com.facebook.react.bridge.ReactMethod;
 import com.rudderstack.android.integrations.appsflyer.AppsFlyerIntegrationFactory;
 import com.rudderstack.react.android.RNRudderAnalytics;
 
-import com.appsflyer.AppsFlyerConversionListener;
-import com.appsflyer.deeplink.DeepLinkListener;
+import com.appsflyer.share.LinkGenerator;
+import com.appsflyer.share.ShareInviteHelper;
 import com.appsflyer.deeplink.DeepLinkResult;
+import com.appsflyer.deeplink.DeepLinkListener;
+import com.appsflyer.share.CrossPromotionHelper;
+import com.appsflyer.AppsFlyerConversionListener;
+import com.appsflyer.AppsFlyerProperties.EmailsCryptType;
 import com.facebook.react.modules.core.DeviceEventManagerModule;
+
+import static com.appsflyer.reactnative.RNAppsFlyerConstants.*;
+import static com.appsflyer.reactnative.RNAppsFlyerConstants.afOnDeepLinking;
 
 public class RudderIntegrationAppsflyerReactNativeModule extends ReactContextBaseJavaModule {
 
     private final ReactApplicationContext reactContext;
     private Application application;
-
-    private final static String afSuccess = "success";
-    private final static String afFailure = "failure";
-    private final static String afOnAttributionFailure = "onAttributionFailure";
-    private final static String afOnAppOpenAttribution = "onAppOpenAttribution";
-    private final static String afOnInstallConversionFailure = "onInstallConversionFailure";
-    private final static String afOnInstallConversionDataLoaded = "onInstallConversionDataLoaded";
-    private final static String afOnDeepLinking = "onDeepLinking";
-
 
     public RudderIntegrationAppsflyerReactNativeModule(ReactApplicationContext reactContext) {
         super(reactContext);
@@ -175,5 +173,415 @@ public class RudderIntegrationAppsflyerReactNativeModule extends ReactContextBas
                 .getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class)
                 .emit(eventName, params);
     }
+
+    @ReactMethod
+    public void logLocation(double longitude, double latitude, Callback successCallback) {
+        AppsFlyerLib.getInstance().logLocation(reactContext, latitude, longitude);
+        successCallback.invoke(SUCCESS);
+    }
+
+    @ReactMethod
+    public void setUserEmails(ReadableMap _options,
+                              Callback successCallback,
+                              Callback errorCallback) {
+
+        JSONObject options = RNUtil.readableMapToJson(_options);
+
+        int emailsCryptType = options.optInt(afEmailsCryptType, 0);
+        JSONArray emailsJSON = options.optJSONArray(afEmails);
+
+        if (emailsJSON.length() == 0) {
+            errorCallback.invoke(new Exception(EMPTY_OR_CORRUPTED_LIST).getMessage());
+            return;
+        }
+
+        EmailsCryptType type = EmailsCryptType.NONE; // default type
+
+        for (EmailsCryptType _type : EmailsCryptType.values()) {
+            if (_type.getValue() == emailsCryptType) {
+                type = _type;
+                break;
+            }
+        }
+
+        String[] emailsList = new String[emailsJSON.length()];
+        try {
+            for (int i = 0; i < emailsJSON.length(); i++) {
+                emailsList[i] = emailsJSON.getString(i);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+            errorCallback.invoke(new Exception(EMPTY_OR_CORRUPTED_LIST).getMessage());
+            return;
+        }
+
+        AppsFlyerLib.getInstance().setUserEmails(type, emailsList);
+        successCallback.invoke(SUCCESS);
+    }
+
+    @ReactMethod
+    public void setAdditionalData(ReadableMap additionalData, Callback callback) {
+        Map<String, Object> data = null;
+        try {
+            data = RNUtil.toMap(additionalData);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return;
+        }
+
+        if (data == null) { // in case of no values
+            data = new HashMap<>();
+        }
+
+        HashMap<String, Object> copyData = new HashMap<>(data);
+        AppsFlyerLib.getInstance().setAdditionalData(copyData);
+        callback.invoke(SUCCESS);
+    }
+
+    @ReactMethod
+    public void getAppsFlyerUID(Callback callback) {
+        String appId = AppsFlyerLib.getInstance().getAppsFlyerUID(reactContext);
+        callback.invoke(null, appId);
+    }
+
+    @ReactMethod
+    public void updateServerUninstallToken(final String token, Callback callback) {
+        AppsFlyerLib.getInstance().updateServerUninstallToken(reactContext, token);
+        if (callback != null) {
+            callback.invoke(SUCCESS);
+        }
+    }
+
+    @ReactMethod
+    public void setCustomerUserId(final String userId, Callback callback) {
+        AppsFlyerLib.getInstance().setCustomerUserId(userId);
+        callback.invoke(SUCCESS);
+    }
+
+
+    @ReactMethod
+    public void stop(boolean isStopped, Callback callback) {
+        AppsFlyerLib.getInstance().stop(isStopped, reactContext);
+        callback.invoke(SUCCESS);
+    }
+
+    @ReactMethod
+    public void setCollectIMEI(boolean isCollect, Callback callback) {
+        AppsFlyerLib.getInstance().setCollectIMEI(isCollect);
+        if (callback != null) {
+            callback.invoke(SUCCESS);
+        }
+    }
+
+    @ReactMethod
+    public void setCollectAndroidID(boolean isCollect, Callback callback) {
+        AppsFlyerLib.getInstance().setCollectAndroidID(isCollect);
+        if (callback != null) {
+            callback.invoke(SUCCESS);
+        }
+    }
+
+    @ReactMethod
+    public void setAppInviteOneLinkID(final String oneLinkID, Callback callback) {
+        AppsFlyerLib.getInstance().setAppInviteOneLink(oneLinkID);
+        callback.invoke(SUCCESS);
+    }
+
+    @ReactMethod
+    public void generateInviteLink(ReadableMap args, final Callback successCallback, final Callback errorCallback) {
+
+        String channel = null;
+        String campaign = null;
+        String referrerName = null;
+        String referrerImageUrl = null;
+        String customerID = null;
+        String baseDeepLink = null;
+        String brandDomain = null;
+
+        LinkGenerator linkGenerator = ShareInviteHelper.generateInviteUrl(reactContext);
+
+        try {
+
+            JSONObject options = RNUtil.readableMapToJson(args);
+
+            channel = options.optString(INVITE_CHANNEL, "");
+            campaign = options.optString(INVITE_CAMPAIGN, "");
+            referrerName = options.optString(INVITE_REFERRER, "");
+            referrerImageUrl = options.optString(INVITE_IMAGEURL, "");
+            customerID = options.optString(INVITE_CUSTOMERID, "");
+            baseDeepLink = options.optString(INVITE_DEEPLINK, "");
+            brandDomain = options.optString(INVITE_BRAND_DOMAIN, "");
+
+            if (channel != null && channel != "") {
+                linkGenerator.setChannel(channel);
+            }
+            if (campaign != null && campaign != "") {
+                linkGenerator.setCampaign(campaign);
+            }
+            if (referrerName != null && referrerName != "") {
+                linkGenerator.setReferrerName(referrerName);
+            }
+            if (referrerImageUrl != null && referrerImageUrl != "") {
+                linkGenerator.setReferrerImageURL(referrerImageUrl);
+            }
+            if (customerID != null && customerID != "") {
+                linkGenerator.setReferrerCustomerId(customerID);
+            }
+            if (baseDeepLink != null && baseDeepLink != "") {
+                linkGenerator.setBaseDeeplink(baseDeepLink);
+            }
+            if (brandDomain != null && brandDomain != "") {
+                linkGenerator.setBrandDomain(brandDomain);
+            }
+
+
+            if (options.length() > 1 && !options.get("userParams").equals("")) {
+
+                JSONObject jsonCustomValues = options.getJSONObject("userParams");
+
+                Iterator<?> keys = jsonCustomValues.keys();
+
+                while (keys.hasNext()) {
+                    String key = (String) keys.next();
+                    Object keyvalue = jsonCustomValues.get(key);
+                    linkGenerator.addParameter(key, keyvalue.toString());
+                }
+            }
+
+        } catch (JSONException e) {
+
+        }
+
+        CreateOneLinkHttpTask.ResponseListener listener = new CreateOneLinkHttpTask.ResponseListener() {
+            @Override
+            public void onResponse(final String oneLinkUrl) {
+                successCallback.invoke(oneLinkUrl);
+            }
+
+            @Override
+            public void onResponseError(final String error) {
+                errorCallback.invoke(error);
+            }
+        };
+
+        linkGenerator.generateLink(reactContext, listener);
+
+    }
+
+    @ReactMethod
+    public void logCrossPromotionImpression(final String appId, final String campaign, ReadableMap params) {
+        try {
+            Map<String, Object> temp = RNUtil.toMap(params);
+            Map<String, String> data = null;
+            data = (Map) temp;
+            CrossPromotionHelper.logCrossPromoteImpression(reactContext, appId, campaign, data);
+        } catch (Exception e) {
+            CrossPromotionHelper.logCrossPromoteImpression(reactContext, appId, campaign);
+        }
+    }
+
+    @ReactMethod
+    public void logCrossPromotionAndOpenStore(final String appId, final String campaign, ReadableMap params) {
+        Map<String, String> data = null;
+        try {
+            Map<String, Object> temp = RNUtil.toMap(params);
+            data = (Map) temp;
+        } catch (Exception e) {
+        }
+        CrossPromotionHelper.logAndOpenStore(reactContext, appId, campaign, data);
+    }
+
+    @ReactMethod
+    public void setCurrencyCode(final String currencyCode, Callback callback) {
+        AppsFlyerLib.getInstance().setCurrencyCode(currencyCode);
+        callback.invoke(SUCCESS);
+    }
+
+    @ReactMethod
+    public void anonymizeUser(boolean b, Callback callback) {
+        AppsFlyerLib.getInstance().anonymizeUser(b);
+        callback.invoke(SUCCESS);
+    }
+
+    @ReactMethod
+    public void setOneLinkCustomDomains(ReadableArray domainsArray, Callback successCallback, Callback errorCallback) {
+        if (domainsArray.size() <= 0) {
+            errorCallback.invoke(EMPTY_OR_CORRUPTED_LIST);
+            return;
+        }
+
+//        ArrayList<Object> domainsList = domainsArray.toArrayList();
+        List<Object> domainsList = RNUtil.toList(domainsArray);
+        try {
+            String[] domains = domainsList.toArray(new String[domainsList.size()]);
+            AppsFlyerLib.getInstance().setOneLinkCustomDomain(domains);
+            successCallback.invoke(SUCCESS);
+        } catch (Exception e) {
+            e.printStackTrace();
+            errorCallback.invoke(EMPTY_OR_CORRUPTED_LIST);
+        }
+    }
+
+    @ReactMethod
+    public void setResolveDeepLinkURLs(ReadableArray urlsArray, Callback successCallback, Callback errorCallback) {
+        if (urlsArray.size() <= 0) {
+            errorCallback.invoke(EMPTY_OR_CORRUPTED_LIST);
+            return;
+        }
+
+//        ArrayList<Object> urlsList = urlsArray.toArrayList();
+        List<Object> urlsList = RNUtil.toList(urlsArray);
+        try {
+            String[] urls = urlsList.toArray(new String[urlsList.size()]);
+            AppsFlyerLib.getInstance().setResolveDeepLinkURLs(urls);
+            successCallback.invoke(SUCCESS);
+        } catch (Exception e) {
+            e.printStackTrace();
+            errorCallback.invoke(EMPTY_OR_CORRUPTED_LIST);
+        }
+    }
+
+    @ReactMethod
+    public void performOnAppAttribution(String urlString, Callback successCallback, Callback errorCallback) {
+        try {
+            URI uri = URI.create(urlString);
+            AppsFlyerLib.getInstance().performOnAppAttribution(reactContext, uri);
+            successCallback.invoke(SUCCESS);
+        } catch (Exception e) {
+            e.printStackTrace();
+            errorCallback.invoke(INVALID_URI);
+        }
+    }
+
+    @ReactMethod
+    public void disableAdvertisingIdentifier(Boolean isDisabled) {
+        AppsFlyerLib.getInstance().setDisableAdvertisingIdentifiers(isDisabled);
+    }
+
+    @ReactMethod
+    public void validateAndLogInAppPurchase(ReadableMap purchaseInfo, Callback successCallback, Callback errorCallback) {
+        String publicKey = "";
+        String signature = "";
+        String purchaseData = "";
+        String price = "";
+        String currency = "";
+        Map<String, String> additionalParameters = null;
+        JSONObject additionalParametersJson;
+
+        try {
+            purchaseInfo.hasKey(ADDITIONAL_PARAMETERS);
+            JSONObject purchaseJson = RNUtil.readableMapToJson(purchaseInfo);
+
+            publicKey = purchaseJson.optString(PUBLIC_KEY, "");
+            signature = purchaseJson.optString(SIGNATURE, "");
+            purchaseData = purchaseJson.optString(PURCHASE_DATA, "");
+            price = purchaseJson.optString(PRICE, "");
+            currency = purchaseJson.optString(CURRENCY, "");
+            if (purchaseInfo.hasKey(ADDITIONAL_PARAMETERS)) {
+                additionalParametersJson = purchaseJson.optJSONObject(ADDITIONAL_PARAMETERS);
+                additionalParameters = RNUtil.jsonObjectToMap(additionalParametersJson);
+            }
+
+            if (publicKey == "" || signature == "" || purchaseData == "" || price == "" || currency == "") {
+                errorCallback.invoke(NO_PARAMETERS_ERROR);
+                return;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            errorCallback.invoke(e);
+            return;
+        }
+        initInAppPurchaseValidatorListener(successCallback, errorCallback);
+        AppsFlyerLib.getInstance().validateAndLogInAppPurchase(reactContext, publicKey, signature, purchaseData, price, currency, additionalParameters);
+
+    }
+
+    @ReactMethod
+    public void initInAppPurchaseValidatorListener(final Callback successCallback, final Callback errorCallback) {
+        AppsFlyerLib.getInstance().registerValidatorListener(reactContext, new AppsFlyerInAppPurchaseValidatorListener() {
+            @Override
+            public void onValidateInApp() {
+                successCallback.invoke(VALIDATE_SUCCESS);
+
+            }
+
+            @Override
+            public void onValidateInAppFailure(String error) {
+                errorCallback.invoke(VALIDATE_FAILED + error);
+
+            }
+        });
+    }
+
+    @ReactMethod
+    public void sendPushNotificationData(ReadableMap pushPayload) {
+        JSONObject payload = RNUtil.readableMapToJson(pushPayload);
+        if (payload == null) {
+            Log.d("AppsFlyer", "PushNotification payload is null");
+            return;
+        }
+        Bundle bundle = null;
+        try {
+            bundle = RNUtil.jsonToBundle(payload);
+        } catch (JSONException e) {
+            Log.d("AppsFlyer", "Can't parse pushPayload to bundle");
+            e.printStackTrace();
+            return;
+        }
+        Intent intent = getCurrentActivity().getIntent();
+        intent.putExtras(bundle);
+        Activity activity = getCurrentActivity();
+        activity.setIntent(intent);
+
+        AppsFlyerLib.getInstance().sendPushNotificationData(activity);
+    }
+
+    @ReactMethod
+    public void setHost(String hostPrefix, String hostName, Callback successCallback) {
+        AppsFlyerLib.getInstance().setHost(hostPrefix, hostName);
+        successCallback.invoke(SUCCESS);
+    }
+
+    @ReactMethod
+    public void addPushNotificationDeepLinkPath(ReadableArray path, Callback successCallback, Callback errorCallback) {
+        if (path.size() <= 0) {
+            errorCallback.invoke(EMPTY_OR_CORRUPTED_LIST);
+            return;
+        }
+//        ArrayList<Object> pathList = path.toArrayList();
+        List<Object> pathList = RNUtil.toList(path);
+        try {
+            String[] params = pathList.toArray(new String[pathList.size()]);
+            AppsFlyerLib.getInstance().addPushNotificationDeepLinkPath(params);
+            successCallback.invoke(SUCCESS);
+        } catch (Exception e) {
+            e.printStackTrace();
+            errorCallback.invoke(e);
+        }
+    }
+
+
+    @ReactMethod
+    public void setSharingFilterForPartners(ReadableArray partnersArray) {
+        List<Object> partnersList = RNUtil.toList(partnersArray);
+        if(partnersList == null) {
+          AppsFlyerLib.getInstance().setSharingFilterForPartners(null);
+        } else{
+          try {
+              String[] partners = partnersList.toArray(new String[partnersList.size()]);
+              AppsFlyerLib.getInstance().setSharingFilterForPartners(partners);
+          } catch (Exception e) {
+              e.printStackTrace();
+          }  
+        }
+    }
+
+    @ReactMethod
+    public void setPartnerData(String partnerId, ReadableMap partnerData) {
+        Map partnerDataAsMap = RNUtil.toMap(partnerData);
+        AppsFlyerLib.getInstance().setPartnerData(partnerId, partnerDataAsMap);
+    }
+
+
 
 }
