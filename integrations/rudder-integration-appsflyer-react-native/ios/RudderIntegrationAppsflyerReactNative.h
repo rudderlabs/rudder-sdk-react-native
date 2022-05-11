@@ -12,6 +12,8 @@
 
 @interface RudderIntegrationAppsflyerReactNative : RCTEventEmitter <RCTBridgeModule, AppsFlyerLibDelegate, AppsFlyerDeepLinkDelegate>
 
+  static NSString *const SUCCESS                      = @"Success";
+  
   #define afConversionData                @"onInstallConversionDataListener"
   #define afOnInstallConversionData       @"onInstallConversionData"
   #define afSuccess                       @"success"
