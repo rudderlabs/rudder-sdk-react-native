@@ -143,5 +143,46 @@ function onDeepLink(callback) {
     };
 };
 
-export { onDeepLink, onInstallConversionData, onInstallConversionFailure, onAppOpenAttribution, onAttributionFailure, setOptions };
+/**
+ * Manually pass the Firebase / GCM Device Token for Uninstall measurement.
+ *
+ * @param token Firebase Device Token.
+ * @param successC success callback function.
+ */
+ function updateServerUninstallToken (token, successC) {
+	if (token == null) {
+		token = '';
+	}
+	if (typeof token != 'string') {
+		token = token.toString();
+	}
+	if (successC) {
+		return bridge.updateServerUninstallToken(token, successC);
+	} else {
+		return bridge.updateServerUninstallToken(token, (result) => console.log(result));
+	}
+};
+
+/**
+ * Setting your own customer ID enables you to cross-reference your own unique ID with AppsFlyer’s unique ID and the other devices’ IDs.
+ * This ID is available in AppsFlyer CSV reports along with Postback APIs for cross-referencing with your internal IDs.
+ *
+ * @param {string} userId Customer ID for client.
+ * @param successC callback function.
+ */
+ function setCustomerUserId(userId, successC) {
+	if (userId == null) {
+		userId = '';
+	}
+	if (typeof userId != 'string') {
+		userId = userId.toString();
+	}
+	if (successC) {
+		return bridge.setCustomerUserId(userId, successC);
+	} else {
+		return bridge.setCustomerUserId(userId, (result) => console.log(result));
+	}
+};
+
+export { onDeepLink, onInstallConversionData, onInstallConversionFailure, onAppOpenAttribution, onAttributionFailure, setOptions, updateServerUninstallToken, setCustomerUserId };
 export default setup;

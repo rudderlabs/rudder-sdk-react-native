@@ -12,15 +12,16 @@
 
 @interface RudderIntegrationAppsflyerReactNative : RCTEventEmitter <RCTBridgeModule, AppsFlyerLibDelegate, AppsFlyerDeepLinkDelegate>
 
-  #define afConversionData                @"onInstallConversionDataListener"
-  #define afOnInstallConversionData       @"onInstallConversionData"
-  #define afSuccess                       @"success"
-  #define afFailure                       @"failure"
-  #define afOnAttributionFailure          @"onAttributionFailure"
-  #define afOnAppOpenAttribution          @"onAppOpenAttribution"
-  #define afOnInstallConversionFailure    @"onInstallConversionFailure"
-  #define afOnInstallConversionDataLoaded @"onInstallConversionDataLoaded"
-  #define afDeepLink                      @"onDeepLinkListener"
-  #define afOnDeepLinking                 @"onDeepLinking"
+#define afConversionData                @"onInstallConversionDataListener"
+#define afOnInstallConversionData       @"onInstallConversionData"
+#define afSuccess                       @"success"
+#define afFailure                       @"failure"
+#define afOnAttributionFailure          @"onAttributionFailure"
+#define afOnAppOpenAttribution          @"onAppOpenAttribution"
+#define afOnInstallConversionFailure    @"onInstallConversionFailure"
+#define afOnInstallConversionDataLoaded @"onInstallConversionDataLoaded"
+#define afDeepLink                      @"onDeepLinkListener"
+#define afOnDeepLinking                 @"onDeepLinking"
+#define SUCCESS                         @"Success"
 
 @end
