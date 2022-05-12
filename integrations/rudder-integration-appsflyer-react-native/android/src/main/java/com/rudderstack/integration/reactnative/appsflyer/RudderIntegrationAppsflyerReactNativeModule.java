@@ -8,6 +8,8 @@ import com.facebook.react.bridge.Promise;
 
 import androidx.annotation.NonNull;
 
+import com.facebook.react.bridge.Callback;
+
 import java.util.Map;
 
 import org.json.JSONException;
@@ -37,6 +39,7 @@ public class RudderIntegrationAppsflyerReactNativeModule extends ReactContextBas
     private final static String afOnInstallConversionFailure = "onInstallConversionFailure";
     private final static String afOnInstallConversionDataLoaded = "onInstallConversionDataLoaded";
     private final static String afOnDeepLinking = "onDeepLinking";
+    private final static String SUCCESS = "Success";
 
 
     public RudderIntegrationAppsflyerReactNativeModule(ReactApplicationContext reactContext) {
@@ -176,7 +179,7 @@ public class RudderIntegrationAppsflyerReactNativeModule extends ReactContextBas
                 .emit(eventName, params);
     }
 
-     @ReactMethod
+    @ReactMethod
     public void updateServerUninstallToken(final String token, Callback callback) {
         AppsFlyerLib.getInstance().updateServerUninstallToken(reactContext, token);
         if (callback != null) {
