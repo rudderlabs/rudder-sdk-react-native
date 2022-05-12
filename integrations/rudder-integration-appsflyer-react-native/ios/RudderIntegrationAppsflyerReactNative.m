@@ -162,4 +162,25 @@ RCT_EXPORT_METHOD(getAppsFlyerId:(RCTPromiseResolveBlock)resolve rejecter:(RCTPr
     return @[afOnAttributionFailure,afOnAppOpenAttribution,afOnInstallConversionFailure, afOnInstallConversionDataLoaded, afOnDeepLinking];
 }
 
+RCT_EXPORT_METHOD(updateServerUninstallToken: (NSString *)deviceToken callback:(RCTResponseSenderBlock)callback) {
+    deviceToken = [deviceToken stringByReplacingOccurrencesOfString:@" " withString:@""];
+    NSMutableData *deviceTokenData= [[NSMutableData alloc] init];
+    unsigned char whole_byte;
+    char byte_chars[3] = {'\0','\0','\0'};
+    int i;
+    for (i=0; i < [deviceToken length]/2; i++) {
+        byte_chars[0] = [deviceToken characterAtIndex:i*2];
+        byte_chars[1] = [deviceToken characterAtIndex:i*2+1];
+        whole_byte = strtol(byte_chars, NULL, 16);
+        [deviceTokenData appendBytes:&whole_byte length:1];
+    }
+    [[AppsFlyerLib shared] registerUninstall:deviceTokenData];
+    callback(@[SUCCESS]);
+}
+
+RCT_EXPORT_METHOD(setCustomerUserId: (NSString *)userId callback:(RCTResponseSenderBlock)callback) {
+    [[AppsFlyerLib shared] setCustomerUserID:userId];
+    callback(@[SUCCESS]);
+}
+
 @end

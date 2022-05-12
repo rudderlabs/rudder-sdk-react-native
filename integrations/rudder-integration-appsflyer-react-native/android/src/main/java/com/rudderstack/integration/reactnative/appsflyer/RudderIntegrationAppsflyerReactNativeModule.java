@@ -176,4 +176,18 @@ public class RudderIntegrationAppsflyerReactNativeModule extends ReactContextBas
                 .emit(eventName, params);
     }
 
+     @ReactMethod
+    public void updateServerUninstallToken(final String token, Callback callback) {
+        AppsFlyerLib.getInstance().updateServerUninstallToken(reactContext, token);
+        if (callback != null) {
+            callback.invoke(SUCCESS);
+        }
+    }
+
+    @ReactMethod
+    public void setCustomerUserId(final String userId, Callback callback) {
+        AppsFlyerLib.getInstance().setCustomerUserId(userId);
+        callback.invoke(SUCCESS);
+    }
+
 }
