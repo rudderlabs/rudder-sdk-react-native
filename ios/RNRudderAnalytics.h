@@ -6,8 +6,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <RSIntegrationFactory.h>
-#import <RSConfig.h>
+#import "RSIntegrationFactory.h"
+#import "RSConfig.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
