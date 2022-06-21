@@ -21,7 +21,7 @@ ext {
     GROUP_NAME = 'com.rudderstack.integration.reactnative.firebase'  
 }
 
-apply from: "$projectDir/../../common_task.gradle"
+apply from: "$projectDir/common_task.gradle"
 
 dependencies {
     //noinspection GradleDynamicVersion

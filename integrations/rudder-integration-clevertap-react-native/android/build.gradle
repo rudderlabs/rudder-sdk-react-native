@@ -20,7 +20,9 @@ ext {
     VERSION_NAME = '1.0.1'
     GROUP_NAME = 'com.rudderstack.integration.reactnative.clevertap'
 }
-apply from: "$projectDir/../../common_task.gradle"
+
+apply from: "$projectDir/common_task.gradle"
+
 dependencies {
     //noinspection GradleDynamicVersion
     implementation 'com.facebook.react:react-native:+'
