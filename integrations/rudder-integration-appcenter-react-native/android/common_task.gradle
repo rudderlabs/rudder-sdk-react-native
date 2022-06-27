@@ -17,7 +17,7 @@ buildscript {
             mavenCentral()
         }
         dependencies {
-            classpath 'com.android.tools.build:gradle:3.4.1'
+            classpath 'com.android.tools.build:gradle:7.2.1'
             classpath 'com.google.gms:google-services:4.3.3'
         }
     }
@@ -99,38 +99,37 @@ afterEvaluate { project ->
         }
 
     }
-        publishing {
-            publications {
-                release(MavenPublication) {
-                    println("components ->" + components)
-                    from components.release
-                    pom {
-                        name = packageJson.title
-                        artifactId = packageJson.name
-                        version = packageJson.version
-                        group = GROUP_NAME
-                        description = packageJson.description
-                        url = packageJson.repository.baseUrl
+    publishing {
+        publications {
+            release(MavenPublication) {
+                println("components ->" + components)
+                from components.release
+                pom {
+                    name = packageJson.title
+                    artifactId = packageJson.name
+                    version = packageJson.version
+                    group = GROUP_NAME
+                    description = packageJson.description
+                    url = packageJson.repository.baseUrl
 
-                        licenses {
-                            license {
-                                name = packageJson.license
-                                url = packageJson.repository.baseUrl + '/blob/master/' + packageJson.licenseFilename
-                                distribution = 'repo'
-                            }
-                        }
-
-                        developers {
-                            developer {
-                                id = packageJson.author.username
-                                name = packageJson.author.name
-                            }
+                    licenses {
+                        license {
+                            name = packageJson.license
+                            url = packageJson.repository.baseUrl + '/blob/master/' + packageJson.licenseFilename
+                            distribution = 'repo'
                         }
                     }
-                    artifact(androidSourcesJar)
-                    artifact(androidJavadocJar)
+
+                    developers {
+                        developer {
+                            id = packageJson.author.username
+                            name = packageJson.author.name
+                        }
+                    }
                 }
+                artifact(androidSourcesJar)
+                artifact(androidJavadocJar)
             }
         }
-//    }
+    }
 }
