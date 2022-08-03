@@ -21,8 +21,8 @@ import java.util.List;
 import java.util.Map;
 
 
-class Utility {
-    static Map<String, Object> convertReadableMapToMap(ReadableMap readableMap) {
+public class Utility {
+    public static Map<String, Object> convertReadableMapToMap(ReadableMap readableMap) {
         if (readableMap == null) return null;
 
         Map<String, Object> map = new HashMap<>();
@@ -53,7 +53,7 @@ class Utility {
         return map;
     }
 
-    private static List<Object> convertReadableArrayToList(ReadableArray readableArray) {
+     public static List<Object> convertReadableArrayToList(ReadableArray readableArray) {
         if (readableArray == null) return null;
 
         ArrayList<Object> array = new ArrayList<>();
@@ -81,7 +81,7 @@ class Utility {
         return array;
     }
 
-    static RudderTraits convertReadableMapToTraits(ReadableMap readableMap) {
+    public static RudderTraits convertReadableMapToTraits(ReadableMap readableMap) {
         if (readableMap == null) return null;
         RudderTraits traits = new RudderTraits();
         Map<String, Object> map = convertReadableMapToMap(readableMap);
@@ -111,7 +111,7 @@ class Utility {
         return options;
     }
 
-    static WritableMap convertJSONObjectToWriteAbleMap(JSONObject json) throws JSONException {
+    public static WritableMap convertJSONObjectToWriteAbleMap(JSONObject json) throws JSONException {
         WritableMap map = new WritableNativeMap();
 
         Iterator<String> iterator = json.keys();
@@ -137,7 +137,7 @@ class Utility {
         return map;
     }
 
-    static WritableArray convertJsonToWriteAbleArray(JSONArray jsonArray) throws JSONException {
+    public static WritableArray convertJsonToWriteAbleArray(JSONArray jsonArray) throws JSONException {
         WritableArray array = new WritableNativeArray();
 
         for (int i = 0; i < jsonArray.length(); i++) {
