@@ -1,5 +1,7 @@
-platform :ios, '11.0'
+platform :ios, '13.0'
+require_relative '../node_modules/react-native/scripts/react_native_pods'
 require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
+
 
 def add_flipper_pods!(versions = {})
   versions['Flipper'] ||= '~> 0.87.0'
@@ -44,6 +46,7 @@ def flipper_post_install(installer)
   end
 end
 
+use_react_native!
 target 'Example' do
   # Pods for Example
   pod 'FBLazyVector', :path => "../node_modules/react-native/Libraries/FBLazyVector"

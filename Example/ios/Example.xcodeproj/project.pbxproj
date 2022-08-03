@@ -12,14 +12,14 @@
 		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		190947C52FD3927B21F99690 /* libPods-Example.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AFB467DC3B2E93FBFB349C3B /* libPods-Example.a */; };
 		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2DCD954D1E0B4F2C00145EB5 /* ExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* ExampleTests.m */; };
-		49C58CC4EDB9B3B11FC9CD8B /* libPods-Example-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BAAF6614ECA7E611D74A5C81 /* libPods-Example-tvOSTests.a */; };
-		8CCFFAFF18480DEB46135B60 /* libPods-Example-ExampleTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 490492CEA3B5BFA06F99BEF5 /* libPods-Example-ExampleTests.a */; };
-		9B244DE7A90A4914AE3FD051 /* libPods-Example.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B13B0D35081FAB60F33110D9 /* libPods-Example.a */; };
-		D1DFE2E9553553911568E296 /* libPods-Example-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0225E20628B149F9ABA0BA59 /* libPods-Example-tvOS.a */; };
+		4ACC74F2185371091EB4A6F6 /* libPods-Example-ExampleTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F20BC6A9F59F624937EBDB0 /* libPods-Example-ExampleTests.a */; };
+		65C0344DC4AC01F165EA8BA4 /* libPods-Example-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D9EADE83E397A31C261575E /* libPods-Example-tvOSTests.a */; };
+		950BFAC2638817ED8EEAC5CF /* libPods-Example-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 864DB0D472B9242AFA49DBA4 /* libPods-Example-tvOS.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,7 +43,7 @@
 		00E356EE1AD99517003FC87E /* ExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* ExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExampleTests.m; sourceTree = "<group>"; };
-		0225E20628B149F9ABA0BA59 /* libPods-Example-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Example-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0F20BC6A9F59F624937EBDB0 /* libPods-Example-ExampleTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Example-ExampleTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07F961A680F5B00A75B9A /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Example/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Example/AppDelegate.m; sourceTree = "<group>"; };
@@ -51,19 +51,19 @@
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Example/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Example/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Example/main.m; sourceTree = "<group>"; };
-		23CB6369DE9117C47C49A999 /* Pods-Example-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-Example-tvOS/Pods-Example-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
+		2A540C9C125FE9E7EA41EA2D /* Pods-Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example.debug.xcconfig"; path = "Target Support Files/Pods-Example/Pods-Example.debug.xcconfig"; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* Example-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Example-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* Example-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Example-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		2E476420C2773E21C8B5A950 /* Pods-Example-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example-tvOS.release.xcconfig"; path = "Target Support Files/Pods-Example-tvOS/Pods-Example-tvOS.release.xcconfig"; sourceTree = "<group>"; };
-		490492CEA3B5BFA06F99BEF5 /* libPods-Example-ExampleTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Example-ExampleTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		4CAEF63ECCFF281678F25549 /* Pods-Example-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-Example-tvOSTests/Pods-Example-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
-		540AFD5CEB57DF8A4AF7E3F8 /* Pods-Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example.debug.xcconfig"; path = "Target Support Files/Pods-Example/Pods-Example.debug.xcconfig"; sourceTree = "<group>"; };
-		56C427EBE4DDCED8D3ACA558 /* Pods-Example-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-Example-tvOSTests/Pods-Example-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
-		9994E1FCB0A9FEF25F349459 /* Pods-Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example.release.xcconfig"; path = "Target Support Files/Pods-Example/Pods-Example.release.xcconfig"; sourceTree = "<group>"; };
-		B13B0D35081FAB60F33110D9 /* libPods-Example.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Example.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		BAAF6614ECA7E611D74A5C81 /* libPods-Example-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Example-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		BCCDFFAEDF2B43C0573B82D7 /* Pods-Example-ExampleTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example-ExampleTests.debug.xcconfig"; path = "Target Support Files/Pods-Example-ExampleTests/Pods-Example-ExampleTests.debug.xcconfig"; sourceTree = "<group>"; };
-		D6927249CD2007C97D359EE4 /* Pods-Example-ExampleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example-ExampleTests.release.xcconfig"; path = "Target Support Files/Pods-Example-ExampleTests/Pods-Example-ExampleTests.release.xcconfig"; sourceTree = "<group>"; };
+		46FACA70786203E6CFDC0ED4 /* Pods-Example-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-Example-tvOSTests/Pods-Example-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
+		4B1F7D043441385B1980F4FF /* Pods-Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example.release.xcconfig"; path = "Target Support Files/Pods-Example/Pods-Example.release.xcconfig"; sourceTree = "<group>"; };
+		538845151FED011E59887DDC /* Pods-Example-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-Example-tvOSTests/Pods-Example-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
+		5A1B9C167D2F16A4DD2A55C2 /* Pods-Example-ExampleTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example-ExampleTests.debug.xcconfig"; path = "Target Support Files/Pods-Example-ExampleTests/Pods-Example-ExampleTests.debug.xcconfig"; sourceTree = "<group>"; };
+		6D9EADE83E397A31C261575E /* libPods-Example-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Example-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8476B7897A17868BCC4FE4ED /* Pods-Example-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example-tvOS.release.xcconfig"; path = "Target Support Files/Pods-Example-tvOS/Pods-Example-tvOS.release.xcconfig"; sourceTree = "<group>"; };
+		864DB0D472B9242AFA49DBA4 /* libPods-Example-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Example-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		89626F775804942FF39826C0 /* Pods-Example-ExampleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example-ExampleTests.release.xcconfig"; path = "Target Support Files/Pods-Example-ExampleTests/Pods-Example-ExampleTests.release.xcconfig"; sourceTree = "<group>"; };
+		A9C2671F547A66DB41717A8F /* Pods-Example-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-Example-tvOS/Pods-Example-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
+		AFB467DC3B2E93FBFB349C3B /* libPods-Example.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Example.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
 		F6635F30280555DF005F8238 /* Example.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = Example.entitlements; path = Example/Example.entitlements; sourceTree = "<group>"; };
@@ -74,7 +74,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8CCFFAFF18480DEB46135B60 /* libPods-Example-ExampleTests.a in Frameworks */,
+				4ACC74F2185371091EB4A6F6 /* libPods-Example-ExampleTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -82,7 +82,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9B244DE7A90A4914AE3FD051 /* libPods-Example.a in Frameworks */,
+				190947C52FD3927B21F99690 /* libPods-Example.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -90,7 +90,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D1DFE2E9553553911568E296 /* libPods-Example-tvOS.a in Frameworks */,
+				950BFAC2638817ED8EEAC5CF /* libPods-Example-tvOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -98,7 +98,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				49C58CC4EDB9B3B11FC9CD8B /* libPods-Example-tvOSTests.a in Frameworks */,
+				65C0344DC4AC01F165EA8BA4 /* libPods-Example-tvOSTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -141,10 +141,10 @@
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
-				B13B0D35081FAB60F33110D9 /* libPods-Example.a */,
-				490492CEA3B5BFA06F99BEF5 /* libPods-Example-ExampleTests.a */,
-				0225E20628B149F9ABA0BA59 /* libPods-Example-tvOS.a */,
-				BAAF6614ECA7E611D74A5C81 /* libPods-Example-tvOSTests.a */,
+				AFB467DC3B2E93FBFB349C3B /* libPods-Example.a */,
+				0F20BC6A9F59F624937EBDB0 /* libPods-Example-ExampleTests.a */,
+				864DB0D472B9242AFA49DBA4 /* libPods-Example-tvOS.a */,
+				6D9EADE83E397A31C261575E /* libPods-Example-tvOSTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -185,14 +185,14 @@
 		B8D4875E2CF1E7E3A7FB0F04 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				540AFD5CEB57DF8A4AF7E3F8 /* Pods-Example.debug.xcconfig */,
-				9994E1FCB0A9FEF25F349459 /* Pods-Example.release.xcconfig */,
-				BCCDFFAEDF2B43C0573B82D7 /* Pods-Example-ExampleTests.debug.xcconfig */,
-				D6927249CD2007C97D359EE4 /* Pods-Example-ExampleTests.release.xcconfig */,
-				23CB6369DE9117C47C49A999 /* Pods-Example-tvOS.debug.xcconfig */,
-				2E476420C2773E21C8B5A950 /* Pods-Example-tvOS.release.xcconfig */,
-				56C427EBE4DDCED8D3ACA558 /* Pods-Example-tvOSTests.debug.xcconfig */,
-				4CAEF63ECCFF281678F25549 /* Pods-Example-tvOSTests.release.xcconfig */,
+				2A540C9C125FE9E7EA41EA2D /* Pods-Example.debug.xcconfig */,
+				4B1F7D043441385B1980F4FF /* Pods-Example.release.xcconfig */,
+				5A1B9C167D2F16A4DD2A55C2 /* Pods-Example-ExampleTests.debug.xcconfig */,
+				89626F775804942FF39826C0 /* Pods-Example-ExampleTests.release.xcconfig */,
+				A9C2671F547A66DB41717A8F /* Pods-Example-tvOS.debug.xcconfig */,
+				8476B7897A17868BCC4FE4ED /* Pods-Example-tvOS.release.xcconfig */,
+				538845151FED011E59887DDC /* Pods-Example-tvOSTests.debug.xcconfig */,
+				46FACA70786203E6CFDC0ED4 /* Pods-Example-tvOSTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -204,12 +204,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "ExampleTests" */;
 			buildPhases = (
-				94E76A836C744A7DBAEC03AD /* [CP] Check Pods Manifest.lock */,
+				0CC75F1BBBE40C3C8C923BC8 /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
-				D67AE3DC071ABF3BA52F244F /* [CP] Embed Pods Frameworks */,
-				88054AFC0A2ED681109D13FC /* [CP] Copy Pods Resources */,
+				01E80CCC9047B443BB7544BD /* [CP] Embed Pods Frameworks */,
+				4451FEF4F638C9315819FE63 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -225,14 +225,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "Example" */;
 			buildPhases = (
-				2F9B044132B6D4B3A64021B7 /* [CP] Check Pods Manifest.lock */,
+				BB92E4501C051DF5F00978B5 /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				EE103333BE406ADB2AA636CD /* [CP] Embed Pods Frameworks */,
-				FE1967C33023B7900C3B6565 /* [CP] Copy Pods Resources */,
+				DE333427359E26E9A11C9B4D /* [CP] Embed Pods Frameworks */,
+				E404C0B7EB9A501EFDA4541A /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -247,12 +247,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "Example-tvOS" */;
 			buildPhases = (
-				5ED15AA39DC011A58D4A5803 /* [CP] Check Pods Manifest.lock */,
+				86930548C356FD6324E55FB5 /* [CP] Check Pods Manifest.lock */,
 				FD10A7F122414F3F0027D42C /* Start Packager */,
 				2D02E4771E0B4A5D006451C7 /* Sources */,
 				2D02E4781E0B4A5D006451C7 /* Frameworks */,
 				2D02E4791E0B4A5D006451C7 /* Resources */,
 				2D02E4CB1E0B4B27006451C7 /* Bundle React Native Code And Images */,
+				BAAB2BCF80F054136FAC0133 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -267,7 +268,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "Example-tvOSTests" */;
 			buildPhases = (
-				5CEE5498A00304205773697C /* [CP] Check Pods Manifest.lock */,
+				E90323AC6ED8EC652ADC0C28 /* [CP] Check Pods Manifest.lock */,
 				2D02E48C1E0B4A5D006451C7 /* Sources */,
 				2D02E48D1E0B4A5D006451C7 /* Frameworks */,
 				2D02E48E1E0B4A5D006451C7 /* Resources */,
@@ -379,6 +380,48 @@
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh\n";
 		};
+		01E80CCC9047B443BB7544BD /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Example-ExampleTests/Pods-Example-ExampleTests-frameworks.sh",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/Flipper-Glog/glog.framework/glog",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/OpenSSL-Universal/OpenSSL.framework/OpenSSL",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/glog.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OpenSSL.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Example-ExampleTests/Pods-Example-ExampleTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		0CC75F1BBBE40C3C8C923BC8 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Example-ExampleTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		2D02E4CB1E0B4B27006451C7 /* Bundle React Native Code And Images */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -393,79 +436,14 @@
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
 		};
-		2F9B044132B6D4B3A64021B7 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Example-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		5CEE5498A00304205773697C /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Example-tvOSTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		5ED15AA39DC011A58D4A5803 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Example-tvOS-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		88054AFC0A2ED681109D13FC /* [CP] Copy Pods Resources */ = {
+		4451FEF4F638C9315819FE63 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Example-ExampleTests/Pods-Example-ExampleTests-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/React-Core/AccessibilityResources.bundle",
 				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/DigiCertGlobalRootCA.crt",
 				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/DigiCertSHA2SecureServerCA.crt",
 				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/InApps/resources/CTCoverImageViewController~ipad.xib",
@@ -523,10 +501,10 @@
 				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/Inbox/resources/ic_play@2x.png",
 				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/Inbox/resources/ic_play@3x.png",
 				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/Inbox/resources/Inbox.xcdatamodeld",
-				"${PODS_CONFIGURATION_BUILD_DIR}/React-Core/AccessibilityResources.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AccessibilityResources.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/DigiCertGlobalRootCA.crt",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/DigiCertSHA2SecureServerCA.crt",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CTCoverImageViewController~ipad.nib",
@@ -584,14 +562,13 @@
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ic_play@2x.png",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ic_play@3x.png",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Inbox.momd",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AccessibilityResources.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Example-ExampleTests/Pods-Example-ExampleTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		94E76A836C744A7DBAEC03AD /* [CP] Check Pods Manifest.lock */ = {
+		86930548C356FD6324E55FB5 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -606,34 +583,54 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Example-ExampleTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Example-tvOS-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		D67AE3DC071ABF3BA52F244F /* [CP] Embed Pods Frameworks */ = {
+		BAAB2BCF80F054136FAC0133 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Example-ExampleTests/Pods-Example-ExampleTests-frameworks.sh",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/Flipper-Glog/glog.framework/glog",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/OpenSSL-Universal/OpenSSL.framework/OpenSSL",
+				"${PODS_ROOT}/Target Support Files/Pods-Example-tvOS/Pods-Example-tvOS-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/React-Core/AccessibilityResources.bundle",
 			);
-			name = "[CP] Embed Pods Frameworks";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/glog.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OpenSSL.framework",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AccessibilityResources.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Example-ExampleTests/Pods-Example-ExampleTests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Example-tvOS/Pods-Example-tvOS-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		EE103333BE406ADB2AA636CD /* [CP] Embed Pods Frameworks */ = {
+		BB92E4501C051DF5F00978B5 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Example-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DE333427359E26E9A11C9B4D /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -651,6 +648,160 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Example/Pods-Example-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E404C0B7EB9A501EFDA4541A /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Example/Pods-Example-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/React-Core/AccessibilityResources.bundle",
+				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/DigiCertGlobalRootCA.crt",
+				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/DigiCertSHA2SecureServerCA.crt",
+				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/InApps/resources/CTCoverImageViewController~ipad.xib",
+				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/InApps/resources/CTCoverImageViewController~ipadland.xib",
+				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/InApps/resources/CTCoverImageViewController~iphoneland.xib",
+				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/InApps/resources/CTCoverImageViewController~iphoneport.xib",
+				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/InApps/resources/CTCoverViewController~ipad.xib",
+				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/InApps/resources/CTCoverViewController~ipadland.xib",
+				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/InApps/resources/CTCoverViewController~iphoneland.xib",
+				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/InApps/resources/CTCoverViewController~iphoneport.xib",
+				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/InApps/resources/CTFooterViewController~ipad.xib",
+				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/InApps/resources/CTFooterViewController~ipadland.xib",
+				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/InApps/resources/CTFooterViewController~iphoneland.xib",
+				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/InApps/resources/CTFooterViewController~iphoneport.xib",
+				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/InApps/resources/CTHalfInterstitialImageViewController~ipad.xib",
+				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/InApps/resources/CTHalfInterstitialImageViewController~ipadland.xib",
+				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/InApps/resources/CTHalfInterstitialImageViewController~iphoneland.xib",
+				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/InApps/resources/CTHalfInterstitialImageViewController~iphoneport.xib",
+				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/InApps/resources/CTHalfInterstitialViewController~ipad.xib",
+				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/InApps/resources/CTHalfInterstitialViewController~ipadland.xib",
+				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/InApps/resources/CTHalfInterstitialViewController~iphoneland.xib",
+				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/InApps/resources/CTHalfInterstitialViewController~iphoneport.xib",
+				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/InApps/resources/CTHeaderViewController~ipad.xib",
+				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/InApps/resources/CTHeaderViewController~ipadland.xib",
+				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/InApps/resources/CTHeaderViewController~iphoneland.xib",
+				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/InApps/resources/CTHeaderViewController~iphoneport.xib",
+				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/InApps/resources/CTInterstitialImageViewController~ipad.xib",
+				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/InApps/resources/CTInterstitialImageViewController~ipadland.xib",
+				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/InApps/resources/CTInterstitialImageViewController~iphoneland.xib",
+				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/InApps/resources/CTInterstitialImageViewController~iphoneport.xib",
+				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/InApps/resources/CTInterstitialViewController~ipad.xib",
+				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/InApps/resources/CTInterstitialViewController~ipadland.xib",
+				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/InApps/resources/CTInterstitialViewController~iphoneland.xib",
+				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/InApps/resources/CTInterstitialViewController~iphoneport.xib",
+				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/Inbox/resources/CleverTapInboxViewController.xib",
+				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/Inbox/resources/CTCarouselImageMessageCell~land.xib",
+				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/Inbox/resources/CTCarouselImageMessageCell~port.xib",
+				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/Inbox/resources/CTCarouselImageView.xib",
+				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/Inbox/resources/CTCarouselMessageCell~land.xib",
+				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/Inbox/resources/CTCarouselMessageCell~port.xib",
+				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/Inbox/resources/CTInboxIconMessageCell~land.xib",
+				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/Inbox/resources/CTInboxIconMessageCell~port.xib",
+				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/Inbox/resources/CTInboxSimpleMessageCell~land.xib",
+				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/Inbox/resources/CTInboxSimpleMessageCell~port.xib",
+				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/Inbox/resources/ct_default_audio.png",
+				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/Inbox/resources/ct_default_landscape_image.png",
+				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/Inbox/resources/ct_default_portrait_image.png",
+				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/Inbox/resources/ct_default_video.png",
+				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/Inbox/resources/ct_volume_off.png",
+				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/Inbox/resources/ct_volume_on.png",
+				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/Inbox/resources/ic_pause@1x.png",
+				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/Inbox/resources/ic_pause@2x.png",
+				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/Inbox/resources/ic_pause@3x.png",
+				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/Inbox/resources/ic_play@1x.png",
+				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/Inbox/resources/ic_play@2x.png",
+				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/Inbox/resources/ic_play@3x.png",
+				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/Inbox/resources/Inbox.xcdatamodeld",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AccessibilityResources.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/DigiCertGlobalRootCA.crt",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/DigiCertSHA2SecureServerCA.crt",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CTCoverImageViewController~ipad.nib",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CTCoverImageViewController~ipadland.nib",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CTCoverImageViewController~iphoneland.nib",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CTCoverImageViewController~iphoneport.nib",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CTCoverViewController~ipad.nib",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CTCoverViewController~ipadland.nib",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CTCoverViewController~iphoneland.nib",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CTCoverViewController~iphoneport.nib",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CTFooterViewController~ipad.nib",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CTFooterViewController~ipadland.nib",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CTFooterViewController~iphoneland.nib",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CTFooterViewController~iphoneport.nib",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CTHalfInterstitialImageViewController~ipad.nib",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CTHalfInterstitialImageViewController~ipadland.nib",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CTHalfInterstitialImageViewController~iphoneland.nib",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CTHalfInterstitialImageViewController~iphoneport.nib",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CTHalfInterstitialViewController~ipad.nib",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CTHalfInterstitialViewController~ipadland.nib",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CTHalfInterstitialViewController~iphoneland.nib",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CTHalfInterstitialViewController~iphoneport.nib",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CTHeaderViewController~ipad.nib",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CTHeaderViewController~ipadland.nib",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CTHeaderViewController~iphoneland.nib",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CTHeaderViewController~iphoneport.nib",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CTInterstitialImageViewController~ipad.nib",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CTInterstitialImageViewController~ipadland.nib",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CTInterstitialImageViewController~iphoneland.nib",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CTInterstitialImageViewController~iphoneport.nib",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CTInterstitialViewController~ipad.nib",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CTInterstitialViewController~ipadland.nib",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CTInterstitialViewController~iphoneland.nib",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CTInterstitialViewController~iphoneport.nib",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CleverTapInboxViewController.nib",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CTCarouselImageMessageCell~land.nib",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CTCarouselImageMessageCell~port.nib",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CTCarouselImageView.nib",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CTCarouselMessageCell~land.nib",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CTCarouselMessageCell~port.nib",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CTInboxIconMessageCell~land.nib",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CTInboxIconMessageCell~port.nib",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CTInboxSimpleMessageCell~land.nib",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CTInboxSimpleMessageCell~port.nib",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ct_default_audio.png",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ct_default_landscape_image.png",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ct_default_portrait_image.png",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ct_default_video.png",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ct_volume_off.png",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ct_volume_on.png",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ic_pause@1x.png",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ic_pause@2x.png",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ic_pause@3x.png",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ic_play@1x.png",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ic_play@2x.png",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ic_play@3x.png",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Inbox.momd",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Example/Pods-Example-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E90323AC6ED8EC652ADC0C28 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Example-tvOSTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FD10A7F022414F080027D42C /* Start Packager */ = {
@@ -689,138 +840,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "export RCT_METRO_PORT=\"${RCT_METRO_PORT:=8081}\"\necho \"export RCT_METRO_PORT=${RCT_METRO_PORT}\" > \"${SRCROOT}/../node_modules/react-native/scripts/.packager.env\"\nif [ -z \"${RCT_NO_LAUNCH_PACKAGER+xxx}\" ] ; then\n  if nc -w 5 -z localhost ${RCT_METRO_PORT} ; then\n    if ! curl -s \"http://localhost:${RCT_METRO_PORT}/status\" | grep -q \"packager-status:running\" ; then\n      echo \"Port ${RCT_METRO_PORT} already in use, packager is either not running or not running correctly\"\n      exit 2\n    fi\n  else\n    open \"$SRCROOT/../node_modules/react-native/scripts/launchPackager.command\" || echo \"Can't start packager automatically\"\n  fi\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		FE1967C33023B7900C3B6565 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Example/Pods-Example-resources.sh",
-				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/DigiCertGlobalRootCA.crt",
-				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/DigiCertSHA2SecureServerCA.crt",
-				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/InApps/resources/CTCoverImageViewController~ipad.xib",
-				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/InApps/resources/CTCoverImageViewController~ipadland.xib",
-				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/InApps/resources/CTCoverImageViewController~iphoneland.xib",
-				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/InApps/resources/CTCoverImageViewController~iphoneport.xib",
-				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/InApps/resources/CTCoverViewController~ipad.xib",
-				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/InApps/resources/CTCoverViewController~ipadland.xib",
-				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/InApps/resources/CTCoverViewController~iphoneland.xib",
-				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/InApps/resources/CTCoverViewController~iphoneport.xib",
-				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/InApps/resources/CTFooterViewController~ipad.xib",
-				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/InApps/resources/CTFooterViewController~ipadland.xib",
-				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/InApps/resources/CTFooterViewController~iphoneland.xib",
-				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/InApps/resources/CTFooterViewController~iphoneport.xib",
-				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/InApps/resources/CTHalfInterstitialImageViewController~ipad.xib",
-				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/InApps/resources/CTHalfInterstitialImageViewController~ipadland.xib",
-				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/InApps/resources/CTHalfInterstitialImageViewController~iphoneland.xib",
-				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/InApps/resources/CTHalfInterstitialImageViewController~iphoneport.xib",
-				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/InApps/resources/CTHalfInterstitialViewController~ipad.xib",
-				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/InApps/resources/CTHalfInterstitialViewController~ipadland.xib",
-				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/InApps/resources/CTHalfInterstitialViewController~iphoneland.xib",
-				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/InApps/resources/CTHalfInterstitialViewController~iphoneport.xib",
-				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/InApps/resources/CTHeaderViewController~ipad.xib",
-				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/InApps/resources/CTHeaderViewController~ipadland.xib",
-				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/InApps/resources/CTHeaderViewController~iphoneland.xib",
-				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/InApps/resources/CTHeaderViewController~iphoneport.xib",
-				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/InApps/resources/CTInterstitialImageViewController~ipad.xib",
-				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/InApps/resources/CTInterstitialImageViewController~ipadland.xib",
-				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/InApps/resources/CTInterstitialImageViewController~iphoneland.xib",
-				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/InApps/resources/CTInterstitialImageViewController~iphoneport.xib",
-				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/InApps/resources/CTInterstitialViewController~ipad.xib",
-				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/InApps/resources/CTInterstitialViewController~ipadland.xib",
-				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/InApps/resources/CTInterstitialViewController~iphoneland.xib",
-				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/InApps/resources/CTInterstitialViewController~iphoneport.xib",
-				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/Inbox/resources/CleverTapInboxViewController.xib",
-				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/Inbox/resources/CTCarouselImageMessageCell~land.xib",
-				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/Inbox/resources/CTCarouselImageMessageCell~port.xib",
-				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/Inbox/resources/CTCarouselImageView.xib",
-				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/Inbox/resources/CTCarouselMessageCell~land.xib",
-				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/Inbox/resources/CTCarouselMessageCell~port.xib",
-				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/Inbox/resources/CTInboxIconMessageCell~land.xib",
-				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/Inbox/resources/CTInboxIconMessageCell~port.xib",
-				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/Inbox/resources/CTInboxSimpleMessageCell~land.xib",
-				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/Inbox/resources/CTInboxSimpleMessageCell~port.xib",
-				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/Inbox/resources/ct_default_audio.png",
-				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/Inbox/resources/ct_default_landscape_image.png",
-				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/Inbox/resources/ct_default_portrait_image.png",
-				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/Inbox/resources/ct_default_video.png",
-				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/Inbox/resources/ct_volume_off.png",
-				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/Inbox/resources/ct_volume_on.png",
-				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/Inbox/resources/ic_pause@1x.png",
-				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/Inbox/resources/ic_pause@2x.png",
-				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/Inbox/resources/ic_pause@3x.png",
-				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/Inbox/resources/ic_play@1x.png",
-				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/Inbox/resources/ic_play@2x.png",
-				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/Inbox/resources/ic_play@3x.png",
-				"${PODS_ROOT}/CleverTap-iOS-SDK/CleverTapSDK/Inbox/resources/Inbox.xcdatamodeld",
-				"${PODS_CONFIGURATION_BUILD_DIR}/React-Core/AccessibilityResources.bundle",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/DigiCertGlobalRootCA.crt",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/DigiCertSHA2SecureServerCA.crt",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CTCoverImageViewController~ipad.nib",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CTCoverImageViewController~ipadland.nib",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CTCoverImageViewController~iphoneland.nib",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CTCoverImageViewController~iphoneport.nib",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CTCoverViewController~ipad.nib",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CTCoverViewController~ipadland.nib",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CTCoverViewController~iphoneland.nib",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CTCoverViewController~iphoneport.nib",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CTFooterViewController~ipad.nib",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CTFooterViewController~ipadland.nib",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CTFooterViewController~iphoneland.nib",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CTFooterViewController~iphoneport.nib",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CTHalfInterstitialImageViewController~ipad.nib",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CTHalfInterstitialImageViewController~ipadland.nib",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CTHalfInterstitialImageViewController~iphoneland.nib",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CTHalfInterstitialImageViewController~iphoneport.nib",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CTHalfInterstitialViewController~ipad.nib",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CTHalfInterstitialViewController~ipadland.nib",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CTHalfInterstitialViewController~iphoneland.nib",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CTHalfInterstitialViewController~iphoneport.nib",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CTHeaderViewController~ipad.nib",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CTHeaderViewController~ipadland.nib",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CTHeaderViewController~iphoneland.nib",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CTHeaderViewController~iphoneport.nib",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CTInterstitialImageViewController~ipad.nib",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CTInterstitialImageViewController~ipadland.nib",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CTInterstitialImageViewController~iphoneland.nib",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CTInterstitialImageViewController~iphoneport.nib",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CTInterstitialViewController~ipad.nib",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CTInterstitialViewController~ipadland.nib",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CTInterstitialViewController~iphoneland.nib",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CTInterstitialViewController~iphoneport.nib",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CleverTapInboxViewController.nib",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CTCarouselImageMessageCell~land.nib",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CTCarouselImageMessageCell~port.nib",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CTCarouselImageView.nib",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CTCarouselMessageCell~land.nib",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CTCarouselMessageCell~port.nib",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CTInboxIconMessageCell~land.nib",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CTInboxIconMessageCell~port.nib",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CTInboxSimpleMessageCell~land.nib",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CTInboxSimpleMessageCell~port.nib",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ct_default_audio.png",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ct_default_landscape_image.png",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ct_default_portrait_image.png",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ct_default_video.png",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ct_volume_off.png",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ct_volume_on.png",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ic_pause@1x.png",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ic_pause@2x.png",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ic_pause@3x.png",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ic_play@1x.png",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ic_play@2x.png",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ic_play@3x.png",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Inbox.momd",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AccessibilityResources.bundle",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Example/Pods-Example-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -890,7 +909,7 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BCCDFFAEDF2B43C0573B82D7 /* Pods-Example-ExampleTests.debug.xcconfig */;
+			baseConfigurationReference = 5A1B9C167D2F16A4DD2A55C2 /* Pods-Example-ExampleTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -913,7 +932,7 @@
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D6927249CD2007C97D359EE4 /* Pods-Example-ExampleTests.release.xcconfig */;
+			baseConfigurationReference = 89626F775804942FF39826C0 /* Pods-Example-ExampleTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
@@ -933,7 +952,7 @@
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 540AFD5CEB57DF8A4AF7E3F8 /* Pods-Example.debug.xcconfig */;
+			baseConfigurationReference = 2A540C9C125FE9E7EA41EA2D /* Pods-Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -963,7 +982,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9994E1FCB0A9FEF25F349459 /* Pods-Example.release.xcconfig */;
+			baseConfigurationReference = 4B1F7D043441385B1980F4FF /* Pods-Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -987,7 +1006,7 @@
 		};
 		2D02E4971E0B4A5E006451C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 23CB6369DE9117C47C49A999 /* Pods-Example-tvOS.debug.xcconfig */;
+			baseConfigurationReference = A9C2671F547A66DB41717A8F /* Pods-Example-tvOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -1015,7 +1034,7 @@
 		};
 		2D02E4981E0B4A5E006451C7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2E476420C2773E21C8B5A950 /* Pods-Example-tvOS.release.xcconfig */;
+			baseConfigurationReference = 8476B7897A17868BCC4FE4ED /* Pods-Example-tvOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -1043,7 +1062,7 @@
 		};
 		2D02E4991E0B4A5E006451C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 56C427EBE4DDCED8D3ACA558 /* Pods-Example-tvOSTests.debug.xcconfig */;
+			baseConfigurationReference = 538845151FED011E59887DDC /* Pods-Example-tvOSTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1070,7 +1089,7 @@
 		};
 		2D02E49A1E0B4A5E006451C7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4CAEF63ECCFF281678F25549 /* Pods-Example-tvOSTests.release.xcconfig */;
+			baseConfigurationReference = 46FACA70786203E6CFDC0ED4 /* Pods-Example-tvOSTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
