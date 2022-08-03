@@ -15,7 +15,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import rc, { RUDDER_LOG_LEVEL } from '@rudderstack/rudder-sdk-react-native';
 import appsflyer from 'rudder-integration-appsflyer-react-native'
-import { onAppOpenAttribution, onAttributionFailure, onDeepLink, onInstallConversionData, onInstallConversionFailure, setOptions } from 'rudder-integration-appsflyer-react-native/src/appsflyer';
+import { setOptions, setOneLinkCustomDomains} from 'rudder-integration-appsflyer-react-native/src/appsflyer';
 const Stack = createNativeStackNavigator();
 const initialization = async () => {
 
@@ -24,11 +24,10 @@ const initialization = async () => {
     "isDebug": true,
     "onInstallConversionDataListener": true,
     "appleAppId": "1618934842"
-    // "onDeepLinkListener": true
   })
 
   const config = {
-    dataPlaneUrl: 'https://9c98-175-101-36-93.ngrok.io',
+    dataPlaneUrl: 'https://26e7-175-101-36-93.ngrok.io',
     trackAppLifecycleEvents: true,
     autoCollectAdvertId:true,
     recordScreenViews: true,
@@ -43,28 +42,7 @@ const initialization = async () => {
     name: 'Miraj'
   };
 
-  
-  onAppOpenAttribution((data) => {
-   console.log("On App Open Attribution Success and the data is ", data); 
-  })
-
-  onAttributionFailure((data) => {
-    console.log("On App Attribution Failure and the data is ", data);
-  })
-
-  onInstallConversionData((data) => {
-    console.log("On Install conversion Success data is ", data);
-  })
-
-  onInstallConversionFailure((data) => {
-    console.log("On Install conversion Failure data is ", data);
-  })
-
-  onDeepLink((data) => {
-    console.log("On Deeplink data is ", data);
-  })
-
-  await rc.setup('1pAKRv50y15Ti6UWpYroGJaO0Dj', config);
+  await rc.setup('1pcZviVxgjd3rTUUmaTUBinGH0A', config);
 
   await rc.identify("test_userIdiOS", {
     "email": "testuseriOS@example.com",
@@ -72,6 +50,12 @@ const initialization = async () => {
   });
   await rc.track('React Native event', props);
   await rc.screen('React Native screen', props);
+
+  setOneLinkCustomDomains("desu.rudderstack.com", () => {
+    console.log("Successfully set");
+  }, ()=> {
+    console.log("Failed to set");
+  });
 }
 
 const App = () => {
