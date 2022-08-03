@@ -1,6 +1,6 @@
 {
   "name": "@rudderstack/rudder-sdk-react-native",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "description": "Rudder React Native SDK",
   "main": "index.ts",
   "keywords": [
@@ -14,7 +14,7 @@
     "prettier": "^1.14.2"
   },
   "peerDependencies": {
-    "react-native": ">=0.41.2 <=0.67.2"
+    "react-native": ">=0.41.2 <=0.69.3"
   },
   "dependencies": {
     "@babel/runtime": "^7.7.7",
