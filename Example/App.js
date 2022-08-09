@@ -15,7 +15,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import rc, { RUDDER_LOG_LEVEL } from '@rudderstack/rudder-sdk-react-native';
 import appsflyer from 'rudder-integration-appsflyer-react-native'
-import { setOptions, setOneLinkCustomDomains} from 'rudder-integration-appsflyer-react-native/src/appsflyer';
+import { setOptions } from 'rudder-integration-appsflyer-react-native/src/appsflyer';
 const Stack = createNativeStackNavigator();
 const initialization = async () => {
 
