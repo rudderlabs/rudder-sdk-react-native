@@ -50,6 +50,12 @@ const initialization = async () => {
   });
   await rc.track('React Native event', props);
   await rc.screen('React Native screen', props);
+
+  setOneLinkCustomDomains("desu.rudderstack.com", () => {
+    console.log("Successfully set");
+  }, ()=> {
+    console.log("Failed to set");
+  });
 }
 
 const App = () => {

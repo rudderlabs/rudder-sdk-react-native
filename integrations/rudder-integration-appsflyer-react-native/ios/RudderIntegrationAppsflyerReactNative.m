@@ -183,4 +183,11 @@ RCT_EXPORT_METHOD(setCustomerUserId: (NSString *)userId callback:(RCTResponseSen
     callback(@[SUCCESS]);
 }
 
+RCT_EXPORT_METHOD(setOneLinkCustomDomains:(NSArray *) domains
+                  successCallback :(RCTResponseSenderBlock)successCallback
+                  errorCallback:(RCTResponseErrorBlock)errorCallback) {
+    [[AppsFlyerLib shared] setOneLinkCustomDomains:domains];
+    successCallback(@[SUCCESS]);
+}
+
 @end
