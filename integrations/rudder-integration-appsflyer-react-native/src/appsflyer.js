@@ -1,4 +1,5 @@
 import bridge from './bridge';
+import { isString, isStringArray, getStringArray } from './util';
 import { NativeEventEmitter, NativeModules } from 'react-native';
 
 const { RudderIntegrationAppsflyerReactNative } = NativeModules;
@@ -149,18 +150,18 @@ function onDeepLink(callback) {
  * @param token Firebase Device Token.
  * @param successC success callback function.
  */
- function updateServerUninstallToken (token, successC) {
-	if (token == null) {
-		token = '';
-	}
-	if (typeof token != 'string') {
-		token = token.toString();
-	}
-	if (successC) {
-		return bridge.updateServerUninstallToken(token, successC);
-	} else {
-		return bridge.updateServerUninstallToken(token, (result) => console.log(result));
-	}
+function updateServerUninstallToken(token, successC) {
+    if (token == null) {
+        token = '';
+    }
+    if (typeof token != 'string') {
+        token = token.toString();
+    }
+    if (successC) {
+        return bridge.updateServerUninstallToken(token, successC);
+    } else {
+        return bridge.updateServerUninstallToken(token, (result) => console.log(result));
+    }
 };
 
 /**
@@ -170,19 +171,38 @@ function onDeepLink(callback) {
  * @param {string} userId Customer ID for client.
  * @param successC callback function.
  */
- function setCustomerUserId(userId, successC) {
-	if (userId == null) {
-		userId = '';
-	}
-	if (typeof userId != 'string') {
-		userId = userId.toString();
-	}
-	if (successC) {
-		return bridge.setCustomerUserId(userId, successC);
-	} else {
-		return bridge.setCustomerUserId(userId, (result) => console.log(result));
-	}
+function setCustomerUserId(userId, successC) {
+    if (userId == null) {
+        userId = '';
+    }
+    if (typeof userId != 'string') {
+        userId = userId.toString();
+    }
+    if (successC) {
+        return bridge.setCustomerUserId(userId, successC);
+    } else {
+        return bridge.setCustomerUserId(userId, (result) => console.log(result));
+    }
 };
 
-export { onDeepLink, onInstallConversionData, onInstallConversionFailure, onAppOpenAttribution, onAttributionFailure, setOptions, updateServerUninstallToken, setCustomerUserId };
+/**
+ * Set Onelink custom/branded domains
+ * Use this API during the SDK Initialization to indicate branded domains.
+ * For more information please refer to https://support.appsflyer.com/hc/en-us/articles/360002329137-Implementing-Branded-Links
+ * @param domains array of strings
+ * @param successC success callback function.
+ * @param errorC error callback function.
+ */
+function setOneLinkCustomDomains(domains, successC, errorC) {
+    if (!(isString(domains) || isStringArray(domains))) {
+        throw new Error('RudderSDK: Appsflyer: setOneLinkCustomDomains: domains should be a string or an array of strings!');
+    }
+    const domainsArray = getStringArray(domains);
+    if (domainsArray === null) {
+        throw new Error('RudderSDK: Appsflyer: setOneLinkCustomDomains: failed to process domains array!');
+    }
+    return bridge.setOneLinkCustomDomains(getStringArray(domains), successC, errorC);
+};
+
+export { onDeepLink, onInstallConversionData, onInstallConversionFailure, onAppOpenAttribution, onAttributionFailure, setOptions, updateServerUninstallToken, setCustomerUserId, setOneLinkCustomDomains };
 export default setup;

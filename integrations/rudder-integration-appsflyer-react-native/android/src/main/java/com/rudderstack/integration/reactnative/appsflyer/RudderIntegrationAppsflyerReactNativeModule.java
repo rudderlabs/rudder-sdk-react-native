@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 
 import com.facebook.react.bridge.Callback;
 
+import java.util.List;
 import java.util.Map;
 
 import org.json.JSONException;
@@ -19,8 +20,10 @@ import com.facebook.react.bridge.ReactContext;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
+import com.facebook.react.bridge.ReadableArray;
 import com.rudderstack.android.integrations.appsflyer.AppsFlyerIntegrationFactory;
 import com.rudderstack.react.android.RNRudderAnalytics;
+import com.rudderstack.react.android.Utility;
 
 import com.appsflyer.AppsFlyerConversionListener;
 import com.appsflyer.deeplink.DeepLinkListener;
@@ -40,6 +43,7 @@ public class RudderIntegrationAppsflyerReactNativeModule extends ReactContextBas
     private final static String afOnInstallConversionDataLoaded = "onInstallConversionDataLoaded";
     private final static String afOnDeepLinking = "onDeepLinking";
     private final static String SUCCESS = "Success";
+    private final static String EMPTY_OR_CORRUPTED_LIST = "No arguments found or list is corrupted";
 
 
     public RudderIntegrationAppsflyerReactNativeModule(ReactApplicationContext reactContext) {
@@ -191,6 +195,23 @@ public class RudderIntegrationAppsflyerReactNativeModule extends ReactContextBas
     public void setCustomerUserId(final String userId, Callback callback) {
         AppsFlyerLib.getInstance().setCustomerUserId(userId);
         callback.invoke(SUCCESS);
+    }
+     
+    @ReactMethod
+    public void setOneLinkCustomDomains(ReadableArray domainsArray, Callback successCallback, Callback errorCallback) {
+        if (domainsArray.size() <= 0) {
+            errorCallback.invoke(EMPTY_OR_CORRUPTED_LIST);
+            return;
+        }
+        List<Object> domainsList = Utility.convertReadableArrayToList(domainsArray);
+        try {
+            String[] domains = domainsList.toArray(new String[domainsList.size()]);
+            AppsFlyerLib.getInstance().setOneLinkCustomDomain(domains);
+            successCallback.invoke(SUCCESS);
+        } catch (Exception e) {
+            e.printStackTrace();
+            errorCallback.invoke(EMPTY_OR_CORRUPTED_LIST);
+        }
     }
 
 }
