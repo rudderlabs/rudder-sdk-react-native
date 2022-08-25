@@ -3,69 +3,40 @@ package com.rudderstack.react.android;
 import android.app.Activity;
 
 import com.facebook.react.bridge.LifecycleEventListener;
-import com.rudderstack.android.sdk.core.RudderProperty;
-import com.rudderstack.android.sdk.core.ScreenPropertyBuilder;
 
-import java.util.ArrayList;
-import java.util.List;
+import static com.rudderstack.react.android.LifeCycleRunnables.executeRunnable;
+import static com.rudderstack.react.android.LifeCycleRunnables.ApplicationOpenedRunnable;
+import static com.rudderstack.react.android.LifeCycleRunnables.ApplicationBackgroundedRunnable;
+import static com.rudderstack.react.android.LifeCycleRunnables.ScreenViewRunnable;
 
 public class RNLifeCycleEventListener implements LifecycleEventListener {
 
     private static int noOfActivities;
     private static boolean fromBackground = false;
-    static List<Runnable> runnableTasks = new ArrayList<>();
 
     @Override
     public void onHostResume() {
-        Runnable runnableTask = new Runnable() {
-            @Override
-            public void run() {
-                if (RNRudderSdkModule.trackLifeCycleEvents) {
-                    noOfActivities += 1;
-                    if (noOfActivities == 1) {
-                        // no previous activity present. Application Opened
-                        RudderProperty property = new RudderProperty();
-                        property.put("from_background", fromBackground);
-                        RNRudderSdkModule.rudderClient.track("Application Opened", property);
-                    }
-                }
-                if (RNRudderSdkModule.recordScreenViews) {
-                    Activity activity = RNRudderSdkModule.instance.getCurrentActivityFromReact();
-                    if (activity != null) {
-                        RudderProperty property = new RudderProperty();
-                        property.put("name", activity.getLocalClassName());
-                        property.put("automatic", true);
-                        RNRudderSdkModule.rudderClient.screen(activity.getLocalClassName(), property);
-                    }
-                }
-            }
-        };
-        if (RNRudderSdkModule.rudderClient == null && !RNRudderSdkModule.initialized) {
-            runnableTasks.add(runnableTask);
-            return;
+        noOfActivities += 1;
+        if (noOfActivities == 1) {
+            // no previous activity present. Application Opened
+            ApplicationOpenedRunnable openedRunnable = new ApplicationOpenedRunnable(fromBackground);
+            executeRunnable(openedRunnable);
         }
-        runnableTask.run();
+        Activity activity = RNRudderSdkModule.instance.getCurrentActivityFromReact();
+        if (activity != null && activity.getLocalClassName() != null) {
+            ScreenViewRunnable screenViewRunnable = new ScreenViewRunnable(activity.getLocalClassName());
+            executeRunnable(screenViewRunnable);
+        }
     }
 
     @Override
     public void onHostPause() {
-        Runnable runnableTask = new Runnable() {
-            @Override
-            public void run() {
-                fromBackground = true;
-                if (RNRudderSdkModule.trackLifeCycleEvents) {
-                    noOfActivities -= 1;
-                    if (noOfActivities == 0) {
-                        RNRudderSdkModule.rudderClient.track("Application Backgrounded");
-                    }
-                }
-            }
-        };
-        if (RNRudderSdkModule.rudderClient == null && !RNRudderSdkModule.initialized) {
-            runnableTasks.add(runnableTask);
-            return;
+        fromBackground = true;
+        noOfActivities -= 1;
+        if (noOfActivities == 0) {
+            ApplicationBackgroundedRunnable backgroundedRunnable = new ApplicationBackgroundedRunnable();
+            executeRunnable(backgroundedRunnable);
         }
-        runnableTask.run();
     }
 
     @Override

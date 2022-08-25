@@ -85,7 +85,7 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
             if (options.hasKey("recordScreenViews")) {
                 recordScreenViews = options.getBoolean("recordScreenViews");
             }
-            
+
             // we are relying on Screen View Recording implementation in RNLifeCycleEventListener.java hence we are explicitly setting it to false in Native Android SDK
             configBuilder.withRecordScreenViews(false);
 
@@ -100,7 +100,7 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
                     RNRudderAnalytics.buildWithIntegrations(configBuilder),
                     Utility.convertReadableMapToOptions(rudderOptionsMap)
             );
-            for (Runnable runnableTask : RNLifeCycleEventListener.runnableTasks) {
+            for (Runnable runnableTask : LifeCycleRunnables.runnableTasks) {
                 runnableTask.run();
             }
             initialized = true;
