@@ -31,10 +31,12 @@ public class RNLifeCycleEventListener implements LifecycleEventListener {
                 }
                 if (RNRudderSdkModule.recordScreenViews) {
                     Activity activity = RNRudderSdkModule.instance.getCurrentActivityFromReact();
-                    RudderProperty property = new RudderProperty();
-                    property.put("name", activity.getLocalClassName());
-                    property.put("automatic", true);
-                    RNRudderSdkModule.rudderClient.screen(activity.getLocalClassName(), property);
+                    if (activity != null) {
+                        RudderProperty property = new RudderProperty();
+                        property.put("name", activity.getLocalClassName());
+                        property.put("automatic", true);
+                        RNRudderSdkModule.rudderClient.screen(activity.getLocalClassName(), property);
+                    }
                 }
             }
         };
