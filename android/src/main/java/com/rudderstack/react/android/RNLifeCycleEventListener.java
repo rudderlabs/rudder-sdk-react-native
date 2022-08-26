@@ -4,10 +4,10 @@ import android.app.Activity;
 
 import com.facebook.react.bridge.LifecycleEventListener;
 
-import static com.rudderstack.react.android.LifeCycleRunnables.executeRunnable;
-import static com.rudderstack.react.android.LifeCycleRunnables.ApplicationOpenedRunnable;
-import static com.rudderstack.react.android.LifeCycleRunnables.ApplicationBackgroundedRunnable;
-import static com.rudderstack.react.android.LifeCycleRunnables.ScreenViewRunnable;
+import static com.rudderstack.react.android.LifeCycleEvents.executeRunnable;
+import static com.rudderstack.react.android.LifeCycleEvents.ApplicationOpenedRunnable;
+import static com.rudderstack.react.android.LifeCycleEvents.ApplicationBackgroundedRunnable;
+import static com.rudderstack.react.android.LifeCycleEvents.ScreenViewRunnable;
 
 public class RNLifeCycleEventListener implements LifecycleEventListener {
 

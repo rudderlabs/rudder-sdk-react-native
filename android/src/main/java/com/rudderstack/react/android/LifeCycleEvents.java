@@ -5,11 +5,15 @@ import com.rudderstack.android.sdk.core.RudderProperty;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LifeCycleRunnables {
+public class LifeCycleEvents {
 
-    static List<Runnable> runnableTasks = new ArrayList<>();
+    interface LifeCycleEventsInterface {
+        public void run();
+    }
 
-    static class ApplicationOpenedRunnable implements Runnable {
+    static List<LifeCycleEventsInterface> lifeCycleEvents = new ArrayList<>();
+
+    static class ApplicationOpenedRunnable implements LifeCycleEventsInterface {
         boolean fromBackground;
 
         ApplicationOpenedRunnable(boolean fromBackground) {
@@ -26,7 +30,7 @@ public class LifeCycleRunnables {
         }
     }
 
-    static class ApplicationBackgroundedRunnable implements Runnable {
+    static class ApplicationBackgroundedRunnable implements LifeCycleEventsInterface {
         @Override
         public void run() {
             if (RNRudderSdkModule.trackLifeCycleEvents) {
@@ -35,7 +39,7 @@ public class LifeCycleRunnables {
         }
     }
 
-    static class ScreenViewRunnable implements Runnable {
+    static class ScreenViewRunnable implements LifeCycleEventsInterface {
         String activityName;
 
         ScreenViewRunnable(String activityName) {
@@ -53,11 +57,11 @@ public class LifeCycleRunnables {
         }
     }
 
-    static void executeRunnable(Runnable runnable) {
+    static void executeRunnable(LifeCycleEventsInterface lifeCycleEvent) {
         if (RNRudderSdkModule.rudderClient == null && !RNRudderSdkModule.initialized) {
-            runnableTasks.add(runnable);
+            lifeCycleEvents.add(lifeCycleEvent);
             return;
         }
-        runnable.run();
+        lifeCycleEvent.run();
     }
 }
