@@ -17,6 +17,8 @@ import com.rudderstack.android.sdk.core.RudderLogger;
 import com.rudderstack.android.sdk.core.RudderProperty;
 import com.rudderstack.android.sdk.core.RudderMessageBuilder;
 
+import static com.rudderstack.react.android.LifeCycleEvents.LifeCycleEventsInterface;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -85,7 +87,7 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
             if (options.hasKey("recordScreenViews")) {
                 recordScreenViews = options.getBoolean("recordScreenViews");
             }
-            
+
             // we are relying on Screen View Recording implementation in RNLifeCycleEventListener.java hence we are explicitly setting it to false in Native Android SDK
             configBuilder.withRecordScreenViews(false);
 
@@ -100,8 +102,8 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
                     RNRudderAnalytics.buildWithIntegrations(configBuilder),
                     Utility.convertReadableMapToOptions(rudderOptionsMap)
             );
-            for (Runnable runnableTask : RNLifeCycleEventListener.runnableTasks) {
-                runnableTask.run();
+            for (LifeCycleEventsInterface lifeCycleEvents : LifeCycleEvents.lifeCycleEvents) {
+                lifeCycleEvents.run();
             }
             initialized = true;
 
