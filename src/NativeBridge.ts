@@ -51,6 +51,8 @@ export interface Bridge {
   putAnonymousId(id:string): Promise<void>;
   registerCallback(integrationName:string, callback:Function): Promise<void>;
   getRudderContext(): Promise<void>;
+  startSession(sessionId?: number): Promise<void>;
+  endSession(): Promise<void>;
 }
 
 const bridge: Bridge = NativeModules.RNRudderSdkModule;

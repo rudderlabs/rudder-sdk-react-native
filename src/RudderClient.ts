@@ -302,6 +302,15 @@ async function getRudderContext(){
   return await bridge.getRudderContext(); 
 }
 
+async function startSession() : Promise<void>;
+async function startSession(sessionId? : number) : Promise<void> {
+  bridge.startSession(sessionId);
+}
+
+async function endSession() {
+  bridge.endSession();
+}
+
 const rudderClient = {
   setup,
   track,
@@ -319,5 +328,7 @@ const rudderClient = {
   setAnonymousId,
   registerCallback,
   getRudderContext,
+  startSession,
+  endSession
 };
 export default rudderClient;
