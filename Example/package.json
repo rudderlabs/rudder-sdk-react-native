@@ -14,7 +14,6 @@
     "@react-navigation/native": "^6.0.8",
     "@react-navigation/native-stack": "^6.5.0",
     "@rudderstack/rudder-sdk-react-native": "file:../",
-    "react": "18.2.0",
     "react-native": "^0.69.3",
     "react-native-safe-area-context": "^3.4.1",
     "react-native-screens": "^3.12.0",
