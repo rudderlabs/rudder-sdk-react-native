@@ -6,5 +6,6 @@ module.exports = {
   setupFilesAfterEnv: ['<rootDir>/test-setup.ts'],
   moduleNameMapper: {
     '.svg': '@nrwl/react-native/plugins/jest/svg-mock',
+    '.png': '@nrwl/react-native/plugins/jest/svg-mock',
   },
 };

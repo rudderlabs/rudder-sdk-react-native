@@ -121,7 +121,7 @@ const HomeScreen = ({navigation}) => {
         title="Go to Jane's profile"
         onPress={() => navigation.navigate('Profile', {name: 'Jane'})}/>
       <Button
-        data-testid='init_btn'
+        testID='init_btn'
         title="Initialization"
         onPress={async () => await initialization()}/>
     </>
