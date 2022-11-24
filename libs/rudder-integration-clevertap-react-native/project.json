@@ -49,7 +49,7 @@
       "outputs": ["{options.outputFile}"],
       "options": {
         "lintFilePatterns": [
-          "libs/rudder-integration-clevertap-react-native/**/*.{ts,tsx,js,jsx}"
+          "libs/rudder-integration-clevertap-react-native/src/**/*.{ts,tsx,js,jsx}"
         ]
       }
     },

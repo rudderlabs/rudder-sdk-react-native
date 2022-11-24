@@ -15,9 +15,11 @@
       "inputs": ["production", "^production"]
     },
     "test": {
+      "dependsOn": ["^test"],
       "inputs": ["default", "^production", "{workspaceRoot}/jest.preset.js"]
     },
     "lint": {
+      "dependsOn": ["^lint"],
       "inputs": ["default", "{workspaceRoot}/.eslintrc.json"]
     }
   },

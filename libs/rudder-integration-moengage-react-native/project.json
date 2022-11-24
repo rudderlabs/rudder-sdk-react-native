@@ -49,7 +49,7 @@
       "outputs": ["{options.outputFile}"],
       "options": {
         "lintFilePatterns": [
-          "libs/rudder-integration-moengage-react-native/**/*.{ts,tsx,js,jsx}"
+          "libs/rudder-integration-moengage-react-native/src/**/*.{ts,tsx,js,jsx}"
         ]
       }
     },

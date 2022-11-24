@@ -48,7 +48,7 @@
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["libs/sdk/**/*.{ts,tsx,js,jsx}"]
+        "lintFilePatterns": ["libs/sdk/src/**/*.{ts,tsx,js,jsx}"]
       }
     },
     "test": {
