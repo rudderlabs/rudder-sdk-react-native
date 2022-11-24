@@ -1,0 +1,21 @@
+{
+  "name": "@rudderstack/rudder-sdk-react-native",
+  "version": "1.5.1",
+  "description": "Rudder React Native SDK",
+  "keywords": [
+    "react-native",
+    "rudder"
+  ],
+  "author": {
+    "name": "RudderStack"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rudderlabs/rudder-sdk-react-native.git"
+  },
+  "bugs": {
+    "url": "https://github.com/rudderlabs/rudder-sdk-react-native/issues"
+  },
+  "homepage": "https://github.com/rudderlabs/rudder-sdk-react-native#readme"
+}

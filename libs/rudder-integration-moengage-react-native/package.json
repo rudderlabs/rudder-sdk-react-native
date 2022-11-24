@@ -1,0 +1,23 @@
+{
+  "name": "@rudderstack/rudder-integration-moengage-react-native",
+  "title": "Rudder Integration Moengage React Native",
+  "version": "1.0.1",
+  "description": "Rudder React Native SDK Moengage Device mode support for Android and iOS",
+  "keywords": [
+    "react-native",
+    "rudder",
+    "moengage"
+  ],
+  "author": {
+    "name": "RudderStack"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rudderlabs/rudder-sdk-react-native.git"
+  },
+  "bugs": {
+    "url": "https://github.com/rudderlabs/rudder-sdk-react-native/issues"
+  },
+  "homepage": "https://github.com/rudderlabs/rudder-sdk-react-native#readme"
+}

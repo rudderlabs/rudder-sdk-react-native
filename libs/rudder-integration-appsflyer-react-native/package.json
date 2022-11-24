@@ -1,0 +1,23 @@
+{
+  "name": "@rudderstack/rudder-integration-appsflyer-react-native",
+  "title": "Rudder Integration Appsflyer React Native",
+  "version": "1.4.0",
+  "description": "Rudder React Native SDK Appsflyer Device mode support for Android and iOS",
+  "keywords": [
+    "react-native",
+    "rudder",
+    "appsflyer"
+  ],
+  "author": {
+    "name": "RudderStack"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rudderlabs/rudder-sdk-react-native.git"
+  },
+  "bugs": {
+    "url": "https://github.com/rudderlabs/rudder-sdk-react-native/issues"
+  },
+  "homepage": "https://github.com/rudderlabs/rudder-sdk-react-native#readme"
+}

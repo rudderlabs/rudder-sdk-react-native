@@ -1,0 +1,65 @@
+{
+  "name": "rudder-integration-clevertap-react-native",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/rudder-integration-clevertap-react-native/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nrwl/web:rollup",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/rudder-integration-clevertap-react-native",
+        "tsConfig": "libs/rudder-integration-clevertap-react-native/tsconfig.lib.json",
+        "project": "libs/rudder-integration-clevertap-react-native/package.json",
+        "entryFile": "libs/rudder-integration-clevertap-react-native/src/index.ts",
+        "external": ["react/jsx-runtime", "react-native"],
+        "rollupConfig": "@nrwl/react/plugins/bundle-rollup",
+        "assets": [
+          {
+            "glob": "libs/rudder-integration-clevertap-react-native/README.md",
+            "input": ".",
+            "output": "."
+          },
+          {
+            "glob": "libs/rudder-integration-clevertap-react-native/src",
+            "input": ".",
+            "output": "."
+          },
+          {
+            "glob": "libs/rudder-integration-clevertap-react-native/android",
+            "input": ".",
+            "output": "."
+          },
+          {
+            "glob": "libs/rudder-integration-clevertap-react-native/ios",
+            "input": ".",
+            "output": "."
+          },
+          {
+            "glob": "libs/rudder-integration-clevertap-react-native/rudder-integration-clevertap-react-native.podspec",
+            "input": ".",
+            "output": "."
+          }
+        ]
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "libs/rudder-integration-clevertap-react-native/**/*.{ts,tsx,js,jsx}"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "libs/rudder-integration-clevertap-react-native/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  }
+}
