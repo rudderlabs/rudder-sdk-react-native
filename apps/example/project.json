@@ -4,6 +4,16 @@
   "sourceRoot": "apps/example/src",
   "projectType": "application",
   "targets": {
+    "build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "nx build-android example",
+          "cd apps/example/ios && xcodebuild -workspace Example.xcworkspace -scheme Example -configuration Debug -sdk iphonesimulator"
+        ],
+        "parallel": false
+      }
+    },
     "start": {
       "executor": "@nrwl/react-native:start",
       "options": {

@@ -39,6 +39,9 @@
             android:scheme="rudderrn" />
         </intent-filter>
       </activity>
+      <activity
+        android:name="com.moengage.integrationverifier.internal.IntegrationVerificationActivity"
+        android:exported="false" />
       <service
         android:name="com.moengage.firebase.MoEFireBaseMessagingService"
         android:exported="false">
