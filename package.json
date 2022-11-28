@@ -153,6 +153,7 @@
         "@rudderstack/rudder-sdk-react-native-monorepo",
         "example"
       ],
+      "maxHeaderWidth": 120,
       "defaultScope": "@rudderstack/rudder-sdk-react-native-monorepo",
       "defaultType": "feat"
     }
