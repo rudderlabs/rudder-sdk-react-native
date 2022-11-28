@@ -40,9 +40,7 @@
       "@rudderstack/rudder-integration-singular-react-native": [
         "libs/rudder-integration-singular-react-native/src/index.ts"
       ],
-      "@rudderstack/rudder-sdk-react-native": [
-        "libs/sdk/src/index.ts"
-      ]
+      "@rudderstack/rudder-sdk-react-native": ["libs/sdk/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

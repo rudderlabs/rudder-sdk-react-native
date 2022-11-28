@@ -1,3 +1,14 @@
 # Add files here to ignore them from prettier formatting
 /dist
 /coverage
+/reports
+build/
+.gradle/
+CHANGELOG.md
+node_modules/
+*.jar
+gradlew*
+*.lock
+*.xcodeproj/
+*.xcworkspace/
+Pods/

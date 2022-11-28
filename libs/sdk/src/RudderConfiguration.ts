@@ -30,7 +30,7 @@ export const configure = async (
 ): Promise<Configuration> => {
   // setup device mode integrations
   let integrations = withFactories;
-  if (integrations && integrations.length != 0) {
+  if (integrations && integrations.length > 0) {
     // ask about await
     await Promise.all(
       integrations.map(async integration =>

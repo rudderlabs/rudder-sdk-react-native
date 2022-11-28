@@ -5,7 +5,7 @@ describe('Example', () => {
     await device.reloadReactNative();
   });
 
-  it('should display welcome message', async () => {
-    await expect(element(by.id('heading'))).toHaveText('Welcome Example 👋');
+  it('should display init button', async () => {
+    await expect(element(by.id('init_btn'))).toHaveText('Initialize');
   });
 });

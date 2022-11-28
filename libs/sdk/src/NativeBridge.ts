@@ -1,4 +1,4 @@
-import { NativeModules } from "react-native";
+import { NativeModules } from 'react-native';
 
 export interface Configuration {
   dataPlaneUrl?: string;
@@ -11,52 +11,30 @@ export interface Configuration {
   trackAppLifecycleEvents?: boolean;
   recordScreenViews?: boolean;
   logLevel?: number;
-  withFactories?: Array<Object>;
+  withFactories?: Array<Record<string, unknown> | Function>;
 }
 
 export interface Bridge {
-  setup(
-    configuration: Configuration,
-    options: Object | null
-    ): Promise<void>;
-  track(
-    event: string,
-    properties: Object | null,
-    options: Object | null
-  ): Promise<void>;
-  screen(
-    name: string,
-    properties: Object | null,
-    options: Object | null
-  ): Promise<void>;
-  identify(
-    userId: string,
-    traits: Object | null,
-    options: Object | null
-  ): Promise<void>;
-  alias(
-    newId: String,
-    options: Object | null
-  ): Promise<void>;
-  group(
-    groupId: string,
-    traits: Object | null,
-    options: Object | null
-  ): Promise<void>;
+  setup(configuration: Configuration, options: Record<string, unknown> | null): Promise<void>;
+  track(event: string, properties: Record<string, unknown> | null, options: Record<string, unknown> | null): Promise<void>;
+  screen(name: string, properties: Record<string, unknown> | null, options: Record<string, unknown> | null): Promise<void>;
+  identify(userId: string, traits: Record<string, unknown> | null, options: Record<string, unknown> | null): Promise<void>;
+  alias(newId: string, options: Record<string, unknown> | null): Promise<void>;
+  group(groupId: string, traits: Record<string, unknown> | null, options: Record<string, unknown> | null): Promise<void>;
   reset(): Promise<void>;
   flush(): Promise<void>;
   optOut(optOut: boolean): Promise<void>;
   putDeviceToken(token: string): Promise<void>;
   putAdvertisingId(id: string): Promise<void>;
-  putAnonymousId(id:string): Promise<void>;
-  registerCallback(integrationName:string, callback:Function): Promise<void>;
+  putAnonymousId(id: string): Promise<void>;
+  registerCallback(integrationName: string, callback: Function): Promise<void>;
   getRudderContext(): Promise<void>;
 }
 
 const bridge: Bridge = NativeModules.RNRudderSdkModule;
 
 if (!bridge) {
-  throw new Error("Failed to load Rudderlabs native module.");
+  throw new Error('Failed to load Rudderlabs native module.');
 }
 
 export default bridge;

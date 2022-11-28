@@ -48,9 +48,16 @@
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": [
-          "libs/rudder-integration-braze-react-native/src/**/*.{ts,tsx,js,jsx}"
-        ]
+        "lintFilePatterns": ["libs/rudder-integration-braze-react-native/src/**/*.{ts,tsx,js,jsx}"]
+      },
+      "configurations": {
+        "ci": {
+          "format": "json",
+          "outputFile": "/reports/eslint/rudder-integration-braze-react-native.eslint.results.json"
+        },
+        "fix": {
+          "fix": true
+        }
       }
     },
     "test": {
@@ -58,7 +65,13 @@
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
         "jestConfig": "libs/rudder-integration-braze-react-native/jest.config.ts",
-        "passWithNoTests": true
+        "passWithNoTests": true,
+        "coverage": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true
+        }
       }
     }
   }

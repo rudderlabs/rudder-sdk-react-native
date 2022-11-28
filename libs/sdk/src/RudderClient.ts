@@ -1,53 +1,33 @@
-import { Platform } from "react-native";
-import AsyncLock from "async-lock";
+import { Platform } from 'react-native';
+import AsyncLock from 'async-lock';
 
-import { configure } from "./RudderConfiguration";
-import bridge, { Configuration } from "./NativeBridge";
-import { logInit, logDebug, logError, logWarn} from "./Logger";
-import { SDK_VERSION } from "./Constants";
+import { configure } from './RudderConfiguration';
+import bridge, { Configuration } from './NativeBridge';
+import { logInit, logDebug, logError, logWarn } from './Logger';
+import { SDK_VERSION } from './Constants';
 
 const lock = new AsyncLock();
 
 function validateConfiguration(configuration: Configuration) {
-  if (
-    configuration.controlPlaneUrl &&
-    typeof configuration.controlPlaneUrl != "string"
-  ) {
-    logWarn(
-      "setup : 'controlPlaneUrl' must be a string. Falling back to the default value"
-    );
+  if (configuration.controlPlaneUrl && typeof configuration.controlPlaneUrl != 'string') {
+    logWarn("setup : 'controlPlaneUrl' must be a string. Falling back to the default value");
     delete configuration.controlPlaneUrl;
   }
-  if (
-    configuration.flushQueueSize &&
-    !Number.isInteger(configuration.flushQueueSize)
-  ) {
-    logWarn(
-      "setup : 'flushQueueSize' must be an integer. Falling back to the default value"
-    );
+  if (configuration.flushQueueSize && !Number.isInteger(configuration.flushQueueSize)) {
+    logWarn("setup : 'flushQueueSize' must be an integer. Falling back to the default value");
     delete configuration.flushQueueSize;
   }
-  if (
-    configuration.dbCountThreshold &&
-    !Number.isInteger(configuration.dbCountThreshold)
-  ) {
-    logWarn(
-      "setup : 'dbCountThreshold' must be an integer. Falling back to the default value"
-    );
+  if (configuration.dbCountThreshold && !Number.isInteger(configuration.dbCountThreshold)) {
+    logWarn("setup : 'dbCountThreshold' must be an integer. Falling back to the default value");
     delete configuration.dbCountThreshold;
   }
-  if (
-    configuration.sleepTimeOut &&
-    !Number.isInteger(configuration.sleepTimeOut)
-  ) {
-    logWarn(
-      "setup : 'sleepTimeOut' must be an integer. Falling back to the default value"
-    );
+  if (configuration.sleepTimeOut && !Number.isInteger(configuration.sleepTimeOut)) {
+    logWarn("setup : 'sleepTimeOut' must be an integer. Falling back to the default value");
     delete configuration.sleepTimeOut;
   }
   if (configuration.logLevel && !Number.isInteger(configuration.logLevel)) {
     logWarn(
-      "setup : 'logLevel' must be an integer. Use RUDDER_LOG_LEVEL to set this value.Falling back to the default value"
+      "setup : 'logLevel' must be an integer. Use RUDDER_LOG_LEVEL to set this value.Falling back to the default value",
     );
     delete configuration.logLevel;
   }
@@ -56,51 +36,45 @@ function validateConfiguration(configuration: Configuration) {
     !Number.isInteger(configuration.configRefreshInterval)
   ) {
     logWarn(
-      "setup : 'configRefreshInterval' must be an integer.  Falling back to the default value"
+      "setup : 'configRefreshInterval' must be an integer.  Falling back to the default value",
     );
     delete configuration.configRefreshInterval;
   }
   if (
     configuration.trackAppLifecycleEvents &&
-    typeof configuration.trackAppLifecycleEvents != "boolean"
+    typeof configuration.trackAppLifecycleEvents != 'boolean'
   ) {
     logWarn(
-      "setup : 'trackAppLifecycleEvents' must be a boolen. Falling back to the default value"
+      "setup : 'trackAppLifecycleEvents' must be a boolen. Falling back to the default value",
     );
     delete configuration.trackAppLifecycleEvents;
   }
-  if (
-    configuration.recordScreenViews &&
-    typeof configuration.recordScreenViews != "boolean"
-  ) {
-    logWarn(
-      "setup : 'recordScreenViews' must be a boolen. Falling back to the default value"
-    );
+  if (configuration.recordScreenViews && typeof configuration.recordScreenViews != 'boolean') {
+    logWarn("setup : 'recordScreenViews' must be a boolen. Falling back to the default value");
     delete configuration.recordScreenViews;
   }
-  if (
-    configuration.autoCollectAdvertId &&
-    typeof configuration.autoCollectAdvertId != "boolean"
-  ) {
-    logWarn(
-      "setup : 'autoCollectAdvertId' must be a boolen. Falling back to the default value"
-    );
+  if (configuration.autoCollectAdvertId && typeof configuration.autoCollectAdvertId != 'boolean') {
+    logWarn("setup : 'autoCollectAdvertId' must be a boolen. Falling back to the default value");
     delete configuration.autoCollectAdvertId;
   }
 }
 
 // setup the RudderSDK with writeKey and Config
-async function setup(writeKey: string, configuration: Configuration = {}, options: Object | null = null) {
-  if (writeKey == undefined || typeof writeKey != "string" || writeKey == "") {
-    logError("setup: writeKey is incorrect. Aborting");
+async function setup(
+  writeKey: string,
+  configuration: Configuration = {},
+  options: Record<string, unknown> | null = null,
+) {
+  if (writeKey == undefined || typeof writeKey != 'string' || writeKey == '') {
+    logError('setup: writeKey is incorrect. Aborting');
     return;
   }
   if (
     !configuration.dataPlaneUrl ||
-    typeof configuration.dataPlaneUrl != "string" ||
-    configuration.dataPlaneUrl! == ""
+    typeof configuration.dataPlaneUrl != 'string' ||
+    configuration.dataPlaneUrl! == ''
   ) {
-    logError("setup: dataPlaneUrl is incorrect. Aborting");
+    logError('setup: dataPlaneUrl is incorrect. Aborting');
     return;
   }
   // init log level
@@ -112,11 +86,11 @@ async function setup(writeKey: string, configuration: Configuration = {}, option
   validateConfiguration(configuration);
 
   // Acquire a lock before calling the setup of Native Modules
-  await lock.acquire("lock", async function(done) {
+  await lock.acquire('lock', async function (done) {
     const config = await configure(writeKey, configuration);
-    logDebug("setup: created config");
-    await bridge.setup(config,options);
-    logDebug("setup: setup completed");
+    logDebug('setup: created config');
+    await bridge.setup(config, options);
+    logDebug('setup: setup completed');
     done();
   });
 }
@@ -124,14 +98,14 @@ async function setup(writeKey: string, configuration: Configuration = {}, option
 // wrapper for `track` method
 async function track(
   event: string,
-  properties: Object | null = null,
-  options: Object | null = null
+  properties: Record<string, unknown> | null = null,
+  options: Record<string, unknown> | null = null,
 ) {
   if (event == undefined) {
     logWarn("track: Mandatory field 'event' missing");
     return;
   }
-  if (typeof event != "string") {
+  if (typeof event != 'string') {
     logWarn("track: 'event' must be a string");
     return;
   }
@@ -141,14 +115,14 @@ async function track(
 // wrapper for `screen` method
 async function screen(
   name: string,
-  properties: Object | null = null,
-  options: Object | null = null
+  properties: Record<string, unknown> | null = null,
+  options: Record<string, unknown> | null = null,
 ) {
   if (name == undefined) {
     logWarn("screen: Mandatory field 'name' missing");
     return;
   }
-  if (typeof name != "string") {
+  if (typeof name != 'string') {
     logWarn("screen: 'name' must be a string");
     return;
   }
@@ -156,37 +130,33 @@ async function screen(
 }
 
 // wrapper for `identify` method
+async function identify(userId: string, traits: Record<string, unknown>, options: Record<string, unknown>): Promise<void>;
+async function identify(traits: Record<string, unknown>, options: Record<string, unknown>): Promise<void>;
 async function identify(
-  userId: string,
-  traits: Object,
-  options: Object
-): Promise<void>;
-async function identify(traits: Object, options: Object): Promise<void>;
-async function identify(
-  userIdOrTraits: string | Object,
-  traitsOrOptions: Object | null = null,
-  options: Object | null = null
+  userIdOrTraits: string | Record<string, unknown>,
+  traitsOrOptions: Record<string, unknown> | null = null,
+  options: Record<string, unknown> | null = null,
 ) {
   if (userIdOrTraits == undefined) {
-    logWarn("identify: atleast one of userId or traits is required");
+    logWarn('identify: atleast one of userId or traits is required');
     return;
   }
 
   let _userId;
   let _traits;
   let _options;
-  if (typeof userIdOrTraits == "string") {
+  if (typeof userIdOrTraits == 'string') {
     // userIdOrTraits contains userId
     _userId = userIdOrTraits;
     _traits = traitsOrOptions;
     _options = options;
-  } else if (typeof userIdOrTraits == "object") {
+  } else if (typeof userIdOrTraits == 'object') {
     // userIdOrTraits contains traits
-    _userId = "";
+    _userId = '';
     _traits = userIdOrTraits;
     _options = traitsOrOptions;
   } else {
-    logWarn("identify : Unsupported argument type passed to identify");
+    logWarn('identify : Unsupported argument type passed to identify');
     return;
   }
 
@@ -194,64 +164,62 @@ async function identify(
 }
 
 // wrapper for `group` method
-async function group(groupId: string, traits: Object | null = null, options: Object | null = null) {
+async function group(groupId: string, traits: Record<string, unknown> | null = null, options: Record<string, unknown> | null = null) {
   if (groupId == undefined) {
     logWarn("group: Mandatory field 'groupId' missing");
     return;
   }
-  if (typeof groupId != "string") {
+  if (typeof groupId != 'string') {
     logWarn("group: 'groupId' must be a string");
     return;
   }
-  bridge.group(groupId, traits, options)
+  bridge.group(groupId, traits, options);
 }
 
 // wrapper for `alias` method
-async function alias(previousId: string, userId: string): Promise<void>;
-async function alias(newId: string, options: Object | null = null) {
+async function alias(previousId: string, userId: string | Record<string, unknown>): Promise<void>;
+async function alias(newId: string, options: Record<string, unknown> | null = null) {
   if (newId == undefined) {
     logWarn("alias: Mandatory field 'newId' missing");
     return;
   }
-  if (typeof newId != "string") {
+  if (typeof newId != 'string') {
     logWarn("alias: 'newId' must be a string");
     return;
   }
-  if (typeof options == "string") {
-    bridge.alias(options, null)
-  } else if (typeof options == "object") {
-    bridge.alias(newId, options)
+  if (typeof options == 'string') {
+    bridge.alias(options, null);
+  } else if (typeof options == 'object') {
+    bridge.alias(newId, options);
   } else {
-    bridge.alias(newId, null)
+    bridge.alias(newId, null);
   }
 }
 
-async function putDeviceToken (token: string): Promise<void>;
+async function putDeviceToken(token: string): Promise<void>;
 /**
  * @deprecated use putDeviceToken{@link putDeviceToken(token: string)} instead
  */
-async function putDeviceToken (androidToken: string, iOSToken: string):Promise<void>;
-async function putDeviceToken (token: string, iOSToken: string | null = null):Promise<void>
-{
-  if (Platform.OS == "ios" && iOSToken) {
-    bridge.putDeviceToken(iOSToken)
-  } else if(token) {
-    bridge.putDeviceToken(token)
+async function putDeviceToken(androidToken: string, iOSToken: string): Promise<void>;
+async function putDeviceToken(token: string, iOSToken: string | null = null): Promise<void> {
+  if (Platform.OS == 'ios' && iOSToken) {
+    bridge.putDeviceToken(iOSToken);
+  } else if (token) {
+    bridge.putDeviceToken(token);
   }
 }
 
 /**
  * @deprecated use putAdvertisingId{@link putAdvertisingId(advertisingId: string)} instead
  */
-async function setAdvertisingId(androidId: string, iOSId: string)
-{
+async function setAdvertisingId(androidId: string, iOSId: string) {
   switch (Platform.OS) {
-    case "ios":
+    case 'ios':
       if (iOSId) {
         putAdvertisingId(iOSId);
       }
       break;
-    case "android":
+    case 'android':
       if (androidId) {
         putAdvertisingId(androidId);
       }
@@ -260,7 +228,7 @@ async function setAdvertisingId(androidId: string, iOSId: string)
 }
 
 async function putAdvertisingId(advertisingId: string) {
-  if(advertisingId){
+  if (advertisingId) {
     bridge.putAdvertisingId(advertisingId);
   }
 }
@@ -275,7 +243,7 @@ async function setAnonymousId(anonymousId: string) {
 }
 
 async function putAnonymousId(anonymousId: string) {
-  if(anonymousId) {
+  if (anonymousId) {
     bridge.putAnonymousId(anonymousId);
   }
 }
@@ -292,13 +260,13 @@ async function optOut(optOut: boolean) {
   bridge.optOut(optOut);
 }
 
-async function registerCallback(name: string, callback:Function) {
+async function registerCallback(name: string, callback: Function) {
   if (name) {
     bridge.registerCallback(name, callback);
   }
 }
 
-async function getRudderContext(){
+async function getRudderContext() {
   return await bridge.getRudderContext();
 }
 

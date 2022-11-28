@@ -1,8 +1,9 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
 # compiled output
-dist
-tmp
+dist/
+tmp/
+reports/
 /out-tsc
 
 # dependencies
@@ -27,12 +28,12 @@ node_modules
 # misc
 /.sass-cache
 /connect.lock
-/coverage
+coverage/
 /libpeerconnection.log
-npm-debug.log
-yarn-error.log
 testem.log
 /typings
+lcov.info
+merged-lcov.info
 
 # System Files
 .DS_Store
@@ -68,6 +69,8 @@ build/
 local.properties
 *.iml
 *.hprof
+*.jar
+!gradle/wrapper/gradle-wrapper.jar
 
 # node.js
 #
@@ -101,6 +104,4 @@ buck-out/
 **/vendor/bundle/
 
 
-apps/example-e2e/artifacts
-apps/exsample-e2e/artifacts
 apps/example-e2e/artifacts
