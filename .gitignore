@@ -34,6 +34,7 @@ testem.log
 /typings
 lcov.info
 merged-lcov.info
+/.scannerwork
 
 # System Files
 .DS_Store
