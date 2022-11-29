@@ -11,7 +11,7 @@ Pod::Spec.new do |s|
                    DESC
   s.homepage     = "https://rudderstack.com/"
   s.license      = "MIT"
-  s.authors      = { "RudderStack" => "venkat@rudderstack.com" }
+  s.authors      = { "RudderStack" => "sdk@rudderstack.com" }
   s.platforms    = { :ios => "10.0" }
   s.source       = { :git => "https://github.com/rudderlabs/rudder-sdk-react-native.git", :tag => "master" }
 
