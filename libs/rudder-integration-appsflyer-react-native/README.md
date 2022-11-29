@@ -9,6 +9,7 @@
 `$ react-native link rudder-integration-appsflyer-react-native`
 
 ## Usage
+
 ```javascript
 import RudderIntegrationAppsflyerReactNative from '@rudderstack/rudder-integration-appsflyer-react-native';
 

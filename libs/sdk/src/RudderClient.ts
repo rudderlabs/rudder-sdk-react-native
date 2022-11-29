@@ -130,8 +130,15 @@ async function screen(
 }
 
 // wrapper for `identify` method
-async function identify(userId: string, traits: Record<string, unknown>, options: Record<string, unknown>): Promise<void>;
-async function identify(traits: Record<string, unknown>, options: Record<string, unknown>): Promise<void>;
+async function identify(
+  userId: string,
+  traits: Record<string, unknown>,
+  options: Record<string, unknown>,
+): Promise<void>;
+async function identify(
+  traits: Record<string, unknown>,
+  options: Record<string, unknown>,
+): Promise<void>;
 async function identify(
   userIdOrTraits: string | Record<string, unknown>,
   traitsOrOptions: Record<string, unknown> | null = null,
@@ -164,7 +171,11 @@ async function identify(
 }
 
 // wrapper for `group` method
-async function group(groupId: string, traits: Record<string, unknown> | null = null, options: Record<string, unknown> | null = null) {
+async function group(
+  groupId: string,
+  traits: Record<string, unknown> | null = null,
+  options: Record<string, unknown> | null = null,
+) {
   if (groupId == undefined) {
     logWarn("group: Mandatory field 'groupId' missing");
     return;

@@ -16,11 +16,27 @@ export interface Configuration {
 
 export interface Bridge {
   setup(configuration: Configuration, options: Record<string, unknown> | null): Promise<void>;
-  track(event: string, properties: Record<string, unknown> | null, options: Record<string, unknown> | null): Promise<void>;
-  screen(name: string, properties: Record<string, unknown> | null, options: Record<string, unknown> | null): Promise<void>;
-  identify(userId: string, traits: Record<string, unknown> | null, options: Record<string, unknown> | null): Promise<void>;
+  track(
+    event: string,
+    properties: Record<string, unknown> | null,
+    options: Record<string, unknown> | null,
+  ): Promise<void>;
+  screen(
+    name: string,
+    properties: Record<string, unknown> | null,
+    options: Record<string, unknown> | null,
+  ): Promise<void>;
+  identify(
+    userId: string,
+    traits: Record<string, unknown> | null,
+    options: Record<string, unknown> | null,
+  ): Promise<void>;
   alias(newId: string, options: Record<string, unknown> | null): Promise<void>;
-  group(groupId: string, traits: Record<string, unknown> | null, options: Record<string, unknown> | null): Promise<void>;
+  group(
+    groupId: string,
+    traits: Record<string, unknown> | null,
+    options: Record<string, unknown> | null,
+  ): Promise<void>;
   reset(): Promise<void>;
   flush(): Promise<void>;
   optOut(optOut: boolean): Promise<void>;

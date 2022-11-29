@@ -9,6 +9,7 @@
 `$ react-native link rudder-integration-firebase-react-native`
 
 ## Usage
+
 ```javascript
 import RudderIntegrationFirebaseReactNative from '@rudderstack/rudder-integration-firebase-react-native';
 

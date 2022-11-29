@@ -2,9 +2,9 @@ import React from 'react';
 import { render } from '@testing-library/react-native';
 import App from './App';
 
-jest.mock("react-native", () => {
+jest.mock('react-native', () => {
   // use original implementation, which comes with mocks out of the box
-  const RN = jest.requireActual("react-native");
+  const RN = jest.requireActual('react-native');
 
   // mock modules/components created by assigning to NativeModules
   RN.NativeModules.RNRudderSdkModule = {
@@ -15,17 +15,17 @@ jest.mock("react-native", () => {
     reset: jest.fn(),
     putDeviceToken: jest.fn(),
     setAdvertisingId: jest.fn(),
-    setAnonymousId: jest.fn()
+    setAnonymousId: jest.fn(),
   };
   RN.NativeModules.RudderIntegrationAppcenterReactNative = {
-    setup: jest.fn()
+    setup: jest.fn(),
   };
   RN.NativeModules.RudderIntegrationAppsflyerReactNative = {
     setup: jest.fn(),
-    setOneLinkCustomDomains: jest.fn()
+    setOneLinkCustomDomains: jest.fn(),
   };
   RN.NativeModules.RudderIntegrationCleverTapReactNative = {
-    setup: jest.fn()
+    setup: jest.fn(),
   };
 
   // mock modules created through UIManager

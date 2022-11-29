@@ -9,6 +9,7 @@
 `$ react-native link rudder-integration-clevertap-react-native`
 
 ## Usage
+
 ```javascript
 import RudderIntegrationCleverTapReactNative from '@rudderstack/rudder-integration-clevertap-react-native';
 

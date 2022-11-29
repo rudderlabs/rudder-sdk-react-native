@@ -1,4 +1,4 @@
-import { Configuration } from "./NativeBridge";
+import { Configuration } from './NativeBridge';
 import {
   DATA_PLANE_URL,
   CONTROL_PLANE_URL,
@@ -10,7 +10,7 @@ import {
   TRACK_LIFECYCLE_EVENTS,
   RECORD_SCREEN_VIEWS,
   LOG_LEVEL,
-} from "./Constants";
+} from './Constants';
 
 export const configure = async (
   writeKey: string,
@@ -26,16 +26,16 @@ export const configure = async (
     trackAppLifecycleEvents = TRACK_LIFECYCLE_EVENTS,
     recordScreenViews = RECORD_SCREEN_VIEWS,
     withFactories = [],
-  }: Configuration
+  }: Configuration,
 ): Promise<Configuration> => {
   // setup device mode integrations
-  let integrations = withFactories;
+  const integrations = withFactories;
   if (integrations && integrations.length > 0) {
     // ask about await
     await Promise.all(
-      integrations.map(async integration =>
-        typeof integration === "function" ? integration() : null
-      )
+      integrations.map(async (integration) =>
+        typeof integration === 'function' ? integration() : null,
+      ),
     );
   }
 
