@@ -1,7 +1,7 @@
 const { withNxMetro } = require('@nrwl/react-native');
 const { getDefaultConfig } = require('metro-config');
 const exclusionList = require('metro-config/src/defaults/exclusionList');
-const MetroSymlinksResolver = require("@rnx-kit/metro-resolver-symlinks");
+const MetroSymlinksResolver = require('@rnx-kit/metro-resolver-symlinks');
 const path = require('path');
 
 module.exports = (async () => {
@@ -22,7 +22,7 @@ module.exports = (async () => {
       resolver: {
         assetExts: assetExts.filter((ext) => ext !== 'svg'),
         sourceExts: [...sourceExts, 'svg'],
-        blockList: exclusionList([/^(?!.*node_modules).*\/dist\/.*/]),
+        blockList: exclusionList([/^(?!.*node_modules).*\/dist\/.*/, /\/dist\/libs\/.*/]),
         resolveRequest: MetroSymlinksResolver({
           // remapModule: MetroSymlinksResolver.remapImportPath({
           //   test: (moduleId) => moduleId.startsWith("@rnx-kit/"),
@@ -30,9 +30,7 @@ module.exports = (async () => {
           //   mainFields: ["module", "main"]
           // })
         }),
-        nodeModulesPaths: [
-          path.resolve(__dirname, '../../node_modules/@rudderstack')
-        ]
+        nodeModulesPaths: [path.resolve(__dirname, '../../node_modules/@rudderstack')],
       },
     },
     {
@@ -45,7 +43,7 @@ module.exports = (async () => {
       projectRoot: __dirname,
       // Specify folders to watch, in addition to Nx defaults (workspace libraries and node_modules)
       watchFolders: [],
-    }
+    },
   );
 
   //console.log(metroNxConfig);

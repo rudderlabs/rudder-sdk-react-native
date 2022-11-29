@@ -19,6 +19,8 @@
   "scripts": {
     "setup": "npm ci && nx sync-deps example && nx ensure-symlink example && cd apps/example/ios && pod install",
     "start": "nx serve",
+    "run:android": "nx run-android example",
+    "run:ios": "nx run-ios example",
     "build": "nx build",
     "test": "nx run-many --target=test --parallel=1 && ./node_modules/.bin/lcov-result-merger '**/coverage/lcov.info' 'merged-lcov.info'",
     "test:ci": "nx run-many --target=test --parallel=1 --configuration=ci && ./node_modules/.bin/lcov-result-merger '**/coverage/lcov.info' 'merged-lcov.info'",
