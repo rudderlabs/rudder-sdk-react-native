@@ -58,6 +58,13 @@
       "options": {
         "lintFilePatterns": ["apps/example-e2e/**/*.{ts,tsx,js,jsx}"]
       }
+    },
+    "version": {
+      "executor": "@jscutlery/semver:version",
+      "options": {
+        "baseBranch": "master",
+        "preset": "conventional"
+      }
     }
   },
   "tags": [],

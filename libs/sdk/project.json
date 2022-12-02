@@ -74,6 +74,13 @@
           "maxWorkers": 2
         }
       }
+    },
+    "version": {
+      "executor": "@jscutlery/semver:version",
+      "options": {
+        "baseBranch": "master",
+        "preset": "conventional"
+      }
     }
   }
 }
