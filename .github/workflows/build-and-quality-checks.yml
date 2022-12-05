@@ -50,4 +50,4 @@ jobs:
 
       - name: Execute build check
         run: |
-          melos run build:sdk:all
+          npm run build
