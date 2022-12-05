@@ -1,6 +1,6 @@
 {
   "name": "@rudderstack/rudder-sdk-react-native-monorepo",
-  "version": "1.5.1",
+  "version": "2.0.0",
   "description": "Rudder React Native SDK monorepo",
   "keywords": [
     "react-native",
@@ -35,6 +35,8 @@
     "pre-commit": "npm run test && npx lint-staged",
     "commit-msg": "commitlint --edit",
     "commit": "git-cz",
+    "release:prepare": "nx affected --base=master --target=version --skipCommit --parallel=1 && npm version minor",
+    "release": "nx affected --base=master --target=version --parallel=1 && npm version minor",
     "release:github": "npx conventional-github-releaser -p angular"
   },
   "private": true,
