@@ -18,6 +18,7 @@
   "homepage": "https://github.com/rudderlabs/rudder-sdk-react-native#readme",
   "scripts": {
     "setup": "npm ci && nx sync-deps example && nx ensure-symlink example && cd apps/example/ios && pod install",
+    "setup:linux": "npm ci && nx sync-deps example && nx ensure-symlink example",
     "start": "nx serve",
     "run:android": "nx run-android example",
     "run:ios": "nx run-ios example",
