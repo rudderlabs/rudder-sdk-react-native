@@ -35,7 +35,7 @@
     "pre-commit": "npm run test && npx lint-staged",
     "commit-msg": "commitlint --edit",
     "commit": "git-cz",
-    "release:prepare": "nx affected --base=master --target=version --skipCommit --parallel=1 && npm version minor",
+    "release:prepare": "nx affected --base=master --target=version --skipCommit --parallel=1 && npm version minor --git-tag-version false",
     "release": "nx affected --base=master --target=version --parallel=1 && npm version minor",
     "release:github": "npx conventional-github-releaser -p angular"
   },
