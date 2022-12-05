@@ -53,6 +53,7 @@
       "configurations": {
         "ci": {
           "format": "json",
+          "force": true,
           "outputFile": "/reports/eslint/rudder-integration-braze-react-native.eslint.results.json"
         },
         "fix": {

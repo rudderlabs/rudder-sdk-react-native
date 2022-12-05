@@ -55,6 +55,7 @@
       "configurations": {
         "ci": {
           "format": "json",
+          "force": true,
           "outputFile": "/reports/eslint/rudder-integration-amplitude-react-native.eslint.results.json"
         },
         "fix": {

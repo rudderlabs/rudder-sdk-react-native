@@ -55,6 +55,7 @@
       "configurations": {
         "ci": {
           "format": "json",
+          "force": true,
           "outputFile": "/reports/eslint/rudder-integration-moengage-react-native.eslint.results.json"
         },
         "fix": {
