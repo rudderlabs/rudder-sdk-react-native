@@ -1,0 +1,65 @@
+name: 'Unit Tests, Coverage & Sonar'
+
+on:
+  workflow_dispatch:
+  push:
+    branches: ['develop', 'master']
+  pull_request:
+    branches: ['develop', 'master']
+    types: ['opened', 'reopened', 'synchronize']
+
+jobs:
+  build:
+    name: 'Unit Tests, Coverage & Sonar'
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Java
+        uses: actions/setup-java@v2
+        with:
+          distribution: 'zulu'
+          java-version: '11'
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+
+      - name: Setup CocoaPods
+        uses: maxim-lobanov/setup-cocoapods@v1
+        with:
+          version: 1.11.3
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'npm'
+
+      - name: Install dependencies
+        env:
+          HUSKY: 0
+        run: |
+          npm run setup
+
+      - name: Setup .env file
+        run: |
+          cat <<EOF > apps/example/.env
+            TEST_WRITE_KEY=${{ secrets.TEST_WRITE_KEY }}
+            TEST_DATAPLANE_URL=${{ secrets.TEST_DATAPLANE_URL }}
+           EOF
+
+      - name: Execute linting tests
+        run: |
+          npm run check:lint:ci
+
+      - name: Execute unit tests
+        run: |
+          npm run test:ci
+
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}

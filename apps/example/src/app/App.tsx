@@ -9,7 +9,7 @@ import appsflyer, {
   setOptions,
 } from '@rudderstack/rudder-integration-appsflyer-react-native';
 // @ts-ignore
-import { DATAPLANE_URL, WRITE_KEY } from '@env';
+import { TEST_DATAPLANE_URL, TEST_WRITE_KEY } from '@env';
 
 const Stack = createNativeStackNavigator();
 
@@ -23,7 +23,7 @@ const initialization = async () => {
   });
 
   const config = {
-    dataPlaneUrl: DATAPLANE_URL,
+    dataPlaneUrl: TEST_DATAPLANE_URL,
     trackAppLifecycleEvents: true,
     autoCollectAdvertId: true,
     recordScreenViews: true,
@@ -38,7 +38,7 @@ const initialization = async () => {
     name: 'Miraj',
   };
 
-  await rc.setup(WRITE_KEY, config);
+  await rc.setup(TEST_WRITE_KEY, config);
 
   await rc.identify('test_userIdiOS', {
     email: 'testuseriOS@example.com',
@@ -116,8 +116,8 @@ const HomeScreen = ({ navigation }) => {
 
   return (
     <>
-      <Text>Dataplane: {DATAPLANE_URL}</Text>
-      <Text>Write key: {WRITE_KEY}</Text>
+      <Text>Dataplane: {TEST_DATAPLANE_URL}</Text>
+      <Text>Write key: {TEST_WRITE_KEY}</Text>
       <Button
         title="Go to Jane's profile"
         onPress={() => navigation.navigate('Profile', { name: 'Jane' })}

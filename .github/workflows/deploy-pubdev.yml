@@ -1,0 +1,90 @@
+name: Deploy to pub.dev
+
+on:
+  release:
+    types: [created]
+
+permissions:
+  id-token: write # allows the JWT to be requested from GitHub's OIDC provider
+  contents: read # This is required for actions/checkout
+
+jobs:
+  deploy-tag:
+    name: Deploy to pub.dev
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Dart
+        uses: dart-lang/setup-dart@v1.3
+
+      - name: Setup Java
+        uses: actions/setup-java@v2
+        with:
+          distribution: 'zulu'
+          java-version: '11'
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+          architecture: x64
+
+      - name: Setup credentials
+        run: |
+          mkdir -p $XDG_CONFIG_HOME/dart
+          echo '${{ secrets.PUB_DEV_CREDENTIALS_JSON }}' > "$XDG_CONFIG_HOME/dart/pub-credentials.json"
+
+      - name: Install Melos
+        run: |
+          dart pub global activate melos
+
+      - name: Install dependencies
+        run: |
+          melos run setup:ci
+
+      - name: Publish package to pub.dev
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          melos publish --no-dry-run
+
+      - name: Get new version number
+        run: |
+          current_version=$(grep -A0 'version:' pubspec.yaml | tail -n1 | awk '{ print $2 }')
+          echo "CURRENT_VERSION_VALUE=$current_version" >> $GITHUB_ENV
+          echo "DATE=$(date)" >> $GITHUB_ENV
+
+      - name: Send message to Slack channel
+        id: slack
+        uses: slackapi/slack-github-action@v1.23.0
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+          PROJECT_NAME: 'Flutter SDK pub.dev packages'
+          NPM_PACKAGE_URL: 'https://pub.dev/packages?q=rudder`
+        with:
+          channel-id: ${{ secrets.SLACK_CHANNEL_ID }}
+          payload: |
+            {
+              "blocks": [
+                {
+                  "type": "header",
+                  "text": {
+                    "type": "plain_text",
+                    "text": "New release: ${{ env.PROJECT_NAME }}"
+                  }
+                },
+                {
+                  "type": "divider"
+                },
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": "*Release: <${{ env.NPM_PACKAGE_URL }}|${{ env.CURRENT_VERSION_VALUE }}>*\n${{ env.DATE }}"
+                  }
+                }
+              ]
+            }
