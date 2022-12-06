@@ -28,6 +28,9 @@ jobs:
         with:
           version: 1.11.3
 
+      - name: Homebrew build helpers install
+        run: brew bundle
+
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
@@ -48,6 +51,11 @@ jobs:
         run: |
           npm run check:security
 
-      - name: Execute build check
+      - name: Execute android build check
         run: |
-          npm run build
+          nx build-android example
+
+      - name: Execute iOS build check
+        run: |
+         cd apps/example/ios && xcodebuild -workspace Example.xcworkspace -scheme Example -destination "generic/platform=iOS" -configuration Release build CODE_SIGNING_ALLOWED=NO
+
