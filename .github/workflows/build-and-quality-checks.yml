@@ -29,7 +29,9 @@ jobs:
           version: 1.11.3
 
       - name: Homebrew build helpers install
-        run: brew bundle
+        run: |
+          brew update-reset
+          brew bundle
 
       - name: Setup Node
         uses: actions/setup-node@v3
