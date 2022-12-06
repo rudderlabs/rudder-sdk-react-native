@@ -53,7 +53,6 @@ jobs:
             ~/.cocoapods
           key: ${{ runner.os }}-pods-${{ hashFiles('apps/example/ios/Podfile.lock') }}
           restore-keys: |
-            ${{ runner.os }}-pods-${{ hashFiles('apps/example/ios/Podfile.lock') }}
             ${{ runner.os }}-pods-
 
       - name: Install Pods
@@ -78,7 +77,7 @@ jobs:
 
       - name: Execute android build check
         run: |
-          nx build-android example
+          npm run build:android
 
       - name: Xcode Version
         run: |
