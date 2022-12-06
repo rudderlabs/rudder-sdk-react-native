@@ -49,13 +49,10 @@ jobs:
             ${{ runner.os }}-modules-
 
       - name: Install node_modules
+        env:
+          HUSKY: 0
         run: |
-          npm ci
-
-      - name: Setup Nx
-        run: |
-          nx sync-deps example && \
-          nx ensure-symlink example
+          npm run setup:ci
 
       - name: Restore Pods cache
         uses: actions/cache@v3
