@@ -28,10 +28,9 @@ jobs:
         with:
           version: 1.11.3
 
-      - name: Homebrew build helpers install
-        run: |
-          brew update-reset
-          brew bundle
+      - uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: latest-stable
 
       - name: Setup Node
         uses: actions/setup-node@v3
@@ -57,7 +56,20 @@ jobs:
         run: |
           nx build-android example
 
-      - name: Execute iOS build check
+      - name: Xcode Version
         run: |
-         cd apps/example/ios && xcodebuild -workspace Example.xcworkspace -scheme Example -destination "generic/platform=iOS" -configuration Release build CODE_SIGNING_ALLOWED=NO
+          xcode-select -p
+          /usr/bin/xcodebuild -version
 
+      - name: Execute iOS build check
+        with:
+          - FORCE_BUNDLING: true
+          - RCT_NO_LAUNCH_PACKAGER: 0
+        run: |
+         cd apps/example/ios && xcodebuild \
+          -workspace Example.xcworkspace \
+          -scheme Example \
+          -destination "generic/platform=iOS" \
+          -configuration Release \
+          -UseModernBuildSystem=NO \
+          CODE_SIGNING_ALLOWED=NO
