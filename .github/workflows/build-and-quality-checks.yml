@@ -40,13 +40,15 @@ jobs:
 
       - name: Cache node_modules
         id: cache
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: ./node_modules
           key: ${{ runner.os }}-modules-${{ hashFiles('package-lock.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-modules-${{ hashFiles('package-lock.lock') }}
+            ${{ runner.os }}-modules-
 
       - name: Install node_modules
-        if: steps.cache.outputs.cache-hit != 'true'
         run: |
           npm ci
 
@@ -56,7 +58,7 @@ jobs:
           nx ensure-symlink example
 
       - name: Restore Pods cache
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: |
             apps/example/ios/Pods
@@ -64,6 +66,7 @@ jobs:
             ~/.cocoapods
           key: ${{ runner.os }}-pods-${{ hashFiles('apps/example/ios/Podfile.lock') }}
           restore-keys: |
+            ${{ runner.os }}-pods-${{ hashFiles('apps/example/ios/Podfile.lock') }}
             ${{ runner.os }}-pods-
 
       - name: Install Pods
