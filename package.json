@@ -20,6 +20,7 @@
     "setup": "npm ci && nx sync-deps example && nx ensure-symlink example && cd apps/example/ios && pod install",
     "setup:ci": "npm ci && nx sync-deps example && nx ensure-symlink example",
     "start": "nx serve",
+    "bundle:ci": "nx bundle-android example && nx bundle-ios example",
     "run:android": "nx run-android example",
     "run:ios": "nx run-ios example",
     "build": "nx build",

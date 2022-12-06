@@ -38,16 +38,6 @@ jobs:
           node-version-file: '.nvmrc'
           cache: 'npm'
 
-      - name: Cache node_modules
-        id: cache
-        uses: actions/cache@v3
-        with:
-          path: ./node_modules
-          key: ${{ runner.os }}-modules-${{ hashFiles('package-lock.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-modules-${{ hashFiles('package-lock.lock') }}
-            ${{ runner.os }}-modules-
-
       - name: Install node_modules
         env:
           HUSKY: 0
@@ -84,8 +74,7 @@ jobs:
 
       - name: Bundle apps
         run: |
-          nx run bundle-android && \
-          nx run bundle-ios
+          npm run bundle:ci
 
       - name: Execute android build check
         run: |
