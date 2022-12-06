@@ -38,11 +38,24 @@ jobs:
           node-version-file: '.nvmrc'
           cache: 'npm'
 
-      - name: Install dependencies
-        env:
-          HUSKY: 0
+      - name: Cache node_modules
+        id: cache
+        uses: actions/cache@v2
+        with:
+          path: ./node_modules
+          key: ${{ runner.os }}-modules-${{ hashFiles('package-lock.lock') }}
+
+      - name: Install node_modules
+        if: steps.cache.outputs.cache-hit != 'true'
         run: |
-          npm run setup
+          npm ci
+
+      - name: Setup Nx
+        run: |
+          x sync-deps example && \
+          nx ensure-symlink example && \
+          cd apps/example/ios && \
+          pod install
 
       - name: Execute quality checks
         run: |
@@ -51,6 +64,11 @@ jobs:
       - name: Execute security checks
         run: |
           npm run check:security
+
+      - name: Bundle apps
+        run: |
+          nx run bundle-android && \
+          nx run bundle-ios
 
       - name: Execute android build check
         run: |
@@ -62,9 +80,9 @@ jobs:
           /usr/bin/xcodebuild -version
 
       - name: Execute iOS build check
-        env:
-          FORCE_BUNDLING: true
-          RCT_NO_LAUNCH_PACKAGER: false
+#        env:
+#          FORCE_BUNDLING: true
+#          RCT_NO_LAUNCH_PACKAGER: false
         run: |
          cd apps/example/ios && xcodebuild \
           -workspace Example.xcworkspace \
