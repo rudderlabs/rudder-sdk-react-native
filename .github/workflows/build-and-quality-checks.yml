@@ -62,9 +62,9 @@ jobs:
           /usr/bin/xcodebuild -version
 
       - name: Execute iOS build check
-        with:
-          - FORCE_BUNDLING: true
-          - RCT_NO_LAUNCH_PACKAGER: 0
+        env:
+          FORCE_BUNDLING: true
+          RCT_NO_LAUNCH_PACKAGER: false
         run: |
          cd apps/example/ios && xcodebuild \
           -workspace Example.xcworkspace \
