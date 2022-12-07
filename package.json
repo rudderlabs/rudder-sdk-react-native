@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/rudderlabs/rudder-sdk-react-native#readme",
   "scripts": {
-    "setup": "npm ci && nx sync-deps example && nx ensure-symlink example && cd apps/example/ios && pod install",
+    "setup": "gem install xcpretty && npm ci && nx sync-deps example && nx ensure-symlink example && cd apps/example/ios && pod install",
     "setup:ci": "npm ci && nx sync-deps example && nx ensure-symlink example",
     "start": "nx serve",
     "bundle:ci": "nx bundle-android example && nx bundle-ios example",
@@ -26,7 +26,8 @@
     "build": "nx build",
     "build:android": "nx build-android example",
     "build:ios": "nx build-ios example",
-    "build:ios:m1": "arch -x86_64 nx run-ios example",
+    "build:ios:ci": "nx build-ios-ci example",
+    "build:ios:m1": "arch -x86_64 nx build-ios example",
     "test": "nx run-many --target=test --parallel=1 && ./node_modules/.bin/lcov-result-merger '**/coverage/lcov.info' 'merged-lcov.info'",
     "test:ci": "nx run-many --target=test --parallel=1 --configuration=ci && ./node_modules/.bin/lcov-result-merger '**/coverage/lcov.info' 'merged-lcov.info'",
     "clean": "rm -rf node_modules/.cache && nx reset && rm -rf reports && rm -rf dist",

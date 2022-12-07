@@ -7,10 +7,7 @@
     "build": {
       "executor": "nx:run-commands",
       "options": {
-        "commands": [
-          "nx build-android example",
-          "cd apps/example/ios && xcodebuild -workspace Example.xcworkspace -scheme Example -configuration Debug -sdk iphonesimulator"
-        ],
+        "commands": ["nx build-android example", "nx build-ios example"],
         "parallel": false
       }
     },
@@ -29,6 +26,22 @@
     "run-ios": {
       "executor": "@nrwl/react-native:run-ios",
       "options": {}
+    },
+    "build-ios": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "cd apps/example/ios && xcodebuild -workspace Example.xcworkspace -scheme Example -configuration Release -sdk iphonesimulator | tee xcodebuild.log | xcpretty && exit ${PIPESTATUS[0]}"
+        ]
+      }
+    },
+    "build-ios-ci": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "cd apps/example/ios && xcodebuild -workspace Example.xcworkspace -scheme Example -configuration Release CODE_SIGNING_ALLOWED=NO -verbose"
+        ]
+      }
     },
     "bundle-ios": {
       "executor": "@nrwl/react-native:bundle",
