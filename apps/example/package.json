@@ -11,6 +11,7 @@
     "react-native-svg": "*",
     "@react-native-async-storage/async-storage": "*",
     "@rudderstack/rudder-sdk-react-native": "*",
+    "@rudderstack/rudder-integration-amplitude-react-native": "*",
     "@rudderstack/rudder-integration-appcenter-react-native": "*",
     "@rudderstack/rudder-integration-appsflyer-react-native": "*",
     "@rudderstack/rudder-integration-braze-react-native": "*",
