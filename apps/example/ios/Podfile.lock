@@ -822,7 +822,7 @@ SPEC CHECKSUMS:
   React-runtimeexecutor: 15437b576139df27635400de0599d9844f1ab817
   ReactCommon: 349be31adeecffc7986a0de875d7fb0dcf4e251c
   RNCAsyncStorage: 8616bd5a58af409453ea4e1b246521bb76578d60
-  RNRudderSdk: 6fd7d2cf8d51b3a90361e8f45d5bd81117071483
+  RNRudderSdk: 3c7db4ba9a115902add75d7d24de61a8244ac74b
   RNScreens: 34cc502acf1b916c582c60003dc3089fa01dc66d
   RNSVG: 3a79c0c4992213e4f06c08e62730c5e7b9e4dc17
   Rudder: 7c080303528ea612f58c9f9e8fcfab92b5dbcca8
@@ -832,14 +832,14 @@ SPEC CHECKSUMS:
   Rudder-Braze: e58e0e8163a2dcf0d45ec2d12bdb0ec3329c3681
   Rudder-CleverTap: f1429a62c26b6db1d4b0c7ea50b7bd8f907625e5
   Rudder-Firebase: 1d67b8812d4131933bae7079cea40632b77b842c
-  rudder-integration-amplitude-react-native: 17be54abab33c1233f6739747bbc1284aeba24b0
-  rudder-integration-appcenter-react-native: cdf4f404ae4103aca6da1e86e702e43396177ddf
+  rudder-integration-amplitude-react-native: ee88bfd8260f7ccefa8be947b0f1d4d790e39a56
+  rudder-integration-appcenter-react-native: d44c7eeea54c6f8847444e669a0823fa7e36e0bb
   rudder-integration-appsflyer-react-native: 47eb33bed791f69f2407ce4cda2f8217fb3ffa95
-  rudder-integration-braze-react-native: a9a828bf99736e09443cece3ecd98d28c77106d1
-  rudder-integration-clevertap-react-native: 856335129e01fc2aa3c32af7d629906b48a57cfb
-  rudder-integration-firebase-react-native: d466a388ffcac33e28cba1293760a8f907caeb1b
-  rudder-integration-moengage-react-native: dde3690a87c06b3167bfd90889b9372b74a189aa
-  rudder-integration-singular-react-native: 6c5e555482f49c1347056df6db35daef1967d68d
+  rudder-integration-braze-react-native: 8f4e6044eef040fcc30c47dedc75e4723e3d15be
+  rudder-integration-clevertap-react-native: c0eaa8e396e56beb7e39f155f722a1f3f2c095a5
+  rudder-integration-firebase-react-native: c15582b7a9adb9645608b8eb36d51914fcd2a2c3
+  rudder-integration-moengage-react-native: 870429e8ac85065e01d510415c5ee9444a0833e9
+  rudder-integration-singular-react-native: fdc55984d5e7da7096e67ef3f0d6f7704db9b3b9
   Rudder-Moengage: d52f5dd84f473a96ea503e7202559464a9c523b8
   Rudder-Singular: e22a4101ce043aded86b777bea873bf6a2af42b9
   SDWebImage: b9a731e1d6307f44ca703b3976d18c24ca561e84

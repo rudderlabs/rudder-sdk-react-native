@@ -17,5 +17,9 @@
   "bugs": {
     "url": "https://github.com/rudderlabs/rudder-sdk-react-native/issues"
   },
-  "homepage": "https://github.com/rudderlabs/rudder-sdk-react-native#readme"
+  "homepage": "https://github.com/rudderlabs/rudder-sdk-react-native#readme",
+  "peerDependencies": {
+    "react-native": "^0.41.2",
+    "react": "^16.8.0 || ^17.0.0 || ^18.0.0"
+  }
 }
