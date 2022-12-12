@@ -40,6 +40,16 @@
             "glob": "libs/rudder-integration-appcenter-react-native/rudder-integration-appcenter-react-native.podspec",
             "input": ".",
             "output": "."
+          },
+          {
+            "glob": "libs/rudder-integration-appcenter-react-native/CHANGELOG.md",
+            "input": ".",
+            "output": "."
+          },
+          {
+            "glob": "LICENSE.md",
+            "input": ".",
+            "output": "."
           }
         ]
       }
