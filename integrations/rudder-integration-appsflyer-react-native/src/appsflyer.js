@@ -59,9 +59,9 @@ function setOptions(options) {
         onDeepLinkListener = options.onDeepLinkListener
     }
     if (options.timeToWaitForATTUserAuthorization) {
-        if (typeof options.timeToWaitForATTUserAuthorization !== 'number' || typeof options.timeToWaitForATTUserAuthorization === 'undefined') {
-            console.log('RudderSDK: Warn: timeToWaitForATTUserAuthorization should be a number!');
-            return;         
+        if (!Number.isInteger(options.timeToWaitForATTUserAuthorization)) {
+            console.log('RudderSDK: Warn: timeToWaitForATTUserAuthorization should be an integer!');
+            return;
         }
         timeToWaitForATTUserAuthorization = options.timeToWaitForATTUserAuthorization;
     }
