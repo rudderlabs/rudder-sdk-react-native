@@ -15,6 +15,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import rc, { RUDDER_LOG_LEVEL } from '@rudderstack/rudder-sdk-react-native';
 import { DATA_PLANE_URL, WRITE_KEY } from '@env';
+import appsflyer from 'rudder-integration-appsflyer-react-native';
+import { onAppOpenAttribution, onAttributionFailure, onDeepLink, onInstallConversionData, onInstallConversionFailure, setOneLinkCustomDomains, setOptions } from 'rudder-integration-appsflyer-react-native/src/appsflyer';
 const Stack = createNativeStackNavigator();
 const initialization = async () => {
 
@@ -22,11 +24,12 @@ const initialization = async () => {
     "devKey": "tZGiwrAUq8xLuNYb99q2VT",
     "isDebug": true,
     "onInstallConversionDataListener": true,
-    "appleAppId": "1618934842"
+    "appleAppId": "1618934842",
+    "timeToWaitForATTUserAuthorization": 60
   })
 
   const config = {
-    dataPlaneUrl: 'https://26e7-175-101-36-93.ngrok.io',
+    dataPlaneUrl: DATA_PLANE_URL,
     trackAppLifecycleEvents: true,
     autoCollectAdvertId:true,
     recordScreenViews: true,
@@ -41,7 +44,23 @@ const initialization = async () => {
     name: 'Miraj'
   };
 
-  await rc.setup('1pcZviVxgjd3rTUUmaTUBinGH0A', config);
+  onAppOpenAttribution((data) => {
+    console.log("On App Open Attribution Success and the data is ", data); 
+   })
+   onAttributionFailure((data) => {
+     console.log("On App Attribution Failure and the data is ", data);
+   })
+   onInstallConversionData((data) => {
+     console.log("On Install conversion Success data is ", data);
+   })
+   onInstallConversionFailure((data) => {
+     console.log("On Install conversion Failure data is ", data);
+   })
+   onDeepLink((data) => {
+     console.log("On Deeplink data is ", data);
+   })
+
+  await rc.setup(WRITE_KEY, config);
 
   await rc.identify("test_userIdiOS", {
     "email": "testuseriOS@example.com",
