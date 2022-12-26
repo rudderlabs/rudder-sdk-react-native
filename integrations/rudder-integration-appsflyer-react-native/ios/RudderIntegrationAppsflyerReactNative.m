@@ -6,7 +6,7 @@
 
 RCT_EXPORT_MODULE()
 
-RCT_EXPORT_METHOD(setup: (NSString*)devKey withDebug: (BOOL) isDebug withConversionDataListener: (BOOL) onInstallConversionDataListener withDeepLinkListener: (BOOL) onDeepLinkListener withAppleAppId: (NSString*) appleAppId) 
+RCT_EXPORT_METHOD(setup: (NSString*)devKey withDebug: (BOOL) isDebug withConversionDataListener: (BOOL) onInstallConversionDataListener withDeepLinkListener: (BOOL) onDeepLinkListener withAppleAppId: (NSString*) appleAppId withTimeToWaitForATTUserAuthorization: (double) timeToWaitForATTUserAuthorization) 
 {
     [[AppsFlyerLib shared] setAppsFlyerDevKey:devKey];
     [[AppsFlyerLib shared] setAppleAppID:appleAppId];
@@ -18,6 +18,9 @@ RCT_EXPORT_METHOD(setup: (NSString*)devKey withDebug: (BOOL) isDebug withConvers
     }
     if(onDeepLinkListener) {
        [AppsFlyerLib shared].deepLinkDelegate = self;
+    }
+    if(timeToWaitForATTUserAuthorization !=0) {
+         [[AppsFlyerLib shared] waitForATTUserAuthorizationWithTimeoutInterval:timeToWaitForATTUserAuthorization];
     }
     //post notification for the deep link object that the bridge is initialized and he can handle deep link
     [[AppsFlyerAttribution shared] setRNAFBridgeReady:YES];
