@@ -25,9 +25,9 @@ PODS:
   - AppCenter/Core (5.0.0)
   - AppCenter/Crashes (5.0.0):
     - AppCenter/Core
-  - AppsFlyerFramework (6.4.4):
-    - AppsFlyerFramework/Main (= 6.4.4)
-  - AppsFlyerFramework/Main (6.4.4)
+  - AppsFlyerFramework (6.9.1):
+    - AppsFlyerFramework/Main (= 6.9.1)
+  - AppsFlyerFramework/Main (6.9.1)
   - boost (1.76.0)
   - CleverTap-iOS-SDK (3.10.0):
     - SDWebImage (~> 5.1)
@@ -493,8 +493,8 @@ PODS:
   - Rudder-AppCenter (1.0.1):
     - AppCenter
     - Rudder
-  - Rudder-Appsflyer (2.0.0):
-    - AppsFlyerFramework (~> 6.4.3)
+  - Rudder-Appsflyer (2.2.0):
+    - AppsFlyerFramework (~> 6.9.1)
     - Rudder (~> 1.0)
   - Rudder-Braze (1.0.3):
     - Appboy-iOS-SDK (= 4.4.2)
@@ -536,9 +536,9 @@ PODS:
   - Rudder-Singular (1.0.0):
     - Rudder (~> 1.0)
     - Singular-SDK (= 11.0.4)
-  - SDWebImage (5.14.2):
-    - SDWebImage/Core (= 5.14.2)
-  - SDWebImage/Core (5.14.2)
+  - SDWebImage (5.14.3):
+    - SDWebImage/Core (= 5.14.3)
+  - SDWebImage/Core (5.14.3)
   - Singular-SDK (11.0.4):
     - Singular-SDK/Main (= 11.0.4)
   - Singular-SDK/Main (11.0.4)
@@ -762,7 +762,7 @@ SPEC CHECKSUMS:
   Amplitude: 517cdc7c485bda64b685174426ecbf17746eb16a
   Appboy-iOS-SDK: 4a7dfe908639da81e5e85849355f6066b58b4cc6
   AppCenter: 30ac5adefc8fc41d9530f1cc91829810a6af4c93
-  AppsFlyerFramework: 6ea252ecb04cf443550576922cddb95b35c958ed
+  AppsFlyerFramework: dc9aa675faa8e1a2ed40fb295d3c5408ee2b972a
   boost: a7c83b31436843459a1961bfd74b96033dc77234
   CleverTap-iOS-SDK: 1e38a25eee5bdb3e525c5c8497504bc64b7d695d
   CocoaAsyncSocket: 065fd1e645c7abab64f7a6a2007a48038fdc6a99
@@ -828,7 +828,7 @@ SPEC CHECKSUMS:
   Rudder: 7c080303528ea612f58c9f9e8fcfab92b5dbcca8
   Rudder-Amplitude: f845cc125a1a58d4de6155391a2b0392815ae898
   Rudder-AppCenter: 9eca9241e3707a0e9610714dd91dc8da4bae7e1f
-  Rudder-Appsflyer: c60efa0d7711d0d09a49a3733f11551ee38800cc
+  Rudder-Appsflyer: b19834ae8d933444411813556e0fe70a33df224a
   Rudder-Braze: e58e0e8163a2dcf0d45ec2d12bdb0ec3329c3681
   Rudder-CleverTap: f1429a62c26b6db1d4b0c7ea50b7bd8f907625e5
   Rudder-Firebase: 1d67b8812d4131933bae7079cea40632b77b842c
@@ -842,7 +842,7 @@ SPEC CHECKSUMS:
   rudder-integration-singular-react-native: fdc55984d5e7da7096e67ef3f0d6f7704db9b3b9
   Rudder-Moengage: d52f5dd84f473a96ea503e7202559464a9c523b8
   Rudder-Singular: e22a4101ce043aded86b777bea873bf6a2af42b9
-  SDWebImage: b9a731e1d6307f44ca703b3976d18c24ca561e84
+  SDWebImage: 9c36e66c8ce4620b41a7407698dda44211a96764
   Singular-SDK: 614350e3ed21a06b02ab165b370b212f8aaacf2b
   SocketRocket: fccef3f9c5cedea1353a9ef6ada904fde10d6608
   Yoga: 99caf8d5ab45e9d637ee6e0174ec16fbbb01bcfc
