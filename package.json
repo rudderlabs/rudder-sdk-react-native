@@ -140,7 +140,8 @@
     "jest": "29.3.1",
     "semver-regex": "3.1.4",
     "shell-quote": "1.7.3",
-    "trim-newlines": "3.0.1"
+    "trim-newlines": "3.0.1",
+    "json5": "2.2.3"
   },
   "lint-staged": {
     "*.{js,ts,tsx}": "eslint --cache --fix",
