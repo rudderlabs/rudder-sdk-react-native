@@ -8,7 +8,7 @@ import com.facebook.react.ReactRootView;
 
 import com.moengage.core.LogLevel;
 import com.moengage.core.MoEngage;
-import com.moengage.core.config.FcmConfig;
+import com.moengage.core.config.LogConfig;
 
 public class MainActivity extends ReactActivity {
 
@@ -36,15 +36,10 @@ public class MainActivity extends ReactActivity {
     super.onCreate(savedInstanceState);
 
     // MoEngage SDK initialisation: Replace "xxxxxxx" with your APP ID.
-    MoEngage moEngage = new MoEngage
-      .Builder(MainActivity.this.getApplication(), "xxxxxxx")
-//      .setNotificationSmallIcon(R.drawable.ic_launcher_background)
-//      .setNotificationLargeIcon(R.drawable.ic_launcher_background)
-      .enableLogs(LogLevel.VERBOSE)
-//            .configureFcm(new FcmConfig(false))
+    MoEngage moEngage = new MoEngage.Builder(MainActivity.this.getApplication(), "9CPVSGMJ6O0VL57NHN91QMSS")
+      .configureLogs(new LogConfig(LogLevel.VERBOSE, false))
       .build();
-
-    MoEngage.initialise(moEngage);
+    MoEngage.initialiseDefaultInstance(moEngage);
   }
 
   public static class MainActivityDelegate extends ReactActivityDelegate {
