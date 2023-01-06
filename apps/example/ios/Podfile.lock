@@ -187,7 +187,7 @@ PODS:
   - GoogleUtilities/UserDefaults (7.10.0):
     - GoogleUtilities/Logger
   - libevent (2.1.12)
-  - MoEngage-iOS-SDK (9.1.0)
+  - MoEngage-iOS-SDK (6.1.1)
   - nanopb (2.30908.0):
     - nanopb/decode (= 2.30908.0)
     - nanopb/encode (= 2.30908.0)
@@ -496,7 +496,7 @@ PODS:
   - Rudder-Appsflyer (2.2.0):
     - AppsFlyerFramework (~> 6.9.1)
     - Rudder (~> 1.0)
-  - Rudder-Braze (1.1.0):
+  - Rudder-Braze (1.0.3):
     - Appboy-iOS-SDK (= 4.4.2)
     - Rudder (~> 1.0)
   - Rudder-CleverTap (1.0.3):
@@ -530,9 +530,9 @@ PODS:
   - rudder-integration-singular-react-native (1.0.1):
     - React
     - Rudder-Singular
-  - Rudder-Moengage (2.0.0):
-    - MoEngage-iOS-SDK (= 9.1.0)
-    - Rudder (~> 1.0)
+  - Rudder-Moengage (1.0.0):
+    - MoEngage-iOS-SDK (~> 6.1.0)
+    - Rudder
   - Rudder-Singular (1.0.0):
     - Rudder (~> 1.0)
     - Singular-SDK (= 11.0.4)
@@ -789,7 +789,7 @@ SPEC CHECKSUMS:
   GoogleDataTransport: 1c8145da7117bd68bbbed00cf304edb6a24de00f
   GoogleUtilities: bad72cb363809015b1f7f19beb1f1cd23c589f95
   libevent: 4049cae6c81cdb3654a443be001fb9bdceff7913
-  MoEngage-iOS-SDK: 753fc30ecc1aea4fd966052c441b742a3eb29104
+  MoEngage-iOS-SDK: 47c685f40824ceae1fe0c252d1dc0e85d0f10247
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
   OpenSSL-Universal: ebc357f1e6bc71fa463ccb2fe676756aff50e88c
   PromisesObjC: ab77feca74fa2823e7af4249b8326368e61014cb
@@ -829,7 +829,7 @@ SPEC CHECKSUMS:
   Rudder-Amplitude: f845cc125a1a58d4de6155391a2b0392815ae898
   Rudder-AppCenter: 9eca9241e3707a0e9610714dd91dc8da4bae7e1f
   Rudder-Appsflyer: b19834ae8d933444411813556e0fe70a33df224a
-  Rudder-Braze: 2a1cdcdf062dc4c2f6cbd7c19fb59769da3e2432
+  Rudder-Braze: e58e0e8163a2dcf0d45ec2d12bdb0ec3329c3681
   Rudder-CleverTap: f1429a62c26b6db1d4b0c7ea50b7bd8f907625e5
   Rudder-Firebase: 1d67b8812d4131933bae7079cea40632b77b842c
   rudder-integration-amplitude-react-native: ee88bfd8260f7ccefa8be947b0f1d4d790e39a56
@@ -840,7 +840,7 @@ SPEC CHECKSUMS:
   rudder-integration-firebase-react-native: c15582b7a9adb9645608b8eb36d51914fcd2a2c3
   rudder-integration-moengage-react-native: 870429e8ac85065e01d510415c5ee9444a0833e9
   rudder-integration-singular-react-native: fdc55984d5e7da7096e67ef3f0d6f7704db9b3b9
-  Rudder-Moengage: 9f70d7d89c84a03c088073ddbc90ffd5afd4c187
+  Rudder-Moengage: d52f5dd84f473a96ea503e7202559464a9c523b8
   Rudder-Singular: e22a4101ce043aded86b777bea873bf6a2af42b9
   SDWebImage: 9c36e66c8ce4620b41a7407698dda44211a96764
   Singular-SDK: 614350e3ed21a06b02ab165b370b212f8aaacf2b
