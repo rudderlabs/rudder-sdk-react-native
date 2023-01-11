@@ -1,6 +1,6 @@
 import bridge from './bridge';
 import { isString, isStringArray, getStringArray } from './util';
-import { NativeEventEmitter, NativeModules } from 'react-native';
+import { Platform, NativeEventEmitter, NativeModules } from 'react-native';
 
 const { RudderIntegrationAppsflyerReactNative } = NativeModules;
 const appsFlyerEventEmitter = new NativeEventEmitter(RudderIntegrationAppsflyerReactNative);
@@ -10,15 +10,26 @@ let appleAppId = '';
 let isDebug = false;
 let onInstallConversionDataListener = true;
 let onDeepLinkListener = false;
+let timeToWaitForATTUserAuthorization = 0;
 
 async function setup() {
-  await bridge.setup(
-    devKey,
-    isDebug === true,
-    onInstallConversionDataListener === true,
-    onDeepLinkListener === true,
-    appleAppId,
-  );
+  if (Platform.OS === 'ios') {
+    await bridge.setup(
+      devKey,
+      isDebug === true,
+      onInstallConversionDataListener === true,
+      onDeepLinkListener === true,
+      appleAppId,
+      timeToWaitForATTUserAuthorization,
+    );
+  } else if (Platform.OS === 'android') {
+    await bridge.setup(
+      devKey,
+      isDebug === true,
+      onInstallConversionDataListener === true,
+      onDeepLinkListener === true,
+    );
+  }
 }
 
 function setOptions(options: any) {
@@ -57,6 +68,13 @@ function setOptions(options: any) {
       return;
     }
     onDeepLinkListener = options.onDeepLinkListener;
+  }
+  if (options.timeToWaitForATTUserAuthorization) {
+    if (!Number.isInteger(options.timeToWaitForATTUserAuthorization)) {
+      console.log('RudderSDK: Warn: timeToWaitForATTUserAuthorization should be an integer!');
+      return;
+    }
+    timeToWaitForATTUserAuthorization = options.timeToWaitForATTUserAuthorization;
   }
 }
 

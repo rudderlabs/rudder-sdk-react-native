@@ -12,6 +12,11 @@ import firebase from '@rudderstack/rudder-integration-firebase-react-native';
 import moengage from '@rudderstack/rudder-integration-moengage-react-native';
 import singular from '@rudderstack/rudder-integration-singular-react-native';
 import appsflyer, {
+  onAppOpenAttribution,
+  onAttributionFailure,
+  onDeepLink,
+  onInstallConversionData,
+  onInstallConversionFailure,
   setOneLinkCustomDomains,
   setOptions,
 } from '@rudderstack/rudder-integration-appsflyer-react-native';
@@ -27,6 +32,7 @@ const initialization = async () => {
     isDebug: true,
     onInstallConversionDataListener: true,
     appleAppId: APPSFLYER_APPLE_ID,
+    timeToWaitForATTUserAuthorization: 60,
   });
 
   const config = {
@@ -62,6 +68,26 @@ const initialization = async () => {
     k3: 'v3',
     name: 'Miraj',
   };
+
+  onAppOpenAttribution((data) => {
+    console.log('On App Open Attribution Success and the data is ', data);
+  });
+
+  onAttributionFailure((data) => {
+    console.log('On App Attribution Failure and the data is ', data);
+  });
+
+  onInstallConversionData((data) => {
+    console.log('On Install conversion Success data is ', data);
+  });
+
+  onInstallConversionFailure((data) => {
+    console.log('On Install conversion Failure data is ', data);
+  });
+
+  onDeepLink((data) => {
+    console.log('On Deeplink data is ', data);
+  });
 
   await rc.setup(TEST_WRITE_KEY, config);
 
