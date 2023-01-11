@@ -36,6 +36,7 @@ testem.log
 lcov.info
 merged-lcov.info
 /.scannerwork
+xcshareddata/
 
 # System Files
 .DS_Store

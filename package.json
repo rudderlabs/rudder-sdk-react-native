@@ -23,6 +23,7 @@
     "bundle:ci": "nx bundle-android example && nx bundle-ios example",
     "run:android": "nx run-android example",
     "run:ios": "nx run-ios example",
+    "run:ios:m1": "arch -x86_64 nx run-ios example",
     "build": "nx build",
     "build:android": "nx build-android example",
     "build:ios": "nx build-ios example",
