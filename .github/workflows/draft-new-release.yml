@@ -6,7 +6,7 @@ on:
 jobs:
   draft-new-release:
     name: Draft a new release
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
     if: startsWith(github.ref, 'refs/heads/develop') || startsWith(github.ref, 'refs/heads/hotfix/')
     steps:
       - name: Checkout source branch
@@ -15,20 +15,6 @@ jobs:
           fetch-depth: 0
       - run: |
           git fetch --no-tags --prune --depth=5 origin master
-
-      - name: Setup Java
-        uses: actions/setup-java@v2
-        with:
-          distribution: 'zulu'
-          java-version: '11'
-
-      - name: Setup Ruby
-        uses: ruby/setup-ruby@v1
-
-      - name: Setup CocoaPods
-        uses: maxim-lobanov/setup-cocoapods@v1
-        with:
-          version: 1.11.3
 
       - name: Setup Node
         uses: actions/setup-node@v3
