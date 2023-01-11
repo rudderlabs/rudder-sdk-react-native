@@ -24,8 +24,8 @@
           <category android:name="android.intent.category.DEFAULT" />
           <category android:name="android.intent.category.BROWSABLE" />
           <data
-            android:host="rudderstack.onelink.me"
-            android:pathPrefix="/vU3G"
+            android:host="ruddercas.onelink.me"
+            android:pathPrefix="/{onelinkID}"
             android:scheme="https" />
         </intent-filter>
         <intent-filter>
@@ -34,7 +34,7 @@
           <category android:name="android.intent.category.BROWSABLE" />
           <data
             android:host="mainactivity"
-            android:scheme="rudderrn" />
+            android:scheme="rnsample" />
         </intent-filter>
       </activity>
       <activity
