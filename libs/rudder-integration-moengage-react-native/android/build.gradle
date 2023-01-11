@@ -45,5 +45,5 @@ dependencies {
     implementation 'com.rudderstack.android.integration:moengage:[1.0,)'
 
     // moengage dependencies
-    implementation 'com.moengage:moe-android-sdk:10.6.01'
+    implementation 'com.moengage:moe-android-sdk:12.5.04'
 }

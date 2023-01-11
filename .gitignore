@@ -37,6 +37,7 @@ lcov.info
 merged-lcov.info
 /.scannerwork
 xcshareddata/
+xcodebuild.log
 
 # System Files
 .DS_Store

@@ -27,6 +27,21 @@ jest.mock('react-native', () => {
   RN.NativeModules.RudderIntegrationCleverTapReactNative = {
     setup: jest.fn(),
   };
+  RN.NativeModules.RudderIntegrationAmplitudeReactNative = {
+    setup: jest.fn(),
+  };
+  RN.NativeModules.RudderIntegrationBrazeReactNative = {
+    setup: jest.fn(),
+  };
+  RN.NativeModules.RudderIntegrationFirebaseReactNative = {
+    setup: jest.fn(),
+  };
+  RN.NativeModules.RudderIntegrationMoengageReactNative = {
+    setup: jest.fn(),
+  };
+  RN.NativeModules.RudderIntegrationSingularReactNative = {
+    setup: jest.fn(),
+  };
 
   // mock modules created through UIManager
   // RN.UIManager.getViewManagerConfig = name => {

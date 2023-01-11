@@ -4,22 +4,29 @@ import { Button, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import rc, { RUDDER_LOG_LEVEL } from '@rudderstack/rudder-sdk-react-native';
+import amplitude from '@rudderstack/rudder-integration-amplitude-react-native';
+import appcenter from '@rudderstack/rudder-integration-appcenter-react-native';
+import braze from '@rudderstack/rudder-integration-braze-react-native';
+import clevertap from '@rudderstack/rudder-integration-clevertap-react-native';
+import firebase from '@rudderstack/rudder-integration-firebase-react-native';
+import moengage from '@rudderstack/rudder-integration-moengage-react-native';
+import singular from '@rudderstack/rudder-integration-singular-react-native';
 import appsflyer, {
   setOneLinkCustomDomains,
   setOptions,
 } from '@rudderstack/rudder-integration-appsflyer-react-native';
 // @ts-ignore
-import { TEST_DATAPLANE_URL, TEST_WRITE_KEY } from '@env';
+import { TEST_DATAPLANE_URL, TEST_WRITE_KEY, APPSFLYER_DEV_KEY, APPSFLYER_APPLE_ID } from '@env';
 
 const Stack = createNativeStackNavigator();
 
 const initialization = async () => {
   // TODO: get all secret details in .env file
   setOptions({
-    devKey: 'tZGiwrAUq8xLuNYb99q2VT',
+    devKey: APPSFLYER_DEV_KEY,
     isDebug: true,
     onInstallConversionDataListener: true,
-    appleAppId: '1618934842',
+    appleAppId: APPSFLYER_APPLE_ID,
   });
 
   const config = {
@@ -28,7 +35,25 @@ const initialization = async () => {
     autoCollectAdvertId: true,
     recordScreenViews: true,
     logLevel: RUDDER_LOG_LEVEL.VERBOSE,
-    withFactories: [appsflyer],
+    withFactories: [
+      appsflyer,
+      amplitude,
+      appcenter,
+      braze,
+      clevertap,
+      firebase,
+      moengage,
+      singular,
+    ],
+  };
+
+  const options = {
+    externalIds: [
+      {
+        id: '2d31d085-4d93-4126-b2b3-94e651810673',
+        type: 'brazeExternalId',
+      },
+    ],
   };
 
   const props = {
@@ -40,10 +65,14 @@ const initialization = async () => {
 
   await rc.setup(TEST_WRITE_KEY, config);
 
-  await rc.identify('test_userIdiOS', {
-    email: 'testuseriOS@example.com',
-    location: 'UK',
-  });
+  await rc.identify(
+    'test_userIdiOS',
+    {
+      email: 'testuseriOS@example.com',
+      location: 'UK',
+    },
+    options,
+  );
   await rc.track('React Native event', props);
   await rc.screen('React Native screen', props);
 
