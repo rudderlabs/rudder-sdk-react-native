@@ -1,0 +1,47 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es5",
+    "module": "esnext",
+    "lib": ["es2017", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "resolveJsonModule": true,
+    "baseUrl": "./",
+    "paths": {
+      "@rudderstack/rudder-integration-amplitude-react-native": [
+        "libs/rudder-integration-amplitude-react-native/src/index.ts"
+      ],
+      "@rudderstack/rudder-integration-appcenter-react-native": [
+        "libs/rudder-integration-appcenter-react-native/src/index.ts"
+      ],
+      "@rudderstack/rudder-integration-appsflyer-react-native": [
+        "libs/rudder-integration-appsflyer-react-native/src/index.ts"
+      ],
+      "@rudderstack/rudder-integration-braze-react-native": [
+        "libs/rudder-integration-braze-react-native/src/index.ts"
+      ],
+      "@rudderstack/rudder-integration-clevertap-react-native": [
+        "libs/rudder-integration-clevertap-react-native/src/index.ts"
+      ],
+      "@rudderstack/rudder-integration-firebase-react-native": [
+        "libs/rudder-integration-firebase-react-native/src/index.ts"
+      ],
+      "@rudderstack/rudder-integration-moengage-react-native": [
+        "libs/rudder-integration-moengage-react-native/src/index.ts"
+      ],
+      "@rudderstack/rudder-integration-singular-react-native": [
+        "libs/rudder-integration-singular-react-native/src/index.ts"
+      ],
+      "@rudderstack/rudder-sdk-react-native": ["libs/sdk/src/index.ts"]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}

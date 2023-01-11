@@ -6,7 +6,7 @@ More information on RudderStack can be found [here](https://github.com/rudderlab
 
 ## RudderStack React Native SDK
 
-The RudderStack React Native SDK allows you to track event data from your app. It can be easily integrated into your React Native application. After integrating this SDK, you will also send the event data to your preferred analytics destination/s, such as Google Analytics, Amplitude, and more. 
+The RudderStack React Native SDK allows you to track event data from your app. It can be easily integrated into your React Native application. After integrating this SDK, you will also send the event data to your preferred analytics destination/s, such as Google Analytics, Amplitude, and more.
 
 ## Getting Started with React Native SDK
 
@@ -45,7 +45,7 @@ Add the below line to `import` the rudderClient.
 import rudderClient, { RUDDER_LOG_LEVEL } from '@rudderstack/rudder-sdk-react-native';
 ```
 
-## Initialize ```RudderClient```
+## Initialize `RudderClient`
 
 Add the following code in your application:
 
@@ -74,6 +74,7 @@ rudderClient.track("simple_track_event", {
 You can use the `putDeviceToken` method to pass your Android and iOS device tokens.
 
 `putDeviceToken` accepts two `string` arguments :
+
 - `androidToken` : Your Android device token
 - `iOSToken` : Your iOS device token
 
@@ -87,6 +88,7 @@ rudderClient.putDeviceToken("<Your Android device token>", "<Your iOS device tok
 
 You can use the `setAdvertisingId` method to pass your Android and iOS AAID and IDFA respectively.
 `setAdvertisingId` accepts two `string` arguments :
+
 - `androidId` : Your Android advertisingId (AAID)
 - `iOSId` : Your iOS advertisingId (IDFA)
 
@@ -100,6 +102,7 @@ rudderClient.setAdvertisingId(AAID, IDFA);
 
 You can use the `setAnonymousId` method to pass your `anonymousId` and the SDK will use that instead of the `deviceId`.
 `setAnonymousId` accepts one `string` argument:
+
 - `id` : Your anonymousId
 
 Example Usage:
