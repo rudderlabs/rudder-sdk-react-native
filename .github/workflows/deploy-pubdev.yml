@@ -63,7 +63,7 @@ jobs:
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
           PROJECT_NAME: 'Flutter SDK pub.dev packages'
-          NPM_PACKAGE_URL: 'https://pub.dev/packages?q=rudder`
+          NPM_PACKAGE_URL: 'https://pub.dev/packages?q=rudder'
         with:
           channel-id: ${{ secrets.SLACK_CHANNEL_ID }}
           payload: |
