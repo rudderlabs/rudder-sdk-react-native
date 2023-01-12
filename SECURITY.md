@@ -10,10 +10,10 @@ We will triage the issue, contact you for further instructions and make sure to 
 
 We will fix any security bugs for the latest major.minor version of the SDK.
 
-| Version | Supported |
-| :-------| :---------|
-| Latest 1.x | ✅ |
-| Older 1.x | ❌ |
-| < 1.0 | ❌ |
+| Version    | Supported |
+| :--------- | :-------- |
+| Latest 1.x | ✅        |
+| Older 1.x  | ❌        |
+| < 1.0      | ❌        |
 
 We may fix the vulnerabilities in the older versions depending on the severity of the issue and the age of the release, but we are only committing to the latest version released.
