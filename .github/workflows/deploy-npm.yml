@@ -26,7 +26,8 @@ jobs:
           cache: 'npm'
 
       - name: Setup npm login
-        run: echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}' > .npmrc
+        run: |
+          echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}' > .npmrc
 
       - name: Install node_modules
         env:

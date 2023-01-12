@@ -79,6 +79,10 @@ jobs:
         run: |
           npm run build:android
 
+      - name: Add GoogleService-Info.plist
+        run: |
+          echo '${GOOGLESERVICE_INFO_PLIST_FILE}' > apps/example/ios/GoogleService-Info.plist
+
       - name: Xcode Version
         run: |
           xcode-select -p
