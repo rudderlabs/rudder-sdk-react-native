@@ -76,6 +76,7 @@ jobs:
           npx replace $CURRENT_VERSION_VALUE $NEW_VERSION_VALUE sonar-project.properties
           git add sonar-project.properties
           npm run release
+          npm run bump-version:monorepo
 
       - name: Push new versions in release branch
         run: |

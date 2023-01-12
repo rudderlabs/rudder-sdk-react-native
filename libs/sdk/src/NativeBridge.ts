@@ -11,6 +11,7 @@ export interface Configuration {
   trackAppLifecycleEvents?: boolean;
   recordScreenViews?: boolean;
   logLevel?: number;
+  // eslint-disable-next-line @typescript-eslint/ban-types
   withFactories?: Array<Record<string, unknown> | Function>;
 }
 
@@ -43,6 +44,7 @@ export interface Bridge {
   putDeviceToken(token: string): Promise<void>;
   putAdvertisingId(id: string): Promise<void>;
   putAnonymousId(id: string): Promise<void>;
+  // eslint-disable-next-line @typescript-eslint/ban-types
   registerCallback(integrationName: string, callback: Function): Promise<void>;
   getRudderContext(): Promise<void>;
 }

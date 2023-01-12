@@ -478,7 +478,7 @@ PODS:
     - React-perflogger (= 0.70.6)
   - RNCAsyncStorage (1.17.11):
     - React-Core
-  - RNRudderSdk (1.5.1):
+  - RNRudderSdk (1.5.2):
     - React
     - Rudder (~> 1.6.0)
   - RNScreens (3.18.2):
@@ -505,29 +505,29 @@ PODS:
   - Rudder-Firebase (2.0.6):
     - Firebase/Analytics (~> 8.15.0)
     - Rudder (~> 1.0)
-  - rudder-integration-amplitude-react-native (1.0.1):
+  - rudder-integration-amplitude-react-native (1.0.2):
     - React
     - Rudder-Amplitude
-  - rudder-integration-appcenter-react-native (1.0.2):
+  - rudder-integration-appcenter-react-native (1.0.3):
     - React
     - Rudder-AppCenter
-  - rudder-integration-appsflyer-react-native (1.5.0):
+  - rudder-integration-appsflyer-react-native (1.5.1):
     - React
     - Rudder-Appsflyer (>= 2.2.0)
-  - rudder-integration-braze-react-native (1.0.2):
+  - rudder-integration-braze-react-native (1.0.3):
     - React
     - Rudder-Braze
-  - rudder-integration-clevertap-react-native (1.0.2):
+  - rudder-integration-clevertap-react-native (1.0.3):
     - CleverTap-iOS-SDK
     - React
     - Rudder-CleverTap (~> 1.0)
-  - rudder-integration-firebase-react-native (1.0.9):
+  - rudder-integration-firebase-react-native (1.0.10):
     - React
     - Rudder-Firebase (>= 2.0.3)
-  - rudder-integration-moengage-react-native (1.0.1):
+  - rudder-integration-moengage-react-native (1.0.2):
     - React
     - Rudder-Moengage
-  - rudder-integration-singular-react-native (1.0.1):
+  - rudder-integration-singular-react-native (1.0.2):
     - React
     - Rudder-Singular
   - Rudder-Moengage (2.0.0):
@@ -822,7 +822,7 @@ SPEC CHECKSUMS:
   React-runtimeexecutor: 15437b576139df27635400de0599d9844f1ab817
   ReactCommon: 349be31adeecffc7986a0de875d7fb0dcf4e251c
   RNCAsyncStorage: 8616bd5a58af409453ea4e1b246521bb76578d60
-  RNRudderSdk: 3c7db4ba9a115902add75d7d24de61a8244ac74b
+  RNRudderSdk: 07f732edfe473ef67b8cc6ad1800ddb81b78286f
   RNScreens: 34cc502acf1b916c582c60003dc3089fa01dc66d
   RNSVG: d787d64ca06b9158e763ad2638a8c4edce00782a
   Rudder: 7c080303528ea612f58c9f9e8fcfab92b5dbcca8
@@ -832,14 +832,14 @@ SPEC CHECKSUMS:
   Rudder-Braze: 2a1cdcdf062dc4c2f6cbd7c19fb59769da3e2432
   Rudder-CleverTap: f1429a62c26b6db1d4b0c7ea50b7bd8f907625e5
   Rudder-Firebase: 1d67b8812d4131933bae7079cea40632b77b842c
-  rudder-integration-amplitude-react-native: ee88bfd8260f7ccefa8be947b0f1d4d790e39a56
-  rudder-integration-appcenter-react-native: d44c7eeea54c6f8847444e669a0823fa7e36e0bb
-  rudder-integration-appsflyer-react-native: e56636a87e1e50b28e4db56baada5aef693d5a6e
-  rudder-integration-braze-react-native: 8f4e6044eef040fcc30c47dedc75e4723e3d15be
-  rudder-integration-clevertap-react-native: c0eaa8e396e56beb7e39f155f722a1f3f2c095a5
-  rudder-integration-firebase-react-native: c15582b7a9adb9645608b8eb36d51914fcd2a2c3
-  rudder-integration-moengage-react-native: 870429e8ac85065e01d510415c5ee9444a0833e9
-  rudder-integration-singular-react-native: fdc55984d5e7da7096e67ef3f0d6f7704db9b3b9
+  rudder-integration-amplitude-react-native: b573c8bfe2cdec84593d8ca3ffc504300a3cecbc
+  rudder-integration-appcenter-react-native: f0b60bf902b1451333782dc75f0964ef9e9b4a8e
+  rudder-integration-appsflyer-react-native: 1fe9d676047c86d64eeb7e63d960d52c28e60f8d
+  rudder-integration-braze-react-native: a95e0f28ded27995e3c785fed23b11a66f08ec03
+  rudder-integration-clevertap-react-native: 3a1ac4272eca148a5a256cc44b02ee8cba20d0cc
+  rudder-integration-firebase-react-native: 2929e402c712a8e4103e6ed78bdbcb691a7d275f
+  rudder-integration-moengage-react-native: c24dbde1c18ba1276cba0022f3f1962cd78758f3
+  rudder-integration-singular-react-native: da58d161ea58aaf465c4f380bf61e5fea3b2486a
   Rudder-Moengage: 9f70d7d89c84a03c088073ddbc90ffd5afd4c187
   Rudder-Singular: e22a4101ce043aded86b777bea873bf6a2af42b9
   SDWebImage: 9c36e66c8ce4620b41a7407698dda44211a96764
