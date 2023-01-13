@@ -88,7 +88,8 @@
     "version": {
       "executor": "@jscutlery/semver:version",
       "options": {
-        "preset": "conventional"
+        "preset": "conventional",
+        "tagPrefix": "${projectName}@"
       }
     },
     "deploy": {
