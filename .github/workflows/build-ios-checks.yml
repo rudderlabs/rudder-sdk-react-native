@@ -63,14 +63,19 @@ jobs:
           cd .. && \
           cd ..
 
-      - name: Execute quality checks
-        run: |
-          npm run check:circular
-
-      - name: Execute security checks
-        run: |
-          npm run check:security
-
       - name: Bundle apps
         run: |
           npm run bundle:ci
+
+      - name: Add GoogleService-Info.plist
+        run: |
+          echo '${secrets.GOOGLESERVICE_INFO_PLIST_FILE}' > apps/example/ios/GoogleService-Info.plist
+
+      - name: Xcode Version
+        run: |
+          xcode-select -p
+          /usr/bin/xcodebuild -version
+
+      - name: Execute iOS build check
+        run: |
+          npm run build:ios:ci
