@@ -35,8 +35,8 @@ public class MainActivity extends ReactActivity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
 
-    // MoEngage SDK initialisation: Replace "xxxxxxx" with your APP ID.
-    MoEngage moEngage = new MoEngage.Builder(MainActivity.this.getApplication(), "xxxxxxx")
+    // MoEngage SDK initialisation: Set your APP ID in .env file.
+    MoEngage moEngage = new MoEngage.Builder(MainActivity.this.getApplication(), BuildConfig.MOENGAGE_ANDROID_APP_ID)
       .configureLogs(new LogConfig(LogLevel.VERBOSE, false))
       .build();
     MoEngage.initialiseDefaultInstance(moEngage);
