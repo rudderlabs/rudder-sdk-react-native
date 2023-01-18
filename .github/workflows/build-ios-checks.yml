@@ -69,7 +69,11 @@ jobs:
 
       - name: Add GoogleService-Info.plist
         run: |
+          pwd
           echo '${secrets.GOOGLESERVICE_INFO_PLIST_FILE}' > apps/example/ios/GoogleService-Info.plist
+          echo "$( < apps/example/ios/GoogleService-Info.plist)"
+          cd apps/example/ios
+          ls -li
 
       - name: Xcode Version
         run: |
