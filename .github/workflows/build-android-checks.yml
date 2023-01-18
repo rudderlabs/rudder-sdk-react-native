@@ -1,4 +1,4 @@
-name: Build & Code Quality Checks
+name: Check Android Build
 
 on:
   pull_request:
@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    name: Build & Code Quality Checks
+    name: Check Android Build
     runs-on: macos-latest
 
     steps:
