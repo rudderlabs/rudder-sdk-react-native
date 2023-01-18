@@ -91,7 +91,8 @@
       "executor": "@jscutlery/semver:version",
       "options": {
         "baseBranch": "master",
-        "preset": "conventional"
+        "preset": "conventional",
+        "tagPrefix": "${projectName}@"
       }
     },
     "deploy": {

@@ -1,4 +1,4 @@
-name: Build & Code Quality Checks
+name: Check Android Build
 
 on:
   pull_request:
@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    name: Build & Code Quality Checks
+    name: Check Android Build
     runs-on: macos-latest
 
     steps:
@@ -35,14 +35,10 @@ jobs:
         run: |
           npm run setup:ci
 
-      - name: Execute quality checks
-        run: |
-          npm run check:circular
-
-      - name: Execute security checks
-        run: |
-          npm run check:security
-
       - name: Bundle apps
         run: |
           npm run bundle:ci
+
+      - name: Execute android build check
+        run: |
+          npm run build:android

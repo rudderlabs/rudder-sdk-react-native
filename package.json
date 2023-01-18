@@ -45,7 +45,7 @@
     "bump-version:monorepo": "npm version minor --git-tag-version false",
     "release:prepare": "nx affected --base=origin/master --target=version --skipCommit --parallel=1 --skipCommitTypes=docs,ci,chore",
     "release": "nx affected --base=origin/master --target=version --parallel=1 --skipCommitTypes=docs,ci,chore",
-    "release:github": "npx conventional-github-releaser -p angular",
+    "release:github": "DEBUG=conventional-github-releaser npx conventional-github-releaser -p angular --config github-release.config.js",
     "deploy:npm": "nx affected --target=deploy --parallel=1 --exclude=example,example-e2e"
   },
   "private": true,
