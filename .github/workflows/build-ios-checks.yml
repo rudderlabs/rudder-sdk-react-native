@@ -74,6 +74,7 @@ jobs:
           echo "$( < apps/example/ios/GoogleService-Info.plist)"
           cd apps/example/ios
           ls -li
+
       - name: Xcode Version
         run: |
           xcode-select -p
