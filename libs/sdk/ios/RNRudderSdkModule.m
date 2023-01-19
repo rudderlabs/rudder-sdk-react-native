@@ -219,11 +219,15 @@ RCT_EXPORT_METHOD(getRudderContext:(RCTPromiseResolveBlock)resolve rejecter:(RCT
 
 -(RSOption*) getRudderOptionsObject:(NSDictionary *) optionsDict {
     RSOption * options = [[RSOption alloc]init];
-    if([optionsDict objectForKey:@"externalIds"])
-    {
-        NSArray *externalIdsArray =  [optionsDict objectForKey:@"externalIds"];
-        for(NSDictionary *externalId in externalIdsArray) {
-            [options putExternalId:[externalId objectForKey:@"type"] withId:[externalId objectForKey:@"id"]];
+    NSArray *externalIdKeys = @[@"externalId", @"externalIds"];
+    for (NSString *externalIdKey in externalIdKeys) {
+        if([optionsDict objectForKey:externalIdKey])
+        {
+            NSArray *externalIdsArray =  [optionsDict objectForKey:externalIdKey];
+            for(NSDictionary *externalId in externalIdsArray) {
+                [options putExternalId:[externalId objectForKey:@"type"] withId:[externalId objectForKey:@"id"]];
+            }
+            break;
         }
     }
     if([optionsDict objectForKey:@"integrations"])
