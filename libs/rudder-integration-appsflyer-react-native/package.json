@@ -1,7 +1,7 @@
 {
   "name": "@rudderstack/rudder-integration-appsflyer-react-native",
   "title": "Rudder Integration Appsflyer React Native",
-  "version": "1.5.1",
+  "version": "0.0.1",
   "description": "Rudder React Native SDK Appsflyer Device mode support for Android and iOS",
   "keywords": [
     "react-native",
