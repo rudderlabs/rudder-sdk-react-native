@@ -1,7 +1,7 @@
 {
   "name": "@rudderstack/rudder-integration-braze-react-native",
   "title": "Rudder Integration Braze React Native",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Rudder React Native SDK Braze Device mode support for Android and iOS",
   "keywords": [
     "react-native",
