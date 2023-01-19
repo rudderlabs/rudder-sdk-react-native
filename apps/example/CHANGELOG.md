@@ -2,6 +2,19 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## 0.1.0 (2023-01-19)
+
+
+### Features
+
+* add support for externalId key ([b02658b](https://github.com/rudderlabs/rudder-sdk-react-native/commit/b02658be45bdff13a892e01a58dd1535b0443bd0))
+* **android-app:** add moengage key from .env file ([afb27c9](https://github.com/rudderlabs/rudder-sdk-react-native/commit/afb27c9385f62247947323e64e415b87d503a0f8))
+
+
+### Bug Fixes
+
+* replace Moengage key with xxxx ([187ff59](https://github.com/rudderlabs/rudder-sdk-react-native/commit/187ff59e5a52a57b25d22bcce567b46fe2bc667f))
+
 ## 0.0.1 (2023-01-11)
 
 
