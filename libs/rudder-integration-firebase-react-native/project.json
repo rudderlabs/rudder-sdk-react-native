@@ -95,6 +95,13 @@
         "tagPrefix": "${projectName}@"
       }
     },
+    "github": {
+      "executor": "@jscutlery/semver:github",
+      "options": {
+        "tag": "rudder-integration-firebase-react-native@1.0.11",
+        "notesFile": "./libs/rudder-integration-firebase-react-native/CHANGELOG_LATEST.md"
+      }
+    },
     "deploy": {
       "executor": "ngx-deploy-npm:deploy",
       "options": {

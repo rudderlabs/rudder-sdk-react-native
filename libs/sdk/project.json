@@ -94,6 +94,13 @@
         "tagPrefix": "${projectName}@"
       }
     },
+    "github": {
+      "executor": "@jscutlery/semver:github",
+      "options": {
+        "tag": "rudder-sdk-react-native@1.6.0",
+        "notesFile": "./libs/sdk/CHANGELOG_LATEST.md"
+      }
+    },
     "deploy": {
       "executor": "ngx-deploy-npm:deploy",
       "options": {

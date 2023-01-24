@@ -92,6 +92,13 @@
         "tagPrefix": "${projectName}@"
       }
     },
+    "github": {
+      "executor": "@jscutlery/semver:github",
+      "options": {
+        "tag": "rudder-integration-braze-react-native@1.0.4",
+        "notesFile": "./libs/rudder-integration-braze-react-native/CHANGELOG_LATEST.md"
+      }
+    },
     "deploy": {
       "executor": "ngx-deploy-npm:deploy",
       "options": {
