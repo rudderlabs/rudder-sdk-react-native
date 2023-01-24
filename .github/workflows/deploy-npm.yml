@@ -2,11 +2,10 @@ name: Deploy to NPM
 
 on:
   workflow_dispatch:
-  pull_request:
-    branches:
-      - master
+  workflow_run:
+    workflows: ["Publish new github release"]
     types:
-      - closed
+      - completed
 
 jobs:
   deploy-npm:
