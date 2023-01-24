@@ -95,11 +95,15 @@ public class Utility {
         if (readableMap == null) return null;
         RudderOption options = new RudderOption();
         Map<String, Object> optionsMap = convertReadableMapToMap(readableMap);
-        if (readableMap.hasKey("externalIds")) {
-            List<Object> externalIdsList = convertReadableArrayToList(readableMap.getArray("externalIds"));
-            for (int i = 0; i < externalIdsList.size(); i++) {
-                Map<String, Object> externalId = (Map<String, Object>) externalIdsList.get(i);
-                options.putExternalId((String) externalId.get("type"), (String) externalId.get("id"));
+        String externalIdKeys[] = {"externalId", "externalIds"};
+        for (String externalIdKey : externalIdKeys) {
+            if (readableMap.hasKey(externalIdKey)) {
+                List<Object> externalIdsList = convertReadableArrayToList(readableMap.getArray(externalIdKey));
+                for (int i = 0; i < externalIdsList.size(); i++) {
+                    Map<String, Object> externalId = (Map<String, Object>) externalIdsList.get(i);
+                    options.putExternalId((String) externalId.get("type"), (String) externalId.get("id"));
+                }
+                break;
             }
         }
         if (optionsMap.containsKey("integrations")) {

@@ -1,5 +1,5 @@
 {
-  "name": "sdk",
+  "name": "rudder-sdk-react-native",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/sdk/src",
   "projectType": "library",
@@ -90,7 +90,15 @@
       "executor": "@jscutlery/semver:version",
       "options": {
         "baseBranch": "master",
-        "preset": "conventional"
+        "preset": "conventional",
+        "tagPrefix": "${projectName}@"
+      }
+    },
+    "github": {
+      "executor": "@jscutlery/semver:github",
+      "options": {
+        "tag": "${tag}",
+        "notes": "${notes}"
       }
     },
     "deploy": {

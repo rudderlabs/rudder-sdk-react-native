@@ -43,10 +43,9 @@
     "commit-msg": "commitlint --edit",
     "commit": "git-cz",
     "bump-version:monorepo": "npm version minor --git-tag-version false",
-    "release:prepare": "nx affected --base=origin/master --target=version --skipCommit --parallel=1 --skipCommitTypes=docs,ci,chore",
     "release": "nx affected --base=origin/master --target=version --parallel=1 --skipCommitTypes=docs,ci,chore",
-    "release:github": "npx conventional-github-releaser -p angular",
-    "deploy:npm": "nx affected --target=deploy --parallel=1 --exclude=example,example-e2e"
+    "release:github": "nx affected --target=github --parallel=1 --exclude=example",
+    "deploy:npm": "nx affected --target=deploy --parallel=1 --exclude=example"
   },
   "private": true,
   "dependencies": {

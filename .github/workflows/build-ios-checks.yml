@@ -1,0 +1,85 @@
+name: Check iOS Build
+
+on:
+  pull_request:
+    branches: ['develop', 'master']
+    types: ['opened', 'reopened', 'synchronize']
+
+jobs:
+  build:
+    name: Check iOS Build
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'zulu'
+          java-version: '11'
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+
+      - name: Setup CocoaPods
+        uses: maxim-lobanov/setup-cocoapods@v1
+        with:
+          version: 1.11.3
+
+      - uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: latest-stable
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'npm'
+
+      - name: Install node_modules
+        env:
+          HUSKY: 0
+        run: |
+          npm run setup:ci
+
+      - name: Restore Pods cache
+        uses: actions/cache@v3
+        with:
+          path: |
+            apps/example/ios/Pods
+            ~/Library/Caches/CocoaPods
+            ~/.cocoapods
+          key: ${{ runner.os }}-pods-${{ hashFiles('apps/example/ios/Podfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-pods-
+
+      - name: Install Pods
+        run: |
+          cd apps/example/ios && \
+          pod install --repo-update && \
+          cd .. && \
+          cd .. && \
+          cd ..
+
+      - name: Bundle apps
+        run: |
+          npm run bundle:ci
+
+      - name: Add GoogleService-Info.plist
+        run: |
+          pwd
+          echo '${{secrets.GOOGLESERVICE_INFO_PLIST_FILE}}' > apps/example/ios/GoogleService-Info.plist
+          echo "$( < apps/example/ios/GoogleService-Info.plist)"
+          cd apps/example/ios
+          ls -li
+
+      - name: Xcode Version
+        run: |
+          xcode-select -p
+          /usr/bin/xcodebuild -version
+
+      - name: Execute iOS build check
+        run: |
+          npm run build:ios:ci
