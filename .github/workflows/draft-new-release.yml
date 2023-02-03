@@ -15,7 +15,7 @@ jobs:
           fetch-depth: 0
       # We need master history that contains all previous tags commit reference
       - run: |
-        git fetch --no-tags --prune --depth=100 origin master 
+          git fetch --no-tags --prune --depth=100 origin master
 
       - name: Setup Node
         uses: actions/setup-node@v3
