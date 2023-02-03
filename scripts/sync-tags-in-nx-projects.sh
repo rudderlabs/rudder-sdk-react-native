@@ -14,7 +14,8 @@ for projectFolder in ${projectFolderNames[@]}; do
   cd $projectFolder
   package_version=$(jq -r .version package.json)
   echo "Sync version in project.json: ${packageName}, $package_version"
-  sed -i "" "s/$packageName@.*/$packageName@$package_version\",/" project.json
+  # This will not work on MAC system
+  sed -i "s/$packageName@.*/$packageName@$package_version\",/" project.json
   cd ..
   cd ..
 done
