@@ -7,7 +7,7 @@ jobs:
   draft-new-release:
     name: Draft a new release
     runs-on: ubuntu-latest
-    if: startsWith(github.ref, 'refs/heads/develop') || startsWith(github.ref, 'refs/heads/hotfix/')
+    if: startsWith(github.ref, 'refs/heads/develop') || startsWith(github.ref, 'refs/heads/hotfix/') || startsWith(github.ref, 'refs/heads/fix/cicd')
     steps:
       - name: Checkout source branch
         uses: actions/checkout@v3
@@ -73,6 +73,8 @@ jobs:
         run: |
           echo "Current version: $CURRENT_VERSION_VALUE"
           echo "New version: $NEW_VERSION_VALUE"
+          git pull --all
+          git tag -l
           npm run release
           ./scripts/sync-tags-in-nx-projects.sh
           ./scripts/generate-last-release-changelog.sh
@@ -91,5 +93,5 @@ jobs:
           destination_branch: 'master'
           github_token: ${{ secrets.PAT }}
           pr_title: 'chore(release): pulling ${{ steps.create-release.outputs.branch_name }} into master'
-          pr_body: ":crown: *An automated PR*"
+          pr_body: ':crown: *An automated PR*'
           pr_reviewer: 'bardisg'
