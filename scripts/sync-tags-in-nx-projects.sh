@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/bin/bash
 # List of package folders
 projectFolderNames=("rudder-integration-amplitude-react-native" "rudder-integration-appcenter-react-native" "rudder-integration-appsflyer-react-native" "rudder-integration-braze-react-native" "rudder-integration-clevertap-react-native" "rudder-integration-firebase-react-native" "rudder-integration-moengage-react-native" "rudder-integration-singular-react-native" "sdk")
 
@@ -14,7 +14,8 @@ for projectFolder in ${projectFolderNames[@]}; do
   cd $projectFolder
   package_version=$(jq -r .version package.json)
   echo "Sync version in project.json: ${packageName}, $package_version"
-  sed -i "" "s/$packageName@.*/$packageName@$package_version\",/" project.json
+  # This will not work on MAC system
+  sed -i "s/$packageName@.*/$packageName@$package_version\",/" project.json
   cd ..
   cd ..
 done
