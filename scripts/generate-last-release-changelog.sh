@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/bin/bash
 # List of package folders
 projectFolderNames=("rudder-integration-amplitude-react-native" "rudder-integration-appcenter-react-native" "rudder-integration-appsflyer-react-native" "rudder-integration-braze-react-native" "rudder-integration-clevertap-react-native" "rudder-integration-firebase-react-native" "rudder-integration-moengage-react-native" "rudder-integration-singular-react-native" "sdk")
 
