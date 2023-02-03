@@ -73,6 +73,7 @@ jobs:
         run: |
           echo "Current version: $CURRENT_VERSION_VALUE"
           echo "New version: $NEW_VERSION_VALUE"
+          git fetch --prune --depth=100 origin master
           git pull --all
           git tag -l
           npm run release
