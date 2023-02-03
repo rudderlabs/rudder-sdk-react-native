@@ -2,6 +2,8 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [0.1.1](https://github.com/rudderlabs/rudder-sdk-react-native/compare/example-0.1.0...example-0.1.1) (2023-02-03)
+
 ## 0.1.0 (2023-01-19)
 
 
