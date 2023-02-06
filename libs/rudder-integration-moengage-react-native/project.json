@@ -100,7 +100,7 @@
     "github": {
       "executor": "@jscutlery/semver:github",
       "options": {
-        "tag": "rudder-integration-moengage-react-native@1.0.3",
+        "tag": "rudder-integration-moengage-react-native@1.0.4",
         "notesFile": "./libs/rudder-integration-moengage-react-native/CHANGELOG_LATEST.md"
       }
     },
