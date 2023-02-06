@@ -51,7 +51,9 @@
             "input": ".",
             "output": "."
           }
-        ]
+        ],
+        "updateBuildableProjectDepsInPackageJson": true,
+        "buildableProjectDepsInPackageJsonType": "dependencies"
       }
     },
     "lint": {
@@ -98,7 +100,7 @@
     "github": {
       "executor": "@jscutlery/semver:github",
       "options": {
-        "tag": "rudder-integration-clevertap-react-native@1.0.4",
+        "tag": "rudder-integration-clevertap-react-native@1.0.5",
         "notesFile": "./libs/rudder-integration-clevertap-react-native/CHANGELOG_LATEST.md"
       }
     },

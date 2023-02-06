@@ -51,7 +51,9 @@
             "input": ".",
             "output": "."
           }
-        ]
+        ],
+        "updateBuildableProjectDepsInPackageJson": true,
+        "buildableProjectDepsInPackageJsonType": "dependencies"
       }
     },
     "lint": {
@@ -97,7 +99,7 @@
     "github": {
       "executor": "@jscutlery/semver:github",
       "options": {
-        "tag": "rudder-sdk-react-native@1.6.0",
+        "tag": "rudder-sdk-react-native@1.6.1",
         "notesFile": "./libs/sdk/CHANGELOG_LATEST.md"
       }
     },
