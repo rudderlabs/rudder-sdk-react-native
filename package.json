@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/rudderlabs/rudder-sdk-react-native#readme",
   "scripts": {
-    "setup": "gem install xcpretty && npm ci && nx sync-deps example && nx ensure-symlink example && cd apps/example/ios && pod repo update && pod install",
+    "setup": "gem install xcpretty && npm i && nx sync-deps example && nx ensure-symlink example && cd apps/example/ios && pod repo update && pod install",
     "setup:ci": "npm ci && nx sync-deps example && nx ensure-symlink example",
     "start": "nx serve",
     "bundle:ci": "nx bundle-android example && nx bundle-ios example",
