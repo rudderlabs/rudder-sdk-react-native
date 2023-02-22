@@ -1,7 +1,7 @@
 {
   "name": "@rudderstack/rudder-integration-firebase-react-native",
   "title": "Rudder Integration Firebase React Native",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "description": "Rudder React Native SDK Firebase Device mode support for Android and iOS",
   "keywords": [
     "react-native",
