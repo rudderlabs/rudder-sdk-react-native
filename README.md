@@ -111,7 +111,7 @@ Example Usage:
 rudderClient.setAnonymousId(ANONYMOUS_ID);
 ```
 
-For more details, check out our [documentation](https://docs.rudderstack.com/rudderstack-sdk-integration-guides/rudderstack-react-native-sdk).
+For more details, check out our [documentation](https://www.rudderstack.com/docs/sources/event-streams/sdks/rudderstack-react-native-sdk).
 
 ## Contact Us
 

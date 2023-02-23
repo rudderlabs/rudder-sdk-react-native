@@ -36,10 +36,12 @@ public class MainActivity extends ReactActivity {
     super.onCreate(savedInstanceState);
 
     // MoEngage SDK initialisation: Set your APP ID in .env file
-    MoEngage moEngage = new MoEngage.Builder(MainActivity.this.getApplication(), BuildConfig.MOENGAGE_ANDROID_APP_ID)
-      .configureLogs(new LogConfig(LogLevel.VERBOSE, false))
-      .build();
-    MoEngage.initialiseDefaultInstance(moEngage);
+    if (!BuildConfig.MOENGAGE_ANDROID_APP_ID.isEmpty()) {
+      MoEngage moEngage = new MoEngage.Builder(MainActivity.this.getApplication(), BuildConfig.MOENGAGE_ANDROID_APP_ID)
+        .configureLogs(new LogConfig(LogLevel.VERBOSE, false))
+        .build();
+      MoEngage.initialiseDefaultInstance(moEngage);
+    }
   }
 
   public static class MainActivityDelegate extends ReactActivityDelegate {

@@ -1,6 +1,6 @@
 {
   "name": "@rudderstack/rudder-sdk-react-native-monorepo",
-  "version": "2.3.0",
+  "version": "2.4.0",
   "description": "Rudder React Native SDK monorepo",
   "keywords": [
     "react-native",
@@ -17,8 +17,8 @@
   },
   "homepage": "https://github.com/rudderlabs/rudder-sdk-react-native#readme",
   "scripts": {
-    "setup": "gem install xcpretty && npm ci && nx sync-deps example && nx ensure-symlink example && cd apps/example/ios && pod repo update && pod install",
-    "setup:ci": "npm ci && nx sync-deps example && nx ensure-symlink example",
+    "setup": "gem install xcpretty && npm i && nx sync-deps example && nx ensure-symlink example && cd apps/example/ios && pod repo update && pod install",
+    "setup:ci": "npm i && nx sync-deps example && nx ensure-symlink example",
     "start": "nx serve",
     "bundle:ci": "nx bundle-android example && nx bundle-ios example",
     "run:android": "nx run-android example",
@@ -142,6 +142,7 @@
     "debug": "4.3.4",
     "dot-prop": "5.3.0",
     "jest": "29.3.1",
+    "http-cache-semantics": "4.1.1",
     "semver-regex": "3.1.4",
     "shell-quote": "1.7.3",
     "trim-newlines": "3.0.1",
