@@ -22,11 +22,6 @@
             "output": "."
           },
           {
-            "glob": "libs/sdk/src",
-            "input": ".",
-            "output": "."
-          },
-          {
             "glob": "libs/sdk/android",
             "input": ".",
             "output": "."
