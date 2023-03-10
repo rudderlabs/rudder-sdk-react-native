@@ -22,11 +22,6 @@
             "output": "."
           },
           {
-            "glob": "libs/rudder-integration-firebase-react-native/src",
-            "input": ".",
-            "output": "."
-          },
-          {
             "glob": "libs/rudder-integration-firebase-react-native/android",
             "input": ".",
             "output": "."
