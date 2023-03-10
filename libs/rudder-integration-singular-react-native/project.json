@@ -22,11 +22,6 @@
             "output": "."
           },
           {
-            "glob": "libs/rudder-integration-singular-react-native/src",
-            "input": ".",
-            "output": "."
-          },
-          {
             "glob": "libs/rudder-integration-singular-react-native/android",
             "input": ".",
             "output": "."
