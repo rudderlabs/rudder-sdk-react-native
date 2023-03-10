@@ -22,11 +22,6 @@
             "output": "."
           },
           {
-            "glob": "libs/rudder-integration-amplitude-react-native/src",
-            "input": ".",
-            "output": "."
-          },
-          {
             "glob": "libs/rudder-integration-amplitude-react-native/android",
             "input": ".",
             "output": "."
