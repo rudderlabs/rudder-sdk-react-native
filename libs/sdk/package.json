@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/rudderlabs/rudder-sdk-react-native#readme",
   "peerDependencies": {
-    "react-native": "^0.41.2",
+    "react-native": ">= 0.41.2 < 0.80.0 || ^0.0.0-0",
     "react": "^16.8.0 || ^17.0.0 || ^18.0.0"
   }
 }

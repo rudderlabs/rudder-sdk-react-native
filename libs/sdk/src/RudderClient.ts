@@ -189,7 +189,7 @@ async function group(
 
 // wrapper for `alias` method
 async function alias(previousId: string, userId: string | Record<string, unknown>): Promise<void>;
-async function alias(newId: string, options: Record<string, unknown> | null = null) {
+async function alias(newId: string, options: Record<string, unknown> | null | string = null) {
   if (newId == undefined) {
     logWarn("alias: Mandatory field 'newId' missing");
     return;
