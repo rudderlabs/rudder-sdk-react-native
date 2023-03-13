@@ -22,11 +22,6 @@
             "output": "."
           },
           {
-            "glob": "libs/rudder-integration-appsflyer-react-native/src",
-            "input": ".",
-            "output": "."
-          },
-          {
             "glob": "libs/rudder-integration-appsflyer-react-native/android",
             "input": ".",
             "output": "."
@@ -100,7 +95,7 @@
     "github": {
       "executor": "@jscutlery/semver:github",
       "options": {
-        "tag": "rudder-integration-appsflyer-react-native@1.5.4",
+        "tag": "rudder-integration-appsflyer-react-native@1.5.5",
         "notesFile": "./libs/rudder-integration-appsflyer-react-native/CHANGELOG_LATEST.md"
       }
     },

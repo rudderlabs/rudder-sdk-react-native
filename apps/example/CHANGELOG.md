@@ -2,6 +2,13 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [0.1.3](https://github.com/rudderlabs/rudder-sdk-react-native/compare/example-0.1.2...example-0.1.3) (2023-03-13)
+
+
+### Bug Fixes
+
+* peer dependency issue in sdks and remove typescript warning in alias api ([#184](https://github.com/rudderlabs/rudder-sdk-react-native/issues/184)) ([fd6cab2](https://github.com/rudderlabs/rudder-sdk-react-native/commit/fd6cab262d1cba21dfd7129caa1a53d614cb7783))
+
 ## [0.1.2](https://github.com/rudderlabs/rudder-sdk-react-native/compare/example-0.1.1...example-0.1.2) (2023-02-22)
 
 

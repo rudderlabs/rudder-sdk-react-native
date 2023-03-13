@@ -1,7 +1,7 @@
 {
   "name": "@rudderstack/rudder-integration-singular-react-native",
   "title": "Rudder Integration Singular React Native",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Rudder React Native SDK Singular Device mode support for Android and iOS",
   "keywords": [
     "react-native",
@@ -22,6 +22,6 @@
   "homepage": "https://github.com/rudderlabs/rudder-sdk-react-native#readme",
   "peerDependencies": {
     "react": "^16.8.0 || ^17.0.0 || ^18.0.0",
-    "react-native": ">=0.60.0-rc.0 <1.0.x"
+    "react-native": ">= 0.41.2 < 0.80.0 || ^0.0.0-0"
   }
 }

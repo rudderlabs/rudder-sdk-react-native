@@ -22,11 +22,6 @@
             "output": "."
           },
           {
-            "glob": "libs/rudder-integration-moengage-react-native/src",
-            "input": ".",
-            "output": "."
-          },
-          {
             "glob": "libs/rudder-integration-moengage-react-native/android",
             "input": ".",
             "output": "."
@@ -100,7 +95,7 @@
     "github": {
       "executor": "@jscutlery/semver:github",
       "options": {
-        "tag": "rudder-integration-moengage-react-native@1.0.5",
+        "tag": "rudder-integration-moengage-react-native@1.0.6",
         "notesFile": "./libs/rudder-integration-moengage-react-native/CHANGELOG_LATEST.md"
       }
     },

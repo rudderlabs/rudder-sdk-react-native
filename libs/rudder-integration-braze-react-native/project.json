@@ -22,11 +22,6 @@
             "output": "."
           },
           {
-            "glob": "libs/rudder-integration-braze-react-native/src",
-            "input": ".",
-            "output": "."
-          },
-          {
             "glob": "libs/rudder-integration-braze-react-native/android",
             "input": ".",
             "output": "."
@@ -97,7 +92,7 @@
     "github": {
       "executor": "@jscutlery/semver:github",
       "options": {
-        "tag": "rudder-integration-braze-react-native@1.0.6",
+        "tag": "rudder-integration-braze-react-native@1.0.7",
         "notesFile": "./libs/rudder-integration-braze-react-native/CHANGELOG_LATEST.md"
       }
     },

@@ -22,11 +22,6 @@
             "output": "."
           },
           {
-            "glob": "libs/rudder-integration-appcenter-react-native/src",
-            "input": ".",
-            "output": "."
-          },
-          {
             "glob": "libs/rudder-integration-appcenter-react-native/android",
             "input": ".",
             "output": "."
@@ -100,7 +95,7 @@
     "github": {
       "executor": "@jscutlery/semver:github",
       "options": {
-        "tag": "rudder-integration-appcenter-react-native@1.0.6",
+        "tag": "rudder-integration-appcenter-react-native@1.0.7",
         "notesFile": "./libs/rudder-integration-appcenter-react-native/CHANGELOG_LATEST.md"
       }
     },

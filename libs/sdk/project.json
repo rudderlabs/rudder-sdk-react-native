@@ -22,11 +22,6 @@
             "output": "."
           },
           {
-            "glob": "libs/sdk/src",
-            "input": ".",
-            "output": "."
-          },
-          {
             "glob": "libs/sdk/android",
             "input": ".",
             "output": "."
@@ -99,7 +94,7 @@
     "github": {
       "executor": "@jscutlery/semver:github",
       "options": {
-        "tag": "rudder-sdk-react-native@1.6.2",
+        "tag": "rudder-sdk-react-native@1.6.3",
         "notesFile": "./libs/sdk/CHANGELOG_LATEST.md"
       }
     },
