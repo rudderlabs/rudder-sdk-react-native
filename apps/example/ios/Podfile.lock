@@ -517,7 +517,7 @@ PODS:
   - rudder-integration-braze-react-native (1.0.7):
     - React
     - Rudder-Braze
-  - rudder-integration-clevertap-react-native (1.0.7):
+  - rudder-integration-clevertap-react-native (1.0.8):
     - CleverTap-iOS-SDK
     - React
     - Rudder-CleverTap (~> 1.0.4)
@@ -836,7 +836,7 @@ SPEC CHECKSUMS:
   rudder-integration-appcenter-react-native: 2e28172e7ef9685530c787e8a92c1b56ba11d7d9
   rudder-integration-appsflyer-react-native: cdde1f7bb4efba1474431de61ea9d5ade7d93f8a
   rudder-integration-braze-react-native: d1046b5986a4915a965bd025e01622b4803055e8
-  rudder-integration-clevertap-react-native: 48fe5fd3890765b08a79471582b4698d61f18555
+  rudder-integration-clevertap-react-native: 3c11bfefb7a74714daea7bd208ffae96009c61e6
   rudder-integration-firebase-react-native: ab13480d62797bb969859f08507c18ea62073d2e
   rudder-integration-moengage-react-native: 439e71a8c629997347edb5bdd9208d8d35dd8793
   rudder-integration-singular-react-native: a1f38a00a1af7fc8f139754d9dd9738c5948acbb
