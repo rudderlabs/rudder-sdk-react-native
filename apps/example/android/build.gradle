@@ -4,8 +4,8 @@ buildscript {
     ext {
         buildToolsVersion = "31.0.0"
         minSdkVersion = 21
-        compileSdkVersion = 31
-        targetSdkVersion = 31
+        compileSdkVersion = 33
+        targetSdkVersion = 33
 
         kotlinVersion = '1.7.10'
 
@@ -26,6 +26,14 @@ buildscript {
         }
     }
     dependencies {
+//        constraints {
+//            implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.7.20") {
+//                because("kotlin-stdlib-jdk7 is now a part of kotlin-stdlib")
+//            }
+//            implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.7.20") {
+//                because("kotlin-stdlib-jdk8 is now a part of kotlin-stdlib")
+//            }
+//        }
         classpath("com.android.tools.build:gradle:7.2.2")
         classpath("com.facebook.react:react-native-gradle-plugin")
         classpath("de.undercouch:gradle-download-task:5.0.1")
@@ -63,4 +71,14 @@ allprojects {
         maven { url 'https://maven.singular.net/' }
         maven { url 'https://www.jitpack.io' }
     }
+
+  configurations.all {
+    resolutionStrategy {
+      eachDependency {
+        if ((requested.group == "org.jetbrains.kotlin") && (requested.name.startsWith("kotlin-stdlib"))) {
+          useVersion("1.8.0")
+        }
+      }
+    }
+  }
 }
