@@ -11,7 +11,7 @@ jobs:
   deploy-npm:
     name: Deploy to NPM
     runs-on: ubuntu-latest
-    if: startsWith(github.ref, 'refs/tags/v') || startsWith(github.ref, 'refs/heads/master') || github.event.pull_request.merged == true
+    if: startsWith(github.ref, 'refs/tags/v') || startsWith(github.ref, 'refs/heads/master') || github.event.workflow_run.conclusion == 'success'
     steps:
       - name: Checkout source branch
         uses: actions/checkout@v3
@@ -44,8 +44,40 @@ jobs:
 
           echo "current_version=$(echo $CURRENT_VERSION)" >> $GITHUB_ENV
           echo "last_version=$(echo $LAST_VERSION)" >> $GITHUB_ENV
+          echo "DATE=$(date)" >> $GITHUB_ENV
 
       - name: Build & Publish affected packages
         run: |
           npm run deploy:npm -- --base=$last_version --head=$current_version
 
+      - name: Send message to Slack channel
+        id: slack
+        uses: slackapi/slack-github-action@v1.23.0
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+          PROJECT_NAME: 'React Native SDK npm packages'
+          NPM_PACKAGE_URL: 'https://www.npmjs.com/search?q=%40rudderstack'
+        with:
+          channel-id: ${{ secrets.SLACK_RELEASE_CHANNEL_ID }}
+          payload: |
+            {
+              "blocks": [
+                {
+                  "type": "header",
+                  "text": {
+                    "type": "plain_text",
+                    "text": "New release: ${{ env.PROJECT_NAME }}"
+                  }
+                },
+                {
+                  "type": "divider"
+                },
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": "*Release: <${{ env.NPM_PACKAGE_URL }}|Latest Packages>*\n${{ env.DATE }}"
+                  }
+                }
+              ]
+            }
