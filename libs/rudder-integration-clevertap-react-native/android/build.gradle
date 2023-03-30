@@ -42,7 +42,7 @@ dependencies {
     // rudderstack dependencies
     implementation project(path: ':rudderstack_rudder-sdk-react-native')  // From node_modules
     compileOnly 'com.rudderstack.android.sdk:core:1.+'
-    implementation 'com.rudderstack.android.integration:clevertap:[1.0.2,2.0)'
+    implementation 'com.rudderstack.android.integration:clevertap:[1.1.0,2.0)'
     implementation 'com.google.code.gson:gson:2.8.6'
 
     // clevertap dependencies
