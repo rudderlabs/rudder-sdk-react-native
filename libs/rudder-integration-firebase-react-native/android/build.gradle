@@ -42,7 +42,7 @@ dependencies {
     // rudderstack dependencies
     implementation project(path: ':rudderstack_rudder-sdk-react-native')  // From node_modules
     implementation 'com.rudderstack.android.sdk:core:1+'
-    implementation 'com.rudderstack.android.integration:firebase:[2.0.1,3.0)'
+    implementation 'com.rudderstack.android.integration:firebase:[3.0.0,4.0)'
 
     // firebase dependencies
     implementation 'com.google.firebase:firebase-analytics:18.0.0'
