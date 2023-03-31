@@ -28,6 +28,10 @@ target 'Example' do
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
 
+  # To solve the React Native Firebase iOS installation issue, uncomment below lines:
+    pod 'FirebaseCore', :modular_headers => true
+    pod 'GoogleUtilities', :modular_headers => true
+
   # Pods for Example
     pod 'FBLazyVector', :path => "../node_modules/react-native/Libraries/FBLazyVector"
     pod 'FBReactNativeSpec', :path => "../node_modules/react-native/React/FBReactNativeSpec"
