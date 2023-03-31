@@ -7,3 +7,6 @@ test-setup.ts
 tsconfig.json
 tsconfig.lib.json
 tsconfig.spec.json
+package.json
+package-lock.json
+sonar-project.properties
