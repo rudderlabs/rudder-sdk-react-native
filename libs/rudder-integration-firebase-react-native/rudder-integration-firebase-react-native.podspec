@@ -19,6 +19,6 @@ Pod::Spec.new do |s|
   s.requires_arc = true
 
   s.dependency "React"
-  s.dependency "Rudder-Firebase", "2.0.6"
+  s.dependency "Rudder-Firebase", "~> 3.1"
 end
 
