@@ -22,6 +22,11 @@ jobs:
 
           echo "release_version=$VERSION" >> $GITHUB_OUTPUT
 
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
       - name: Get the latest version tag
         id: extract-previous-version
         run: |
@@ -30,11 +35,6 @@ jobs:
           VERSION=${TAGS_ARRAY[0]}
 
           echo "previous_version=$VERSION" >> $GITHUB_OUTPUT
-
-      - name: Checkout
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
 
       - name: Setup Node
         uses: actions/setup-node@v3
@@ -133,7 +133,7 @@ jobs:
                   "type": "section",
                   "text": {
                     "type": "mrkdwn",
-                    "text": "*Release: <${{env.RELEASES_URL}v}${{ steps.extract-previous-version.outputs.previous_version }}...v${{ steps.extract-version.outputs.release_version }}|v${{ steps.extract-version.outputs.release_version }}>*\n${{ env.DATE }}"
+                    "text": "*Release: <${{env.RELEASES_URL}}${{ steps.extract-previous-version.outputs.previous_version }}...v${{ steps.extract-version.outputs.release_version }}|v${{ steps.extract-version.outputs.release_version }}>*\n${{ env.DATE }}"
                   }
                 }
               ]
