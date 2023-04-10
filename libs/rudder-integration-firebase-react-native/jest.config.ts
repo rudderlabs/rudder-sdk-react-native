@@ -32,4 +32,5 @@ module.exports = {
       },
     ],
   ],
+  cacheDirectory: '<rootDir>/node_modules/.cache/unit-tests',
 };

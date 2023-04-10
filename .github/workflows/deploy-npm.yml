@@ -18,6 +18,10 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Checkout to master
+        if: github.event.workflow_run.conclusion == 'success'
+        run: git checkout master
+
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
