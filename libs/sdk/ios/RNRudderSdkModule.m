@@ -217,6 +217,22 @@ RCT_EXPORT_METHOD(getRudderContext:(RCTPromiseResolveBlock)resolve rejecter:(RCT
     resolve(context);
 }
 
+RCT_EXPORT_METHOD(startSession) {
+    if ([RSClient sharedInstance] == nil) {
+        [RSLogger logWarn:@"Dropping the startSession call as RudderClient is not initialized yet, Please use `await` keyword with the setup call"];
+        return;
+    }
+    [[RSClient sharedInstance] startSession];
+}
+
+RCT_EXPORT_METHOD(endSession) {
+    if ([RSClient sharedInstance] == nil) {
+        [RSLogger logWarn:@"Dropping the endSession call as RudderClient is not initialized yet, Please use `await` keyword with the setup call"];
+        return;
+    }
+    [[RSClient sharedInstance] endSession];
+}
+
 -(RSOption*) getRudderOptionsObject:(NSDictionary *) optionsDict {
     RSOption * options = [[RSOption alloc]init];
     NSArray *externalIdKeys = @[@"externalId", @"externalIds"];

@@ -247,6 +247,16 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
+    public void startSession() {
+        rudderClient.startSession();
+    }
+
+    @ReactMethod
+    public void endSession() {
+        rudderClient.endSession();
+    }
+
+    @ReactMethod
     public void registerCallback(String name, Callback callback) {
         integrationCallbacks.put(name, callback);
     }

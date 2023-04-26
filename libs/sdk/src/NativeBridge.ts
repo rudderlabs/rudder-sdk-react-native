@@ -47,6 +47,8 @@ export interface Bridge {
   // eslint-disable-next-line @typescript-eslint/ban-types
   registerCallback(integrationName: string, callback: Function): Promise<void>;
   getRudderContext(): Promise<void>;
+  startSession(sessionId?: number): Promise<void>;
+  endSession(): Promise<void>;
 }
 
 const bridge: Bridge = NativeModules.RNRudderSdkModule;
