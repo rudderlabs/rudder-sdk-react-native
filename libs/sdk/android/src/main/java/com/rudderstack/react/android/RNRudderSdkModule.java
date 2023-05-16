@@ -247,6 +247,11 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
+    public void getSessionId(Promise promise) {
+        promise.resolve(rudderClient.getSessionId());
+    }
+
+    @ReactMethod
     public void startSession() {
         rudderClient.startSession();
     }

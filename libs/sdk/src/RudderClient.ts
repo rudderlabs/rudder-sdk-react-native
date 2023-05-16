@@ -290,6 +290,10 @@ async function endSession() {
   bridge.endSession();
 }
 
+async function getSessionId() {
+  return bridge.getSessionId();
+}
+
 const rudderClient = {
   setup,
   track,
@@ -309,5 +313,6 @@ const rudderClient = {
   getRudderContext,
   startSession,
   endSession,
+  getSessionId,
 };
 export default rudderClient;

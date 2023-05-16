@@ -217,6 +217,20 @@ RCT_EXPORT_METHOD(getRudderContext:(RCTPromiseResolveBlock)resolve rejecter:(RCT
     resolve(context);
 }
 
+RCT_EXPORT_METHOD(getSessionId:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject) {
+    @try {
+        if ([RSClient sharedInstance] == nil) {
+            [RSLogger logWarn:@"Dropping the getSessionId call as RudderClient is not initialized yet, Please use `await` keyword with the setup call"];
+            return;
+        }
+        resolve([[RSClient sharedInstance] getSessionId]);
+    }
+    @catch (NSException *exception) {
+        reject(exception.name, exception.reason, nil);
+    }
+    
+}
+
 RCT_EXPORT_METHOD(startSession) {
     if ([RSClient sharedInstance] == nil) {
         [RSLogger logWarn:@"Dropping the startSession call as RudderClient is not initialized yet, Please use `await` keyword with the setup call"];

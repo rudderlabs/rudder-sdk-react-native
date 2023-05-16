@@ -49,6 +49,7 @@ export interface Bridge {
   getRudderContext(): Promise<void>;
   startSession(sessionId?: number): Promise<void>;
   endSession(): Promise<void>;
+  getSessionId(): string;
 }
 
 const bridge: Bridge = NativeModules.RNRudderSdkModule;
