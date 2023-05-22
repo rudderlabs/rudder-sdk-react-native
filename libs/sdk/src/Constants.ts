@@ -10,4 +10,4 @@ export const AUTO_COLLECT_ADVERT_ID = false;
 export const TRACK_LIFECYCLE_EVENTS = true;
 export const RECORD_SCREEN_VIEWS = false;
 export const LOG_LEVEL = RUDDER_LOG_LEVEL.ERROR;
-export const SDK_VERSION = '1.6.3';
+export const SDK_VERSION = '1.7.1';
