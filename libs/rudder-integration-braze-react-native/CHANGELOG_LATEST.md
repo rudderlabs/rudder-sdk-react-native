@@ -1,7 +1,7 @@
-## [1.0.7](https://github.com/rudderlabs/rudder-sdk-react-native/compare/rudder-integration-braze-react-native@1.0.6...rudder-integration-braze-react-native@1.0.7) (2023-03-13)
+## [1.0.8](https://github.com/rudderlabs/rudder-sdk-react-native/compare/rudder-integration-braze-react-native@1.0.7...rudder-integration-braze-react-native@1.0.8) (2023-05-22)
 
 
 ### Bug Fixes
 
-* peer dependency issue in sdks and remove typescript warning in alias api ([#184](https://github.com/rudderlabs/rudder-sdk-react-native/issues/184)) ([fd6cab2](https://github.com/rudderlabs/rudder-sdk-react-native/commit/fd6cab262d1cba21dfd7129caa1a53d614cb7783))
+* **rudder-integration-braze-react-native:** allow rudder android sdk version upto 2.0 ([813b4b1](https://github.com/rudderlabs/rudder-sdk-react-native/commit/813b4b19c8005c0e49ef9a570a27bb4f891daad0))
 

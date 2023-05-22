@@ -1,7 +1,7 @@
-## [1.5.5](https://github.com/rudderlabs/rudder-sdk-react-native/compare/rudder-integration-appsflyer-react-native@1.5.4...rudder-integration-appsflyer-react-native@1.5.5) (2023-03-13)
+## [1.5.6](https://github.com/rudderlabs/rudder-sdk-react-native/compare/rudder-integration-appsflyer-react-native@1.5.5...rudder-integration-appsflyer-react-native@1.5.6) (2023-05-22)
 
 
 ### Bug Fixes
 
-* peer dependency issue in sdks and remove typescript warning in alias api ([#184](https://github.com/rudderlabs/rudder-sdk-react-native/issues/184)) ([fd6cab2](https://github.com/rudderlabs/rudder-sdk-react-native/commit/fd6cab262d1cba21dfd7129caa1a53d614cb7783))
+* **rudder-integration-appsflyer-react-native:** allow rudder android sdk version upto 2.0 ([7e0e7ac](https://github.com/rudderlabs/rudder-sdk-react-native/commit/7e0e7ac50ab9adbe3ecb4d819a6fcfc8a459733f))
 
