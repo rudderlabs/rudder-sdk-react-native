@@ -41,7 +41,7 @@ dependencies {
 
     // rudderstack dependencies
     implementation project(path: ':rudderstack_rudder-sdk-react-native')  // From node_modules
-    implementation 'com.rudderstack.android.sdk:core:[1.0,2.0)'
+    implementation 'com.rudderstack.android.sdk:core:[1.13.0, 2.0.0)'
     implementation 'com.rudderstack.android.integration:singular:[1.0,)'
 
     // singular dependencies

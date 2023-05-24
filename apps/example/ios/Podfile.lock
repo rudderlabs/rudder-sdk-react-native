@@ -549,7 +549,7 @@ PODS:
     - CleverTap-iOS-SDK
     - React
     - Rudder-CleverTap (~> 1.1.2)
-  - rudder-integration-firebase-react-native (1.0.15):
+  - rudder-integration-firebase-react-native (1.0.16):
     - React
     - Rudder-Firebase (~> 3.1)
   - rudder-integration-moengage-react-native (1.0.6):
@@ -867,7 +867,7 @@ SPEC CHECKSUMS:
   rudder-integration-appsflyer-react-native: cdde1f7bb4efba1474431de61ea9d5ade7d93f8a
   rudder-integration-braze-react-native: d1046b5986a4915a965bd025e01622b4803055e8
   rudder-integration-clevertap-react-native: 151dbd2f043e0f0766a8300d6f721b222624d208
-  rudder-integration-firebase-react-native: f39f5af9061772544195f2cd1c20cb67e533a0e0
+  rudder-integration-firebase-react-native: 766d5995615c408536bcbdbea10195d15e464f7f
   rudder-integration-moengage-react-native: 439e71a8c629997347edb5bdd9208d8d35dd8793
   rudder-integration-singular-react-native: a1f38a00a1af7fc8f139754d9dd9738c5948acbb
   Rudder-Moengage: 9f70d7d89c84a03c088073ddbc90ffd5afd4c187

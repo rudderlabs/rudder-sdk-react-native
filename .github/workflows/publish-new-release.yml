@@ -27,6 +27,15 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Get the latest version tag
+        id: extract-previous-version
+        run: |
+          TAGS=$(git tag --sort=-v:refname)
+          TAGS_ARRAY=($TAGS)
+          VERSION=${TAGS_ARRAY[0]}
+
+          echo "previous_version=$VERSION" >> $GITHUB_OUTPUT
+
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
@@ -100,11 +109,11 @@ jobs:
 
       - name: Send message to Slack channel
         id: slack
-        uses: slackapi/slack-github-action@v1.23.0
+        uses: slackapi/slack-github-action@v1.24.0
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
           PROJECT_NAME: 'React Native SDK monorepo'
-          RELEASES_URL: 'https://github.com/rudderlabs/rudder-sdk-react-native/releases/'
+          RELEASES_URL: 'https://github.com/rudderlabs/rudder-sdk-react-native/compare/'
         with:
           channel-id: ${{ secrets.SLACK_RELEASE_CHANNEL_ID }}
           payload: |
@@ -124,7 +133,7 @@ jobs:
                   "type": "section",
                   "text": {
                     "type": "mrkdwn",
-                    "text": "*Release: <${{env.RELEASES_URL}}${{ steps.extract-version.outputs.release_version }}|v${{ steps.extract-version.outputs.release_version }}>*\n${{ env.DATE }}"
+                    "text": "*Release: <${{env.RELEASES_URL}}${{ steps.extract-previous-version.outputs.previous_version }}...v${{ steps.extract-version.outputs.release_version }}|v${{ steps.extract-version.outputs.release_version }}>*\n${{ env.DATE }}"
                   }
                 }
               ]
