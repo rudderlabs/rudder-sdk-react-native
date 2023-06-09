@@ -8,6 +8,7 @@ RCT_EXPORT_MODULE()
 
 RCT_EXPORT_METHOD(setup: (NSString*)devKey withDebug: (BOOL) isDebug withConversionDataListener: (BOOL) onInstallConversionDataListener withDeepLinkListener: (BOOL) onDeepLinkListener withAppleAppId: (NSString*) appleAppId withTimeToWaitForATTUserAuthorization: (double) timeToWaitForATTUserAuthorization) 
 {
+    [RNRudderAnalytics addIntegration:[RudderAppsflyerFactory instance]];
     [[AppsFlyerLib shared] setAppsFlyerDevKey:devKey];
     [[AppsFlyerLib shared] setAppleAppID:appleAppId];
     if(isDebug) {
@@ -31,7 +32,6 @@ RCT_EXPORT_METHOD(setup: (NSString*)devKey withDebug: (BOOL) isDebug withConvers
     //                                                 name:UIApplicationDidBecomeActiveNotification
     //                                             object:nil];
     [[AppsFlyerLib shared] start];
-    [RNRudderAnalytics addIntegration:[RudderAppsflyerFactory instance]];
 }
 
 RCT_EXPORT_METHOD(getAppsFlyerId:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
