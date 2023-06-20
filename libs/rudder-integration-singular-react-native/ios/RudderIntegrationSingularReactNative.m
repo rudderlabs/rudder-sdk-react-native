@@ -6,9 +6,10 @@
 
 RCT_EXPORT_MODULE()
 
-RCT_EXPORT_METHOD(setup)
+RCT_EXPORT_METHOD(setup:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
 {
     [RNRudderAnalytics addIntegration:[RudderSingularFactory instance]];
+    resolve(nil);
 }
 
 @end
