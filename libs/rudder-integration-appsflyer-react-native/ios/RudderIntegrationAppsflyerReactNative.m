@@ -6,7 +6,7 @@
 
 RCT_EXPORT_MODULE()
 
-RCT_EXPORT_METHOD(setup: (NSString*)devKey withDebug: (BOOL) isDebug withConversionDataListener: (BOOL) onInstallConversionDataListener withDeepLinkListener: (BOOL) onDeepLinkListener withAppleAppId: (NSString*) appleAppId withTimeToWaitForATTUserAuthorization: (double) timeToWaitForATTUserAuthorization) 
+RCT_EXPORT_METHOD(setup: (NSString*)devKey withDebug: (BOOL) isDebug withConversionDataListener: (BOOL) onInstallConversionDataListener withDeepLinkListener: (BOOL) onDeepLinkListener withAppleAppId: (NSString*) appleAppId withTimeToWaitForATTUserAuthorization: (double) timeToWaitForATTUserAuthorization resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
 {
     [[AppsFlyerLib shared] setAppsFlyerDevKey:devKey];
     [[AppsFlyerLib shared] setAppleAppID:appleAppId];
@@ -32,6 +32,7 @@ RCT_EXPORT_METHOD(setup: (NSString*)devKey withDebug: (BOOL) isDebug withConvers
     //                                             object:nil];
     [[AppsFlyerLib shared] start];
     [RNRudderAnalytics addIntegration:[RudderAppsflyerFactory instance]];
+    resolve(nil);
 }
 
 RCT_EXPORT_METHOD(getAppsFlyerId:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
