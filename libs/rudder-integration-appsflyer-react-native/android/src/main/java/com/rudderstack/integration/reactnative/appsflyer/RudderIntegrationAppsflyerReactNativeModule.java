@@ -58,7 +58,7 @@ public class RudderIntegrationAppsflyerReactNativeModule extends ReactContextBas
     }
 
     @ReactMethod
-    public void setup(String devKey, boolean isDebug, boolean onInstallConversionDataListener, boolean onDeepLinkListener) {
+    public void setup(String devKey, boolean isDebug, boolean onInstallConversionDataListener, boolean onDeepLinkListener, Promise promise) {
         AppsFlyerLib instance = AppsFlyerLib.getInstance();
         instance.setDebugLog(isDebug);
         instance.init(devKey, (onInstallConversionDataListener == true) ? registerConversionListener() : null, application.getApplicationContext());
@@ -76,6 +76,7 @@ public class RudderIntegrationAppsflyerReactNativeModule extends ReactContextBas
             instance.start(application, devKey);
         }
         RNRudderAnalytics.addIntegration(AppsFlyerIntegrationFactory.FACTORY);
+        promise.resolve(null);
     }
 
     @ReactMethod

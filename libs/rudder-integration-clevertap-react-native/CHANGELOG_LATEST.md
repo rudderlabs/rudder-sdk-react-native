@@ -1,7 +1,7 @@
-## [1.0.10](https://github.com/rudderlabs/rudder-sdk-react-native/compare/rudder-integration-clevertap-react-native@1.0.9...rudder-integration-clevertap-react-native@1.0.10) (2023-05-23)
+## [1.0.11](https://github.com/rudderlabs/rudder-sdk-react-native/compare/rudder-integration-clevertap-react-native@1.0.10...rudder-integration-clevertap-react-native@1.0.11) (2023-06-22)
 
 
 ### Bug Fixes
 
-* **rudder-integration-clevertap-react-native:** allow rudder android sdk version upto 2.0 ([6432de3](https://github.com/rudderlabs/rudder-sdk-react-native/commit/6432de34f9f0e47a5f69b781f984a0e592a4b096))
+* **rudder-integration-clevertap-react-native:** clevertap module synchronisation issue ([9f4aee6](https://github.com/rudderlabs/rudder-sdk-react-native/commit/9f4aee6e253ba212f5ba7e3d860273d19e60c312))
 
