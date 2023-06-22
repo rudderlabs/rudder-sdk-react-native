@@ -95,7 +95,7 @@
     "github": {
       "executor": "@jscutlery/semver:github",
       "options": {
-        "tag": "rudder-integration-firebase-react-native@1.0.17",
+        "tag": "rudder-integration-firebase-react-native@1.0.18",
         "notesFile": "./libs/rudder-integration-firebase-react-native/CHANGELOG_LATEST.md"
       }
     },
