@@ -1,5 +1,6 @@
 package com.rudderstack.integration.reactnative.appcenter;
 
+import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
@@ -25,8 +26,9 @@ public class RudderIntegrationAppcenterReactNativeModule
   }
 
   @ReactMethod
-  public void setup() {
+  public void setup(Promise promise) {
     RNRudderAnalytics.addIntegration(AppcenterIntegrationFactory.FACTORY);
+    promise.resolve(null);
   }
 
   @ReactMethod

@@ -7,9 +7,10 @@
 
 RCT_EXPORT_MODULE()
 
-RCT_EXPORT_METHOD(setup)
+RCT_EXPORT_METHOD(setup:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
 {
     [RNRudderAnalytics addIntegration:[RudderAppCenterFactory instance]];
+    resolve(nil);
 }
 
 RCT_EXPORT_METHOD(enableAnalytics)

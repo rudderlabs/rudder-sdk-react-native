@@ -1,5 +1,6 @@
 package com.rudderstack.integration.reactnative.clevertap;
 
+import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
@@ -24,7 +25,8 @@ public class RudderIntegrationCleverTapReactNativeModule
   }
 
   @ReactMethod
-  public void setup() {
+  public void setup(Promise promise) {
     RNRudderAnalytics.addIntegration(CleverTapIntegrationFactory.FACTORY);
+    promise.resolve(null);
   }
 }
