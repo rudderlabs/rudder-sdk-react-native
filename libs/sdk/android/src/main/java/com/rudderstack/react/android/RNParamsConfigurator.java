@@ -17,6 +17,7 @@ class RNParamsConfigurator {
 
     RudderConfig.Builder handleConfig() {
         saveConfigValues();
+        saveWriteKey();
         RudderConfig.Builder configBuilder = buildConfig();
         disableAutoConfigFlagsForNativeSDK(configBuilder);
         return configBuilder;

@@ -1,6 +1,7 @@
 package com.rudderstack.react.android;
 
 import android.app.Activity;
+import android.app.Application;
 import android.text.TextUtils;
 
 import com.facebook.react.bridge.Promise;
@@ -17,8 +18,6 @@ import com.rudderstack.android.sdk.core.RudderLogger;
 import com.rudderstack.android.sdk.core.RudderProperty;
 import com.rudderstack.android.sdk.core.RudderMessageBuilder;
 
-import static com.rudderstack.react.android.LifeCycleEvents.LifeCycleEventsInterface;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -30,20 +29,24 @@ import java.lang.InterruptedException;
 public class RNRudderSdkModule extends ReactContextBaseJavaModule {
 
     private final ReactApplicationContext reactContext;
-    public static Boolean integrationReady = null;
     private static Map<String, Callback> integrationCallbacks = new HashMap<>();
 
     static RNRudderSdkModule instance;
     static RudderClient rudderClient;
-    static boolean trackLifeCycleEvents = true;
-    static boolean recordScreenViews = false;
+    static RNUserSessionPlugin userSessionPlugin;
+    static RNParamsConfigurator configParams;
     static boolean initialized = false;
+    private static RNPreferenceManager preferenceManager;
 
     public RNRudderSdkModule(ReactApplicationContext reactContext) {
         super(reactContext);
         this.reactContext = reactContext;
-        this.instance = this;
-        reactContext.addLifecycleEventListener(new RNLifeCycleEventListener());
+        instance = this;
+        Application application = (Application) this.reactContext.getApplicationContext();
+        preferenceManager = RNPreferenceManager.getInstance(application);
+
+        RNLifeCycleEventListener lifeCycleEventListener = new RNLifeCycleEventListener(application);
+        reactContext.addLifecycleEventListener(lifeCycleEventListener);
     }
 
     @Override
@@ -52,59 +55,32 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void setup(ReadableMap options, ReadableMap rudderOptionsMap, Promise promise) throws InterruptedException {
-        if (rudderClient == null) {
-
-            String writeKey = options.getString("writeKey");
-
-            // build RudderConfig to get RudderClient instance
-            RudderConfig.Builder configBuilder = new RudderConfig.Builder();
-            if (options.hasKey("dataPlaneUrl")) {
-                configBuilder.withDataPlaneUrl(options.getString("dataPlaneUrl"));
-            }
-            if (options.hasKey("controlPlaneUrl")) {
-                configBuilder.withControlPlaneUrl(options.getString("controlPlaneUrl"));
-            }
-            if (options.hasKey("flushQueueSize")) {
-                configBuilder.withFlushQueueSize(options.getInt("flushQueueSize"));
-            }
-            if (options.hasKey("dbCountThreshold")) {
-                configBuilder.withDbThresholdCount(options.getInt("dbCountThreshold"));
-            }
-            if (options.hasKey("sleepTimeOut")) {
-                configBuilder.withSleepCount(options.getInt("sleepTimeOut"));
-            }
-            if (options.hasKey("configRefreshInterval")) {
-                configBuilder.withConfigRefreshInterval(options.getInt("configRefreshInterval"));
-            }
-            if (options.hasKey("autoCollectAdvertId")) {
-                configBuilder.withAutoCollectAdvertId(options.getBoolean("autoCollectAdvertId"));
-            }
-            if (options.hasKey("trackAppLifecycleEvents")) {
-                trackLifeCycleEvents = options.getBoolean("trackAppLifecycleEvents");
-                configBuilder.withTrackLifecycleEvents(options.getBoolean("trackAppLifecycleEvents"));
-            }
-            if (options.hasKey("recordScreenViews")) {
-                recordScreenViews = options.getBoolean("recordScreenViews");
-            }
-
-            // we are relying on Screen View Recording implementation in RNLifeCycleEventListener.java hence we are explicitly setting it to false in Native Android SDK
-            configBuilder.withRecordScreenViews(false);
-
-            if (options.hasKey("logLevel")) {
-                configBuilder.withLogLevel(options.getInt("logLevel"));
-            }
+    public void setup(ReadableMap config, ReadableMap rudderOptionsMap, Promise promise) throws InterruptedException {
+        if (!isRudderClientInitializedAndReady()) {
+            // create the config object
+            configParams = new RNParamsConfigurator(config);
+            RudderConfig.Builder configBuilder = configParams.handleConfig();
 
             // get the instance of RudderClient
             rudderClient = RudderClient.getInstance(
                     reactContext,
-                    writeKey,
+                    configParams.writeKey,
                     RNRudderAnalytics.buildWithIntegrations(configBuilder),
                     Utility.convertReadableMapToOptions(rudderOptionsMap)
             );
-            for (LifeCycleEventsInterface lifeCycleEvents : LifeCycleEvents.lifeCycleEvents) {
-                lifeCycleEvents.run();
-            }
+
+            // Configure session tracking
+            userSessionPlugin = new RNUserSessionPlugin(
+                    configParams.autoSessionTracking,
+                    configParams.trackLifeCycleEvents,
+                    configParams.sessionTimeout
+            );
+            userSessionPlugin.handleSessionTracking();
+
+            // Track automatic lifecycle and/or screen events
+            LifeCycleEvents.trackAutomaticEvents();
+
+            // RN SDK is initialised
             initialized = true;
 
             // process all the factories passed and stores whether they were ready or not in the integrationMap
@@ -112,7 +88,7 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
                 for (RudderIntegration.Factory factory : RNRudderAnalytics.integrationList) {
                     String integrationName = factory.key();
                     RudderClient.Callback callback = new NativeCallBack(integrationName);
-                    rudderClient.onIntegrationReady(integrationName, callback);
+                    RNRudderSdkModule.rudderClient.onIntegrationReady(integrationName, callback);
                 }
             }
         } else {
@@ -122,12 +98,20 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
         promise.resolve(null);
     }
 
+    private boolean isRudderClientInitializedAndReady() {
+        if (rudderClient == null || !initialized) {
+            RudderLogger.logWarn("Dropping the call as RudderClient is not initialized yet, Please use `await` keyword with the setup call");
+            return false;
+        }
+        return true;
+    }
+
     @ReactMethod
     public void track(String event, ReadableMap properties, ReadableMap options) {
-        if (rudderClient == null) {
-            RudderLogger.logWarn("Dropping the Track call as RudderClient is not initialized yet, Please use `await` keyword with the setup call");
+        if (!isRudderClientInitializedAndReady()) {
             return;
         }
+        userSessionPlugin.saveEventTimestamp();
         rudderClient.track(new RudderMessageBuilder()
                 .setEventName(event)
                 .setProperty(Utility.convertReadableMapToMap(properties))
@@ -137,10 +121,10 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
 
     @ReactMethod
     public void screen(String event, ReadableMap properties, ReadableMap options) {
-        if (rudderClient == null) {
-            RudderLogger.logWarn("Dropping the Screen call as RudderClient is not initialized yet, Please use `await` keyword with the setup call");
+        if (!isRudderClientInitializedAndReady()) {
             return;
         }
+        userSessionPlugin.saveEventTimestamp();
         RudderProperty property = new RudderProperty();
         property.putValue(Utility.convertReadableMapToMap(properties));
         rudderClient.screen(event, property, Utility.convertReadableMapToOptions(options));
@@ -155,10 +139,10 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
 
     @ReactMethod
     public void identify(String userId, ReadableMap traits, ReadableMap options) {
-        if (rudderClient == null) {
-            RudderLogger.logWarn("Dropping the Identify call as RudderClient is not initialized yet, Please use `await` keyword with the setup call");
+        if (!isRudderClientInitializedAndReady()) {
             return;
         }
+        userSessionPlugin.saveEventTimestamp();
         if (TextUtils.isEmpty(userId)) {
             rudderClient.identify(Utility.convertReadableMapToTraits(traits), Utility.convertReadableMapToOptions(options));
             return;
@@ -168,10 +152,10 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
 
     @ReactMethod
     public void alias(String newId, ReadableMap options) {
-        if (rudderClient == null) {
-            RudderLogger.logWarn("Dropping the Alias call as RudderClient is not initialized yet, Please use `await` keyword with the setup call");
+        if (!isRudderClientInitializedAndReady()) {
             return;
         }
+        userSessionPlugin.saveEventTimestamp();
         if (TextUtils.isEmpty(newId)) {
             RudderLogger.logWarn("Dropping the Alias call as newId can not be empty");
             return;
@@ -181,10 +165,10 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
 
     @ReactMethod
     public void group(String groupId, ReadableMap traits, ReadableMap options) {
-        if (rudderClient == null) {
-            RudderLogger.logWarn("Dropping the Group call as RudderClient is not initialized yet, Please use `await` keyword with the setup call");
+        if (!isRudderClientInitializedAndReady()) {
             return;
         }
+        userSessionPlugin.saveEventTimestamp();
         if (TextUtils.isEmpty(groupId)) {
             RudderLogger.logWarn("Dropping the Group call as groupId can not be empty");
             return;
@@ -195,8 +179,7 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
     // Migrated from Callbacks to Promise to support ES2016's async/await syntax on the RN Side
     @ReactMethod
     public void getRudderContext(Promise promise) throws JSONException {
-        if (rudderClient == null) {
-            RudderLogger.logWarn("Dropping the getRudderContext call as RudderClient is not initialized yet, Please use `await` keyword with the setup call");
+        if (!isRudderClientInitializedAndReady()) {
             promise.resolve(null);
             return;
         }
@@ -207,8 +190,7 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
 
     @ReactMethod
     public void reset() {
-        if (rudderClient == null) {
-            RudderLogger.logWarn("Dropping the Reset call as RudderClient is not initialized yet, Please use `await` keyword with the setup call");
+        if (!isRudderClientInitializedAndReady()) {
             return;
         }
         rudderClient.reset();
@@ -216,8 +198,7 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
 
     @ReactMethod
     public void flush() {
-        if (rudderClient == null) {
-            RudderLogger.logWarn("Dropping the Flush call as RudderClient is not initialized yet, Please use `await` keyword with the setup call");
+        if (!isRudderClientInitializedAndReady()) {
             return;
         }
         rudderClient.flush();
@@ -225,8 +206,7 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
 
     @ReactMethod
     public void optOut(boolean optOut) {
-        if (rudderClient == null) {
-            RudderLogger.logWarn("Dropping the optOut call as RudderClient is not initialized yet, Please use `await` keyword with the setup call");
+        if (!isRudderClientInitializedAndReady()) {
             return;
         }
         rudderClient.optOut(optOut);
@@ -244,6 +224,30 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
         if (!TextUtils.isEmpty(id)) {
             RudderClient.putAnonymousId(id);
         }
+    }
+
+    @ReactMethod
+    public void startSession(String sessionId) {
+        if (!isRudderClientInitializedAndReady()) {
+            return;
+        }
+        userSessionPlugin.enableManualSessionParams();
+        if (sessionId.length() == 0) {
+            userSessionPlugin.startSession();
+            RudderLogger.logVerbose("RNRudderSdkModule: startSession: starting manual session");
+            return;
+        }
+        userSessionPlugin.startSession(Long.parseLong(sessionId));
+        RudderLogger.logVerbose("RNRudderSdkModule: startSession: starting manual session with id: " + sessionId);
+    }
+
+    @ReactMethod
+    public void endSession() {
+        if (!isRudderClientInitializedAndReady()) {
+            return;
+        }
+        userSessionPlugin.endSession();
+        RudderLogger.logVerbose("RNRudderSdkModule: endSession: ending session");
     }
 
     @ReactMethod
