@@ -11,3 +11,6 @@ export const TRACK_LIFECYCLE_EVENTS = true;
 export const RECORD_SCREEN_VIEWS = false;
 export const LOG_LEVEL = RUDDER_LOG_LEVEL.ERROR;
 export const SDK_VERSION = '1.7.1';
+export const AUTO_SESSION_TRACKING = true;
+export const SESSION_TIMEOUT = 300000;
+export const ENABLE_BACKGROUND_MODE = false;
