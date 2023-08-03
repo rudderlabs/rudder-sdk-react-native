@@ -4,8 +4,18 @@
 #else
 #import <React/RCTBridgeModule.h>
 #endif
+#import "RNApplicationLifeCycleManager.h"
+#import "RNBackGroundModeManager.h"
+#import "RNPreferenceManager.h"
+#import "RNParamsConfigurator.h"
 
-@interface RNRudderSdkModule : NSObject <RCTBridgeModule>
+@interface RNRudderSdkModule : NSObject <RCTBridgeModule> {
+    RNApplicationLifeCycleManager *applicationLifeCycleManager;
+    RNBackGroundModeManager *backGroundModeManager;
+    RNPreferenceManager *preferenceManager;
+    RNParamsConfigurator *configParams;
+    BOOL initialized;
+}
 
 
 @end

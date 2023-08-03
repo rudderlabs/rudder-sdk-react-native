@@ -22,47 +22,26 @@ RCT_EXPORT_MODULE();
 RCT_EXPORT_METHOD(setup:(NSDictionary*)config options:(NSDictionary*) _options resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
 {
     if (rsClient == nil) {
+        self->configParams = [[RNParamsConfigurator alloc] initWithConfig:config];
+        RSConfigBuilder *configBuilder = [self->configParams handleConfig];
         
-        NSString* _writeKey = config[@"writeKey"];
-        RSConfigBuilder* configBuilder = [[RSConfigBuilder alloc] init];
+        [RSLogger logDebug:@"setup: Initiating RNPreferenceManager"];
+        self->preferenceManager = [RNPreferenceManager getInstance];
         
-        if ([config objectForKey:@"dataPlaneUrl"]) {
-            [configBuilder withDataPlaneUrl:config[@"dataPlaneUrl"]];
-        }
-        if ([config objectForKey:@"controlPlaneUrl"]) {
-            [configBuilder withControlPlaneUrl:config[@"controlPlaneUrl"]];
-        }
-        if ([config objectForKey:@"flushQueueSize"]) {
-            [configBuilder withFlushQueueSize:[config[@"flushQueueSize"] intValue]];
-        }
-        if ([config objectForKey:@"dbCountThreshold"]) {
-            [configBuilder withDBCountThreshold:[config[@"dbCountThreshold"] intValue]];
-        }
-        if ([config objectForKey:@"sleepTimeOut"]) {
-            [configBuilder withSleepTimeOut:[config[@"sleepTimeOut"] intValue]];
-        }
-        if ([config objectForKey:@"configRefreshInterval"]) {
-            [configBuilder withConfigRefreshInteval:[config[@"configRefreshInterval"] intValue]];
-        }
-        if ([config objectForKey:@"trackAppLifecycleEvents"]) {
-            [configBuilder withTrackLifecycleEvens:[config[@"trackAppLifecycleEvents"] boolValue]];
-        }
-        if ([config objectForKey:@"recordScreenViews"]) {
-            [configBuilder withRecordScreenViews:[config[@"recordScreenViews"] boolValue]];
-        }
-        if ([config objectForKey:@"logLevel"]) {
-            [configBuilder withLoglevel:[config[@"logLevel"] intValue]];
-        }
+        rsClient = [RSClient getInstance:self->configParams.writeKey config:[RNRudderAnalytics buildWithIntegrations:configBuilder] options:[self getRudderOptionsObject:_options]];
         
-        rsClient = [RSClient getInstance:_writeKey config:[RNRudderAnalytics buildWithIntegrations:configBuilder] options:[self getRudderOptionsObject:_options]];
+        [RSLogger logDebug:@"setup: Initiating RNBackGroundModeManager"];
+        self->backGroundModeManager = [[RNBackGroundModeManager alloc] initWithEnableBackgroundMode:self->configParams.enableBackgroundMode];
         
-        if ([config objectForKey:@"trackAppLifecycleEvents"]) {
-            SEL selector = @selector(trackLifecycleEvents:);
-            
-            if ([rsClient respondsToSelector:selector]) {
-                [rsClient performSelector:selector withObject:_bridge.launchOptions];
-            }
+        [RSLogger logDebug:@"setup: Initiating RNApplicationLifeCycleManager"];
+        self->applicationLifeCycleManager = [[RNApplicationLifeCycleManager alloc] initWithTrackLifecycleEvents:self->configParams.trackLifeCycleEvents andBackGroundModeManager:self->backGroundModeManager withLaunchOptions:_bridge.launchOptions];
+        [self->applicationLifeCycleManager trackApplicationLifeCycle];
+        
+        if (self->configParams.recordScreenViews) {
+            [RSLogger logDebug:@"setup: Enabling automatic recording of screen views"];
+            [self->applicationLifeCycleManager prepareScreenRecorder];
         }
+        self->initialized = YES;
     }
     else{
         [RSLogger logDebug:@"Rudder Client already initialized, Ignoring the new setup call"];
@@ -70,11 +49,17 @@ RCT_EXPORT_METHOD(setup:(NSDictionary*)config options:(NSDictionary*) _options r
     resolve(nil);
 }
 
+-(BOOL) isRudderClientInitializedAndReady {
+    if ([RSClient sharedInstance] == nil || self->initialized == NO) {
+        [RSLogger logWarn:@"Dropping the call as RudderClient is not initialized yet. Please use `await` keyword with the setup call"];
+        return NO;
+    }
+    return YES;
+}
+
 RCT_EXPORT_METHOD(track:(NSString*)_event properties:(NSDictionary*)_properties options:(NSDictionary*)_options)
 {
-    if ([RSClient sharedInstance] == nil)
-    {
-        [RSLogger logWarn:@"Dropping the Track call as RudderClient is not initialized yet, Please use `await` keyword with the setup call"];
+    if (![self isRudderClientInitializedAndReady]) {
         return;
     }
     RSMessageBuilder* builder = [[RSMessageBuilder alloc] init];
@@ -86,9 +71,7 @@ RCT_EXPORT_METHOD(track:(NSString*)_event properties:(NSDictionary*)_properties 
 }
 RCT_EXPORT_METHOD(screen:(NSString*)_event properties:(NSDictionary*)_properties options:(NSDictionary*)_options)
 {
-    if ([RSClient sharedInstance] == nil)
-    {
-        [RSLogger logWarn:@"Dropping the Screen call as RudderClient is not initialized yet, Please use `await` keyword with the setup call"];
+    if (![self isRudderClientInitializedAndReady]) {
         return;
     }
     // RSMessageBuilder* builder = [[RSMessageBuilder alloc] init];
@@ -101,9 +84,7 @@ RCT_EXPORT_METHOD(screen:(NSString*)_event properties:(NSDictionary*)_properties
 
 RCT_EXPORT_METHOD(identify:(NSString*)_userId traits:(NSDictionary*)_traits options:(NSDictionary*)_options)
 {
-    if ([RSClient sharedInstance] == nil)
-    {
-        [RSLogger logWarn:@"Dropping the Identify call as RudderClient is not initialized yet, Please use `await` keyword with the setup call"];
+    if (![self isRudderClientInitializedAndReady]) {
         return;
     }
     if([_userId isEqual:@""])
@@ -116,9 +97,7 @@ RCT_EXPORT_METHOD(identify:(NSString*)_userId traits:(NSDictionary*)_traits opti
 
 RCT_EXPORT_METHOD(alias:(NSString*)_newId options:(NSDictionary*)_options)
 {
-    if ([RSClient sharedInstance] == nil)
-    {
-        [RSLogger logWarn:@"Dropping the Alias call as RudderClient is not initialized yet, Please use `await` keyword with the setup call"];
+    if (![self isRudderClientInitializedAndReady]) {
         return;
     }
     if([_newId isEqual:@""])
@@ -131,9 +110,7 @@ RCT_EXPORT_METHOD(alias:(NSString*)_newId options:(NSDictionary*)_options)
 
 RCT_EXPORT_METHOD(group:(NSString*)_groupId traits:(NSDictionary*)_traits options:(NSDictionary*)_options)
 {
-    if ([RSClient sharedInstance] == nil)
-    {
-        [RSLogger logWarn:@"Dropping the Group call as RudderClient is not initialized yet, Please use `await` keyword with the setup call"];
+    if (![self isRudderClientInitializedAndReady]) {
         return;
     }
     if([_groupId isEqual:@""])
@@ -153,9 +130,7 @@ RCT_EXPORT_METHOD(putDeviceToken:(NSString*)token)
 
 RCT_EXPORT_METHOD(reset)
 {
-    if ([RSClient sharedInstance] == nil)
-    {
-        [RSLogger logWarn:@"Dropping the Reset call as RudderClient is not initialized yet, Please use `await` keyword with the setup call"];
+    if (![self isRudderClientInitializedAndReady]) {
         return;
     }
     [[RSClient sharedInstance] reset];
@@ -163,9 +138,7 @@ RCT_EXPORT_METHOD(reset)
 
 RCT_EXPORT_METHOD(flush)
 {
-    if ([RSClient sharedInstance] == nil)
-    {
-        [RSLogger logWarn:@"Dropping the Flush call as RudderClient is not initialized yet, Please use `await` keyword with the setup call"];
+    if (![self isRudderClientInitializedAndReady]) {
         return;
     }
     [[RSClient sharedInstance] flush];
@@ -173,18 +146,14 @@ RCT_EXPORT_METHOD(flush)
 
 RCT_EXPORT_METHOD(optOut:(BOOL)optOut)
 {
-    if ([RSClient sharedInstance] == nil)
-    {
-        [RSLogger logWarn:@"Dropping the optOut call as RudderClient is not initialized yet, Please use `await` keyword with the setup call"];
+    if (![self isRudderClientInitializedAndReady]) {
         return;
     }
     [[RSClient sharedInstance] optOut:optOut];
 }
 
 RCT_EXPORT_METHOD(putAdvertisingId:(NSString*)id) {
-    if ([RSClient sharedInstance] == nil)
-    {
-        [RSLogger logWarn:@"Dropping the setAdvertisingId call as RudderClient is not initialized yet, Please use `await` keyword with the setup call"];
+    if (![self isRudderClientInitializedAndReady]) {
         return;
     }
     RSContext* rudderContext = [[RSClient sharedInstance] getContext];
@@ -207,14 +176,26 @@ RCT_EXPORT_METHOD(registerCallback:(NSString *)name callback: (RCTResponseSender
 // Migrated from Callbacks to Promise to support ES2016's async/await syntax on the RN Side
 RCT_EXPORT_METHOD(getRudderContext:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
 {
-    if ([RSClient sharedInstance] == nil)
-    {
-        [RSLogger logWarn:@"Dropping the getRudderContext call as RudderClient is not initialized yet, Please use `await` keyword with the setup call"];
+    if (![self isRudderClientInitializedAndReady]) {
         resolve(nil);
         return;
     }
     NSDictionary* context = [[[RSClient sharedInstance] getContext] dict];
     resolve(context);
+}
+
+RCT_EXPORT_METHOD(startSession) {
+    if (![self isRudderClientInitializedAndReady]) {
+        return;
+    }
+    [[RSClient sharedInstance] startSession];
+}
+
+RCT_EXPORT_METHOD(endSession) {
+    if (![self isRudderClientInitializedAndReady]) {
+        return;
+    }
+    [[RSClient sharedInstance] endSession];
 }
 
 -(RSOption*) getRudderOptionsObject:(NSDictionary *) optionsDict {
