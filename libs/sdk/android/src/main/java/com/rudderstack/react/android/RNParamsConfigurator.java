@@ -75,7 +75,7 @@ class RNParamsConfigurator {
         return configBuilder;
     }
 
-    void disableAutoConfigFlagsForNativeSDK(RudderConfig.Builder configBuilder) {
+    private void disableAutoConfigFlagsForNativeSDK(RudderConfig.Builder configBuilder) {
         // We are relying on the RN implementation in RNLifeCycleEventListener and RNUserSessionPlugin hence we are explicitly setting all flags to false in Native Android SDK
         configBuilder.withRecordScreenViews(false);
         configBuilder.withTrackLifecycleEvents(false);
