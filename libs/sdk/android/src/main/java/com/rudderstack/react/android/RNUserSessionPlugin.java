@@ -82,7 +82,6 @@ public class RNUserSessionPlugin {
             if (isSessionExpired()) {
                 RudderLogger.logVerbose("RNUserSessionPlugin: previous session is expired");
                 startSession();
-                saveEventTimestamp();
             }
         }
     }
