@@ -10,7 +10,7 @@ import com.rudderstack.android.sdk.core.util.Utils;
 public class RNUserSessionPlugin {
     private final long sessionTimeOut;
     private final RudderClient rudderClient;
-    private final SessionTrackingParams session;
+    private final SessionTrackingParams sessionParams;
     private final boolean isAutomaticSessionTrackingEnabled;
 
     RNUserSessionPlugin(
@@ -20,7 +20,7 @@ public class RNUserSessionPlugin {
         this.sessionTimeOut = sessionTimeout;
         this.rudderClient = RudderClient.getInstance();
 
-        this.session = new SessionTrackingParams();
+        this.sessionParams = new SessionTrackingParams();
 
         this.isAutomaticSessionTrackingEnabled = automaticSessionTrackingStatus && lifecycleEventsTrackingStatus;
     }
@@ -54,7 +54,7 @@ public class RNUserSessionPlugin {
      * Otherwise, do nothing.
      */
     private void handleManualSessionTracking() {
-        if (!this.session.wasManualSessionTrackingActive()) {
+        if (!this.sessionParams.wasManualSessionTrackingActive()) {
             RudderLogger.logVerbose("RNUserSessionPlugin: As previously manual session tracking was not enabled. Hence clear the session");
             endSession();
         }
@@ -64,8 +64,8 @@ public class RNUserSessionPlugin {
      * This handles the automatic session tracking
      */
     private void handleAutomaticSessionTracking() {
-        if (this.session.wasManualSessionTrackingActive() ||
-                this.session.wasSessionTrackingDisabled()) {
+        if (this.sessionParams.wasManualSessionTrackingActive() ||
+                this.sessionParams.wasSessionTrackingDisabled()) {
             RudderLogger.logVerbose("RNUserSessionPlugin: As previously manual session tracking was enabled or session tracking was disabled. Hence start a new session");
             startSession();
         } else {
@@ -78,7 +78,7 @@ public class RNUserSessionPlugin {
      * This checks if the current session is expired or not and accordingly starts a new session
      */
     void startNewSessionIfCurrentIsExpired() {
-        if (this.session.isAutomaticSessionTrackingEnabled()) {
+        if (this.sessionParams.isAutomaticSessionTrackingEnabled()) {
             if (isSessionExpired()) {
                 RudderLogger.logVerbose("RNUserSessionPlugin: previous session is expired");
                 startSession();
@@ -95,7 +95,7 @@ public class RNUserSessionPlugin {
         long currentTime = Utils.getCurrentTimeInMilliSeconds();
         long timeDifference;
         synchronized (this) {
-            timeDifference = Math.abs(currentTime - this.session.lastEventTimeStamp);
+            timeDifference = Math.abs(currentTime - this.sessionParams.lastEventTimeStamp);
         }
         return timeDifference >= sessionTimeOut;
     }
@@ -104,7 +104,7 @@ public class RNUserSessionPlugin {
      * This saves the event time
      */
     void saveEventTimestamp() {
-        this.session.saveEventTimestamp();
+        this.sessionParams.saveEventTimestamp();
     }
 
     /**
@@ -144,21 +144,21 @@ public class RNUserSessionPlugin {
      * This enables the Automatic session tracking and disables the other session tracking params
      */
     private void enableAutomaticSessionParams() {
-        this.session.enableSessionParams(true, false);
+        this.sessionParams.enableSessionParams(true, false);
     }
 
     /**
      * This enables the Manual session tracking and disables the other session tracking params
      */
     void enableManualSessionParams() {
-        this.session.enableSessionParams(false, true);
+        this.sessionParams.enableSessionParams(false, true);
     }
 
     /**
      * This disable the session tracking params
      */
     private void disableSessionParams() {
-        this.session.enableSessionParams(false, false);
+        this.sessionParams.enableSessionParams(false, false);
     }
 
     static class SessionTrackingParams {
