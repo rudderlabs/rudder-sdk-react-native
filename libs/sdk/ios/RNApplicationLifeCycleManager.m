@@ -7,8 +7,8 @@
 
 #import <Foundation/Foundation.h>
 #import "RNApplicationLifeCycleManager.h"
-#import "UIViewController+RSScreen.h"
-#import "WKInterfaceController+RSScreen.h"
+#import "RNUIViewController+RNScreen.h"
+#import "RNWKInterfaceController+RNScreen.h"
 
 @implementation RNApplicationLifeCycleManager
 
@@ -151,11 +151,12 @@
 }
 
 - (void) prepareScreenRecorder {
-    [self->session saveEventTimestamp];
 #if TARGET_OS_WATCH
-    [WKInterfaceController rudder_swizzleView];
+    [WKInterfaceController initSessionPlugin:self->session];
+    [WKInterfaceController rudder_rn_swizzleView];
 #else
-    [UIViewController rudder_swizzleView];
+    [UIViewController initSessionPlugin:self->session];
+    [UIViewController rudder_rn_swizzleView];
 #endif
 }
 
