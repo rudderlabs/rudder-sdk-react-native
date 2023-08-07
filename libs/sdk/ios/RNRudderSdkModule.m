@@ -30,11 +30,15 @@ RCT_EXPORT_METHOD(setup:(NSDictionary*)config options:(NSDictionary*) _options r
         
         rsClient = [RSClient getInstance:self->configParams.writeKey config:[RNRudderAnalytics buildWithIntegrations:configBuilder] options:[self getRudderOptionsObject:_options]];
         
+        [RSLogger logDebug:@"setup: Initiating RNUserSessionPlugin"];
+        self->session = [[RNUserSessionPlugin alloc] initWithAutomaticSessionTrackingStatus:self->configParams.autoSessionTracking withLifecycleEventsTrackingStatus:self->configParams.trackLifeCycleEvents withSessionTimeout:self->configParams.sessionTimeout];
+        [self->session handleSessionTracking];
+        
         [RSLogger logDebug:@"setup: Initiating RNBackGroundModeManager"];
         self->backGroundModeManager = [[RNBackGroundModeManager alloc] initWithEnableBackgroundMode:self->configParams.enableBackgroundMode];
         
         [RSLogger logDebug:@"setup: Initiating RNApplicationLifeCycleManager"];
-        self->applicationLifeCycleManager = [[RNApplicationLifeCycleManager alloc] initWithTrackLifecycleEvents:self->configParams.trackLifeCycleEvents andBackGroundModeManager:self->backGroundModeManager withLaunchOptions:_bridge.launchOptions];
+        self->applicationLifeCycleManager = [[RNApplicationLifeCycleManager alloc] initWithTrackLifecycleEvents:self->configParams.trackLifeCycleEvents andBackGroundModeManager:self->backGroundModeManager withLaunchOptions:_bridge.launchOptions withSessionPlugin:self->session];
         [self->applicationLifeCycleManager trackApplicationLifeCycle];
         
         if (self->configParams.recordScreenViews) {
@@ -62,6 +66,7 @@ RCT_EXPORT_METHOD(track:(NSString*)_event properties:(NSDictionary*)_properties 
     if (![self isRudderClientInitializedAndReady]) {
         return;
     }
+    [self->session saveEventTimestamp];
     RSMessageBuilder* builder = [[RSMessageBuilder alloc] init];
     [builder setEventName:_event];
     [builder setPropertyDict:_properties];
@@ -79,6 +84,7 @@ RCT_EXPORT_METHOD(screen:(NSString*)_event properties:(NSDictionary*)_properties
     // [builder setPropertyDict:_properties];
     // [builder setRSOption:[[RSOption alloc] init]];
     
+    [self->session saveEventTimestamp];
     [[RSClient sharedInstance] screen:_event properties:_properties options:[self getRudderOptionsObject:_options]];
 }
 
@@ -87,6 +93,7 @@ RCT_EXPORT_METHOD(identify:(NSString*)_userId traits:(NSDictionary*)_traits opti
     if (![self isRudderClientInitializedAndReady]) {
         return;
     }
+    [self->session saveEventTimestamp];
     if([_userId isEqual:@""])
     {
         [[RSClient sharedInstance] identify:nil traits:_traits options:[self getRudderOptionsObject:_options]];
@@ -105,6 +112,7 @@ RCT_EXPORT_METHOD(alias:(NSString*)_newId options:(NSDictionary*)_options)
         [RSLogger logWarn:@"Dropping the Alias call as newId can not be empty"];
         return;
     }
+    [self->session saveEventTimestamp];
     [[RSClient sharedInstance] alias:_newId options:[self getRudderOptionsObject:_options]];
 }
 
@@ -118,6 +126,7 @@ RCT_EXPORT_METHOD(group:(NSString*)_groupId traits:(NSDictionary*)_traits option
         [RSLogger logWarn:@"Dropping the Group call as groupId can not be empty"];        
         return;
     }
+    [self->session saveEventTimestamp];
     [[RSClient sharedInstance] group:_groupId traits:_traits options:[self getRudderOptionsObject:_options]];
 }
 
@@ -184,18 +193,26 @@ RCT_EXPORT_METHOD(getRudderContext:(RCTPromiseResolveBlock)resolve rejecter:(RCT
     resolve(context);
 }
 
-RCT_EXPORT_METHOD(startSession) {
+RCT_EXPORT_METHOD(startSession:(NSString *)sessionId) {
     if (![self isRudderClientInitializedAndReady]) {
         return;
     }
-    [[RSClient sharedInstance] startSession];
+    [self->session enableManualSessionParams];
+    if ([sessionId length] == 0) {
+        [self->session startSession];
+        [RSLogger logVerbose:@"setup: startSession: starting manual session"];
+        return;
+    }
+    [self->session startSession:[sessionId longLongValue]];
+    [RSLogger logVerbose:[NSString stringWithFormat:@"setup: starting manual session with id: %lld", [sessionId longLongValue]]];
 }
 
 RCT_EXPORT_METHOD(endSession) {
     if (![self isRudderClientInitializedAndReady]) {
         return;
     }
-    [[RSClient sharedInstance] endSession];
+    [self->session endSession];
+    [RSLogger logVerbose:@"setup: ending session"];
 }
 
 -(RSOption*) getRudderOptionsObject:(NSDictionary *) optionsDict {

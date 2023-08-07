@@ -8,6 +8,7 @@
 #import "RNBackGroundModeManager.h"
 #import "RNPreferenceManager.h"
 #import "RNParamsConfigurator.h"
+#import "RNUserSessionPlugin.h"
 
 @interface RNRudderSdkModule : NSObject <RCTBridgeModule> {
     RNApplicationLifeCycleManager *applicationLifeCycleManager;
@@ -15,6 +16,7 @@
     RNPreferenceManager *preferenceManager;
     RNParamsConfigurator *configParams;
     BOOL initialized;
+    RNUserSessionPlugin *session;
 }
 
 

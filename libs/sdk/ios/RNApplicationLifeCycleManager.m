@@ -13,13 +13,14 @@
 @implementation RNApplicationLifeCycleManager
 
 
-- (instancetype)initWithTrackLifecycleEvents:(BOOL)trackLifecycleEvents andBackGroundModeManager:(RNBackGroundModeManager *)backGroundModeManager withLaunchOptions:(id)launchOptions {
+- (instancetype)initWithTrackLifecycleEvents:(BOOL)trackLifecycleEvents andBackGroundModeManager:(RNBackGroundModeManager *)backGroundModeManager withLaunchOptions:(id)launchOptions withSessionPlugin:(RNUserSessionPlugin *)session {
     self = [super init];
     if(self){
         self->trackLifecycleEvents = trackLifecycleEvents;
         self->preferenceManager = [RNPreferenceManager getInstance];
         self->firstForeGround = YES;
         self->backGroundModeManager = backGroundModeManager;
+        self->session = session;
         [self applicationDidFinishLaunchingWithOptions: launchOptions];
     }
     return self;
@@ -76,12 +77,14 @@
     }
     
     if (!previousVersion) {
+        [self->session saveEventTimestamp];
         [RSLogger logVerbose:@"RNApplicationLifeCycleManager: applicationDidFinishLaunchingWithOptions: Tracking Application Installed"];
         [[RSClient sharedInstance] track:@"Application Installed" properties:@{
             @"version": currentVersion,
             @"build": currentBuildNumber
         }];
     } else if (![previousVersion isEqualToString:currentVersion]) {
+        [self->session saveEventTimestamp];
         [RSLogger logVerbose:@"RNApplicationLifeCycleManager: applicationDidFinishLaunchingWithOptions: Tracking Application Updated"];
         [[RSClient sharedInstance] track:@"Application Updated" properties:@{
             @"previous_version" : previousVersion ?: @"",
@@ -128,10 +131,12 @@
     if (!self->trackLifecycleEvents) {
         return;
     }
+    [self->session startNewSessionIfCurrentIsExpired];
     [self sendApplicationOpenedWithProperties:@{@"from_background" : @YES}];
 }
 
 - (void) sendApplicationOpenedWithProperties:(NSDictionary *) properties {
+    [self->session saveEventTimestamp];
     [RSLogger logVerbose:@"RNApplicationLifeCycleManager: sendApplicationOpenedWithProperties: Tracking Application Opened"];
     [[RSClient sharedInstance] track:@"Application Opened" properties:properties];
 }
@@ -140,11 +145,13 @@
     if (!self->trackLifecycleEvents) {
         return;
     }
+    [self->session saveEventTimestamp];
     [RSLogger logVerbose:@"RNApplicationLifeCycleManager: applicationDidEnterBackground: Tracking Application Backgrounded"];
     [[RSClient sharedInstance] track:@"Application Backgrounded"];
 }
 
 - (void) prepareScreenRecorder {
+    [self->session saveEventTimestamp];
 #if TARGET_OS_WATCH
     [WKInterfaceController rudder_swizzleView];
 #else
