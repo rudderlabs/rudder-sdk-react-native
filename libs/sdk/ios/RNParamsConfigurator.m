@@ -26,14 +26,14 @@
 }
 
 -(RSConfigBuilder*)handleConfig {
-    [self saveConfigValues];
-    [self saveWriteKey];
+    [self setConfigValues];
+    [self setWriteKey];
     RSConfigBuilder *configBuilder = [self buildConfig];
     [self disableAutoConfigFlagsForNativeSDK:configBuilder];
     return configBuilder;
 }
 
--(void)saveConfigValues {
+-(void)setConfigValues {
     if ([config objectForKey:@"trackAppLifecycleEvents"]) {
         self.trackLifeCycleEvents =  [config[@"trackAppLifecycleEvents"] boolValue];
     }
@@ -51,7 +51,7 @@
     }
 }
 
--(void)saveWriteKey {
+-(void)setWriteKey {
     self.writeKey = config[@"writeKey"];
 }
 
