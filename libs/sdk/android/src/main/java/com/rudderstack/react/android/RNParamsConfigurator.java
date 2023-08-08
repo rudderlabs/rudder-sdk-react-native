@@ -4,73 +4,73 @@ import com.facebook.react.bridge.ReadableMap;
 import com.rudderstack.android.sdk.core.RudderConfig;
 
 class RNParamsConfigurator {
-    private final ReadableMap rudderOptionsMap;
+    private final ReadableMap config;
     boolean trackLifeCycleEvents = true;
     boolean recordScreenViews = false;
     long sessionTimeout = 300000L;
     boolean autoSessionTracking = true;
     String writeKey;
 
-    RNParamsConfigurator(ReadableMap rudderOptionsMap) {
-        this.rudderOptionsMap = rudderOptionsMap;
+    RNParamsConfigurator(ReadableMap config) {
+        this.config = config;
     }
 
     RudderConfig.Builder handleConfig() {
-        saveConfigValues();
-        saveWriteKey();
+        setConfigValues();
+        setWriteKey();
         RudderConfig.Builder configBuilder = buildConfig();
         disableAutoConfigFlagsForNativeSDK(configBuilder);
         return configBuilder;
     }
 
-    private void saveWriteKey() {
-        if (this.rudderOptionsMap.hasKey("writeKey")) {
-            writeKey = rudderOptionsMap.getString("writeKey");
+    private void setWriteKey() {
+        if (this.config.hasKey("writeKey")) {
+            writeKey = config.getString("writeKey");
         } else {
             throw new IllegalArgumentException("writeKey is required");
         }
     }
 
-    private void saveConfigValues() {
-        if (this.rudderOptionsMap.hasKey("trackAppLifecycleEvents")) {
-            trackLifeCycleEvents = rudderOptionsMap.getBoolean("trackAppLifecycleEvents");
+    private void setConfigValues() {
+        if (this.config.hasKey("trackAppLifecycleEvents")) {
+            trackLifeCycleEvents = config.getBoolean("trackAppLifecycleEvents");
         }
-        if (this.rudderOptionsMap.hasKey("recordScreenViews")) {
-            recordScreenViews = rudderOptionsMap.getBoolean("recordScreenViews");
+        if (this.config.hasKey("recordScreenViews")) {
+            recordScreenViews = config.getBoolean("recordScreenViews");
         }
-        if (this.rudderOptionsMap.hasKey("sessionTimeout")) {
-            sessionTimeout = (long) rudderOptionsMap.getDouble("sessionTimeout");
+        if (this.config.hasKey("sessionTimeout")) {
+            sessionTimeout = (long) config.getDouble("sessionTimeout");
         }
-        if (this.rudderOptionsMap.hasKey("autoSessionTracking")) {
-            autoSessionTracking = rudderOptionsMap.getBoolean("autoSessionTracking");
+        if (this.config.hasKey("autoSessionTracking")) {
+            autoSessionTracking = config.getBoolean("autoSessionTracking");
         }
     }
 
     private RudderConfig.Builder buildConfig() {
         RudderConfig.Builder configBuilder = new RudderConfig.Builder();
-        if (rudderOptionsMap.hasKey("dataPlaneUrl")) {
-            configBuilder.withDataPlaneUrl(rudderOptionsMap.getString("dataPlaneUrl"));
+        if (config.hasKey("dataPlaneUrl")) {
+            configBuilder.withDataPlaneUrl(config.getString("dataPlaneUrl"));
         }
-        if (rudderOptionsMap.hasKey("controlPlaneUrl")) {
-            configBuilder.withControlPlaneUrl(rudderOptionsMap.getString("controlPlaneUrl"));
+        if (config.hasKey("controlPlaneUrl")) {
+            configBuilder.withControlPlaneUrl(config.getString("controlPlaneUrl"));
         }
-        if (rudderOptionsMap.hasKey("flushQueueSize")) {
-            configBuilder.withFlushQueueSize(rudderOptionsMap.getInt("flushQueueSize"));
+        if (config.hasKey("flushQueueSize")) {
+            configBuilder.withFlushQueueSize(config.getInt("flushQueueSize"));
         }
-        if (rudderOptionsMap.hasKey("dbCountThreshold")) {
-            configBuilder.withDbThresholdCount(rudderOptionsMap.getInt("dbCountThreshold"));
+        if (config.hasKey("dbCountThreshold")) {
+            configBuilder.withDbThresholdCount(config.getInt("dbCountThreshold"));
         }
-        if (rudderOptionsMap.hasKey("sleepTimeOut")) {
-            configBuilder.withSleepCount(rudderOptionsMap.getInt("sleepTimeOut"));
+        if (config.hasKey("sleepTimeOut")) {
+            configBuilder.withSleepCount(config.getInt("sleepTimeOut"));
         }
-        if (rudderOptionsMap.hasKey("configRefreshInterval")) {
-            configBuilder.withConfigRefreshInterval(rudderOptionsMap.getInt("configRefreshInterval"));
+        if (config.hasKey("configRefreshInterval")) {
+            configBuilder.withConfigRefreshInterval(config.getInt("configRefreshInterval"));
         }
-        if (rudderOptionsMap.hasKey("autoCollectAdvertId")) {
-            configBuilder.withAutoCollectAdvertId(rudderOptionsMap.getBoolean("autoCollectAdvertId"));
+        if (config.hasKey("autoCollectAdvertId")) {
+            configBuilder.withAutoCollectAdvertId(config.getBoolean("autoCollectAdvertId"));
         }
-        if (rudderOptionsMap.hasKey("logLevel")) {
-            configBuilder.withLogLevel(rudderOptionsMap.getInt("logLevel"));
+        if (config.hasKey("logLevel")) {
+            configBuilder.withLogLevel(config.getInt("logLevel"));
         }
         return configBuilder;
     }
