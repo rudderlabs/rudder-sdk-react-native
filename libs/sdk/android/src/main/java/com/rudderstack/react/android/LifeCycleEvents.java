@@ -14,19 +14,13 @@ public class LifeCycleEvents {
         void run();
     }
 
-    private static final List<LifeCycleEventsInterface> lifeCycleEvents = new ArrayList<>();
-
-    static void trackAutomaticEvents() {
-        for (LifeCycleEventsInterface lifeCycleEvents : LifeCycleEvents.lifeCycleEvents) {
-            lifeCycleEvents.run();
-        }
-    }
-
     static class ApplicationStatusRunnable implements LifeCycleEventsInterface {
         private static AppVersion appVersion;
         public static final String VERSION = "version";
+        private final RNUserSessionPlugin userSessionPlugin;
 
-        ApplicationStatusRunnable(Application application) {
+        ApplicationStatusRunnable(Application application, RNUserSessionPlugin userSessionPlugin) {
+            this.userSessionPlugin = userSessionPlugin;
             appVersion = new AppVersion(application);
         }
 
@@ -35,11 +29,11 @@ public class LifeCycleEvents {
             appVersion.storeCurrentBuildAndVersion();
             if (RNRudderSdkModule.configParams.trackLifeCycleEvents) {
                 if (appVersion.previousBuild == -1) {
-                    RNRudderSdkModule.userSessionPlugin.saveEventTimestamp();
+                    this.userSessionPlugin.saveEventTimestamp();
                     // application was not installed previously, now triggering Application Installed event
                     sendApplicationInstalled(appVersion.currentBuild, appVersion.currentVersion);
                 } else if (isApplicationUpdated()) {
-                    RNRudderSdkModule.userSessionPlugin.saveEventTimestamp();
+                    this.userSessionPlugin.saveEventTimestamp();
                     sendApplicationUpdated(appVersion.previousBuild, appVersion.currentBuild, appVersion.previousVersion, appVersion.currentVersion);
                 }
             }
@@ -70,18 +64,20 @@ public class LifeCycleEvents {
 
     static class ApplicationOpenedRunnable implements LifeCycleEventsInterface {
         boolean fromBackground;
+        private final RNUserSessionPlugin userSessionPlugin;
 
-        ApplicationOpenedRunnable(boolean fromBackground) {
+        ApplicationOpenedRunnable(boolean fromBackground, RNUserSessionPlugin userSessionPlugin) {
             this.fromBackground = fromBackground;
+            this.userSessionPlugin = userSessionPlugin;
         }
 
         @Override
         public void run() {
             if (RNRudderSdkModule.configParams.trackLifeCycleEvents) {
                 if (this.fromBackground) {
-                    RNRudderSdkModule.userSessionPlugin.startNewSessionIfCurrentIsExpired();
+                    this.userSessionPlugin.startNewSessionIfCurrentIsExpired();
                 }
-                RNRudderSdkModule.userSessionPlugin.saveEventTimestamp();
+                this.userSessionPlugin.saveEventTimestamp();
                 RudderProperty property = new RudderProperty();
                 property.put("from_background", this.fromBackground);
                 RNRudderSdkModule.rudderClient.track("Application Opened", property);
@@ -90,10 +86,16 @@ public class LifeCycleEvents {
     }
 
     static class ApplicationBackgroundedRunnable implements LifeCycleEventsInterface {
+        private final RNUserSessionPlugin userSessionPlugin;
+        
+        ApplicationBackgroundedRunnable(RNUserSessionPlugin userSessionPlugin) {
+            this.userSessionPlugin = userSessionPlugin;
+        }
+
         @Override
         public void run() {
             if (RNRudderSdkModule.configParams.trackLifeCycleEvents) {
-                RNRudderSdkModule.userSessionPlugin.saveEventTimestamp();
+                this.userSessionPlugin.saveEventTimestamp();
                 RNRudderSdkModule.rudderClient.track("Application Backgrounded");
             }
         }
@@ -101,15 +103,17 @@ public class LifeCycleEvents {
 
     static class ScreenViewRunnable implements LifeCycleEventsInterface {
         String activityName;
+        private final RNUserSessionPlugin userSessionPlugin;
 
-        ScreenViewRunnable(String activityName) {
+        ScreenViewRunnable(String activityName, RNUserSessionPlugin userSessionPlugin) {
             this.activityName = activityName;
+            this.userSessionPlugin = userSessionPlugin;
         }
 
         @Override
         public void run() {
             if (RNRudderSdkModule.configParams.recordScreenViews) {
-                RNRudderSdkModule.userSessionPlugin.saveEventTimestamp();
+                this.userSessionPlugin.saveEventTimestamp();
                 RudderProperty property = new RudderProperty();
                 property.put("name", activityName);
                 property.put("automatic", true);
@@ -119,10 +123,6 @@ public class LifeCycleEvents {
     }
 
     static void executeRunnable(LifeCycleEventsInterface lifeCycleEvent) {
-        if (RNRudderSdkModule.rudderClient == null && !RNRudderSdkModule.initialized) {
-            lifeCycleEvents.add(lifeCycleEvent);
-            return;
-        }
         lifeCycleEvent.run();
     }
 }

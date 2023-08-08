@@ -33,20 +33,18 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
 
     static RNRudderSdkModule instance;
     static RudderClient rudderClient;
-    static RNUserSessionPlugin userSessionPlugin;
+    private static RNUserSessionPlugin userSessionPlugin;
     static RNParamsConfigurator configParams;
     static boolean initialized = false;
+    private final Application application;
     private static RNPreferenceManager preferenceManager;
 
     public RNRudderSdkModule(ReactApplicationContext reactContext) {
         super(reactContext);
         this.reactContext = reactContext;
         instance = this;
-        Application application = (Application) this.reactContext.getApplicationContext();
-        preferenceManager = RNPreferenceManager.getInstance(application);
-
-        RNLifeCycleEventListener lifeCycleEventListener = new RNLifeCycleEventListener(application);
-        reactContext.addLifecycleEventListener(lifeCycleEventListener);
+        this.application = (Application) this.reactContext.getApplicationContext();
+        preferenceManager = RNPreferenceManager.getInstance(this.application);
     }
 
     @Override
@@ -78,7 +76,8 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
             userSessionPlugin.handleSessionTracking();
 
             // Track automatic lifecycle and/or screen events
-            LifeCycleEvents.trackAutomaticEvents();
+            RNLifeCycleEventListener lifeCycleEventListener = new RNLifeCycleEventListener(this.application, userSessionPlugin);
+            reactContext.addLifecycleEventListener(lifeCycleEventListener);
 
             // RN SDK is initialised
             initialized = true;

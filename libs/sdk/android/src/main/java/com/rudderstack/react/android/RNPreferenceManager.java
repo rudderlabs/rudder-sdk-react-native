@@ -3,6 +3,9 @@ package com.rudderstack.react.android;
 import android.app.Application;
 import android.content.SharedPreferences;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+
 /**
  * Preference Manager for React Native Android SDK
  */
@@ -21,6 +24,7 @@ public class RNPreferenceManager {
         preferences = application.getSharedPreferences("rn_prefs", 0);
     }
 
+    @Nonnull
     static RNPreferenceManager getInstance(Application application) {
         if (instance == null) {
             instance = new RNPreferenceManager(application);
@@ -28,6 +32,7 @@ public class RNPreferenceManager {
         return instance;
     }
 
+    @Nullable
     static RNPreferenceManager getInstance() {
         return instance;
     }
