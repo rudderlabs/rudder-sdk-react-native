@@ -25,11 +25,11 @@
     self->isManualSessionTrackingStatus = [preferenceManager getManualSessionTrackingStatus];
 }
 
-- (BOOL)isAutomaticSessionTrackingEnabled {
+- (BOOL)isAutomaticSessionActive {
     return self->isAutomaticSessionTrackingStatus;
 }
 
-- (BOOL)wasManualSessionTrackingActive {
+- (BOOL)wasManualSessionActive {
     return self->isManualSessionTrackingStatus;
 }
 

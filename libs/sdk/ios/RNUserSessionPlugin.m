@@ -23,21 +23,21 @@
 
 - (void)handleSessionTracking {
     if (!self->isAutomaticSessionTrackingEnabled) {
-        [self handleManualSessionTracking];
+        [self endSessionIfManualSessionInactivePreviously];
     } else {
         [self handleAutomaticSessionTracking];
     }
 }
 
-- (void)handleManualSessionTracking {
-    if (![self->sessionParams wasManualSessionTrackingActive]) {
+- (void)endSessionIfManualSessionInactivePreviously {
+    if (![self->sessionParams wasManualSessionActive]) {
         [RSLogger logVerbose:@"RNUserSessionPlugin: As previously manual session tracking was not enabled. Hence clear the session"];
         [self endSession];
     }
 }
 
 -(void)handleAutomaticSessionTracking {
-    if ([self->sessionParams wasManualSessionTrackingActive] || [self->sessionParams wasSessionTrackingDisabled]) {
+    if ([self->sessionParams wasManualSessionActive] || [self->sessionParams wasSessionTrackingDisabled]) {
         [RSLogger logVerbose:@"RNUserSessionPlugin: As previously manual session tracking was enabled or session tracking was disabled. Hence start a new session"];
         [self startSession];
     } else {
@@ -47,7 +47,7 @@
 }
 
 - (void)startNewSessionIfCurrentIsExpired {
-    if ([self->sessionParams isAutomaticSessionTrackingEnabled]) {
+    if ([self->sessionParams isAutomaticSessionActive]) {
         if ([self isSessionExpired]) {
             [RSLogger logVerbose:@"RNUserSessionPlugin: previous session is expired"];
             [self startSession];

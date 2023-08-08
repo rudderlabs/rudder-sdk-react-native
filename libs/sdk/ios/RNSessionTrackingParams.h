@@ -19,8 +19,8 @@
 @property (nonatomic, strong) NSNumber *lastEventTimeStamp;
 
 -(void)refreshSessionTrackingParams;
--(BOOL)isAutomaticSessionTrackingEnabled;
--(BOOL)wasManualSessionTrackingActive;
+-(BOOL)isAutomaticSessionActive;
+-(BOOL)wasManualSessionActive;
 -(BOOL)wasSessionTrackingDisabled;
 -(void)saveEventTimestamp;
 -(void)enableSessionParams:(BOOL)automatic manual:(BOOL)manual;
