@@ -22,11 +22,11 @@ public class LifeCycleEvents {
         }
     }
 
-    static class ApplicationInstalledOrUpdatedRunnable implements LifeCycleEventsInterface {
+    static class ApplicationStatusRunnable implements LifeCycleEventsInterface {
         private static AppVersion appVersion;
         public static final String VERSION = "version";
 
-        ApplicationInstalledOrUpdatedRunnable(Application application) {
+        ApplicationStatusRunnable(Application application) {
             appVersion = new AppVersion(application);
         }
 

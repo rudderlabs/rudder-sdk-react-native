@@ -6,7 +6,7 @@ import android.app.Application;
 import com.facebook.react.bridge.LifecycleEventListener;
 
 import static com.rudderstack.react.android.LifeCycleEvents.executeRunnable;
-import static com.rudderstack.react.android.LifeCycleEvents.ApplicationInstalledOrUpdatedRunnable;
+import static com.rudderstack.react.android.LifeCycleEvents.ApplicationStatusRunnable;
 import static com.rudderstack.react.android.LifeCycleEvents.ApplicationOpenedRunnable;
 import static com.rudderstack.react.android.LifeCycleEvents.ApplicationBackgroundedRunnable;
 import static com.rudderstack.react.android.LifeCycleEvents.ScreenViewRunnable;
@@ -17,8 +17,8 @@ public class RNLifeCycleEventListener implements LifecycleEventListener {
     private static boolean fromBackground = false;
 
     RNLifeCycleEventListener(Application application) {
-      ApplicationInstalledOrUpdatedRunnable applicationInstalled = new ApplicationInstalledOrUpdatedRunnable(application);
-      executeRunnable(applicationInstalled);
+      ApplicationStatusRunnable applicationStatus = new ApplicationStatusRunnable(application);
+      executeRunnable(applicationStatus);
     }
 
     @Override
