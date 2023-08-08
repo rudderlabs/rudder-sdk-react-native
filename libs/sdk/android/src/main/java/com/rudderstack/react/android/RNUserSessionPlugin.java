@@ -26,18 +26,9 @@ public class RNUserSessionPlugin {
     }
 
     /**
-     * If AST is disabled:
-     * <ol>
-     *   <li>If MST was previously disabled, then end the session.</li>
-     *   <li>Set AST, MST, and EST to false.</li>
-     * </ol>
-     * <p>
-     * If AST is enabled:
-     * <ol>
-     *   <li>If MST was previously enabled, then start a new session.</li>
-     *   <li>If session tracking was previously disabled, then start a new session.</li>
-     *   <li>Set AST to true and MST and EST to false.</li>
-     * </ol>
+     * This handles the session tracking:
+     * If Automatic Session Tracking is disabled in the config, then handle manual session tracking.
+     * Otherwise, handle Automatic Session Tracking.
      */
     void handleSessionTracking() {
         if (!isAutomaticSessionTrackingEnabled) {
@@ -62,6 +53,14 @@ public class RNUserSessionPlugin {
 
     /**
      * This handles the automatic session tracking
+     * <p>
+     * Start new session::
+     * <ol>
+     *     <li>If previously, Manual Session Tracking was active</li>
+     *     <li>If previously, Session Tracking was disabled</li>
+     *     <li>If the current session is expired</li>
+     * </ol>
+     * Enable the automatic session params
      */
     private void handleAutomaticSessionTracking() {
         if (this.sessionParams.wasManualSessionTrackingActive() ||
