@@ -32,7 +32,7 @@ public class RNUserSessionPlugin {
      */
     void handleSessionTracking() {
         if (!isAutomaticSessionTrackingEnabled) {
-            handleManualSessionTracking();
+            endSessionIfManualSessionInactivePreviously();
         } else {
             handleAutomaticSessionTracking();
         }
@@ -44,8 +44,8 @@ public class RNUserSessionPlugin {
      * If previously, manual session tracking was disabled, then end the session and disable all session params.
      * Otherwise, do nothing.
      */
-    private void handleManualSessionTracking() {
-        if (!this.sessionParams.wasManualSessionTrackingActive()) {
+    private void endSessionIfManualSessionInactivePreviously() {
+        if (!this.sessionParams.wasManualSessionActive()) {
             RudderLogger.logVerbose("RNUserSessionPlugin: As previously manual session tracking was not enabled. Hence clear the session");
             endSession();
         }
@@ -63,7 +63,7 @@ public class RNUserSessionPlugin {
      * Enable the automatic session params
      */
     private void handleAutomaticSessionTracking() {
-        if (this.sessionParams.wasManualSessionTrackingActive() ||
+        if (this.sessionParams.wasManualSessionActive() ||
                 this.sessionParams.wasSessionTrackingDisabled()) {
             RudderLogger.logVerbose("RNUserSessionPlugin: As previously manual session tracking was enabled or session tracking was disabled. Hence start a new session");
             startSession();
@@ -77,7 +77,7 @@ public class RNUserSessionPlugin {
      * This checks if the current session is expired or not and accordingly starts a new session
      */
     void startNewSessionIfCurrentIsExpired() {
-        if (this.sessionParams.isAutomaticSessionTrackingEnabled()) {
+        if (this.sessionParams.isAutomaticSessionActive()) {
             if (isSessionExpired()) {
                 RudderLogger.logVerbose("RNUserSessionPlugin: previous session is expired");
                 startSession();
@@ -94,7 +94,7 @@ public class RNUserSessionPlugin {
         long currentTime = Utils.getCurrentTimeInMilliSeconds();
         long timeDifference;
         synchronized (this) {
-            timeDifference = Math.abs(currentTime - this.sessionParams.lastEventTimeStamp);
+            timeDifference = Math.abs(currentTime - this.sessionParams.getLastEventTimeStamp());
         }
         return timeDifference >= sessionTimeOut;
     }
@@ -158,49 +158,5 @@ public class RNUserSessionPlugin {
      */
     private void disableSessionParams() {
         this.sessionParams.enableSessionParams(false, false);
-    }
-
-    static class SessionTrackingParams {
-        private boolean isAutomaticSessionTrackingStatus;
-        private boolean isManualSessionTrackingStatus;
-        private long lastEventTimeStamp;
-        private static RNPreferenceManager preferenceManager;
-
-        SessionTrackingParams() {
-            preferenceManager = RNPreferenceManager.getInstance();
-            refreshSessionTrackingParams();
-            this.lastEventTimeStamp = preferenceManager.getLastEventTimeStamp();
-        }
-
-        void refreshSessionTrackingParams() {
-            this.isAutomaticSessionTrackingStatus = preferenceManager.getAutomaticSessionTrackingStatus();
-            this.isManualSessionTrackingStatus = preferenceManager.getManualSessionTrackingStatus();
-        }
-
-        /**
-         * This checks whether the automatic session tracking is enabled or not
-         */
-        boolean isAutomaticSessionTrackingEnabled() {
-            return this.isAutomaticSessionTrackingStatus;
-        }
-
-        boolean wasManualSessionTrackingActive() {
-            return this.isManualSessionTrackingStatus;
-        }
-
-        boolean wasSessionTrackingDisabled() {
-            return !this.isAutomaticSessionTrackingStatus && !this.isManualSessionTrackingStatus;
-        }
-
-        void saveEventTimestamp() {
-            this.lastEventTimeStamp = Utils.getCurrentTimeInMilliSeconds();
-            preferenceManager.saveLastEventTimeStamp(this.lastEventTimeStamp);
-        }
-
-        void enableSessionParams(boolean automatic, boolean manual) {
-            preferenceManager.saveAutomaticSessionTrackingStatus(automatic);
-            preferenceManager.saveManualSessionTrackingStatus(manual);
-            this.refreshSessionTrackingParams();
-        }
     }
 }
