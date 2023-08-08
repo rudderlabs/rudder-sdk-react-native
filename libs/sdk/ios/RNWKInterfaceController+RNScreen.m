@@ -60,7 +60,7 @@ RNUserSessionPlugin *session;
     [session saveEventTimestamp];
     [[RSClient sharedInstance] screen:name properties:@{@"automatic": [[NSNumber alloc] initWithBool:YES], @"name": name}];
     
-    [self rudder_didAppear];
+    [self rudder_rn_didAppear];
 }
 
 @end
