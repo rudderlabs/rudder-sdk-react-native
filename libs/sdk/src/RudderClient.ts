@@ -57,6 +57,21 @@ function validateConfiguration(configuration: Configuration) {
     logWarn("setup : 'autoCollectAdvertId' must be a boolen. Falling back to the default value");
     delete configuration.autoCollectAdvertId;
   }
+  if (configuration.autoSessionTracking && typeof configuration.autoSessionTracking != 'boolean') {
+    logWarn("setup : 'autoSessionTracking' must be a boolen. Falling back to the default value");
+    delete configuration.autoSessionTracking;
+  }
+  if (configuration.sessionTimeout && !Number.isInteger(configuration.sessionTimeout)) {
+    logWarn("setup : 'sessionTimeout' must be an integer. Falling back to the default value");
+    delete configuration.sessionTimeout;
+  }
+  if (
+    configuration.enableBackgroundMode &&
+    typeof configuration.enableBackgroundMode != 'boolean'
+  ) {
+    logWarn("setup : 'enableBackgroundMode' must be a boolen. Falling back to the default value");
+    delete configuration.enableBackgroundMode;
+  }
 }
 
 // setup the RudderSDK with writeKey and Config
@@ -282,6 +297,24 @@ async function getRudderContext() {
   return await bridge.getRudderContext();
 }
 
+async function startSession(sessionId?: number): Promise<void> {
+  if (sessionId === undefined) {
+    bridge.startSession('');
+  } else if (!Number.isInteger(sessionId)) {
+    logWarn("startSession: 'sessionId' must be an integer");
+  } else {
+    if (sessionId.toString().length < 10) {
+      logWarn("startSession: 'sessionId' length should be at least 10, hence ignoring it");
+      return;
+    }
+    bridge.startSession(sessionId.toString());
+  }
+}
+
+async function endSession() {
+  bridge.endSession();
+}
+
 const rudderClient = {
   setup,
   track,
@@ -299,5 +332,7 @@ const rudderClient = {
   setAnonymousId,
   registerCallback,
   getRudderContext,
+  startSession,
+  endSession,
 };
 export default rudderClient;

@@ -10,6 +10,9 @@ import {
   TRACK_LIFECYCLE_EVENTS,
   RECORD_SCREEN_VIEWS,
   LOG_LEVEL,
+  AUTO_SESSION_TRACKING,
+  SESSION_TIMEOUT,
+  ENABLE_BACKGROUND_MODE,
 } from './Constants';
 
 export const configure = async (
@@ -21,6 +24,9 @@ export const configure = async (
     dbCountThreshold = DB_COUNT_THRESHOLD,
     sleepTimeOut = SLEEP_TIMEOUT,
     logLevel = LOG_LEVEL,
+    autoSessionTracking = AUTO_SESSION_TRACKING,
+    sessionTimeout = SESSION_TIMEOUT,
+    enableBackgroundMode = ENABLE_BACKGROUND_MODE,
     configRefreshInterval = CONFIG_REFRESH_INTERVAL,
     autoCollectAdvertId = AUTO_COLLECT_ADVERT_ID,
     trackAppLifecycleEvents = TRACK_LIFECYCLE_EVENTS,
@@ -47,9 +53,12 @@ export const configure = async (
     dbCountThreshold,
     sleepTimeOut,
     logLevel,
+    autoSessionTracking,
+    sessionTimeout,
     configRefreshInterval,
     autoCollectAdvertId,
     trackAppLifecycleEvents,
+    enableBackgroundMode,
     recordScreenViews,
   };
 

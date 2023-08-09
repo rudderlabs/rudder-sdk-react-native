@@ -22,25 +22,62 @@ import appsflyer, {
 } from '@rudderstack/rudder-integration-appsflyer-react-native';
 // @ts-ignore
 import { TEST_DATAPLANE_URL, TEST_WRITE_KEY, APPSFLYER_DEV_KEY, APPSFLYER_APPLE_ID } from '@env';
+import RudderEvents from './RudderEvents';
 
 const Stack = createNativeStackNavigator();
 
-const initialization = async () => {
-  // TODO: get all secret details in .env file
-  setOptions({
-    devKey: APPSFLYER_DEV_KEY,
-    isDebug: true,
-    onInstallConversionDataListener: true,
-    appleAppId: APPSFLYER_APPLE_ID,
-    timeToWaitForATTUserAuthorization: 60,
-  });
+const initRNAppsFlyerSDK = async () => {
+  if (APPSFLYER_APPLE_ID) {
+    setOptions({
+      devKey: APPSFLYER_DEV_KEY,
+      isDebug: true,
+      onInstallConversionDataListener: true,
+      appleAppId: APPSFLYER_APPLE_ID,
+      timeToWaitForATTUserAuthorization: 60,
+    });
 
+    onAppOpenAttribution((data) => {
+      console.log('On App Open Attribution Success and the data is ', data);
+    });
+
+    onAttributionFailure((data) => {
+      console.log('On App Attribution Failure and the data is ', data);
+    });
+
+    onInstallConversionData((data) => {
+      console.log('On Install conversion Success data is ', data);
+    });
+
+    onInstallConversionFailure((data) => {
+      console.log('On Install conversion Failure data is ', data);
+    });
+
+    onDeepLink((data) => {
+      console.log('On Deeplink data is ', data);
+    });
+
+    setOneLinkCustomDomains(
+      'desu.rudderstack.com',
+      () => {
+        console.log('Successfully set');
+      },
+      () => {
+        console.log('Failed to set');
+      },
+    );
+  }
+};
+
+const initRudderReactNativeSDK = async () => {
   const config = {
     dataPlaneUrl: TEST_DATAPLANE_URL,
-    trackAppLifecycleEvents: true,
     autoCollectAdvertId: true,
-    recordScreenViews: true,
+    recordScreenViews: false,
     logLevel: RUDDER_LOG_LEVEL.VERBOSE,
+    sessionTimeout: 0,
+    enableBackgroundMode: true,
+    trackAppLifecycleEvents: true,
+    autoSessionTracking: true,
     withFactories: [
       appsflyer,
       amplitude,
@@ -53,64 +90,12 @@ const initialization = async () => {
     ],
   };
 
-  const options = {
-    externalIds: [
-      {
-        id: '2d31d085-4d93-4126-b2b3-94e651810673',
-        type: 'brazeExternalId',
-      },
-    ],
-  };
-
-  const props = {
-    k1: 'v1',
-    k2: 'v3',
-    k3: 'v3',
-    name: 'Miraj',
-  };
-
-  onAppOpenAttribution((data) => {
-    console.log('On App Open Attribution Success and the data is ', data);
-  });
-
-  onAttributionFailure((data) => {
-    console.log('On App Attribution Failure and the data is ', data);
-  });
-
-  onInstallConversionData((data) => {
-    console.log('On Install conversion Success data is ', data);
-  });
-
-  onInstallConversionFailure((data) => {
-    console.log('On Install conversion Failure data is ', data);
-  });
-
-  onDeepLink((data) => {
-    console.log('On Deeplink data is ', data);
-  });
-
   await rc.setup(TEST_WRITE_KEY, config);
+};
 
-  await rc.identify(
-    'test_userIdiOS',
-    {
-      email: 'testuseriOS@example.com',
-      location: 'UK',
-    },
-    options,
-  );
-  await rc.track('React Native event', props);
-  await rc.screen('React Native screen', props);
-
-  setOneLinkCustomDomains(
-    'desu.rudderstack.com',
-    () => {
-      console.log('Successfully set');
-    },
-    () => {
-      console.log('Failed to set');
-    },
-  );
+const initialization = async () => {
+  await initRNAppsFlyerSDK();
+  await initRudderReactNativeSDK();
 };
 
 const App = () => {
@@ -148,6 +133,7 @@ const App = () => {
         <Stack.Screen name="Home" component={HomeScreen} options={{ title: 'Welcome' }} />
         <Stack.Screen name="Profile" component={ProfileScreen} />
       </Stack.Navigator>
+      <RudderEvents />
     </NavigationContainer>
   );
 };
