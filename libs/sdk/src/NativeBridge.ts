@@ -11,6 +11,9 @@ export interface Configuration {
   trackAppLifecycleEvents?: boolean;
   recordScreenViews?: boolean;
   logLevel?: number;
+  autoSessionTracking?: boolean;
+  sessionTimeout?: number;
+  enableBackgroundMode?: boolean;
   // eslint-disable-next-line @typescript-eslint/ban-types
   withFactories?: Array<Record<string, unknown> | Function>;
 }
@@ -47,6 +50,8 @@ export interface Bridge {
   // eslint-disable-next-line @typescript-eslint/ban-types
   registerCallback(integrationName: string, callback: Function): Promise<void>;
   getRudderContext(): Promise<void>;
+  startSession(sessionId?: string): Promise<void>;
+  endSession(): Promise<void>;
 }
 
 const bridge: Bridge = NativeModules.RNRudderSdkModule;
