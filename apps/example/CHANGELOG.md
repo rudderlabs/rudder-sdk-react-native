@@ -2,6 +2,13 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [0.3.0](https://github.com/rudderlabs/rudder-sdk-react-native/compare/example-0.2.1...example-0.3.0) (2023-08-09)
+
+
+### Features
+
+* implement session tracking feature ([#227](https://github.com/rudderlabs/rudder-sdk-react-native/issues/227)) ([007a120](https://github.com/rudderlabs/rudder-sdk-react-native/commit/007a12036b7870cff6b8f732b7e60dae45d6a6e8))
+
 ## [0.2.1](https://github.com/rudderlabs/rudder-sdk-react-native/compare/example-0.2.0...example-0.2.1) (2023-04-05)
 
 
