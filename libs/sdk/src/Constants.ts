@@ -14,3 +14,4 @@ export const SDK_VERSION = '1.8.0';
 export const AUTO_SESSION_TRACKING = true;
 export const SESSION_TIMEOUT = 300000;
 export const ENABLE_BACKGROUND_MODE = false;
+export const WITH_COLLECT_DEVICE_ID = true;

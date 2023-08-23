@@ -72,6 +72,9 @@ class RNParamsConfigurator {
         if (config.hasKey("logLevel")) {
             configBuilder.withLogLevel(config.getInt("logLevel"));
         }
+        if (config.hasKey("withCollectDeviceId")) {
+            configBuilder.withCollectDeviceId(config.getBoolean("withCollectDeviceId"));
+        }
         return configBuilder;
     }
 

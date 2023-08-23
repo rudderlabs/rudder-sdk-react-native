@@ -14,6 +14,7 @@ export interface Configuration {
   autoSessionTracking?: boolean;
   sessionTimeout?: number;
   enableBackgroundMode?: boolean;
+  withCollectDeviceId?: boolean;
   // eslint-disable-next-line @typescript-eslint/ban-types
   withFactories?: Array<Record<string, unknown> | Function>;
 }
