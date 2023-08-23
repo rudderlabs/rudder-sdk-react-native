@@ -78,6 +78,12 @@
     if ([config objectForKey:@"logLevel"]) {
         [configBuilder withLoglevel:[config[@"logLevel"] intValue]];
     }
+    if ([config objectForKey:@"dbEncryption"]) {
+        NSDictionary *dbEncryption = config[@"dbEncryption"];
+        NSString *key = dbEncryption[@"key"];
+        BOOL enable = [dbEncryption[@"enable"] boolValue];
+        [configBuilder withDBEncryption:[[RSDBEncryption alloc] initWithKey:key enable:enable]];
+    }
     return configBuilder;
 }
 
