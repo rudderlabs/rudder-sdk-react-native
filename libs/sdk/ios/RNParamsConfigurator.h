@@ -7,7 +7,7 @@
 
 #ifndef RNParamsConfigurator_h
 #define RNParamsConfigurator_h
-#import "RSClient.h"
+#import "RSConfigBuilder.h"
 
 @interface RNParamsConfigurator : NSObject {
     NSDictionary *config;
