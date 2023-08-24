@@ -4,6 +4,7 @@
 #import "RSConfig.h"
 #import "RSLogger.h"
 #import "RSOption.h"
+#import "RSMessageBuilder.h"
 #import <React/RCTBridge.h>
 
 static RSClient *rsClient = nil;

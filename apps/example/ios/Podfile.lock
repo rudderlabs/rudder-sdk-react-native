@@ -43,31 +43,31 @@ PODS:
     - React-Core (= 0.71.4)
     - React-jsi (= 0.71.4)
     - ReactCommon/turbomodule/core (= 0.71.4)
-  - FirebaseAnalytics (10.6.0):
-    - FirebaseAnalytics/AdIdSupport (= 10.6.0)
+  - FirebaseAnalytics (10.13.0):
+    - FirebaseAnalytics/AdIdSupport (= 10.13.0)
     - FirebaseCore (~> 10.0)
     - FirebaseInstallations (~> 10.0)
-    - GoogleUtilities/AppDelegateSwizzler (~> 7.8)
-    - GoogleUtilities/MethodSwizzler (~> 7.8)
-    - GoogleUtilities/Network (~> 7.8)
-    - "GoogleUtilities/NSData+zlib (~> 7.8)"
+    - GoogleUtilities/AppDelegateSwizzler (~> 7.11)
+    - GoogleUtilities/MethodSwizzler (~> 7.11)
+    - GoogleUtilities/Network (~> 7.11)
+    - "GoogleUtilities/NSData+zlib (~> 7.11)"
     - nanopb (< 2.30910.0, >= 2.30908.0)
-  - FirebaseAnalytics/AdIdSupport (10.6.0):
+  - FirebaseAnalytics/AdIdSupport (10.13.0):
     - FirebaseCore (~> 10.0)
     - FirebaseInstallations (~> 10.0)
-    - GoogleAppMeasurement (= 10.6.0)
-    - GoogleUtilities/AppDelegateSwizzler (~> 7.8)
-    - GoogleUtilities/MethodSwizzler (~> 7.8)
-    - GoogleUtilities/Network (~> 7.8)
-    - "GoogleUtilities/NSData+zlib (~> 7.8)"
+    - GoogleAppMeasurement (= 10.13.0)
+    - GoogleUtilities/AppDelegateSwizzler (~> 7.11)
+    - GoogleUtilities/MethodSwizzler (~> 7.11)
+    - GoogleUtilities/Network (~> 7.11)
+    - "GoogleUtilities/NSData+zlib (~> 7.11)"
     - nanopb (< 2.30910.0, >= 2.30908.0)
-  - FirebaseCore (10.13.0):
+  - FirebaseCore (10.14.0):
     - FirebaseCoreInternal (~> 10.0)
     - GoogleUtilities/Environment (~> 7.8)
     - GoogleUtilities/Logger (~> 7.8)
-  - FirebaseCoreInternal (10.13.0):
+  - FirebaseCoreInternal (10.14.0):
     - "GoogleUtilities/NSData+zlib (~> 7.8)"
-  - FirebaseInstallations (10.13.0):
+  - FirebaseInstallations (10.14.0):
     - FirebaseCore (~> 10.0)
     - GoogleUtilities/Environment (~> 7.8)
     - GoogleUtilities/UserDefaults (~> 7.8)
@@ -135,25 +135,25 @@ PODS:
     - FlipperKit/FlipperKitNetworkPlugin
   - fmt (6.2.1)
   - glog (0.3.5)
-  - GoogleAppMeasurement (10.6.0):
-    - GoogleAppMeasurement/AdIdSupport (= 10.6.0)
-    - GoogleUtilities/AppDelegateSwizzler (~> 7.8)
-    - GoogleUtilities/MethodSwizzler (~> 7.8)
-    - GoogleUtilities/Network (~> 7.8)
-    - "GoogleUtilities/NSData+zlib (~> 7.8)"
+  - GoogleAppMeasurement (10.13.0):
+    - GoogleAppMeasurement/AdIdSupport (= 10.13.0)
+    - GoogleUtilities/AppDelegateSwizzler (~> 7.11)
+    - GoogleUtilities/MethodSwizzler (~> 7.11)
+    - GoogleUtilities/Network (~> 7.11)
+    - "GoogleUtilities/NSData+zlib (~> 7.11)"
     - nanopb (< 2.30910.0, >= 2.30908.0)
-  - GoogleAppMeasurement/AdIdSupport (10.6.0):
-    - GoogleAppMeasurement/WithoutAdIdSupport (= 10.6.0)
-    - GoogleUtilities/AppDelegateSwizzler (~> 7.8)
-    - GoogleUtilities/MethodSwizzler (~> 7.8)
-    - GoogleUtilities/Network (~> 7.8)
-    - "GoogleUtilities/NSData+zlib (~> 7.8)"
+  - GoogleAppMeasurement/AdIdSupport (10.13.0):
+    - GoogleAppMeasurement/WithoutAdIdSupport (= 10.13.0)
+    - GoogleUtilities/AppDelegateSwizzler (~> 7.11)
+    - GoogleUtilities/MethodSwizzler (~> 7.11)
+    - GoogleUtilities/Network (~> 7.11)
+    - "GoogleUtilities/NSData+zlib (~> 7.11)"
     - nanopb (< 2.30910.0, >= 2.30908.0)
-  - GoogleAppMeasurement/WithoutAdIdSupport (10.6.0):
-    - GoogleUtilities/AppDelegateSwizzler (~> 7.8)
-    - GoogleUtilities/MethodSwizzler (~> 7.8)
-    - GoogleUtilities/Network (~> 7.8)
-    - "GoogleUtilities/NSData+zlib (~> 7.8)"
+  - GoogleAppMeasurement/WithoutAdIdSupport (10.13.0):
+    - GoogleUtilities/AppDelegateSwizzler (~> 7.11)
+    - GoogleUtilities/MethodSwizzler (~> 7.11)
+    - GoogleUtilities/Network (~> 7.11)
+    - "GoogleUtilities/NSData+zlib (~> 7.11)"
     - nanopb (< 2.30910.0, >= 2.30908.0)
   - GoogleUtilities (7.11.5):
     - GoogleUtilities/AppDelegateSwizzler (= 7.11.5)
@@ -189,7 +189,9 @@ PODS:
   - GoogleUtilities/UserDefaults (7.11.5):
     - GoogleUtilities/Logger
   - libevent (2.1.12)
-  - MoEngage-iOS-SDK (9.10.1)
+  - MetricsReporter (1.0.0):
+    - RudderKit (~> 1.4.0)
+  - MoEngage-iOS-SDK (9.10.2)
   - nanopb (2.30909.0):
     - nanopb/decode (= 2.30909.0)
     - nanopb/encode (= 2.30909.0)
@@ -508,7 +510,7 @@ PODS:
     - React-perflogger (= 0.71.4)
   - RNCAsyncStorage (1.18.0):
     - React-Core
-  - RNRudderSdk (1.7.1):
+  - RNRudderSdk (1.8.0):
     - React
     - Rudder (~> 1.13)
   - RNScreens (3.20.0):
@@ -516,7 +518,8 @@ PODS:
     - React-RCTImage
   - RNSVG (13.8.0):
     - React-Core
-  - Rudder (1.17.0)
+  - Rudder (1.19.1):
+    - MetricsReporter (= 1.0.0)
   - Rudder-Amplitude (1.1.1):
     - Amplitude (= 8.16.0)
     - Rudder (~> 1.12)
@@ -532,16 +535,16 @@ PODS:
   - Rudder-CleverTap (1.1.2):
     - CleverTap-iOS-SDK (~> 4.2)
     - Rudder (~> 1.12)
-  - Rudder-Firebase (3.1.1):
-    - FirebaseAnalytics (~> 10.6.0)
-    - Rudder (~> 1.12)
+  - Rudder-Firebase (3.2.0):
+    - FirebaseAnalytics (~> 10.13.0)
+    - Rudder (~> 1.18)
   - rudder-integration-amplitude-react-native (1.0.8):
     - React
     - Rudder-Amplitude
   - rudder-integration-appcenter-react-native (1.0.9):
     - React
     - Rudder-AppCenter
-  - rudder-integration-appsflyer-react-native (1.5.7):
+  - rudder-integration-appsflyer-react-native (1.5.8):
     - React
     - Rudder-Appsflyer (>= 2.2.0)
   - rudder-integration-braze-react-native (1.0.9):
@@ -566,6 +569,7 @@ PODS:
   - Rudder-Singular (1.0.0):
     - Rudder (~> 1.0)
     - Singular-SDK (= 11.0.4)
+  - RudderKit (1.4.0)
   - SDWebImage (5.17.0):
     - SDWebImage/Core (= 5.17.0)
   - SDWebImage/Core (5.17.0)
@@ -678,6 +682,7 @@ SPEC REPOS:
     - GoogleAppMeasurement
     - GoogleUtilities
     - libevent
+    - MetricsReporter
     - MoEngage-iOS-SDK
     - nanopb
     - OpenSSL-Universal
@@ -691,6 +696,7 @@ SPEC REPOS:
     - Rudder-Firebase
     - Rudder-Moengage
     - Rudder-Singular
+    - RudderKit
     - SDWebImage
     - Singular-SDK
     - SocketRocket
@@ -804,10 +810,10 @@ SPEC CHECKSUMS:
   DoubleConversion: 5189b271737e1565bdce30deb4a08d647e3f5f54
   FBLazyVector: 446e84642979fff0ba57f3c804c2228a473aeac2
   FBReactNativeSpec: 7eba1bd6fc743b8613257a8ad937d193dcb89263
-  FirebaseAnalytics: 9f382605c5ee412b039212f054bf7a403d9850c1
-  FirebaseCore: 9948a31ff2c6cf323f9b040068201a95d271b68d
-  FirebaseCoreInternal: b342e37cd4f5b4454ec34308f073420e7920858e
-  FirebaseInstallations: b28af1b9f997f1a799efe818c94695a3728c352f
+  FirebaseAnalytics: 9a12e090ead49f8877ed8132ae920e3cbbd2fcd0
+  FirebaseCore: 6fc17ac9f03509d51c131298aacb3ee5698b4f02
+  FirebaseCoreInternal: d558159ee6cc4b823c2296ecc193de9f6d9a5bb3
+  FirebaseInstallations: f672b1eda64e6381c21d424a2f680a943fd83f3b
   Flipper: 26fc4b7382499f1281eb8cb921e5c3ad6de91fe0
   Flipper-Boost-iOSX: fd1e2b8cbef7e662a122412d7ac5f5bea715403c
   Flipper-DoubleConversion: 2dc99b02f658daf147069aad9dbd29d8feb06d30
@@ -819,10 +825,11 @@ SPEC CHECKSUMS:
   FlipperKit: cbdee19bdd4e7f05472a66ce290f1b729ba3cb86
   fmt: ff9d55029c625d3757ed641535fd4a75fedc7ce9
   glog: 04b94705f318337d7ead9e6d17c019bd9b1f6b1b
-  GoogleAppMeasurement: 686b48c3c895f3c55c70719041913d5d150b74f6
+  GoogleAppMeasurement: 3ae505b44174bcc0775f5c86cecc5826259fbb1e
   GoogleUtilities: 13e2c67ede716b8741c7989e26893d151b2b2084
   libevent: 4049cae6c81cdb3654a443be001fb9bdceff7913
-  MoEngage-iOS-SDK: 744409aec705d54ffd4212c38c39164e99d89974
+  MetricsReporter: 35d1a8e62cd99e1434bc8fdd06bf2baf7cb23e42
+  MoEngage-iOS-SDK: 8ad13e521d92c19e0f1c05ee4242e88e0e6b42a2
   nanopb: b552cce312b6c8484180ef47159bc0f65a1f0431
   OpenSSL-Universal: ebc357f1e6bc71fa463ccb2fe676756aff50e88c
   PromisesObjC: c50d2056b5253dadbd6c2bea79b0674bd5a52fa4
@@ -856,19 +863,19 @@ SPEC CHECKSUMS:
   React-runtimeexecutor: 8fa50b38df6b992c76537993a2b0553d3b088004
   ReactCommon: 1fed1243105330aa50ad7051207b61656f5e570b
   RNCAsyncStorage: a46ee6bf15cf1ba863d0a47287236f9c95d5b213
-  RNRudderSdk: 70865f8d0746d7e78e27df98c148d1ca0205c551
+  RNRudderSdk: b8cbccae069ea1a16ae1fd93e1b1072c1f1b7af7
   RNScreens: 218801c16a2782546d30bd2026bb625c0302d70f
   RNSVG: c1e76b81c76cdcd34b4e1188852892dc280eb902
-  Rudder: 3f4ab09638452282a22b96a388b54132dcd3fca8
+  Rudder: 187a8fc060057605b6e78fb8077b4d989943d804
   Rudder-Amplitude: a353ca07ba381d23ae587f2f74ea79a6c1563145
   Rudder-AppCenter: 9eca9241e3707a0e9610714dd91dc8da4bae7e1f
   Rudder-Appsflyer: 8108ad9e323a5c0e9aeecdbfc4fa2dfe68497146
   Rudder-Braze: e42eb914a03cb418ed8b7a3cd90b724a91476631
   Rudder-CleverTap: a0085aab472e0e60930c4301ef80bae5ff187e98
-  Rudder-Firebase: dedf0ba7e3a8778adf421443a0820275e548baa8
+  Rudder-Firebase: f20bcaf15e6dfa1d8e7b247db5dd791cee521a4e
   rudder-integration-amplitude-react-native: c790d7aad1888a18ffe3d11024e024c2297c5527
   rudder-integration-appcenter-react-native: b3b74cabcb0e47391a26968c8f775754a29fc368
-  rudder-integration-appsflyer-react-native: d625c24569e58691a992d005fe540765148d5785
+  rudder-integration-appsflyer-react-native: 11491ddf0a4804245a089bc928e368c900d03381
   rudder-integration-braze-react-native: deeae92b9c62b11fbeba87a84f4db3557ab75a93
   rudder-integration-clevertap-react-native: 125bb921978b2dd77aa9eda9b906e42ca8d85a80
   rudder-integration-firebase-react-native: 6578aa08b29938d0af85e248ba4b9cb8996e8573
@@ -876,6 +883,7 @@ SPEC CHECKSUMS:
   rudder-integration-singular-react-native: 15942ecaa77043655dd9428ad163f18890280c79
   Rudder-Moengage: c30465e23740673495ff853eed607a5641f22c5c
   Rudder-Singular: e22a4101ce043aded86b777bea873bf6a2af42b9
+  RudderKit: f272f9872183946452ac94cd7bb2244a71e6ca8f
   SDWebImage: 750adf017a315a280c60fde706ab1e552a3ae4e9
   Singular-SDK: 614350e3ed21a06b02ab165b370b212f8aaacf2b
   SocketRocket: f32cd54efbe0f095c4d7594881e52619cfe80b17

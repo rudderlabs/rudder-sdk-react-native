@@ -10,6 +10,7 @@
 #import "RSClient.h"
 #import "RNSessionTrackingParams.h"
 #import "RSLogger.h"
+#import "RSUtils.h"
 
 @interface RNUserSessionPlugin : NSObject {
     long sessionTimeout;
