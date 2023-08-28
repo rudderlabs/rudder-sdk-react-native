@@ -20,6 +20,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import javax.annotation.Nonnull;
+
 
 public class Utility {
     public static Map<String, Object> convertReadableMapToMap(ReadableMap readableMap) {
@@ -163,5 +165,14 @@ public class Utility {
             }
         }
         return array;
+    }
+
+    @Nonnull
+    public static Object getValueFromMap(Map<String, Object> map, String key, Object defaultValue) {
+        if (map == null || key == null) return defaultValue;
+        if (map.containsKey(key)) {
+            return map.get(key);
+        }
+        return defaultValue;
     }
 }
