@@ -69,7 +69,7 @@ const initRNAppsFlyerSDK = async () => {
 };
 
 const initRudderReactNativeSDK = async () => {
-  const dbEncryption = new RNDBEncryption('test1234', false);
+  const dbEncryption = new RNDBEncryption('versys', false);
 
   const config = {
     dataPlaneUrl: TEST_DATAPLANE_URL,
@@ -82,14 +82,14 @@ const initRudderReactNativeSDK = async () => {
     autoSessionTracking: true,
     dbEncryption: dbEncryption,
     withFactories: [
-      // appsflyer,
-      // amplitude,
-      // appcenter,
-      // braze,
-      // clevertap,
-      // firebase,
-      // moengage,
-      // singular,
+      appsflyer,
+      amplitude,
+      appcenter,
+      braze,
+      clevertap,
+      firebase,
+      moengage,
+      singular,
     ],
   };
 
