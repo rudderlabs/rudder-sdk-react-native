@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { Button, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import rc, { RUDDER_LOG_LEVEL } from '@rudderstack/rudder-sdk-react-native';
+import rc, { RUDDER_LOG_LEVEL, RNDBEncryption } from '@rudderstack/rudder-sdk-react-native';
 import amplitude from '@rudderstack/rudder-integration-amplitude-react-native';
 import appcenter from '@rudderstack/rudder-integration-appcenter-react-native';
 import braze from '@rudderstack/rudder-integration-braze-react-native';
@@ -69,6 +69,8 @@ const initRNAppsFlyerSDK = async () => {
 };
 
 const initRudderReactNativeSDK = async () => {
+  const dbEncryption = new RNDBEncryption('test1234', false);
+
   const config = {
     dataPlaneUrl: TEST_DATAPLANE_URL,
     autoCollectAdvertId: true,
@@ -78,15 +80,16 @@ const initRudderReactNativeSDK = async () => {
     enableBackgroundMode: true,
     trackAppLifecycleEvents: true,
     autoSessionTracking: true,
+    dbEncryption: dbEncryption,
     withFactories: [
-      appsflyer,
-      amplitude,
-      appcenter,
-      braze,
-      clevertap,
-      firebase,
-      moengage,
-      singular,
+      // appsflyer,
+      // amplitude,
+      // appcenter,
+      // braze,
+      // clevertap,
+      // firebase,
+      // moengage,
+      // singular,
     ],
   };
 
