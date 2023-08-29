@@ -134,7 +134,6 @@ const App = () => {
         <Stack.Screen name="Home" component={HomeScreen} options={{ title: 'Welcome' }} />
         <Stack.Screen name="Profile" component={ProfileScreen} />
       </Stack.Navigator>
-      <RudderEvents />
     </NavigationContainer>
   );
 };
@@ -159,15 +158,18 @@ const HomeScreen = ({ navigation }) => {
   return (
     <>
       <Text>Dataplane: {TEST_DATAPLANE_URL}</Text>
-      <Text>Write key: {TEST_WRITE_KEY}</Text>
-      <Button
-        title="Go to Jane's profile"
-        onPress={() => navigation.navigate('Profile', { name: 'Jane' })}
-      />
+      <Text>
+        Write key: {TEST_WRITE_KEY} {'\n'}
+      </Text>
       <Button
         testID="init_btn"
         title="Initialization"
         onPress={async () => await initialization()}
+      />
+      <RudderEvents />
+      <Button
+        title="Go to Jane's profile"
+        onPress={() => navigation.navigate('Profile', { name: 'Jane' })}
       />
     </>
   );
