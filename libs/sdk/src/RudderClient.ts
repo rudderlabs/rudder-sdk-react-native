@@ -278,8 +278,8 @@ async function putAnonymousId(anonymousId: string) {
   }
 }
 
-async function reset() {
-  bridge.reset();
+async function reset(clearAnonymousId = false) {
+  bridge.reset(clearAnonymousId);
 }
 
 async function flush() {

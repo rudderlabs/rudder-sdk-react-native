@@ -42,7 +42,7 @@ export interface Bridge {
     traits: Record<string, unknown> | null,
     options: Record<string, unknown> | null,
   ): Promise<void>;
-  reset(): Promise<void>;
+  reset(clearAnonymousId: boolean): Promise<void>;
   flush(): Promise<void>;
   optOut(optOut: boolean): Promise<void>;
   putDeviceToken(token: string): Promise<void>;
