@@ -61,8 +61,11 @@ export const configure = async (
     trackAppLifecycleEvents,
     enableBackgroundMode,
     recordScreenViews,
-    ...(dbEncryption !== undefined ? { dbEncryption } : {}),
   };
 
-  return { ...config };
+  if (dbEncryption !== undefined) {
+    return { ...config, dbEncryption };
+  }
+
+  return config;
 };
