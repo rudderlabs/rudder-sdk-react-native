@@ -82,7 +82,9 @@
         NSDictionary *dbEncryption = config[@"dbEncryption"];
         NSString *key = dbEncryption[@"key"];
         BOOL enable = [dbEncryption[@"enable"] boolValue];
-        [configBuilder withDBEncryption:[[RSDBEncryption alloc] initWithKey:key enable:enable]];
+        if (key != nil && [key length] > 0) {
+            [configBuilder withDBEncryption:[[RSDBEncryption alloc] initWithKey:key enable:enable]];
+        }
     }
     return configBuilder;
 }
