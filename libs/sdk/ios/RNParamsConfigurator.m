@@ -78,8 +78,8 @@
     if ([config objectForKey:@"logLevel"]) {
         [configBuilder withLoglevel:[config[@"logLevel"] intValue]];
     }
-    if ([config objectForKey:@"withCollectDeviceId"]) {
-        [configBuilder withCollectDeviceId:[config[@"withCollectDeviceId"] boolValue]];
+    if ([config objectForKey:@"collectDeviceId"]) {
+        [configBuilder withCollectDeviceId:[config[@"collectDeviceId"] boolValue]];
     }
     return configBuilder;
 }
