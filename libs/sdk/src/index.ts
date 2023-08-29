@@ -1,6 +1,6 @@
 import rudderClient from './RudderClient';
 import { RUDDER_LOG_LEVEL } from './Logger';
-import RNDBEncryption from './RNDBEncryption';
+import DBEncryption from './DBEncryption';
 
-export { RUDDER_LOG_LEVEL, RNDBEncryption };
+export { RUDDER_LOG_LEVEL, DBEncryption };
 export default rudderClient;

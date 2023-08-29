@@ -1,4 +1,4 @@
-class RNDBEncryption {
+class DBEncryption {
   key: string;
   enable: boolean;
   constructor(key: string, enable: boolean) {
@@ -7,4 +7,4 @@ class RNDBEncryption {
   }
 }
 
-export default RNDBEncryption;
+export default DBEncryption;
