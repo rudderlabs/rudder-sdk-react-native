@@ -58,8 +58,4 @@ dependencies {
     compileOnly 'com.facebook.react:react-native:+'
     implementation 'com.google.code.gson:gson:2.8.9'
     implementation 'com.rudderstack.android.sdk:core:[1.18.0, 2.0.0)'
-
-    //sql-cipher
-    compileOnly "net.zetetic:android-database-sqlcipher:4.5.4"
-    compileOnly "androidx.sqlite:sqlite:2.3.1"
 }
