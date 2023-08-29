@@ -512,7 +512,7 @@ PODS:
     - React-Core
   - RNRudderSdk (1.8.1):
     - React
-    - Rudder (~> 1.19)
+    - Rudder (< 2.0, >= 1.19.2)
   - RNScreens (3.20.0):
     - React-Core
     - React-RCTImage
@@ -863,7 +863,7 @@ SPEC CHECKSUMS:
   React-runtimeexecutor: 8fa50b38df6b992c76537993a2b0553d3b088004
   ReactCommon: 1fed1243105330aa50ad7051207b61656f5e570b
   RNCAsyncStorage: a46ee6bf15cf1ba863d0a47287236f9c95d5b213
-  RNRudderSdk: 1071beb10e6b5f4862f44d21a940c4c2b2db3f06
+  RNRudderSdk: 7efd553fa0ef684d61ba27548d8e6d7af54db9a6
   RNScreens: 218801c16a2782546d30bd2026bb625c0302d70f
   RNSVG: c1e76b81c76cdcd34b4e1188852892dc280eb902
   Rudder: 26a9b6756628cb953f3151d835104ac9f5635861
