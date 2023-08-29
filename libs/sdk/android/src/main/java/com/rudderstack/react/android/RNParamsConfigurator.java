@@ -2,6 +2,7 @@ package com.rudderstack.react.android;
 
 import com.facebook.react.bridge.ReadableMap;
 import com.rudderstack.android.sdk.core.RudderConfig;
+import com.rudderstack.android.sdk.core.util.Utils;
 
 import java.util.Map;
 
@@ -78,7 +79,9 @@ class RNParamsConfigurator {
             Map<String, Object> dbEncryption = Utility.convertReadableMapToMap(config.getMap("dbEncryption"));
             String key = (String) (Utility.getValueFromMap(dbEncryption, "key", ""));
             Boolean enable = (Boolean) (Utility.getValueFromMap(dbEncryption, "enable", false));
-            configBuilder.withDbEncryption(new RudderConfig.DBEncryption(enable, key));
+            if (!Utility.isEmpty(key)) {
+                configBuilder.withDbEncryption(new RudderConfig.DBEncryption(enable, key));
+            }
         }
         return configBuilder;
     }
