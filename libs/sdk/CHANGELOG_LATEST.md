@@ -1,7 +1,5 @@
-## [1.8.0](https://github.com/rudderlabs/rudder-sdk-react-native/compare/rudder-sdk-react-native@1.7.1...rudder-sdk-react-native@1.8.0) (2023-08-09)
+## [1.8.1](https://github.com/rudderlabs/rudder-sdk-react-native/compare/rudder-sdk-react-native@1.8.0...rudder-sdk-react-native@1.8.1) (2023-08-24)
 
+### Bug Fixes
 
-### Features
-
-* implement session tracking feature ([#227](https://github.com/rudderlabs/rudder-sdk-react-native/issues/227)) ([007a120](https://github.com/rudderlabs/rudder-sdk-react-native/commit/007a12036b7870cff6b8f732b7e60dae45d6a6e8))
-
+- ios module compilation error ([#233](https://github.com/rudderlabs/rudder-sdk-react-native/issues/233)) ([5ff512f](https://github.com/rudderlabs/rudder-sdk-react-native/commit/5ff512fff9c260936542f92571859b83367af3d6))

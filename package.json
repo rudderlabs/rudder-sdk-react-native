@@ -1,6 +1,6 @@
 {
   "name": "@rudderstack/rudder-sdk-react-native-monorepo",
-  "version": "2.11.0",
+  "version": "2.12.0",
   "description": "Rudder React Native SDK monorepo",
   "keywords": [
     "react-native",
