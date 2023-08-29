@@ -15,7 +15,7 @@ export interface Configuration {
   autoSessionTracking?: boolean;
   sessionTimeout?: number;
   enableBackgroundMode?: boolean;
-  dbEncryption?: RNDBEncryption | null;
+  dbEncryption?: RNDBEncryption;
   // eslint-disable-next-line @typescript-eslint/ban-types
   withFactories?: Array<Record<string, unknown> | Function>;
 }
