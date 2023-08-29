@@ -72,6 +72,7 @@ const initRudderReactNativeSDK = async () => {
   const config = {
     dataPlaneUrl: TEST_DATAPLANE_URL,
     autoCollectAdvertId: true,
+    collectDeviceId: false,
     recordScreenViews: false,
     logLevel: RUDDER_LOG_LEVEL.VERBOSE,
     sessionTimeout: 0,

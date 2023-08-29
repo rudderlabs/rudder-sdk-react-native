@@ -13,7 +13,7 @@ import {
   AUTO_SESSION_TRACKING,
   SESSION_TIMEOUT,
   ENABLE_BACKGROUND_MODE,
-  WITH_COLLECT_DEVICE_ID,
+  COLLECT_DEVICE_ID,
 } from './Constants';
 
 export const configure = async (
@@ -32,7 +32,7 @@ export const configure = async (
     autoCollectAdvertId = AUTO_COLLECT_ADVERT_ID,
     trackAppLifecycleEvents = TRACK_LIFECYCLE_EVENTS,
     recordScreenViews = RECORD_SCREEN_VIEWS,
-    withCollectDeviceId = WITH_COLLECT_DEVICE_ID,
+    collectDeviceId = COLLECT_DEVICE_ID,
     withFactories = [],
   }: Configuration,
 ): Promise<Configuration> => {
@@ -62,7 +62,7 @@ export const configure = async (
     trackAppLifecycleEvents,
     enableBackgroundMode,
     recordScreenViews,
-    withCollectDeviceId,
+    collectDeviceId,
   };
 
   return { ...config };
