@@ -73,7 +73,7 @@ function validateConfiguration(configuration: Configuration) {
     delete configuration.enableBackgroundMode;
   }
   if (configuration.collectDeviceId && typeof configuration.collectDeviceId != 'boolean') {
-    logWarn("setup : 'withCollectDeviceId' must be a boolen. Falling back to the default value");
+    logWarn("setup : 'collectDeviceId' must be a boolean. Falling back to the default value");
     delete configuration.collectDeviceId;
   }
 }
