@@ -111,6 +111,39 @@ Example Usage:
 rudderClient.setAnonymousId(ANONYMOUS_ID);
 ```
 
+## Database Encryption
+
+To encrypt the database first add the below line to `import` the rudderClient and DBEncryption.
+
+```
+import rudderClient, { RUDDER_LOG_LEVEL, DBEncryption } from '@rudderstack/rudder-sdk-react-native';
+```
+
+Then open your `app/build.gradle` and add the dependency under `dependencies` as shown below:
+
+```
+//sql-cipher
+implementation "net.zetetic:android-database-sqlcipher:4.5.4"
+implementation "androidx.sqlite:sqlite:2.3.1"
+```
+
+Add the following code in your application:
+
+```
+const dbEncryption = new DBEncryption('versys', true);
+
+const config = {
+  dataPlaneUrl: <DATA_PLANE_URL>,
+  trackAppLifecycleEvents: true,
+  logLevel: RUDDER_LOG_LEVEL.DEBUG,
+  dbEncryption: dbEncryption,
+};
+
+await rudderClient.setup(<WRITE_KEY>, config);
+```
+
+This feature is supported starting from version `1.9.0` of the SDK.
+
 For more details, check out our [documentation](https://www.rudderstack.com/docs/sources/event-streams/sdks/rudderstack-react-native-sdk).
 
 ## Contact Us

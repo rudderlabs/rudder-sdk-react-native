@@ -1,4 +1,5 @@
 import { NativeModules } from 'react-native';
+import DBEncryption from './DBEncryption';
 
 export interface Configuration {
   dataPlaneUrl?: string;
@@ -15,6 +16,7 @@ export interface Configuration {
   sessionTimeout?: number;
   enableBackgroundMode?: boolean;
   collectDeviceId?: boolean;
+  dbEncryption?: DBEncryption;
   // eslint-disable-next-line @typescript-eslint/ban-types
   withFactories?: Array<Record<string, unknown> | Function>;
 }

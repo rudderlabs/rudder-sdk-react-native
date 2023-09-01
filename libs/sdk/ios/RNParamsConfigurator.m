@@ -81,6 +81,14 @@
     if ([config objectForKey:@"collectDeviceId"]) {
         [configBuilder withCollectDeviceId:[config[@"collectDeviceId"] boolValue]];
     }
+    if ([config objectForKey:@"dbEncryption"]) {
+        NSDictionary *dbEncryption = config[@"dbEncryption"];
+        NSString *key = dbEncryption[@"key"];
+        BOOL enable = [dbEncryption[@"enable"] boolValue];
+        if (key != nil && [key length] > 0) {
+            [configBuilder withDBEncryption:[[RSDBEncryption alloc] initWithKey:key enable:enable]];
+        }
+    }
     return configBuilder;
 }
 

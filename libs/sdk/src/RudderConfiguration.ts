@@ -33,6 +33,7 @@ export const configure = async (
     trackAppLifecycleEvents = TRACK_LIFECYCLE_EVENTS,
     recordScreenViews = RECORD_SCREEN_VIEWS,
     collectDeviceId = COLLECT_DEVICE_ID,
+    dbEncryption,
     withFactories = [],
   }: Configuration,
 ): Promise<Configuration> => {
@@ -65,5 +66,9 @@ export const configure = async (
     collectDeviceId,
   };
 
-  return { ...config };
+  if (dbEncryption !== undefined) {
+    return { ...config, dbEncryption };
+  }
+
+  return config;
 };
