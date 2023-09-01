@@ -15,6 +15,7 @@ export interface Configuration {
   autoSessionTracking?: boolean;
   sessionTimeout?: number;
   enableBackgroundMode?: boolean;
+  collectDeviceId?: boolean;
   dbEncryption?: DBEncryption;
   // eslint-disable-next-line @typescript-eslint/ban-types
   withFactories?: Array<Record<string, unknown> | Function>;
@@ -43,7 +44,7 @@ export interface Bridge {
     traits: Record<string, unknown> | null,
     options: Record<string, unknown> | null,
   ): Promise<void>;
-  reset(): Promise<void>;
+  reset(clearAnonymousId: boolean): Promise<void>;
   flush(): Promise<void>;
   optOut(optOut: boolean): Promise<void>;
   putDeviceToken(token: string): Promise<void>;

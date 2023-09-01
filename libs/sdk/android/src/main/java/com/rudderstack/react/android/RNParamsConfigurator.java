@@ -75,6 +75,9 @@ class RNParamsConfigurator {
         if (config.hasKey("logLevel")) {
             configBuilder.withLogLevel(config.getInt("logLevel"));
         }
+        if (config.hasKey("collectDeviceId")) {
+            configBuilder.withCollectDeviceId(config.getBoolean("collectDeviceId"));
+        }
         if (config.hasKey("dbEncryption")) {
             Map<String, Object> dbEncryption = Utility.convertReadableMapToMap(config.getMap("dbEncryption"));
             String key = (String) (Utility.getValueFromMap(dbEncryption, "key", ""));

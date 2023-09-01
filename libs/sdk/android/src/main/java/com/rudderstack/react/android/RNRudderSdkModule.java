@@ -188,11 +188,11 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void reset() {
+    public void reset(boolean clearAnonymousId) {
         if (!isRudderClientInitializedAndReady()) {
             return;
         }
-        rudderClient.reset();
+        rudderClient.reset(clearAnonymousId);
     }
 
     @ReactMethod

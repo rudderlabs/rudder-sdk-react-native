@@ -25,23 +25,23 @@ RCT_EXPORT_METHOD(setup:(NSDictionary*)config options:(NSDictionary*) _options r
     if (rsClient == nil) {
         self->configParams = [[RNParamsConfigurator alloc] initWithConfig:config];
         RSConfigBuilder *configBuilder = [self->configParams handleConfig];
-        
+
         [RSLogger logDebug:@"setup: Initiating RNPreferenceManager"];
         self->preferenceManager = [RNPreferenceManager getInstance];
-        
+
         rsClient = [RSClient getInstance:self->configParams.writeKey config:[RNRudderAnalytics buildWithIntegrations:configBuilder] options:[self getRudderOptionsObject:_options]];
-        
+
         [RSLogger logDebug:@"setup: Initiating RNUserSessionPlugin"];
         self->session = [[RNUserSessionPlugin alloc] initWithAutomaticSessionTrackingStatus:self->configParams.autoSessionTracking withLifecycleEventsTrackingStatus:self->configParams.trackLifeCycleEvents withSessionTimeout:self->configParams.sessionTimeout];
         [self->session handleSessionTracking];
-        
+
         [RSLogger logDebug:@"setup: Initiating RNBackGroundModeManager"];
         self->backGroundModeManager = [[RNBackGroundModeManager alloc] initWithEnableBackgroundMode:self->configParams.enableBackgroundMode];
-        
+
         [RSLogger logDebug:@"setup: Initiating RNApplicationLifeCycleManager"];
         self->applicationLifeCycleManager = [[RNApplicationLifeCycleManager alloc] initWithTrackLifecycleEvents:self->configParams.trackLifeCycleEvents andBackGroundModeManager:self->backGroundModeManager withLaunchOptions:_bridge.launchOptions withSessionPlugin:self->session];
         [self->applicationLifeCycleManager trackApplicationLifeCycle];
-        
+
         if (self->configParams.recordScreenViews) {
             [RSLogger logDebug:@"setup: Enabling automatic recording of screen views"];
             [self->applicationLifeCycleManager prepareScreenRecorder];
@@ -72,7 +72,7 @@ RCT_EXPORT_METHOD(track:(NSString*)_event properties:(NSDictionary*)_properties 
     [builder setEventName:_event];
     [builder setPropertyDict:_properties];
     [builder setRSOption:[self getRudderOptionsObject:_options]];
-    
+
     [[RSClient sharedInstance] trackWithBuilder:builder];
 }
 RCT_EXPORT_METHOD(screen:(NSString*)_event properties:(NSDictionary*)_properties options:(NSDictionary*)_options)
@@ -84,7 +84,7 @@ RCT_EXPORT_METHOD(screen:(NSString*)_event properties:(NSDictionary*)_properties
     // [builder setEventName:_event];
     // [builder setPropertyDict:_properties];
     // [builder setRSOption:[[RSOption alloc] init]];
-    
+
     [self->session saveEventTimestamp];
     [[RSClient sharedInstance] screen:_event properties:_properties options:[self getRudderOptionsObject:_options]];
 }
@@ -124,7 +124,7 @@ RCT_EXPORT_METHOD(group:(NSString*)_groupId traits:(NSDictionary*)_traits option
     }
     if([_groupId isEqual:@""])
     {
-        [RSLogger logWarn:@"Dropping the Group call as groupId can not be empty"];        
+        [RSLogger logWarn:@"Dropping the Group call as groupId can not be empty"];
         return;
     }
     [self->session saveEventTimestamp];
@@ -138,12 +138,12 @@ RCT_EXPORT_METHOD(putDeviceToken:(NSString*)token)
     }
 }
 
-RCT_EXPORT_METHOD(reset)
+RCT_EXPORT_METHOD(reset:(BOOL) clearAnonymousId)
 {
     if (![self isRudderClientInitializedAndReady]) {
         return;
     }
-    [[RSClient sharedInstance] reset];
+    [[RSClient sharedInstance] reset:clearAnonymousId];
 }
 
 RCT_EXPORT_METHOD(flush)

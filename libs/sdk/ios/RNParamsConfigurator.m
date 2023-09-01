@@ -14,7 +14,7 @@
     self = [super init];
     if (self) {
         self->config = config;
-        
+
         // Default values
         self.trackLifeCycleEvents = true;
         self.recordScreenViews = false;
@@ -77,6 +77,9 @@
     }
     if ([config objectForKey:@"logLevel"]) {
         [configBuilder withLoglevel:[config[@"logLevel"] intValue]];
+    }
+    if ([config objectForKey:@"collectDeviceId"]) {
+        [configBuilder withCollectDeviceId:[config[@"collectDeviceId"] boolValue]];
     }
     if ([config objectForKey:@"dbEncryption"]) {
         NSDictionary *dbEncryption = config[@"dbEncryption"];

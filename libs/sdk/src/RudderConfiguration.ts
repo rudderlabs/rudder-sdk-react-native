@@ -13,6 +13,7 @@ import {
   AUTO_SESSION_TRACKING,
   SESSION_TIMEOUT,
   ENABLE_BACKGROUND_MODE,
+  COLLECT_DEVICE_ID,
 } from './Constants';
 
 export const configure = async (
@@ -31,6 +32,7 @@ export const configure = async (
     autoCollectAdvertId = AUTO_COLLECT_ADVERT_ID,
     trackAppLifecycleEvents = TRACK_LIFECYCLE_EVENTS,
     recordScreenViews = RECORD_SCREEN_VIEWS,
+    collectDeviceId = COLLECT_DEVICE_ID,
     dbEncryption,
     withFactories = [],
   }: Configuration,
@@ -61,6 +63,7 @@ export const configure = async (
     trackAppLifecycleEvents,
     enableBackgroundMode,
     recordScreenViews,
+    collectDeviceId,
   };
 
   if (dbEncryption !== undefined) {

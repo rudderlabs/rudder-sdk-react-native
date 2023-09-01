@@ -100,7 +100,7 @@ const RudderEvents = () => {
   };
 
   const reset = () => {
-    rudderClient.reset();
+    rudderClient.reset(true);
   };
 
   return (
