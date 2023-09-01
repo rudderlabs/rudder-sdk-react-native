@@ -27,9 +27,9 @@ PODS:
   - AppCenter/Core (5.0.3)
   - AppCenter/Crashes (5.0.3):
     - AppCenter/Core
-  - AppsFlyerFramework (6.12.1):
-    - AppsFlyerFramework/Main (= 6.12.1)
-  - AppsFlyerFramework/Main (6.12.1)
+  - AppsFlyerFramework (6.12.2):
+    - AppsFlyerFramework/Main (= 6.12.2)
+  - AppsFlyerFramework/Main (6.12.2)
   - boost (1.76.0)
   - CleverTap-iOS-SDK (4.2.2):
     - SDWebImage (~> 5.11)
@@ -510,15 +510,15 @@ PODS:
     - React-perflogger (= 0.71.4)
   - RNCAsyncStorage (1.18.0):
     - React-Core
-  - RNRudderSdk (1.8.0):
+  - RNRudderSdk (1.8.1):
     - React
-    - Rudder (~> 1.13)
+    - Rudder (< 2.0, >= 1.19.2)
   - RNScreens (3.20.0):
     - React-Core
     - React-RCTImage
   - RNSVG (13.8.0):
     - React-Core
-  - Rudder (1.19.1):
+  - Rudder (1.19.2):
     - MetricsReporter (= 1.0.0)
   - Rudder-Amplitude (1.1.1):
     - Amplitude (= 8.16.0)
@@ -803,7 +803,7 @@ SPEC CHECKSUMS:
   AnalyticsConnector: eccd7e1cd3dd18e6bd09ac2506e37d4ed43ba3f4
   Appboy-iOS-SDK: 2fc5b290fe1caa85718b811a19b303d45caea975
   AppCenter: a4070ec3d4418b5539067a51f57155012e486ebd
-  AppsFlyerFramework: e29b63fc5441400a38a31c5501c1da500b9d53d0
+  AppsFlyerFramework: 6eb4d89d2eb9a6632317f1055b359d9fd85fd5ff
   boost: 57d2868c099736d80fcd648bf211b4431e51a558
   CleverTap-iOS-SDK: 36c21b8a671d87a0f9c7b389b339d02528bbe4d7
   CocoaAsyncSocket: 065fd1e645c7abab64f7a6a2007a48038fdc6a99
@@ -863,10 +863,10 @@ SPEC CHECKSUMS:
   React-runtimeexecutor: 8fa50b38df6b992c76537993a2b0553d3b088004
   ReactCommon: 1fed1243105330aa50ad7051207b61656f5e570b
   RNCAsyncStorage: a46ee6bf15cf1ba863d0a47287236f9c95d5b213
-  RNRudderSdk: b8cbccae069ea1a16ae1fd93e1b1072c1f1b7af7
+  RNRudderSdk: 7efd553fa0ef684d61ba27548d8e6d7af54db9a6
   RNScreens: 218801c16a2782546d30bd2026bb625c0302d70f
   RNSVG: c1e76b81c76cdcd34b4e1188852892dc280eb902
-  Rudder: 187a8fc060057605b6e78fb8077b4d989943d804
+  Rudder: 26a9b6756628cb953f3151d835104ac9f5635861
   Rudder-Amplitude: a353ca07ba381d23ae587f2f74ea79a6c1563145
   Rudder-AppCenter: 9eca9241e3707a0e9610714dd91dc8da4bae7e1f
   Rudder-Appsflyer: 8108ad9e323a5c0e9aeecdbfc4fa2dfe68497146
@@ -890,6 +890,6 @@ SPEC CHECKSUMS:
   Yoga: 79dd7410de6f8ad73a77c868d3d368843f0c93e0
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
-PODFILE CHECKSUM: 1f734483bc51f36f263f2253ff0038e4adf6734a
+PODFILE CHECKSUM: 977a4cd75cd9d6f6ff277b285d4c9cf0b64ae999
 
 COCOAPODS: 1.11.3

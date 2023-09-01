@@ -31,6 +31,7 @@ export const configure = async (
     autoCollectAdvertId = AUTO_COLLECT_ADVERT_ID,
     trackAppLifecycleEvents = TRACK_LIFECYCLE_EVENTS,
     recordScreenViews = RECORD_SCREEN_VIEWS,
+    dbEncryption,
     withFactories = [],
   }: Configuration,
 ): Promise<Configuration> => {
@@ -62,5 +63,9 @@ export const configure = async (
     recordScreenViews,
   };
 
-  return { ...config };
+  if (dbEncryption !== undefined) {
+    return { ...config, dbEncryption };
+  }
+
+  return config;
 };
