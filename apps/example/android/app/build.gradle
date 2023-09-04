@@ -302,6 +302,9 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.6'
     implementation 'com.google.firebase:firebase-messaging:21.0.0'
 
+    //sql-cipher
+    implementation "net.zetetic:android-database-sqlcipher:4.5.4"
+    implementation "androidx.sqlite:sqlite:2.3.1"
 
     androidTestImplementation(project(path: ":detox"))
 

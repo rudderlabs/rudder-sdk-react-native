@@ -72,6 +72,10 @@ function validateConfiguration(configuration: Configuration) {
     logWarn("setup : 'enableBackgroundMode' must be a boolen. Falling back to the default value");
     delete configuration.enableBackgroundMode;
   }
+  if (configuration.collectDeviceId && typeof configuration.collectDeviceId != 'boolean') {
+    logWarn("setup : 'collectDeviceId' must be a boolean. Falling back to the default value");
+    delete configuration.collectDeviceId;
+  }
 }
 
 // setup the RudderSDK with writeKey and Config
@@ -274,8 +278,8 @@ async function putAnonymousId(anonymousId: string) {
   }
 }
 
-async function reset() {
-  bridge.reset();
+async function reset(clearAnonymousId = false) {
+  bridge.reset(clearAnonymousId);
 }
 
 async function flush() {

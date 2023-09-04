@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { Button, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import rc, { RUDDER_LOG_LEVEL } from '@rudderstack/rudder-sdk-react-native';
+import rc, { RUDDER_LOG_LEVEL, DBEncryption } from '@rudderstack/rudder-sdk-react-native';
 import amplitude from '@rudderstack/rudder-integration-amplitude-react-native';
 import appcenter from '@rudderstack/rudder-integration-appcenter-react-native';
 import braze from '@rudderstack/rudder-integration-braze-react-native';
@@ -69,15 +69,19 @@ const initRNAppsFlyerSDK = async () => {
 };
 
 const initRudderReactNativeSDK = async () => {
+  const dbEncryption = new DBEncryption('versys', false);
+
   const config = {
     dataPlaneUrl: TEST_DATAPLANE_URL,
     autoCollectAdvertId: true,
+    collectDeviceId: false,
     recordScreenViews: false,
     logLevel: RUDDER_LOG_LEVEL.VERBOSE,
     sessionTimeout: 0,
     enableBackgroundMode: true,
     trackAppLifecycleEvents: true,
     autoSessionTracking: true,
+    dbEncryption: dbEncryption,
     withFactories: [
       appsflyer,
       amplitude,
@@ -133,7 +137,6 @@ const App = () => {
         <Stack.Screen name="Home" component={HomeScreen} options={{ title: 'Welcome' }} />
         <Stack.Screen name="Profile" component={ProfileScreen} />
       </Stack.Navigator>
-      <RudderEvents />
     </NavigationContainer>
   );
 };
@@ -158,15 +161,18 @@ const HomeScreen = ({ navigation }) => {
   return (
     <>
       <Text>Dataplane: {TEST_DATAPLANE_URL}</Text>
-      <Text>Write key: {TEST_WRITE_KEY}</Text>
-      <Button
-        title="Go to Jane's profile"
-        onPress={() => navigation.navigate('Profile', { name: 'Jane' })}
-      />
+      <Text>
+        Write key: {TEST_WRITE_KEY} {'\n'}
+      </Text>
       <Button
         testID="init_btn"
         title="Initialization"
         onPress={async () => await initialization()}
+      />
+      <RudderEvents />
+      <Button
+        title="Go to Jane's profile"
+        onPress={() => navigation.navigate('Profile', { name: 'Jane' })}
       />
     </>
   );
