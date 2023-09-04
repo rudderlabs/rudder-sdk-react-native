@@ -59,7 +59,6 @@ repositories {
       }
     }
     google()
-    maven { url "https://appboy.github.io/appboy-android-sdk/sdk" }
     maven { url 'https://www.jitpack.io' }
 }
 
