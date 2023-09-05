@@ -2,6 +2,13 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [0.5.0](https://github.com/rudderlabs/rudder-sdk-react-native/compare/example-0.4.0...example-0.5.0) (2023-09-05)
+
+
+### Features
+
+* update native rudder braze sdks minimum version ([#239](https://github.com/rudderlabs/rudder-sdk-react-native/issues/239)) ([ed069f5](https://github.com/rudderlabs/rudder-sdk-react-native/commit/ed069f51b3c1ed3928f9002a1280b27af51342c9))
+
 ## [0.4.0](https://github.com/rudderlabs/rudder-sdk-react-native/compare/example-0.3.1...example-0.4.0) (2023-09-01)
 
 
