@@ -2,23 +2,6 @@ PODS:
   - Amplitude (8.16.0):
     - AnalyticsConnector (~> 1.0.0)
   - AnalyticsConnector (1.0.1)
-  - Appboy-iOS-SDK (4.5.4):
-    - Appboy-iOS-SDK/UI (= 4.5.4)
-  - Appboy-iOS-SDK/ContentCards (4.5.4):
-    - Appboy-iOS-SDK/Core
-    - SDWebImage (< 6, >= 5.8.2)
-  - Appboy-iOS-SDK/Core (4.5.4)
-  - Appboy-iOS-SDK/InAppMessage (4.5.4):
-    - Appboy-iOS-SDK/Core
-    - SDWebImage (< 6, >= 5.8.2)
-  - Appboy-iOS-SDK/NewsFeed (4.5.4):
-    - Appboy-iOS-SDK/Core
-    - SDWebImage (< 6, >= 5.8.2)
-  - Appboy-iOS-SDK/UI (4.5.4):
-    - Appboy-iOS-SDK/ContentCards
-    - Appboy-iOS-SDK/Core
-    - Appboy-iOS-SDK/InAppMessage
-    - Appboy-iOS-SDK/NewsFeed
   - AppCenter (5.0.3):
     - AppCenter/Analytics (= 5.0.3)
     - AppCenter/Crashes (= 5.0.3)
@@ -31,6 +14,7 @@ PODS:
     - AppsFlyerFramework/Main (= 6.12.2)
   - AppsFlyerFramework/Main (6.12.2)
   - boost (1.76.0)
+  - BrazeKit (6.6.0)
   - CleverTap-iOS-SDK (4.2.2):
     - SDWebImage (~> 5.11)
   - CocoaAsyncSocket (7.6.5)
@@ -191,7 +175,7 @@ PODS:
   - libevent (2.1.12)
   - MetricsReporter (1.0.0):
     - RudderKit (~> 1.4.0)
-  - MoEngage-iOS-SDK (9.10.2)
+  - MoEngage-iOS-SDK (9.11.0)
   - nanopb (2.30909.0):
     - nanopb/decode (= 2.30909.0)
     - nanopb/encode (= 2.30909.0)
@@ -510,7 +494,7 @@ PODS:
     - React-perflogger (= 0.71.4)
   - RNCAsyncStorage (1.18.0):
     - React-Core
-  - RNRudderSdk (1.8.1):
+  - RNRudderSdk (1.9.0):
     - React
     - Rudder (< 2.0.0, >= 1.9.2)
   - RNScreens (3.20.0):
@@ -529,8 +513,8 @@ PODS:
   - Rudder-Appsflyer (2.3.0):
     - AppsFlyerFramework (~> 6.10)
     - Rudder (~> 1.12)
-  - Rudder-Braze (1.2.0):
-    - Appboy-iOS-SDK (~> 4.5.4)
+  - Rudder-Braze (1.3.0):
+    - BrazeKit (~> 6.6.0)
     - Rudder (~> 1.12)
   - Rudder-CleverTap (1.1.2):
     - CleverTap-iOS-SDK (~> 4.2)
@@ -549,7 +533,7 @@ PODS:
     - Rudder-Appsflyer (>= 2.2.0)
   - rudder-integration-braze-react-native (1.0.9):
     - React
-    - Rudder-Braze
+    - Rudder-Braze (~> 1.3)
   - rudder-integration-clevertap-react-native (1.0.11):
     - CleverTap-iOS-SDK
     - React
@@ -570,9 +554,9 @@ PODS:
     - Rudder (~> 1.0)
     - Singular-SDK (= 11.0.4)
   - RudderKit (1.4.0)
-  - SDWebImage (5.17.0):
-    - SDWebImage/Core (= 5.17.0)
-  - SDWebImage/Core (5.17.0)
+  - SDWebImage (5.18.0):
+    - SDWebImage/Core (= 5.18.0)
+  - SDWebImage/Core (5.18.0)
   - Singular-SDK (11.0.4):
     - Singular-SDK/Main (= 11.0.4)
   - Singular-SDK/Main (11.0.4)
@@ -660,9 +644,9 @@ SPEC REPOS:
   trunk:
     - Amplitude
     - AnalyticsConnector
-    - Appboy-iOS-SDK
     - AppCenter
     - AppsFlyerFramework
+    - BrazeKit
     - CleverTap-iOS-SDK
     - CocoaAsyncSocket
     - FirebaseAnalytics
@@ -801,10 +785,10 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   Amplitude: 4daad8eb8193b15353221dfd96c52220367cb3e8
   AnalyticsConnector: eccd7e1cd3dd18e6bd09ac2506e37d4ed43ba3f4
-  Appboy-iOS-SDK: 2fc5b290fe1caa85718b811a19b303d45caea975
   AppCenter: a4070ec3d4418b5539067a51f57155012e486ebd
   AppsFlyerFramework: 6eb4d89d2eb9a6632317f1055b359d9fd85fd5ff
   boost: 57d2868c099736d80fcd648bf211b4431e51a558
+  BrazeKit: 3c25fd2317ef39059c7305074c3662971f6373cc
   CleverTap-iOS-SDK: 36c21b8a671d87a0f9c7b389b339d02528bbe4d7
   CocoaAsyncSocket: 065fd1e645c7abab64f7a6a2007a48038fdc6a99
   DoubleConversion: 5189b271737e1565bdce30deb4a08d647e3f5f54
@@ -829,7 +813,7 @@ SPEC CHECKSUMS:
   GoogleUtilities: 13e2c67ede716b8741c7989e26893d151b2b2084
   libevent: 4049cae6c81cdb3654a443be001fb9bdceff7913
   MetricsReporter: 35d1a8e62cd99e1434bc8fdd06bf2baf7cb23e42
-  MoEngage-iOS-SDK: 8ad13e521d92c19e0f1c05ee4242e88e0e6b42a2
+  MoEngage-iOS-SDK: c0c880505824413586bbc88ece9dd4e8378ee20c
   nanopb: b552cce312b6c8484180ef47159bc0f65a1f0431
   OpenSSL-Universal: ebc357f1e6bc71fa463ccb2fe676756aff50e88c
   PromisesObjC: c50d2056b5253dadbd6c2bea79b0674bd5a52fa4
@@ -863,20 +847,20 @@ SPEC CHECKSUMS:
   React-runtimeexecutor: 8fa50b38df6b992c76537993a2b0553d3b088004
   ReactCommon: 1fed1243105330aa50ad7051207b61656f5e570b
   RNCAsyncStorage: a46ee6bf15cf1ba863d0a47287236f9c95d5b213
-  RNRudderSdk: 8dfb5b5a38bd98f95c205ba59a9f7be6539b752d
+  RNRudderSdk: a7df4d3fd4286bb11537aedd6692fc32bd9ae78d
   RNScreens: 218801c16a2782546d30bd2026bb625c0302d70f
   RNSVG: c1e76b81c76cdcd34b4e1188852892dc280eb902
   Rudder: 26a9b6756628cb953f3151d835104ac9f5635861
   Rudder-Amplitude: a353ca07ba381d23ae587f2f74ea79a6c1563145
   Rudder-AppCenter: 9eca9241e3707a0e9610714dd91dc8da4bae7e1f
   Rudder-Appsflyer: 8108ad9e323a5c0e9aeecdbfc4fa2dfe68497146
-  Rudder-Braze: e42eb914a03cb418ed8b7a3cd90b724a91476631
+  Rudder-Braze: a1b41927b91b067f242c5576f6157e0cea9e59a2
   Rudder-CleverTap: a0085aab472e0e60930c4301ef80bae5ff187e98
   Rudder-Firebase: f20bcaf15e6dfa1d8e7b247db5dd791cee521a4e
   rudder-integration-amplitude-react-native: c790d7aad1888a18ffe3d11024e024c2297c5527
   rudder-integration-appcenter-react-native: b3b74cabcb0e47391a26968c8f775754a29fc368
   rudder-integration-appsflyer-react-native: 11491ddf0a4804245a089bc928e368c900d03381
-  rudder-integration-braze-react-native: deeae92b9c62b11fbeba87a84f4db3557ab75a93
+  rudder-integration-braze-react-native: 050db648b649ca09ff443fc1522bdddc6d1e0607
   rudder-integration-clevertap-react-native: 125bb921978b2dd77aa9eda9b906e42ca8d85a80
   rudder-integration-firebase-react-native: 6578aa08b29938d0af85e248ba4b9cb8996e8573
   rudder-integration-moengage-react-native: 59bf71ac22baf0797aaeddfc2b6c42afb6d3e359
@@ -884,12 +868,12 @@ SPEC CHECKSUMS:
   Rudder-Moengage: c30465e23740673495ff853eed607a5641f22c5c
   Rudder-Singular: e22a4101ce043aded86b777bea873bf6a2af42b9
   RudderKit: f272f9872183946452ac94cd7bb2244a71e6ca8f
-  SDWebImage: 750adf017a315a280c60fde706ab1e552a3ae4e9
+  SDWebImage: 182830bcddc30cde95fbc60dfe4badc3553d94ba
   Singular-SDK: 614350e3ed21a06b02ab165b370b212f8aaacf2b
   SocketRocket: f32cd54efbe0f095c4d7594881e52619cfe80b17
   Yoga: 79dd7410de6f8ad73a77c868d3d368843f0c93e0
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
-PODFILE CHECKSUM: 977a4cd75cd9d6f6ff277b285d4c9cf0b64ae999
+PODFILE CHECKSUM: 64c758bda0acf180cf3b8bddf3b25719bfbbf54c
 
 COCOAPODS: 1.11.3
