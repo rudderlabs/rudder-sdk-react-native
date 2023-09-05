@@ -1,7 +1,7 @@
-## [1.0.9](https://github.com/rudderlabs/rudder-sdk-react-native/compare/rudder-integration-braze-react-native@1.0.8...rudder-integration-braze-react-native@1.0.9) (2023-06-22)
+## [1.1.0](https://github.com/rudderlabs/rudder-sdk-react-native/compare/rudder-integration-braze-react-native@1.0.9...rudder-integration-braze-react-native@1.1.0) (2023-09-05)
 
 
-### Bug Fixes
+### Features
 
-* **rudder-integration-braze-react-native:** braze module synchronisation issue ([0e9d276](https://github.com/rudderlabs/rudder-sdk-react-native/commit/0e9d276805034fe8e5c9bb8c15102bce452d5b2e))
+* update native rudder braze sdks minimum version ([#239](https://github.com/rudderlabs/rudder-sdk-react-native/issues/239)) ([ed069f5](https://github.com/rudderlabs/rudder-sdk-react-native/commit/ed069f51b3c1ed3928f9002a1280b27af51342c9))
 
