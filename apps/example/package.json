@@ -26,5 +26,8 @@
     "@rnx-kit/metro-resolver-symlinks": "*",
     "react-native-screens": "*",
     "react-native-safe-area-context": "*"
+  },
+  "overrides": {
+    "unset-value": "2.0.1"
   }
 }
