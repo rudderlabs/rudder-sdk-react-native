@@ -531,7 +531,7 @@ PODS:
   - rudder-integration-appsflyer-react-native (1.5.8):
     - React
     - Rudder-Appsflyer (>= 2.2.0)
-  - rudder-integration-braze-react-native (1.0.9):
+  - rudder-integration-braze-react-native (1.1.0):
     - React
     - Rudder-Braze (~> 1.3)
   - rudder-integration-clevertap-react-native (1.0.11):
@@ -860,7 +860,7 @@ SPEC CHECKSUMS:
   rudder-integration-amplitude-react-native: c790d7aad1888a18ffe3d11024e024c2297c5527
   rudder-integration-appcenter-react-native: b3b74cabcb0e47391a26968c8f775754a29fc368
   rudder-integration-appsflyer-react-native: 11491ddf0a4804245a089bc928e368c900d03381
-  rudder-integration-braze-react-native: 050db648b649ca09ff443fc1522bdddc6d1e0607
+  rudder-integration-braze-react-native: 79d7950a78fedf2cb2f34d7df95aaf5095a81c23
   rudder-integration-clevertap-react-native: 125bb921978b2dd77aa9eda9b906e42ca8d85a80
   rudder-integration-firebase-react-native: 6578aa08b29938d0af85e248ba4b9cb8996e8573
   rudder-integration-moengage-react-native: 59bf71ac22baf0797aaeddfc2b6c42afb6d3e359
@@ -874,6 +874,6 @@ SPEC CHECKSUMS:
   Yoga: 79dd7410de6f8ad73a77c868d3d368843f0c93e0
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
-PODFILE CHECKSUM: 64c758bda0acf180cf3b8bddf3b25719bfbbf54c
+PODFILE CHECKSUM: 977a4cd75cd9d6f6ff277b285d4c9cf0b64ae999
 
 COCOAPODS: 1.11.3
