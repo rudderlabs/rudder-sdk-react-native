@@ -2,19 +2,19 @@ PODS:
   - Amplitude (8.16.0):
     - AnalyticsConnector (~> 1.0.0)
   - AnalyticsConnector (1.0.1)
-  - AppCenter (5.0.3):
-    - AppCenter/Analytics (= 5.0.3)
-    - AppCenter/Crashes (= 5.0.3)
-  - AppCenter/Analytics (5.0.3):
+  - AppCenter (5.0.4):
+    - AppCenter/Analytics (= 5.0.4)
+    - AppCenter/Crashes (= 5.0.4)
+  - AppCenter/Analytics (5.0.4):
     - AppCenter/Core
-  - AppCenter/Core (5.0.3)
-  - AppCenter/Crashes (5.0.3):
+  - AppCenter/Core (5.0.4)
+  - AppCenter/Crashes (5.0.4):
     - AppCenter/Core
   - AppsFlyerFramework (6.12.2):
     - AppsFlyerFramework/Main (= 6.12.2)
   - AppsFlyerFramework/Main (6.12.2)
   - boost (1.76.0)
-  - BrazeKit (6.6.0)
+  - BrazeKit (6.6.1)
   - CleverTap-iOS-SDK (4.2.2):
     - SDWebImage (~> 5.11)
   - CocoaAsyncSocket (7.6.5)
@@ -45,13 +45,13 @@ PODS:
     - GoogleUtilities/Network (~> 7.11)
     - "GoogleUtilities/NSData+zlib (~> 7.11)"
     - nanopb (< 2.30910.0, >= 2.30908.0)
-  - FirebaseCore (10.14.0):
+  - FirebaseCore (10.15.0):
     - FirebaseCoreInternal (~> 10.0)
     - GoogleUtilities/Environment (~> 7.8)
     - GoogleUtilities/Logger (~> 7.8)
-  - FirebaseCoreInternal (10.14.0):
+  - FirebaseCoreInternal (10.15.0):
     - "GoogleUtilities/NSData+zlib (~> 7.8)"
-  - FirebaseInstallations (10.14.0):
+  - FirebaseInstallations (10.15.0):
     - FirebaseCore (~> 10.0)
     - GoogleUtilities/Environment (~> 7.8)
     - GoogleUtilities/UserDefaults (~> 7.8)
@@ -173,9 +173,10 @@ PODS:
   - GoogleUtilities/UserDefaults (7.11.5):
     - GoogleUtilities/Logger
   - libevent (2.1.12)
-  - MetricsReporter (1.0.0):
+  - MetricsReporter (1.1.0):
+    - RSCrashReporter (~> 1.0.0)
     - RudderKit (~> 1.4.0)
-  - MoEngage-iOS-SDK (9.11.0)
+  - MoEngage-iOS-SDK (9.11.3)
   - nanopb (2.30909.0):
     - nanopb/decode (= 2.30909.0)
     - nanopb/encode (= 2.30909.0)
@@ -496,14 +497,15 @@ PODS:
     - React-Core
   - RNRudderSdk (1.9.0):
     - React
-    - Rudder (< 2.0.0, >= 1.9.2)
+    - Rudder (< 2.0.0, >= 1.20.0)
   - RNScreens (3.20.0):
     - React-Core
     - React-RCTImage
   - RNSVG (13.8.0):
     - React-Core
-  - Rudder (1.19.2):
-    - MetricsReporter (= 1.0.0)
+  - RSCrashReporter (1.0.0)
+  - Rudder (1.20.0):
+    - MetricsReporter (= 1.1.0)
   - Rudder-Amplitude (1.1.1):
     - Amplitude (= 8.16.0)
     - Rudder (~> 1.12)
@@ -531,7 +533,7 @@ PODS:
   - rudder-integration-appsflyer-react-native (1.5.8):
     - React
     - Rudder-Appsflyer (>= 2.2.0)
-  - rudder-integration-braze-react-native (1.0.9):
+  - rudder-integration-braze-react-native (1.1.0):
     - React
     - Rudder-Braze (~> 1.3)
   - rudder-integration-clevertap-react-native (1.0.11):
@@ -554,9 +556,9 @@ PODS:
     - Rudder (~> 1.0)
     - Singular-SDK (= 11.0.4)
   - RudderKit (1.4.0)
-  - SDWebImage (5.18.0):
-    - SDWebImage/Core (= 5.18.0)
-  - SDWebImage/Core (5.18.0)
+  - SDWebImage (5.18.1):
+    - SDWebImage/Core (= 5.18.1)
+  - SDWebImage/Core (5.18.1)
   - Singular-SDK (11.0.4):
     - Singular-SDK/Main (= 11.0.4)
   - Singular-SDK/Main (11.0.4)
@@ -630,6 +632,7 @@ DEPENDENCIES:
   - "RNRudderSdk (from `../node_modules/@rudderstack/rudder-sdk-react-native`)"
   - RNScreens (from `../node_modules/react-native-screens`)
   - RNSVG (from `../node_modules/react-native-svg`)
+  - RSCrashReporter
   - "rudder-integration-amplitude-react-native (from `../node_modules/@rudderstack/rudder-integration-amplitude-react-native`)"
   - "rudder-integration-appcenter-react-native (from `../node_modules/@rudderstack/rudder-integration-appcenter-react-native`)"
   - "rudder-integration-appsflyer-react-native (from `../node_modules/@rudderstack/rudder-integration-appsflyer-react-native`)"
@@ -671,6 +674,7 @@ SPEC REPOS:
     - nanopb
     - OpenSSL-Universal
     - PromisesObjC
+    - RSCrashReporter
     - Rudder
     - Rudder-Amplitude
     - Rudder-AppCenter
@@ -785,19 +789,19 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   Amplitude: 4daad8eb8193b15353221dfd96c52220367cb3e8
   AnalyticsConnector: eccd7e1cd3dd18e6bd09ac2506e37d4ed43ba3f4
-  AppCenter: a4070ec3d4418b5539067a51f57155012e486ebd
+  AppCenter: 85c92db0759d2792a65eb61d6842d2e86611a49a
   AppsFlyerFramework: 6eb4d89d2eb9a6632317f1055b359d9fd85fd5ff
   boost: 57d2868c099736d80fcd648bf211b4431e51a558
-  BrazeKit: 3c25fd2317ef39059c7305074c3662971f6373cc
+  BrazeKit: 7199d564cd3c90842b11a12ff11b99d0dbbb2579
   CleverTap-iOS-SDK: 36c21b8a671d87a0f9c7b389b339d02528bbe4d7
   CocoaAsyncSocket: 065fd1e645c7abab64f7a6a2007a48038fdc6a99
   DoubleConversion: 5189b271737e1565bdce30deb4a08d647e3f5f54
   FBLazyVector: 446e84642979fff0ba57f3c804c2228a473aeac2
   FBReactNativeSpec: 7eba1bd6fc743b8613257a8ad937d193dcb89263
   FirebaseAnalytics: 9a12e090ead49f8877ed8132ae920e3cbbd2fcd0
-  FirebaseCore: 6fc17ac9f03509d51c131298aacb3ee5698b4f02
-  FirebaseCoreInternal: d558159ee6cc4b823c2296ecc193de9f6d9a5bb3
-  FirebaseInstallations: f672b1eda64e6381c21d424a2f680a943fd83f3b
+  FirebaseCore: 2cec518b43635f96afe7ac3a9c513e47558abd2e
+  FirebaseCoreInternal: 2f4bee5ed00301b5e56da0849268797a2dd31fb4
+  FirebaseInstallations: cae95cab0f965ce05b805189de1d4c70b11c76fb
   Flipper: 26fc4b7382499f1281eb8cb921e5c3ad6de91fe0
   Flipper-Boost-iOSX: fd1e2b8cbef7e662a122412d7ac5f5bea715403c
   Flipper-DoubleConversion: 2dc99b02f658daf147069aad9dbd29d8feb06d30
@@ -812,8 +816,8 @@ SPEC CHECKSUMS:
   GoogleAppMeasurement: 3ae505b44174bcc0775f5c86cecc5826259fbb1e
   GoogleUtilities: 13e2c67ede716b8741c7989e26893d151b2b2084
   libevent: 4049cae6c81cdb3654a443be001fb9bdceff7913
-  MetricsReporter: 35d1a8e62cd99e1434bc8fdd06bf2baf7cb23e42
-  MoEngage-iOS-SDK: c0c880505824413586bbc88ece9dd4e8378ee20c
+  MetricsReporter: 319426a9cca7539066fff0ad4106572c644661ed
+  MoEngage-iOS-SDK: c6a4dbe11f90964ff33724327ed9bf42eb73338b
   nanopb: b552cce312b6c8484180ef47159bc0f65a1f0431
   OpenSSL-Universal: ebc357f1e6bc71fa463ccb2fe676756aff50e88c
   PromisesObjC: c50d2056b5253dadbd6c2bea79b0674bd5a52fa4
@@ -847,10 +851,11 @@ SPEC CHECKSUMS:
   React-runtimeexecutor: 8fa50b38df6b992c76537993a2b0553d3b088004
   ReactCommon: 1fed1243105330aa50ad7051207b61656f5e570b
   RNCAsyncStorage: a46ee6bf15cf1ba863d0a47287236f9c95d5b213
-  RNRudderSdk: a7df4d3fd4286bb11537aedd6692fc32bd9ae78d
+  RNRudderSdk: 3f6bb8db1e38d79e02dca28a6118c3f6ec563f84
   RNScreens: 218801c16a2782546d30bd2026bb625c0302d70f
   RNSVG: c1e76b81c76cdcd34b4e1188852892dc280eb902
-  Rudder: 26a9b6756628cb953f3151d835104ac9f5635861
+  RSCrashReporter: e9ccaebd996263f8325a6cbef44ff74aa5f58e30
+  Rudder: 6d1dc8dd6901d503666002ecc9973c2c11d29a89
   Rudder-Amplitude: a353ca07ba381d23ae587f2f74ea79a6c1563145
   Rudder-AppCenter: 9eca9241e3707a0e9610714dd91dc8da4bae7e1f
   Rudder-Appsflyer: 8108ad9e323a5c0e9aeecdbfc4fa2dfe68497146
@@ -860,7 +865,7 @@ SPEC CHECKSUMS:
   rudder-integration-amplitude-react-native: c790d7aad1888a18ffe3d11024e024c2297c5527
   rudder-integration-appcenter-react-native: b3b74cabcb0e47391a26968c8f775754a29fc368
   rudder-integration-appsflyer-react-native: 11491ddf0a4804245a089bc928e368c900d03381
-  rudder-integration-braze-react-native: 050db648b649ca09ff443fc1522bdddc6d1e0607
+  rudder-integration-braze-react-native: 79d7950a78fedf2cb2f34d7df95aaf5095a81c23
   rudder-integration-clevertap-react-native: 125bb921978b2dd77aa9eda9b906e42ca8d85a80
   rudder-integration-firebase-react-native: 6578aa08b29938d0af85e248ba4b9cb8996e8573
   rudder-integration-moengage-react-native: 59bf71ac22baf0797aaeddfc2b6c42afb6d3e359
@@ -868,12 +873,12 @@ SPEC CHECKSUMS:
   Rudder-Moengage: c30465e23740673495ff853eed607a5641f22c5c
   Rudder-Singular: e22a4101ce043aded86b777bea873bf6a2af42b9
   RudderKit: f272f9872183946452ac94cd7bb2244a71e6ca8f
-  SDWebImage: 182830bcddc30cde95fbc60dfe4badc3553d94ba
+  SDWebImage: ebdbcebc7933a45226d9313bd0118bc052ad458b
   Singular-SDK: 614350e3ed21a06b02ab165b370b212f8aaacf2b
   SocketRocket: f32cd54efbe0f095c4d7594881e52619cfe80b17
   Yoga: 79dd7410de6f8ad73a77c868d3d368843f0c93e0
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
-PODFILE CHECKSUM: 64c758bda0acf180cf3b8bddf3b25719bfbbf54c
+PODFILE CHECKSUM: 67541287de69ea6d9cdc9dca34ff3b401fb67224
 
 COCOAPODS: 1.11.3
