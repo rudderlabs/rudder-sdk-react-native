@@ -8,6 +8,10 @@
 #import <Foundation/Foundation.h>
 #import "RNParamsConfigurator.h"
 
+#if defined __has_include && __has_include ("RSEncryptedDatabaseProvider.h")
+#import "RSEncryptedDatabaseProvider.h"
+#endif
+
 @implementation RNParamsConfigurator
 
 - (instancetype) initWithConfig:(NSDictionary*)config {
@@ -81,15 +85,16 @@
     if ([config objectForKey:@"collectDeviceId"]) {
         [configBuilder withCollectDeviceId:[config[@"collectDeviceId"] boolValue]];
     }
-    // To be implemented later
-//    if ([config objectForKey:@"dbEncryption"]) {
-//        NSDictionary *dbEncryption = config[@"dbEncryption"];
-//        NSString *key = dbEncryption[@"key"];
-//        BOOL enable = [dbEncryption[@"enable"] boolValue];
-//        if (key != nil && [key length] > 0) {
-//            [configBuilder withDBEncryption:[[RSDBEncryption alloc] initWithKey:key enable:enable]];
-//        }
-//    }
+#if defined __has_include && __has_include ("RSEncryptedDatabaseProvider.h")
+    if ([config objectForKey:@"dbEncryption"]) {
+        NSDictionary *dbEncryption = config[@"dbEncryption"];
+        NSString *key = dbEncryption[@"key"];
+        BOOL enable = [dbEncryption[@"enable"] boolValue];
+        if (key != nil && [key length] > 0) {
+            [configBuilder withDBEncryption:[[RSDBEncryption alloc] initWithKey:key enable:enable databaseProvider:[RSEncryptedDatabaseProvider new]]];
+        }
+    }
+#endif
     return configBuilder;
 }
 
