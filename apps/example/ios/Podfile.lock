@@ -495,7 +495,7 @@ PODS:
     - React-perflogger (= 0.71.4)
   - RNCAsyncStorage (1.18.0):
     - React-Core
-  - RNRudderSdk (1.9.0):
+  - RNRudderSdk (1.9.1):
     - React
     - Rudder (< 2.0.0, >= 1.20.0)
   - RNScreens (3.20.0):
@@ -555,6 +555,9 @@ PODS:
   - Rudder-Singular (1.0.0):
     - Rudder (~> 1.0)
     - Singular-SDK (= 11.0.4)
+  - RudderDatabaseEncryption (1.0.0):
+    - Rudder (~> 1.20)
+    - SQLCipher (~> 4.0)
   - RudderKit (1.4.0)
   - SDWebImage (5.18.1):
     - SDWebImage/Core (= 5.18.1)
@@ -563,6 +566,11 @@ PODS:
     - Singular-SDK/Main (= 11.0.4)
   - Singular-SDK/Main (11.0.4)
   - SocketRocket (0.6.1)
+  - SQLCipher (4.5.5):
+    - SQLCipher/standard (= 4.5.5)
+  - SQLCipher/common (4.5.5)
+  - SQLCipher/standard (4.5.5):
+    - SQLCipher/common
   - Yoga (1.14.0)
   - YogaKit (1.18.1):
     - Yoga (~> 1.14)
@@ -641,6 +649,7 @@ DEPENDENCIES:
   - "rudder-integration-firebase-react-native (from `../node_modules/@rudderstack/rudder-integration-firebase-react-native`)"
   - "rudder-integration-moengage-react-native (from `../node_modules/@rudderstack/rudder-integration-moengage-react-native`)"
   - "rudder-integration-singular-react-native (from `../node_modules/@rudderstack/rudder-integration-singular-react-native`)"
+  - RudderDatabaseEncryption
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
@@ -684,10 +693,12 @@ SPEC REPOS:
     - Rudder-Firebase
     - Rudder-Moengage
     - Rudder-Singular
+    - RudderDatabaseEncryption
     - RudderKit
     - SDWebImage
     - Singular-SDK
     - SocketRocket
+    - SQLCipher
     - YogaKit
 
 EXTERNAL SOURCES:
@@ -851,7 +862,7 @@ SPEC CHECKSUMS:
   React-runtimeexecutor: 8fa50b38df6b992c76537993a2b0553d3b088004
   ReactCommon: 1fed1243105330aa50ad7051207b61656f5e570b
   RNCAsyncStorage: a46ee6bf15cf1ba863d0a47287236f9c95d5b213
-  RNRudderSdk: 3f6bb8db1e38d79e02dca28a6118c3f6ec563f84
+  RNRudderSdk: 69873fb4cf616329b29c738523bd5c0bc7ab8bea
   RNScreens: 218801c16a2782546d30bd2026bb625c0302d70f
   RNSVG: c1e76b81c76cdcd34b4e1188852892dc280eb902
   RSCrashReporter: e9ccaebd996263f8325a6cbef44ff74aa5f58e30
@@ -872,13 +883,15 @@ SPEC CHECKSUMS:
   rudder-integration-singular-react-native: 15942ecaa77043655dd9428ad163f18890280c79
   Rudder-Moengage: c30465e23740673495ff853eed607a5641f22c5c
   Rudder-Singular: e22a4101ce043aded86b777bea873bf6a2af42b9
+  RudderDatabaseEncryption: 409b8623c114a43af6332a694601373fde45e1ca
   RudderKit: f272f9872183946452ac94cd7bb2244a71e6ca8f
   SDWebImage: ebdbcebc7933a45226d9313bd0118bc052ad458b
   Singular-SDK: 614350e3ed21a06b02ab165b370b212f8aaacf2b
   SocketRocket: f32cd54efbe0f095c4d7594881e52619cfe80b17
+  SQLCipher: f2e96b3822e3006b379181a0e4fd145f6de29b56
   Yoga: 79dd7410de6f8ad73a77c868d3d368843f0c93e0
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
-PODFILE CHECKSUM: 67541287de69ea6d9cdc9dca34ff3b401fb67224
+PODFILE CHECKSUM: a04fa6dba7e673c19c7b11cea3ab0823baf35f3d
 
 COCOAPODS: 1.11.3

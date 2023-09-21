@@ -34,6 +34,9 @@ target 'Example' do
 
   # To solve the RudderStack iOS installation issue, keep below line:
     pod 'RSCrashReporter', :modular_headers => true
+    
+  # To use the DBEncryption feature in RudderStack iOS SDK, keep below line:
+    pod 'RudderDatabaseEncryption'
 
   # Pods for Example
     pod 'FBLazyVector', :path => "../node_modules/react-native/Libraries/FBLazyVector"
