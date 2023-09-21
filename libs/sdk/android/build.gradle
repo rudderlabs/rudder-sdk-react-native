@@ -57,5 +57,5 @@ repositories {
 dependencies {
     compileOnly 'com.facebook.react:react-native:+'
     implementation 'com.google.code.gson:gson:2.8.9'
-    implementation 'com.rudderstack.android.sdk:core:[1.18.0, 2.0.0)'
+    implementation 'com.rudderstack.android.sdk:core:[1.19.1, 2.0.0)'
 }
