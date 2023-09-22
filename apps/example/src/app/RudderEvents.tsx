@@ -103,6 +103,12 @@ const RudderEvents = () => {
     rudderClient.reset(true);
   };
 
+  const getSessionId = async () => {
+    const sessionId: number | null = await rudderClient.getSessionId();
+    console.log(`Session id: ${sessionId}`);
+    console.log(`SessionId type: ${typeof sessionId}`);
+  };
+
   return (
     <>
       <Button title="Identify" onPress={identify} />
@@ -115,6 +121,7 @@ const RudderEvents = () => {
       <Button title="startSessionWithID()" onPress={startSessionWithID} />
       <Button title="endSession()" onPress={endSession} />
       <Button title="RESET" onPress={reset} />
+      <Button title="getSessionId()" onPress={getSessionId} />
     </>
   );
 };
