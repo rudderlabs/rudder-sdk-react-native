@@ -1,5 +1,7 @@
 package com.rudderstack.react.android;
 
+import androidx.annotation.Nullable;
+
 import com.rudderstack.android.sdk.core.RudderClient;
 import com.rudderstack.android.sdk.core.RudderLogger;
 import com.rudderstack.android.sdk.core.util.Utils;
@@ -158,5 +160,10 @@ public class RNUserSessionPlugin {
      */
     private void disableSessionParams() {
         this.sessionParams.enableSessionParams(false, false);
+    }
+
+    @Nullable
+    Long getSessionId() {
+        return (this.rudderClient != null) ? this.rudderClient.getSessionId() : null;
     }
 }
