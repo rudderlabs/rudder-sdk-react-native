@@ -556,9 +556,9 @@ PODS:
     - Rudder (~> 1.0)
     - Singular-SDK (= 11.0.4)
   - RudderKit (1.4.0)
-  - SDWebImage (5.18.1):
-    - SDWebImage/Core (= 5.18.1)
-  - SDWebImage/Core (5.18.1)
+  - SDWebImage (5.18.2):
+    - SDWebImage/Core (= 5.18.2)
+  - SDWebImage/Core (5.18.2)
   - Singular-SDK (11.0.4):
     - Singular-SDK/Main (= 11.0.4)
   - Singular-SDK/Main (11.0.4)
@@ -873,7 +873,7 @@ SPEC CHECKSUMS:
   Rudder-Moengage: c30465e23740673495ff853eed607a5641f22c5c
   Rudder-Singular: e22a4101ce043aded86b777bea873bf6a2af42b9
   RudderKit: f272f9872183946452ac94cd7bb2244a71e6ca8f
-  SDWebImage: ebdbcebc7933a45226d9313bd0118bc052ad458b
+  SDWebImage: c0de394d7cf7f9838aed1fd6bb6037654a4572e4
   Singular-SDK: 614350e3ed21a06b02ab165b370b212f8aaacf2b
   SocketRocket: f32cd54efbe0f095c4d7594881e52619cfe80b17
   Yoga: 79dd7410de6f8ad73a77c868d3d368843f0c93e0
