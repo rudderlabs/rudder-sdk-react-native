@@ -216,7 +216,7 @@ RCT_EXPORT_METHOD(endSession) {
     [RSLogger logVerbose:@"setup: ending session"];
 }
 
-RCT_EXPORT_METHOD(getSessionId:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject) {
+RCT_EXPORT_METHOD(getSessionId:(RCTPromiseResolveBlock)resolve) {
     if (![self isRudderClientInitializedAndReady]) {
         resolve(nil);
         return;
