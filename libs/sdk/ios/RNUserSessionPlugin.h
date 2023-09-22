@@ -27,6 +27,7 @@
 -(void)startSession;
 -(void)startSession:(long)sessionId;
 -(void)endSession;
+-(NSNumber *)getSessionId;
 -(void)enableManualSessionParams;
 
 @end
