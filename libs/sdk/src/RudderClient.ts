@@ -322,7 +322,7 @@ async function endSession() {
 async function getSessionId(): Promise<number | null> {
   try {
     const sessionId: number | null = await bridge.getSessionId();
-    if (sessionId === null) {
+    if (sessionId === null || sessionId === undefined) {
       return null;
     }
     return Number(sessionId);
