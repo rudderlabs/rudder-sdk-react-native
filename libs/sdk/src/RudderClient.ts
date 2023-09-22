@@ -319,6 +319,19 @@ async function endSession() {
   bridge.endSession();
 }
 
+async function getSessionId(): Promise<number | null> {
+  try {
+    const sessionId: number | null = await bridge.getSessionId();
+    if (sessionId === null) {
+      return null;
+    }
+    return Number(sessionId);
+  } catch (e) {
+    logError('getSessionId: Failed to get sessionId: ' + e);
+    return null;
+  }
+}
+
 const rudderClient = {
   setup,
   track,
@@ -338,5 +351,6 @@ const rudderClient = {
   getRudderContext,
   startSession,
   endSession,
+  getSessionId,
 };
 export default rudderClient;
