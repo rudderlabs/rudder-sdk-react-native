@@ -10,7 +10,7 @@
     "composite": true,
     "declaration": true
   },
-  "files": ["../../node_modules/@nrwl/react-native/typings/svg.d.ts"],
+  "files": [],
   "include": [],
   "references": [
     {
@@ -19,6 +19,5 @@
     {
       "path": "./tsconfig.spec.json"
     }
-  ],
-  "exclude": ["node_modules"]
+  ]
 }

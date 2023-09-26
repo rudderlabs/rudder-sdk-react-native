@@ -3,12 +3,13 @@
   "version": "0.5.1",
   "private": true,
   "dependencies": {
+    "@react-native/metro-config": "*",
     "@testing-library/jest-native": "*",
     "@testing-library/react-native": "*",
     "react": "*",
     "react-native": "*",
-    "react-native-config": "*",
     "react-native-svg": "*",
+    "metro-config": "*",
     "@react-native-async-storage/async-storage": "*",
     "@rudderstack/rudder-sdk-react-native": "*",
     "@rudderstack/rudder-integration-amplitude-react-native": "*",
@@ -19,13 +20,7 @@
     "@rudderstack/rudder-integration-firebase-react-native": "*",
     "@rudderstack/rudder-integration-moengage-react-native": "*",
     "@rudderstack/rudder-integration-singular-react-native": "*",
-    "metro-config": "*",
-    "async-lock": "*",
-    "@react-navigation/native": "*",
-    "@react-navigation/native-stack": "*",
-    "@rnx-kit/metro-resolver-symlinks": "*",
-    "react-native-screens": "*",
-    "react-native-safe-area-context": "*"
+    "async-lock": "*"
   },
   "overrides": {
     "unset-value": "2.0.1"

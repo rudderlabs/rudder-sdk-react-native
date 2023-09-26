@@ -57,5 +57,5 @@ jest.mock('react-native', () => {
 
 test('renders correctly', () => {
   const { getByTestId } = render(<App />);
-  expect(getByTestId('init_btn')).toHaveTextContent('Initialization');
+  expect(getByTestId('heading')).toHaveTextContent('Welcome');
 });
