@@ -20,6 +20,7 @@
     "@rudderstack/rudder-integration-firebase-react-native": "*",
     "@rudderstack/rudder-integration-moengage-react-native": "*",
     "@rudderstack/rudder-integration-singular-react-native": "*",
+    "react-native-config": "*",
     "async-lock": "*"
   },
   "overrides": {

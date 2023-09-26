@@ -54,17 +54,17 @@ public class MainApplication extends Application implements ReactApplication {
 
   @Override
   public void onCreate() {
-    super.onCreate();
-    SoLoader.init(this, /* native exopackage */ false);
-    if (BuildConfig.IS_NEW_ARCHITECTURE_ENABLED) {
-      // If you opted-in for the New Architecture, we load the native entry point for this app.
-      DefaultNewArchitectureEntryPoint.load();
-    }
-    ReactNativeFlipper.initializeFlipper(this, getReactNativeHost().getReactInstanceManager());
+      super.onCreate();
+      SoLoader.init(this, /* native exopackage */ false);
+      if (BuildConfig.IS_NEW_ARCHITECTURE_ENABLED) {
+          // If you opted-in for the New Architecture, we load the native entry point for this app.
+          DefaultNewArchitectureEntryPoint.load();
+      }
+      ReactNativeFlipper.initializeFlipper(this, getReactNativeHost().getReactInstanceManager());
 
       // MoEngage SDK initialisation: Set your APP ID in .env file
       if (!BuildConfig.MOENGAGE_ANDROID_APP_ID.isEmpty()) {
-          MoEngage moEngage = new MoEngage.Builder(MainActivity.this.getApplication(), BuildConfig.MOENGAGE_ANDROID_APP_ID)
+          MoEngage moEngage = new MoEngage.Builder(this, BuildConfig.MOENGAGE_ANDROID_APP_ID)
                   .configureLogs(new LogConfig(LogLevel.VERBOSE, false))
                   .build();
           MoEngage.initialiseDefaultInstance(moEngage);

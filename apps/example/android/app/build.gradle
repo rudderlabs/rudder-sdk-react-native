@@ -1,6 +1,11 @@
 apply plugin: "com.android.application"
 apply plugin: "com.facebook.react"
 
+// For Firebase, uncomment this line:
+//  apply plugin: 'com.google.gms.google-services'
+// To fetch value from .env file keep this line:
+apply from: project(':react-native-config').projectDir.getPath() + "/dotenv.gradle"
+
 /**
  * This is the configuration block to customize your React Native Android app.
  * By default you don't need to apply any configuration, just uncomment the lines you need.
@@ -132,18 +137,14 @@ dependencies {
     }
 
     // Rudderstack dependencies:
-    // MoEngage
-    implementation 'com.moengage:moe-android-sdk:10.6.01'
-    implementation 'androidx.core:core-ktx:1.3.2'
-    implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'androidx.lifecycle:lifecycle-process:2.2.0'
+        // MoEngage
+        implementation 'com.moengage:moe-android-sdk:10.6.01'
+        // Firebase
+        implementation 'com.google.firebase:firebase-messaging:21.0.0'
 
-    implementation 'com.google.code.gson:gson:2.8.6'
-    implementation 'com.google.firebase:firebase-messaging:21.0.0'
-
-    //sql-cipher
-    implementation "net.zetetic:android-database-sqlcipher:4.5.4"
-    implementation "androidx.sqlite:sqlite:2.3.1"
+        //sql-cipher
+        implementation "net.zetetic:android-database-sqlcipher:4.5.4"
+        implementation "androidx.sqlite:sqlite:2.3.1"
 }
 
 apply from: file("../../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesAppBuildGradle(project)
