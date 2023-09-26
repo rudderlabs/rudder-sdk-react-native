@@ -1,6 +1,10 @@
 #import "RudderIntegrationAppsflyerReactNative.h"
 #import <RNRudderSdk/RNRudderAnalytics.h>
+#if __has_include(<Rudder-Appsflyer/RudderAppsflyerFactory.h>)
 #import <Rudder-Appsflyer/RudderAppsflyerFactory.h>
+#else
+@import Rudder_Appsflyer;
+#endif
 
 @implementation RudderIntegrationAppsflyerReactNative
 
