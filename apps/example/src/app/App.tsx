@@ -134,7 +134,7 @@ export const App = () => {
           <View style={styles.section}>
             <Text style={styles.textLg}>Hello there,</Text>
             <Text style={[styles.textXL, styles.appTitleText]} testID="heading">
-              Welcome Example2 👋
+              Welcome 👋
             </Text>
           </View>
           <RudderEvents />
