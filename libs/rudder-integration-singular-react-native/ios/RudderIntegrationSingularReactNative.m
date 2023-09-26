@@ -1,6 +1,10 @@
 #import "RudderIntegrationSingularReactNative.h"
 #import <RNRudderSdk/RNRudderAnalytics.h>
+#if __has_include(<Rudder-Singular/RudderSingularFactory.h>)
 #import <Rudder-Singular/RudderSingularFactory.h>
+#else
+@import Rudder_Singular;
+#endif
 
 @implementation RudderIntegrationSingularReactNative
 
