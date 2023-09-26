@@ -20,6 +20,7 @@ Pod::Spec.new do |s|
 
   s.dependency "React"
   s.dependency "Rudder-Moengage"
+  s.dependency 'RNRudderSdk'
 
 end
 
