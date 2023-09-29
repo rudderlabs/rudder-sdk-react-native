@@ -1,6 +1,6 @@
 {
   "name": "example",
-  "version": "0.5.2",
+  "version": "0.5.1",
   "private": true,
   "dependencies": {
     "@react-native/metro-config": "*",
