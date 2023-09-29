@@ -173,9 +173,9 @@ PODS:
     - hermes-engine/Pre-built (= 0.72.4)
   - hermes-engine/Pre-built (0.72.4)
   - libevent (2.1.12)
-  - MetricsReporter (1.1.0):
-    - RSCrashReporter (~> 1.0.0)
-    - RudderKit (~> 1.4.0)
+  - MetricsReporter (1.1.1):
+    - RSCrashReporter (= 1.0.0)
+    - RudderKit (= 1.4.0)
   - MoEngage-iOS-SDK (9.12.0)
   - nanopb (2.30909.0):
     - nanopb/decode (= 2.30909.0)
@@ -602,12 +602,12 @@ PODS:
     - React-Core
   - RNRudderSdk (1.9.1):
     - React
-    - Rudder (< 2.0.0, >= 1.20.0)
+    - Rudder (< 2.0.0, >= 1.22.0)
   - RNSVG (13.9.0):
     - React-Core
   - RSCrashReporter (1.0.0)
-  - Rudder (1.20.0):
-    - MetricsReporter (= 1.1.0)
+  - Rudder (1.22.0):
+    - MetricsReporter (= 1.1.1)
   - Rudder-Amplitude (1.1.1):
     - Amplitude (= 8.16.0)
     - Rudder (~> 1.12)
@@ -938,7 +938,7 @@ SPEC CHECKSUMS:
   GoogleUtilities: 13e2c67ede716b8741c7989e26893d151b2b2084
   hermes-engine: 81191603c4eaa01f5e4ae5737a9efcf64756c7b2
   libevent: 4049cae6c81cdb3654a443be001fb9bdceff7913
-  MetricsReporter: 319426a9cca7539066fff0ad4106572c644661ed
+  MetricsReporter: 759631361ffd2b8f0d375b1225c8a631311f6da2
   MoEngage-iOS-SDK: a5c11bbbbecab2629395709cb6c7ad5f5de9ee6e
   nanopb: b552cce312b6c8484180ef47159bc0f65a1f0431
   OpenSSL-Universal: ebc357f1e6bc71fa463ccb2fe676756aff50e88c
@@ -977,10 +977,10 @@ SPEC CHECKSUMS:
   React-utils: b79f2411931f9d3ea5781404dcbb2fa8a837e13a
   ReactCommon: 4b2bdcb50a3543e1c2b2849ad44533686610826d
   RNCAsyncStorage: c913ede1fa163a71cea118ed4670bbaaa4b511bb
-  RNRudderSdk: 9f314c1fe4ce42ffc3bf82f63e38a5e1e729a7c4
+  RNRudderSdk: 8dcf4b3723a6e2b22cac0a5c71124c1e19f55a6a
   RNSVG: 53c661b76829783cdaf9b7a57258f3d3b4c28315
   RSCrashReporter: e9ccaebd996263f8325a6cbef44ff74aa5f58e30
-  Rudder: 6d1dc8dd6901d503666002ecc9973c2c11d29a89
+  Rudder: 2ba2921e48264533782310798c0f7b14bfbe42ec
   Rudder-Amplitude: a353ca07ba381d23ae587f2f74ea79a6c1563145
   Rudder-AppCenter: 9eca9241e3707a0e9610714dd91dc8da4bae7e1f
   Rudder-Appsflyer: 8108ad9e323a5c0e9aeecdbfc4fa2dfe68497146
@@ -1004,6 +1004,6 @@ SPEC CHECKSUMS:
   Yoga: 3efc43e0d48686ce2e8c60f99d4e6bd349aff981
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
-PODFILE CHECKSUM: c23399c28fd956fc5d78cb27a311d4161f6110fb
+PODFILE CHECKSUM: 805aa2c42ecf6748b55f4ac7682e7e7dcddd3040
 
 COCOAPODS: 1.11.3
