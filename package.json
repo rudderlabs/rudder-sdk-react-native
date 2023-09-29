@@ -83,6 +83,7 @@
     "@nrwl/linter": "16.9.1",
     "@nrwl/react-native": "16.9.1",
     "@nrwl/web": "16.9.1",
+    "@nx/rollup": "16.9.1",
     "@nrwl/workspace": "16.9.1",
     "@nx/detox": "16.9.1",
     "@nx/jest": "16.9.1",

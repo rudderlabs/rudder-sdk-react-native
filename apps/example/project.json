@@ -7,13 +7,13 @@
     "build": {
       "executor": "nx:run-commands",
       "options": {
-        "commands": [ "nx build-android example", "nx build-ios example" ],
+        "commands": ["nx build-android example", "nx build-ios example"],
         "parallel": false
       }
     },
     "start": {
       "executor": "@nx/react-native:start",
-      "dependsOn": [ "ensure-symlink", "sync-deps", "pod-install" ],
+      "dependsOn": ["ensure-symlink", "sync-deps"],
       "options": {
         "port": 8081
       }
@@ -26,13 +26,11 @@
     },
     "run-ios": {
       "executor": "@nx/react-native:run-ios",
-      "dependsOn": [ "ensure-symlink", "sync-deps", "pod-install" ],
-      "options": { }
+      "dependsOn": ["ensure-symlink", "sync-deps", "pod-install"],
+      "options": {}
     },
     "build-ios": {
-      "executor": "@nx/react-native:build-ios",
-      "outputs": [ "{projectRoot}/ios/build/Build" ],
-      "dependsOn": [ "ensure-symlink", "sync-deps", "pod-install" ],
+      "executor": "nx:run-commands",
       "options": {
         "commands": [
           "cd apps/example/ios && xcodebuild -workspace Example.xcworkspace -scheme Example -configuration Release -sdk iphonesimulator | tee xcodebuild.log | xcpretty && exit ${PIPESTATUS[0]}"
@@ -49,8 +47,8 @@
     },
     "bundle-ios": {
       "executor": "@nx/react-native:bundle",
-      "dependsOn": [ "ensure-symlink" ],
-      "outputs": [ "{options.bundleOutput}" ],
+      "dependsOn": ["ensure-symlink"],
+      "outputs": ["{options.bundleOutput}"],
       "options": {
         "entryFile": "src/main.tsx",
         "platform": "ios",
@@ -59,8 +57,8 @@
     },
     "run-android": {
       "executor": "@nx/react-native:run-android",
-      "dependsOn": [ "ensure-symlink", "sync-deps" ],
-      "options": { }
+      "dependsOn": ["ensure-symlink", "sync-deps"],
+      "options": {}
     },
     "build-android": {
       "executor": "@nx/react-native:build-android",
@@ -68,17 +66,17 @@
         "{projectRoot}/android/app/build/outputs/bundle",
         "{projectRoot}/android/app/build/outputs/apk"
       ],
-      "dependsOn": [ "ensure-symlink", "sync-deps" ],
-      "options": { }
+      "dependsOn": ["ensure-symlink", "sync-deps"],
+      "options": {}
     },
     "pod-install": {
       "executor": "@nx/react-native:pod-install",
-      "options": { }
+      "options": {}
     },
     "bundle-android": {
       "executor": "@nx/react-native:bundle",
-      "dependsOn": [ "ensure-symlink" ],
-      "outputs": [ "{options.bundleOutput}" ],
+      "dependsOn": ["ensure-symlink"],
+      "outputs": ["{options.bundleOutput}"],
       "options": {
         "entryFile": "src/main.tsx",
         "platform": "android",
@@ -87,17 +85,17 @@
     },
     "sync-deps": {
       "executor": "@nx/react-native:sync-deps",
-      "options": { }
+      "options": {}
     },
     "ensure-symlink": {
       "executor": "@nx/react-native:ensure-symlink",
-      "options": { }
+      "options": {}
     },
     "lint": {
       "executor": "@nx/linter:eslint",
-      "outputs": [ "{options.outputFile}" ],
+      "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": [ "apps/example/src/**/*.{ts,tsx,js,jsx}" ]
+        "lintFilePatterns": ["apps/example/src/**/*.{ts,tsx,js,jsx}"]
       },
       "configurations": {
         "ci": {
@@ -112,7 +110,7 @@
     },
     "test": {
       "executor": "@nx/jest:jest",
-      "outputs": [ "{workspaceRoot}/coverage/{projectRoot}" ],
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
         "jestConfig": "apps/example/jest.config.ts",
         "passWithNoTests": true
@@ -144,5 +142,5 @@
       }
     }
   },
-  "tags": [ ]
+  "tags": []
 }
