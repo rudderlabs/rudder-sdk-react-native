@@ -95,7 +95,7 @@
     "github": {
       "executor": "@jscutlery/semver:github",
       "options": {
-        "tag": "rudder-integration-amplitude-react-native@1.0.8",
+        "tag": "rudder-integration-amplitude-react-native@0.0.1",
         "notesFile": "./libs/rudder-integration-amplitude-react-native/CHANGELOG_LATEST.md"
       }
     },
