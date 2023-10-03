@@ -250,6 +250,21 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
+    public void getSessionId(Promise promise) {
+        if (!isRudderClientInitializedAndReady()) {
+            promise.resolve(null);
+            return;
+        }
+        try {
+            String sessionId = (userSessionPlugin.getSessionId() != null) ?
+                    String.valueOf(userSessionPlugin.getSessionId()) : null;
+            promise.resolve(sessionId);
+        } catch(Exception e) {
+            promise.reject(e);
+        }
+    }
+
+    @ReactMethod
     public void registerCallback(String name, Callback callback) {
         integrationCallbacks.put(name, callback);
     }

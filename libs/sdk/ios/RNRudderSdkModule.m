@@ -216,6 +216,19 @@ RCT_EXPORT_METHOD(endSession) {
     [RSLogger logVerbose:@"setup: ending session"];
 }
 
+RCT_EXPORT_METHOD(getSessionId:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject) {
+    if (![self isRudderClientInitializedAndReady]) {
+        resolve(nil);
+        return;
+    }
+    NSNumber *sessionId = [self->session getSessionId];
+    if (sessionId == nil) {
+        resolve(nil);
+        return;
+    }
+    resolve(sessionId);
+}
+
 -(RSOption*) getRudderOptionsObject:(NSDictionary *) optionsDict {
     RSOption * options = [[RSOption alloc]init];
     NSArray *externalIdKeys = @[@"externalId", @"externalIds"];
