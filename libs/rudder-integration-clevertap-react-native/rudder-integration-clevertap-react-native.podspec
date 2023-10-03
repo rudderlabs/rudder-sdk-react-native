@@ -21,5 +21,7 @@ Pod::Spec.new do |s|
   s.dependency "React"
   s.dependency "Rudder-CleverTap", "~> 1.1.2"
   s.dependency 'CleverTap-iOS-SDK'
+  s.dependency 'RNRudderSdk'
+
 end
 

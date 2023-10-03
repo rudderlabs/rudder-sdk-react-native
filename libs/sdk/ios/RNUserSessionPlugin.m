@@ -94,6 +94,10 @@
     }
 }
 
+- (NSNumber * _Nullable)getSessionId {
+    return (self->rudderClient != nil) ? self->rudderClient.sessionId : nil;
+}
+
 -(void)enableAutomaticSessionParams {
     [self->sessionParams enableSessionParams:YES manual:NO];
 }

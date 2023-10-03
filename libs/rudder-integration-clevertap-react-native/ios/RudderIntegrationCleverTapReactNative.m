@@ -1,6 +1,10 @@
 #import "RudderIntegrationCleverTapReactNative.h"
 #import <RNRudderSdk/RNRudderAnalytics.h>
+#if __has_include(<Rudder-CleverTap/RudderCleverTapFactory.h>)
 #import <Rudder-CleverTap/RudderCleverTapFactory.h>
+#else
+@import Rudder_CleverTap;
+#endif
 
 @implementation RudderIntegrationCleverTapReactNative
 

@@ -17,8 +17,11 @@ Pod::Spec.new do |s|
 
   s.source_files = "ios/**/*.{h,c,m,swift}"
   s.requires_arc = true
+  s.static_framework = true 
 
   s.dependency "React"
   s.dependency "Rudder-Appsflyer", ">= 2.2.0"
+  s.dependency 'RNRudderSdk'
+
 end
 
