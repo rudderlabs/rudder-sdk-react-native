@@ -1,6 +1,10 @@
 #import "RudderIntegrationAmplitudeReactNative.h"
 #import <RNRudderSdk/RNRudderAnalytics.h>
+#if __has_include(<Rudder-Amplitude/RudderAmplitudeFactory.h>)
 #import <Rudder-Amplitude/RudderAmplitudeFactory.h>
+#else
+@import Rudder_Amplitude;
+#endif
 
 @implementation RudderIntegrationAmplitudeReactNative
 

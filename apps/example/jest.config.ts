@@ -3,7 +3,7 @@ const libName = 'example';
 module.exports = {
   displayName: libName,
   preset: 'react-native',
-  resolver: '@nrwl/jest/plugins/resolver',
+  resolver: '@nx/jest/plugins/resolver',
   moduleFileExtensions: ['ts', 'js', 'html', 'tsx', 'jsx'],
   setupFilesAfterEnv: ['<rootDir>/test-setup.ts'],
   moduleNameMapper: {

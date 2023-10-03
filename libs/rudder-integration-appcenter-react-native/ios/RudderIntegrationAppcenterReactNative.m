@@ -1,6 +1,10 @@
 #import "RudderIntegrationAppcenterReactNative.h"
 #import <RNRudderSdk/RNRudderAnalytics.h>
+#if __has_include(<Rudder-AppCenter/RudderAppCenterFactory.h>)
 #import <Rudder-AppCenter/RudderAppCenterFactory.h>
+#else
+@import Rudder_AppCenter;
+#endif
 
 @import AppCenterAnalytics;
 @implementation RudderIntegrationAppcenterReactNative

@@ -1,8 +1,16 @@
-import * as React from 'react';
-import { useEffect } from 'react';
-import { Button, Text } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+/* eslint-disable jsx-a11y/accessible-emoji */
+import React, { useRef, useState, useEffect } from 'react';
+import {
+  SafeAreaView,
+  StyleSheet,
+  ScrollView,
+  View,
+  Text,
+  StatusBar,
+  TouchableOpacity,
+} from 'react-native';
+import Svg, { Path } from 'react-native-svg';
+
 import rc, { RUDDER_LOG_LEVEL, DBEncryption } from '@rudderstack/rudder-sdk-react-native';
 import amplitude from '@rudderstack/rudder-integration-amplitude-react-native';
 import appcenter from '@rudderstack/rudder-integration-appcenter-react-native';
@@ -23,8 +31,6 @@ import appsflyer, {
 // @ts-ignore
 import { TEST_DATAPLANE_URL, TEST_WRITE_KEY, APPSFLYER_DEV_KEY, APPSFLYER_APPLE_ID } from '@env';
 import RudderEvents from './RudderEvents';
-
-const Stack = createNativeStackNavigator();
 
 const initRNAppsFlyerSDK = async () => {
   if (APPSFLYER_APPLE_ID) {
@@ -102,9 +108,9 @@ const initialization = async () => {
   await initRudderReactNativeSDK();
 };
 
-const App = () => {
-  const routeNameRef = React.useRef();
-  const navigationRef = React.useRef();
+export const App = () => {
+  const [whatsNextYCoord, setWhatsNextYCoord] = useState<number>(0);
+  const scrollViewRef = useRef<null | ScrollView>(null);
 
   useEffect(() => {
     const awaitInitialization = async () => {
@@ -115,87 +121,105 @@ const App = () => {
   }, []);
 
   return (
-    <NavigationContainer
-      ref={navigationRef}
-      onReady={() => {
-        routeNameRef.current = (navigationRef.current as any).getCurrentRoute().name;
-      }}
-      onStateChange={async () => {
-        const previousRouteName = routeNameRef.current;
-        const currentRouteName = (navigationRef.current as any).getCurrentRoute().name;
-
-        if (previousRouteName !== currentRouteName) {
-          await rc.screen(currentRouteName, {
-            screen_name: currentRouteName,
-            screen_class: currentRouteName,
-          });
-        }
-        routeNameRef.current = currentRouteName;
-      }}
-    >
-      <Stack.Navigator>
-        <Stack.Screen name="Home" component={HomeScreen} options={{ title: 'Welcome' }} />
-        <Stack.Screen name="Profile" component={ProfileScreen} />
-      </Stack.Navigator>
-    </NavigationContainer>
-  );
-};
-
-const HomeScreen = ({ navigation }) => {
-  useEffect(() => {
-    const awaitTrack = async () => {
-      const props = {
-        k1: 'v1',
-        k2: 'v3',
-        k3: 'v3',
-        name: 'Miraj',
-      };
-
-      await rc.track('React Native Home Screen Event', props);
-      await rc.screen('React Native Home screen', props);
-    };
-
-    awaitTrack().catch(console.error);
-  }, []);
-
-  return (
     <>
-      <Text>Dataplane: {TEST_DATAPLANE_URL}</Text>
-      <Text>
-        Write key: {TEST_WRITE_KEY} {'\n'}
-      </Text>
-      <Button
-        testID="init_btn"
-        title="Initialization"
-        onPress={async () => await initialization()}
-      />
-      <RudderEvents />
-      <Button
-        title="Go to Jane's profile"
-        onPress={() => navigation.navigate('Profile', { name: 'Jane' })}
-      />
+      <StatusBar barStyle="dark-content" />
+      <SafeAreaView>
+        <ScrollView
+          ref={(ref) => {
+            scrollViewRef.current = ref;
+          }}
+          contentInsetAdjustmentBehavior="automatic"
+          style={styles.scrollView}
+        >
+          <View style={styles.section}>
+            <Text style={styles.textLg}>Hello there,</Text>
+            <Text style={[styles.textXL, styles.appTitleText]} testID="heading">
+              Welcome 👋
+            </Text>
+          </View>
+          <RudderEvents />
+          <View style={styles.section}>
+            <View style={styles.hero}>
+              <View style={styles.heroTitle}>
+                <Svg
+                  width={32}
+                  height={32}
+                  stroke="hsla(162, 47%, 50%, 1)"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <Path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"
+                  />
+                </Svg>
+                <Text style={[styles.textLg, styles.heroTitleText]}>You're up and running</Text>
+              </View>
+              <TouchableOpacity
+                style={styles.whatsNextButton}
+                onPress={() => {
+                  scrollViewRef.current?.scrollTo({
+                    x: 0,
+                    y: whatsNextYCoord,
+                  });
+                }}
+              >
+                <Text style={[styles.textMd, styles.textCenter]}>What's next?</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </ScrollView>
+      </SafeAreaView>
     </>
   );
 };
-
-const ProfileScreen = ({ navigation, route }) => {
-  useEffect(() => {
-    const awaitTrack = async () => {
-      const props = {
-        k1: 'v1',
-        k2: 'v3',
-        k3: 'v3',
-        name: 'Miraj',
-      };
-
-      await rc.track('React Native Profile Screen Event', props);
-      await rc.screen('React Native Profile screen', props);
-    };
-
-    awaitTrack().catch(console.error);
-  }, []);
-
-  return <Text>This is {route.params.name}'s profile</Text>;
-};
+const styles = StyleSheet.create({
+  scrollView: {
+    backgroundColor: '#ffffff',
+  },
+  textCenter: {
+    textAlign: 'center',
+  },
+  textMd: {
+    fontSize: 18,
+  },
+  textLg: {
+    fontSize: 24,
+  },
+  textXL: {
+    fontSize: 48,
+  },
+  section: {
+    marginVertical: 24,
+    marginHorizontal: 12,
+  },
+  appTitleText: {
+    paddingTop: 12,
+    fontWeight: '500',
+  },
+  hero: {
+    borderRadius: 12,
+    backgroundColor: '#143055',
+    padding: 36,
+    marginBottom: 24,
+  },
+  heroTitle: {
+    flex: 1,
+    flexDirection: 'row',
+  },
+  heroTitleText: {
+    color: '#ffffff',
+    marginLeft: 12,
+  },
+  whatsNextButton: {
+    backgroundColor: '#ffffff',
+    paddingVertical: 16,
+    borderRadius: 8,
+    width: '50%',
+    marginTop: 24,
+  },
+});
 
 export default App;
