@@ -17,9 +17,10 @@ Pod::Spec.new do |s|
 
   s.source_files  = "ios/**/*.{h,c,m,swift}"
   s.requires_arc = true
+  s.ios.deployment_target = '12.0'
 
   s.dependency "React"
-  s.dependency "Rudder", '>= 1.20.0', '< 2.0.0'
+  s.dependency "Rudder", '>= 1.22.0', '< 2.0.0'
 end
 
 

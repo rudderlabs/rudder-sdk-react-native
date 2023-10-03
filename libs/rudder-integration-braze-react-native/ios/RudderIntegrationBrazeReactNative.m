@@ -1,6 +1,10 @@
 #import "RudderIntegrationBrazeReactNative.h"
 #import <RNRudderSdk/RNRudderAnalytics.h>
+#if __has_include(<Rudder-Braze/RudderBrazeFactory.h>)
 #import <Rudder-Braze/RudderBrazeFactory.h>
+#else
+@import Rudder_Braze;
+#endif
 
 @implementation RudderIntegrationBrazeReactNative
 
