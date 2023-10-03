@@ -88,7 +88,7 @@
       "options": {
         "baseBranch": "master",
         "preset": "conventional",
-        "tagPrefix": "${projectName}@"
+        "tagPrefix": "{projectName}@"
       }
     },
     "github": {
