@@ -2,6 +2,18 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [0.6.0](https://github.com/rudderlabs/rudder-sdk-react-native/compare/example-0.5.1...example-0.6.0) (2023-10-03)
+
+
+### Features
+
+* add getSessionId support ([#253](https://github.com/rudderlabs/rudder-sdk-react-native/issues/253)) ([1dca51e](https://github.com/rudderlabs/rudder-sdk-react-native/commit/1dca51e4a5c571dac20ddfe2a1c3cf4dc3ac1716))
+
+
+### Reverts
+
+* Revert "chore(example): release version 0.5.2" ([8ebed4c](https://github.com/rudderlabs/rudder-sdk-react-native/commit/8ebed4c4968f0017c3d490e828e24a60acde1525))
+
 ## [0.5.1](https://github.com/rudderlabs/rudder-sdk-react-native/compare/example-0.5.0...example-0.5.1) (2023-09-21)
 
 
