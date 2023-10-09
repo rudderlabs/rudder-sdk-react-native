@@ -7,6 +7,7 @@
 
 #import <Foundation/Foundation.h>
 #import "RNParamsConfigurator.h"
+#import "RNRudderAnalytics.h"
 
 @implementation RNParamsConfigurator
 
@@ -21,6 +22,7 @@
         self.sessionTimeout = 300000L;
         self.autoSessionTracking = true;
         self.enableBackgroundMode = false;
+        self->dbEncryption = nil;
     }
     return self;
 }
@@ -29,6 +31,7 @@
     [self setConfigValues];
     [self setWriteKey];
     RSConfigBuilder *configBuilder = [self buildConfig];
+    [self addDBEncryptionPluginIfAvailable:configBuilder];
     [self disableAutoConfigFlagsForNativeSDK:configBuilder];
     return configBuilder;
 }
@@ -81,16 +84,14 @@
     if ([config objectForKey:@"collectDeviceId"]) {
         [configBuilder withCollectDeviceId:[config[@"collectDeviceId"] boolValue]];
     }
-    // To be implemented later
-//    if ([config objectForKey:@"dbEncryption"]) {
-//        NSDictionary *dbEncryption = config[@"dbEncryption"];
-//        NSString *key = dbEncryption[@"key"];
-//        BOOL enable = [dbEncryption[@"enable"] boolValue];
-//        if (key != nil && [key length] > 0) {
-//            [configBuilder withDBEncryption:[[RSDBEncryption alloc] initWithKey:key enable:enable]];
-//        }
-//    }
     return configBuilder;
+}
+
+-(void)addDBEncryptionPluginIfAvailable:(RSConfigBuilder *)configBuilder {
+    self->dbEncryption = [RNRudderAnalytics getDBEncryption];
+    if (self->dbEncryption) {
+        [configBuilder withDBEncryption:self->dbEncryption];
+    }
 }
 
 -(void) disableAutoConfigFlagsForNativeSDK:(RSConfigBuilder*)configBuilder {

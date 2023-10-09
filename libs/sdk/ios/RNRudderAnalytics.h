@@ -16,6 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (void) addIntegration:(id<RSIntegrationFactory>) integration;
 + (RSConfig*) buildWithIntegrations:(RSConfigBuilder*)builder;
++ (void) setDBEncryption:(RSDBEncryption *)dbEncryption;
++ (RSDBEncryption *_Nullable) getDBEncryption;
 
 @end
 

@@ -1,5 +1,5 @@
 import { NativeModules } from 'react-native';
-import DBEncryption from './DBEncryption';
+import DBEncryption from '@rudderstack/rudder-plugin-db-encryption-react-native';
 
 export interface Configuration {
   dataPlaneUrl?: string;

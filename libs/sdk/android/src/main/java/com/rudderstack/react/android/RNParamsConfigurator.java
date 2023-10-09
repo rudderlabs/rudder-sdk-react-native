@@ -8,6 +8,7 @@ import java.util.Map;
 
 class RNParamsConfigurator {
     private final ReadableMap config;
+    private RudderConfig.DBEncryption dbEncryption;
     boolean trackLifeCycleEvents = true;
     boolean recordScreenViews = false;
     long sessionTimeout = 300000L;
@@ -22,6 +23,7 @@ class RNParamsConfigurator {
         setConfigValues();
         setWriteKey();
         RudderConfig.Builder configBuilder = buildConfig();
+        addDBEncryptionPluginIfAvailable(configBuilder);
         disableAutoConfigFlagsForNativeSDK(configBuilder);
         return configBuilder;
     }
@@ -78,15 +80,14 @@ class RNParamsConfigurator {
         if (config.hasKey("collectDeviceId")) {
             configBuilder.withCollectDeviceId(config.getBoolean("collectDeviceId"));
         }
-        if (config.hasKey("dbEncryption")) {
-            Map<String, Object> dbEncryption = Utility.convertReadableMapToMap(config.getMap("dbEncryption"));
-            String key = (String) (Utility.getValueFromMap(dbEncryption, "key", ""));
-            Boolean enable = (Boolean) (Utility.getValueFromMap(dbEncryption, "enable", false));
-            if (!Utility.isEmpty(key)) {
-                configBuilder.withDbEncryption(new RudderConfig.DBEncryption(enable, key));
-            }
-        }
         return configBuilder;
+    }
+
+    private void addDBEncryptionPluginIfAvailable(RudderConfig.Builder configBuilder) {
+        this.dbEncryption = RNRudderAnalytics.getDBEncryption();
+        if (this.dbEncryption != null) {
+            configBuilder.withDbEncryption(this.dbEncryption);
+        }
     }
 
     private void disableAutoConfigFlagsForNativeSDK(RudderConfig.Builder configBuilder) {
