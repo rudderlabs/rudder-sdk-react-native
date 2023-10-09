@@ -16,6 +16,9 @@
     "resolveJsonModule": true,
     "baseUrl": "./",
     "paths": {
+      "@rudderstack/rudder-plugin-db-encryption-react-native": [
+        "libs/plugins/rudder-plugin-db-encryption-react-native/src/index.ts"
+      ],
       "@rudderstack/rudder-integration-amplitude-react-native": [
         "libs/rudder-integration-amplitude-react-native/src/index.ts"
       ],
