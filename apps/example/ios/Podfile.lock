@@ -602,11 +602,11 @@ PODS:
     - React-Core
   - RNRudderSdk (1.10.0):
     - React
-    - Rudder (< 2.0.0, >= 1.22.0)
+    - Rudder (< 2.0.0, >= 1.23.0)
   - RNSVG (13.9.0):
     - React-Core
   - RSCrashReporter (1.0.0)
-  - Rudder (1.22.0):
+  - Rudder (1.23.0):
     - MetricsReporter (= 1.1.1)
   - Rudder-Amplitude (1.1.1):
     - Amplitude (= 8.16.0)
@@ -665,6 +665,7 @@ PODS:
   - rudder-plugin-db-encryption-react-native (1.0.0):
     - React
     - RNRudderSdk
+    - Rudder (< 2.0.0, >= 1.23.0)
     - RudderDatabaseEncryption
   - Rudder-Singular (1.0.0):
     - Rudder (~> 1.0)
@@ -994,10 +995,10 @@ SPEC CHECKSUMS:
   React-utils: b79f2411931f9d3ea5781404dcbb2fa8a837e13a
   ReactCommon: 4b2bdcb50a3543e1c2b2849ad44533686610826d
   RNCAsyncStorage: c913ede1fa163a71cea118ed4670bbaaa4b511bb
-  RNRudderSdk: 523f603b38689862a28cb142da7df615cd167eab
+  RNRudderSdk: aa2beac06f0c83bf30d3c9bb2f9325f82095c368
   RNSVG: 53c661b76829783cdaf9b7a57258f3d3b4c28315
   RSCrashReporter: e9ccaebd996263f8325a6cbef44ff74aa5f58e30
-  Rudder: 2ba2921e48264533782310798c0f7b14bfbe42ec
+  Rudder: 125d9dc03e178b35b0f74487aa694afe1a8e6f4f
   Rudder-Amplitude: a353ca07ba381d23ae587f2f74ea79a6c1563145
   Rudder-AppCenter: 9eca9241e3707a0e9610714dd91dc8da4bae7e1f
   Rudder-Appsflyer: 8108ad9e323a5c0e9aeecdbfc4fa2dfe68497146
@@ -1013,7 +1014,7 @@ SPEC CHECKSUMS:
   rudder-integration-moengage-react-native: c6ee8049aac3ed165d2daadd3dfce7c7169b5565
   rudder-integration-singular-react-native: 0951cfcd9651594cacca052c685c0dc6945997e1
   Rudder-Moengage: c30465e23740673495ff853eed607a5641f22c5c
-  rudder-plugin-db-encryption-react-native: 77a3e9ca3cc75737cbfc2ac3c665a23e76e695e6
+  rudder-plugin-db-encryption-react-native: 765cd279cd32e5250df6bdb1ed7bfcd70cd98f33
   Rudder-Singular: e22a4101ce043aded86b777bea873bf6a2af42b9
   RudderDatabaseEncryption: 95b436538412958eda771f5d81bd970a9ffe4eec
   RudderKit: f272f9872183946452ac94cd7bb2244a71e6ca8f
