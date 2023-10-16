@@ -156,7 +156,8 @@
     "json5": "2.2.3",
     "unset-value": "2.0.1",
     "@nrwl/devkit": "15.8.9",
-    "yaml": "2.2.2"
+    "yaml": "2.2.2",
+    "@babel/traverse": "7.23.2"
   },
   "lint-staged": {
     "*.{js,ts,tsx}": "eslint --cache --fix",
