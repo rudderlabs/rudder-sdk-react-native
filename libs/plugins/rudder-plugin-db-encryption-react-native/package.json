@@ -1,0 +1,27 @@
+{
+  "name": "@rudderstack/rudder-plugin-db-encryption-react-native",
+  "title": "Rudder Plugin DBEncryption React Native",
+  "version": "1.0.0",
+  "description": "Rudder React Native DBEncryption Plugin support for Android and iOS",
+  "keywords": [
+    "react-native",
+    "rudder",
+    "db-encryption"
+  ],
+  "author": {
+    "name": "RudderStack"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rudderlabs/rudder-sdk-react-native.git"
+  },
+  "bugs": {
+    "url": "https://github.com/rudderlabs/rudder-sdk-react-native/issues"
+  },
+  "homepage": "https://github.com/rudderlabs/rudder-sdk-react-native#readme",
+  "peerDependencies": {
+    "react": "^16.8.0 || ^17.0.0 || ^18.0.0",
+    "react-native": ">= 0.41.2 < 0.80.0 || ^0.0.0-0"
+  }
+}

@@ -11,6 +11,7 @@
 
 @interface RNParamsConfigurator : NSObject {
     NSDictionary *config;
+    RSDBEncryption *dbEncryption;
 }
 
 @property (nonatomic, assign) BOOL trackLifeCycleEvents;

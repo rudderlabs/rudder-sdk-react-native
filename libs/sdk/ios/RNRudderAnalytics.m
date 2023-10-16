@@ -8,6 +8,7 @@
 #import "RNRudderAnalytics.h"
 
 NSMutableArray* integrationList;
+static RSDBEncryption* rsDBEncryption = nil;
 
 @implementation RNRudderAnalytics
 
@@ -28,4 +29,11 @@ NSMutableArray* integrationList;
     return [builder build];
 }
 
++ (void) setDBEncryption:(RSDBEncryption *)dbEncryption {
+    rsDBEncryption = dbEncryption;
+}
+
++ (RSDBEncryption *_Nullable) getDBEncryption {
+    return rsDBEncryption;
+}
 @end

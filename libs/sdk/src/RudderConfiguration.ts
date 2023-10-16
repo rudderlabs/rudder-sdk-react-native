@@ -48,6 +48,10 @@ export const configure = async (
     );
   }
 
+  if (dbEncryption !== undefined) {
+    await dbEncryption.addDBEncryptionPlugin(dbEncryption.key, dbEncryption.enable);
+  }
+
   const config = {
     writeKey,
     dataPlaneUrl,
@@ -65,10 +69,6 @@ export const configure = async (
     recordScreenViews,
     collectDeviceId,
   };
-
-  if (dbEncryption !== undefined) {
-    return { ...config, dbEncryption };
-  }
 
   return config;
 };
