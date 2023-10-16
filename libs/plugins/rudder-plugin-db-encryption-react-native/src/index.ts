@@ -1,4 +1,3 @@
-import setupDBEncryptionPlugin from './dbEncryptionPlugin';
-import DBEncryption from './DBEncryption';
+import DBEncryption from './dbEncryptionPlugin';
 
-export { DBEncryption as default, setupDBEncryptionPlugin };
+export default DBEncryption;

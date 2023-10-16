@@ -1,5 +1,5 @@
 import { NativeModules } from 'react-native';
-import DBEncryption from '@rudderstack/rudder-plugin-db-encryption-react-native';
+import IDBEncryption from './IDBEncryption';
 
 export interface Configuration {
   dataPlaneUrl?: string;
@@ -16,7 +16,7 @@ export interface Configuration {
   sessionTimeout?: number;
   enableBackgroundMode?: boolean;
   collectDeviceId?: boolean;
-  dbEncryption?: DBEncryption;
+  dbEncryption?: IDBEncryption;
   // eslint-disable-next-line @typescript-eslint/ban-types
   withFactories?: Array<Record<string, unknown> | Function>;
 }
