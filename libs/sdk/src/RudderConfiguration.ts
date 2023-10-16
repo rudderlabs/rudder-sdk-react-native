@@ -15,6 +15,7 @@ import {
   ENABLE_BACKGROUND_MODE,
   COLLECT_DEVICE_ID,
 } from './Constants';
+import { setupDBEncryptionPlugin } from '@rudderstack/rudder-plugin-db-encryption-react-native';
 
 export const configure = async (
   writeKey: string,
@@ -48,6 +49,10 @@ export const configure = async (
     );
   }
 
+  if (dbEncryption !== undefined) {
+    await setupDBEncryptionPlugin(dbEncryption.key, dbEncryption.enable);
+  }
+
   const config = {
     writeKey,
     dataPlaneUrl,
@@ -65,10 +70,6 @@ export const configure = async (
     recordScreenViews,
     collectDeviceId,
   };
-
-  if (dbEncryption !== undefined) {
-    return { ...config, dbEncryption };
-  }
 
   return config;
 };

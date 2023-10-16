@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import Svg, { Path } from 'react-native-svg';
 
-import rc, { RUDDER_LOG_LEVEL, DBEncryption } from '@rudderstack/rudder-sdk-react-native';
+import rc, { RUDDER_LOG_LEVEL } from '@rudderstack/rudder-sdk-react-native';
 import amplitude from '@rudderstack/rudder-integration-amplitude-react-native';
 import appcenter from '@rudderstack/rudder-integration-appcenter-react-native';
 import braze from '@rudderstack/rudder-integration-braze-react-native';
@@ -28,6 +28,7 @@ import appsflyer, {
   setOneLinkCustomDomains,
   setOptions,
 } from '@rudderstack/rudder-integration-appsflyer-react-native';
+import DBEncryption from '@rudderstack/rudder-plugin-db-encryption-react-native';
 // @ts-ignore
 import { TEST_DATAPLANE_URL, TEST_WRITE_KEY, APPSFLYER_DEV_KEY, APPSFLYER_APPLE_ID } from '@env';
 import RudderEvents from './RudderEvents';

@@ -52,6 +52,7 @@
     "@babel/runtime": "7.22.6",
     "@react-navigation/native": "6.1.6",
     "@react-navigation/native-stack": "6.9.12",
+    "@rudderstack/rudder-plugin-db-encryption-react-native": "file:libs/plugins/rudder-plugin-db-encryption-react-native",
     "@rudderstack/rudder-integration-amplitude-react-native": "file:libs/rudder-integration-amplitude-react-native",
     "@rudderstack/rudder-integration-appcenter-react-native": "file:libs/rudder-integration-appcenter-react-native",
     "@rudderstack/rudder-integration-appsflyer-react-native": "file:libs/rudder-integration-appsflyer-react-native",
