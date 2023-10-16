@@ -2,6 +2,13 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [0.7.0](https://github.com/rudderlabs/rudder-sdk-react-native/compare/example-0.6.0...example-0.7.0) (2023-10-16)
+
+
+### Features
+
+* integrate database encryption as a plugin ([#261](https://github.com/rudderlabs/rudder-sdk-react-native/issues/261)) ([d798eee](https://github.com/rudderlabs/rudder-sdk-react-native/commit/d798eeeb2ae9dd1ed750e96fe19d8ba80051b34e))
+
 ## [0.6.0](https://github.com/rudderlabs/rudder-sdk-react-native/compare/example-0.5.1...example-0.6.0) (2023-10-03)
 
 
