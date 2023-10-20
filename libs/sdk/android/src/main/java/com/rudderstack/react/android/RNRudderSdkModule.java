@@ -28,23 +28,23 @@ import java.lang.InterruptedException;
 
 public class RNRudderSdkModule extends ReactContextBaseJavaModule {
 
-    private final ReactApplicationContext reactContext;
+    // Avoid adding any instance type variables here and ensure the variable type is static, as it won't persist after a hard app refresh otherwise.
+    private static ReactApplicationContext rsReactContext;
     private static Map<String, Callback> integrationCallbacks = new HashMap<>();
-
     static RNRudderSdkModule instance;
     static RudderClient rudderClient;
     private static RNUserSessionPlugin userSessionPlugin;
     static RNParamsConfigurator configParams;
-    static boolean initialized = false;
-    private final Application application;
+    private static boolean initialized = false;
+    private static Application application;
     private static RNPreferenceManager preferenceManager;
 
     public RNRudderSdkModule(ReactApplicationContext reactContext) {
         super(reactContext);
-        this.reactContext = reactContext;
+        rsReactContext = reactContext;
         instance = this;
-        this.application = (Application) this.reactContext.getApplicationContext();
-        preferenceManager = RNPreferenceManager.getInstance(this.application);
+        application = (Application) rsReactContext.getApplicationContext();
+        preferenceManager = RNPreferenceManager.getInstance(application);
     }
 
     @Override
@@ -61,7 +61,7 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
 
             // get the instance of RudderClient
             rudderClient = RudderClient.getInstance(
-                    reactContext,
+                    rsReactContext,
                     configParams.writeKey,
                     RNRudderAnalytics.buildWithIntegrations(configBuilder),
                     Utility.convertReadableMapToOptions(rudderOptionsMap)
@@ -76,8 +76,7 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
             userSessionPlugin.handleSessionTracking();
 
             // Track automatic lifecycle and/or screen events
-            RNLifeCycleEventListener lifeCycleEventListener = new RNLifeCycleEventListener(this.application, userSessionPlugin);
-            reactContext.addLifecycleEventListener(lifeCycleEventListener);
+            initialiseRNLifeCycleEventListener();
 
             // RN SDK is initialised
             initialized = true;
@@ -91,7 +90,9 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
                 }
             }
         } else {
-            RudderLogger.logVerbose("Rudder Client already initialized, Ignoring the new setup call");
+            // When app is hard refreshed and setup is called again, we need to re-initialise the RNLifeCycleEventListener
+            initialiseRNLifeCycleEventListener();
+            RudderLogger.logVerbose("Re-initialised RNLifeCycleEventListener");
         }
         // finally resolve the promise to mark as completed
         promise.resolve(null);
@@ -103,6 +104,11 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
             return false;
         }
         return true;
+    }
+
+    private void initialiseRNLifeCycleEventListener() {
+        RNLifeCycleEventListener lifeCycleEventListener = new RNLifeCycleEventListener(application, userSessionPlugin);
+        rsReactContext.addLifecycleEventListener(lifeCycleEventListener);
     }
 
     @ReactMethod
