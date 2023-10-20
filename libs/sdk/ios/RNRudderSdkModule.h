@@ -11,12 +11,7 @@
 #import "RNUserSessionPlugin.h"
 
 @interface RNRudderSdkModule : NSObject <RCTBridgeModule> {
-    RNApplicationLifeCycleManager *applicationLifeCycleManager;
-    RNBackGroundModeManager *backGroundModeManager;
-    RNPreferenceManager *preferenceManager;
-    RNParamsConfigurator *configParams;
-    BOOL initialized;
-    RNUserSessionPlugin *session;
+    // Avoid adding any instance type variables here.
 }
 
 
