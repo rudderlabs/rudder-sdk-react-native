@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from 'react-native';
-import rudderClient, { RudderContext } from '@rudderstack/rudder-sdk-react-native';
+import rudderClient, { IRudderContext } from '@rudderstack/rudder-sdk-react-native';
 
 const RudderEvents = () => {
   const identify = async () => {
@@ -118,7 +118,7 @@ const RudderEvents = () => {
   };
 
   const getRudderContext = async () => {
-    const context: RudderContext | null = await rudderClient.getRudderContext();
+    const context: IRudderContext | null = await rudderClient.getRudderContext();
     console.log(`${JSON.stringify(context)}`);
   };
 
