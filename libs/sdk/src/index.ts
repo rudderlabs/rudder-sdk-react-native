@@ -1,7 +1,7 @@
 import rudderClient from './RudderClient';
 import { RUDDER_LOG_LEVEL } from './Logger';
 import IDBEncryption from './IDBEncryption';
-import IRudderContext from './IRudderContext';
+import RudderContext from './RudderContext';
 
-export { RUDDER_LOG_LEVEL, IDBEncryption, IRudderContext };
+export { RUDDER_LOG_LEVEL, IDBEncryption, RudderContext };
 export default rudderClient;

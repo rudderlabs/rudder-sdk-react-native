@@ -1,6 +1,6 @@
 import { NativeModules } from 'react-native';
 import IDBEncryption from './IDBEncryption';
-import IRudderContext from './IRudderContext';
+import RudderContext from './RudderContext';
 
 export interface Configuration {
   dataPlaneUrl?: string;
@@ -53,7 +53,7 @@ export interface Bridge {
   putAnonymousId(id: string): Promise<void>;
   // eslint-disable-next-line @typescript-eslint/ban-types
   registerCallback(integrationName: string, callback: Function): Promise<void>;
-  getRudderContext(): Promise<IRudderContext | null>;
+  getRudderContext(): Promise<RudderContext | null>;
   startSession(sessionId?: string): Promise<void>;
   endSession(): Promise<void>;
   getSessionId(): Promise<number | null>;
