@@ -1,4 +1,4 @@
-interface RudderContext {
+interface IRudderContext {
   userAgent: string;
   screen: {
     width: number;
@@ -42,4 +42,4 @@ interface RudderContext {
   customContextMap: Record<string, unknown>;
 }
 
-export default RudderContext;
+export default IRudderContext;

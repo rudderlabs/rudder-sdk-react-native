@@ -5,7 +5,7 @@ import { configure } from './RudderConfiguration';
 import bridge, { Configuration } from './NativeBridge';
 import { logInit, logDebug, logError, logWarn } from './Logger';
 import { SDK_VERSION } from './Constants';
-import RudderContext from './RudderContext';
+import IRudderContext from './IRudderContext';
 
 const lock = new AsyncLock();
 
@@ -298,8 +298,8 @@ async function registerCallback(name: string, callback: Function) {
   }
 }
 
-async function getRudderContext(): Promise<RudderContext | null> {
-  const context: RudderContext | null = await bridge.getRudderContext();
+async function getRudderContext(): Promise<IRudderContext | null> {
+  const context: IRudderContext | null = await bridge.getRudderContext();
   return context ?? null;
 }
 
