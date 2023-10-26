@@ -28,22 +28,24 @@ import java.lang.InterruptedException;
 
 public class RNRudderSdkModule extends ReactContextBaseJavaModule {
 
-    // Avoid adding any instance type variables here and ensure the variable type is static, as it won't persist after a hard app refresh otherwise.
+    // These values are provided by the React Native bridge, and it's safe if they are not static."
     private final ReactApplicationContext reactContext;
+    private final Application application;
+
+    // Avoid adding any instance type variables here and ensure the variable type is static, as it won't persist after a hard app refresh otherwise.
     private static Map<String, Callback> integrationCallbacks = new HashMap<>();
     static RNRudderSdkModule instance;
     static RudderClient rudderClient;
     private static RNUserSessionPlugin userSessionPlugin;
     static RNParamsConfigurator configParams;
     private static boolean initialized = false;
-    private final Application application;
 
     public RNRudderSdkModule(ReactApplicationContext reactContext) {
         super(reactContext);
         this.reactContext = reactContext;
-        instance = this;
         this.application = (Application) this.reactContext.getApplicationContext();
         RNPreferenceManager.getInstance(this.application);
+        instance = this;
     }
 
     @Override
