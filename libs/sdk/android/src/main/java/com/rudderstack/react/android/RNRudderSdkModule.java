@@ -28,7 +28,7 @@ import java.lang.InterruptedException;
 
 public class RNRudderSdkModule extends ReactContextBaseJavaModule {
 
-    // These values are provided by the React Native bridge, and it's safe if they are not static."
+    // These values are provided by the React Native bridge, and it's safe if they are not static.
     private final ReactApplicationContext reactContext;
     private final Application application;
 
