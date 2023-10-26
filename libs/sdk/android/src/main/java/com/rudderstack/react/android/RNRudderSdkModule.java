@@ -29,22 +29,22 @@ import java.lang.InterruptedException;
 public class RNRudderSdkModule extends ReactContextBaseJavaModule {
 
     // Avoid adding any instance type variables here and ensure the variable type is static, as it won't persist after a hard app refresh otherwise.
-    private ReactApplicationContext rsReactContext;
+    private final ReactApplicationContext reactContext;
     private static Map<String, Callback> integrationCallbacks = new HashMap<>();
     static RNRudderSdkModule instance;
     static RudderClient rudderClient;
     private static RNUserSessionPlugin userSessionPlugin;
     static RNParamsConfigurator configParams;
     private static boolean initialized = false;
-    private Application application;
+    private final Application application;
     private static RNPreferenceManager preferenceManager;
 
     public RNRudderSdkModule(ReactApplicationContext reactContext) {
         super(reactContext);
-        rsReactContext = reactContext;
+        this.reactContext = reactContext;
         instance = this;
-        application = (Application) rsReactContext.getApplicationContext();
-        preferenceManager = RNPreferenceManager.getInstance(application);
+        this.application = (Application) this.reactContext.getApplicationContext();
+        preferenceManager = RNPreferenceManager.getInstance(this.application);
     }
 
     @Override
@@ -61,7 +61,7 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
 
             // get the instance of RudderClient
             rudderClient = RudderClient.getInstance(
-                    rsReactContext,
+                    this.reactContext,
                     configParams.writeKey,
                     RNRudderAnalytics.buildWithIntegrations(configBuilder),
                     Utility.convertReadableMapToOptions(rudderOptionsMap)
@@ -107,8 +107,8 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
     }
 
     private void initialiseRNLifeCycleEventListener() {
-        RNLifeCycleEventListener lifeCycleEventListener = new RNLifeCycleEventListener(application, userSessionPlugin);
-        rsReactContext.addLifecycleEventListener(lifeCycleEventListener);
+        RNLifeCycleEventListener lifeCycleEventListener = new RNLifeCycleEventListener(this.application, userSessionPlugin);
+        this.reactContext.addLifecycleEventListener(lifeCycleEventListener);
     }
 
     @ReactMethod
