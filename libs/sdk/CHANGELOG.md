@@ -2,6 +2,13 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [1.8.2](https://github.com/rudderlabs/rudder-sdk-react-native/compare/rudder-sdk-react-native@1.8.1...rudder-sdk-react-native@1.8.2) (2023-10-27)
+
+
+### Bug Fixes
+
+* **rudder-sdk-react-native:** fix the ios sdk to v1.17.0 ([d62b995](https://github.com/rudderlabs/rudder-sdk-react-native/commit/d62b995482e102be1d6a4c2dcb69330651f5deb3))
+
 ## [1.8.1](https://github.com/rudderlabs/rudder-sdk-react-native/compare/rudder-sdk-react-native@1.8.0...rudder-sdk-react-native@1.8.1) (2023-08-24)
 
 
