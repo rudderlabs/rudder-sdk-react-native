@@ -85,7 +85,7 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
                     RudderClient.Callback callback = new NativeCallBack(integrationName);
                     rudderClient.onIntegrationReady(integrationName, callback);
                 }
-            }g
+            }
         } else {
             RudderLogger.logVerbose("Rudder Client already initialized, Ignoring the new setup call");
         }
