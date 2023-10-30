@@ -32,7 +32,7 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
     private static Map<String, Callback> integrationCallbacks = new HashMap<>();
 
     static RNRudderSdkModule instance;
-    static RudderClient rudderClient;
+    private RudderClient rudderClient;
     private static RNUserSessionPlugin userSessionPlugin;
     static RNParamsConfigurator configParams;
     static boolean initialized = false;
@@ -87,7 +87,7 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
                 for (RudderIntegration.Factory factory : RNRudderAnalytics.integrationList) {
                     String integrationName = factory.key();
                     RudderClient.Callback callback = new NativeCallBack(integrationName);
-                    RNRudderSdkModule.rudderClient.onIntegrationReady(integrationName, callback);
+                    rudderClient.onIntegrationReady(integrationName, callback);
                 }
             }
         } else {
