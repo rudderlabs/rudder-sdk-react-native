@@ -19,16 +19,18 @@ public class LifeCycleEvents {
         private static AppVersion appVersion;
         public static final String VERSION = "version";
         private final RNUserSessionPlugin userSessionPlugin;
+        private final boolean trackLifeCycleEvents;
 
-        ApplicationStatusRunnable(Application application, RNUserSessionPlugin userSessionPlugin) {
+        ApplicationStatusRunnable(Application application, RNUserSessionPlugin userSessionPlugin, boolean trackLifeCycleEvents) {
             this.userSessionPlugin = userSessionPlugin;
+            this.trackLifeCycleEvents = trackLifeCycleEvents;
             appVersion = new AppVersion(application);
         }
 
         @Override
         public void run() {
             appVersion.storeCurrentBuildAndVersion();
-            if (RNRudderSdkModule.configParams.trackLifeCycleEvents) {
+            if (this.trackLifeCycleEvents) {
                 if (appVersion.previousBuild == -1) {
                     this.userSessionPlugin.saveEventTimestamp();
                     // application was not installed previously, now triggering Application Installed event
@@ -74,15 +76,17 @@ public class LifeCycleEvents {
     static class ApplicationOpenedRunnable implements LifeCycleEventsInterface {
         boolean fromBackground;
         private final RNUserSessionPlugin userSessionPlugin;
+        private final boolean trackLifeCycleEvents;
 
-        ApplicationOpenedRunnable(boolean fromBackground, RNUserSessionPlugin userSessionPlugin) {
+        ApplicationOpenedRunnable(boolean fromBackground, RNUserSessionPlugin userSessionPlugin, boolean trackLifeCycleEvents) {
             this.fromBackground = fromBackground;
             this.userSessionPlugin = userSessionPlugin;
+            this.trackLifeCycleEvents = trackLifeCycleEvents;
         }
 
         @Override
         public void run() {
-            if (RNRudderSdkModule.configParams.trackLifeCycleEvents) {
+            if (this.trackLifeCycleEvents) {
                 if (this.fromBackground) {
                     this.userSessionPlugin.startNewSessionIfCurrentIsExpired();
                 }
@@ -100,14 +104,16 @@ public class LifeCycleEvents {
 
     static class ApplicationBackgroundedRunnable implements LifeCycleEventsInterface {
         private final RNUserSessionPlugin userSessionPlugin;
+        private final boolean trackLifeCycleEvents;
         
-        ApplicationBackgroundedRunnable(RNUserSessionPlugin userSessionPlugin) {
+        ApplicationBackgroundedRunnable(RNUserSessionPlugin userSessionPlugin, boolean trackLifeCycleEvents) {
             this.userSessionPlugin = userSessionPlugin;
+            this.trackLifeCycleEvents = trackLifeCycleEvents;
         }
 
         @Override
         public void run() {
-            if (RNRudderSdkModule.configParams.trackLifeCycleEvents) {
+            if (this.trackLifeCycleEvents) {
                 this.userSessionPlugin.saveEventTimestamp();
                 if (RudderClient.getInstance() != null) {
                     RudderClient.getInstance().track("Application Backgrounded");
@@ -121,15 +127,17 @@ public class LifeCycleEvents {
     static class ScreenViewRunnable implements LifeCycleEventsInterface {
         String activityName;
         private final RNUserSessionPlugin userSessionPlugin;
+        private final boolean recordScreenViews;
 
-        ScreenViewRunnable(String activityName, RNUserSessionPlugin userSessionPlugin) {
+        ScreenViewRunnable(String activityName, RNUserSessionPlugin userSessionPlugin, boolean recordScreenViews) {
             this.activityName = activityName;
             this.userSessionPlugin = userSessionPlugin;
+            this.recordScreenViews = recordScreenViews;
         }
 
         @Override
         public void run() {
-            if (RNRudderSdkModule.configParams.recordScreenViews) {
+            if (this.recordScreenViews) {
                 this.userSessionPlugin.saveEventTimestamp();
                 RudderProperty property = new RudderProperty();
                 property.put("name", activityName);

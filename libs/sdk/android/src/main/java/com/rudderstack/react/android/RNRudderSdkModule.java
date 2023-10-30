@@ -31,17 +31,14 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
     private final ReactApplicationContext reactContext;
     private static Map<String, Callback> integrationCallbacks = new HashMap<>();
 
-    static RNRudderSdkModule instance;
     private RudderClient rudderClient;
     private RNUserSessionPlugin userSessionPlugin;
-    static RNParamsConfigurator configParams;
     private boolean initialized = false;
     private final Application application;
 
     public RNRudderSdkModule(ReactApplicationContext reactContext) {
         super(reactContext);
         this.reactContext = reactContext;
-        instance = this;
         this.application = (Application) this.reactContext.getApplicationContext();
         RNPreferenceManager.getInstance(this.application);
     }
@@ -55,7 +52,7 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
     public void setup(ReadableMap config, ReadableMap rudderOptionsMap, Promise promise) throws InterruptedException {
         if (!isRudderClientInitializedAndReady()) {
             // create the config object
-            configParams = new RNParamsConfigurator(config);
+            RNParamsConfigurator configParams = new RNParamsConfigurator(config);
             RudderConfig.Builder configBuilder = configParams.handleConfig();
 
             // get the instance of RudderClient
@@ -75,7 +72,7 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
             userSessionPlugin.handleSessionTracking();
 
             // Track automatic lifecycle and/or screen events
-            RNLifeCycleEventListener lifeCycleEventListener = new RNLifeCycleEventListener(this.application, userSessionPlugin);
+            RNLifeCycleEventListener lifeCycleEventListener = new RNLifeCycleEventListener(this.application, userSessionPlugin, this, configParams.trackLifeCycleEvents, configParams.recordScreenViews);
             reactContext.addLifecycleEventListener(lifeCycleEventListener);
 
             // RN SDK is initialised
@@ -88,7 +85,7 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
                     RudderClient.Callback callback = new NativeCallBack(integrationName);
                     rudderClient.onIntegrationReady(integrationName, callback);
                 }
-            }
+            }g
         } else {
             RudderLogger.logVerbose("Rudder Client already initialized, Ignoring the new setup call");
         }
