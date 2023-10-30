@@ -33,7 +33,7 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
 
     static RNRudderSdkModule instance;
     private RudderClient rudderClient;
-    private static RNUserSessionPlugin userSessionPlugin;
+    private RNUserSessionPlugin userSessionPlugin;
     static RNParamsConfigurator configParams;
     private boolean initialized = false;
     private final Application application;
