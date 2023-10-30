@@ -37,14 +37,13 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
     static RNParamsConfigurator configParams;
     private boolean initialized = false;
     private final Application application;
-    private static RNPreferenceManager preferenceManager;
 
     public RNRudderSdkModule(ReactApplicationContext reactContext) {
         super(reactContext);
         this.reactContext = reactContext;
         instance = this;
         this.application = (Application) this.reactContext.getApplicationContext();
-        preferenceManager = RNPreferenceManager.getInstance(this.application);
+        RNPreferenceManager.getInstance(this.application);
     }
 
     @Override
