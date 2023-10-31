@@ -13,6 +13,7 @@ import com.facebook.react.bridge.Callback;
 import com.google.gson.Gson;
 import com.rudderstack.android.sdk.core.RudderClient;
 import com.rudderstack.android.sdk.core.RudderConfig;
+import com.rudderstack.android.sdk.core.RudderContext;
 import com.rudderstack.android.sdk.core.RudderIntegration;
 import com.rudderstack.android.sdk.core.RudderLogger;
 import com.rudderstack.android.sdk.core.RudderProperty;
@@ -178,8 +179,14 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
             promise.resolve(null);
             return;
         }
+
+        RudderContext rudderContext = rudderClient.getRudderContext();
+        if (rudderContext == null) {
+            promise.resolve(null);
+            return;
+        }
         Gson gson = new Gson();
-        JSONObject contextJson = new JSONObject(gson.toJson(rudderClient.getRudderContext()));
+        JSONObject contextJson = new JSONObject(gson.toJson(rudderContext));
         promise.resolve(Utility.convertJSONObjectToWriteAbleMap(contextJson));
     }
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from 'react-native';
-import rudderClient, { RUDDER_LOG_LEVEL } from '@rudderstack/rudder-sdk-react-native';
+import rudderClient, { IRudderContext } from '@rudderstack/rudder-sdk-react-native';
 
 const RudderEvents = () => {
   const identify = async () => {
@@ -109,6 +109,19 @@ const RudderEvents = () => {
     console.log(`SessionId type: ${typeof sessionId}`);
   };
 
+  const enableOptOut = () => {
+    rudderClient.optOut(true);
+  };
+
+  const disableOptOut = () => {
+    rudderClient.optOut(false);
+  };
+
+  const getRudderContext = async () => {
+    const context: IRudderContext | null = await rudderClient.getRudderContext();
+    console.log(`${JSON.stringify(context)}`);
+  };
+
   return (
     <>
       <Button title="Identify" onPress={identify} />
@@ -122,6 +135,9 @@ const RudderEvents = () => {
       <Button title="endSession()" onPress={endSession} />
       <Button title="RESET" onPress={reset} />
       <Button title="getSessionId()" onPress={getSessionId} />
+      <Button title="enableOptOut()" onPress={enableOptOut} />
+      <Button title="disableOptOut()" onPress={disableOptOut} />
+      <Button title="getRudderContext()" onPress={getRudderContext} />
     </>
   );
 };
