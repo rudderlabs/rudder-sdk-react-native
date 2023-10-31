@@ -13,8 +13,8 @@ import static com.rudderstack.react.android.LifeCycleEvents.ScreenViewRunnable;
 
 public class RNLifeCycleEventListener implements LifecycleEventListener {
 
-    private static int noOfActivities;
-    private static boolean fromBackground = false;
+    private int noOfActivities;
+    private boolean fromBackground = false;
     private final RNUserSessionPlugin userSessionPlugin;
     private final RNRudderSdkModule instance;
     private final boolean trackLifeCycleEvents;
