@@ -7,8 +7,6 @@
 #import "RSMessageBuilder.h"
 #import <React/RCTBridge.h>
 
-static RSClient *rsClient = nil;
-
 @implementation RNRudderSdkModule
 
 RCT_EXPORT_MODULE();
@@ -22,14 +20,14 @@ RCT_EXPORT_MODULE();
 
 RCT_EXPORT_METHOD(setup:(NSDictionary*)config options:(NSDictionary*) _options resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
 {
-    if (rsClient == nil) {
+    if (![self isRudderClientInitializedAndReady]) {
         self->configParams = [[RNParamsConfigurator alloc] initWithConfig:config];
         RSConfigBuilder *configBuilder = [self->configParams handleConfig];
 
         [RSLogger logDebug:@"setup: Initiating RNPreferenceManager"];
         self->preferenceManager = [RNPreferenceManager getInstance];
 
-        rsClient = [RSClient getInstance:self->configParams.writeKey config:[RNRudderAnalytics buildWithIntegrations:configBuilder] options:[self getRudderOptionsObject:_options]];
+        [RSClient getInstance:self->configParams.writeKey config:[RNRudderAnalytics buildWithIntegrations:configBuilder] options:[self getRudderOptionsObject:_options]];
 
         [RSLogger logDebug:@"setup: Initiating RNUserSessionPlugin"];
         self->session = [[RNUserSessionPlugin alloc] initWithAutomaticSessionTrackingStatus:self->configParams.autoSessionTracking withLifecycleEventsTrackingStatus:self->configParams.trackLifeCycleEvents withSessionTimeout:self->configParams.sessionTimeout];
@@ -55,7 +53,7 @@ RCT_EXPORT_METHOD(setup:(NSDictionary*)config options:(NSDictionary*) _options r
 }
 
 -(BOOL) isRudderClientInitializedAndReady {
-    if ([RSClient sharedInstance] == nil || self->initialized == NO) {
+    if (self->initialized == NO || [RSClient sharedInstance] == nil) {
         [RSLogger logWarn:@"Dropping the call as RudderClient is not initialized yet. Please use `await` keyword with the setup call"];
         return NO;
     }

@@ -13,6 +13,7 @@ import com.facebook.react.bridge.Callback;
 import com.google.gson.Gson;
 import com.rudderstack.android.sdk.core.RudderClient;
 import com.rudderstack.android.sdk.core.RudderConfig;
+import com.rudderstack.android.sdk.core.RudderContext;
 import com.rudderstack.android.sdk.core.RudderIntegration;
 import com.rudderstack.android.sdk.core.RudderLogger;
 import com.rudderstack.android.sdk.core.RudderProperty;
@@ -31,20 +32,16 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
     private final ReactApplicationContext reactContext;
     private static Map<String, Callback> integrationCallbacks = new HashMap<>();
 
-    static RNRudderSdkModule instance;
-    static RudderClient rudderClient;
-    private static RNUserSessionPlugin userSessionPlugin;
-    static RNParamsConfigurator configParams;
-    static boolean initialized = false;
+    private RudderClient rudderClient;
+    private RNUserSessionPlugin userSessionPlugin;
+    private boolean initialized = false;
     private final Application application;
-    private static RNPreferenceManager preferenceManager;
 
     public RNRudderSdkModule(ReactApplicationContext reactContext) {
         super(reactContext);
         this.reactContext = reactContext;
-        instance = this;
         this.application = (Application) this.reactContext.getApplicationContext();
-        preferenceManager = RNPreferenceManager.getInstance(this.application);
+        RNPreferenceManager.getInstance(this.application);
     }
 
     @Override
@@ -56,7 +53,7 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
     public void setup(ReadableMap config, ReadableMap rudderOptionsMap, Promise promise) throws InterruptedException {
         if (!isRudderClientInitializedAndReady()) {
             // create the config object
-            configParams = new RNParamsConfigurator(config);
+            RNParamsConfigurator configParams = new RNParamsConfigurator(config);
             RudderConfig.Builder configBuilder = configParams.handleConfig();
 
             // get the instance of RudderClient
@@ -76,7 +73,7 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
             userSessionPlugin.handleSessionTracking();
 
             // Track automatic lifecycle and/or screen events
-            RNLifeCycleEventListener lifeCycleEventListener = new RNLifeCycleEventListener(this.application, userSessionPlugin);
+            RNLifeCycleEventListener lifeCycleEventListener = new RNLifeCycleEventListener(this.application, userSessionPlugin, this, configParams.trackLifeCycleEvents, configParams.recordScreenViews);
             reactContext.addLifecycleEventListener(lifeCycleEventListener);
 
             // RN SDK is initialised
@@ -87,7 +84,7 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
                 for (RudderIntegration.Factory factory : RNRudderAnalytics.integrationList) {
                     String integrationName = factory.key();
                     RudderClient.Callback callback = new NativeCallBack(integrationName);
-                    RNRudderSdkModule.rudderClient.onIntegrationReady(integrationName, callback);
+                    rudderClient.onIntegrationReady(integrationName, callback);
                 }
             }
         } else {
@@ -182,8 +179,14 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
             promise.resolve(null);
             return;
         }
+
+        RudderContext rudderContext = rudderClient.getRudderContext();
+        if (rudderContext == null) {
+            promise.resolve(null);
+            return;
+        }
         Gson gson = new Gson();
-        JSONObject contextJson = new JSONObject(gson.toJson(rudderClient.getRudderContext()));
+        JSONObject contextJson = new JSONObject(gson.toJson(rudderContext));
         promise.resolve(Utility.convertJSONObjectToWriteAbleMap(contextJson));
     }
 
