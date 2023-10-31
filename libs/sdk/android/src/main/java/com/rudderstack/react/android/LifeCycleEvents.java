@@ -2,6 +2,7 @@ package com.rudderstack.react.android;
 
 import android.app.Application;
 
+import com.rudderstack.android.sdk.core.RudderClient;
 import com.rudderstack.android.sdk.core.RudderLogger;
 import com.rudderstack.android.sdk.core.RudderProperty;
 
@@ -18,16 +19,18 @@ public class LifeCycleEvents {
         private static AppVersion appVersion;
         public static final String VERSION = "version";
         private final RNUserSessionPlugin userSessionPlugin;
+        private final boolean trackLifeCycleEvents;
 
-        ApplicationStatusRunnable(Application application, RNUserSessionPlugin userSessionPlugin) {
+        ApplicationStatusRunnable(Application application, RNUserSessionPlugin userSessionPlugin, boolean trackLifeCycleEvents) {
             this.userSessionPlugin = userSessionPlugin;
+            this.trackLifeCycleEvents = trackLifeCycleEvents;
             appVersion = new AppVersion(application);
         }
 
         @Override
         public void run() {
             appVersion.storeCurrentBuildAndVersion();
-            if (RNRudderSdkModule.configParams.trackLifeCycleEvents) {
+            if (this.trackLifeCycleEvents) {
                 if (appVersion.previousBuild == -1) {
                     this.userSessionPlugin.saveEventTimestamp();
                     // application was not installed previously, now triggering Application Installed event
@@ -48,7 +51,11 @@ public class LifeCycleEvents {
             RudderProperty property = new RudderProperty()
                     .putValue(VERSION, currentVersion)
                     .putValue("build", currentBuild);
-            RNRudderSdkModule.rudderClient.track("Application Installed", property);
+            if (RudderClient.getInstance() != null) {
+                RudderClient.getInstance().track("Application Installed", property);
+            } else {
+                RudderLogger.logError("RudderClient instance is null. Hence dropping Application Installed event.");
+            }
         }
 
         private void sendApplicationUpdated(int previousBuild, int currentBuild, String previousVersion, String currentVersion) {
@@ -58,45 +65,61 @@ public class LifeCycleEvents {
                     .putValue(VERSION, currentVersion)
                     .putValue("previous_build", previousBuild)
                     .putValue("build", currentBuild);
-            RNRudderSdkModule.rudderClient.track("Application Updated", property);
+            if (RudderClient.getInstance() != null) {
+                RudderClient.getInstance().track("Application Updated", property);
+            } else {
+                RudderLogger.logError("RudderClient instance is null. Hence dropping Application Updated event.");
+            }
         }
     }
 
     static class ApplicationOpenedRunnable implements LifeCycleEventsInterface {
         boolean fromBackground;
         private final RNUserSessionPlugin userSessionPlugin;
+        private final boolean trackLifeCycleEvents;
 
-        ApplicationOpenedRunnable(boolean fromBackground, RNUserSessionPlugin userSessionPlugin) {
+        ApplicationOpenedRunnable(boolean fromBackground, RNUserSessionPlugin userSessionPlugin, boolean trackLifeCycleEvents) {
             this.fromBackground = fromBackground;
             this.userSessionPlugin = userSessionPlugin;
+            this.trackLifeCycleEvents = trackLifeCycleEvents;
         }
 
         @Override
         public void run() {
-            if (RNRudderSdkModule.configParams.trackLifeCycleEvents) {
+            if (this.trackLifeCycleEvents) {
                 if (this.fromBackground) {
                     this.userSessionPlugin.startNewSessionIfCurrentIsExpired();
                 }
                 this.userSessionPlugin.saveEventTimestamp();
                 RudderProperty property = new RudderProperty();
                 property.put("from_background", this.fromBackground);
-                RNRudderSdkModule.rudderClient.track("Application Opened", property);
+                if (RudderClient.getInstance() != null) {
+                    RudderClient.getInstance().track("Application Opened", property);
+                } else {
+                    RudderLogger.logError("RudderClient instance is null. Hence dropping Application Opened event.");
+                }
             }
         }
     }
 
     static class ApplicationBackgroundedRunnable implements LifeCycleEventsInterface {
         private final RNUserSessionPlugin userSessionPlugin;
+        private final boolean trackLifeCycleEvents;
         
-        ApplicationBackgroundedRunnable(RNUserSessionPlugin userSessionPlugin) {
+        ApplicationBackgroundedRunnable(RNUserSessionPlugin userSessionPlugin, boolean trackLifeCycleEvents) {
             this.userSessionPlugin = userSessionPlugin;
+            this.trackLifeCycleEvents = trackLifeCycleEvents;
         }
 
         @Override
         public void run() {
-            if (RNRudderSdkModule.configParams.trackLifeCycleEvents) {
+            if (this.trackLifeCycleEvents) {
                 this.userSessionPlugin.saveEventTimestamp();
-                RNRudderSdkModule.rudderClient.track("Application Backgrounded");
+                if (RudderClient.getInstance() != null) {
+                    RudderClient.getInstance().track("Application Backgrounded");
+                } else {
+                    RudderLogger.logError("RudderClient instance is null. Hence dropping Application Backgrounded event.");
+                }
             }
         }
     }
@@ -104,20 +127,26 @@ public class LifeCycleEvents {
     static class ScreenViewRunnable implements LifeCycleEventsInterface {
         String activityName;
         private final RNUserSessionPlugin userSessionPlugin;
+        private final boolean recordScreenViews;
 
-        ScreenViewRunnable(String activityName, RNUserSessionPlugin userSessionPlugin) {
+        ScreenViewRunnable(String activityName, RNUserSessionPlugin userSessionPlugin, boolean recordScreenViews) {
             this.activityName = activityName;
             this.userSessionPlugin = userSessionPlugin;
+            this.recordScreenViews = recordScreenViews;
         }
 
         @Override
         public void run() {
-            if (RNRudderSdkModule.configParams.recordScreenViews) {
+            if (this.recordScreenViews) {
                 this.userSessionPlugin.saveEventTimestamp();
                 RudderProperty property = new RudderProperty();
                 property.put("name", activityName);
                 property.put("automatic", true);
-                RNRudderSdkModule.rudderClient.screen(activityName, property);
+                if (RudderClient.getInstance() != null) {
+                    RudderClient.getInstance().screen(activityName, property);
+                } else {
+                    RudderLogger.logError("RudderClient instance is null. Hence dropping Screen View event.");
+                }
             }
         }
     }
