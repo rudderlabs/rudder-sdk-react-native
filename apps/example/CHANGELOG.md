@@ -2,6 +2,13 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [0.7.1](https://github.com/rudderlabs/rudder-sdk-react-native/compare/example-0.7.0...example-0.7.1) (2023-10-31)
+
+
+### Bug Fixes
+
+* improve getRudderContext api return type  ([#273](https://github.com/rudderlabs/rudder-sdk-react-native/issues/273)) ([e013dd6](https://github.com/rudderlabs/rudder-sdk-react-native/commit/e013dd695bafbf4604aa637213c24f3390b8f23b))
+
 ## [0.7.0](https://github.com/rudderlabs/rudder-sdk-react-native/compare/example-0.6.0...example-0.7.0) (2023-10-16)
 
 
