@@ -1,0 +1,62 @@
+name: Update Minimum Android and iOS SDK
+
+on:
+  workflow_dispatch:
+    inputs:
+      android_minimum_version:
+        description: 'Android SDK Minimum Version'
+        required: false
+      ios_minimum_version:
+        description: 'iOS SDK Minimum Version'
+        required: false
+
+jobs:
+  update-versions:
+    name: Update Minimum Android and iOS SDK
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Change Git Branch
+        run: |
+          git checkout -b fix/updateMinimumSdkVersions
+      
+      # In order to make a commit, we need to initialize a user.
+      # You may choose to write something less generic here if you want, it doesn't matter functionality wise.
+      - name: Initialize mandatory git config
+        run: |
+          git config user.name "GitHub actions"
+          git config user.email noreply@github.com
+
+      - name: Update Android SDK Version
+        if: github.event.inputs.android_minimum_version != ''
+        run: |
+          minimum_version='${{ github.event.inputs.android_minimum_version }}'
+          sed -i "s/com.rudderstack.android.sdk:core:\[[0-9.]*,[0-9]*/com.rudderstack.android.sdk:core:\[$minimum_version,/" libs/sdk/android/build.gradle
+          git add .
+          git commit -m "fix(rudder-sdk-react-native): update minimum Android SDK versions"
+
+      - name: Update iOS SDK Version
+        if: github.event.inputs.ios_minimum_version != ''
+        run: |
+          minimum_version='${{ github.event.inputs.ios_minimum_version }}'
+          sed -i "s/\"Rudder\", '[>= ]*[0-9.]*[0-9]*/\"Rudder\", '>= $minimum_version/" libs/sdk/RNRudderSdk.podspec
+          git add .
+          git commit -m "fix(rudder-sdk-react-native): update minimum iOS SDK versions"
+
+      - name: Push Changes
+        run: git push origin fix/updateMinimumSdkVersions
+
+      # - name: Create pull request into develop
+      #   uses: repo-sync/pull-request@v2
+      #   with:
+      #     source_branch: fix/updateMinimumSdkVersions
+      #     destination_branch: 'develop'
+      #     github_token: ${{ secrets.PAT }}
+      #     pr_title: 'fix: update minimum SDKs version'
+      #     pr_body: ':crown: *An automated PR*'
+      #     # pr_reviewer: 'bardisg'
