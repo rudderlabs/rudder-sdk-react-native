@@ -21,10 +21,21 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Get Current Date
+        run: echo "CURRENT_DATE=$(date +'%d%m%y')" >> $GITHUB_ENV
+
+      - name: Create branch
+        uses: peterjgrainger/action-create-branch@v2.4.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          branch: 'fix/updateMinimumSdkVersions-${{ env.CURRENT_DATE }}'
+
       - name: Change Git Branch
         run: |
-          git checkout -b fix/updateMinimumSdkVersions
-      
+          git fetch
+          git checkout fix/updateMinimumSdkVersions-${{ env.CURRENT_DATE }}
+
       # In order to make a commit, we need to initialize a user.
       # You may choose to write something less generic here if you want, it doesn't matter functionality wise.
       - name: Initialize mandatory git config
@@ -49,14 +60,14 @@ jobs:
           git commit -m "fix(rudder-sdk-react-native): update minimum iOS SDK versions"
 
       - name: Push Changes
-        run: git push origin fix/updateMinimumSdkVersions
+        run: git push
 
-      # - name: Create pull request into develop
-      #   uses: repo-sync/pull-request@v2
-      #   with:
-      #     source_branch: fix/updateMinimumSdkVersions
-      #     destination_branch: 'develop'
-      #     github_token: ${{ secrets.PAT }}
-      #     pr_title: 'fix: update minimum SDKs version'
-      #     pr_body: ':crown: *An automated PR*'
-      #     # pr_reviewer: 'bardisg'
+      - name: Create pull request into develop
+        uses: repo-sync/pull-request@v2
+        with:
+          source_branch: fix/updateMinimumSdkVersions-${{ env.CURRENT_DATE }}
+          destination_branch: 'develop'
+          github_token: ${{ secrets.PAT }}
+          pr_title: 'fix: update minimum SDKs version'
+          pr_body: ':crown: *An automated PR*'
+          pr_reviewer: 'bardisg'
