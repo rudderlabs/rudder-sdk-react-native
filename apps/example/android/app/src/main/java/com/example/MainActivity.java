@@ -35,11 +35,11 @@ public class MainActivity extends ReactActivity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
 
-    // MoEngage SDK initialisation: Replace "xxxxxxx" with your APP ID.
-    MoEngage moEngage = new MoEngage.Builder(MainActivity.this.getApplication(), "9CPVSGMJ6O0VL57NHN91QMSS")
-      .configureLogs(new LogConfig(LogLevel.VERBOSE, false))
-      .build();
-    MoEngage.initialiseDefaultInstance(moEngage);
+//    // MoEngage SDK initialisation: Replace "xxxxxxx" with your APP ID.
+//    MoEngage moEngage = new MoEngage.Builder(MainActivity.this.getApplication(), "9CPVSGMJ6O0VL57NHN91QMSS")
+//      .configureLogs(new LogConfig(LogLevel.VERBOSE, false))
+//      .build();
+//    MoEngage.initialiseDefaultInstance(moEngage);
   }
 
   public static class MainActivityDelegate extends ReactActivityDelegate {

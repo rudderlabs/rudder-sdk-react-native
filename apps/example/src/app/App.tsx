@@ -4,22 +4,22 @@ import { Button, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import rc, { RUDDER_LOG_LEVEL } from '@rudderstack/rudder-sdk-react-native';
-import amplitude from '@rudderstack/rudder-integration-amplitude-react-native';
-import appcenter from '@rudderstack/rudder-integration-appcenter-react-native';
-import braze from '@rudderstack/rudder-integration-braze-react-native';
-import clevertap from '@rudderstack/rudder-integration-clevertap-react-native';
-import firebase from '@rudderstack/rudder-integration-firebase-react-native';
-import moengage from '@rudderstack/rudder-integration-moengage-react-native';
-import singular from '@rudderstack/rudder-integration-singular-react-native';
-import appsflyer, {
-  onAppOpenAttribution,
-  onAttributionFailure,
-  onDeepLink,
-  onInstallConversionData,
-  onInstallConversionFailure,
-  setOneLinkCustomDomains,
-  setOptions,
-} from '@rudderstack/rudder-integration-appsflyer-react-native';
+// import amplitude from '@rudderstack/rudder-integration-amplitude-react-native';
+// import appcenter from '@rudderstack/rudder-integration-appcenter-react-native';
+// import braze from '@rudderstack/rudder-integration-braze-react-native';
+// import clevertap from '@rudderstack/rudder-integration-clevertap-react-native';
+// import firebase from '@rudderstack/rudder-integration-firebase-react-native';
+// import moengage from '@rudderstack/rudder-integration-moengage-react-native';
+// import singular from '@rudderstack/rudder-integration-singular-react-native';
+// import appsflyer, {
+//   onAppOpenAttribution,
+//   onAttributionFailure,
+//   onDeepLink,
+//   onInstallConversionData,
+//   onInstallConversionFailure,
+//   setOneLinkCustomDomains,
+//   setOptions,
+// } from '@rudderstack/rudder-integration-appsflyer-react-native';
 // @ts-ignore
 import { TEST_DATAPLANE_URL, TEST_WRITE_KEY, APPSFLYER_DEV_KEY, APPSFLYER_APPLE_ID } from '@env';
 
@@ -27,13 +27,13 @@ const Stack = createNativeStackNavigator();
 
 const initialization = async () => {
   // TODO: get all secret details in .env file
-  setOptions({
-    devKey: APPSFLYER_DEV_KEY,
-    isDebug: true,
-    onInstallConversionDataListener: true,
-    appleAppId: APPSFLYER_APPLE_ID,
-    timeToWaitForATTUserAuthorization: 60,
-  });
+  // setOptions({
+  //   devKey: APPSFLYER_DEV_KEY,
+  //   isDebug: true,
+  //   onInstallConversionDataListener: true,
+  //   appleAppId: APPSFLYER_APPLE_ID,
+  //   timeToWaitForATTUserAuthorization: 60,
+  // });
 
   const config = {
     dataPlaneUrl: TEST_DATAPLANE_URL,
@@ -41,16 +41,16 @@ const initialization = async () => {
     autoCollectAdvertId: true,
     recordScreenViews: true,
     logLevel: RUDDER_LOG_LEVEL.VERBOSE,
-    withFactories: [
-      appsflyer,
-      amplitude,
-      appcenter,
-      braze,
-      clevertap,
-      firebase,
-      moengage,
-      singular,
-    ],
+    // withFactories: [
+    //   appsflyer,
+    //   amplitude,
+    //   appcenter,
+    //   braze,
+    //   clevertap,
+    //   firebase,
+    //   moengage,
+    //   singular,
+    // ],
   };
 
   const options = {
@@ -69,25 +69,25 @@ const initialization = async () => {
     name: 'Miraj',
   };
 
-  onAppOpenAttribution((data) => {
-    console.log('On App Open Attribution Success and the data is ', data);
-  });
+  // onAppOpenAttribution((data) => {
+  //   console.log('On App Open Attribution Success and the data is ', data);
+  // });
 
-  onAttributionFailure((data) => {
-    console.log('On App Attribution Failure and the data is ', data);
-  });
+  // onAttributionFailure((data) => {
+  //   console.log('On App Attribution Failure and the data is ', data);
+  // });
 
-  onInstallConversionData((data) => {
-    console.log('On Install conversion Success data is ', data);
-  });
+  // onInstallConversionData((data) => {
+  //   console.log('On Install conversion Success data is ', data);
+  // });
 
-  onInstallConversionFailure((data) => {
-    console.log('On Install conversion Failure data is ', data);
-  });
+  // onInstallConversionFailure((data) => {
+  //   console.log('On Install conversion Failure data is ', data);
+  // });
 
-  onDeepLink((data) => {
-    console.log('On Deeplink data is ', data);
-  });
+  // onDeepLink((data) => {
+  //   console.log('On Deeplink data is ', data);
+  // });
 
   await rc.setup(TEST_WRITE_KEY, config);
 
@@ -102,15 +102,15 @@ const initialization = async () => {
   await rc.track('React Native event', props);
   await rc.screen('React Native screen', props);
 
-  setOneLinkCustomDomains(
-    'desu.rudderstack.com',
-    () => {
-      console.log('Successfully set');
-    },
-    () => {
-      console.log('Failed to set');
-    },
-  );
+  // setOneLinkCustomDomains(
+  //   'desu.rudderstack.com',
+  //   () => {
+  //     console.log('Successfully set');
+  //   },
+  //   () => {
+  //     console.log('Failed to set');
+  //   },
+  // );
 };
 
 const App = () => {
