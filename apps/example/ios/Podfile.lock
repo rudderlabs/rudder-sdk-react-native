@@ -358,7 +358,7 @@ PODS:
     - React-perflogger (= 0.70.6)
   - RNCAsyncStorage (1.17.11):
     - React-Core
-  - RNRudderSdk (1.5.2):
+  - RNRudderSdk (1.5.3):
     - React
     - Rudder (= 1.9.0)
   - RNScreens (3.18.2):
@@ -581,7 +581,7 @@ SPEC CHECKSUMS:
   React-runtimeexecutor: 15437b576139df27635400de0599d9844f1ab817
   ReactCommon: 349be31adeecffc7986a0de875d7fb0dcf4e251c
   RNCAsyncStorage: 8616bd5a58af409453ea4e1b246521bb76578d60
-  RNRudderSdk: d61694da8cc9c9f7188fa92d959412a647bd088e
+  RNRudderSdk: 6b646310394cd569d8ae90df39c35fe22ef65b9b
   RNScreens: 34cc502acf1b916c582c60003dc3089fa01dc66d
   RNSVG: d787d64ca06b9158e763ad2638a8c4edce00782a
   Rudder: 908fa6dd15d979aa51fa526d0087af08409743f7
