@@ -1,0 +1,459 @@
+name: Check Compatibility of Native SDKs
+
+on:
+  workflow_dispatch:
+    inputs:
+      android_version:
+        description: "Enter Android SDK Version as '1.21.0-SNAPSHOT' or '1.19.0'"
+        required: false
+        type: string
+      is_android_beta_version:
+        description: 'Is the Android SDK version in beta?'
+        required: false
+        default: false
+        type: boolean
+      ios_version:
+        description: 'Enter iOS SDK Version as 1.23.1'
+        required: false
+        type: string
+      is_ios_beta_version:
+        description: 'Is the iOS SDK version in beta?'
+        required: false
+        default: false
+        type: boolean
+
+jobs:
+  android-configure-build_gradle:
+    name: Android build test
+    if: github.event.inputs.android_version != ''
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout source branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'zulu'
+          java-version: '11'
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'npm'
+
+      - name: Install node_modules
+        env:
+          HUSKY: 0
+        run: |
+          npm run setup:ci
+
+      - name: Add .env file
+        run: |
+          pwd
+          echo '${{secrets.DOT_ENV}}' > apps/example/.env
+          echo "$( < apps/example/.env)"
+          cd apps/example/
+          ls -li
+
+      - name: Add beta repository url in sample app root build.gradle file
+        if: github.event.inputs.is_android_beta_version == 'true'
+        run: |
+          cd apps/example/android
+          sed -i '' '/allprojects {/,/    repositories {/ {
+            /    repositories {/ a\
+            \    maven { url "https://s01.oss.sonatype.org/content/repositories/snapshots/" } 
+          }' "build.gradle"
+
+      - name: Update beta Android SDK version in integrations and SDK packages build.gradle file
+        if: github.event.inputs.is_android_beta_version == 'true'
+        run: |
+          BETA__VERSION='${{ github.event.inputs.android_version }}'
+
+          for dir in "libs"/*; do
+            if [ "$dir" == "libs/plugins" ]; then
+              dir="$dir/rudder-plugin-db-encryption-react-native"
+            fi
+            echo "Processing: $dir"
+            sed -i '' "s/implementation 'com.rudderstack.android.sdk:core:\[[0-9.]*[0-9]*,* [0-9.]*[0-9]*)'/implementation ('com.rudderstack.android.sdk:core:$BETA__VERSION') { changing = true }/" $dir/android/build.gradle
+          done
+
+      - name: Update Released Android SDK version in integrations and SDK packages build.gradle file
+        if: github.event.inputs.is_android_beta_version == 'false'
+        run: |
+          MINIMUM_VERSION='${{ github.event.inputs.android_version }}'
+
+          for dir in "libs"/*; do
+            if [ "$dir" == "libs/plugins" ]; then
+              dir="$dir/rudder-plugin-db-encryption-react-native"
+            fi
+            echo "Processing: $dir"
+            sed -i '' "s/implementation 'com.rudderstack.android.sdk:core:\[[0-9.]*[0-9]*/implementation 'com.rudderstack.android.sdk:core:[$MINIMUM_VERSION/" $dir/android/build.gradle
+          done
+
+      - name: Display build.gradle files
+        run: |
+          for dir in "libs"/*; do
+            if [ "$dir" == "libs/plugins" ]; then
+              dir="$dir/rudder-plugin-db-encryption-react-native"
+            fi
+            echo "Display: $dir"
+            cat $dir/android/build.gradle
+          done
+
+      - name: Bundle apps
+        run: |
+          npm run bundle:ci
+
+      - name: Execute android build check
+        run: |
+          npm run build:android
+
+  ios-build-test-default:
+    if: github.event.inputs.ios_version != ''
+    name: Default iOS Build Test
+    runs-on: macos-latest
+    steps:
+      - name: Checkout source branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Add beta repository url
+        if: github.event.inputs.is_ios_beta_version == 'true'
+        run: |
+          cd apps/example/ios
+          echo "source 'https://github.com/rudderlabs/Specs.git'" >Podfile.tmp
+          echo "source 'https://github.com/CocoaPods/Specs.git'" >>Podfile.tmp
+          echo "" >>Podfile.tmp
+          cat Podfile >>Podfile.tmp
+          mv Podfile.tmp Podfile
+
+      - name: Add Rudder pod in Podfile
+        run: |
+          cd apps/example/ios
+          sed -i '' -e "/target 'Example' do/a\\
+            pod 'Rudder', '${{ github.event.inputs.ios_version }}'" Podfile
+
+      - name: Display Podfile
+        run: cat apps/example/ios/Podfile
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+
+      - name: Setup CocoaPods
+        uses: maxim-lobanov/setup-cocoapods@v1
+        with:
+          version: 1.11.3
+
+      - uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: latest-stable
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'npm'
+
+      - name: Install node_modules
+        env:
+          HUSKY: 0
+        run: |
+          npm run setup:ci
+
+      - name: Install Pods
+        run: |
+          cd apps/example/ios && \
+          rm Podfile.lock && \
+          pod install --repo-update && \
+          cd .. && \
+          cd .. && \
+          cd ..
+
+      - name: Bundle apps
+        run: |
+          npm run bundle:ci
+
+      - name: Xcode Version
+        run: |
+          xcode-select -p
+          /usr/bin/xcodebuild -version
+
+      - name: Execute iOS build check
+        run: |
+          npm run build:ios:ci
+
+  ios-build-test-use-framework:
+    if: github.event.inputs.ios_version != ''
+    name: iOS Build Test When 'use_frameworks!' is used
+    runs-on: macos-latest
+    steps:
+      - name: Checkout source branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Add beta repository url
+        if: github.event.inputs.is_ios_beta_version == 'true'
+        run: |
+          cd apps/example/ios
+          echo "source 'https://github.com/rudderlabs/Specs.git'" >Podfile.tmp
+          echo "source 'https://github.com/CocoaPods/Specs.git'" >>Podfile.tmp
+          echo "" >>Podfile.tmp
+          cat Podfile >>Podfile.tmp
+          mv Podfile.tmp Podfile
+
+      - name: Add Rudder pod in Podfile
+        run: |
+          cd apps/example/ios
+          sed -i '' -e "/target 'Example' do/a\\
+            pod 'Rudder', '${{ github.event.inputs.ios_version }}'" Podfile
+
+      - name: Add use_frameworks! in Podfile
+        run: |
+          cd apps/example/ios
+          sed -i '' -e "/target 'Example' do/a\\
+            use_frameworks!" Podfile
+
+      - name: Comment out un-required modular headers in Podfile
+        run: |
+          cd apps/example/ios
+          sed -i '' "s|:flipper_configuration => flipper_config,|# :flipper_configuration => flipper_config,|" Podfile
+          sed -i '' "s|pod 'FirebaseCore', :modular_headers => true|# pod 'FirebaseCore', :modular_headers => true|" Podfile
+          sed -i '' "s|pod 'GoogleUtilities', :modular_headers => true|# pod 'GoogleUtilities', :modular_headers => true|" Podfile
+          sed -i '' "s|pod 'RSCrashReporter', :modular_headers => true|# pod 'RSCrashReporter', :modular_headers => true|" Podfile
+
+      - name: Display Podfile
+        run: cat apps/example/ios/Podfile
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+
+      - name: Setup CocoaPods
+        uses: maxim-lobanov/setup-cocoapods@v1
+        with:
+          version: 1.11.3
+
+      - uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: latest-stable
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'npm'
+
+      - name: Install node_modules
+        env:
+          HUSKY: 0
+        run: |
+          npm run setup:ci
+
+      - name: Install Pods
+        run: |
+          cd apps/example/ios && \
+          rm Podfile.lock && \
+          pod install --repo-update && \
+          cd .. && \
+          cd .. && \
+          cd ..
+
+      - name: Bundle apps
+        run: |
+          npm run bundle:ci
+
+      - name: Xcode Version
+        run: |
+          xcode-select -p
+          /usr/bin/xcodebuild -version
+
+      - name: Execute iOS build check
+        run: |
+          npm run build:ios:ci
+
+  ios-build-test-use-framework-linkage-static:
+    if: github.event.inputs.ios_version != ''
+    name: iOS Build Test When 'use_frameworks! :linkage=> :static' is used
+    runs-on: macos-latest
+    steps:
+      - name: Checkout source branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Add beta repository url
+        if: github.event.inputs.is_ios_beta_version == 'true'
+        run: |
+          cd apps/example/ios
+          echo "source 'https://github.com/rudderlabs/Specs.git'" >Podfile.tmp
+          echo "source 'https://github.com/CocoaPods/Specs.git'" >>Podfile.tmp
+          echo "" >>Podfile.tmp
+          cat Podfile >>Podfile.tmp
+          mv Podfile.tmp Podfile
+
+      - name: Add Rudder pod in Podfile
+        run: |
+          cd apps/example/ios
+          sed -i '' -e "/target 'Example' do/a\\
+            pod 'Rudder', '${{ github.event.inputs.ios_version }}'" Podfile
+
+      - name: Add use_frameworks! :linkage=> :static in Podfile
+        run: |
+          cd apps/example/ios
+          sed -i '' -e "/target 'Example' do/a\\
+            use_frameworks! :linkage=> :static" Podfile
+
+      - name: Comment out un-required modular headers in Podfile
+        run: |
+          cd apps/example/ios
+          sed -i '' "s|:flipper_configuration => flipper_config,|# :flipper_configuration => flipper_config,|" Podfile
+          sed -i '' "s|pod 'FirebaseCore', :modular_headers => true|# pod 'FirebaseCore', :modular_headers => true|" Podfile
+          sed -i '' "s|pod 'GoogleUtilities', :modular_headers => true|# pod 'GoogleUtilities', :modular_headers => true|" Podfile
+          sed -i '' "s|pod 'RSCrashReporter', :modular_headers => true|# pod 'RSCrashReporter', :modular_headers => true|" Podfile
+
+      - name: Display Podfile
+        run: cat apps/example/ios/Podfile
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+
+      - name: Setup CocoaPods
+        uses: maxim-lobanov/setup-cocoapods@v1
+        with:
+          version: 1.11.3
+
+      - uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: latest-stable
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'npm'
+
+      - name: Install node_modules
+        env:
+          HUSKY: 0
+        run: |
+          npm run setup:ci
+
+      - name: Install Pods
+        run: |
+          cd apps/example/ios && \
+          rm Podfile.lock && \
+          pod install --repo-update && \
+          cd .. && \
+          cd .. && \
+          cd ..
+
+      - name: Bundle apps
+        run: |
+          npm run bundle:ci
+
+      - name: Xcode Version
+        run: |
+          xcode-select -p
+          /usr/bin/xcodebuild -version
+
+      - name: Execute iOS build check
+        run: |
+          npm run build:ios:ci
+
+  ios-build-test-use-framework-linkage-dynamic:
+    if: github.event.inputs.ios_version != ''
+    name: iOS Build Test When 'use_frameworks! :linkage => :dynamic' is used
+    runs-on: macos-latest
+    steps:
+      - name: Checkout source branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Add beta repository url
+        if: github.event.inputs.is_ios_beta_version == 'true'
+        run: |
+          cd apps/example/ios
+          echo "source 'https://github.com/rudderlabs/Specs.git'" >Podfile.tmp
+          echo "source 'https://github.com/CocoaPods/Specs.git'" >>Podfile.tmp
+          echo "" >>Podfile.tmp
+          cat Podfile >>Podfile.tmp
+          mv Podfile.tmp Podfile
+
+      - name: Add Rudder pod in Podfile
+        run: |
+          cd apps/example/ios
+          sed -i '' -e "/target 'Example' do/a\\
+            pod 'Rudder', '${{ github.event.inputs.ios_version }}'" Podfile
+
+      - name: Add use_frameworks! :linkage => :dynamic in Podfile
+        run: |
+          cd apps/example/ios
+          sed -i '' -e "/target 'Example' do/a\\
+            use_frameworks! :linkage => :dynamic" Podfile
+
+      - name: Comment out un-required modular headers in Podfile
+        run: |
+          cd apps/example/ios
+          sed -i '' "s|:flipper_configuration => flipper_config,|# :flipper_configuration => flipper_config,|" Podfile
+          sed -i '' "s|pod 'FirebaseCore', :modular_headers => true|# pod 'FirebaseCore', :modular_headers => true|" Podfile
+          sed -i '' "s|pod 'GoogleUtilities', :modular_headers => true|# pod 'GoogleUtilities', :modular_headers => true|" Podfile
+          sed -i '' "s|pod 'RSCrashReporter', :modular_headers => true|# pod 'RSCrashReporter', :modular_headers => true|" Podfile
+
+      - name: Display Podfile
+        run: cat apps/example/ios/Podfile
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+
+      - name: Setup CocoaPods
+        uses: maxim-lobanov/setup-cocoapods@v1
+        with:
+          version: 1.11.3
+
+      - uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: latest-stable
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'npm'
+
+      - name: Install node_modules
+        env:
+          HUSKY: 0
+        run: |
+          npm run setup:ci
+
+      - name: Install Pods
+        run: |
+          cd apps/example/ios && \
+          rm Podfile.lock && \
+          pod install --repo-update && \
+          cd .. && \
+          cd .. && \
+          cd ..
+
+      - name: Bundle apps
+        run: |
+          npm run bundle:ci
+
+      - name: Xcode Version
+        run: |
+          xcode-select -p
+          /usr/bin/xcodebuild -version
+
+      - name: Execute iOS build check
+        run: |
+          npm run build:ios:ci
