@@ -1,7 +1,11 @@
 package com.rudderstack.react.android;
 
 import android.app.Application;
+import android.content.Context;
 import android.content.SharedPreferences;
+
+import com.rudderstack.android.sdk.core.RudderClient;
+import com.rudderstack.android.sdk.core.RudderLogger;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -10,6 +14,9 @@ import javax.annotation.Nullable;
  * Preference Manager for React Native Android SDK
  */
 public class RNPreferenceManager {
+    private static final String NATIVE_PREFS_NAME = "rl_prefs";
+    private static final String REACT_NATIVE_PREFS_NAME = "rn_prefs";
+    private final Application application;
     private static final String RUDDER_LAST_EVENT_TIMESTAMP_KEY = "rudder_last_event_timestamp_key";
     private static final String RUDDER_SESSION_AUTO_TRACKING_STATUS_KEY = "rudder_session_auto_tracking_status_key";
     private static final String RUDDER_SESSION_MANUAL_TRACKING_STATUS_KEY = "rudder_session_manual_tracking_status_key";
@@ -21,7 +28,8 @@ public class RNPreferenceManager {
     private static RNPreferenceManager instance;
 
     private RNPreferenceManager(Application application) {
-        preferences = application.getSharedPreferences("rn_prefs", 0);
+        this.application = application;
+        preferences = application.getSharedPreferences(REACT_NATIVE_PREFS_NAME, 0);
     }
 
     @Nonnull
@@ -79,5 +87,28 @@ public class RNPreferenceManager {
 
     boolean getManualSessionTrackingStatus() {
         return preferences.getBoolean(RUDDER_SESSION_MANUAL_TRACKING_STATUS_KEY, false);
+    }
+    
+    public void migrateAppInfoPreferencesWhenRNPrefDoesNotExist() {
+        if (!Utility.isGivePreferenceFileEmpty(REACT_NATIVE_PREFS_NAME, this.application)) {
+            RudderLogger.logVerbose("RNRudderSdkModule: No migration needed, as react native preferences file exists and it's not empty");
+            return;
+        }
+        migrateAppInfoPreferencesFromNative();
+    }
+
+    private void migrateAppInfoPreferencesFromNative() {
+        if (Utility.isGivePreferenceFileEmpty(NATIVE_PREFS_NAME, this.application)) {
+            RudderLogger.logVerbose("RNRudderSdkModule: No migration needed, as native preferences file does not exist or it's empty.");
+            return;
+        }
+        RudderLogger.logDebug("RNRudderSdkModule: Performing App Info migration.");
+        SharedPreferences nativePrefs = this.application.getSharedPreferences(NATIVE_PREFS_NAME, Context.MODE_PRIVATE);
+        if (nativePrefs.contains(RUDDER_APPLICATION_BUILD_KEY)) {
+            saveBuildNumber(nativePrefs.getInt(RUDDER_APPLICATION_BUILD_KEY, -1));
+        }
+        if (nativePrefs.contains(RUDDER_APPLICATION_VERSION_KEY)) {
+            saveVersionName(nativePrefs.getString(RUDDER_APPLICATION_VERSION_KEY, null));
+        }
     }
 }

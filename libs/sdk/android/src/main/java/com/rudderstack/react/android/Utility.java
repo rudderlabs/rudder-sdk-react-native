@@ -1,5 +1,9 @@
 package com.rudderstack.react.android;
 
+import android.app.Application;
+import android.content.Context;
+import android.content.SharedPreferences;
+
 import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.bridge.ReadableMapKeySetIterator;
@@ -179,5 +183,10 @@ public class Utility {
     @Nonnull
     public static boolean isEmpty(String str) {
         return str == null || str.length() == 0;
+    }
+
+    public static boolean isGivePreferenceFileEmpty(String preferenceFileName, Application application) {
+        SharedPreferences preference = application.getSharedPreferences(preferenceFileName, Context.MODE_PRIVATE);
+        return (preference != null && preference.getAll().size() == 0);
     }
 }
