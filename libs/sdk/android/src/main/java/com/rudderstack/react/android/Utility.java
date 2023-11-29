@@ -187,6 +187,6 @@ public class Utility {
 
     public static boolean isGivenPreferenceFileEmpty(String preferenceFileName, Application application) {
         SharedPreferences preference = application.getSharedPreferences(preferenceFileName, Context.MODE_PRIVATE);
-        return (preference != null && preference.getAll().size() == 0);
+        return (preference == null || preference.getAll().size() == 0);
     }
 }
