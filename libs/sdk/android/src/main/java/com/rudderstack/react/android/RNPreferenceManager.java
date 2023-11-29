@@ -4,7 +4,6 @@ import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.rudderstack.android.sdk.core.RudderClient;
 import com.rudderstack.android.sdk.core.RudderLogger;
 
 import javax.annotation.Nonnull;
@@ -90,7 +89,7 @@ public class RNPreferenceManager {
     }
     
     public void migrateAppInfoPreferencesWhenRNPrefDoesNotExist() {
-        if (!Utility.isGivePreferenceFileEmpty(REACT_NATIVE_PREFS_NAME, this.application)) {
+        if (!Utility.isGivenPreferenceFileEmpty(REACT_NATIVE_PREFS_NAME, this.application)) {
             RudderLogger.logVerbose("RNRudderSdkModule: No migration needed, as react native preferences file exists and it's not empty");
             return;
         }
@@ -98,7 +97,7 @@ public class RNPreferenceManager {
     }
 
     private void migrateAppInfoPreferencesFromNative() {
-        if (Utility.isGivePreferenceFileEmpty(NATIVE_PREFS_NAME, this.application)) {
+        if (Utility.isGivenPreferenceFileEmpty(NATIVE_PREFS_NAME, this.application)) {
             RudderLogger.logVerbose("RNRudderSdkModule: No migration needed, as native preferences file does not exist or it's empty.");
             return;
         }
