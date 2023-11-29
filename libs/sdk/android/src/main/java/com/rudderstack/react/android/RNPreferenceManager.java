@@ -90,7 +90,7 @@ public class RNPreferenceManager {
     
     public void migrateAppInfoPreferencesWhenRNPrefDoesNotExist() {
         if (!Utility.isGivenPreferenceFileEmpty(REACT_NATIVE_PREFS_NAME, this.application)) {
-            RudderLogger.logVerbose("RNPreferenceManager: No migration needed, as react native preferences file exists and it's not empty");
+            // No migration needed, as react native preferences file exists and it's not empty
             return;
         }
         migrateAppInfoPreferencesFromNative();
@@ -98,10 +98,10 @@ public class RNPreferenceManager {
 
     private void migrateAppInfoPreferencesFromNative() {
         if (Utility.isGivenPreferenceFileEmpty(NATIVE_PREFS_NAME, this.application)) {
-            RudderLogger.logVerbose("RNPreferenceManager: No migration needed, as native preferences file does not exist or it's empty.");
+            // No migration needed, as native preferences file does not exist or it's empty
             return;
         }
-        RudderLogger.logDebug("RNPreferenceManager: Performing App Info migration.");
+        // Migrate app info preferences from native to react native
         SharedPreferences nativePrefs = this.application.getSharedPreferences(NATIVE_PREFS_NAME, Context.MODE_PRIVATE);
         if (nativePrefs.contains(RUDDER_APPLICATION_BUILD_KEY)) {
             saveBuildNumber(nativePrefs.getInt(RUDDER_APPLICATION_BUILD_KEY, -1));
