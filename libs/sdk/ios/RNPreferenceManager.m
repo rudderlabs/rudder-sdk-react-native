@@ -17,6 +17,9 @@ static RNPreferenceManager *instance;
 
 @implementation RNPreferenceManager
 
+NSString *const NativeApplicationBuildKey = @"rl_application_build_key";
+NSString *const NativeApplicationVersionKey = @"rl_application_version_key";
+
 NSString *const RNPrefsKey = @"rn_prefs";
 NSString *const RNApplicationBuildKey = @"rn_application_build_key";
 NSString *const RNApplicationVersionKey = @"rn_application_version_key";
@@ -84,6 +87,19 @@ NSString *const RNSessionManualTrackStatus = @"rn_session_manual_track_status";
 
 - (BOOL) getManualSessionTrackingStatus {
     return [[NSUserDefaults standardUserDefaults] boolForKey:RNSessionManualTrackStatus];
+}
+
+- (void) migrateAppInfoPreferencesWhenRNPrefDoesNotExist {
+    if ([[NSUserDefaults standardUserDefaults] objectForKey:RNApplicationBuildKey] == nil &&
+        [[NSUserDefaults standardUserDefaults] objectForKey:NativeApplicationBuildKey] != nil) {
+        [self saveBuildNumber:[[NSUserDefaults standardUserDefaults] valueForKey:NativeApplicationBuildKey]];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
+    if ([[NSUserDefaults standardUserDefaults] objectForKey:RNApplicationVersionKey] == nil &&
+        [[NSUserDefaults standardUserDefaults] objectForKey:NativeApplicationVersionKey] != nil) {
+        [self saveVersionNumber:[[NSUserDefaults standardUserDefaults] valueForKey:NativeApplicationVersionKey]];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
 }
 
 @end
