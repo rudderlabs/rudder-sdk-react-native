@@ -93,12 +93,10 @@ NSString *const RNSessionManualTrackStatus = @"rn_session_manual_track_status";
     if ([[NSUserDefaults standardUserDefaults] objectForKey:RNApplicationBuildKey] == nil &&
         [[NSUserDefaults standardUserDefaults] objectForKey:NativeApplicationBuildKey] != nil) {
         [self saveBuildNumber:[[NSUserDefaults standardUserDefaults] valueForKey:NativeApplicationBuildKey]];
-        [[NSUserDefaults standardUserDefaults] synchronize];
     }
     if ([[NSUserDefaults standardUserDefaults] objectForKey:RNApplicationVersionKey] == nil &&
         [[NSUserDefaults standardUserDefaults] objectForKey:NativeApplicationVersionKey] != nil) {
         [self saveVersionNumber:[[NSUserDefaults standardUserDefaults] valueForKey:NativeApplicationVersionKey]];
-        [[NSUserDefaults standardUserDefaults] synchronize];
     }
 }
 
