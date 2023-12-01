@@ -87,26 +87,15 @@ public class RNPreferenceManager {
     boolean getManualSessionTrackingStatus() {
         return preferences.getBoolean(RUDDER_SESSION_MANUAL_TRACKING_STATUS_KEY, false);
     }
-    
-    public void migrateAppInfoPreferencesWhenRNPrefDoesNotExist() {
-        if (!Utility.isGivenPreferenceFileEmpty(REACT_NATIVE_PREFS_NAME, this.application)) {
-            // No migration needed, as react native preferences file exists and it's not empty
-            return;
-        }
-        migrateAppInfoPreferencesFromNative();
-    }
 
-    private void migrateAppInfoPreferencesFromNative() {
-        if (Utility.isGivenPreferenceFileEmpty(NATIVE_PREFS_NAME, this.application)) {
-            // No migration needed, as native preferences file does not exist or it's empty
-            return;
-        }
-        // Migrate app info preferences from native to react native
+    public void migrateAppInfoPreferencesWhenRNPrefDoesNotExist() {
         SharedPreferences nativePrefs = this.application.getSharedPreferences(NATIVE_PREFS_NAME, Context.MODE_PRIVATE);
-        if (nativePrefs.contains(RUDDER_APPLICATION_BUILD_KEY)) {
+        if (!preferences.contains(RUDDER_APPLICATION_BUILD_KEY) &&
+                nativePrefs.contains(RUDDER_APPLICATION_BUILD_KEY)) {
             saveBuildNumber(nativePrefs.getInt(RUDDER_APPLICATION_BUILD_KEY, -1));
         }
-        if (nativePrefs.contains(RUDDER_APPLICATION_VERSION_KEY)) {
+        if (!preferences.contains(RUDDER_APPLICATION_VERSION_KEY) &&
+                nativePrefs.contains(RUDDER_APPLICATION_VERSION_KEY)) {
             saveVersionName(nativePrefs.getString(RUDDER_APPLICATION_VERSION_KEY, null));
         }
     }
