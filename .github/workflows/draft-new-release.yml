@@ -76,8 +76,10 @@ jobs:
           npm run release
           ./scripts/sync-tags-in-nx-projects.sh
           ./scripts/generate-last-release-changelog.sh
+          ./scripts/update-rn-sdk-version-in-constants-file.sh
           npm run bump-version:monorepo
           npx replace $CURRENT_VERSION_VALUE $NEW_VERSION_VALUE sonar-project.properties
+          npm i
           git add .
           git commit -m "chore: sync versions and generate release logs"
 

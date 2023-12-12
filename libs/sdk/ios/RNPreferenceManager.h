@@ -37,6 +37,8 @@ extern NSString *const RNSessionManualTrackStatus;
 - (void) saveManualSessionTrackingStatus:(BOOL) manualTrackingStatus;
 - (BOOL) getManualSessionTrackingStatus;
 
+- (void) migrateAppInfoPreferencesWhenRNPrefDoesNotExist;
+
 @end
 
 NS_ASSUME_NONNULL_END

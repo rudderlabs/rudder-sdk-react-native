@@ -41,7 +41,8 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
         super(reactContext);
         this.reactContext = reactContext;
         this.application = (Application) this.reactContext.getApplicationContext();
-        RNPreferenceManager.getInstance(this.application);
+        RNPreferenceManager preferenceManager = RNPreferenceManager.getInstance(this.application);
+        preferenceManager.migrateAppInfoPreferencesWhenRNPrefDoesNotExist();
     }
 
     @Override

@@ -26,6 +26,7 @@ RCT_EXPORT_METHOD(setup:(NSDictionary*)config options:(NSDictionary*) _options r
 
         [RSLogger logDebug:@"setup: Initiating RNPreferenceManager"];
         self->preferenceManager = [RNPreferenceManager getInstance];
+        [self->preferenceManager migrateAppInfoPreferencesWhenRNPrefDoesNotExist];
 
         [RSClient getInstance:self->configParams.writeKey config:[RNRudderAnalytics buildWithIntegrations:configBuilder] options:[self getRudderOptionsObject:_options]];
 
