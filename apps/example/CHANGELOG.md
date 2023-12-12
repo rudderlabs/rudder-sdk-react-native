@@ -2,6 +2,13 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [0.7.2](https://github.com/rudderlabs/rudder-sdk-react-native/compare/example-0.7.1...example-0.7.2) (2023-12-11)
+
+
+### Bug Fixes
+
+* incorrect tracking of application lifecycle events ([#292](https://github.com/rudderlabs/rudder-sdk-react-native/issues/292)) ([cd77bfe](https://github.com/rudderlabs/rudder-sdk-react-native/commit/cd77bfe91a70c1dfe70e1f27d6b5d301146f4343))
+
 ## [0.7.1](https://github.com/rudderlabs/rudder-sdk-react-native/compare/example-0.7.0...example-0.7.1) (2023-10-31)
 
 
