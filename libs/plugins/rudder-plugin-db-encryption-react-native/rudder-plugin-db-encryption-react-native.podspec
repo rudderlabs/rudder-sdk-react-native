@@ -21,7 +21,7 @@ Pod::Spec.new do |s|
   s.dependency "React"
   s.dependency 'RudderDatabaseEncryption'
   s.dependency 'RNRudderSdk'
-  s.dependency 'Rudder', '>= 1.23.0', '< 2.0.0'
+  s.dependency 'Rudder', '>= 1.24.1', '< 2.0.0'
 
 end
 
