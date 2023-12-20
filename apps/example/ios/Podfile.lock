@@ -45,13 +45,13 @@ PODS:
     - GoogleUtilities/Network (~> 7.11)
     - "GoogleUtilities/NSData+zlib (~> 7.11)"
     - nanopb (< 2.30910.0, >= 2.30908.0)
-  - FirebaseCore (10.18.0):
+  - FirebaseCore (10.19.0):
     - FirebaseCoreInternal (~> 10.0)
     - GoogleUtilities/Environment (~> 7.12)
     - GoogleUtilities/Logger (~> 7.12)
-  - FirebaseCoreInternal (10.18.0):
+  - FirebaseCoreInternal (10.19.0):
     - "GoogleUtilities/NSData+zlib (~> 7.8)"
-  - FirebaseInstallations (10.18.0):
+  - FirebaseInstallations (10.19.0):
     - FirebaseCore (~> 10.0)
     - GoogleUtilities/Environment (~> 7.8)
     - GoogleUtilities/UserDefaults (~> 7.8)
@@ -173,10 +173,10 @@ PODS:
     - hermes-engine/Pre-built (= 0.72.4)
   - hermes-engine/Pre-built (0.72.4)
   - libevent (2.1.12)
-  - MetricsReporter (1.1.1):
-    - RSCrashReporter (= 1.0.0)
+  - MetricsReporter (1.2.0):
+    - RSCrashReporter (= 1.0.1)
     - RudderKit (= 1.4.0)
-  - MoEngage-iOS-SDK (9.13.0)
+  - MoEngage-iOS-SDK (9.14.0)
   - nanopb (2.30909.1):
     - nanopb/decode (= 2.30909.1)
     - nanopb/encode (= 2.30909.1)
@@ -600,22 +600,22 @@ PODS:
     - React-perflogger (= 0.72.4)
   - RNCAsyncStorage (1.19.3):
     - React-Core
-  - RNRudderSdk (1.11.1):
+  - RNRudderSdk (1.11.2):
     - React
     - Rudder (< 2.0.0, >= 1.23.0)
   - RNSVG (13.9.0):
     - React-Core
-  - RSCrashReporter (1.0.0)
-  - Rudder (1.23.1):
-    - MetricsReporter (= 1.1.1)
+  - RSCrashReporter (1.0.1)
+  - Rudder (1.24.1):
+    - MetricsReporter (= 1.2.0)
   - Rudder-Amplitude (1.1.1):
     - Amplitude (= 8.16.0)
     - Rudder (~> 1.12)
   - Rudder-AppCenter (1.0.1):
     - AppCenter
     - Rudder
-  - Rudder-Appsflyer (2.3.0):
-    - AppsFlyerFramework (~> 6.10)
+  - Rudder-Appsflyer (2.4.0):
+    - AppsFlyerFramework (~> 6.12)
     - Rudder (~> 1.12)
   - Rudder-Braze (1.3.0):
     - BrazeKit (~> 6.6.0)
@@ -665,7 +665,7 @@ PODS:
   - rudder-plugin-db-encryption-react-native (1.0.0):
     - React
     - RNRudderSdk
-    - Rudder (< 2.0.0, >= 1.23.0)
+    - Rudder (< 2.0.0, >= 1.24.1)
     - RudderDatabaseEncryption
   - Rudder-Singular (1.0.0):
     - Rudder (~> 1.0)
@@ -674,9 +674,9 @@ PODS:
     - Rudder (~> 1.21)
     - SQLCipher (~> 4.0)
   - RudderKit (1.4.0)
-  - SDWebImage (5.18.5):
-    - SDWebImage/Core (= 5.18.5)
-  - SDWebImage/Core (5.18.5)
+  - SDWebImage (5.18.7):
+    - SDWebImage/Core (= 5.18.7)
+  - SDWebImage/Core (5.18.7)
   - Singular-SDK (11.0.4):
     - Singular-SDK/Main (= 11.0.4)
   - Singular-SDK/Main (11.0.4)
@@ -939,9 +939,9 @@ SPEC CHECKSUMS:
   FBLazyVector: 5d4a3b7f411219a45a6d952f77d2c0a6c9989da5
   FBReactNativeSpec: aa0d2420d208c9314624e14bb417782fd5f30d29
   FirebaseAnalytics: 9a12e090ead49f8877ed8132ae920e3cbbd2fcd0
-  FirebaseCore: 2322423314d92f946219c8791674d2f3345b598f
-  FirebaseCoreInternal: 8eb002e564b533bdcf1ba011f33f2b5c10e2ed4a
-  FirebaseInstallations: e842042ec6ac1fd2e37d7706363ebe7f662afea4
+  FirebaseCore: dc5c7badf99d47613c52b2e3a57a64cd187f8554
+  FirebaseCoreInternal: b444828ea7cfd594fca83046b95db98a2be4f290
+  FirebaseInstallations: 033d199474164db20c8350736842a94fe717b960
   Flipper: 6edb735e6c3e332975d1b17956bcc584eccf5818
   Flipper-Boost-iOSX: fd1e2b8cbef7e662a122412d7ac5f5bea715403c
   Flipper-DoubleConversion: 2dc99b02f658daf147069aad9dbd29d8feb06d30
@@ -956,8 +956,8 @@ SPEC CHECKSUMS:
   GoogleUtilities: 0759d1a57ebb953965c2dfe0ba4c82e95ccc2e34
   hermes-engine: 81191603c4eaa01f5e4ae5737a9efcf64756c7b2
   libevent: 4049cae6c81cdb3654a443be001fb9bdceff7913
-  MetricsReporter: 759631361ffd2b8f0d375b1225c8a631311f6da2
-  MoEngage-iOS-SDK: 4da6190f464f11f66dd0fa6ef827948e59998257
+  MetricsReporter: 1b381205a8bcc7ea5413c663cbb438e62078ee11
+  MoEngage-iOS-SDK: fd9507de4c0960ae08874b16e2dfbb27e61e7703
   nanopb: d4d75c12cd1316f4a64e3c6963f879ecd4b5e0d5
   OpenSSL-Universal: ebc357f1e6bc71fa463ccb2fe676756aff50e88c
   PromisesObjC: c50d2056b5253dadbd6c2bea79b0674bd5a52fa4
@@ -995,13 +995,13 @@ SPEC CHECKSUMS:
   React-utils: b79f2411931f9d3ea5781404dcbb2fa8a837e13a
   ReactCommon: 4b2bdcb50a3543e1c2b2849ad44533686610826d
   RNCAsyncStorage: c913ede1fa163a71cea118ed4670bbaaa4b511bb
-  RNRudderSdk: eaeeae19b067e82270726ec19fdf1bdefee569fd
+  RNRudderSdk: 3113e10525cef12079c91b68ac755875cf5f042b
   RNSVG: 53c661b76829783cdaf9b7a57258f3d3b4c28315
-  RSCrashReporter: e9ccaebd996263f8325a6cbef44ff74aa5f58e30
-  Rudder: 18897c785af9cfe84c2be2a1d15a645edbeda6d0
+  RSCrashReporter: 6b8376ac729b0289ebe0908553e5f56d8171f313
+  Rudder: f80f8f7ef42a86e7472fd29eae3988a7c2739bfc
   Rudder-Amplitude: a353ca07ba381d23ae587f2f74ea79a6c1563145
   Rudder-AppCenter: 9eca9241e3707a0e9610714dd91dc8da4bae7e1f
-  Rudder-Appsflyer: 8108ad9e323a5c0e9aeecdbfc4fa2dfe68497146
+  Rudder-Appsflyer: 5953f9dd9a03239b0686a110dff3bf48070f7b01
   Rudder-Braze: a1b41927b91b067f242c5576f6157e0cea9e59a2
   Rudder-CleverTap: a0085aab472e0e60930c4301ef80bae5ff187e98
   Rudder-Firebase: f20bcaf15e6dfa1d8e7b247db5dd791cee521a4e
@@ -1014,11 +1014,11 @@ SPEC CHECKSUMS:
   rudder-integration-moengage-react-native: c6ee8049aac3ed165d2daadd3dfce7c7169b5565
   rudder-integration-singular-react-native: 0951cfcd9651594cacca052c685c0dc6945997e1
   Rudder-Moengage: c30465e23740673495ff853eed607a5641f22c5c
-  rudder-plugin-db-encryption-react-native: 765cd279cd32e5250df6bdb1ed7bfcd70cd98f33
+  rudder-plugin-db-encryption-react-native: 1a647b4865bf3f97f94e250af063f360ab4cfd03
   Rudder-Singular: e22a4101ce043aded86b777bea873bf6a2af42b9
   RudderDatabaseEncryption: 95b436538412958eda771f5d81bd970a9ffe4eec
   RudderKit: f272f9872183946452ac94cd7bb2244a71e6ca8f
-  SDWebImage: 7ac2b7ddc5e8484c79aa90fc4e30b149d6a2c88f
+  SDWebImage: f9258c58221ed854cfa0e2b80ee4033710b1c6d3
   Singular-SDK: 614350e3ed21a06b02ab165b370b212f8aaacf2b
   SocketRocket: f32cd54efbe0f095c4d7594881e52619cfe80b17
   SQLCipher: f2e96b3822e3006b379181a0e4fd145f6de29b56
@@ -1027,4 +1027,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 805aa2c42ecf6748b55f4ac7682e7e7dcddd3040
 
-COCOAPODS: 1.11.3
+COCOAPODS: 1.14.3
