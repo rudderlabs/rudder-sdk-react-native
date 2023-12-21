@@ -2,6 +2,14 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [0.7.3](https://github.com/rudderlabs/rudder-sdk-react-native/compare/example-0.7.2...example-0.7.3) (2023-12-21)
+
+
+### Bug Fixes
+
+* compatibility issue of the rudder react native ios sdk with bugsnag ([#301](https://github.com/rudderlabs/rudder-sdk-react-native/issues/301)) ([5940331](https://github.com/rudderlabs/rudder-sdk-react-native/commit/594033133a8982af1f241c4019e7d44b42c77053))
+* update minimum version of ios sdk to 1.24.1 in dbEncryption plugin ([#302](https://github.com/rudderlabs/rudder-sdk-react-native/issues/302)) ([421cc94](https://github.com/rudderlabs/rudder-sdk-react-native/commit/421cc9416c87539e69b79c205aadd64dce0db02d))
+
 ## [0.7.2](https://github.com/rudderlabs/rudder-sdk-react-native/compare/example-0.7.1...example-0.7.2) (2023-12-11)
 
 
