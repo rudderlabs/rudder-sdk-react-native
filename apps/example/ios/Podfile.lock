@@ -602,7 +602,7 @@ PODS:
     - React-Core
   - RNRudderSdk (1.11.2):
     - React
-    - Rudder (< 2.0.0, >= 1.23.0)
+    - Rudder (< 2.0.0, >= 1.24.1)
   - RNSVG (13.9.0):
     - React-Core
   - RSCrashReporter (1.0.1)
@@ -995,7 +995,7 @@ SPEC CHECKSUMS:
   React-utils: b79f2411931f9d3ea5781404dcbb2fa8a837e13a
   ReactCommon: 4b2bdcb50a3543e1c2b2849ad44533686610826d
   RNCAsyncStorage: c913ede1fa163a71cea118ed4670bbaaa4b511bb
-  RNRudderSdk: 3113e10525cef12079c91b68ac755875cf5f042b
+  RNRudderSdk: be482ed0ae1be76a3e602907041f0d97dfcb949a
   RNSVG: 53c661b76829783cdaf9b7a57258f3d3b4c28315
   RSCrashReporter: 6b8376ac729b0289ebe0908553e5f56d8171f313
   Rudder: f80f8f7ef42a86e7472fd29eae3988a7c2739bfc
