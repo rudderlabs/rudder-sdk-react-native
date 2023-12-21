@@ -10,6 +10,9 @@ for projectFolder in ${projectFolderNames[@]}; do
   if [ "$packageName" = "sdk" ]; then
     packageName="rudder-sdk-react-native"
   fi
+  if [ "$packageName" = "plugins/rudder-plugin-db-encryption-react-native" ]; then
+    packageName="rudder-plugin-db-encryption-react-native"
+  fi
   cd libs
   cd $projectFolder
   package_version=$(jq -r .version package.json)
