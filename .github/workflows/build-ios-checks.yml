@@ -45,7 +45,7 @@ jobs:
           npm run setup:ci
 
       - name: Restore Pods cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: |
             apps/example/ios/Pods
