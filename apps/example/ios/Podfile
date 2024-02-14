@@ -5,7 +5,10 @@ require Pod::Executable.execute_command('node', ['-p',
     {paths: [process.argv[1]]},
   )', __dir__]).strip
 
-platform :ios, min_ios_version_supported
+versions = [13.0 , min_ios_version_supported]
+# Remove nil values and find the maximum version
+max_version = versions.compact.map(&:to_f).max
+platform :ios, max_version
 prepare_react_native_project!
 
 # If you are using a `react-native-flipper` your iOS build will fail when `NO_FLIPPER=1` is set.
@@ -49,10 +52,9 @@ target 'Example' do
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
 
-  # Note that if you have use_frameworks! enabled, then disable these lines
+  # Note that if you have use_frameworks! enabled, then comment out these lines
     pod 'FirebaseCore', :modular_headers => true
     pod 'GoogleUtilities', :modular_headers => true
-    pod 'RSCrashReporter', :modular_headers => true
 
   target 'ExampleTests' do
     inherit! :complete
@@ -66,20 +68,6 @@ target 'Example' do
       config[:reactNativePath],
       :mac_catalyst_enabled => false
     )
-
-    installer.pods_project.targets.each do |target|
-      target.build_configurations.each do |config|
-        config.build_settings['EXCLUDED_ARCHS[sdk=iphonesimulator*]'] = "arm64"
-        config.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] ||= ['$(inherited)', '_LIBCPP_ENABLE_CXX17_REMOVED_UNARY_BINARY_FUNCTION']
-
-        # XCode 15 issue: https://github.com/CocoaPods/CocoaPods/issues/12012#issuecomment-1653051943 (when use_frameworks! is enabled)
-        xcconfig_path = config.base_configuration_reference.real_path
-        xcconfig = File.read(xcconfig_path)
-        xcconfig_mod = xcconfig.gsub(/DT_TOOLCHAIN_DIR/, "TOOLCHAIN_DIR")
-        File.open(xcconfig_path, "w") { |file| file << xcconfig_mod }
-      end
-    end
-
     __apply_Xcode_12_5_M1_post_install_workaround(installer)
   end
 end
