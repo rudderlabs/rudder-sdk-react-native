@@ -5,10 +5,12 @@ require Pod::Executable.execute_command('node', ['-p',
     {paths: [process.argv[1]]},
   )', __dir__]).strip
 
+# This was added, as the `min_ios_version_supported` is defined in the `react-native/scripts/react_native_pods.rb` is `12.4`, and the `Rudder-Braze` requires `13.0` as the minimum version.
 versions = [13.0 , min_ios_version_supported]
 # Remove nil values and find the maximum version
 max_version = versions.compact.map(&:to_f).max
 platform :ios, max_version
+
 prepare_react_native_project!
 
 # If you are using a `react-native-flipper` your iOS build will fail when `NO_FLIPPER=1` is set.
