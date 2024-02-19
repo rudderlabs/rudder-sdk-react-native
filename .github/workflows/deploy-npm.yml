@@ -50,10 +50,6 @@ jobs:
           echo "last_version=$(echo $LAST_VERSION)" >> $GITHUB_ENV
           echo "DATE=$(date)" >> $GITHUB_ENV
 
-      - name: Build sdk package
-        run: |
-          nx run rudder-sdk-react-native:build
-
       - name: Build & Publish affected packages
         run: |
           npm run deploy:npm -- --base=$last_version --head=$current_version
