@@ -1,5 +1,5 @@
-## [1.11.3](https://github.com/rudderlabs/rudder-sdk-react-native/compare/rudder-sdk-react-native@1.11.2...rudder-sdk-react-native@1.11.3) (2023-12-21)
+## [1.12.0](https://github.com/rudderlabs/rudder-sdk-react-native/compare/rudder-sdk-react-native@1.11.3...rudder-sdk-react-native@1.12.0) (2024-02-16)
 
-### Bug Fixes
+### Features
 
-- compatibility issue of the rudder react native ios sdk with bugsnag ([#301](https://github.com/rudderlabs/rudder-sdk-react-native/issues/301)) ([5940331](https://github.com/rudderlabs/rudder-sdk-react-native/commit/594033133a8982af1f241c4019e7d44b42c77053))
+- **rudder-sdk-react-native:** provide tvOS support for the react native iOS sdk ([#316](https://github.com/rudderlabs/rudder-sdk-react-native/issues/316)) ([98a3f39](https://github.com/rudderlabs/rudder-sdk-react-native/commit/98a3f391cd7f55976fe38fb815b4fa3b24e09e77))
