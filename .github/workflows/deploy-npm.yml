@@ -3,7 +3,7 @@ name: Deploy to NPM
 on:
   workflow_dispatch:
   workflow_run:
-    workflows: ["Publish new github release"]
+    workflows: ['Publish new github release']
     types:
       - completed
 
@@ -49,6 +49,10 @@ jobs:
           echo "current_version=$(echo $CURRENT_VERSION)" >> $GITHUB_ENV
           echo "last_version=$(echo $LAST_VERSION)" >> $GITHUB_ENV
           echo "DATE=$(date)" >> $GITHUB_ENV
+
+      - name: Build sdk package
+        run: |
+          nx run rudder-sdk-react-native:build
 
       - name: Build & Publish affected packages
         run: |
