@@ -36,6 +36,7 @@ jobs:
         env:
           HUSKY: 0
         run: |
+          rm -rf node_modules
           npm run setup:ci
 
       - name: Get the two latest versions
