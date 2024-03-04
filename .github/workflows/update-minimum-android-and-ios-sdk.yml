@@ -25,7 +25,7 @@ jobs:
         run: echo "CURRENT_DATE=$(date +'%d%m%y')" >> $GITHUB_ENV
 
       - name: Create branch
-        uses: peterjgrainger/action-create-branch@v2.4.0
+        uses: peterjgrainger/action-create-branch@v3.0.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
