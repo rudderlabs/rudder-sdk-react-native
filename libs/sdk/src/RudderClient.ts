@@ -6,6 +6,7 @@ import bridge, { Configuration } from './NativeBridge';
 import { logInit, logDebug, logError, logWarn } from './Logger';
 import { SDK_VERSION } from './Constants';
 import IRudderContext from './IRudderContext';
+import { filterNaN } from './Util';
 
 const lock = new AsyncLock();
 
@@ -129,7 +130,7 @@ async function track(
     logWarn("track: 'event' must be a string");
     return;
   }
-  bridge.track(event, properties, options);
+  bridge.track(event, filterNaN(properties), filterNaN(options));
 }
 
 // wrapper for `screen` method
@@ -146,7 +147,7 @@ async function screen(
     logWarn("screen: 'name' must be a string");
     return;
   }
-  bridge.screen(name, properties, options);
+  bridge.screen(name, filterNaN(properties), filterNaN(options));
 }
 
 // wrapper for `identify` method
@@ -187,7 +188,7 @@ async function identify(
     return;
   }
 
-  bridge.identify(_userId, _traits, _options);
+  bridge.identify(_userId, filterNaN(_traits), filterNaN(_options));
 }
 
 // wrapper for `group` method
@@ -204,7 +205,7 @@ async function group(
     logWarn("group: 'groupId' must be a string");
     return;
   }
-  bridge.group(groupId, traits, options);
+  bridge.group(groupId, filterNaN(traits), filterNaN(options));
 }
 
 // wrapper for `alias` method
@@ -221,7 +222,7 @@ async function alias(newId: string, options: Record<string, unknown> | null | st
   if (typeof options == 'string') {
     bridge.alias(options, null);
   } else if (typeof options == 'object') {
-    bridge.alias(newId, options);
+    bridge.alias(newId, filterNaN(options));
   } else {
     bridge.alias(newId, null);
   }
@@ -280,6 +281,10 @@ async function putAnonymousId(anonymousId: string) {
 }
 
 async function reset(clearAnonymousId = false) {
+  if (typeof clearAnonymousId !== 'boolean') {
+    logWarn("reset: 'clearAnonymousId' must be a boolean");
+    return;
+  }
   bridge.reset(clearAnonymousId);
 }
 
@@ -288,6 +293,10 @@ async function flush() {
 }
 
 async function optOut(optOut: boolean) {
+  if (typeof optOut !== 'boolean') {
+    logWarn("optOut: 'optOut' must be a boolean");
+    return;
+  }
   bridge.optOut(optOut);
 }
 
