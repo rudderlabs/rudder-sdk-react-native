@@ -8,7 +8,7 @@ export function filterNaN(value: Record<string, unknown> | null): Record<string,
 
     try {
       for (const [key, val] of Object.entries(obj)) {
-        if (typeof val === 'number' && isNaN(val as number)) {
+        if (typeof val === 'number' && isNaN(val)) {
           // Drop NaN values, as it is not supported by the React Native bridge layer.
           continue;
         } else if (val === null) {
