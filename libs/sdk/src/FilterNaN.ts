@@ -26,7 +26,7 @@ function convertNestedObjects(obj: Record<string, unknown>): Record<string, unkn
 }
 
 function shouldDropValue(val: unknown): boolean {
-  return typeof val === 'number' && isNaN(val as number);
+  return typeof val === 'number' && isNaN(val);
 }
 
 function isObject(val: unknown): val is Record<string, unknown> {
@@ -48,7 +48,7 @@ function handleArrayValue(val: unknown[]): unknown[] {
         updatedArray.push(item);
       }
     } else {
-      updatedArray.push(convertNestedObjects(item as Record<string, unknown>));
+      updatedArray.push(convertNestedObjects(item));
     }
   }
 
