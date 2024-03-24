@@ -281,11 +281,11 @@ async function putAnonymousId(anonymousId: string) {
 }
 
 async function reset(clearAnonymousId = false) {
+  const clearAnonymousIdVal = clearAnonymousId === true;
   if (typeof clearAnonymousId !== 'boolean') {
     logWarn("reset: 'clearAnonymousId' must be a boolean");
-    return;
   }
-  bridge.reset(clearAnonymousId);
+  bridge.reset(clearAnonymousIdVal);
 }
 
 async function flush() {
@@ -293,11 +293,11 @@ async function flush() {
 }
 
 async function optOut(optOut: boolean) {
+  const optOutVal = optOut === true;
   if (typeof optOut !== 'boolean') {
     logWarn("optOut: 'optOut' must be a boolean");
-    return;
   }
-  bridge.optOut(optOut);
+  bridge.optOut(optOutVal);
 }
 
 // eslint-disable-next-line @typescript-eslint/ban-types
