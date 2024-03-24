@@ -256,7 +256,7 @@ RCT_EXPORT_METHOD(getSessionId:(RCTPromiseResolveBlock)resolve rejecter:(RCTProm
             }
         }
     } @catch (NSException *exception) {
-        [RSLogger logWarn:[NSString stringWithFormat:@"Error occured while handling options objecct: %@", exception]];
+        [RSLogger logWarn:[NSString stringWithFormat:@"Error occured while handling options object: %@", exception]];
     }
     return options;
 }
