@@ -10,14 +10,8 @@ function convertNestedObjects(obj: Record<string, unknown>): Record<string, unkn
       }
       if (val === null) {
         updatedObj[key] = null;
-      } else if (isObject(val)) {
-        if (!Array.isArray(val)) {
-          updatedObj[key] = handleObjectValue(val);
-        } else {
-          updatedObj[key] = handleArrayValue(val);
-        }
       } else {
-        updatedObj[key] = val;
+        updatedObj[key] = handleNestedValue(key, val);
       }
     }
   }
@@ -31,6 +25,18 @@ function shouldDropValue(val: unknown): boolean {
 
 function isObject(val: unknown): val is Record<string, unknown> {
   return val !== null && typeof val === 'object';
+}
+
+function handleNestedValue(key: string, val: unknown): unknown {
+  if (isObject(val)) {
+    if (!Array.isArray(val)) {
+      return handleObjectValue(val);
+    } else {
+      return handleArrayValue(val);
+    }
+  } else {
+    return val;
+  }
 }
 
 function handleObjectValue(val: Record<string, unknown>): Record<string, unknown> {
