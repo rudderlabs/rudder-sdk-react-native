@@ -3,20 +3,22 @@ import { logError } from './Logger';
 function convertNestedObjects(obj: Record<string, unknown>): Record<string, unknown> {
   const updatedObj: Record<string, unknown> = {};
 
-  for (const [key, val] of Object.entries(obj)) {
-    if (shouldDropValue(val)) {
-      continue;
-    }
-    if (val === null) {
-      updatedObj[key] = null;
-    } else if (isObject(val)) {
-      if (!Array.isArray(val)) {
-        updatedObj[key] = handleObjectValue(val);
-      } else {
-        updatedObj[key] = handleArrayValue(val);
+  if (typeof obj === 'object') {
+    for (const [key, val] of Object.entries(obj)) {
+      if (shouldDropValue(val)) {
+        continue;
       }
-    } else {
-      updatedObj[key] = val;
+      if (val === null) {
+        updatedObj[key] = null;
+      } else if (isObject(val)) {
+        if (!Array.isArray(val)) {
+          updatedObj[key] = handleObjectValue(val);
+        } else {
+          updatedObj[key] = handleArrayValue(val);
+        }
+      } else {
+        updatedObj[key] = val;
+      }
     }
   }
 
