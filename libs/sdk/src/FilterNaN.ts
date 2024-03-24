@@ -39,7 +39,6 @@ function handleArrayValue(val: unknown[]): unknown[] {
   const updatedArray: unknown[] = [];
 
   for (const item of val) {
-    console.log('Abhishek: item: ', item);
     if (!isObject(item)) {
       if (shouldDropValue(item)) {
         continue;
