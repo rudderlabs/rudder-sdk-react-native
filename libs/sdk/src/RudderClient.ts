@@ -6,7 +6,7 @@ import bridge, { Configuration } from './NativeBridge';
 import { logInit, logDebug, logError, logWarn } from './Logger';
 import { SDK_VERSION } from './Constants';
 import IRudderContext from './IRudderContext';
-import { filterNaN } from './Util';
+import { filterNaN } from './FilterNaN';
 
 const lock = new AsyncLock();
 
