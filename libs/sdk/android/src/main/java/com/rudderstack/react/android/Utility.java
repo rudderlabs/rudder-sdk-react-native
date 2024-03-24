@@ -21,7 +21,6 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 import javax.annotation.Nonnull;
 
@@ -108,7 +107,7 @@ public class Utility {
                     if (!isEmpty(externalIdsList)) {
                         for (int i = 0; i < externalIdsList.size(); i++) {
                             Map<String, Object> externalId = (Map<String, Object>) externalIdsList.get(i);
-                            if (isValidExternId(externalId)) {
+                            if (isExternalIdValid(externalId)) {
                                 options.putExternalId(getString(externalId.get("type")), getString(externalId.get("id")));
                             }
                         }
@@ -116,12 +115,13 @@ public class Utility {
                     }
                 }
             }
-            if (optionsMap.containsKey("integrations") && optionsMap.get("integrations") != null && optionsMap.get("integrations") instanceof Map) {
+            if (optionsMap.containsKey("integrations") && optionsMap.get("integrations") instanceof Map) {
                 Map<String, Object> integrationsMap = (Map<String, Object>) optionsMap.get("integrations");
                 if (!isEmpty(integrationsMap)) {
                     for (String key : integrationsMap.keySet()) {
-                        if (integrationsMap.get(key) != null && integrationsMap.get(key) instanceof Boolean) {
-                            options.putIntegration(key, getBoolean(integrationsMap.get(key)));
+                        Object value = integrationsMap.get(key);
+                        if (value instanceof Boolean) {
+                            options.putIntegration(key, getBoolean(value));
                         }
                     }
                 }
@@ -132,14 +132,12 @@ public class Utility {
         return options;
     }
 
-    private static boolean isValidExternId(Map<String, Object> externalId) {
-        if (externalId == null || externalId.isEmpty()) return false;
-        if (!externalId.containsKey("type") || !externalId.containsKey("id")) return false;
-        return externalId.get("type") != null && externalId.get("id") != null;
+    private static boolean isExternalIdValid(Map<String, Object> externalId) {
+        return (!isEmpty(externalId) && externalId.containsKey("type") && externalId.containsKey("id"));
     }
 
     public static String getString(Object obj) {
-        if (obj == null) return null;
+        if (obj == null) return "";
         return obj.toString();
     }
 
@@ -211,15 +209,17 @@ public class Utility {
         return defaultValue;
     }
 
-    public static boolean isEmpty(String str) {
-        return str == null || str.length() == 0;
-    }
-
-    public static boolean isEmpty(Map<String, Object> map) {
-        return map == null || map.isEmpty();
-    }
-
-    public static boolean isEmpty(List<Object> list) {
-        return list == null || list.isEmpty();
+    public static boolean isEmpty(Object value) {
+        if (value == null) return true;
+        if (value instanceof  String) {
+            return ((String) value).isEmpty();
+        }
+        if (value instanceof Map) {
+            return ((Map<?, ?>) value).isEmpty();
+        }
+        if (value instanceof List) {
+            return ((List<?>) value).isEmpty();
+        }
+        return false;
     }
 }
