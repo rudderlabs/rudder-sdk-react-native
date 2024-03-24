@@ -1,38 +1,66 @@
 import { logError } from './Logger';
 
-export function filterNaN(value: Record<string, unknown> | null): Record<string, unknown> | null {
-  if (value == null) return null;
+function convertNestedObjects(obj: Record<string, unknown>): Record<string, unknown> {
+  const updatedObj: Record<string, unknown> = {};
 
-  function convertNestedObjects(obj: Record<string, unknown>): Record<string, unknown> {
-    const updatedObj: Record<string, unknown> = {};
-
-    try {
-      if (typeof obj === 'object') {
-        for (const [key, val] of Object.entries(obj)) {
-          if (typeof val === 'number' && isNaN(val)) {
-            // Drop NaN values, as it is not supported by the React Native bridge layer.
-            continue;
-          } else if (val === null) {
-            updatedObj[key] = null;
-          } else if (typeof val === 'object') {
-            if (!Array.isArray(val)) {
-              updatedObj[key] = convertNestedObjects(val as Record<string, unknown>);
-            } else {
-              updatedObj[key] = val.map((item) => {
-                return convertNestedObjects(item as Record<string, unknown>);
-              });
-            }
-          } else {
-            updatedObj[key] = val;
-          }
-        }
-      }
-    } catch (error) {
-      logError('An error occurred while filtering NaN values: ' + error);
+  for (const [key, val] of Object.entries(obj)) {
+    if (shouldDropValue(val)) {
+      continue;
     }
-
-    return updatedObj;
+    if (val === null) {
+      updatedObj[key] = null;
+    } else if (isObject(val)) {
+      if (!Array.isArray(val)) {
+        updatedObj[key] = handleObjectValue(val);
+      } else {
+        updatedObj[key] = handleArrayValue(val);
+      }
+    } else {
+      updatedObj[key] = val;
+    }
   }
 
-  return convertNestedObjects(value);
+  return updatedObj;
+}
+
+function shouldDropValue(val: unknown): boolean {
+  return typeof val === 'number' && isNaN(val as number);
+}
+
+function isObject(val: unknown): val is Record<string, unknown> {
+  return val !== null && typeof val === 'object';
+}
+
+function handleObjectValue(val: Record<string, unknown>): Record<string, unknown> {
+  return convertNestedObjects(val);
+}
+
+function handleArrayValue(val: unknown[]): unknown[] {
+  const updatedArray: unknown[] = [];
+
+  for (const item of val) {
+    console.log('Abhishek: item: ', item);
+    if (!isObject(item)) {
+      if (shouldDropValue(item)) {
+        continue;
+      } else {
+        updatedArray.push(item);
+      }
+    } else {
+      updatedArray.push(convertNestedObjects(item as Record<string, unknown>));
+    }
+  }
+
+  return updatedArray;
+}
+
+export function filterNaN(value: Record<string, unknown> | null): Record<string, unknown> | null {
+  if (value === null) return null;
+  let updatedObj: Record<string, unknown> = {};
+  try {
+    updatedObj = convertNestedObjects(value);
+  } catch (error) {
+    logError('An error occurred while filtering NaN values: ' + error);
+  }
+  return updatedObj;
 }
