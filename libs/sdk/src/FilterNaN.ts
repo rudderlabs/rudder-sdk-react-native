@@ -12,33 +12,32 @@ const filterNaNInternal = (value: any) => {
   }
 
   let updatedObj: any;
-  switch (typeof value) {
-    case 'object':
-      if (Array.isArray(value)) {
-        updatedObj = [];
+  if (typeof value === 'object') {
+    if (Array.isArray(value)) {
+      updatedObj = [];
 
-        value.forEach((element) => {
-          if (!isValueNaN(element)) {
-            updatedObj.push(filterNaNInternal(element));
-          }
-        });
-      } else if (isPlainObject(value)) {
-        updatedObj = {};
-        Object.entries(value).forEach(([key, val]) => {
-          if (!isValueNaN(val)) {
-            updatedObj[key] = filterNaNInternal(val);
-          }
-        });
-      } else {
-        updatedObj = value;
-      }
-      break;
-    // We're not handling for 'number' type here
-    // because the assumption is that the input of the first invocation
-    // of this function is an object.
-    // For nested objects, we're already filtering the NaN values in the 'if' block.
-    default:
+      value.forEach((element) => {
+        if (!isValueNaN(element)) {
+          updatedObj.push(filterNaNInternal(element));
+        }
+      });
+    } else if (isPlainObject(value)) {
+      updatedObj = {};
+      Object.entries(value).forEach(([key, val]) => {
+        if (!isValueNaN(val)) {
+          updatedObj[key] = filterNaNInternal(val);
+        }
+      });
+    } else {
       updatedObj = value;
+    }
+  }
+  // We're not handling for 'number' type here
+  // because the assumption is that the input of the first invocation
+  // of this function is an object.
+  // For nested objects, we're already filtering the NaN values in the 'if' block.
+  else {
+    updatedObj = value;
   }
 
   return updatedObj;
