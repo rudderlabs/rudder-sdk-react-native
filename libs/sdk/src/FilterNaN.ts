@@ -1,73 +1,56 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { logError } from './Logger';
 
-function convertNestedObjects(obj: Record<string, unknown>): Record<string, unknown> {
-  const updatedObj: Record<string, unknown> = {};
+const isValueNaN = (val: any) => typeof val === 'number' && Number.isNaN(val);
 
-  if (typeof obj === 'object') {
-    for (const [key, val] of Object.entries(obj)) {
-      if (shouldDropValue(val)) {
-        continue;
-      }
-      if (val === null) {
-        updatedObj[key] = null;
+const isPlainObject = (value: any): value is object =>
+  Object.prototype.toString.call(value) === '[object Object]';
+
+const filterNaNInternal = (value: any) => {
+  if (value === null) {
+    return value;
+  }
+
+  let updatedObj: any;
+  switch (typeof value) {
+    case 'object':
+      if (Array.isArray(value)) {
+        updatedObj = [];
+
+        value.forEach((element) => {
+          if (!isValueNaN(element)) {
+            updatedObj.push(filterNaNInternal(element));
+          }
+        });
+      } else if (isPlainObject(value)) {
+        updatedObj = {};
+        Object.entries(value).forEach(([key, val]) => {
+          if (!isValueNaN(val)) {
+            updatedObj[key] = filterNaNInternal(val);
+          }
+        });
       } else {
-        updatedObj[key] = handleNestedValue(key, val);
+        updatedObj = value;
       }
-    }
+      break;
+    // We're not handling for 'number' type here
+    // because the assumption is that the input of the first invocation
+    // of this function is an object.
+    // For nested objects, we're already filtering the NaN values in the 'if' block.
+    default:
+      updatedObj = value;
   }
 
   return updatedObj;
-}
+};
 
-function shouldDropValue(val: unknown): boolean {
-  return typeof val === 'number' && isNaN(val);
-}
-
-function isObject(val: unknown): val is Record<string, unknown> {
-  return val !== null && typeof val === 'object';
-}
-
-function handleNestedValue(key: string, val: unknown): unknown {
-  if (isObject(val)) {
-    if (!Array.isArray(val)) {
-      return handleObjectValue(val);
-    } else {
-      return handleArrayValue(val);
-    }
-  } else {
-    return val;
-  }
-}
-
-function handleObjectValue(val: Record<string, unknown>): Record<string, unknown> {
-  return convertNestedObjects(val);
-}
-
-function handleArrayValue(val: unknown[]): unknown[] {
-  const updatedArray: unknown[] = [];
-
-  for (const item of val) {
-    if (!isObject(item)) {
-      if (shouldDropValue(item)) {
-        continue;
-      } else {
-        updatedArray.push(item);
-      }
-    } else {
-      updatedArray.push(convertNestedObjects(item));
-    }
-  }
-
-  return updatedArray;
-}
-
-export function filterNaN(value: Record<string, unknown> | null): Record<string, unknown> | null {
-  if (value === null) return null;
-  let updatedObj: Record<string, unknown> = {};
+const filterNaN = (value: Record<string, unknown> | null) => {
   try {
-    updatedObj = convertNestedObjects(value);
-  } catch (error) {
-    logError('An error occurred while filtering NaN values: ' + error);
+    return filterNaNInternal(value);
+  } catch (err) {
+    logError('An error occurred while filtering NaN values: ' + err);
+    return value;
   }
-  return updatedObj;
-}
+};
+
+export { filterNaN };
