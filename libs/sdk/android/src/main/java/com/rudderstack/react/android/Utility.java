@@ -3,9 +3,11 @@ package com.rudderstack.react.android;
 import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.bridge.ReadableMapKeySetIterator;
+import com.facebook.react.bridge.ReadableType;
 import com.facebook.react.bridge.WritableArray;
 import com.facebook.react.bridge.WritableNativeArray;
 import com.facebook.react.bridge.WritableNativeMap;
+import com.rudderstack.android.sdk.core.RudderLogger;
 import com.rudderstack.android.sdk.core.RudderTraits;
 import com.rudderstack.android.sdk.core.RudderOption;
 import com.facebook.react.bridge.WritableMap;
@@ -55,7 +57,7 @@ public class Utility {
         return map;
     }
 
-     public static List<Object> convertReadableArrayToList(ReadableArray readableArray) {
+    public static List<Object> convertReadableArrayToList(ReadableArray readableArray) {
         if (readableArray == null) return null;
 
         ArrayList<Object> array = new ArrayList<>();
@@ -96,25 +98,56 @@ public class Utility {
     static RudderOption convertReadableMapToOptions(ReadableMap readableMap) {
         if (readableMap == null) return null;
         RudderOption options = new RudderOption();
-        Map<String, Object> optionsMap = convertReadableMapToMap(readableMap);
-        String externalIdKeys[] = {"externalId", "externalIds"};
-        for (String externalIdKey : externalIdKeys) {
-            if (readableMap.hasKey(externalIdKey)) {
-                List<Object> externalIdsList = convertReadableArrayToList(readableMap.getArray(externalIdKey));
-                for (int i = 0; i < externalIdsList.size(); i++) {
-                    Map<String, Object> externalId = (Map<String, Object>) externalIdsList.get(i);
-                    options.putExternalId((String) externalId.get("type"), (String) externalId.get("id"));
+        try {
+            Map<String, Object> optionsMap = convertReadableMapToMap(readableMap);
+            String[] externalIdKeys = {"externalId", "externalIds"};
+            for (String externalIdKey : externalIdKeys) {
+                if (readableMap.hasKey(externalIdKey) && readableMap.getType(externalIdKey) == ReadableType.Array) {
+                    List<Object> externalIdsList = convertReadableArrayToList(readableMap.getArray(externalIdKey));
+                    if (!isEmpty(externalIdsList)) {
+                        for (int i = 0; i < externalIdsList.size(); i++) {
+                            Map<String, Object> externalId = (Map<String, Object>) externalIdsList.get(i);
+                            if (isExternalIdValid(externalId)) {
+                                options.putExternalId(getString(externalId.get("type")), getString(externalId.get("id")));
+                            }
+                        }
+                        break;
+                    }
                 }
-                break;
             }
-        }
-        if (optionsMap.containsKey("integrations")) {
-            Map<String, Object> integrationsMap = (Map<String, Object>) optionsMap.get("integrations");
-            for (String key : integrationsMap.keySet()) {
-                options.putIntegration(key, (boolean) integrationsMap.get(key));
+            if (optionsMap.containsKey("integrations") && optionsMap.get("integrations") instanceof Map) {
+                Map<String, Object> integrationsMap = (Map<String, Object>) optionsMap.get("integrations");
+                if (!isEmpty(integrationsMap)) {
+                    for (String key : integrationsMap.keySet()) {
+                        Object value = integrationsMap.get(key);
+                        if (value instanceof Boolean) {
+                            options.putIntegration(key, getBoolean(value));
+                        }
+                    }
+                }
             }
+        } catch (Exception e) {
+            RudderLogger.logError("Exception occurred while handling options: " + e.getMessage());
         }
         return options;
+    }
+
+    private static boolean isExternalIdValid(Map<String, Object> externalId) {
+        return (!isEmpty(externalId) && externalId.containsKey("type") && externalId.containsKey("id"));
+    }
+
+    public static String getString(Object obj) {
+        if (obj == null) return "";
+        return obj.toString();
+    }
+
+    public static boolean getBoolean(Object obj) {
+        if (obj == null) return false;
+        if (obj instanceof Boolean) {
+            return (Boolean) obj;
+        } else {
+            return false;
+        }
     }
 
     public static WritableMap convertJSONObjectToWriteAbleMap(JSONObject json) throws JSONException {
@@ -176,8 +209,17 @@ public class Utility {
         return defaultValue;
     }
 
-    @Nonnull
-    public static boolean isEmpty(String str) {
-        return str == null || str.length() == 0;
+    public static boolean isEmpty(Object value) {
+        if (value == null) return true;
+        if (value instanceof  String) {
+            return ((String) value).isEmpty();
+        }
+        if (value instanceof Map) {
+            return ((Map<?, ?>) value).isEmpty();
+        }
+        if (value instanceof List) {
+            return ((List<?>) value).isEmpty();
+        }
+        return false;
     }
 }
