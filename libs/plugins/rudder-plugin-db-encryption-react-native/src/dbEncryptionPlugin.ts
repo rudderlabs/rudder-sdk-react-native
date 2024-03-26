@@ -9,6 +9,7 @@ class DBEncryption implements IDBEncryption {
     this.enable = enable;
   }
 
+  // Add the encryption plugin
   async addDBEncryptionPlugin(key: string, enable: boolean): Promise<void> {
     await bridge.setup(key, enable);
   }

@@ -231,23 +231,32 @@ RCT_EXPORT_METHOD(getSessionId:(RCTPromiseResolveBlock)resolve rejecter:(RCTProm
 -(RSOption*) getRudderOptionsObject:(NSDictionary *) optionsDict {
     RSOption * options = [[RSOption alloc]init];
     NSArray *externalIdKeys = @[@"externalId", @"externalIds"];
-    for (NSString *externalIdKey in externalIdKeys) {
-        if([optionsDict objectForKey:externalIdKey])
-        {
-            NSArray *externalIdsArray =  [optionsDict objectForKey:externalIdKey];
-            for(NSDictionary *externalId in externalIdsArray) {
-                [options putExternalId:[externalId objectForKey:@"type"] withId:[externalId objectForKey:@"id"]];
+    @try {
+        for (NSString *externalIdKey in externalIdKeys) {
+            if([optionsDict objectForKey:externalIdKey]) {
+                NSArray *externalIdsArray =  [optionsDict objectForKey:externalIdKey];
+                for(NSDictionary *externalId in externalIdsArray) {
+                    id type = [externalId objectForKey:@"type"];
+                    id idValue = [externalId objectForKey:@"id"];
+                    if (type != nil && idValue != nil) {
+                        [options putExternalId:type withId:idValue];
+                    }
+                }
+                break;
             }
-            break;
         }
-    }
-    if([optionsDict objectForKey:@"integrations"])
-    {
-        NSDictionary *integrationsDict = [optionsDict objectForKey:@"integrations"];
-        for(NSString* key in integrationsDict)
-        {
-            [options putIntegration:key isEnabled:[[integrationsDict objectForKey:key] boolValue]];
+        if([optionsDict objectForKey:@"integrations"]) {
+            NSDictionary *integrationsDict = [optionsDict objectForKey:@"integrations"];
+            for(NSString* key in integrationsDict) {
+                id value = [integrationsDict objectForKey:key];
+                // Checking for NSNumber class, as there is no bool class in objective-c
+                if (value != nil && value != [NSNull null] && [value isKindOfClass:[NSNumber class]]) {
+                    [options putIntegration:key isEnabled:[[integrationsDict objectForKey:key] boolValue]];
+                }
+            }
         }
+    } @catch (NSException *exception) {
+        [RSLogger logWarn:[NSString stringWithFormat:@"Error occured while handling options object: %@", exception]];
     }
     return options;
 }
