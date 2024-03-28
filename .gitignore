@@ -110,3 +110,7 @@ buck-out/
 **/ios/Pods/
 **/vendor/bundle/
 apps/example-e2e/artifacts
+
+.nx/cache
+
+storybook-static
