@@ -101,8 +101,10 @@
     "deploy": {
       "executor": "ngx-deploy-npm:deploy",
       "options": {
+        "distFolderPath": "dist/libs/sdk",
         "access": "public"
-      }
+      },
+      "dependsOn": ["build"]
     }
   }
 }

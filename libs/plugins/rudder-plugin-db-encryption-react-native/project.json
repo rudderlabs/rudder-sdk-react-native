@@ -102,8 +102,10 @@
     "deploy": {
       "executor": "ngx-deploy-npm:deploy",
       "options": {
+        "distFolderPath": "dist/libs/rudder-plugin-db-encryption-react-native",
         "access": "public"
-      }
+      },
+      "dependsOn": ["build"]
     }
   }
 }

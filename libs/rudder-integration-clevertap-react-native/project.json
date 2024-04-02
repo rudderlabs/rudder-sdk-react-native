@@ -102,8 +102,10 @@
     "deploy": {
       "executor": "ngx-deploy-npm:deploy",
       "options": {
+        "distFolderPath": "dist/libs/rudder-integration-clevertap-react-native",
         "access": "public"
-      }
+      },
+      "dependsOn": ["build"]
     }
   }
 }
