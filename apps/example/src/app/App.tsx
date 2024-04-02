@@ -84,7 +84,6 @@ const initRudderReactNativeSDK = async () => {
     collectDeviceId: false,
     recordScreenViews: false,
     logLevel: RUDDER_LOG_LEVEL.VERBOSE,
-    sessionTimeout: 0,
     enableBackgroundMode: true,
     trackAppLifecycleEvents: true,
     autoSessionTracking: true,
