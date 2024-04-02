@@ -1239,7 +1239,7 @@ PODS:
     - React-Core
   - RNRudderSdk (1.12.1):
     - React
-    - Rudder (< 2.0.0, >= 1.24.1)
+    - Rudder (< 2.0.0, >= 1.26.0)
   - RNSVG (14.1.0):
     - React-Core
   - RSCrashReporter (1.0.1)
@@ -1666,7 +1666,7 @@ SPEC CHECKSUMS:
   React-utils: f5bc61e7ea3325c0732ae2d755f4441940163b85
   ReactCommon: 45b5d4f784e869c44a6f5a8fad5b114ca8f78c53
   RNCAsyncStorage: 826b603ae9c0f88b5ac4e956801f755109fa4d5c
-  RNRudderSdk: 805d4b7064714f3295bf5f152d3812cc67f67a93
+  RNRudderSdk: 00779f57dd947c095fd7b8871fd4fc9e4d58a3a0
   RNSVG: ba3e7232f45e34b7b47e74472386cf4e1a676d0a
   RSCrashReporter: 6b8376ac729b0289ebe0908553e5f56d8171f313
   Rudder: 5d5e5c1dd738fd6428384afdce40f045a61bcaf7
@@ -1695,6 +1695,6 @@ SPEC CHECKSUMS:
   SQLCipher: 838309284f29953a28ad2e81d87d55ea6b7c74fd
   Yoga: 13c8ef87792450193e117976337b8527b49e8c03
 
-PODFILE CHECKSUM: a8db1776ed26a355d279b4a3bd165d555095a062
+PODFILE CHECKSUM: fc99b861be2567e7ad4e3ce4138c629440cc9d2e
 
 COCOAPODS: 1.14.3
