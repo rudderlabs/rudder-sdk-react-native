@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from 'react-native';
+import { Button, Platform } from 'react-native';
 import rudderClient, { IRudderContext } from '@rudderstack/rudder-sdk-react-native';
 
 const RudderEvents = () => {
@@ -100,7 +100,7 @@ const RudderEvents = () => {
   };
 
   const reset = () => {
-    rudderClient.reset(true);
+    rudderClient.reset(false);
   };
 
   const getSessionId = async () => {
@@ -122,6 +122,24 @@ const RudderEvents = () => {
     console.log(`${JSON.stringify(context)}`);
   };
 
+  const putAdvertisingId = async () => {
+    switch (Platform.OS) {
+      case 'ios':
+        await rudderClient.putAdvertisingId('iOS-ADVERTISING-ID');
+        console.log('Setting iOS Advertising ID');
+        break;
+      case 'android':
+        await rudderClient.putAdvertisingId('ANDROID-ADVERTISING-ID');
+        console.log('Setting Android Advertising ID');
+        break;
+    }
+  };
+
+  const clearAdvertisingId = async () => {
+    await rudderClient.clearAdvertisingId();
+    console.log('Cleared Advertising ID');
+  };
+
   return (
     <>
       <Button title="Identify" onPress={identify} />
@@ -138,6 +156,8 @@ const RudderEvents = () => {
       <Button title="enableOptOut()" onPress={enableOptOut} />
       <Button title="disableOptOut()" onPress={disableOptOut} />
       <Button title="getRudderContext()" onPress={getRudderContext} />
+      <Button title="putAdvertisingId()" onPress={putAdvertisingId} />
+      <Button title="clearAdvertisingId()" onPress={clearAdvertisingId} />
     </>
   );
 };
