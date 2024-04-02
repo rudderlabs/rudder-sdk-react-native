@@ -171,6 +171,13 @@ RCT_EXPORT_METHOD(putAdvertisingId:(NSString*)id) {
     }
 }
 
+RCT_EXPORT_METHOD(clearAdvertisingId) {
+    if (![self isRudderClientInitializedAndReady]) {
+        return;
+    }
+    [[RSClient sharedInstance] clearAdvertisingId];
+}
+
 RCT_EXPORT_METHOD(putAnonymousId:(NSString*)id) {
     if (id != nil && [id length] != 0) {
     [RSClient putAnonymousId:id];

@@ -50,6 +50,7 @@ export interface Bridge {
   optOut(optOut: boolean): Promise<void>;
   putDeviceToken(token: string): Promise<void>;
   putAdvertisingId(id: string): Promise<void>;
+  clearAdvertisingId(): Promise<void>;
   putAnonymousId(id: string): Promise<void>;
   // eslint-disable-next-line @typescript-eslint/ban-types
   registerCallback(integrationName: string, callback: Function): Promise<void>;
