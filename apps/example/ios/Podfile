@@ -76,6 +76,18 @@ target 'Example' do
 
         # Setting the deployment target to 13.0 to solve the build error
         # config.build_settings.delete 'IPHONEOS_DEPLOYMENT_TARGET'
+
+        # XCdoe 15.3 build issue: https://github.com/facebook/react-native/issues/43335#issuecomment-1980708164
+        if target.name == 'Flipper'
+        file_path = 'Pods/Flipper/xplat/Flipper/FlipperTransportTypes.h'
+        contents = File.read(file_path)
+        unless contents.include?('#include <functional>')
+          File.open(file_path, 'w') do |file|
+            file.puts('#include <functional>')
+            file.puts(contents)
+          end
+        end
+      end
       end
     end
 
