@@ -52,7 +52,7 @@
       }
     },
     "lint": {
-      "executor": "@nx/linter:eslint",
+      "executor": "@nx/eslint:lint",
       "outputs": ["{options.outputFile}"],
       "options": {
         "lintFilePatterns": ["libs/sdk/src/**/*.{ts,tsx,js,jsx}"]
@@ -101,8 +101,10 @@
     "deploy": {
       "executor": "ngx-deploy-npm:deploy",
       "options": {
+        "distFolderPath": "dist/libs/sdk",
         "access": "public"
-      }
+      },
+      "dependsOn": ["build"]
     }
   }
 }
