@@ -2,6 +2,13 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [0.9.0](https://github.com/rudderlabs/rudder-sdk-react-native/compare/example-0.8.0...example-0.9.0) (2024-04-09)
+
+
+### Features
+
+* **example:** update android and ios sample apps ([697ec7e](https://github.com/rudderlabs/rudder-sdk-react-native/commit/697ec7ea9721ec010add78ac051b9c800210adb8))
+
 ## [0.8.0](https://github.com/rudderlabs/rudder-sdk-react-native/compare/example-0.7.3...example-0.8.0) (2024-02-15)
 
 
