@@ -265,6 +265,10 @@ async function putAdvertisingId(advertisingId: string) {
   }
 }
 
+async function clearAdvertisingId() {
+  bridge.clearAdvertisingId();
+}
+
 /**
  * @deprecated use putAnonymousId{@link putAnonymousId(anonymousId: string)} instead
  */
@@ -356,6 +360,7 @@ const rudderClient = {
   putDeviceToken,
   putAdvertisingId,
   setAdvertisingId,
+  clearAdvertisingId,
   putAnonymousId,
   setAnonymousId,
   registerCallback,

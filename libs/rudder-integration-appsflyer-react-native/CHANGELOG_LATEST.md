@@ -1,8 +1,6 @@
-## [1.5.9](https://github.com/rudderlabs/rudder-sdk-react-native/compare/rudder-integration-appsflyer-react-native@1.5.8...rudder-integration-appsflyer-react-native@1.5.9) (2023-10-03)
+## [1.6.0](https://github.com/rudderlabs/rudder-sdk-react-native/compare/rudder-integration-appsflyer-react-native@1.5.9...rudder-integration-appsflyer-react-native@1.6.0) (2024-04-09)
 
+### Features
 
-### Bug Fixes
-
-* **rudder-integration-appsflyer-react-native:** make appsflyer compatible with gradle 8 ([df291c5](https://github.com/rudderlabs/rudder-sdk-react-native/commit/df291c581d2e77db1624aa460fb801e1198896c9))
-* **rudder-integration-appsflyer-react-native:** make appsflyer iOS SDKs compatible with dynamic and static frameworks ([8381d08](https://github.com/rudderlabs/rudder-sdk-react-native/commit/8381d0864bc7c4272d769ea8f705b84f212a2a96))
-
+- **rudder-integration-appsflyer-react-native:** change linter to eslint ([744a402](https://github.com/rudderlabs/rudder-sdk-react-native/commit/744a40228cd95745dbe7066a882cdd152626f5e9))
+- **rudder-integration-appsflyer-react-native:** change metro-react-native-babel-preset to @react-native/babel-preset ([4a919ec](https://github.com/rudderlabs/rudder-sdk-react-native/commit/4a919ec4acc3226a85109d91155acf07f28282a2))

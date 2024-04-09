@@ -5,12 +5,7 @@ require Pod::Executable.execute_command('node', ['-p',
     {paths: [process.argv[1]]},
   )', __dir__]).strip
 
-# This was added, as the `min_ios_version_supported` is defined in the `react-native/scripts/react_native_pods.rb` is `12.4`, and the `Rudder-Braze` requires `13.0` as the minimum version.
-versions = [13.0 , min_ios_version_supported]
-# Remove nil values and find the maximum version
-max_version = versions.compact.map(&:to_f).max
-platform :ios, max_version
-
+platform :ios, min_ios_version_supported
 prepare_react_native_project!
 
 # If you are using a `react-native-flipper` your iOS build will fail when `NO_FLIPPER=1` is set.
@@ -37,14 +32,9 @@ target 'Example' do
 
   config = use_native_modules!
 
-  # Flags change depending on the env values.
-  flags = get_default_flags()
-
   use_react_native!(
-    :path => config[:reactNativePath],
-    # Hermes is now enabled by default. Disable by setting this flag to false.
-    :hermes_enabled => flags[:hermes_enabled],
-    :fabric_enabled => flags[:fabric_enabled],
+    :path => "../../#{config[:reactNativePath]}", # I've commented out the next line and added this line to resolve the build error caused by the use of use_frameworks! on react-native v0.73.x, due to yoga header path issue, refer here: https://github.com/facebook/react-native/issues/41938#issuecomment-1925888879.
+    # :path => config[:reactNativePath],
     # Enables Flipper.
     #
     # Note that if you have use_frameworks! enabled, Flipper will not work and
@@ -76,19 +66,33 @@ target 'Example' do
 
     installer.pods_project.targets.each do |target|
       target.build_configurations.each do |config|
+        # This is to solve "Undefined symbols for architecture x86_64" error
         config.build_settings['EXCLUDED_ARCHS[sdk=iphonesimulator*]'] = "arm64"
-        config.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] ||= ['$(inherited)', '_LIBCPP_ENABLE_CXX17_REMOVED_UNARY_BINARY_FUNCTION']
+        # config.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] ||= ['$(inherited)', '_LIBCPP_ENABLE_CXX17_REMOVED_UNARY_BINARY_FUNCTION']
         # XCode 15 issue: https://github.com/CocoaPods/CocoaPods/issues/12012#issuecomment-1653051943 (when use_frameworks! is enabled)
-        xcconfig_path = config.base_configuration_reference.real_path
-        xcconfig = File.read(xcconfig_path)
-        xcconfig_mod = xcconfig.gsub(/DT_TOOLCHAIN_DIR/, "TOOLCHAIN_DIR")
-        File.open(xcconfig_path, "w") { |file| file << xcconfig_mod }
+        # xcconfig_path = config.base_configuration_reference.real_path
+        # xcconfig = File.read(xcconfig_path)
+        # xcconfig_mod = xcconfig.gsub(/DT_TOOLCHAIN_DIR/, "TOOLCHAIN_DIR")
+        # File.open(xcconfig_path, "w") { |file| file << xcconfig_mod }
 
         # Setting the deployment target to 13.0 to solve the build error
-        config.build_settings.delete 'IPHONEOS_DEPLOYMENT_TARGET'
+        # config.build_settings.delete 'IPHONEOS_DEPLOYMENT_TARGET'
+
+        # XCdoe 15.3 build issue: https://github.com/facebook/react-native/issues/43335#issuecomment-1980708164
+        if target.name == 'Flipper'
+        file_path = 'Pods/Flipper/xplat/Flipper/FlipperTransportTypes.h'
+        contents = File.read(file_path)
+        unless contents.include?('#include <functional>')
+          File.open(file_path, 'w') do |file|
+            file.puts('#include <functional>')
+            file.puts(contents)
+          end
+        end
+      end
       end
     end
 
-    __apply_Xcode_12_5_M1_post_install_workaround(installer)
+    #  No longer needed
+    # __apply_Xcode_12_5_M1_post_install_workaround(installer)
   end
 end

@@ -52,7 +52,7 @@
       }
     },
     "lint": {
-      "executor": "@nx/linter:eslint",
+      "executor": "@nx/eslint:lint",
       "outputs": ["{options.outputFile}"],
       "options": {
         "lintFilePatterns": [
@@ -95,15 +95,17 @@
     "github": {
       "executor": "@jscutlery/semver:github",
       "options": {
-        "tag": "rudder-integration-amplitude-react-native@1.0.9",
+        "tag": "rudder-integration-amplitude-react-native@1.1.0",
         "notesFile": "./libs/rudder-integration-amplitude-react-native/CHANGELOG_LATEST.md"
       }
     },
     "deploy": {
       "executor": "ngx-deploy-npm:deploy",
       "options": {
+        "distFolderPath": "dist/libs/rudder-integration-amplitude-react-native",
         "access": "public"
-      }
+      },
+      "dependsOn": ["build"]
     }
   }
 }

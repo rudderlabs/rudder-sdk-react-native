@@ -1,7 +1,7 @@
 {
   "name": "@rudderstack/rudder-integration-clevertap-react-native",
   "title": "Rudder Integration CleverTap React Native",
-  "version": "1.0.12",
+  "version": "1.1.0",
   "description": "Rudder React Native SDK CleverTap Device mode support for Android and iOS",
   "keywords": [
     "react-native",

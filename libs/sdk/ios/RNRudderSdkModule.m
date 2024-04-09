@@ -162,13 +162,14 @@ RCT_EXPORT_METHOD(optOut:(BOOL)optOut)
 }
 
 RCT_EXPORT_METHOD(putAdvertisingId:(NSString*)id) {
+    [RSClient putAdvertisingId:id];
+}
+
+RCT_EXPORT_METHOD(clearAdvertisingId) {
     if (![self isRudderClientInitializedAndReady]) {
         return;
     }
-    RSContext* rudderContext = [[RSClient sharedInstance] getContext];
-    if (rudderContext != nil && id != nil && [id length] != 0) {
-        [rudderContext putAdvertisementId:id];
-    }
+    [[RSClient sharedInstance] clearAdvertisingId];
 }
 
 RCT_EXPORT_METHOD(putAnonymousId:(NSString*)id) {

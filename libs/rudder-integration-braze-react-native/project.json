@@ -52,7 +52,7 @@
       }
     },
     "lint": {
-      "executor": "@nx/linter:eslint",
+      "executor": "@nx/eslint:lint",
       "outputs": ["{options.outputFile}"],
       "options": {
         "lintFilePatterns": ["libs/rudder-integration-braze-react-native/src/**/*.{ts,tsx,js,jsx}"]
@@ -92,15 +92,17 @@
     "github": {
       "executor": "@jscutlery/semver:github",
       "options": {
-        "tag": "rudder-integration-braze-react-native@1.2.0",
+        "tag": "rudder-integration-braze-react-native@1.3.0",
         "notesFile": "./libs/rudder-integration-braze-react-native/CHANGELOG_LATEST.md"
       }
     },
     "deploy": {
       "executor": "ngx-deploy-npm:deploy",
       "options": {
+        "distFolderPath": "dist/libs/rudder-integration-braze-react-native",
         "access": "public"
-      }
+      },
+      "dependsOn": ["build"]
     }
   }
 }
