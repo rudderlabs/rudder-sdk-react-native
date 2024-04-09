@@ -95,7 +95,7 @@
     "github": {
       "executor": "@jscutlery/semver:github",
       "options": {
-        "tag": "rudder-plugin-db-encryption-react-native@1.0.3",
+        "tag": "rudder-plugin-db-encryption-react-native@1.1.0",
         "notesFile": "./libs/plugins/rudder-plugin-db-encryption-react-native/CHANGELOG_LATEST.md"
       }
     },
