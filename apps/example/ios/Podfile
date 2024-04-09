@@ -33,7 +33,8 @@ target 'Example' do
   config = use_native_modules!
 
   use_react_native!(
-    :path => config[:reactNativePath],
+    :path => "../../#{config[:reactNativePath]}", # I've commented out the next line and added this line to resolve the build error caused by the use of use_frameworks! on react-native v0.73.x, due to yoga header path issue, refer here: https://github.com/facebook/react-native/issues/41938#issuecomment-1925888879.
+    # :path => config[:reactNativePath],
     # Enables Flipper.
     #
     # Note that if you have use_frameworks! enabled, Flipper will not work and
@@ -76,6 +77,18 @@ target 'Example' do
 
         # Setting the deployment target to 13.0 to solve the build error
         # config.build_settings.delete 'IPHONEOS_DEPLOYMENT_TARGET'
+
+        # XCdoe 15.3 build issue: https://github.com/facebook/react-native/issues/43335#issuecomment-1980708164
+        if target.name == 'Flipper'
+        file_path = 'Pods/Flipper/xplat/Flipper/FlipperTransportTypes.h'
+        contents = File.read(file_path)
+        unless contents.include?('#include <functional>')
+          File.open(file_path, 'w') do |file|
+            file.puts('#include <functional>')
+            file.puts(contents)
+          end
+        end
+      end
       end
     end
 

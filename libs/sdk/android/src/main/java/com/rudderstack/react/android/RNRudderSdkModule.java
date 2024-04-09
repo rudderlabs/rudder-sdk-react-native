@@ -223,6 +223,14 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
+    public void clearAdvertisingId() {
+        if (!isRudderClientInitializedAndReady()) {
+            return;
+        }
+        rudderClient.clearAdvertisingId();
+    }
+
+    @ReactMethod
     public void putAnonymousId(String id) {
         if (!TextUtils.isEmpty(id)) {
             RudderClient.putAnonymousId(id);
