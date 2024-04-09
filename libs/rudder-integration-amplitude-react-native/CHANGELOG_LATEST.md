@@ -1,8 +1,6 @@
-## [1.0.9](https://github.com/rudderlabs/rudder-sdk-react-native/compare/rudder-integration-amplitude-react-native@1.0.8...rudder-integration-amplitude-react-native@1.0.9) (2023-10-03)
+## [1.1.0](https://github.com/rudderlabs/rudder-sdk-react-native/compare/rudder-integration-amplitude-react-native@1.0.9...rudder-integration-amplitude-react-native@1.1.0) (2024-04-09)
 
+### Features
 
-### Bug Fixes
-
-* **rudder-integration-amplitude-react-native:** make amplitude compatible with gradle 8 ([561934d](https://github.com/rudderlabs/rudder-sdk-react-native/commit/561934d5be02fbce43c0728a97cf568963194316))
-* **rudder-integration-amplitude-react-native:** make amplitude iOS SDKs compatible with dynamic and static frameworks ([9643019](https://github.com/rudderlabs/rudder-sdk-react-native/commit/96430195af423c0480bf61f51c3c34a3f34e28e4))
-
+- **rudder-integration-amplitude-react-native:** change linter to eslint ([8156017](https://github.com/rudderlabs/rudder-sdk-react-native/commit/8156017fa9ab275991d0baa59d6258a303425902))
+- **rudder-integration-amplitude-react-native:** change metro-react-native-babel-preset to @react-native/babel-preset ([0fa1f9e](https://github.com/rudderlabs/rudder-sdk-react-native/commit/0fa1f9e6ac04152c5144db74cf9b429ccf896709))

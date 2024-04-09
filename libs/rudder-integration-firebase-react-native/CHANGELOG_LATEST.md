@@ -1,8 +1,6 @@
-## [1.0.19](https://github.com/rudderlabs/rudder-sdk-react-native/compare/rudder-integration-firebase-react-native@1.0.18...rudder-integration-firebase-react-native@1.0.19) (2023-10-03)
+## [1.1.0](https://github.com/rudderlabs/rudder-sdk-react-native/compare/rudder-integration-firebase-react-native@1.0.19...rudder-integration-firebase-react-native@1.1.0) (2024-04-09)
 
+### Features
 
-### Bug Fixes
-
-* **rudder-integration-firebase-react-native:** make firebase compatible with gradle 8 ([60bb0df](https://github.com/rudderlabs/rudder-sdk-react-native/commit/60bb0dfea23bc43c67131f986ccf50a6046960bb))
-* **rudder-integration-firebase-react-native:** make firebase iOS SDKs compatible with dynamic and static frameworks ([6bb9481](https://github.com/rudderlabs/rudder-sdk-react-native/commit/6bb94817f3d94d102df2edf2bb3bead16ebc3015))
-
+- **rudder-integration-firebase-react-native:** change linter to eslint ([4a347dc](https://github.com/rudderlabs/rudder-sdk-react-native/commit/4a347dc8498e3ff555bc5ebc01e8827000da7769))
+- **rudder-integration-firebase-react-native:** change metro-react-native-babel-preset to @react-native/babel-preset ([2e95155](https://github.com/rudderlabs/rudder-sdk-react-native/commit/2e9515514606979d11f6a29b3d0db1c6e2f12e39))
