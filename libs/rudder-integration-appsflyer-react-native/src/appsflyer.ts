@@ -232,6 +232,11 @@ function setOneLinkCustomDomains(domains: any, successC: any, errorC: any) {
   return bridge.setOneLinkCustomDomains(getStringArray(domains), successC, errorC);
 }
 
+async function getAppsFlyerId(): Promise<string> {
+  const appsflyerId: string = await bridge.getAppsFlyerId();
+  return appsflyerId;
+}
+
 export {
   onDeepLink,
   onInstallConversionData,
@@ -242,5 +247,6 @@ export {
   updateServerUninstallToken,
   setCustomerUserId,
   setOneLinkCustomDomains,
+  getAppsFlyerId,
 };
 export default setup;
