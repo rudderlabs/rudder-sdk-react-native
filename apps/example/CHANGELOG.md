@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [0.9.1](https://github.com/rudderlabs/rudder-sdk-react-native/compare/example-0.9.0...example-0.9.1) (2024-04-24)
+
+
+### Bug Fixes
+
+* add a wrapper for the getAppsFlyerId API ([#337](https://github.com/rudderlabs/rudder-sdk-react-native/issues/337)) ([67e0f34](https://github.com/rudderlabs/rudder-sdk-react-native/commit/67e0f3495cb74051e3a0834214ea29528530d702))
+* **rudder-integration-appcenter-react-native:** add a wrapper for the enable and disable analytics APIs ([#339](https://github.com/rudderlabs/rudder-sdk-react-native/issues/339)) ([78af2a0](https://github.com/rudderlabs/rudder-sdk-react-native/commit/78af2a00b33b6e052202069914044c405b0e987e))
+* update the version of iOS SDK to address the Privacy Manifest issue ([#342](https://github.com/rudderlabs/rudder-sdk-react-native/issues/342)) ([d81214c](https://github.com/rudderlabs/rudder-sdk-react-native/commit/d81214cf64c0ee94c5cb2e86c1950dad79f823e2))
+
 ## [0.9.0](https://github.com/rudderlabs/rudder-sdk-react-native/compare/example-0.8.0...example-0.9.0) (2024-04-09)
 
 
