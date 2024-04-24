@@ -5,6 +5,7 @@ import {
   enableAnalytics,
   disableAnalytics,
 } from '@rudderstack/rudder-integration-appcenter-react-native';
+import { getAppsFlyerId } from '@rudderstack/rudder-integration-appsflyer-react-native';
 
 const RudderEvents = () => {
   const identify = async () => {
@@ -151,6 +152,11 @@ const RudderEvents = () => {
   const disableAppCenterAnalytics = async () => {
     await disableAnalytics();
   };
+  
+  const appsFlyerId = async () => {
+    const appsFlyerId = await getAppsFlyerId();
+    console.log(`AppsFlyer ID: ${appsFlyerId}`);
+  };
 
   return (
     <>
@@ -172,6 +178,7 @@ const RudderEvents = () => {
       <Button title="clearAdvertisingId()" onPress={clearAdvertisingId} />
       <Button title="enable AppCenter Analytics()" onPress={enableAppCenterAnalytics} />
       <Button title="disable AppCenter Analytics()" onPress={disableAppCenterAnalytics} />
+      <Button title="getAppsFlyerId()" onPress={appsFlyerId} />
     </>
   );
 };

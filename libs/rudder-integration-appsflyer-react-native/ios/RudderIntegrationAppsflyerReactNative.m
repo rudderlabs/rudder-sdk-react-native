@@ -39,10 +39,14 @@ RCT_EXPORT_METHOD(setup: (NSString*)devKey withDebug: (BOOL) isDebug withConvers
     resolve(nil);
 }
 
-RCT_EXPORT_METHOD(getAppsFlyerId:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
-{
-    NSString *appsflyerId = [AppsFlyerLib shared].getAppsFlyerUID;
-    resolve(appsflyerId);
+RCT_EXPORT_METHOD(getAppsFlyerId:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject) {
+    @try {
+        NSString *appsflyerId = [AppsFlyerLib shared].getAppsFlyerUID;
+        resolve(appsflyerId);
+    } @catch (NSException *exception) {
+        NSString *errorMessage = [NSString stringWithFormat:@"%@", exception.reason];
+        reject(@"getAppsFlyerId_error", errorMessage, nil);
+    }
 }
 
 - (void)didResolveDeepLink:(AppsFlyerDeepLinkResult* _Nonnull) result {
