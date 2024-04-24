@@ -81,8 +81,12 @@ public class RudderIntegrationAppsflyerReactNativeModule extends ReactContextBas
 
     @ReactMethod
     public void getAppsFlyerId(Promise promise) {
-        String appsFlyerId = AppsFlyerLib.getInstance().getAppsFlyerUID(reactContext);
-        promise.resolve(appsFlyerId);
+        try {
+            String appsFlyerId = AppsFlyerLib.getInstance().getAppsFlyerUID(reactContext);
+            promise.resolve(appsFlyerId);
+        } catch(Exception e) {
+            promise.reject(e);
+        }
     }
 
     private DeepLinkListener registerDeepLinkListener() {
