@@ -10,9 +10,9 @@ PODS:
   - AppCenter/Core (5.0.4)
   - AppCenter/Crashes (5.0.4):
     - AppCenter/Core
-  - AppsFlyerFramework (6.14.0):
-    - AppsFlyerFramework/Main (= 6.14.0)
-  - AppsFlyerFramework/Main (6.14.0)
+  - AppsFlyerFramework (6.14.2):
+    - AppsFlyerFramework/Main (= 6.14.2)
+  - AppsFlyerFramework/Main (6.14.2)
   - boost (1.83.0)
   - BrazeKit (7.5.0)
   - CleverTap-iOS-SDK (4.2.2):
@@ -1239,11 +1239,11 @@ PODS:
     - React-Core
   - RNRudderSdk (1.13.0):
     - React
-    - Rudder (< 2.0.0, >= 1.26.0)
+    - Rudder (< 2.0.0, >= 1.26.3)
   - RNSVG (14.1.0):
     - React-Core
   - RSCrashReporter (1.0.1)
-  - Rudder (1.26.2):
+  - Rudder (1.26.3):
     - MetricsReporter (= 1.2.1)
   - Rudder-Amplitude (1.1.1):
     - Amplitude (= 8.16.0)
@@ -1592,7 +1592,7 @@ SPEC CHECKSUMS:
   Amplitude: 4daad8eb8193b15353221dfd96c52220367cb3e8
   AnalyticsConnector: a53214d38ae22734c6266106c0492b37832633a9
   AppCenter: 85c92db0759d2792a65eb61d6842d2e86611a49a
-  AppsFlyerFramework: 84e73360fc5b277da2a9322281c21cc467eaf023
+  AppsFlyerFramework: b3de9a49c6af8a8e38c44603e468b5e207f22466
   boost: d3f49c53809116a5d38da093a8aa78bf551aed09
   BrazeKit: 55dfadd08105765a568137f5d24d46894186db65
   CleverTap-iOS-SDK: 36c21b8a671d87a0f9c7b389b339d02528bbe4d7
@@ -1666,10 +1666,10 @@ SPEC CHECKSUMS:
   React-utils: f5bc61e7ea3325c0732ae2d755f4441940163b85
   ReactCommon: 45b5d4f784e869c44a6f5a8fad5b114ca8f78c53
   RNCAsyncStorage: 826b603ae9c0f88b5ac4e956801f755109fa4d5c
-  RNRudderSdk: ad5c072dcb874d9fe04f7e0f98dc6fc50e52b9f0
+  RNRudderSdk: c27e1d1cc0bf152b860f9bf5e5d75826102f24bb
   RNSVG: ba3e7232f45e34b7b47e74472386cf4e1a676d0a
   RSCrashReporter: 6b8376ac729b0289ebe0908553e5f56d8171f313
-  Rudder: 2cb1d3feabeb46cf0b34921e99d464cd8a5dbc5f
+  Rudder: 23456f79749849870e18c45bd250d6e2229a7147
   Rudder-Amplitude: a353ca07ba381d23ae587f2f74ea79a6c1563145
   Rudder-AppCenter: 9eca9241e3707a0e9610714dd91dc8da4bae7e1f
   Rudder-Appsflyer: 4a25dc0339185d2d7c89f8455d946f7bdb359036

@@ -152,7 +152,7 @@ const RudderEvents = () => {
   const disableAppCenterAnalytics = async () => {
     await disableAnalytics();
   };
-  
+
   const appsFlyerId = async () => {
     const appsFlyerId = await getAppsFlyerId();
     console.log(`AppsFlyer ID: ${appsFlyerId}`);
