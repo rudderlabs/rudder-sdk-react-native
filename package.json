@@ -1,6 +1,6 @@
 {
   "name": "@rudderstack/rudder-sdk-react-native-monorepo",
-  "version": "2.25.0",
+  "version": "2.26.0",
   "description": "Rudder React Native SDK monorepo",
   "keywords": [
     "react-native",
@@ -161,7 +161,8 @@
     "unset-value": "2.0.1",
     "yaml": "2.2.2",
     "@babel/traverse": "7.23.2",
-    "ip": "2.0.1"
+    "ip": "2.0.1",
+    "git-raw-commits": "4.0.0"
   },
   "lint-staged": {
     "*.{js,ts,tsx}": "eslint --cache --fix",

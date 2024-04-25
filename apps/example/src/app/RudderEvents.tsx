@@ -1,6 +1,11 @@
 import React from 'react';
 import { Button, Platform } from 'react-native';
 import rudderClient, { IRudderContext } from '@rudderstack/rudder-sdk-react-native';
+import {
+  enableAnalytics,
+  disableAnalytics,
+} from '@rudderstack/rudder-integration-appcenter-react-native';
+import { getAppsFlyerId } from '@rudderstack/rudder-integration-appsflyer-react-native';
 
 const RudderEvents = () => {
   const identify = async () => {
@@ -140,6 +145,19 @@ const RudderEvents = () => {
     console.log('Cleared Advertising ID');
   };
 
+  const enableAppCenterAnalytics = async () => {
+    await enableAnalytics();
+  };
+
+  const disableAppCenterAnalytics = async () => {
+    await disableAnalytics();
+  };
+
+  const appsFlyerId = async () => {
+    const appsFlyerId = await getAppsFlyerId();
+    console.log(`AppsFlyer ID: ${appsFlyerId}`);
+  };
+
   return (
     <>
       <Button title="Identify" onPress={identify} />
@@ -158,6 +176,9 @@ const RudderEvents = () => {
       <Button title="getRudderContext()" onPress={getRudderContext} />
       <Button title="putAdvertisingId()" onPress={putAdvertisingId} />
       <Button title="clearAdvertisingId()" onPress={clearAdvertisingId} />
+      <Button title="enable AppCenter Analytics()" onPress={enableAppCenterAnalytics} />
+      <Button title="disable AppCenter Analytics()" onPress={disableAppCenterAnalytics} />
+      <Button title="getAppsFlyerId()" onPress={appsFlyerId} />
     </>
   );
 };
