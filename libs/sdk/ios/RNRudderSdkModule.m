@@ -256,10 +256,21 @@ RCT_EXPORT_METHOD(getSessionId:(RCTPromiseResolveBlock)resolve rejecter:(RCTProm
                 }
             }
         }
+        [self setCustomContext:optionsDict options:options];
     } @catch (NSException *exception) {
         [RSLogger logWarn:[NSString stringWithFormat:@"Error occured while handling options object: %@", exception]];
     }
     return options;
 }
 
+-(void) setCustomContext:(NSDictionary *) optionsDict options:(RSOption *) options {
+    for (NSString *key in optionsDict) {
+        if (!([key isEqualToString:@"externalId"] || [key isEqualToString:@"externalIds"] || [key isEqualToString:@"integrations"])) {
+            id value = optionsDict[key];
+            if ([value isKindOfClass:[NSDictionary class]] && [(NSDictionary *)value count] > 0) {
+                [options putCustomContext:value withKey:key];
+            }
+        }
+    }
+}
 @end
