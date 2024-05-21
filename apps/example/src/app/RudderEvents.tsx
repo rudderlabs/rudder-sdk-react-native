@@ -9,17 +9,12 @@ import { getAppsFlyerId } from '@rudderstack/rudder-integration-appsflyer-react-
 
 const getLocalOptions = () => {
   return {
-    externalIds: [
-      {
-        id: '2d31d085-4d93-4126-b2b3-94e651810673',
-        type: 'brazeExternalId',
-      },
-    ],
     integrations: {
       // specifying destination by its display name
       Amplitude: true,
       Mixpanel: false,
     },
+    // custom contexts
     account: {
       level: 'standard',
       membership: 'silver',
@@ -29,13 +24,22 @@ const getLocalOptions = () => {
 
 const RudderEvents = () => {
   const identify = async () => {
+    const options = {
+      externalIds: [
+        {
+          id: '2d31d085-4d93-4126-b2b3-94e651810673',
+          type: 'brazeExternalId',
+        },
+      ],
+    };
+
     await rudderClient.identify(
       'test_userIdiOS',
       {
         email: 'testuseriOS@example.com',
         location: 'UK',
       },
-      getLocalOptions(),
+      options,
     );
   };
 

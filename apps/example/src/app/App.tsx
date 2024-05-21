@@ -81,7 +81,7 @@ const getGlobalOptions = () => {
       // specifying destination by its display name
       Mixpanel: false,
     },
-    // custom contexts:
+    // custom contexts
     tier: {
       category: 'premium',
       type: 'gold',
