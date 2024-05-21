@@ -7,39 +7,51 @@ import {
 } from '@rudderstack/rudder-integration-appcenter-react-native';
 import { getAppsFlyerId } from '@rudderstack/rudder-integration-appsflyer-react-native';
 
+const getLocalOptions = () => {
+  return {
+    externalIds: [
+      {
+        id: '2d31d085-4d93-4126-b2b3-94e651810673',
+        type: 'brazeExternalId',
+      },
+    ],
+    integrations: {
+      // specifying destination by its display name
+      Amplitude: true,
+      Mixpanel: false,
+    },
+    tier2: {
+      category2: 'premium',
+      type2: 'gold2',
+    },
+    account: {
+      level2: 'standard',
+      membership2: 'silver2',
+    },
+  };
+};
+
 const RudderEvents = () => {
   const identify = async () => {
-    const options = {
-      externalIds: [
-        {
-          id: '2d31d085-4d93-4126-b2b3-94e651810673',
-          type: 'brazeExternalId',
-        },
-      ],
-    };
-
-    const props = {
-      k1: 'v1',
-      k2: 'v3',
-      k3: 'v3',
-      name: 'Miraj',
-    };
-
     await rudderClient.identify(
       'test_userIdiOS',
       {
         email: 'testuseriOS@example.com',
         location: 'UK',
       },
-      options,
+      getLocalOptions(),
     );
   };
 
   const customTrack = () => {
-    rudderClient.track('Custom Track Event', {
-      property1: 'value1',
-      property2: 'value2',
-    });
+    rudderClient.track(
+      'Custom Track Event',
+      {
+        property1: 'value1',
+        property2: 'value2',
+      },
+      getLocalOptions(),
+    );
   };
 
   const orderCompleted = () => {
