@@ -20,13 +20,9 @@ const getLocalOptions = () => {
       Amplitude: true,
       Mixpanel: false,
     },
-    tier2: {
-      category2: 'premium',
-      type2: 'gold2',
-    },
     account: {
-      level2: 'standard',
-      membership2: 'silver2',
+      level: 'standard',
+      membership: 'silver',
     },
   };
 };

@@ -86,10 +86,6 @@ const getGlobalOptions = () => {
       category: 'premium',
       type: 'gold',
     },
-    account: {
-      level: 'standard',
-      membership: 'silver',
-    },
   };
 };
 
