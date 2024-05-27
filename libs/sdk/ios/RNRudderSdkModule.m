@@ -250,6 +250,7 @@ RCT_EXPORT_METHOD(getSessionId:(RCTPromiseResolveBlock)resolve rejecter:(RCTProm
     return options;
 }
 
+// For legacy reason we are still supporting "externalIds". First priority is given to "externalId".
 - (NSDictionary *)removeExternalIdsIfExternalIdExists:(NSDictionary *)optionsDict {
     if (optionsDict == nil) return nil;
     

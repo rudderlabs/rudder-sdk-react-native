@@ -145,12 +145,14 @@ public class Utility {
     }
 
     private static void setIntegrations(Map<String, Object> optionsMap, RudderOption options) {
-        if (optionsMap.get(INTEGRATIONS) instanceof Map && !isEmpty(optionsMap.get(INTEGRATIONS))) {
+        if (optionsMap.get(INTEGRATIONS) instanceof Map) {
             Map<String, Object> integrationsMap = (Map<String, Object>) optionsMap.get(INTEGRATIONS);
-            for (String key : integrationsMap.keySet()) {
-                Object value = integrationsMap.get(key);
-                if (value instanceof Boolean) {
-                    options.putIntegration(key, getBoolean(value));
+            if (!isEmpty(integrationsMap)) {
+                for (String key : integrationsMap.keySet()) {
+                    Object value = integrationsMap.get(key);
+                    if (value instanceof Boolean) {
+                        options.putIntegration(key, getBoolean(value));
+                    }
                 }
             }
         }
