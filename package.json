@@ -162,7 +162,9 @@
     "yaml": "2.2.2",
     "@babel/traverse": "7.23.2",
     "ip": "2.0.1",
-    "git-raw-commits": "4.0.0"
+    "git-raw-commits": "4.0.0",
+    "braces": "3.0.3",
+    "micromatch": "4.0.7"
   },
   "lint-staged": {
     "*.{js,ts,tsx}": "eslint --cache --fix",
