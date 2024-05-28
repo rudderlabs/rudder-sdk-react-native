@@ -2,17 +2,17 @@ PODS:
   - Amplitude (8.16.0):
     - AnalyticsConnector (~> 1.0.0)
   - AnalyticsConnector (1.0.3)
-  - AppCenter (5.0.4):
-    - AppCenter/Analytics (= 5.0.4)
-    - AppCenter/Crashes (= 5.0.4)
-  - AppCenter/Analytics (5.0.4):
+  - AppCenter (5.0.5):
+    - AppCenter/Analytics (= 5.0.5)
+    - AppCenter/Crashes (= 5.0.5)
+  - AppCenter/Analytics (5.0.5):
     - AppCenter/Core
-  - AppCenter/Core (5.0.4)
-  - AppCenter/Crashes (5.0.4):
+  - AppCenter/Core (5.0.5)
+  - AppCenter/Crashes (5.0.5):
     - AppCenter/Core
-  - AppsFlyerFramework (6.14.2):
-    - AppsFlyerFramework/Main (= 6.14.2)
-  - AppsFlyerFramework/Main (6.14.2)
+  - AppsFlyerFramework (6.14.3):
+    - AppsFlyerFramework/Main (= 6.14.3)
+  - AppsFlyerFramework/Main (6.14.3)
   - boost (1.83.0)
   - BrazeKit (7.5.0)
   - CleverTap-iOS-SDK (4.2.2):
@@ -45,13 +45,13 @@ PODS:
     - GoogleUtilities/Network (~> 7.11)
     - "GoogleUtilities/NSData+zlib (~> 7.11)"
     - nanopb (< 2.30910.0, >= 2.30908.0)
-  - FirebaseCore (10.24.0):
+  - FirebaseCore (10.25.0):
     - FirebaseCoreInternal (~> 10.0)
     - GoogleUtilities/Environment (~> 7.12)
     - GoogleUtilities/Logger (~> 7.12)
-  - FirebaseCoreInternal (10.24.0):
+  - FirebaseCoreInternal (10.25.0):
     - "GoogleUtilities/NSData+zlib (~> 7.8)"
-  - FirebaseInstallations (10.24.0):
+  - FirebaseInstallations (10.25.0):
     - FirebaseCore (~> 10.0)
     - GoogleUtilities/Environment (~> 7.8)
     - GoogleUtilities/UserDefaults (~> 7.8)
@@ -134,48 +134,48 @@ PODS:
     - GoogleUtilities/Network (~> 7.11)
     - "GoogleUtilities/NSData+zlib (~> 7.11)"
     - nanopb (< 2.30910.0, >= 2.30908.0)
-  - GoogleUtilities (7.13.0):
-    - GoogleUtilities/AppDelegateSwizzler (= 7.13.0)
-    - GoogleUtilities/Environment (= 7.13.0)
-    - GoogleUtilities/ISASwizzler (= 7.13.0)
-    - GoogleUtilities/Logger (= 7.13.0)
-    - GoogleUtilities/MethodSwizzler (= 7.13.0)
-    - GoogleUtilities/Network (= 7.13.0)
-    - "GoogleUtilities/NSData+zlib (= 7.13.0)"
-    - GoogleUtilities/Privacy (= 7.13.0)
-    - GoogleUtilities/Reachability (= 7.13.0)
-    - GoogleUtilities/SwizzlerTestHelpers (= 7.13.0)
-    - GoogleUtilities/UserDefaults (= 7.13.0)
-  - GoogleUtilities/AppDelegateSwizzler (7.13.0):
+  - GoogleUtilities (7.13.3):
+    - GoogleUtilities/AppDelegateSwizzler (= 7.13.3)
+    - GoogleUtilities/Environment (= 7.13.3)
+    - GoogleUtilities/ISASwizzler (= 7.13.3)
+    - GoogleUtilities/Logger (= 7.13.3)
+    - GoogleUtilities/MethodSwizzler (= 7.13.3)
+    - GoogleUtilities/Network (= 7.13.3)
+    - "GoogleUtilities/NSData+zlib (= 7.13.3)"
+    - GoogleUtilities/Privacy (= 7.13.3)
+    - GoogleUtilities/Reachability (= 7.13.3)
+    - GoogleUtilities/SwizzlerTestHelpers (= 7.13.3)
+    - GoogleUtilities/UserDefaults (= 7.13.3)
+  - GoogleUtilities/AppDelegateSwizzler (7.13.3):
     - GoogleUtilities/Environment
     - GoogleUtilities/Logger
     - GoogleUtilities/Network
     - GoogleUtilities/Privacy
-  - GoogleUtilities/Environment (7.13.0):
+  - GoogleUtilities/Environment (7.13.3):
     - GoogleUtilities/Privacy
     - PromisesObjC (< 3.0, >= 1.2)
-  - GoogleUtilities/ISASwizzler (7.13.0):
+  - GoogleUtilities/ISASwizzler (7.13.3):
     - GoogleUtilities/Privacy
-  - GoogleUtilities/Logger (7.13.0):
+  - GoogleUtilities/Logger (7.13.3):
     - GoogleUtilities/Environment
     - GoogleUtilities/Privacy
-  - GoogleUtilities/MethodSwizzler (7.13.0):
+  - GoogleUtilities/MethodSwizzler (7.13.3):
     - GoogleUtilities/Logger
     - GoogleUtilities/Privacy
-  - GoogleUtilities/Network (7.13.0):
+  - GoogleUtilities/Network (7.13.3):
     - GoogleUtilities/Logger
     - "GoogleUtilities/NSData+zlib"
     - GoogleUtilities/Privacy
     - GoogleUtilities/Reachability
-  - "GoogleUtilities/NSData+zlib (7.13.0)":
+  - "GoogleUtilities/NSData+zlib (7.13.3)":
     - GoogleUtilities/Privacy
-  - GoogleUtilities/Privacy (7.13.0)
-  - GoogleUtilities/Reachability (7.13.0):
+  - GoogleUtilities/Privacy (7.13.3)
+  - GoogleUtilities/Reachability (7.13.3):
     - GoogleUtilities/Logger
     - GoogleUtilities/Privacy
-  - GoogleUtilities/SwizzlerTestHelpers (7.13.0):
+  - GoogleUtilities/SwizzlerTestHelpers (7.13.3):
     - GoogleUtilities/MethodSwizzler
-  - GoogleUtilities/UserDefaults (7.13.0):
+  - GoogleUtilities/UserDefaults (7.13.3):
     - GoogleUtilities/Logger
     - GoogleUtilities/Privacy
   - hermes-engine (0.73.2):
@@ -1237,7 +1237,7 @@ PODS:
     - React-perflogger (= 0.73.2)
   - RNCAsyncStorage (1.23.1):
     - React-Core
-  - RNRudderSdk (1.13.0):
+  - RNRudderSdk (1.13.1):
     - React
     - Rudder (< 2.0.0, >= 1.26.3)
   - RNSVG (14.1.0):
@@ -1267,11 +1267,11 @@ PODS:
     - React
     - RNRudderSdk
     - Rudder-Amplitude
-  - rudder-integration-appcenter-react-native (1.1.0):
+  - rudder-integration-appcenter-react-native (1.1.1):
     - React
     - RNRudderSdk
     - Rudder-AppCenter
-  - rudder-integration-appsflyer-react-native (1.6.0):
+  - rudder-integration-appsflyer-react-native (1.6.1):
     - React
     - RNRudderSdk
     - Rudder-Appsflyer (>= 2.2.0)
@@ -1311,17 +1311,17 @@ PODS:
     - Rudder (~> 1.21)
     - SQLCipher (~> 4.0)
   - RudderKit (1.4.0)
-  - SDWebImage (5.19.1):
-    - SDWebImage/Core (= 5.19.1)
-  - SDWebImage/Core (5.19.1)
+  - SDWebImage (5.19.2):
+    - SDWebImage/Core (= 5.19.2)
+  - SDWebImage/Core (5.19.2)
   - Singular-SDK (11.0.4):
     - Singular-SDK/Main (= 11.0.4)
   - Singular-SDK/Main (11.0.4)
   - SocketRocket (0.6.1)
-  - SQLCipher (4.5.6):
-    - SQLCipher/standard (= 4.5.6)
-  - SQLCipher/common (4.5.6)
-  - SQLCipher/standard (4.5.6):
+  - SQLCipher (4.5.7):
+    - SQLCipher/standard (= 4.5.7)
+  - SQLCipher/common (4.5.7)
+  - SQLCipher/standard (4.5.7):
     - SQLCipher/common
   - Yoga (1.14.0)
 
@@ -1591,8 +1591,8 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   Amplitude: 4daad8eb8193b15353221dfd96c52220367cb3e8
   AnalyticsConnector: a53214d38ae22734c6266106c0492b37832633a9
-  AppCenter: 85c92db0759d2792a65eb61d6842d2e86611a49a
-  AppsFlyerFramework: b3de9a49c6af8a8e38c44603e468b5e207f22466
+  AppCenter: 994875ea7941b9e168babb98299f900a94bcef13
+  AppsFlyerFramework: 0a68f5b72bbbadfa71d4ae3eaf040e82d62e8518
   boost: d3f49c53809116a5d38da093a8aa78bf551aed09
   BrazeKit: 55dfadd08105765a568137f5d24d46894186db65
   CleverTap-iOS-SDK: 36c21b8a671d87a0f9c7b389b339d02528bbe4d7
@@ -1601,9 +1601,9 @@ SPEC CHECKSUMS:
   FBLazyVector: fbc4957d9aa695250b55d879c1d86f79d7e69ab4
   FBReactNativeSpec: 90867cab63f0ca6568f7bf53e880178c8d229457
   FirebaseAnalytics: d275f288881d4417f780115dd52c05fa9752d530
-  FirebaseCore: 11dc8a16dfb7c5e3c3f45ba0e191a33ac4f50894
-  FirebaseCoreInternal: bcb5acffd4ea05e12a783ecf835f2210ce3dc6af
-  FirebaseInstallations: 8f581fca6478a50705d2bd2abd66d306e0f5736e
+  FirebaseCore: 7ec4d0484817f12c3373955bc87762d96842d483
+  FirebaseCoreInternal: 910a81992c33715fec9263ca7381d59ab3a750b7
+  FirebaseInstallations: 91950fe859846fff0fbd296180909dd273103b09
   Flipper: c7a0093234c4bdd456e363f2f19b2e4b27652d44
   Flipper-Boost-iOSX: fd1e2b8cbef7e662a122412d7ac5f5bea715403c
   Flipper-DoubleConversion: 2dc99b02f658daf147069aad9dbd29d8feb06d30
@@ -1615,7 +1615,7 @@ SPEC CHECKSUMS:
   fmt: ff9d55029c625d3757ed641535fd4a75fedc7ce9
   glog: c5d68082e772fa1c511173d6b30a9de2c05a69a2
   GoogleAppMeasurement: a65314d316443969ed3d3709b3a187448ed6418f
-  GoogleUtilities: d053d902a8edaa9904e1bd00c37535385b8ed152
+  GoogleUtilities: ea963c370a38a8069cc5f7ba4ca849a60b6d7d15
   hermes-engine: b361c9ef5ef3cda53f66e195599b47e1f84ffa35
   libevent: 4049cae6c81cdb3654a443be001fb9bdceff7913
   MetricsReporter: 99596ee5003c69949ed2f50acc34aee83c42f843
@@ -1666,7 +1666,7 @@ SPEC CHECKSUMS:
   React-utils: f5bc61e7ea3325c0732ae2d755f4441940163b85
   ReactCommon: 45b5d4f784e869c44a6f5a8fad5b114ca8f78c53
   RNCAsyncStorage: 826b603ae9c0f88b5ac4e956801f755109fa4d5c
-  RNRudderSdk: c27e1d1cc0bf152b860f9bf5e5d75826102f24bb
+  RNRudderSdk: 913a93e3f25e23020cf21ba495b1d5d151783f21
   RNSVG: ba3e7232f45e34b7b47e74472386cf4e1a676d0a
   RSCrashReporter: 6b8376ac729b0289ebe0908553e5f56d8171f313
   Rudder: 23456f79749849870e18c45bd250d6e2229a7147
@@ -1677,8 +1677,8 @@ SPEC CHECKSUMS:
   Rudder-CleverTap: a0085aab472e0e60930c4301ef80bae5ff187e98
   Rudder-Firebase: 8bb9a44cbc29ae066c0ada544b242199681547b9
   rudder-integration-amplitude-react-native: a9896aaef79714931f0edbd40f3cde602b429273
-  rudder-integration-appcenter-react-native: 9cb3ddc2b95cd45232d29b883d58647cff5cd016
-  rudder-integration-appsflyer-react-native: e38621ba25261d71ed26838b105e67fe5c64a406
+  rudder-integration-appcenter-react-native: 6395a10a4396f56ff955603bfb47d1a0e374614d
+  rudder-integration-appsflyer-react-native: 393473fd43ee3c792484a36014fcfeae1169abe5
   rudder-integration-braze-react-native: 237e030490811fa7eb3192e2800feb6e6d141bca
   rudder-integration-clevertap-react-native: 3c640ce986bd66996a2e53ff415159dfca0f5c4d
   rudder-integration-firebase-react-native: 49cdc474a8273432a8b363e966b27dda1a696dea
@@ -1689,10 +1689,10 @@ SPEC CHECKSUMS:
   Rudder-Singular: e22a4101ce043aded86b777bea873bf6a2af42b9
   RudderDatabaseEncryption: 95b436538412958eda771f5d81bd970a9ffe4eec
   RudderKit: f272f9872183946452ac94cd7bb2244a71e6ca8f
-  SDWebImage: 40b0b4053e36c660a764958bff99eed16610acbb
+  SDWebImage: dfe95b2466a9823cf9f0c6d01217c06550d7b29a
   Singular-SDK: 614350e3ed21a06b02ab165b370b212f8aaacf2b
   SocketRocket: f32cd54efbe0f095c4d7594881e52619cfe80b17
-  SQLCipher: 838309284f29953a28ad2e81d87d55ea6b7c74fd
+  SQLCipher: 5e6bfb47323635c8b657b1b27d25c5f1baf63bf5
   Yoga: 13c8ef87792450193e117976337b8527b49e8c03
 
 PODFILE CHECKSUM: 0e13a7e6e168462ceda742194047ed5c87c7bf7b
