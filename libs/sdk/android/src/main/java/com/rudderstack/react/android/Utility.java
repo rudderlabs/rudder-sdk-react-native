@@ -26,6 +26,10 @@ import javax.annotation.Nonnull;
 
 
 public class Utility {
+    public static final String EXTERNAL_ID = "externalId";
+    public static final String EXTERNAL_IDS = "externalIds";
+    public static final String INTEGRATIONS = "integrations";
+
     public static Map<String, Object> convertReadableMapToMap(ReadableMap readableMap) {
         if (readableMap == null) return null;
 
@@ -100,36 +104,64 @@ public class Utility {
         RudderOption options = new RudderOption();
         try {
             Map<String, Object> optionsMap = convertReadableMapToMap(readableMap);
-            String[] externalIdKeys = {"externalId", "externalIds"};
-            for (String externalIdKey : externalIdKeys) {
-                if (readableMap.hasKey(externalIdKey) && readableMap.getType(externalIdKey) == ReadableType.Array) {
-                    List<Object> externalIdsList = convertReadableArrayToList(readableMap.getArray(externalIdKey));
-                    if (!isEmpty(externalIdsList)) {
-                        for (int i = 0; i < externalIdsList.size(); i++) {
-                            Map<String, Object> externalId = (Map<String, Object>) externalIdsList.get(i);
-                            if (isExternalIdValid(externalId)) {
-                                options.putExternalId(getString(externalId.get("type")), getString(externalId.get("id")));
-                            }
-                        }
-                        break;
-                    }
-                }
-            }
-            if (optionsMap.containsKey("integrations") && optionsMap.get("integrations") instanceof Map) {
-                Map<String, Object> integrationsMap = (Map<String, Object>) optionsMap.get("integrations");
-                if (!isEmpty(integrationsMap)) {
-                    for (String key : integrationsMap.keySet()) {
-                        Object value = integrationsMap.get(key);
-                        if (value instanceof Boolean) {
-                            options.putIntegration(key, getBoolean(value));
-                        }
-                    }
+            removeExternalIdsIfExternalIdExists(optionsMap);
+
+            for (String key : optionsMap.keySet()) {
+                switch (key) {
+                    case EXTERNAL_ID -> setExternalId(EXTERNAL_ID, readableMap, options);
+                    case EXTERNAL_IDS -> setExternalId(EXTERNAL_IDS, readableMap, options);
+                    case INTEGRATIONS -> setIntegrations(optionsMap, options);
+                    default -> setCustomContext(key, optionsMap, options);
                 }
             }
         } catch (Exception e) {
             RudderLogger.logError("Exception occurred while handling options: " + e.getMessage());
         }
         return options;
+    }
+
+    // For legacy reason we are still supporting "externalIds". First priority is given to "externalId".
+    private static void removeExternalIdsIfExternalIdExists(Map<String, Object> optionsMap) {
+        if (optionsMap != null) {
+            if (optionsMap.containsKey(EXTERNAL_ID) && optionsMap.containsKey(EXTERNAL_IDS)) {
+                optionsMap.remove(EXTERNAL_IDS);
+            }
+        }
+    }
+
+    private static void setExternalId(String key, ReadableMap readableMap, RudderOption options) {
+        if (readableMap.getType(key) == ReadableType.Array) {
+            List<Object> externalIdsList = convertReadableArrayToList(readableMap.getArray(key));
+            if (!isEmpty(externalIdsList)) {
+                for (int i = 0; i < externalIdsList.size(); i++) {
+                    Map<String, Object> externalId = (Map<String, Object>) externalIdsList.get(i);
+                    if (isExternalIdValid(externalId)) {
+                        options.putExternalId(getString(externalId.get("type")), getString(externalId.get("id")));
+                    }
+                }
+
+            }
+        }
+    }
+
+    private static void setIntegrations(Map<String, Object> optionsMap, RudderOption options) {
+        if (optionsMap.get(INTEGRATIONS) instanceof Map) {
+            Map<String, Object> integrationsMap = (Map<String, Object>) optionsMap.get(INTEGRATIONS);
+            if (!isEmpty(integrationsMap)) {
+                for (String key : integrationsMap.keySet()) {
+                    Object value = integrationsMap.get(key);
+                    if (value instanceof Boolean) {
+                        options.putIntegration(key, getBoolean(value));
+                    }
+                }
+            }
+        }
+    }
+
+    private static void setCustomContext(String key, Map<String, Object> optionsMap, RudderOption options) {
+        if (optionsMap.get(key) instanceof Map && !isEmpty(optionsMap.get(key))) {
+            options.putCustomContext(key, (Map<String, Object>) optionsMap.get(key));
+        }
     }
 
     private static boolean isExternalIdValid(Map<String, Object> externalId) {
@@ -211,7 +243,7 @@ public class Utility {
 
     public static boolean isEmpty(Object value) {
         if (value == null) return true;
-        if (value instanceof  String) {
+        if (value instanceof String) {
             return ((String) value).isEmpty();
         }
         if (value instanceof Map) {

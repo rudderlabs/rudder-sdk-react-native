@@ -7,6 +7,21 @@ import {
 } from '@rudderstack/rudder-integration-appcenter-react-native';
 import { getAppsFlyerId } from '@rudderstack/rudder-integration-appsflyer-react-native';
 
+const getLocalOptions = () => {
+  return {
+    integrations: {
+      // specifying destination by its display name
+      Amplitude: true,
+      Mixpanel: false,
+    },
+    // custom contexts
+    account: {
+      level: 'standard',
+      membership: 'silver',
+    },
+  };
+};
+
 const RudderEvents = () => {
   const identify = async () => {
     const options = {
@@ -16,13 +31,6 @@ const RudderEvents = () => {
           type: 'brazeExternalId',
         },
       ],
-    };
-
-    const props = {
-      k1: 'v1',
-      k2: 'v3',
-      k3: 'v3',
-      name: 'Miraj',
     };
 
     await rudderClient.identify(
@@ -36,10 +44,14 @@ const RudderEvents = () => {
   };
 
   const customTrack = () => {
-    rudderClient.track('Custom Track Event', {
-      property1: 'value1',
-      property2: 'value2',
-    });
+    rudderClient.track(
+      'Custom Track Event',
+      {
+        property1: 'value1',
+        property2: 'value2',
+      },
+      getLocalOptions(),
+    );
   };
 
   const orderCompleted = () => {
