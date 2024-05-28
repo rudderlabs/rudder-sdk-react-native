@@ -2,6 +2,13 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [0.10.0](https://github.com/rudderlabs/rudder-sdk-react-native/compare/example-0.9.1...example-0.10.0) (2024-05-28)
+
+
+### Features
+
+* provide putCustomContext API support ([#347](https://github.com/rudderlabs/rudder-sdk-react-native/issues/347)) ([0c28fa4](https://github.com/rudderlabs/rudder-sdk-react-native/commit/0c28fa4d2b25515de2862dc273a448cc14388cec))
+
 ## [0.9.1](https://github.com/rudderlabs/rudder-sdk-react-native/compare/example-0.9.0...example-0.9.1) (2024-04-24)
 
 
