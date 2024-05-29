@@ -89,7 +89,7 @@ jobs:
           github_token: ${{ secrets.PAT }}
           pr_title: 'chore(release): pulling master into develop post release v${{ steps.extract-version.outputs.release_version }}'
           pr_body: ':crown: *An automated PR*'
-          pr_reviewer: '1abhishekpandey'
+          pr_reviewer: '@rudderlabs/sdk-rn'
 
       - name: Delete hotfix release branch
         uses: koj-co/delete-merged-action@master
