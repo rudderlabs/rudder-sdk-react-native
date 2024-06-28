@@ -164,7 +164,8 @@
     "ip": "2.0.1",
     "git-raw-commits": "4.0.0",
     "braces": "3.0.3",
-    "micromatch": "4.0.7"
+    "micromatch": "4.0.7",
+    "ws": "7.5.10"
   },
   "lint-staged": {
     "*.{js,ts,tsx}": "eslint --cache --fix",
