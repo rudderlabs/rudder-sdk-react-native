@@ -1237,7 +1237,7 @@ PODS:
     - React-perflogger (= 0.73.2)
   - RNCAsyncStorage (1.23.1):
     - React-Core
-  - RNRudderSdk (1.13.1):
+  - RNRudderSdk (1.14.0):
     - React
     - Rudder (< 2.0.0, >= 1.26.3)
   - RNSVG (14.1.0):
@@ -1299,7 +1299,7 @@ PODS:
   - Rudder-Moengage (2.1.1):
     - MoEngage-iOS-SDK (~> 9.5)
     - Rudder (~> 1.12)
-  - rudder-plugin-db-encryption-react-native (1.1.0):
+  - rudder-plugin-db-encryption-react-native (1.2.0):
     - React
     - RNRudderSdk
     - Rudder (< 2.0.0, >= 1.24.1)
@@ -1666,7 +1666,7 @@ SPEC CHECKSUMS:
   React-utils: f5bc61e7ea3325c0732ae2d755f4441940163b85
   ReactCommon: 45b5d4f784e869c44a6f5a8fad5b114ca8f78c53
   RNCAsyncStorage: 826b603ae9c0f88b5ac4e956801f755109fa4d5c
-  RNRudderSdk: 913a93e3f25e23020cf21ba495b1d5d151783f21
+  RNRudderSdk: 9e243c47f3040a49c559f3b01186fe48e5158c01
   RNSVG: ba3e7232f45e34b7b47e74472386cf4e1a676d0a
   RSCrashReporter: 6b8376ac729b0289ebe0908553e5f56d8171f313
   Rudder: 23456f79749849870e18c45bd250d6e2229a7147
@@ -1685,7 +1685,7 @@ SPEC CHECKSUMS:
   rudder-integration-moengage-react-native: a88e92d14c27edfb1d7c3d27cf2498e4d82cd36d
   rudder-integration-singular-react-native: 52137a0c399ad1329b53bfe9e8af0a78e11168a3
   Rudder-Moengage: c30465e23740673495ff853eed607a5641f22c5c
-  rudder-plugin-db-encryption-react-native: ee8e2ff2a619e2a27656af46b8471048a0a02f10
+  rudder-plugin-db-encryption-react-native: 59e6894cd18d3c35d03853372b652eb47645b32f
   Rudder-Singular: e22a4101ce043aded86b777bea873bf6a2af42b9
   RudderDatabaseEncryption: 95b436538412958eda771f5d81bd970a9ffe4eec
   RudderKit: f272f9872183946452ac94cd7bb2244a71e6ca8f
@@ -1697,4 +1697,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 0e13a7e6e168462ceda742194047ed5c87c7bf7b
 
-COCOAPODS: 1.14.3
+COCOAPODS: 1.15.2
