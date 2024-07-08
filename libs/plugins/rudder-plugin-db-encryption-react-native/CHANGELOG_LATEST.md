@@ -1,5 +1,5 @@
-## [1.0.1](https://github.com/rudderlabs/rudder-sdk-react-native/compare/rudder-plugin-db-encryption-react-native@1.0.0...rudder-plugin-db-encryption-react-native@1.0.1) (2023-12-21)
+## [1.2.0](https://github.com/rudderlabs/rudder-sdk-react-native/compare/rudder-plugin-db-encryption-react-native@1.1.0...rudder-plugin-db-encryption-react-native@1.2.0) (2024-05-28)
 
-### Bug Fixes
+### Features
 
-- update minimum version of ios sdk to 1.24.1 in dbEncryption plugin ([#302](https://github.com/rudderlabs/rudder-sdk-react-native/issues/302)) ([421cc94](https://github.com/rudderlabs/rudder-sdk-react-native/commit/421cc9416c87539e69b79c205aadd64dce0db02d))
+- add dummy commit to trigger changelog generation ([#348](https://github.com/rudderlabs/rudder-sdk-react-native/issues/348)) ([359ab7f](https://github.com/rudderlabs/rudder-sdk-react-native/commit/359ab7fedf7d84ba0ba41e91080048813ea02f9a))

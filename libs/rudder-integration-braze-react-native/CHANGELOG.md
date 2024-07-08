@@ -2,6 +2,21 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [1.3.0](https://github.com/rudderlabs/rudder-sdk-react-native/compare/rudder-integration-braze-react-native@1.2.0...rudder-integration-braze-react-native@1.3.0) (2024-04-09)
+
+
+### Features
+
+* **rudder-integration-braze-react-native:** change linter to eslint ([2a2e5f4](https://github.com/rudderlabs/rudder-sdk-react-native/commit/2a2e5f49277d3bc71cad333cc6bcbfa36f946331))
+* **rudder-integration-braze-react-native:** change metro-react-native-babel-preset to @react-native/babel-preset ([f6f35e4](https://github.com/rudderlabs/rudder-sdk-react-native/commit/f6f35e46ddf2c20a1b1090770a1907e553c61461))
+
+## [1.2.0](https://github.com/rudderlabs/rudder-sdk-react-native/compare/rudder-integration-braze-react-native@1.1.1...rudder-integration-braze-react-native@1.2.0) (2024-02-15)
+
+
+### Features
+
+* update rudder braze ios integration to version 2.0.0 ([#313](https://github.com/rudderlabs/rudder-sdk-react-native/issues/313)) ([e19089b](https://github.com/rudderlabs/rudder-sdk-react-native/commit/e19089bfa2037d9641fa22e9bd9e1c2dcb268aa9))
+
 ## [1.1.1](https://github.com/rudderlabs/rudder-sdk-react-native/compare/rudder-integration-braze-react-native@1.1.0...rudder-integration-braze-react-native@1.1.1) (2023-10-03)
 
 

@@ -1,6 +1,26 @@
 import React from 'react';
-import { Button } from 'react-native';
+import { Button, Platform } from 'react-native';
 import rudderClient, { IRudderContext } from '@rudderstack/rudder-sdk-react-native';
+import {
+  enableAnalytics,
+  disableAnalytics,
+} from '@rudderstack/rudder-integration-appcenter-react-native';
+import { getAppsFlyerId } from '@rudderstack/rudder-integration-appsflyer-react-native';
+
+const getLocalOptions = () => {
+  return {
+    integrations: {
+      // specifying destination by its display name
+      Amplitude: true,
+      Mixpanel: false,
+    },
+    // custom contexts
+    account: {
+      level: 'standard',
+      membership: 'silver',
+    },
+  };
+};
 
 const RudderEvents = () => {
   const identify = async () => {
@@ -11,13 +31,6 @@ const RudderEvents = () => {
           type: 'brazeExternalId',
         },
       ],
-    };
-
-    const props = {
-      k1: 'v1',
-      k2: 'v3',
-      k3: 'v3',
-      name: 'Miraj',
     };
 
     await rudderClient.identify(
@@ -31,10 +44,14 @@ const RudderEvents = () => {
   };
 
   const customTrack = () => {
-    rudderClient.track('Custom Track Event', {
-      property1: 'value1',
-      property2: 'value2',
-    });
+    rudderClient.track(
+      'Custom Track Event',
+      {
+        property1: 'value1',
+        property2: 'value2',
+      },
+      getLocalOptions(),
+    );
   };
 
   const orderCompleted = () => {
@@ -100,7 +117,7 @@ const RudderEvents = () => {
   };
 
   const reset = () => {
-    rudderClient.reset(true);
+    rudderClient.reset(false);
   };
 
   const getSessionId = async () => {
@@ -122,6 +139,37 @@ const RudderEvents = () => {
     console.log(`${JSON.stringify(context)}`);
   };
 
+  const putAdvertisingId = async () => {
+    switch (Platform.OS) {
+      case 'ios':
+        await rudderClient.putAdvertisingId('iOS-ADVERTISING-ID');
+        console.log('Setting iOS Advertising ID');
+        break;
+      case 'android':
+        await rudderClient.putAdvertisingId('ANDROID-ADVERTISING-ID');
+        console.log('Setting Android Advertising ID');
+        break;
+    }
+  };
+
+  const clearAdvertisingId = async () => {
+    await rudderClient.clearAdvertisingId();
+    console.log('Cleared Advertising ID');
+  };
+
+  const enableAppCenterAnalytics = async () => {
+    await enableAnalytics();
+  };
+
+  const disableAppCenterAnalytics = async () => {
+    await disableAnalytics();
+  };
+
+  const appsFlyerId = async () => {
+    const appsFlyerId = await getAppsFlyerId();
+    console.log(`AppsFlyer ID: ${appsFlyerId}`);
+  };
+
   return (
     <>
       <Button title="Identify" onPress={identify} />
@@ -138,6 +186,11 @@ const RudderEvents = () => {
       <Button title="enableOptOut()" onPress={enableOptOut} />
       <Button title="disableOptOut()" onPress={disableOptOut} />
       <Button title="getRudderContext()" onPress={getRudderContext} />
+      <Button title="putAdvertisingId()" onPress={putAdvertisingId} />
+      <Button title="clearAdvertisingId()" onPress={clearAdvertisingId} />
+      <Button title="enable AppCenter Analytics()" onPress={enableAppCenterAnalytics} />
+      <Button title="disable AppCenter Analytics()" onPress={disableAppCenterAnalytics} />
+      <Button title="getAppsFlyerId()" onPress={appsFlyerId} />
     </>
   );
 };

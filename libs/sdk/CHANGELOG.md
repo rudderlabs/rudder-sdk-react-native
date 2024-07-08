@@ -2,6 +2,46 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [1.14.0](https://github.com/rudderlabs/rudder-sdk-react-native/compare/rudder-sdk-react-native@1.13.1...rudder-sdk-react-native@1.14.0) (2024-05-28)
+
+
+### Features
+
+* provide putCustomContext API support ([#347](https://github.com/rudderlabs/rudder-sdk-react-native/issues/347)) ([0c28fa4](https://github.com/rudderlabs/rudder-sdk-react-native/commit/0c28fa4d2b25515de2862dc273a448cc14388cec))
+
+## [1.13.1](https://github.com/rudderlabs/rudder-sdk-react-native/compare/rudder-sdk-react-native@1.13.0...rudder-sdk-react-native@1.13.1) (2024-04-24)
+
+
+### Bug Fixes
+
+* update the version of iOS SDK to address the Privacy Manifest issue ([#342](https://github.com/rudderlabs/rudder-sdk-react-native/issues/342)) ([d81214c](https://github.com/rudderlabs/rudder-sdk-react-native/commit/d81214cf64c0ee94c5cb2e86c1950dad79f823e2))
+
+## [1.13.0](https://github.com/rudderlabs/rudder-sdk-react-native/compare/rudder-sdk-react-native@1.12.1...rudder-sdk-react-native@1.13.0) (2024-04-09)
+
+
+### Features
+
+* **rudder-sdk-react-native:** add clearAdvertisingId API support ([cfd2ca0](https://github.com/rudderlabs/rudder-sdk-react-native/commit/cfd2ca041231db43997026e494d299466fe290ae))
+* **rudder-sdk-react-native:** change linter to eslint ([c7d1096](https://github.com/rudderlabs/rudder-sdk-react-native/commit/c7d10964caf618f6ba643b92a5614a42a81b13ca))
+* **rudder-sdk-react-native:** change metro-react-native-babel-preset to @react-native/babel-preset ([35d7e3d](https://github.com/rudderlabs/rudder-sdk-react-native/commit/35d7e3df46e3433fe72327777f05a6ae5809ef49))
+* **rudder-sdk-react-native:** enable setting of advertisement ID in iOS before SDK gets initialised ([aed372a](https://github.com/rudderlabs/rudder-sdk-react-native/commit/aed372af566b5d1a9e8a1491b8ee965d5f7a34dd))
+
+## [1.12.1](https://github.com/rudderlabs/rudder-sdk-react-native/compare/rudder-sdk-react-native@1.12.0...rudder-sdk-react-native@1.12.1) (2024-03-26)
+
+
+### Bug Fixes
+
+* **rudder-sdk-react-native:** filter out NaN params from traits, options and properties ([3c52816](https://github.com/rudderlabs/rudder-sdk-react-native/commit/3c5281600e0a0748d61751ccb94095922570f33b))
+* **rudder-sdk-react-native:** prevent crash while handling option object in android module ([3505db0](https://github.com/rudderlabs/rudder-sdk-react-native/commit/3505db061c9dc003ca578cd4f5702d2928f130e5))
+* **rudder-sdk-react-native:** prevent crash while handling option object in ios module ([a306e53](https://github.com/rudderlabs/rudder-sdk-react-native/commit/a306e53dd42ee2770ef39dbf0335745c77b7e146))
+
+## [1.12.0](https://github.com/rudderlabs/rudder-sdk-react-native/compare/rudder-sdk-react-native@1.11.3...rudder-sdk-react-native@1.12.0) (2024-02-16)
+
+
+### Features
+
+* **rudder-sdk-react-native:** provide tvOS support for the react native iOS sdk ([#316](https://github.com/rudderlabs/rudder-sdk-react-native/issues/316)) ([98a3f39](https://github.com/rudderlabs/rudder-sdk-react-native/commit/98a3f391cd7f55976fe38fb815b4fa3b24e09e77))
+
 ## [1.11.3](https://github.com/rudderlabs/rudder-sdk-react-native/compare/rudder-sdk-react-native@1.11.2...rudder-sdk-react-native@1.11.3) (2023-12-21)
 
 

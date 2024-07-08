@@ -12,3 +12,4 @@ gradlew*
 *.xcodeproj/
 *.xcworkspace/
 Pods/
+/.nx/cache

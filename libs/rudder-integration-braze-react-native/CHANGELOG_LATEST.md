@@ -1,8 +1,6 @@
-## [1.1.1](https://github.com/rudderlabs/rudder-sdk-react-native/compare/rudder-integration-braze-react-native@1.1.0...rudder-integration-braze-react-native@1.1.1) (2023-10-03)
+## [1.3.0](https://github.com/rudderlabs/rudder-sdk-react-native/compare/rudder-integration-braze-react-native@1.2.0...rudder-integration-braze-react-native@1.3.0) (2024-04-09)
 
+### Features
 
-### Bug Fixes
-
-* **rudder-integration-braze-react-native:** make braze compatible with gradle 8 ([7391dec](https://github.com/rudderlabs/rudder-sdk-react-native/commit/7391dec8c5c154e2dbbde98e97dc9d7a95d61416))
-* **rudder-integration-braze-react-native:** make braze iOS SDKs compatible with dynamic and static frameworks ([4c33a8d](https://github.com/rudderlabs/rudder-sdk-react-native/commit/4c33a8d1dc15c53c05cc166157f023feb9c6cbf0))
-
+- **rudder-integration-braze-react-native:** change linter to eslint ([2a2e5f4](https://github.com/rudderlabs/rudder-sdk-react-native/commit/2a2e5f49277d3bc71cad333cc6bcbfa36f946331))
+- **rudder-integration-braze-react-native:** change metro-react-native-babel-preset to @react-native/babel-preset ([f6f35e4](https://github.com/rudderlabs/rudder-sdk-react-native/commit/f6f35e46ddf2c20a1b1090770a1907e553c61461))

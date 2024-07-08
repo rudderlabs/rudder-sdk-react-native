@@ -2,6 +2,36 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [0.10.0](https://github.com/rudderlabs/rudder-sdk-react-native/compare/example-0.9.1...example-0.10.0) (2024-05-28)
+
+
+### Features
+
+* provide putCustomContext API support ([#347](https://github.com/rudderlabs/rudder-sdk-react-native/issues/347)) ([0c28fa4](https://github.com/rudderlabs/rudder-sdk-react-native/commit/0c28fa4d2b25515de2862dc273a448cc14388cec))
+
+## [0.9.1](https://github.com/rudderlabs/rudder-sdk-react-native/compare/example-0.9.0...example-0.9.1) (2024-04-24)
+
+
+### Bug Fixes
+
+* add a wrapper for the getAppsFlyerId API ([#337](https://github.com/rudderlabs/rudder-sdk-react-native/issues/337)) ([67e0f34](https://github.com/rudderlabs/rudder-sdk-react-native/commit/67e0f3495cb74051e3a0834214ea29528530d702))
+* **rudder-integration-appcenter-react-native:** add a wrapper for the enable and disable analytics APIs ([#339](https://github.com/rudderlabs/rudder-sdk-react-native/issues/339)) ([78af2a0](https://github.com/rudderlabs/rudder-sdk-react-native/commit/78af2a00b33b6e052202069914044c405b0e987e))
+* update the version of iOS SDK to address the Privacy Manifest issue ([#342](https://github.com/rudderlabs/rudder-sdk-react-native/issues/342)) ([d81214c](https://github.com/rudderlabs/rudder-sdk-react-native/commit/d81214cf64c0ee94c5cb2e86c1950dad79f823e2))
+
+## [0.9.0](https://github.com/rudderlabs/rudder-sdk-react-native/compare/example-0.8.0...example-0.9.0) (2024-04-09)
+
+
+### Features
+
+* **example:** update android and ios sample apps ([697ec7e](https://github.com/rudderlabs/rudder-sdk-react-native/commit/697ec7ea9721ec010add78ac051b9c800210adb8))
+
+## [0.8.0](https://github.com/rudderlabs/rudder-sdk-react-native/compare/example-0.7.3...example-0.8.0) (2024-02-15)
+
+
+### Features
+
+* update rudder braze ios integration to version 2.0.0 ([#313](https://github.com/rudderlabs/rudder-sdk-react-native/issues/313)) ([e19089b](https://github.com/rudderlabs/rudder-sdk-react-native/commit/e19089bfa2037d9641fa22e9bd9e1c2dcb268aa9))
+
 ## [0.7.3](https://github.com/rudderlabs/rudder-sdk-react-native/compare/example-0.7.2...example-0.7.3) (2023-12-21)
 
 

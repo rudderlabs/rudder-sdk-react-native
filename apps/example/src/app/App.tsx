@@ -75,8 +75,23 @@ const initRNAppsFlyerSDK = async () => {
   }
 };
 
+const getGlobalOptions = () => {
+  return {
+    integrations: {
+      // specifying destination by its display name
+      Mixpanel: false,
+    },
+    // custom contexts
+    tier: {
+      category: 'premium',
+      type: 'gold',
+    },
+  };
+};
+
 const initRudderReactNativeSDK = async () => {
   const dbEncryption = new DBEncryption('versys', false);
+  const options = getGlobalOptions();
 
   const config = {
     dataPlaneUrl: TEST_DATAPLANE_URL,
@@ -84,7 +99,6 @@ const initRudderReactNativeSDK = async () => {
     collectDeviceId: false,
     recordScreenViews: false,
     logLevel: RUDDER_LOG_LEVEL.VERBOSE,
-    sessionTimeout: 0,
     enableBackgroundMode: true,
     trackAppLifecycleEvents: true,
     autoSessionTracking: true,
@@ -101,7 +115,7 @@ const initRudderReactNativeSDK = async () => {
     ],
   };
 
-  await rc.setup(TEST_WRITE_KEY, config);
+  await rc.setup(TEST_WRITE_KEY, config, options);
 };
 
 const initialization = async () => {

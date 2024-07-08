@@ -162,13 +162,14 @@ RCT_EXPORT_METHOD(optOut:(BOOL)optOut)
 }
 
 RCT_EXPORT_METHOD(putAdvertisingId:(NSString*)id) {
+    [RSClient putAdvertisingId:id];
+}
+
+RCT_EXPORT_METHOD(clearAdvertisingId) {
     if (![self isRudderClientInitializedAndReady]) {
         return;
     }
-    RSContext* rudderContext = [[RSClient sharedInstance] getContext];
-    if (rudderContext != nil && id != nil && [id length] != 0) {
-        [rudderContext putAdvertisementId:id];
-    }
+    [[RSClient sharedInstance] clearAdvertisingId];
 }
 
 RCT_EXPORT_METHOD(putAnonymousId:(NSString*)id) {
@@ -230,26 +231,66 @@ RCT_EXPORT_METHOD(getSessionId:(RCTPromiseResolveBlock)resolve rejecter:(RCTProm
 
 -(RSOption*) getRudderOptionsObject:(NSDictionary *) optionsDict {
     RSOption * options = [[RSOption alloc]init];
-    NSArray *externalIdKeys = @[@"externalId", @"externalIds"];
-    for (NSString *externalIdKey in externalIdKeys) {
-        if([optionsDict objectForKey:externalIdKey])
-        {
-            NSArray *externalIdsArray =  [optionsDict objectForKey:externalIdKey];
-            for(NSDictionary *externalId in externalIdsArray) {
-                [options putExternalId:[externalId objectForKey:@"type"] withId:[externalId objectForKey:@"id"]];
+    @try {
+        optionsDict = [self removeExternalIdsIfExternalIdExists:optionsDict];
+        for (NSString *key in optionsDict) {
+            if ([key isEqualToString:@"externalId"]) {
+                [self setExternalId:key withOptionsDict:optionsDict andOptions:options];
+            } else if ([key isEqualToString:@"externalIds"]) {
+                [self setExternalId:key withOptionsDict:optionsDict andOptions:options];
+            } else if ([key isEqualToString:@"integrations"]) {
+                [self setIntegrations:optionsDict andOptions:options];
+            } else {
+                [self setCustomContext:key withOptionsDict:optionsDict options:options];
             }
-            break;
         }
-    }
-    if([optionsDict objectForKey:@"integrations"])
-    {
-        NSDictionary *integrationsDict = [optionsDict objectForKey:@"integrations"];
-        for(NSString* key in integrationsDict)
-        {
-            [options putIntegration:key isEnabled:[[integrationsDict objectForKey:key] boolValue]];
-        }
+    } @catch (NSException *exception) {
+        [RSLogger logWarn:[NSString stringWithFormat:@"Error occured while handling options object: %@", exception]];
     }
     return options;
 }
 
+// For legacy reason we are still supporting "externalIds". First priority is given to "externalId".
+- (NSDictionary *)removeExternalIdsIfExternalIdExists:(NSDictionary *)optionsDict {
+    if (optionsDict == nil) return nil;
+    
+    NSMutableDictionary *mutableOptionsDict = [optionsDict mutableCopy];
+    if ([mutableOptionsDict objectForKey:@"externalId"] && [mutableOptionsDict objectForKey:@"externalIds"]) {
+        [mutableOptionsDict removeObjectForKey:@"externalIds"];
+    }
+    
+    return [mutableOptionsDict copy];
+}
+
+
+-(void) setExternalId:(NSString*) key withOptionsDict:(NSDictionary *) optionsDict andOptions:(RSOption *) options {
+    if([optionsDict objectForKey:key]) {
+        NSArray *externalIdsArray =  [optionsDict objectForKey:key];
+        for(NSDictionary *externalId in externalIdsArray) {
+            id type = [externalId objectForKey:@"type"];
+            id idValue = [externalId objectForKey:@"id"];
+            if (type != nil && idValue != nil) {
+                [options putExternalId:type withId:idValue];
+            }
+        }
+    }
+}
+
+-(void) setIntegrations:(NSDictionary *) optionsDict andOptions:(RSOption *) options {
+    NSDictionary *integrationsDict = [optionsDict objectForKey:@"integrations"];
+    for(NSString* key in integrationsDict) {
+        id value = [integrationsDict objectForKey:key];
+        // Checking for NSNumber class, as there is no bool class in objective-c
+        if (value != nil && value != [NSNull null] && [value isKindOfClass:[NSNumber class]]) {
+            [options putIntegration:key isEnabled:[[integrationsDict objectForKey:key] boolValue]];
+        }
+    }
+}
+
+-(void) setCustomContext:(NSString*) key withOptionsDict:(NSDictionary *) optionsDict options:(RSOption *) options {
+    id value = optionsDict[key];
+    if ([value isKindOfClass:[NSDictionary class]] && [(NSDictionary *)value count] > 0) {
+        [options putCustomContext:value withKey:key];
+    }
+}
 @end

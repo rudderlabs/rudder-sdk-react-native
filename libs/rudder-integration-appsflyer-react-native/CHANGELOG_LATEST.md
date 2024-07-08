@@ -1,8 +1,5 @@
-## [1.5.9](https://github.com/rudderlabs/rudder-sdk-react-native/compare/rudder-integration-appsflyer-react-native@1.5.8...rudder-integration-appsflyer-react-native@1.5.9) (2023-10-03)
-
+## [1.6.1](https://github.com/rudderlabs/rudder-sdk-react-native/compare/rudder-integration-appsflyer-react-native@1.6.0...rudder-integration-appsflyer-react-native@1.6.1) (2024-04-24)
 
 ### Bug Fixes
 
-* **rudder-integration-appsflyer-react-native:** make appsflyer compatible with gradle 8 ([df291c5](https://github.com/rudderlabs/rudder-sdk-react-native/commit/df291c581d2e77db1624aa460fb801e1198896c9))
-* **rudder-integration-appsflyer-react-native:** make appsflyer iOS SDKs compatible with dynamic and static frameworks ([8381d08](https://github.com/rudderlabs/rudder-sdk-react-native/commit/8381d0864bc7c4272d769ea8f705b84f212a2a96))
-
+- add a wrapper for the getAppsFlyerId API ([#337](https://github.com/rudderlabs/rudder-sdk-react-native/issues/337)) ([67e0f34](https://github.com/rudderlabs/rudder-sdk-react-native/commit/67e0f3495cb74051e3a0834214ea29528530d702))
