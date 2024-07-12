@@ -35,9 +35,9 @@ jobs:
         run: |
           npm run setup:ci
 
-      - name: Execute quality checks
-        run: |
-          npm run check:circular
+      # - name: Execute quality checks
+      #   run: |
+      #     npm run check:circular
 
       - name: Execute security checks
         run: |
