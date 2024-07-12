@@ -137,6 +137,7 @@
     "jest-sonar": "0.2.15",
     "lcov-result-merger": "4.1.0",
     "lint-staged": "13.2.0",
+    "madge": "6.0.0",
     "ngx-deploy-npm": "8.0.1",
     "nx": "19.4.1",
     "prettier": "2.8.7",
