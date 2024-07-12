@@ -8,17 +8,6 @@ require Pod::Executable.execute_command('node', ['-p',
 platform :ios, min_ios_version_supported
 prepare_react_native_project!
 
-# If you are using a `react-native-flipper` your iOS build will fail when `NO_FLIPPER=1` is set.
-# because `react-native-flipper` depends on (FlipperKit,...) that will be excluded
-#
-# To fix this you can also exclude `react-native-flipper` using a `react-native.config.js`
-# ```js
-# module.exports = {
-#   dependencies: {
-#     ...(process.env.NO_FLIPPER ? { 'react-native-flipper': { platforms: { ios: null } } } : {}),
-# ```
-flipper_config = ENV['NO_FLIPPER'] == "1" ? FlipperConfiguration.disabled : FlipperConfiguration.enabled
-
 linkage = ENV['USE_FRAMEWORKS']
 if linkage != nil
   Pod::UI.puts "Configuring Pod with #{linkage}ally linked Frameworks".green
@@ -33,13 +22,7 @@ target 'Example' do
   config = use_native_modules!
 
   use_react_native!(
-    :path => "../../#{config[:reactNativePath]}", # I've commented out the next line and added this line to resolve the build error caused by the use of use_frameworks! on react-native v0.73.x, due to yoga header path issue, refer here: https://github.com/facebook/react-native/issues/41938#issuecomment-1925888879.
-    # :path => config[:reactNativePath],
-    # Enables Flipper.
-    #
-    # Note that if you have use_frameworks! enabled, Flipper will not work and
-    # you should disable the next line.
-    :flipper_configuration => flipper_config,
+    :path => config[:reactNativePath],
     # An absolute path to your application root.
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
@@ -61,7 +44,8 @@ target 'Example' do
     react_native_post_install(
       installer,
       config[:reactNativePath],
-      :mac_catalyst_enabled => false
+      :mac_catalyst_enabled => false,
+      # :ccache_enabled => true
     )
 
     installer.pods_project.targets.each do |target|
@@ -79,20 +63,16 @@ target 'Example' do
         # config.build_settings.delete 'IPHONEOS_DEPLOYMENT_TARGET'
 
         # XCdoe 15.3 build issue: https://github.com/facebook/react-native/issues/43335#issuecomment-1980708164
-        if target.name == 'Flipper'
-        file_path = 'Pods/Flipper/xplat/Flipper/FlipperTransportTypes.h'
-        contents = File.read(file_path)
-        unless contents.include?('#include <functional>')
-          File.open(file_path, 'w') do |file|
-            file.puts('#include <functional>')
-            file.puts(contents)
-          end
-        end
-      end
+        # if target.name == 'Flipper'
+        # file_path = 'Pods/Flipper/xplat/Flipper/FlipperTransportTypes.h'
+        # contents = File.read(file_path)
+        # unless contents.include?('#include <functional>')
+        #   File.open(file_path, 'w') do |file|
+        #     file.puts('#include <functional>')
+        #     file.puts(contents)
+        #   end
+        # end
       end
     end
-
-    #  No longer needed
-    # __apply_Xcode_12_5_M1_post_install_workaround(installer)
   end
 end
