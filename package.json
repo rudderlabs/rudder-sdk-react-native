@@ -166,7 +166,8 @@
     "@babel/traverse": "7.23.2",
     "git-raw-commits": "4.0.0",
     "braces": "3.0.3",
-    "micromatch": "4.0.7"
+    "micromatch": "4.0.7",
+    "@nx/devkit": "19.4.1"
   },
   "lint-staged": {
     "*.{js,ts,tsx}": "eslint --cache --fix",
