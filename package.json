@@ -34,7 +34,6 @@
     "clean": "rm -rf node_modules/.cache && nx reset && rm -rf reports && rm -rf dist",
     "check:lint": "nx run-many --target=lint --parallel=1",
     "check:lint:ci": "nx run-many --target=lint --parallel=1 --configuration=ci",
-    "check:circular": "madge --circular --extensions ts ./libs || exit 0",
     "check:security": "npm audit --recursive --audit-level=high",
     "format": "prettier --write .",
     "lint:fix": "nx lint --configuration=fix",
