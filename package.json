@@ -158,7 +158,12 @@
     "tempfile": "5.0.0",
     "rimraf": "6.0.1",
     "data-urls": "5.0.0",
-    "jsdom": "24.1.0"
+    "jsdom": "24.1.0",
+    "trim-newlines": "3.0.1",
+    "semver-regex": "4.0.1",
+    "git-raw-commits": "2.0.10",
+    "http-cache-semantics": "4.1.1",
+    "dot-prop": "5.3.0"
   },
   "lint-staged": {
     "*.{js,ts,tsx}": "eslint --cache --fix",
