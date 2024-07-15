@@ -25,11 +25,11 @@ jobs:
 
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3.2'
 
       - name: Setup CocoaPods
-        uses: maxim-lobanov/setup-cocoapods@v1
-        with:
-          version: 1.5.2
+        uses: NiftyStack/install-cocoapods-action@1.0.1
 
       - name: Setup Node
         uses: actions/setup-node@v4
