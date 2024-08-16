@@ -147,6 +147,8 @@ jobs:
 
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3.2'
 
       - name: Setup CocoaPods
         uses: NiftyStack/install-cocoapods-action@1.0.1
@@ -234,6 +236,8 @@ jobs:
 
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3.2'
 
       - name: Setup CocoaPods
         uses: NiftyStack/install-cocoapods-action@1.0.1
@@ -321,6 +325,8 @@ jobs:
 
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3.2'
 
       - name: Setup CocoaPods
         uses: NiftyStack/install-cocoapods-action@1.0.1
@@ -408,6 +414,8 @@ jobs:
 
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3.2'
 
       - name: Setup CocoaPods
         uses: NiftyStack/install-cocoapods-action@1.0.1
