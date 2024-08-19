@@ -151,7 +151,7 @@ jobs:
       - name: Setup CocoaPods
         uses: maxim-lobanov/setup-cocoapods@v1
         with:
-          version: 1.14.3
+          version: 1.15.2
 
       - uses: maxim-lobanov/setup-xcode@v1
         with:
@@ -240,7 +240,7 @@ jobs:
       - name: Setup CocoaPods
         uses: maxim-lobanov/setup-cocoapods@v1
         with:
-          version: 1.14.3
+          version: 1.15.2
 
       - uses: maxim-lobanov/setup-xcode@v1
         with:
@@ -329,7 +329,7 @@ jobs:
       - name: Setup CocoaPods
         uses: maxim-lobanov/setup-cocoapods@v1
         with:
-          version: 1.14.3
+          version: 1.15.2
 
       - uses: maxim-lobanov/setup-xcode@v1
         with:
@@ -418,7 +418,7 @@ jobs:
       - name: Setup CocoaPods
         uses: maxim-lobanov/setup-cocoapods@v1
         with:
-          version: 1.14.3
+          version: 1.15.2
 
       - uses: maxim-lobanov/setup-xcode@v1
         with:

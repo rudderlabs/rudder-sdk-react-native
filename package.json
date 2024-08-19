@@ -164,7 +164,8 @@
     "git-raw-commits": "2.0.11",
     "http-cache-semantics": "4.1.1",
     "dot-prop": "5.3.0",
-    "got": "11.8.6"
+    "got": "11.8.6",
+    "axios": "1.7.4"
   },
   "lint-staged": {
     "*.{js,ts,tsx}": "eslint --cache --fix",
