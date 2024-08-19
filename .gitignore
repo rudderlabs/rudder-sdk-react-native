@@ -112,5 +112,7 @@ buck-out/
 apps/example-e2e/artifacts
 
 .nx/cache
+.nx/workspace-data
 
 storybook-static
+migrations.json

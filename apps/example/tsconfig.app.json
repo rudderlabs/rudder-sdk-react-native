@@ -5,7 +5,7 @@
     "types": ["node"]
   },
   "files": ["../../node_modules/@nx/react-native/typings/svg.d.ts"],
-  "exclude": ["jest.config.ts", "src/**/*.spec.ts", "src/**/*.spec.tsx", "test-setup.ts"],
+  "exclude": ["jest.config.ts", "src/**/*.spec.ts", "src/**/*.spec.tsx", "src/test-setup.ts"],
   "include": [
     "../../libs/**/src/**.ts",
     "src/**/*.ts",

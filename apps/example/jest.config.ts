@@ -1,11 +1,9 @@
-const libName = 'example';
-
 module.exports = {
-  displayName: libName,
+  displayName: 'example',
   preset: 'react-native',
   resolver: '@nx/jest/plugins/resolver',
   moduleFileExtensions: ['ts', 'js', 'html', 'tsx', 'jsx'],
-  setupFilesAfterEnv: ['<rootDir>/test-setup.ts'],
+  setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
   moduleNameMapper: {
     '.svg': '@nrwl/react-native/plugins/jest/svg-mock',
     '.png': '@nrwl/react-native/plugins/jest/svg-mock',
@@ -26,7 +24,7 @@ module.exports = {
       'jest-sonar',
       {
         outputDirectory: 'reports/sonar',
-        outputName: 'results-report-' + libName + '.xml',
+        outputName: 'results-report-' + 'example' + '.xml',
         reportedFilePath: 'relative',
         relativeRootDir: './',
       },

@@ -13,3 +13,4 @@ gradlew*
 *.xcworkspace/
 Pods/
 /.nx/cache
+/.nx/workspace-data

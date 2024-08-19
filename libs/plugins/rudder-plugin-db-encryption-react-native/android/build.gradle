@@ -41,9 +41,9 @@ dependencies {
 
     // rudderstack dependencies
     implementation project(path: ':rudderstack_rudder-sdk-react-native')  // From node_modules
-    implementation 'com.rudderstack.android.sdk:core:[1.20.0, 2.0.0)'
+    implementation 'com.rudderstack.android.sdk:core:[1.24.0, 2.0.0)'
 
     //sql-cipher
-    implementation "net.zetetic:android-database-sqlcipher:4.5.4"
-    implementation "androidx.sqlite:sqlite:2.3.1"
+    implementation "net.zetetic:sqlcipher-android:4.5.6@aar"
+    implementation "androidx.sqlite:sqlite:2.4.0"
 }
