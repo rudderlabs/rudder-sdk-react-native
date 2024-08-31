@@ -160,7 +160,12 @@ public class Utility {
 
     private static void setCustomContext(String key, Map<String, Object> optionsMap, RudderOption options) {
         if (optionsMap.get(key) instanceof Map && !isEmpty(optionsMap.get(key))) {
-            options.putCustomContext(key, (Map<String, Object>) optionsMap.get(key));
+            Map<String, Object> optionsMapContext = (Map<String, Object>) optionsMap.get(key);
+            Map customContext = new HashMap<String, Object>();
+            for (String contextKey : optionsMapContext.keySet()) {
+                customContext.put(contextKey, optionsMapContext.get(contextKey));
+            }
+            options.putCustomContext(key, customContext);
         }
     }
 
