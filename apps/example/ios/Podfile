@@ -15,7 +15,7 @@ if linkage != nil
 end
 
 target 'Example' do
-  # use_frameworks!
+  use_frameworks! # Enabled to run 'RudderOneTrustConsentFilter' pod. It currently required static linkage.
   # use_frameworks! :linkage=> :static
   # use_frameworks! :linkage => :dynamic
 
@@ -28,11 +28,16 @@ target 'Example' do
   )
 
   # Note that if you have use_frameworks! enabled, then comment out these lines
-    pod 'FirebaseCore', :modular_headers => true
-    pod 'GoogleUtilities', :modular_headers => true
+    # pod 'FirebaseCore', :modular_headers => true
+    # pod 'GoogleUtilities', :modular_headers => true
+    # pod 'RudderOneTrustConsentFilter', :modular_headers => true
 
     # This is added to resolve the build error. Once we update the MoEngage iOS SDK to the latest version, we can remove this.
     pod 'MoEngage-iOS-SDK', '9.7.0'
+
+    # This is to solve the Rudder-CleverTap build error
+    pod 'Rudder-CleverTap', '1.1.2'
+
 
   target 'ExampleTests' do
     inherit! :complete
