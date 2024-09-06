@@ -34,6 +34,10 @@ target 'Example' do
     # This is added to resolve the build error. Once we update the MoEngage iOS SDK to the latest version, we can remove this.
     pod 'MoEngage-iOS-SDK', '9.7.0'
 
+    # This is to solve the Rudder-CleverTap build error
+    pod 'Rudder-CleverTap', '1.1.2'
+    
+
   target 'ExampleTests' do
     inherit! :complete
     # Pods for testing
