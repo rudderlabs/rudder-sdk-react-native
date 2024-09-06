@@ -18,6 +18,7 @@ export interface Configuration {
   enableBackgroundMode?: boolean;
   collectDeviceId?: boolean;
   dbEncryption?: IDBEncryption;
+  consentFilter?: () => Promise<void>;
   // eslint-disable-next-line @typescript-eslint/ban-types
   withFactories?: Array<Record<string, unknown> | Function>;
 }
