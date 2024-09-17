@@ -34,6 +34,7 @@ export const configure = async (
     recordScreenViews = RECORD_SCREEN_VIEWS,
     collectDeviceId = COLLECT_DEVICE_ID,
     dbEncryption,
+    consentFilter,
     withFactories = [],
   }: Configuration,
 ): Promise<Configuration> => {
@@ -50,6 +51,10 @@ export const configure = async (
 
   if (dbEncryption !== undefined) {
     await dbEncryption.addDBEncryptionPlugin(dbEncryption.key, dbEncryption.enable);
+  }
+
+  if (consentFilter !== undefined) {
+    await consentFilter();
   }
 
   const config = {

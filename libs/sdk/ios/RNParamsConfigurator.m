@@ -32,6 +32,7 @@
     [self setWriteKey];
     RSConfigBuilder *configBuilder = [self buildConfig];
     [self addDBEncryptionPluginIfAvailable:configBuilder];
+    [self addConsentFilterPluginIfAvailable:configBuilder];
     [self disableAutoConfigFlagsForNativeSDK:configBuilder];
     return configBuilder;
 }
@@ -91,6 +92,13 @@
     self->dbEncryption = [RNRudderAnalytics getDBEncryption];
     if (self->dbEncryption) {
         [configBuilder withDBEncryption:self->dbEncryption];
+    }
+}
+
+-(void)addConsentFilterPluginIfAvailable:(RSConfigBuilder *)configBuilder {
+    id<RSConsentFilter> consentFilter = [RNRudderAnalytics getConsentFilterPlugin];
+    if (consentFilter) {
+        [configBuilder withConsentFilter:consentFilter];
     }
 }
 

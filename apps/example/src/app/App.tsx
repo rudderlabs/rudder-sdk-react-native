@@ -29,6 +29,9 @@ import appsflyer, {
   setOptions,
 } from '@rudderstack/rudder-integration-appsflyer-react-native';
 import DBEncryption from '@rudderstack/rudder-plugin-db-encryption-react-native';
+import ketchConsentFilter, {
+  startConsentFilterPlugin,
+} from '@rudderstack/rudder-plugin-ketch-consent-filter-react-native';
 // @ts-ignore
 import { TEST_DATAPLANE_URL, TEST_WRITE_KEY, APPSFLYER_DEV_KEY, APPSFLYER_APPLE_ID } from '@env';
 import RudderEvents from './RudderEvents';
@@ -89,6 +92,12 @@ const getGlobalOptions = () => {
   };
 };
 
+const isConsentGranted = async () => {
+  const consent = await startConsentFilterPlugin();
+  console.log('Consent granted: ', consent);
+  return consent;
+};
+
 const initRudderReactNativeSDK = async () => {
   const dbEncryption = new DBEncryption('versys', false);
   const options = getGlobalOptions();
@@ -113,14 +122,17 @@ const initRudderReactNativeSDK = async () => {
       moengage,
       singular,
     ],
+    consentFilter: ketchConsentFilter,
   };
 
   await rc.setup(TEST_WRITE_KEY, config, options);
 };
 
 const initialization = async () => {
-  await initRNAppsFlyerSDK();
-  await initRudderReactNativeSDK();
+  if (await isConsentGranted()) {
+    await initRNAppsFlyerSDK();
+    await initRudderReactNativeSDK();
+  }
 };
 
 export const App = () => {

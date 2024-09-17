@@ -9,6 +9,7 @@
 
 NSMutableArray* integrationList;
 static RSDBEncryption* rsDBEncryption = nil;
+static id<RSConsentFilter> rsConsentFilter = nil;
 
 @implementation RNRudderAnalytics
 
@@ -36,4 +37,13 @@ static RSDBEncryption* rsDBEncryption = nil;
 + (RSDBEncryption *_Nullable) getDBEncryption {
     return rsDBEncryption;
 }
+
++ (void) setConsentFilterPlugin:(id <RSConsentFilter> _Nonnull)consentFilter {
+    rsConsentFilter = consentFilter;
+}
+
++ (id <RSConsentFilter> _Nullable) getConsentFilterPlugin {
+    return rsConsentFilter;
+}
+
 @end

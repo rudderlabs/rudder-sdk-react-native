@@ -60,12 +60,13 @@
     "@rudderstack/rudder-integration-moengage-react-native": "file:libs/rudder-integration-moengage-react-native",
     "@rudderstack/rudder-integration-singular-react-native": "file:libs/rudder-integration-singular-react-native",
     "@rudderstack/rudder-plugin-db-encryption-react-native": "file:libs/plugins/rudder-plugin-db-encryption-react-native",
+    "@rudderstack/rudder-plugin-ketch-consent-filter-react-native": "file:libs/plugins/rudder-plugin-ketch-consent-filter-react-native",
     "@rudderstack/rudder-sdk-react-native": "file:libs/sdk",
     "async-lock": "1.4.0",
     "core-js": "3.36.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-native": "0.74.1",
+    "react-native": "0.74.2",
     "react-native-safe-area-context": "4.7.2",
     "react-native-screens": "3.20.0",
     "tslib": "2.5.0"
@@ -186,6 +187,7 @@
         "rudder-integration-firebase-react-native",
         "rudder-integration-moengage-react-native",
         "rudder-integration-singular-react-native",
+        "rudder-plugin-ketch-consent-filter-react-native",
         "rudder-sdk-react-native",
         "rudder-sdk-react-native-monorepo",
         "example"

@@ -43,6 +43,9 @@
       "@rudderstack/rudder-plugin-db-encryption-react-native": [
         "libs/plugins/rudder-plugin-db-encryption-react-native/src/index.ts"
       ],
+      "@rudderstack/rudder-plugin-ketch-consent-filter-react-native": [
+        "libs/plugins/rudder-plugin-ketch-consent-filter-react-native/src/index.ts"
+      ],
       "@rudderstack/rudder-sdk-react-native": ["libs/sdk/src/index.ts"]
     }
   },
