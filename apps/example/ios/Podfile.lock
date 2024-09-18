@@ -18,7 +18,13 @@ PODS:
   - CleverTap-iOS-SDK (4.2.2):
     - SDWebImage (~> 5.11)
   - DoubleConversion (1.1.6)
+  - FBAEMKit (17.0.3):
+    - FBSDKCoreKit_Basics (= 17.0.3)
   - FBLazyVector (0.74.1)
+  - FBSDKCoreKit (17.0.3):
+    - FBAEMKit (= 17.0.3)
+    - FBSDKCoreKit_Basics (= 17.0.3)
+  - FBSDKCoreKit_Basics (17.0.3)
   - FirebaseAnalytics (10.28.0):
     - FirebaseAnalytics/AdIdSupport (= 10.28.0)
     - FirebaseCore (~> 10.0)
@@ -1313,6 +1319,9 @@ PODS:
   - Rudder-CleverTap (1.1.2):
     - CleverTap-iOS-SDK (~> 4.2)
     - Rudder (~> 1.12)
+  - Rudder-Facebook (2.2.1):
+    - FBSDKCoreKit (~> 17.0.2)
+    - Rudder (~> 1.12)
   - Rudder-Firebase (3.4.0):
     - FirebaseAnalytics (~> 10.28.0)
     - Rudder (~> 1.25)
@@ -1337,6 +1346,10 @@ PODS:
     - React
     - RNRudderSdk
     - Rudder-CleverTap (~> 1.1.2)
+  - rudder-integration-facebook-react-native (1.0.0):
+    - React
+    - RNRudderSdk
+    - Rudder-Facebook (< 3.0.0, >= 2.2.1)
   - rudder-integration-firebase-react-native (1.1.0):
     - React
     - RNRudderSdk
@@ -1446,6 +1459,7 @@ DEPENDENCIES:
   - "rudder-integration-appsflyer-react-native (from `../node_modules/@rudderstack/rudder-integration-appsflyer-react-native`)"
   - "rudder-integration-braze-react-native (from `../node_modules/@rudderstack/rudder-integration-braze-react-native`)"
   - "rudder-integration-clevertap-react-native (from `../node_modules/@rudderstack/rudder-integration-clevertap-react-native`)"
+  - "rudder-integration-facebook-react-native (from `../node_modules/@rudderstack/rudder-integration-facebook-react-native`)"
   - "rudder-integration-firebase-react-native (from `../node_modules/@rudderstack/rudder-integration-firebase-react-native`)"
   - "rudder-integration-moengage-react-native (from `../node_modules/@rudderstack/rudder-integration-moengage-react-native`)"
   - "rudder-integration-singular-react-native (from `../node_modules/@rudderstack/rudder-integration-singular-react-native`)"
@@ -1460,6 +1474,9 @@ SPEC REPOS:
     - AppsFlyerFramework
     - BrazeKit
     - CleverTap-iOS-SDK
+    - FBAEMKit
+    - FBSDKCoreKit
+    - FBSDKCoreKit_Basics
     - FirebaseAnalytics
     - FirebaseCore
     - FirebaseCoreInternal
@@ -1477,6 +1494,7 @@ SPEC REPOS:
     - Rudder-Appsflyer
     - Rudder-Braze
     - Rudder-CleverTap
+    - Rudder-Facebook
     - Rudder-Firebase
     - Rudder-Moengage
     - Rudder-Singular
@@ -1613,6 +1631,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@rudderstack/rudder-integration-braze-react-native"
   rudder-integration-clevertap-react-native:
     :path: "../node_modules/@rudderstack/rudder-integration-clevertap-react-native"
+  rudder-integration-facebook-react-native:
+    :path: "../node_modules/@rudderstack/rudder-integration-facebook-react-native"
   rudder-integration-firebase-react-native:
     :path: "../node_modules/@rudderstack/rudder-integration-firebase-react-native"
   rudder-integration-moengage-react-native:
@@ -1633,7 +1653,10 @@ SPEC CHECKSUMS:
   BrazeKit: 4da9eda353092104add9d3fcbb272afbd14dd3de
   CleverTap-iOS-SDK: 36c21b8a671d87a0f9c7b389b339d02528bbe4d7
   DoubleConversion: 76ab83afb40bddeeee456813d9c04f67f78771b5
+  FBAEMKit: 9900b2edd99a2d21629a6277e6166f14c6215799
   FBLazyVector: 898d14d17bf19e2435cafd9ea2a1033efe445709
+  FBSDKCoreKit: 0791f8f68a8630931a4c12aa23a56cc021551596
+  FBSDKCoreKit_Basics: 46d6b472c0dd0a5a7e972c025033d1c567f54eb4
   FirebaseAnalytics: 1e06fe7d246af7230b08d1d9cdca54a4624dd461
   FirebaseCore: 30e9c1cbe3d38f5f5e75f48bfcea87d7c358ec16
   FirebaseCoreInternal: df84dd300b561c27d5571684f389bf60b0a5c934
@@ -1705,12 +1728,14 @@ SPEC CHECKSUMS:
   Rudder-Appsflyer: d7eb1497781a64e4228c97edc1cc3c7893b6ced0
   Rudder-Braze: 1906f75be3d6f04bd6e85ea1f250dafabd574ccd
   Rudder-CleverTap: a0085aab472e0e60930c4301ef80bae5ff187e98
+  Rudder-Facebook: 24c9309373f13212d1139938aad86faa2914d342
   Rudder-Firebase: 53976bb7f282366248212b5757389bd32995abb8
   rudder-integration-amplitude-react-native: a9896aaef79714931f0edbd40f3cde602b429273
   rudder-integration-appcenter-react-native: 6395a10a4396f56ff955603bfb47d1a0e374614d
   rudder-integration-appsflyer-react-native: 393473fd43ee3c792484a36014fcfeae1169abe5
   rudder-integration-braze-react-native: 237e030490811fa7eb3192e2800feb6e6d141bca
   rudder-integration-clevertap-react-native: 3c640ce986bd66996a2e53ff415159dfca0f5c4d
+  rudder-integration-facebook-react-native: 0d3a8e6279b81c39495a81d7badf4c4c8815bd8f
   rudder-integration-firebase-react-native: 49cdc474a8273432a8b363e966b27dda1a696dea
   rudder-integration-moengage-react-native: a88e92d14c27edfb1d7c3d27cf2498e4d82cd36d
   rudder-integration-singular-react-native: 52137a0c399ad1329b53bfe9e8af0a78e11168a3
