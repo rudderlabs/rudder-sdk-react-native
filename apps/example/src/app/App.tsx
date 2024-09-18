@@ -16,6 +16,7 @@ import amplitude from '@rudderstack/rudder-integration-amplitude-react-native';
 import appcenter from '@rudderstack/rudder-integration-appcenter-react-native';
 import braze from '@rudderstack/rudder-integration-braze-react-native';
 import clevertap from '@rudderstack/rudder-integration-clevertap-react-native';
+import facebook from '@rudderstack/rudder-integration-facebook-react-native';
 import firebase from '@rudderstack/rudder-integration-firebase-react-native';
 import moengage from '@rudderstack/rudder-integration-moengage-react-native';
 import singular from '@rudderstack/rudder-integration-singular-react-native';
@@ -109,6 +110,7 @@ const initRudderReactNativeSDK = async () => {
       appcenter,
       braze,
       clevertap,
+      facebook,
       firebase,
       moengage,
       singular,
