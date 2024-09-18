@@ -20,7 +20,7 @@ Pod::Spec.new do |s|
   s.static_framework = true 
 
   s.dependency "React"
-  # s.dependency "Rudder-Firebase", "~> 3.1"
+  s.dependency "Rudder-Facebook", ">=2.2.1", '<3.0.0'
   s.dependency 'RNRudderSdk'
 
 end
