@@ -1352,7 +1352,7 @@ PODS:
   - Rudder-Moengage (2.1.1):
     - MoEngage-iOS-SDK (~> 9.5)
     - Rudder (~> 1.12)
-  - rudder-plugin-db-encryption-react-native (1.2.0):
+  - rudder-plugin-db-encryption-react-native (1.3.0):
     - React
     - RNRudderSdk
     - Rudder (< 2.0.0, >= 1.24.1)
@@ -1715,7 +1715,7 @@ SPEC CHECKSUMS:
   rudder-integration-moengage-react-native: a88e92d14c27edfb1d7c3d27cf2498e4d82cd36d
   rudder-integration-singular-react-native: 52137a0c399ad1329b53bfe9e8af0a78e11168a3
   Rudder-Moengage: c30465e23740673495ff853eed607a5641f22c5c
-  rudder-plugin-db-encryption-react-native: 59e6894cd18d3c35d03853372b652eb47645b32f
+  rudder-plugin-db-encryption-react-native: 5ef4cbd04e41c239c3df1a6af2a754d9990cc8b6
   Rudder-Singular: e22a4101ce043aded86b777bea873bf6a2af42b9
   RudderDatabaseEncryption: 95b436538412958eda771f5d81bd970a9ffe4eec
   RudderKit: f272f9872183946452ac94cd7bb2244a71e6ca8f
