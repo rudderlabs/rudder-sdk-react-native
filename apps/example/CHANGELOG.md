@@ -2,6 +2,13 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [0.11.0](https://github.com/rudderlabs/rudder-sdk-react-native/compare/example-0.10.0...example-0.11.0) (2024-09-23)
+
+
+### Features
+
+* add support for rudder facebook integration ([#373](https://github.com/rudderlabs/rudder-sdk-react-native/issues/373)) ([8cac746](https://github.com/rudderlabs/rudder-sdk-react-native/commit/8cac746e0f7bdf269323e543d7a24d6e52afa70d))
+
 ## [0.10.0](https://github.com/rudderlabs/rudder-sdk-react-native/compare/example-0.9.1...example-0.10.0) (2024-05-28)
 
 

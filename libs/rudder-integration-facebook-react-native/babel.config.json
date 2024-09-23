@@ -1,0 +1,17 @@
+{
+  "presets": [
+    [
+      "@nrwl/react/babel",
+      {
+        "runtime": "automatic",
+        "useBuiltIns": "entry"
+      }
+    ]
+  ],
+  "plugins": [],
+  "env": {
+    "test": {
+      "presets": ["module:@react-native/babel-preset"]
+    }
+  }
+}
