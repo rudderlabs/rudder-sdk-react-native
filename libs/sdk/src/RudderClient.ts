@@ -232,7 +232,7 @@ async function alias(
   if (typeof newIdOrOptions == 'string') {
     return bridge.alias(newIdOrOptions, null);
   } else if (typeof newIdOrOptions == 'object' && !Array.isArray(newIdOrOptions)) {
-    return bridge.alias(newOrPrevId, newIdOrOptions);
+    return bridge.alias(newOrPrevId, filterNaN(newIdOrOptions));
   } else {
     return bridge.alias(newOrPrevId, null);
   }
