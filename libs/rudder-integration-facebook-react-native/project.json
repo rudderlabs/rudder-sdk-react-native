@@ -89,8 +89,7 @@
       "options": {
         "baseBranch": "master",
         "preset": "conventional",
-        "tagPrefix": "{projectName}@",
-        "releaseAs": "major"
+        "tagPrefix": "{projectName}@"
       }
     },
     "github": {
