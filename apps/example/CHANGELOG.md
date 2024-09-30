@@ -2,6 +2,13 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [0.11.1](https://github.com/rudderlabs/rudder-sdk-react-native/compare/example-0.11.0...example-0.11.1) (2024-09-30)
+
+
+### Bug Fixes
+
+* alias api ([#377](https://github.com/rudderlabs/rudder-sdk-react-native/issues/377)) ([b9168cf](https://github.com/rudderlabs/rudder-sdk-react-native/commit/b9168cfe1bcdfdf696b0f7c534f0841b15050a19))
+
 ## [0.11.0](https://github.com/rudderlabs/rudder-sdk-react-native/compare/example-0.10.0...example-0.11.0) (2024-09-23)
 
 
