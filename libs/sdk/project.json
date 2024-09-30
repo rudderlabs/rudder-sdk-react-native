@@ -94,7 +94,7 @@
     "github": {
       "executor": "@jscutlery/semver:github",
       "options": {
-        "tag": "rudder-sdk-react-native@1.14.0",
+        "tag": "rudder-sdk-react-native@1.14.1",
         "notesFile": "./libs/sdk/CHANGELOG_LATEST.md"
       }
     },

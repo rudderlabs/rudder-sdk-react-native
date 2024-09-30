@@ -95,7 +95,7 @@
     "github": {
       "executor": "@jscutlery/semver:github",
       "options": {
-        "tag": "rudder-integration-facebook-react-native@1.0.0",
+        "tag": "rudder-integration-facebook-react-native@1.0.1",
         "notesFile": "./libs/rudder-integration-facebook-react-native/CHANGELOG_LATEST.md"
       }
     },
