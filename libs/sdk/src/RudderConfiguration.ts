@@ -14,6 +14,7 @@ import {
   SESSION_TIMEOUT,
   ENABLE_BACKGROUND_MODE,
   COLLECT_DEVICE_ID,
+  IS_GZIP,
 } from './Constants';
 
 export const configure = async (
@@ -33,6 +34,7 @@ export const configure = async (
     trackAppLifecycleEvents = TRACK_LIFECYCLE_EVENTS,
     recordScreenViews = RECORD_SCREEN_VIEWS,
     collectDeviceId = COLLECT_DEVICE_ID,
+    isGzip = IS_GZIP,
     dbEncryption,
     withFactories = [],
   }: Configuration,
@@ -68,6 +70,7 @@ export const configure = async (
     enableBackgroundMode,
     recordScreenViews,
     collectDeviceId,
+    isGzip,
   };
 
   return config;

@@ -78,6 +78,10 @@ function validateConfiguration(configuration: Configuration) {
     logWarn("setup : 'collectDeviceId' must be a boolean. Falling back to the default value");
     delete configuration.collectDeviceId;
   }
+  if (configuration.isGzip && typeof configuration.isGzip != 'boolean') {
+    logWarn("setup : 'isGzip' must be a boolean. Falling back to the default value");
+    delete configuration.isGzip;
+  }
 }
 
 // setup the RudderSDK with writeKey and Config
