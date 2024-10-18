@@ -84,6 +84,9 @@
     if ([config objectForKey:@"collectDeviceId"]) {
         [configBuilder withCollectDeviceId:[config[@"collectDeviceId"] boolValue]];
     }
+    if ([config objectForKey:@"isGzip"]) {
+      [configBuilder withGzip:[config[@"isGzip"] boolValue]];
+    }
     return configBuilder;
 }
 
