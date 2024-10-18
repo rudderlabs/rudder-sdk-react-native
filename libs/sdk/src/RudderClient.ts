@@ -78,7 +78,10 @@ function validateConfiguration(configuration: Configuration) {
     logWarn("setup : 'collectDeviceId' must be a boolean. Falling back to the default value");
     delete configuration.collectDeviceId;
   }
-  if (configuration.enableGzip && typeof configuration.enableGzip != 'boolean') {
+  if (
+    typeof configuration.enableGzip !== 'undefined' &&
+    typeof configuration.enableGzip != 'boolean'
+  ) {
     logWarn(
       `setup : 'enableGzip' must be a boolean. Falling back to the default value ${ENABLE_GZIP}`,
     );
