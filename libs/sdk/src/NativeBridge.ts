@@ -17,7 +17,7 @@ export interface Configuration {
   sessionTimeout?: number;
   enableBackgroundMode?: boolean;
   collectDeviceId?: boolean;
-  isGzip?: boolean;
+  enableGzip?: boolean;
   dbEncryption?: IDBEncryption;
   // eslint-disable-next-line @typescript-eslint/ban-types
   withFactories?: Array<Record<string, unknown> | Function>;
