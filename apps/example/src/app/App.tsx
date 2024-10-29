@@ -104,6 +104,7 @@ const initRudderReactNativeSDK = async () => {
     trackAppLifecycleEvents: true,
     autoSessionTracking: true,
     dbEncryption: dbEncryption,
+    enableGzip: true,
     withFactories: [
       appsflyer,
       amplitude,

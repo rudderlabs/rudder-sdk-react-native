@@ -1296,7 +1296,7 @@ PODS:
     - React-utils (= 0.74.1)
   - RNCAsyncStorage (1.23.1):
     - React-Core
-  - RNRudderSdk (1.14.0):
+  - RNRudderSdk (1.14.1):
     - React
     - Rudder (< 2.0.0, >= 1.26.3)
   - RNSVG (15.3.0):
@@ -1346,7 +1346,7 @@ PODS:
     - React
     - RNRudderSdk
     - Rudder-CleverTap (~> 1.1.2)
-  - rudder-integration-facebook-react-native (1.0.0):
+  - rudder-integration-facebook-react-native (1.0.1):
     - React
     - RNRudderSdk
     - Rudder-Facebook (< 3.0.0, >= 2.2.1)
@@ -1719,7 +1719,7 @@ SPEC CHECKSUMS:
   React-utils: 3285151c9d1e3a28a9586571fc81d521678c196d
   ReactCommon: f42444e384d82ab89184aed5d6f3142748b54768
   RNCAsyncStorage: 826b603ae9c0f88b5ac4e956801f755109fa4d5c
-  RNRudderSdk: 9e243c47f3040a49c559f3b01186fe48e5158c01
+  RNRudderSdk: b31488f3452592107ff3835120a13df4d00e394c
   RNSVG: a48668fd382115bc89761ce291a81c4ca5f2fd2e
   RSCrashReporter: 6b8376ac729b0289ebe0908553e5f56d8171f313
   Rudder: 3cfcd9e6c5359cd6d49f411101ed9b894e3b64bd
@@ -1735,7 +1735,7 @@ SPEC CHECKSUMS:
   rudder-integration-appsflyer-react-native: 393473fd43ee3c792484a36014fcfeae1169abe5
   rudder-integration-braze-react-native: 237e030490811fa7eb3192e2800feb6e6d141bca
   rudder-integration-clevertap-react-native: 3c640ce986bd66996a2e53ff415159dfca0f5c4d
-  rudder-integration-facebook-react-native: 0d3a8e6279b81c39495a81d7badf4c4c8815bd8f
+  rudder-integration-facebook-react-native: 501ddd3441b7e0ede4848b76e184797c10ef8be3
   rudder-integration-firebase-react-native: 49cdc474a8273432a8b363e966b27dda1a696dea
   rudder-integration-moengage-react-native: a88e92d14c27edfb1d7c3d27cf2498e4d82cd36d
   rudder-integration-singular-react-native: 52137a0c399ad1329b53bfe9e8af0a78e11168a3

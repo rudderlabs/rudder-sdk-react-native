@@ -4,7 +4,7 @@ import AsyncLock from 'async-lock';
 import { configure } from './RudderConfiguration';
 import bridge, { Configuration } from './NativeBridge';
 import { logInit, logDebug, logError, logWarn } from './Logger';
-import { SDK_VERSION } from './Constants';
+import { SDK_VERSION, ENABLE_GZIP } from './Constants';
 import IRudderContext from './IRudderContext';
 import { filterNaN } from './FilterNaN';
 
@@ -77,6 +77,15 @@ function validateConfiguration(configuration: Configuration) {
   if (configuration.collectDeviceId && typeof configuration.collectDeviceId != 'boolean') {
     logWarn("setup : 'collectDeviceId' must be a boolean. Falling back to the default value");
     delete configuration.collectDeviceId;
+  }
+  if (
+    typeof configuration.enableGzip !== 'undefined' &&
+    typeof configuration.enableGzip != 'boolean'
+  ) {
+    logWarn(
+      `setup : 'enableGzip' must be a boolean. Falling back to the default value ${ENABLE_GZIP}`,
+    );
+    delete configuration.enableGzip;
   }
 }
 
