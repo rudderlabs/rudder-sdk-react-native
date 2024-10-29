@@ -1,5 +1,5 @@
-## [1.3.0](https://github.com/rudderlabs/rudder-sdk-react-native/compare/rudder-plugin-db-encryption-react-native@1.2.0...rudder-plugin-db-encryption-react-native@1.3.0) (2024-08-19)
+## [1.3.1](https://github.com/rudderlabs/rudder-sdk-react-native/compare/rudder-plugin-db-encryption-react-native@1.3.0...rudder-plugin-db-encryption-react-native@1.3.1) (2024-10-29)
 
-### Features
+### Bug Fixes
 
-- use the sqlcipher-android library in db encryption android plugin ([#363](https://github.com/rudderlabs/rudder-sdk-react-native/issues/363)) ([31c049c](https://github.com/rudderlabs/rudder-sdk-react-native/commit/31c049cfa1e1bb77884600d0248c58b00d78fbed))
+- add dummy commit to trigger changelog generation ([#384](https://github.com/rudderlabs/rudder-sdk-react-native/issues/384)) ([f9327c2](https://github.com/rudderlabs/rudder-sdk-react-native/commit/f9327c2e4f7fe23729a2cb0c3c67097c16ff8d73))
