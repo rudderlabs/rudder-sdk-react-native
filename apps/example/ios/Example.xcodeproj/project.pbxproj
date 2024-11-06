@@ -16,7 +16,6 @@
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		8C0733442C9C7DDD00A6BE7F /* FBSDKInit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C0733432C9C7DDD00A6BE7F /* FBSDKInit.swift */; };
 		8C2041DA023520EE76E794D6 /* Pods_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1DFAE0828082D36714A7040 /* Pods_Example.framework */; };
-		8C49B8872CDB3ECE001A1873 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8C49B8862CDB3ECE001A1873 /* GoogleService-Info.plist */; };
 		F1B97AE9936D3C41B28EB182 /* Pods_Example_ExampleTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72A4F07A75E0BA3A8260E208 /* Pods_Example_ExampleTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -49,7 +48,6 @@
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = Example/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8C0733422C9C7DDD00A6BE7F /* Example-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Example-Bridging-Header.h"; sourceTree = "<group>"; };
 		8C0733432C9C7DDD00A6BE7F /* FBSDKInit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBSDKInit.swift; sourceTree = "<group>"; };
-		8C49B8862CDB3ECE001A1873 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B1DFAE0828082D36714A7040 /* Pods_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5DA1C0F12FDFDFA28A10E16 /* Pods-Example-ExampleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example-ExampleTests.release.xcconfig"; path = "Target Support Files/Pods-Example-ExampleTests/Pods-Example-ExampleTests.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
@@ -106,7 +104,6 @@
 				258FA9C0DCF4B7B3300A29A6 /* PrivacyInfo.xcprivacy */,
 				8C0733432C9C7DDD00A6BE7F /* FBSDKInit.swift */,
 				8C0733422C9C7DDD00A6BE7F /* Example-Bridging-Header.h */,
-				8C49B8862CDB3ECE001A1873 /* GoogleService-Info.plist */,
 			);
 			name = Example;
 			sourceTree = "<group>";
@@ -257,7 +254,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
-				8C49B8872CDB3ECE001A1873 /* GoogleService-Info.plist in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				2710A25ACD646D417AD4C0FC /* PrivacyInfo.xcprivacy in Resources */,
 			);
