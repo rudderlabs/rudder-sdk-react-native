@@ -12,7 +12,7 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2710A25ACD646D417AD4C0FC /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 258FA9C0DCF4B7B3300A29A6 /* PrivacyInfo.xcprivacy */; };
-		30424F24AD4F5990B2026ABE /* (null) in Frameworks */ = {isa = PBXBuildFile; };
+		30424F24AD4F5990B2026ABE /* BuildFile in Frameworks */ = {isa = PBXBuildFile; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		8C0733442C9C7DDD00A6BE7F /* FBSDKInit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C0733432C9C7DDD00A6BE7F /* FBSDKInit.swift */; };
 		8C2041DA023520EE76E794D6 /* Pods_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1DFAE0828082D36714A7040 /* Pods_Example.framework */; };
@@ -66,7 +66,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				30424F24AD4F5990B2026ABE /* (null) in Frameworks */,
+				30424F24AD4F5990B2026ABE /* BuildFile in Frameworks */,
 				8C2041DA023520EE76E794D6 /* Pods_Example.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -805,7 +805,10 @@
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 					"-DFOLLY_HAVE_CLOCK_GETTIME=1",
 				);
-				OTHER_LDFLAGS = "$(inherited)  ";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					" ",
+				);
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				USE_HERMES = true;
@@ -888,7 +891,10 @@
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 					"-DFOLLY_HAVE_CLOCK_GETTIME=1",
 				);
-				OTHER_LDFLAGS = "$(inherited)  ";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					" ",
+				);
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				USE_HERMES = true;
