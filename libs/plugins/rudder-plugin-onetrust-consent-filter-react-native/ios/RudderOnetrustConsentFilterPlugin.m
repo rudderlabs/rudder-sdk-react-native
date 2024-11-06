@@ -23,21 +23,17 @@
     return self;
 }
 
-- (void)setupOneTrust {
+- (void)setupOneTrust:(NSString *)cdn withDomainIdentifier:(NSString *)domainIdentifier withLanguageCode:(NSString *)languageCode {
     // Implement the setup logic for OneTrust here
-    [[OTPublishersHeadlessSDK shared] startSDKWithStorageLocation:@"<STORAGE_LOCATION>" domainIdentifier:@"<DOMAIN_IDENTIFIER>" languageCode:@"en" params:nil loadOffline:NO completionHandler:^(OTResponse *response) {
+  [[OTPublishersHeadlessSDK shared] startSDKWithStorageLocation:cdn domainIdentifier:domainIdentifier languageCode:languageCode params:nil loadOffline:NO completionHandler:^(OTResponse *response) {
         if (response.status) {
-            
+          self->resolve(@YES);
+        } else {
+          self->resolve(@NO);
         }
     }];
     
     [[OTPublishersHeadlessSDK shared] addEventListener:self];
-    
-    // Assuming that consent is granted
-    resolve(@YES);
-    
-    // Assuming that consent is rejected
-//    resolve(@NO);
 }
 
 - (void)setConsentFilter {

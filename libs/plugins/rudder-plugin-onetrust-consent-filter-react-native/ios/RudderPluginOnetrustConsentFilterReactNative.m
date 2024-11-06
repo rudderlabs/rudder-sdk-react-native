@@ -7,9 +7,9 @@
 RCT_EXPORT_MODULE()
     
 RudderOnetrustConsentFilterPlugin *onetrustConsentFilterPlugin = nil;
-RCT_EXPORT_METHOD(startConsentFilterPlugin:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject) {
+RCT_EXPORT_METHOD(startConsentFilterPlugin:(NSString *)cdn withDomainIdentifier:(NSString *)domainIdentifier with:(NSString *)languageCode resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject) {
     onetrustConsentFilterPlugin = [[RudderOnetrustConsentFilterPlugin alloc] initWithReactContext:resolve rejecter:reject];
-    [onetrustConsentFilterPlugin setupOneTrust];
+    [onetrustConsentFilterPlugin setupOneTrust:cdn withDomainIdentifier:domainIdentifier withLanguageCode:languageCode];
 }
 
 RCT_EXPORT_METHOD(setup:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)

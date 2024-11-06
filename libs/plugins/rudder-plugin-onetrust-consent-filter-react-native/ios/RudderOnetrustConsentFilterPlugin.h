@@ -19,7 +19,7 @@
 - (instancetype)initWithReactContext:(RCTPromiseResolveBlock)resolve
                             rejecter:(RCTPromiseRejectBlock)reject;
 
-- (void)setupOneTrust;
+- (void)setupOneTrust:(NSString *)cdn withDomainIdentifier:(NSString *)domainIdentifier withLanguageCode:(NSString *)languageCode;
 - (void)setConsentFilter;
 
 @end
