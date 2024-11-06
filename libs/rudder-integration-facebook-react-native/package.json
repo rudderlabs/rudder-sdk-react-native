@@ -1,0 +1,27 @@
+{
+  "name": "@rudderstack/rudder-integration-facebook-react-native",
+  "title": "RudderStack Facebook React Native Integration",
+  "version": "1.0.1",
+  "description": "RudderStack React Native SDK Facebook Device mode integration for Android and iOS",
+  "keywords": [
+    "react-native",
+    "rudder",
+    "facebook"
+  ],
+  "author": {
+    "name": "RudderStack"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rudderlabs/rudder-sdk-react-native.git"
+  },
+  "bugs": {
+    "url": "https://github.com/rudderlabs/rudder-sdk-react-native/issues"
+  },
+  "homepage": "https://github.com/rudderlabs/rudder-sdk-react-native#readme",
+  "peerDependencies": {
+    "react": "^16.8.0 || ^17.0.0 || ^18.0.0",
+    "react-native": ">= 0.41.2 < 0.80.0"
+  }
+}

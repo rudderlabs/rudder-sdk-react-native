@@ -4,7 +4,7 @@ import AsyncLock from 'async-lock';
 import { configure } from './RudderConfiguration';
 import bridge, { Configuration } from './NativeBridge';
 import { logInit, logDebug, logError, logWarn } from './Logger';
-import { SDK_VERSION } from './Constants';
+import { SDK_VERSION, ENABLE_GZIP } from './Constants';
 import IRudderContext from './IRudderContext';
 import { filterNaN } from './FilterNaN';
 
@@ -77,6 +77,15 @@ function validateConfiguration(configuration: Configuration) {
   if (configuration.collectDeviceId && typeof configuration.collectDeviceId != 'boolean') {
     logWarn("setup : 'collectDeviceId' must be a boolean. Falling back to the default value");
     delete configuration.collectDeviceId;
+  }
+  if (
+    typeof configuration.enableGzip !== 'undefined' &&
+    typeof configuration.enableGzip != 'boolean'
+  ) {
+    logWarn(
+      `setup : 'enableGzip' must be a boolean. Falling back to the default value ${ENABLE_GZIP}`,
+    );
+    delete configuration.enableGzip;
   }
 }
 
@@ -209,22 +218,32 @@ async function group(
 }
 
 // wrapper for `alias` method
+async function alias(newId: string, options?: Record<string, unknown> | null): Promise<void>;
+/**
+ * @deprecated use alias{@link alias(newId: string, options?: Record<string, unknown> | null)} instead
+ */
 async function alias(previousId: string, userId: string | Record<string, unknown>): Promise<void>;
-async function alias(newId: string, options: Record<string, unknown> | null | string = null) {
-  if (newId == undefined) {
+async function alias(
+  newOrPrevId: string,
+  newIdOrOptions?: Record<string, unknown> | null | string,
+): Promise<void> {
+  if (newOrPrevId === undefined) {
     logWarn("alias: Mandatory field 'newId' missing");
-    return;
+    return Promise.resolve();
   }
-  if (typeof newId != 'string') {
+  if (typeof newOrPrevId != 'string') {
     logWarn("alias: 'newId' must be a string");
-    return;
+    return Promise.resolve();
   }
-  if (typeof options == 'string') {
-    bridge.alias(options, null);
-  } else if (typeof options == 'object') {
-    bridge.alias(newId, filterNaN(options));
+  // this is to support the old alias method
+  // alias('previousId', 'newId')
+  // The previous ID is ignored.
+  if (typeof newIdOrOptions == 'string') {
+    return bridge.alias(newIdOrOptions, null);
+  } else if (typeof newIdOrOptions == 'object' && !Array.isArray(newIdOrOptions)) {
+    return bridge.alias(newOrPrevId, filterNaN(newIdOrOptions));
   } else {
-    bridge.alias(newId, null);
+    return bridge.alias(newOrPrevId, null);
   }
 }
 

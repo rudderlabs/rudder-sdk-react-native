@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Example</string>
+
+    <!-- Refer to the Facebook doc: https://developers.facebook.com/docs/android/getting-started-->
+    <string name="facebook_app_id">APPID</string>
+    <string name="facebook_client_token">CLIENTOKEN</string>
 </resources>

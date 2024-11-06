@@ -17,6 +17,7 @@ export interface Configuration {
   sessionTimeout?: number;
   enableBackgroundMode?: boolean;
   collectDeviceId?: boolean;
+  enableGzip?: boolean;
   dbEncryption?: IDBEncryption;
   consentFilter?: () => Promise<void>;
   // eslint-disable-next-line @typescript-eslint/ban-types

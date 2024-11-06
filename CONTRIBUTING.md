@@ -40,6 +40,7 @@ List of React-Native packages and their corresponding commit message format:
 | rudder-integration-appsflyer-react-native       | fix(rudder-integration-appsflyer-react-native): fix some issue       | feat(rudder-integration-appsflyer-react-native): add some new feature       |
 | rudder-integration-braze-react-native           | fix(rudder-integration-braze-react-native): fix some issue           | feat(rudder-integration-braze-react-native): add some new feature           |
 | rudder-integration-clevertap-react-native       | fix(rudder-integration-clevertap-react-native): fix some issue       | feat(rudder-integration-clevertap-react-native): add some new feature       |
+| rudder-integration-facebook-react-native        | fix(rudder-integration-facebook-react-native): fix some issue        | feat(rudder-integration-facebook-react-native): add some new feature        |
 | rudder-integration-firebase-react-native        | fix(rudder-integration-firebase-react-native): fix some issue        | feat(rudder-integration-firebase-react-native): add some new feature        |
 | rudder-integration-moengage-react-native        | fix(rudder-integration-moengage-react-native): fix some issue        | feat(rudder-integration-moengage-react-native): add some new feature        |
 | rudder-integration-singular-react-native        | fix(rudder-integration-singular-react-native): fix some issue        | feat(rudder-integration-singular-react-native): add some new feature        |

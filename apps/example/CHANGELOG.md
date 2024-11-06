@@ -2,6 +2,27 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [0.12.0](https://github.com/rudderlabs/rudder-sdk-react-native/compare/example-0.11.1...example-0.12.0) (2024-10-29)
+
+
+### Features
+
+* add gzip configuration support ([#382](https://github.com/rudderlabs/rudder-sdk-react-native/issues/382)) ([abf983b](https://github.com/rudderlabs/rudder-sdk-react-native/commit/abf983b8d50d28810a9a741cf9e3344df878fc0c))
+
+## [0.11.1](https://github.com/rudderlabs/rudder-sdk-react-native/compare/example-0.11.0...example-0.11.1) (2024-09-30)
+
+
+### Bug Fixes
+
+* alias api ([#377](https://github.com/rudderlabs/rudder-sdk-react-native/issues/377)) ([b9168cf](https://github.com/rudderlabs/rudder-sdk-react-native/commit/b9168cfe1bcdfdf696b0f7c534f0841b15050a19))
+
+## [0.11.0](https://github.com/rudderlabs/rudder-sdk-react-native/compare/example-0.10.0...example-0.11.0) (2024-09-23)
+
+
+### Features
+
+* add support for rudder facebook integration ([#373](https://github.com/rudderlabs/rudder-sdk-react-native/issues/373)) ([8cac746](https://github.com/rudderlabs/rudder-sdk-react-native/commit/8cac746e0f7bdf269323e543d7a24d6e52afa70d))
+
 ## [0.10.0](https://github.com/rudderlabs/rudder-sdk-react-native/compare/example-0.9.1...example-0.10.0) (2024-05-28)
 
 

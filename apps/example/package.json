@@ -1,6 +1,6 @@
 {
   "name": "example",
-  "version": "0.10.0",
+  "version": "0.12.0",
   "private": true,
   "dependencies": {
     "@react-native/metro-config": "*",
@@ -19,6 +19,7 @@
     "@rudderstack/rudder-integration-appsflyer-react-native": "*",
     "@rudderstack/rudder-integration-braze-react-native": "*",
     "@rudderstack/rudder-integration-clevertap-react-native": "*",
+    "@rudderstack/rudder-integration-facebook-react-native": "*",
     "@rudderstack/rudder-integration-firebase-react-native": "*",
     "@rudderstack/rudder-integration-moengage-react-native": "*",
     "@rudderstack/rudder-integration-singular-react-native": "*",
