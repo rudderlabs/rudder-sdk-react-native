@@ -19,7 +19,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		134814201AA4EA6300B7C361 /* libRudderPluginKetchConsentFilterReactNative.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRudderPluginKetchConsentFilterReactNative.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		134814201AA4EA6300B7C361 /* libRudderPluginOnetrustConsentFilterReactNative.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRudderPluginOnetrustConsentFilterReactNative.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,7 +36,7 @@
 		134814211AA4EA7D00B7C361 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				134814201AA4EA6300B7C361 /* libRudderPluginKetchConsentFilterReactNative.a */,
+				134814201AA4EA6300B7C361 /* libRudderPluginOnetrustConsentFilterReactNative.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -51,9 +51,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		58B511DA1A9E6C8500147676 /* RudderPluginKetchConsentFilterReactNative */ = {
+		58B511DA1A9E6C8500147676 /* RudderPluginOnetrustConsentFilterReactNative */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 58B511EF1A9E6C8500147676 /* Build configuration list for PBXNativeTarget "RudderPluginKetchConsentFilterReactNative" */;
+			buildConfigurationList = 58B511EF1A9E6C8500147676 /* Build configuration list for PBXNativeTarget "RudderPluginOnetrustConsentFilterReactNative" */;
 			buildPhases = (
 				58B511D71A9E6C8500147676 /* Sources */,
 				58B511D81A9E6C8500147676 /* Frameworks */,
@@ -63,9 +63,9 @@
 			);
 			dependencies = (
 			);
-			name = RudderPluginKetchConsentFilterReactNative;
+			name = RudderPluginOnetrustConsentFilterReactNative;
 			productName = RCTDataManager;
-			productReference = 134814201AA4EA6300B7C361 /* libRudderPluginKetchConsentFilterReactNative.a */;
+			productReference = 134814201AA4EA6300B7C361 /* libRudderPluginOnetrustConsentFilterReactNative.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
@@ -82,7 +82,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 58B511D61A9E6C8500147676 /* Build configuration list for PBXProject "RudderPluginKetchConsentFilter" */;
+			buildConfigurationList = 58B511D61A9E6C8500147676 /* Build configuration list for PBXProject "RudderPluginOnetrustConsentFilter" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -95,7 +95,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				58B511DA1A9E6C8500147676 /* RudderPluginKetchConsentFilterReactNative */,
+				58B511DA1A9E6C8500147676 /* RudderPluginOnetrustConsentFilterReactNative */,
 			);
 		};
 /* End PBXProject section */
@@ -233,7 +233,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = RudderPluginKetchConsentFilterReactNative;
+				PRODUCT_NAME = RudderPluginOnetrustConsentFilterReactNative;
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
@@ -249,7 +249,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = RudderPluginKetchConsentFilterReactNative;
+				PRODUCT_NAME = RudderPluginOnetrustConsentFilterReactNative;
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
@@ -257,7 +257,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		58B511D61A9E6C8500147676 /* Build configuration list for PBXProject "RudderPluginKetchConsentFilter" */ = {
+		58B511D61A9E6C8500147676 /* Build configuration list for PBXProject "RudderPluginOnetrustConsentFilter" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				58B511ED1A9E6C8500147676 /* Debug */,
@@ -266,7 +266,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		58B511EF1A9E6C8500147676 /* Build configuration list for PBXNativeTarget "RudderPluginKetchConsentFilterReactNative" */ = {
+		58B511EF1A9E6C8500147676 /* Build configuration list for PBXNativeTarget "RudderPluginOnetrustConsentFilterReactNative" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				58B511F01A9E6C8500147676 /* Debug */,

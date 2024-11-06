@@ -1,4 +1,4 @@
-package com.rudderstack.plugin.reactnative.ketch;
+package com.rudderstack.plugin.reactnative.onetrust;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -9,10 +9,10 @@ import com.facebook.react.bridge.NativeModule;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.uimanager.ViewManager;
 
-public class RudderPluginKetchConsentFilterReactNativePackage implements ReactPackage {
+public class RudderPluginOnetrustConsentFilterReactNativePackage implements ReactPackage {
     @Override
     public List<NativeModule> createNativeModules(ReactApplicationContext reactContext) {
-        return Arrays.asList(new RudderPluginKetchConsentFilterReactNativeModule(reactContext));
+        return Arrays.asList(new RudderPluginOnetrustConsentFilterReactNativeModule(reactContext));
     }
 
     @Override

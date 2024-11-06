@@ -1,4 +1,4 @@
-package com.rudderstack.plugin.reactnative.ketch;
+package com.rudderstack.plugin.reactnative.onetrust;
 
 import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.ReactApplicationContext;
@@ -7,12 +7,12 @@ import com.facebook.react.bridge.ReactMethod;
 import com.rudderstack.android.sdk.core.consent.RudderConsentFilter;
 import com.rudderstack.react.android.RNRudderAnalytics;
 
-public class RudderPluginKetchConsentFilterReactNativeModule
+public class RudderPluginOnetrustConsentFilterReactNativeModule
   extends ReactContextBaseJavaModule {
 
   private final ReactApplicationContext reactContext;
 
-  public RudderPluginKetchConsentFilterReactNativeModule(
+  public RudderPluginOnetrustConsentFilterReactNativeModule(
     ReactApplicationContext reactContext
   ) {
     super(reactContext);
@@ -21,19 +21,19 @@ public class RudderPluginKetchConsentFilterReactNativeModule
 
   @Override
   public String getName() {
-    return "RudderPluginKetchConsentFilterReactNative";
+    return "RudderPluginOnetrustConsentFilterReactNative";
   }
 
-  private KetchConsentFilterPlugin ketchConsentFilterPlugin;
+  private OnetrustConsentFilterPlugin onetrustConsentFilterPlugin;
   @ReactMethod
-  public void startConsentFilterPlugin(Promise promise) { // TODO: Add Ketch SDK initialization parameters
-    this.ketchConsentFilterPlugin = new KetchConsentFilterPlugin(this.reactContext, promise);
-    this.ketchConsentFilterPlugin.setupOneTrust();
+  public void startConsentFilterPlugin(Promise promise) { // TODO: Add Onetrust SDK initialization parameters
+    this.onetrustConsentFilterPlugin = new OnetrustConsentFilterPlugin(this.reactContext, promise);
+    this.onetrustConsentFilterPlugin.setupOneTrust();
   }
 
   @ReactMethod
   public void setup(Promise promise) {
-    RudderConsentFilter rudderOneTrustConsentFilter = this.ketchConsentFilterPlugin.getRudderOneTrustConsentFilter();
+    RudderConsentFilter rudderOneTrustConsentFilter = this.onetrustConsentFilterPlugin.getRudderOneTrustConsentFilter();
     if (rudderOneTrustConsentFilter != null) {
       RNRudderAnalytics.setConsentFilterPlugin(rudderOneTrustConsentFilter);
     }

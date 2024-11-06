@@ -13,5 +13,5 @@ Run `pod install` inside the `ios` directory of your project adding `@rudderstac
 ## Usage
 
 ```javascript
-import ketchConsentFilter from '@rudderstack/rudder-plugin-onetrust-consent-filter-react-native';
+import OnetrustConsentFilter from '@rudderstack/rudder-plugin-onetrust-consent-filter-react-native';
 ```

@@ -1,17 +1,17 @@
 //
-//  RudderKetchConsentFilterPlugin.m
+//  RudderOnetrustConsentFilterPlugin.m
 //  rudder-plugin-onetrust-consent-filter-react-native
 //
 //  Created by Abhishek Pandey on 06/09/24.
 //
 
-#import "RudderKetchConsentFilterPlugin.h"
+#import "RudderOnetrustConsentFilterPlugin.h"
 #import <Foundation/Foundation.h>
 @import RudderOneTrustConsentFilter;
 #import <RNRudderSdk/RNRudderAnalytics.h>
 
 
-@implementation RudderKetchConsentFilterPlugin
+@implementation RudderOnetrustConsentFilterPlugin
 
 - (instancetype)initWithReactContext:(RCTPromiseResolveBlock)resolve
                             rejecter:(RCTPromiseRejectBlock)reject {

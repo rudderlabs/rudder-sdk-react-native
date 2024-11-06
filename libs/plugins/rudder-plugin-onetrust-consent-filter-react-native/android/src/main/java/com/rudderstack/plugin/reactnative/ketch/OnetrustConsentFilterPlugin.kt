@@ -12,7 +12,7 @@ import com.rudderstack.android.consentfilter.onetrustconsentfilter.RudderOneTrus
 import com.rudderstack.android.sdk.core.consent.RudderConsentFilter
 import java.lang.Thread.sleep
 
-class KetchConsentFilterPlugin(
+class OnetrustConsentFilterPlugin(
     reactContext: ReactApplicationContext,
     private val promise: Promise,
 ) {
@@ -44,27 +44,27 @@ class KetchConsentFilterPlugin(
 
     private val oneTrustEventListener = object : OTEventListener() {
         override fun onHideBanner() {
-            initKetchConsentFilterPlugin()
+            initOnetrustConsentFilterPlugin()
         }
 
         override fun onBannerClickedAcceptAll() {
-            initKetchConsentFilterPlugin()
+            initOnetrustConsentFilterPlugin()
         }
 
         override fun onBannerClickedRejectAll() {
-            initKetchConsentFilterPlugin()
+            initOnetrustConsentFilterPlugin()
         }
 
         override fun onPreferenceCenterAcceptAll() {
-            initKetchConsentFilterPlugin()
+            initOnetrustConsentFilterPlugin()
         }
 
         override fun onPreferenceCenterRejectAll() {
-            initKetchConsentFilterPlugin()
+            initOnetrustConsentFilterPlugin()
         }
 
         override fun onPreferenceCenterConfirmChoices() {
-            initKetchConsentFilterPlugin()
+            initOnetrustConsentFilterPlugin()
         }
 
         override fun onShowPreferenceCenter(p0: OTUIDisplayReason?) {
@@ -100,7 +100,7 @@ class KetchConsentFilterPlugin(
         }
     }
 
-    private fun initKetchConsentFilterPlugin() {
+    private fun initOnetrustConsentFilterPlugin() {
         this.rudderOneTrustConsentFilter = RudderOneTrustConsentFilter(otPublishersHeadlessSDK)
         promise.resolve(true)
     }

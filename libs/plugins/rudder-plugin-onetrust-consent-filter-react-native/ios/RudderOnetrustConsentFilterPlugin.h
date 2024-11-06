@@ -1,17 +1,17 @@
 //
-//  RudderKetchConsentFilterPlugin.h
+//  RudderOnetrustConsentFilterPlugin.h
 //  Pods
 //
 //  Created by Abhishek Pandey on 06/09/24.
 //
 
-#ifndef RudderKetchConsentFilterPlugin_h
-#define RudderKetchConsentFilterPlugin_h
+#ifndef RudderOnetrustConsentFilterPlugin_h
+#define RudderOnetrustConsentFilterPlugin_h
 #import <React/RCTBridgeModule.h>
 
 @import OTPublishersHeadlessSDK;
 
-@interface RudderKetchConsentFilterPlugin : NSObject<OTEventListener> {
+@interface RudderOnetrustConsentFilterPlugin : NSObject<OTEventListener> {
     RCTPromiseResolveBlock resolve;
     RCTPromiseRejectBlock reject;
 }
@@ -25,4 +25,4 @@
 @end
 
 
-#endif /* RudderKetchConsentFilterPlugin_h */
+#endif /* RudderOnetrustConsentFilterPlugin_h */
