@@ -14,7 +14,7 @@ PODS:
     - AppsFlyerFramework/Main (= 6.14.6)
   - AppsFlyerFramework/Main (6.14.6)
   - boost (1.83.0)
-  - BrazeKit (9.3.1)
+  - BrazeKit (7.5.0)
   - CleverTap-iOS-SDK (4.2.2):
     - SDWebImage (~> 5.11)
   - DoubleConversion (1.1.6)
@@ -1298,9 +1298,9 @@ PODS:
   - Rudder-Appsflyer (2.7.0):
     - AppsFlyerFramework (~> 6.14.5)
     - Rudder (~> 1.12)
-  - Rudder-Braze (2.2.0):
-    - BrazeKit (~> 9.3.0)
-    - Rudder (~> 1.26)
+  - Rudder-Braze (2.0.0):
+    - BrazeKit (~> 7.5.0)
+    - Rudder (~> 1.24)
   - Rudder-CleverTap (1.1.2):
     - CleverTap-iOS-SDK (~> 4.2)
     - Rudder (~> 1.12)
@@ -1445,6 +1445,7 @@ DEPENDENCIES:
   - "RNCAsyncStorage (from `../node_modules/@react-native-async-storage/async-storage`)"
   - "RNRudderSdk (from `../node_modules/@rudderstack/rudder-sdk-react-native`)"
   - RNSVG (from `../node_modules/react-native-svg`)
+  - Rudder-Braze (= 2.0.0)
   - Rudder-CleverTap (= 1.1.2)
   - "rudder-integration-amplitude-react-native (from `../node_modules/@rudderstack/rudder-integration-amplitude-react-native`)"
   - "rudder-integration-appcenter-react-native (from `../node_modules/@rudderstack/rudder-integration-appcenter-react-native`)"
@@ -1647,7 +1648,7 @@ SPEC CHECKSUMS:
   AppCenter: 994875ea7941b9e168babb98299f900a94bcef13
   AppsFlyerFramework: bef4087719ce689835bbf408c61e2bcc5d4b8bd8
   boost: d3f49c53809116a5d38da093a8aa78bf551aed09
-  BrazeKit: 4da9eda353092104add9d3fcbb272afbd14dd3de
+  BrazeKit: 55dfadd08105765a568137f5d24d46894186db65
   CleverTap-iOS-SDK: 36c21b8a671d87a0f9c7b389b339d02528bbe4d7
   DoubleConversion: 76ab83afb40bddeeee456813d9c04f67f78771b5
   FBAEMKit: 9900b2edd99a2d21629a6277e6166f14c6215799
@@ -1724,7 +1725,7 @@ SPEC CHECKSUMS:
   Rudder-Amplitude: d308b2bce1237c3cfdf3274458130f36815067db
   Rudder-AppCenter: 9eca9241e3707a0e9610714dd91dc8da4bae7e1f
   Rudder-Appsflyer: d7eb1497781a64e4228c97edc1cc3c7893b6ced0
-  Rudder-Braze: 787726b97909bd097323258f7f94d2a45ac4538c
+  Rudder-Braze: 906ac557204d42bfd29bbf48741d8f6beb9ca2be
   Rudder-CleverTap: a0085aab472e0e60930c4301ef80bae5ff187e98
   Rudder-Facebook: 24c9309373f13212d1139938aad86faa2914d342
   Rudder-Firebase: 53976bb7f282366248212b5757389bd32995abb8
@@ -1750,6 +1751,6 @@ SPEC CHECKSUMS:
   SQLCipher: 77fbe633cd84db04b07876dd50766b4924b57d61
   Yoga: 9ad2c02dbd9811bb5a35fe23081cb0f5d5a3f9dd
 
-PODFILE CHECKSUM: 17442bc09955f58c335f4e468737015b6ba487e2
+PODFILE CHECKSUM: 47899e704f799f88763dcdc4406ae8dc19ce9d0e
 
 COCOAPODS: 1.15.2
