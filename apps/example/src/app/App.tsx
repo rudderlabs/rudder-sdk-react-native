@@ -94,7 +94,7 @@ const getGlobalOptions = () => {
 };
 
 const isConsentGranted = async () => {
-  const consent = await startConsentFilterPlugin();
+  const consent = await startConsentFilterPlugin('<CDN>', '<DOMAIN_IDENTIFIER>', '<LANGUAGE_CODE>');
   console.log('Consent granted: ', consent);
   return consent;
 };
