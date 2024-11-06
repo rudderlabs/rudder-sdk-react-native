@@ -20,7 +20,7 @@ Pod::Spec.new do |s|
 
   s.dependency "React"
   s.dependency 'RNRudderSdk'
-  s.dependency 'RudderOneTrustConsentFilter', '1.0.0'
+  s.dependency 'RudderOneTrustConsentFilter', '1.1.0'
 
 end
 
