@@ -170,7 +170,8 @@
     "axios": "1.7.4"
   },
   "optionalDependencies": {
-    "@nx/nx-linux-x64-gnu": "19.4.1"
+    "@nx/nx-linux-x64-gnu": "19.4.1",
+    "@rollup/rollup-linux-x64-gnu": "19.4.1"
   },
   "lint-staged": {
     "*.{js,ts,tsx}": "eslint --cache --fix",
