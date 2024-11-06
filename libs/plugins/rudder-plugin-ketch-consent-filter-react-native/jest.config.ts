@@ -1,4 +1,4 @@
-const libName = 'rudder-plugin-ketch-consent-filter-react-native';
+const libName = 'rudder-plugin-onetrust-consent-filter-react-native';
 
 module.exports = {
   displayName: libName,

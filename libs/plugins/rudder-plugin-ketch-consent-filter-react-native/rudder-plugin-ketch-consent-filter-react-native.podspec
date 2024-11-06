@@ -3,11 +3,11 @@ require "json"
 package = JSON.parse(File.read(File.join(__dir__, "package.json")))
 
 Pod::Spec.new do |s|
-  s.name         = "rudder-plugin-ketch-consent-filter-react-native"
+  s.name         = "rudder-plugin-onetrust-consent-filter-react-native"
   s.version      = package["version"]
   s.summary      = package["description"]
   s.description  = <<-DESC
-                  rudder-plugin-ketch-consent-filter-react-native
+                  rudder-plugin-onetrust-consent-filter-react-native
                    DESC
   s.homepage     = "https://rudderstack.com/"
   s.license      = "MIT"

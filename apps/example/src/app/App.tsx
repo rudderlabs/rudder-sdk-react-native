@@ -32,7 +32,7 @@ import appsflyer, {
 import DBEncryption from '@rudderstack/rudder-plugin-db-encryption-react-native';
 import oneTrustConsentFilter, {
   startConsentFilterPlugin,
-} from '@rudderstack/rudder-plugin-ketch-consent-filter-react-native';
+} from '@rudderstack/rudder-plugin-onetrust-consent-filter-react-native';
 // @ts-ignore
 import { TEST_DATAPLANE_URL, TEST_WRITE_KEY, APPSFLYER_DEV_KEY, APPSFLYER_APPLE_ID } from '@env';
 import RudderEvents from './RudderEvents';

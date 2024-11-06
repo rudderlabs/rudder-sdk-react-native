@@ -1,6 +1,6 @@
 //
 //  RudderKetchConsentFilterPlugin.m
-//  rudder-plugin-ketch-consent-filter-react-native
+//  rudder-plugin-onetrust-consent-filter-react-native
 //
 //  Created by Abhishek Pandey on 06/09/24.
 //
