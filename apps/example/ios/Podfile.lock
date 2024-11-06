@@ -1,5 +1,5 @@
 PODS:
-  - Amplitude (8.19.2):
+  - Amplitude (8.16.0):
     - AnalyticsConnector (~> 1.0.0)
   - AnalyticsConnector (1.0.3)
   - AppCenter (5.0.5):
@@ -10,9 +10,9 @@ PODS:
   - AppCenter/Core (5.0.5)
   - AppCenter/Crashes (5.0.5):
     - AppCenter/Core
-  - AppsFlyerFramework (6.14.6):
-    - AppsFlyerFramework/Main (= 6.14.6)
-  - AppsFlyerFramework/Main (6.14.6)
+  - AppsFlyerFramework (6.14.5):
+    - AppsFlyerFramework/Main (= 6.14.5)
+  - AppsFlyerFramework/Main (6.14.5)
   - boost (1.83.0)
   - BrazeKit (9.3.1)
   - CleverTap-iOS-SDK (4.2.2):
@@ -107,7 +107,7 @@ PODS:
   - hermes-engine (0.74.2):
     - hermes-engine/Pre-built (= 0.74.2)
   - hermes-engine/Pre-built (0.74.2)
-  - MetricsReporter (2.0.0):
+  - MetricsReporter (1.2.1):
     - RSCrashReporter (= 1.0.1)
     - RudderKit (= 1.4.0)
   - MoEngage-iOS-SDK (9.7.0)
@@ -1287,10 +1287,10 @@ PODS:
   - RNSVG (15.3.0):
     - React-Core
   - RSCrashReporter (1.0.1)
-  - Rudder (1.29.0):
-    - MetricsReporter (= 2.0.0)
-  - Rudder-Amplitude (1.2.0):
-    - Amplitude (= 8.19.2)
+  - Rudder (1.27.0):
+    - MetricsReporter (= 1.2.1)
+  - Rudder-Amplitude (1.1.1):
+    - Amplitude (= 8.16.0)
     - Rudder (~> 1.12)
   - Rudder-AppCenter (1.0.1):
     - AppCenter
@@ -1359,9 +1359,9 @@ PODS:
     - React
     - RNRudderSdk
     - RudderOneTrustConsentFilter (= 1.0.0)
-  - Rudder-Singular (1.1.0):
+  - Rudder-Singular (1.0.0):
     - Rudder (~> 1.0)
-    - Singular-SDK (= 12.5.0)
+    - Singular-SDK (= 11.0.4)
   - RudderDatabaseEncryption (1.1.0):
     - Rudder (~> 1.21)
     - SQLCipher (~> 4.0)
@@ -1370,17 +1370,17 @@ PODS:
     - OneTrust-CMP-tvOS-XCFramework (= 202301.1.0)
     - OneTrust-CMP-XCFramework (= 202301.1.0)
     - Rudder (~> 1.10)
-  - SDWebImage (5.19.7):
-    - SDWebImage/Core (= 5.19.7)
-  - SDWebImage/Core (5.19.7)
-  - Singular-SDK (12.5.0):
-    - Singular-SDK/Main (= 12.5.0)
-  - Singular-SDK/Main (12.5.0)
+  - SDWebImage (5.19.4):
+    - SDWebImage/Core (= 5.19.4)
+  - SDWebImage/Core (5.19.4)
+  - Singular-SDK (11.0.4):
+    - Singular-SDK/Main (= 11.0.4)
+  - Singular-SDK/Main (11.0.4)
   - SocketRocket (0.7.0)
-  - SQLCipher (4.6.1):
-    - SQLCipher/standard (= 4.6.1)
-  - SQLCipher/common (4.6.1)
-  - SQLCipher/standard (4.6.1):
+  - SQLCipher (4.6.0):
+    - SQLCipher/standard (= 4.6.0)
+  - SQLCipher/common (4.6.0)
+  - SQLCipher/standard (4.6.0):
     - SQLCipher/common
   - Yoga (0.0.0)
 
@@ -1642,10 +1642,10 @@ EXTERNAL SOURCES:
     :path: "../../../node_modules/react-native/ReactCommon/yoga"
 
 SPEC CHECKSUMS:
-  Amplitude: 1c9fca37993bd5742cf7c121d432bf8bf5a28ccb
+  Amplitude: 4daad8eb8193b15353221dfd96c52220367cb3e8
   AnalyticsConnector: a53214d38ae22734c6266106c0492b37832633a9
   AppCenter: 994875ea7941b9e168babb98299f900a94bcef13
-  AppsFlyerFramework: bef4087719ce689835bbf408c61e2bcc5d4b8bd8
+  AppsFlyerFramework: 6bd90198428b9646a5653f8e0f19de529788b70e
   boost: d3f49c53809116a5d38da093a8aa78bf551aed09
   BrazeKit: 4da9eda353092104add9d3fcbb272afbd14dd3de
   CleverTap-iOS-SDK: 36c21b8a671d87a0f9c7b389b339d02528bbe4d7
@@ -1663,7 +1663,7 @@ SPEC CHECKSUMS:
   GoogleAppMeasurement: 55a4a3c8000c1280d68bf4c084adbfef20c49db1
   GoogleUtilities: ea963c370a38a8069cc5f7ba4ca849a60b6d7d15
   hermes-engine: 01d3e052018c2a13937aca1860fbedbccd4a41b7
-  MetricsReporter: 364b98791e868b10e9d512eb50af28d8c11e5cdb
+  MetricsReporter: 99596ee5003c69949ed2f50acc34aee83c42f843
   MoEngage-iOS-SDK: fe5e6039e6381017b756d8cc72b6d9a11112abc1
   nanopb: 438bc412db1928dac798aa6fd75726007be04262
   OneTrust-CMP-XCFramework: 70bb8e5b1f721f37b247d1d0d395937b13f89343
@@ -1720,8 +1720,8 @@ SPEC CHECKSUMS:
   RNRudderSdk: 3ac5985a22ab29b32aa15a403dcb9aeb541e8e35
   RNSVG: a48668fd382115bc89761ce291a81c4ca5f2fd2e
   RSCrashReporter: 6b8376ac729b0289ebe0908553e5f56d8171f313
-  Rudder: 7031e52a04312cbc7a70713cac25528a89e63408
-  Rudder-Amplitude: d308b2bce1237c3cfdf3274458130f36815067db
+  Rudder: 3cfcd9e6c5359cd6d49f411101ed9b894e3b64bd
+  Rudder-Amplitude: a353ca07ba381d23ae587f2f74ea79a6c1563145
   Rudder-AppCenter: 9eca9241e3707a0e9610714dd91dc8da4bae7e1f
   Rudder-Appsflyer: d7eb1497781a64e4228c97edc1cc3c7893b6ced0
   Rudder-Braze: 1906f75be3d6f04bd6e85ea1f250dafabd574ccd
@@ -1740,14 +1740,14 @@ SPEC CHECKSUMS:
   Rudder-Moengage: c30465e23740673495ff853eed607a5641f22c5c
   rudder-plugin-db-encryption-react-native: d87a2eacd1262d58d01990d921029e868925746a
   rudder-plugin-onetrust-consent-filter-react-native: f044c0a08000ed8bb736ca3a7c4bd73fb776d8ab
-  Rudder-Singular: 0685fcfd797962d7681a5f05e48c249dd6a11228
+  Rudder-Singular: e22a4101ce043aded86b777bea873bf6a2af42b9
   RudderDatabaseEncryption: 95b436538412958eda771f5d81bd970a9ffe4eec
   RudderKit: f272f9872183946452ac94cd7bb2244a71e6ca8f
   RudderOneTrustConsentFilter: 61929a8fc74f3c4197af2cadcf34456205e7aa59
-  SDWebImage: 8a6b7b160b4d710e2a22b6900e25301075c34cb3
-  Singular-SDK: 198466328cf193d4fba7b1d49b666b2f8f21e2d6
+  SDWebImage: 066c47b573f408f18caa467d71deace7c0f8280d
+  Singular-SDK: 614350e3ed21a06b02ab165b370b212f8aaacf2b
   SocketRocket: abac6f5de4d4d62d24e11868d7a2f427e0ef940d
-  SQLCipher: 77fbe633cd84db04b07876dd50766b4924b57d61
+  SQLCipher: 30a8e81afa6128e600b17ffa77d0f92fa05ed208
   Yoga: 9ad2c02dbd9811bb5a35fe23081cb0f5d5a3f9dd
 
 PODFILE CHECKSUM: bd8dc1f63ae69e44026d0e741f9d58e9956dc917
