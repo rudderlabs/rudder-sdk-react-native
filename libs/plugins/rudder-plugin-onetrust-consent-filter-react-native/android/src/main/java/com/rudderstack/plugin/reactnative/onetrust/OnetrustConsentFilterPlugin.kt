@@ -1,4 +1,4 @@
-package com.rudderstack.plugin.reactnative.ketch
+package com.rudderstack.plugin.reactnative.onetrust
 
 import com.facebook.react.bridge.Promise
 import com.facebook.react.bridge.ReactApplicationContext
