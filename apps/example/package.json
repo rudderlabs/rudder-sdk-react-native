@@ -26,6 +26,7 @@
     "async-lock": "*"
   },
   "overrides": {
-    "unset-value": "2.0.1"
+    "unset-value": "2.0.1",
+    "cross-spawn": "7.0.6"
   }
 }
