@@ -217,6 +217,13 @@ async function group(
   bridge.group(groupId, filterNaN(traits), filterNaN(options));
 }
 
+// wrapper for `alias` method
+async function alias(newId: string, options?: Record<string, unknown> | null): Promise<void>;
+async function alias(
+  newId: string,
+  previousId: string,
+  options?: Record<string, unknown> | null,
+): Promise<void>;
 async function alias(
   newId: string,
   previousIdOrOptions: string | Record<string, unknown> | null = null,
