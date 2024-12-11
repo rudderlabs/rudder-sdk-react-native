@@ -148,7 +148,7 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void alias(String newId, ReadableMap options) {
+    public void alias(String newId, String previousId, ReadableMap options) {
         if (!isRudderClientInitializedAndReady()) {
             return;
         }
@@ -157,7 +157,7 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
             return;
         }
         userSessionPlugin.saveEventTimestamp();
-        rudderClient.alias(newId, Utility.convertReadableMapToOptions(options));
+        rudderClient.alias(newId, previousId, Utility.convertReadableMapToOptions(options));
     }
 
     @ReactMethod
