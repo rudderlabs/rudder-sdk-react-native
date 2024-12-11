@@ -102,7 +102,7 @@ RCT_EXPORT_METHOD(identify:(NSString*)_userId traits:(NSDictionary*)_traits opti
     [[RSClient sharedInstance] identify:_userId traits:_traits options:[self getRudderOptionsObject:_options]];
 }
 
-RCT_EXPORT_METHOD(alias:(NSString*)_newId options:(NSDictionary*)_options)
+RCT_EXPORT_METHOD(alias:(NSString*)_newId previousId:(NSString*)_previousId options:(NSDictionary*)_options)
 {
     if (![self isRudderClientInitializedAndReady]) {
         return;
