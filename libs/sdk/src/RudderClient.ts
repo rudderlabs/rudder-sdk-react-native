@@ -222,21 +222,28 @@ async function alias(
   previousIdOrOptions?: string | Record<string, unknown> | null,
   options?: Record<string, unknown> | undefined | null,
 ): Promise<void> {
-  if (newId === undefined) {
-    logWarn("alias: Mandatory field 'newId' missing");
+  // Validate newId
+  if (!newId) {
+    logWarn("alias: Mandatory field 'newId' is missing");
     return Promise.resolve();
   }
-  if (typeof newId != 'string') {
+  if (typeof newId !== 'string') {
     logWarn("alias: 'newId' must be a string");
     return Promise.resolve();
   }
-  if (typeof previousIdOrOptions == 'string') {
+
+  // Handle cases based on the type of previousIdOrOptions
+  if (typeof previousIdOrOptions === 'string') {
     return bridge.alias(newId, previousIdOrOptions, filterNaN(options ?? null));
-  } else if (typeof previousIdOrOptions == 'object' && !Array.isArray(previousIdOrOptions)) {
-    return bridge.alias(newId, null, filterNaN(previousIdOrOptions));
-  } else {
-    return bridge.alias(newId, null, filterNaN(options ?? null));
   }
+  if (
+    previousIdOrOptions &&
+    typeof previousIdOrOptions === 'object' &&
+    !Array.isArray(previousIdOrOptions)
+  ) {
+    return bridge.alias(newId, null, filterNaN(previousIdOrOptions));
+  }
+  return bridge.alias(newId, null, filterNaN(options ?? null));
 }
 
 async function putDeviceToken(token: string): Promise<void>;
