@@ -102,17 +102,8 @@ const RudderEvents = () => {
 
   const alias = () => {
     rudderClient.alias('New User ID');
-
-    // All the below calls are also valid usages of alias
-    // Anything else is invalid
-    // rudderClient.alias('New User ID', null);
-    // rudderClient.alias('New User ID', undefined);
     // rudderClient.alias("New User ID", getLocalOptions());
-    // rudderClient.alias('New User ID', null, null);
-    // rudderClient.alias('New User ID', null, undefined);
-    // rudderClient.alias('New User ID', null, getLocalOptions());
-    // rudderClient.alias('New User ID', undefined, getLocalOptions());
-    // rudderClient.alias('New User ID', 'Old User ID', null);
+    // rudderClient.alias('New User ID', 'Old User ID');
     // rudderClient.alias('New User ID', 'Explicit Previous UserId', getLocalOptions());
   };
 
