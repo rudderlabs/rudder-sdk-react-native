@@ -12,6 +12,7 @@
     "metro-config": "*",
     "@react-native-async-storage/async-storage": "*",
     "@rudderstack/rudder-sdk-react-native": "*",
+    "@rudderstack/rudder-plugin-onetrust-consent-filter-react-native": "*",
     "@rudderstack/rudder-plugin-db-encryption-react-native": "*",
     "@rudderstack/rudder-integration-amplitude-react-native": "*",
     "@rudderstack/rudder-integration-appcenter-react-native": "*",

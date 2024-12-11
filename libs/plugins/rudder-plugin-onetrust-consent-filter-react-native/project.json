@@ -1,0 +1,111 @@
+{
+  "name": "rudder-plugin-onetrust-consent-filter-react-native",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/plugins/rudder-plugin-onetrust-consent-filter-react-native/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/rollup:rollup",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/rudder-plugin-onetrust-consent-filter-react-native",
+        "tsConfig": "libs/plugins/rudder-plugin-onetrust-consent-filter-react-native/tsconfig.lib.json",
+        "project": "libs/plugins/rudder-plugin-onetrust-consent-filter-react-native/package.json",
+        "entryFile": "libs/plugins/rudder-plugin-onetrust-consent-filter-react-native/src/index.ts",
+        "external": ["react/jsx-runtime", "react-native"],
+        "rollupConfig": "@nrwl/react/plugins/bundle-rollup",
+        "assets": [
+          {
+            "glob": "libs/plugins/rudder-plugin-onetrust-consent-filter-react-native/README.md",
+            "input": ".",
+            "output": "."
+          },
+          {
+            "glob": "libs/plugins/rudder-plugin-onetrust-consent-filter-react-native/android",
+            "input": ".",
+            "output": "."
+          },
+          {
+            "glob": "libs/plugins/rudder-plugin-onetrust-consent-filter-react-native/ios",
+            "input": ".",
+            "output": "."
+          },
+          {
+            "glob": "libs/plugins/rudder-plugin-onetrust-consent-filter-react-native/rudder-plugin-onetrust-consent-filter-react-native.podspec",
+            "input": ".",
+            "output": "."
+          },
+          {
+            "glob": "libs/plugins/rudder-plugin-onetrust-consent-filter-react-native/CHANGELOG.md",
+            "input": ".",
+            "output": "."
+          },
+          {
+            "glob": "LICENSE.md",
+            "input": ".",
+            "output": "."
+          }
+        ],
+        "updateBuildableProjectDepsInPackageJson": true,
+        "buildableProjectDepsInPackageJsonType": "dependencies"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "libs/plugins/rudder-plugin-onetrust-consent-filter-react-native/src/**/*.{ts,tsx,js,jsx}"
+        ]
+      },
+      "configurations": {
+        "ci": {
+          "format": "json",
+          "force": true,
+          "outputFile": "/reports/eslint/rudder-plugin-onetrust-consent-filter-react-native.eslint.results.json"
+        },
+        "fix": {
+          "fix": true
+        }
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "libs/plugins/rudder-plugin-onetrust-consent-filter-react-native/jest.config.ts",
+        "passWithNoTests": true,
+        "coverage": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true
+        }
+      }
+    },
+    "version": {
+      "executor": "@jscutlery/semver:version",
+      "options": {
+        "baseBranch": "master",
+        "preset": "conventional",
+        "tagPrefix": "{projectName}@"
+      }
+    },
+    "github": {
+      "executor": "@jscutlery/semver:github",
+      "options": {
+        "tag": "rudder-plugin-onetrust-consent-filter-react-native@1.0.0",
+        "notesFile": "./libs/plugins/rudder-plugin-onetrust-consent-filter-react-native/CHANGELOG_LATEST.md"
+      }
+    },
+    "deploy": {
+      "executor": "ngx-deploy-npm:deploy",
+      "options": {
+        "distFolderPath": "dist/libs/rudder-plugin-onetrust-consent-filter-react-native",
+        "access": "public"
+      },
+      "dependsOn": ["build"]
+    }
+  }
+}

@@ -36,6 +36,7 @@ export const configure = async (
     collectDeviceId = COLLECT_DEVICE_ID,
     enableGzip = ENABLE_GZIP,
     dbEncryption,
+    consentFilter,
     withFactories = [],
   }: Configuration,
 ): Promise<Configuration> => {
@@ -52,6 +53,10 @@ export const configure = async (
 
   if (dbEncryption !== undefined) {
     await dbEncryption.addDBEncryptionPlugin(dbEncryption.key, dbEncryption.enable);
+  }
+
+  if (consentFilter !== undefined) {
+    await consentFilter();
   }
 
   const config = {

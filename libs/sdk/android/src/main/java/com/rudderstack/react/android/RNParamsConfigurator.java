@@ -2,6 +2,7 @@ package com.rudderstack.react.android;
 
 import com.facebook.react.bridge.ReadableMap;
 import com.rudderstack.android.sdk.core.RudderConfig;
+import com.rudderstack.android.sdk.core.consent.RudderConsentFilter;
 import com.rudderstack.android.sdk.core.util.Utils;
 
 import java.util.Map;
@@ -24,6 +25,7 @@ class RNParamsConfigurator {
         setWriteKey();
         RudderConfig.Builder configBuilder = buildConfig();
         addDBEncryptionPluginIfAvailable(configBuilder);
+        addConsentFilterPluginIfAvailable(configBuilder);
         disableAutoConfigFlagsForNativeSDK(configBuilder);
         return configBuilder;
     }
@@ -90,6 +92,13 @@ class RNParamsConfigurator {
         this.dbEncryption = RNRudderAnalytics.getDBEncryption();
         if (this.dbEncryption != null) {
             configBuilder.withDbEncryption(this.dbEncryption);
+        }
+    }
+
+    private void addConsentFilterPluginIfAvailable(RudderConfig.Builder configBuilder) {
+        RudderConsentFilter consentFilter = RNRudderAnalytics.getConsentFilterPlugin();
+        if (consentFilter != null) {
+            configBuilder.withConsentFilter(consentFilter);
         }
     }
 

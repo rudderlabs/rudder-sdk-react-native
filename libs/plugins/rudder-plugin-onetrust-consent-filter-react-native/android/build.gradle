@@ -1,0 +1,59 @@
+// android/build.gradle
+
+// based on:
+//
+// * https://github.com/facebook/react-native/blob/0.60-stable/template/android/build.gradle
+//   original location:
+//   - https://github.com/facebook/react-native/blob/0.58-stable/local-cli/templates/HelloWorld/android/build.gradle
+//
+// * https://github.com/facebook/react-native/blob/0.60-stable/template/android/app/build.gradle
+//   original location:
+//   - https://github.com/facebook/react-native/blob/0.58-stable/local-cli/templates/HelloWorld/android/app/build.gradle
+
+def packageJson = new groovy.json.JsonSlurper().parseText(file('../package.json').text)
+version = packageJson.version
+
+ext {
+    DEFAULT_COMPILE_SDK_VERSION = 31
+    DEFAULT_MIN_SDK_VERSION = 19
+    DEFAULT_TARGET_SDK_VERSION = 31
+    VERSION_CODE = 1
+    VERSION_NAME = version
+    GROUP_NAME = 'com.rudderstack.plugin.reactnative.Onetrust'
+}
+
+buildscript {
+  repositories {
+    google()
+    mavenCentral()
+  }
+
+  dependencies {
+    classpath("com.android.tools.build:gradle:7.2.2")
+  }
+}
+
+apply from: "$projectDir/common_task.gradle"
+apply plugin: 'org.jetbrains.kotlin.android'
+
+android {
+    kotlinOptions {
+        jvmTarget = '17'
+    }
+}
+
+dependencies {
+    //noinspection GradleDynamicVersion
+    implementation 'com.facebook.react:react-native:+'
+
+    // rudderstack dependencies
+    implementation project(path: ':rudderstack_rudder-sdk-react-native')  // From node_modules
+    implementation 'com.rudderstack.android.sdk:core:[1.25.0, 2.0.0)'
+
+    // OneTrust dependencies
+    implementation 'com.rudderstack.android.consentfilter:onetrustconsentfilter:1.1.0'
+    implementation 'com.onetrust.cmp:native-sdk:202301.2.0.0'
+
+    // Kotlin dependencies
+    implementation 'androidx.core:core-ktx:1.13.1'
+}

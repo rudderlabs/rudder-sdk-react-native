@@ -8,6 +8,7 @@
 #import <Foundation/Foundation.h>
 #import "RSIntegrationFactory.h"
 #import "RSConfig.h"
+#import "RSConsentFilter.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -18,6 +19,8 @@ NS_ASSUME_NONNULL_BEGIN
 + (RSConfig*) buildWithIntegrations:(RSConfigBuilder*)builder;
 + (void) setDBEncryption:(RSDBEncryption *)dbEncryption;
 + (RSDBEncryption *_Nullable) getDBEncryption;
++ (void) setConsentFilterPlugin:(id <RSConsentFilter> _Nonnull)consentFilter;
++ (id <RSConsentFilter> _Nullable) getConsentFilterPlugin;
 
 @end
 
