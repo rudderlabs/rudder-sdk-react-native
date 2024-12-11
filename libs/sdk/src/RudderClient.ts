@@ -217,33 +217,25 @@ async function group(
   bridge.group(groupId, filterNaN(traits), filterNaN(options));
 }
 
-// wrapper for `alias` method
-async function alias(newId: string, options?: Record<string, unknown> | null): Promise<void>;
-/**
- * @deprecated use alias{@link alias(newId: string, options?: Record<string, unknown> | null)} instead
- */
-async function alias(previousId: string, userId: string | Record<string, unknown>): Promise<void>;
 async function alias(
-  newOrPrevId: string,
-  newIdOrOptions?: Record<string, unknown> | null | string,
+  newId: string,
+  previousIdOrOptions?: string | Record<string, unknown> | null,
+  options?: Record<string, unknown> | undefined | null,
 ): Promise<void> {
-  if (newOrPrevId === undefined) {
+  if (newId === undefined) {
     logWarn("alias: Mandatory field 'newId' missing");
     return Promise.resolve();
   }
-  if (typeof newOrPrevId != 'string') {
+  if (typeof newId != 'string') {
     logWarn("alias: 'newId' must be a string");
     return Promise.resolve();
   }
-  // this is to support the old alias method
-  // alias('previousId', 'newId')
-  // The previous ID is ignored.
-  if (typeof newIdOrOptions == 'string') {
-    return bridge.alias(newIdOrOptions, null);
-  } else if (typeof newIdOrOptions == 'object' && !Array.isArray(newIdOrOptions)) {
-    return bridge.alias(newOrPrevId, filterNaN(newIdOrOptions));
+  if (typeof previousIdOrOptions == 'string') {
+    return bridge.alias(newId, previousIdOrOptions, filterNaN(options ?? null));
+  } else if (typeof previousIdOrOptions == 'object' && !Array.isArray(previousIdOrOptions)) {
+    return bridge.alias(newId, null, filterNaN(previousIdOrOptions));
   } else {
-    return bridge.alias(newOrPrevId, null);
+    return bridge.alias(newId, null, filterNaN(options ?? null));
   }
 }
 
