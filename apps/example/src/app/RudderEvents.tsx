@@ -108,9 +108,12 @@ const RudderEvents = () => {
     // rudderClient.alias('New User ID', null);
     // rudderClient.alias('New User ID', undefined);
     // rudderClient.alias("New User ID", getLocalOptions());
-
-    // Deprecated
-    // rudderClient.alias('Old User ID', 'New User ID');
+    // rudderClient.alias('New User ID', null, null);
+    // rudderClient.alias('New User ID', null, undefined);
+    // rudderClient.alias('New User ID', null, getLocalOptions());
+    // rudderClient.alias('New User ID', undefined, getLocalOptions());
+    // rudderClient.alias('New User ID', 'Old User ID', null);
+    // rudderClient.alias('New User ID', 'Explicit Previous UserId', getLocalOptions());
   };
 
   const startSession = () => {
