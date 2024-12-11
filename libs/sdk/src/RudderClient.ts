@@ -219,8 +219,8 @@ async function group(
 
 async function alias(
   newId: string,
-  previousIdOrOptions?: string | Record<string, unknown> | null,
-  options?: Record<string, unknown> | undefined | null,
+  previousIdOrOptions: string | Record<string, unknown> | null = null,
+  options: Record<string, unknown> | undefined | null = null,
 ): Promise<void> {
   // Validate newId
   if (!newId) {
@@ -234,7 +234,7 @@ async function alias(
 
   // Handle cases based on the type of previousIdOrOptions
   if (typeof previousIdOrOptions === 'string') {
-    return bridge.alias(newId, previousIdOrOptions, filterNaN(options ?? null));
+    return bridge.alias(newId, previousIdOrOptions, filterNaN(options));
   }
   if (
     previousIdOrOptions &&
@@ -243,7 +243,7 @@ async function alias(
   ) {
     return bridge.alias(newId, null, filterNaN(previousIdOrOptions));
   }
-  return bridge.alias(newId, null, filterNaN(options ?? null));
+  return bridge.alias(newId, null, filterNaN(options));
 }
 
 async function putDeviceToken(token: string): Promise<void>;
