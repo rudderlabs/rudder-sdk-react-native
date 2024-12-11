@@ -113,7 +113,7 @@ RCT_EXPORT_METHOD(alias:(NSString*)_newId previousId:(NSString*)_previousId opti
         return;
     }
     [self->session saveEventTimestamp];
-    [[RSClient sharedInstance] alias:_newId options:[self getRudderOptionsObject:_options]];
+    [[RSClient sharedInstance] alias:_newId previousId:_previousId options:[self getRudderOptionsObject:_options]];
 }
 
 RCT_EXPORT_METHOD(group:(NSString*)_groupId traits:(NSDictionary*)_traits options:(NSDictionary*)_options)
