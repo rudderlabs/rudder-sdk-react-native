@@ -22,11 +22,13 @@ jobs:
 
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3.2'
 
       - name: Setup CocoaPods
         uses: maxim-lobanov/setup-cocoapods@v1
         with:
-          version: 1.15.2
+          version: 1.16.2
 
       - uses: maxim-lobanov/setup-xcode@v1
         with:
