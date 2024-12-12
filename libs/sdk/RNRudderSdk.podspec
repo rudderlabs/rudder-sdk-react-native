@@ -21,7 +21,7 @@ Pod::Spec.new do |s|
   s.tvos.deployment_target = '11.0'
 
   s.dependency "React"
-  s.dependency "Rudder", '>= 1.26.3', '< 2.0.0'
+  s.dependency "Rudder", '>= 1.31.0', '< 2.0.0'
 end
 
 

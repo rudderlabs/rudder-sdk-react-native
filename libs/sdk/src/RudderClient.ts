@@ -219,32 +219,38 @@ async function group(
 
 // wrapper for `alias` method
 async function alias(newId: string, options?: Record<string, unknown> | null): Promise<void>;
-/**
- * @deprecated use alias{@link alias(newId: string, options?: Record<string, unknown> | null)} instead
- */
-async function alias(previousId: string, userId: string | Record<string, unknown>): Promise<void>;
 async function alias(
-  newOrPrevId: string,
-  newIdOrOptions?: Record<string, unknown> | null | string,
+  newId: string,
+  previousId: string,
+  options?: Record<string, unknown> | null,
+): Promise<void>;
+async function alias(
+  newId: string,
+  previousIdOrOptions: string | Record<string, unknown> | null = null,
+  options: Record<string, unknown> | undefined | null = null,
 ): Promise<void> {
-  if (newOrPrevId === undefined) {
-    logWarn("alias: Mandatory field 'newId' missing");
+  // Validate newId
+  if (!newId) {
+    logWarn("alias: Mandatory field 'newId' is missing");
     return Promise.resolve();
   }
-  if (typeof newOrPrevId != 'string') {
+  if (typeof newId !== 'string') {
     logWarn("alias: 'newId' must be a string");
     return Promise.resolve();
   }
-  // this is to support the old alias method
-  // alias('previousId', 'newId')
-  // The previous ID is ignored.
-  if (typeof newIdOrOptions == 'string') {
-    return bridge.alias(newIdOrOptions, null);
-  } else if (typeof newIdOrOptions == 'object' && !Array.isArray(newIdOrOptions)) {
-    return bridge.alias(newOrPrevId, filterNaN(newIdOrOptions));
-  } else {
-    return bridge.alias(newOrPrevId, null);
+
+  // Handle cases based on the type of previousIdOrOptions
+  if (typeof previousIdOrOptions === 'string') {
+    return bridge.alias(newId, previousIdOrOptions, filterNaN(options));
   }
+  if (
+    previousIdOrOptions &&
+    typeof previousIdOrOptions === 'object' &&
+    !Array.isArray(previousIdOrOptions)
+  ) {
+    return bridge.alias(newId, null, filterNaN(previousIdOrOptions));
+  }
+  return bridge.alias(newId, null, filterNaN(options));
 }
 
 async function putDeviceToken(token: string): Promise<void>;

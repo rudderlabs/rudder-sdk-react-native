@@ -102,7 +102,7 @@ RCT_EXPORT_METHOD(identify:(NSString*)_userId traits:(NSDictionary*)_traits opti
     [[RSClient sharedInstance] identify:_userId traits:_traits options:[self getRudderOptionsObject:_options]];
 }
 
-RCT_EXPORT_METHOD(alias:(NSString*)_newId options:(NSDictionary*)_options)
+RCT_EXPORT_METHOD(alias:(NSString*)_newId previousId:(NSString*)_previousId options:(NSDictionary*)_options)
 {
     if (![self isRudderClientInitializedAndReady]) {
         return;
@@ -113,7 +113,7 @@ RCT_EXPORT_METHOD(alias:(NSString*)_newId options:(NSDictionary*)_options)
         return;
     }
     [self->session saveEventTimestamp];
-    [[RSClient sharedInstance] alias:_newId options:[self getRudderOptionsObject:_options]];
+    [[RSClient sharedInstance] alias:_newId previousId:_previousId options:[self getRudderOptionsObject:_options]];
 }
 
 RCT_EXPORT_METHOD(group:(NSString*)_groupId traits:(NSDictionary*)_traits options:(NSDictionary*)_options)
