@@ -2,6 +2,17 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [1.0.0](https://github.com/rudderlabs/rudder-sdk-react-native/compare/example-0.12.0...example-1.0.0) (2024-12-12)
+
+
+### ⚠ BREAKING CHANGES
+
+* add support for previousId in alias API (#394)
+
+### Features
+
+* add support for previousId in alias API ([#394](https://github.com/rudderlabs/rudder-sdk-react-native/issues/394)) ([f28efc0](https://github.com/rudderlabs/rudder-sdk-react-native/commit/f28efc099e6a28d1cfdc8f8ca0a092ff32928ac8))
+
 ## [0.12.0](https://github.com/rudderlabs/rudder-sdk-react-native/compare/example-0.11.1...example-0.12.0) (2024-10-29)
 
 
