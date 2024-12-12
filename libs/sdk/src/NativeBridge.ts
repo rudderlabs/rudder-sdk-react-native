@@ -40,7 +40,11 @@ export interface Bridge {
     traits: Record<string, unknown> | null,
     options: Record<string, unknown> | null,
   ): Promise<void>;
-  alias(newId: string, options: Record<string, unknown> | null): Promise<void>;
+  alias(
+    newId: string,
+    previousId: string | null,
+    options: Record<string, unknown> | null,
+  ): Promise<void>;
   group(
     groupId: string,
     traits: Record<string, unknown> | null,

@@ -1,5 +1,9 @@
-## [1.15.0](https://github.com/rudderlabs/rudder-sdk-react-native/compare/rudder-sdk-react-native@1.14.1...rudder-sdk-react-native@1.15.0) (2024-10-29)
+## [2.0.0](https://github.com/rudderlabs/rudder-sdk-react-native/compare/rudder-sdk-react-native@1.15.0...rudder-sdk-react-native@2.0.0) (2024-12-12)
+
+### ⚠ BREAKING CHANGES
+
+- add support for previousId in alias API (#394)
 
 ### Features
 
-- add gzip configuration support ([#382](https://github.com/rudderlabs/rudder-sdk-react-native/issues/382)) ([abf983b](https://github.com/rudderlabs/rudder-sdk-react-native/commit/abf983b8d50d28810a9a741cf9e3344df878fc0c))
+- add support for previousId in alias API ([#394](https://github.com/rudderlabs/rudder-sdk-react-native/issues/394)) ([f28efc0](https://github.com/rudderlabs/rudder-sdk-react-native/commit/f28efc099e6a28d1cfdc8f8ca0a092ff32928ac8))
