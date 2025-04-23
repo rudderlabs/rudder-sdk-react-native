@@ -82,7 +82,7 @@ jobs:
           npm run release:github -- --base=$last_version --head=$current_version
 
       - name: Create pull request into develop
-        uses: repo-sync/pull-request@v2
+        uses: repo-sync/pull-request@7e79a9f5dc3ad0ce53138f01df2fad14a04831c5 #v2
         with:
           source_branch: 'master'
           destination_branch: 'develop'
