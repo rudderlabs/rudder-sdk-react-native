@@ -78,6 +78,7 @@ local.properties
 *.hprof
 *.jar
 !gradle/wrapper/gradle-wrapper.jar
+apps/example/android/app/.cxx
 
 # node.js
 #
