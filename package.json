@@ -187,8 +187,5 @@
       "defaultScope": "@rudderstack/rudder-sdk-react-native-monorepo",
       "defaultType": "feat"
     }
-  },
-  "engines": {
-    "node": ">=18"
   }
 }
