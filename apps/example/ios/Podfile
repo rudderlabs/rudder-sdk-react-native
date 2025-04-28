@@ -38,7 +38,6 @@ target 'Example' do
 
     # This is to solve the iOS errors
     pod 'Rudder-CleverTap', '1.1.2'
-    pod 'Rudder-Braze', '2.0.0'
 
   target 'ExampleTests' do
     inherit! :complete

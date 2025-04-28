@@ -14,7 +14,7 @@ PODS:
     - AppsFlyerFramework/Main (= 6.14.6)
   - AppsFlyerFramework/Main (6.14.6)
   - boost (1.84.0)
-  - BrazeKit (7.5.0)
+  - BrazeKit (11.1.1)
   - CleverTap-iOS-SDK (4.2.2):
     - SDWebImage (~> 5.11)
   - DoubleConversion (1.1.6)
@@ -1819,9 +1819,9 @@ PODS:
   - Rudder-Appsflyer (2.7.0):
     - AppsFlyerFramework (~> 6.14.5)
     - Rudder (~> 1.12)
-  - Rudder-Braze (2.0.0):
-    - BrazeKit (~> 7.5.0)
-    - Rudder (~> 1.24)
+  - Rudder-Braze (4.0.0):
+    - BrazeKit (~> 11.1.1)
+    - Rudder (~> 1.26)
   - Rudder-CleverTap (1.1.2):
     - CleverTap-iOS-SDK (~> 4.2)
     - Rudder (~> 1.12)
@@ -1846,7 +1846,7 @@ PODS:
   - rudder-integration-braze-react-native (1.3.0):
     - React
     - RNRudderSdk
-    - Rudder-Braze (~> 2.0)
+    - Rudder-Braze (~> 4.0)
   - rudder-integration-clevertap-react-native (1.1.0):
     - CleverTap-iOS-SDK
     - React
@@ -1975,7 +1975,6 @@ DEPENDENCIES:
   - ReactCommon/turbomodule/core (from `../../../node_modules/react-native/ReactCommon`)
   - "RNCAsyncStorage (from `../node_modules/@react-native-async-storage/async-storage`)"
   - "RNRudderSdk (from `../node_modules/@rudderstack/rudder-sdk-react-native`)"
-  - Rudder-Braze (= 2.0.0)
   - Rudder-CleverTap (= 1.1.2)
   - "rudder-integration-amplitude-react-native (from `../node_modules/@rudderstack/rudder-integration-amplitude-react-native`)"
   - "rudder-integration-appcenter-react-native (from `../node_modules/@rudderstack/rudder-integration-appcenter-react-native`)"
@@ -2203,7 +2202,7 @@ SPEC CHECKSUMS:
   AppCenter: 395cc12b428b8fdf12e9f92294d93a55bac389e4
   AppsFlyerFramework: bef4087719ce689835bbf408c61e2bcc5d4b8bd8
   boost: 7e761d76ca2ce687f7cc98e698152abd03a18f90
-  BrazeKit: 55dfadd08105765a568137f5d24d46894186db65
+  BrazeKit: 879da791a0f4e247846a06c6de95f8b93f4579df
   CleverTap-iOS-SDK: 36c21b8a671d87a0f9c7b389b339d02528bbe4d7
   DoubleConversion: cb417026b2400c8f53ae97020b2be961b59470cb
   fast_float: 06eeec4fe712a76acc9376682e4808b05ce978b6
@@ -2294,14 +2293,14 @@ SPEC CHECKSUMS:
   Rudder-Amplitude: d308b2bce1237c3cfdf3274458130f36815067db
   Rudder-AppCenter: 9eca9241e3707a0e9610714dd91dc8da4bae7e1f
   Rudder-Appsflyer: d7eb1497781a64e4228c97edc1cc3c7893b6ced0
-  Rudder-Braze: 906ac557204d42bfd29bbf48741d8f6beb9ca2be
+  Rudder-Braze: 0bdbacc1fb37b556f0f7cbd62ecb255498443105
   Rudder-CleverTap: a0085aab472e0e60930c4301ef80bae5ff187e98
   Rudder-Facebook: 24c9309373f13212d1139938aad86faa2914d342
   Rudder-Firebase: d66ed5a8ef4a7dde1d6ce2997e6cfac262c098be
   rudder-integration-amplitude-react-native: 746043ab0ddbf269243db7303cfa6e5fef22752f
   rudder-integration-appcenter-react-native: 5f0337a1393d999bbf4884f443976d94fd0cac69
   rudder-integration-appsflyer-react-native: 8a40ca8252fdbee81dc02c41ad876a24550246a6
-  rudder-integration-braze-react-native: 9cee070aadbe31adfe755c4ca73987da32f9fd1d
+  rudder-integration-braze-react-native: 172a9e962ed22f007af2b3bc7e18a5b5484bcd6e
   rudder-integration-clevertap-react-native: 01e18e244be6dc183ef453b31c8bfaa872827f82
   rudder-integration-facebook-react-native: ca4b3cf87e02ce7a3d04f67363f4ccab7217ce05
   rudder-integration-firebase-react-native: 07d97592567f5fd8d6d9410021fee05af92a8214
@@ -2318,6 +2317,6 @@ SPEC CHECKSUMS:
   SQLCipher: ba9d0076041ed767c5bd3d3f77098318d04a403c
   Yoga: d15f5aa644c466e917569ac43b19cbf17975239a
 
-PODFILE CHECKSUM: 865df3b28df0d5b7db3c210c36a1880759e19d91
+PODFILE CHECKSUM: b30378783dc59690a16bfb785e61b813f80c3017
 
 COCOAPODS: 1.16.2
