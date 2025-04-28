@@ -1,6 +1,6 @@
-## [1.1.0](https://github.com/rudderlabs/rudder-sdk-react-native/compare/rudder-integration-firebase-react-native@1.0.19...rudder-integration-firebase-react-native@1.1.0) (2024-04-09)
+## [1.2.0](https://github.com/rudderlabs/rudder-sdk-react-native/compare/rudder-integration-firebase-react-native@1.1.0...rudder-integration-firebase-react-native@1.2.0) (2025-04-28)
 
 ### Features
 
-- **rudder-integration-firebase-react-native:** change linter to eslint ([4a347dc](https://github.com/rudderlabs/rudder-sdk-react-native/commit/4a347dc8498e3ff555bc5ebc01e8827000da7769))
-- **rudder-integration-firebase-react-native:** change metro-react-native-babel-preset to @react-native/babel-preset ([2e95155](https://github.com/rudderlabs/rudder-sdk-react-native/commit/2e9515514606979d11f6a29b3d0db1c6e2f12e39))
+- add React 19 support and resolve Snyk vulnerability ([#418](https://github.com/rudderlabs/rudder-sdk-react-native/issues/418)) ([793ae17](https://github.com/rudderlabs/rudder-sdk-react-native/commit/793ae17076d8f69404877eec07fea1b49c3ce304))
+- **rudder-integration-firebase-react-native:** add React 19 support and resolve Snyk vulnerability ([523904b](https://github.com/rudderlabs/rudder-sdk-react-native/commit/523904b36e791fd43c47170f77e74655f1c189a3))
