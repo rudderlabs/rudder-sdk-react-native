@@ -50,7 +50,7 @@
   "dependencies": {
     "@babel/runtime": "7.27.0",
     "@react-navigation/native": "7.1.6",
-    "@react-navigation/native-stack": "7.2.1",
+    "@react-navigation/native-stack": "7.3.9",
     "@rudderstack/rudder-integration-amplitude-react-native": "file:libs/rudder-integration-amplitude-react-native",
     "@rudderstack/rudder-integration-appcenter-react-native": "file:libs/rudder-integration-appcenter-react-native",
     "@rudderstack/rudder-integration-appsflyer-react-native": "file:libs/rudder-integration-appsflyer-react-native",
