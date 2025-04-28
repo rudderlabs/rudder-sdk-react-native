@@ -12,6 +12,7 @@ let onInstallConversionDataListener = true;
 let onDeepLinkListener = false;
 let timeToWaitForATTUserAuthorization = 0;
 
+// Setup the integration
 async function setup() {
   if (Platform.OS === 'ios') {
     await bridge.setup(
