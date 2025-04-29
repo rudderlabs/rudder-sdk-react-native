@@ -1,6 +1,6 @@
 {
   "name": "@rudderstack/rudder-sdk-react-native",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "Rudder React Native SDK",
   "keywords": [
     "react-native",
