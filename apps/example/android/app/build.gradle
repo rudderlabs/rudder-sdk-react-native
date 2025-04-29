@@ -54,6 +54,9 @@ react {
     //
     //   The list of flags to pass to the Hermes compiler. By default is "-O", "-output-source-map"
     // hermesFlags = ["-O", "-output-source-map"]
+
+    /* Autolinking */
+    autolinkLibrariesWithApp()
 }
 
 /**
@@ -110,10 +113,6 @@ android {
 }
 
 dependencies {
-    // Refer here: https://wix.github.io/Detox/docs/introduction/project-setup/
-    androidTestImplementation('com.wix:detox:+')
-    implementation 'androidx.appcompat:appcompat:1.1.0'
-    
     // The version of react-native is set by the React Native Gradle Plugin
     implementation("com.facebook.react:react-android")
 
@@ -129,5 +128,3 @@ dependencies {
         // Firebase
         implementation 'com.google.firebase:firebase-messaging:21.0.0'
 }
-
-apply from: file("../../../../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesAppBuildGradle(project)

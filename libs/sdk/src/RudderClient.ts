@@ -89,7 +89,7 @@ function validateConfiguration(configuration: Configuration) {
   }
 }
 
-// setup the RudderSDK with writeKey and Config
+// setup the RudderSDK with writeKey and Config.
 async function setup(
   writeKey: string,
   configuration: Configuration = {},
