@@ -1,5 +1,6 @@
-## [1.1.1](https://github.com/rudderlabs/rudder-sdk-react-native/compare/rudder-integration-appcenter-react-native@1.1.0...rudder-integration-appcenter-react-native@1.1.1) (2024-04-24)
+## [1.2.0](https://github.com/rudderlabs/rudder-sdk-react-native/compare/rudder-integration-appcenter-react-native@1.1.1...rudder-integration-appcenter-react-native@1.2.0) (2025-04-29)
 
-### Bug Fixes
+### Features
 
-- **rudder-integration-appcenter-react-native:** add a wrapper for the enable and disable analytics APIs ([#339](https://github.com/rudderlabs/rudder-sdk-react-native/issues/339)) ([78af2a0](https://github.com/rudderlabs/rudder-sdk-react-native/commit/78af2a00b33b6e052202069914044c405b0e987e))
+- add React 19 support and resolve Snyk vulnerability ([#418](https://github.com/rudderlabs/rudder-sdk-react-native/issues/418)) ([793ae17](https://github.com/rudderlabs/rudder-sdk-react-native/commit/793ae17076d8f69404877eec07fea1b49c3ce304))
+- **rudder-integration-appcenter-react-native:** add React 19 support and resolve Snyk vulnerability ([8e00f31](https://github.com/rudderlabs/rudder-sdk-react-native/commit/8e00f31922ea794ae1570e300cf4cdc51f4675a6))

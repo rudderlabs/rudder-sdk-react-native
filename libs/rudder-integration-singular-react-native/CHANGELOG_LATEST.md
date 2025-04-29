@@ -1,6 +1,6 @@
-## [1.1.0](https://github.com/rudderlabs/rudder-sdk-react-native/compare/rudder-integration-singular-react-native@1.0.9...rudder-integration-singular-react-native@1.1.0) (2024-04-09)
+## [1.2.0](https://github.com/rudderlabs/rudder-sdk-react-native/compare/rudder-integration-singular-react-native@1.1.0...rudder-integration-singular-react-native@1.2.0) (2025-04-29)
 
 ### Features
 
-- **rudder-integration-singular-react-native:** change linter to eslint ([daaea82](https://github.com/rudderlabs/rudder-sdk-react-native/commit/daaea823ae956591c40d3d962f2e00fcfdbec1c1))
-- **rudder-integration-singular-react-native:** change metro-react-native-babel-preset to @react-native/babel-preset ([7d2f5e4](https://github.com/rudderlabs/rudder-sdk-react-native/commit/7d2f5e479b6eb099cd0f2fe70d35a93d99b39788))
+- add React 19 support and resolve Snyk vulnerability ([#418](https://github.com/rudderlabs/rudder-sdk-react-native/issues/418)) ([793ae17](https://github.com/rudderlabs/rudder-sdk-react-native/commit/793ae17076d8f69404877eec07fea1b49c3ce304))
+- **rudder-integration-singular-react-native:** add React 19 support and resolve Snyk vulnerability ([2dfba83](https://github.com/rudderlabs/rudder-sdk-react-native/commit/2dfba83704ee6fba24065990830ba8cf9f63b2e2))

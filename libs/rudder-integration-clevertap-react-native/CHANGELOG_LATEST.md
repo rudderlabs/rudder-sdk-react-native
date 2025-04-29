@@ -1,6 +1,6 @@
-## [1.1.0](https://github.com/rudderlabs/rudder-sdk-react-native/compare/rudder-integration-clevertap-react-native@1.0.12...rudder-integration-clevertap-react-native@1.1.0) (2024-04-09)
+## [1.2.0](https://github.com/rudderlabs/rudder-sdk-react-native/compare/rudder-integration-clevertap-react-native@1.1.0...rudder-integration-clevertap-react-native@1.2.0) (2025-04-29)
 
 ### Features
 
-- **rudder-integration-clevertap-react-native:** change linter to eslint ([80f3728](https://github.com/rudderlabs/rudder-sdk-react-native/commit/80f37288ccb9face5c8b4395dc7567ec3cd7f411))
-- **rudder-integration-clevertap-react-native:** change metro-react-native-babel-preset to @react-native/babel-preset ([6f5ad65](https://github.com/rudderlabs/rudder-sdk-react-native/commit/6f5ad65ebb91d40b0aa7d4ccf6ab3f902bb41f5f))
+- add React 19 support and resolve Snyk vulnerability ([#418](https://github.com/rudderlabs/rudder-sdk-react-native/issues/418)) ([793ae17](https://github.com/rudderlabs/rudder-sdk-react-native/commit/793ae17076d8f69404877eec07fea1b49c3ce304))
+- **rudder-integration-clevertap-react-native:** add React 19 support and resolve Snyk vulnerability ([1493f31](https://github.com/rudderlabs/rudder-sdk-react-native/commit/1493f3143a0877787d094780d8d089990b56cbda))
