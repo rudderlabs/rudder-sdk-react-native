@@ -3,4 +3,3 @@
 ### Features
 
 - add React 19 support and resolve Snyk vulnerability ([#418](https://github.com/rudderlabs/rudder-sdk-react-native/issues/418)) ([793ae17](https://github.com/rudderlabs/rudder-sdk-react-native/commit/793ae17076d8f69404877eec07fea1b49c3ce304))
-- **rudder-integration-clevertap-react-native:** add React 19 support and resolve Snyk vulnerability ([1493f31](https://github.com/rudderlabs/rudder-sdk-react-native/commit/1493f3143a0877787d094780d8d089990b56cbda))

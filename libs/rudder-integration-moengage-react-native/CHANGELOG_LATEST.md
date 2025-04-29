@@ -3,4 +3,3 @@
 ### Features
 
 - add React 19 support and resolve Snyk vulnerability ([#418](https://github.com/rudderlabs/rudder-sdk-react-native/issues/418)) ([793ae17](https://github.com/rudderlabs/rudder-sdk-react-native/commit/793ae17076d8f69404877eec07fea1b49c3ce304))
-- **rudder-integration-moengage-react-native:** add React 19 support and resolve Snyk vulnerability ([7bfd51e](https://github.com/rudderlabs/rudder-sdk-react-native/commit/7bfd51eeb363d178fb5a38796d0ae79b2696b400))
