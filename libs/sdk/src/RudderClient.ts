@@ -337,9 +337,8 @@ async function registerCallback(name: string, callback: Function) {
 }
 
 async function getRudderContext(): Promise<IRudderContext | null> {
-  // const context: IRudderContext | null = await bridge.getRudderContext();
-  // return context ?? null;
-  return null;
+  const context: IRudderContext | null = await bridge.getRudderContext();
+  return context ?? null;
 }
 
 async function startSession(sessionId?: number): Promise<void> {
