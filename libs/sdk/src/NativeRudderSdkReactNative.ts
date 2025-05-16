@@ -1,5 +1,7 @@
 import type { TurboModule } from 'react-native';
 import { TurboModuleRegistry } from 'react-native';
+import IDBEncryption from './IDBEncryption';
+import IRudderContext from './IRudderContext';
 
 type properties = { [key: string]: unknown } | null;
 type options = { [key: string]: unknown } | null;
@@ -19,7 +21,9 @@ export interface Configuration {
   enableBackgroundMode?: boolean;
   collectDeviceId?: boolean;
   enableGzip?: boolean;
-  // dbEncryption and withFactories are not TurboModule compatible, so remove or adjust as needed
+  // dbEncryption?: IDBEncryption;
+  // eslint-disable-next-line @typescript-eslint/ban-types
+  withFactories?: Array<Record<string, unknown> | Function>;
 }
 
 export interface Spec extends TurboModule {
@@ -45,4 +49,4 @@ export interface Spec extends TurboModule {
   getSessionId(): Promise<number | null>;
 }
 
-export default TurboModuleRegistry.getEnforcing<Spec>('RudderSdkReactNative');
+export default TurboModuleRegistry.getEnforcing<Spec>('RNRudderSdkModule');
