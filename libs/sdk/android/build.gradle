@@ -1,61 +1,85 @@
-def packageJson = new groovy.json.JsonSlurper().parseText(file('../package.json').text)
-version = packageJson.version
-
 buildscript {
-    repositories {
-        google()
-        mavenCentral()
-    }
+  ext.getExtOrDefault = {name ->
+    return rootProject.ext.has(name) ? rootProject.ext.get(name) : project.properties['RudderSdkReactNative_' + name]
+  }
 
-    dependencies {
-      classpath("com.android.tools.build:gradle:7.2.2")
-      classpath("de.undercouch:gradle-download-task:5.0.1")
-    }
+  repositories {
+    google()
+    mavenCentral()
+  }
+
+  dependencies {
+    classpath "com.android.tools.build:gradle:8.7.2"
+    // noinspection DifferentKotlinGradleVersion
+    classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${getExtOrDefault('kotlinVersion')}"
+  }
 }
 
-apply plugin: 'com.android.library'
+
+apply plugin: "com.android.library"
+apply plugin: "kotlin-android"
+
+apply plugin: "com.facebook.react"
+
+def getExtOrIntegerDefault(name) {
+  return rootProject.ext.has(name) ? rootProject.ext.get(name) : (project.properties["RudderSdkReactNative_" + name]).toInteger()
+}
 
 android {
-    compileSdkVersion 31
+  namespace "com.rudderstack.react.android"
 
-    defaultConfig {
-        buildToolsVersion "31.0.0"
-        minSdkVersion 21
-        targetSdkVersion 31
-        versionCode 1
-        versionName version
-    }
+  compileSdkVersion getExtOrIntegerDefault("compileSdkVersion")
 
-    lintOptions {
-        abortOnError false
+  defaultConfig {
+    minSdkVersion getExtOrIntegerDefault("minSdkVersion")
+    targetSdkVersion getExtOrIntegerDefault("targetSdkVersion")
+  }
+
+  buildFeatures {
+    buildConfig true
+  }
+
+  buildTypes {
+    release {
+      minifyEnabled false
     }
+  }
+
+  lintOptions {
+    disable "GradleCompatible"
+  }
+
+  compileOptions {
+    sourceCompatibility JavaVersion.VERSION_1_8
+    targetCompatibility JavaVersion.VERSION_1_8
+  }
+
+  sourceSets {
+    main {
+      java.srcDirs += [
+        "generated/java",
+        "generated/jni"
+      ]
+    }
+  }
 }
 
-// Fix for https://github.com/facebook/react-native/issues/35210
 repositories {
-  // ref: https://www.baeldung.com/maven-local-repository
-  mavenLocal()
-  maven {
-    // All of React Native (JS, Obj-C sources, Android binaries) is installed from npm
-    url "$rootDir/../../../node_modules/react-native/android"
-  }
-  maven {
-    // Android JSC is installed from npm
-    url "$rootDir/../../../node_modules/jsc-android/dist"
-  }
-  mavenCentral {
-    // We don't want to fetch react-native from Maven Central as there are
-    // older versions over there.
-    content {
-      excludeGroup "com.facebook.react"
-    }
-  }
+  mavenCentral()
   google()
-  maven { url 'https://www.jitpack.io' }
 }
+
+def kotlin_version = getExtOrDefault("kotlinVersion")
 
 dependencies {
-    compileOnly 'com.facebook.react:react-native:+'
-    implementation 'com.google.code.gson:gson:2.8.9'
-    implementation 'com.rudderstack.android.sdk:core:[1.26.0, 2.0.0)'
+  implementation "com.facebook.react:react-android"
+  implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+  implementation 'com.google.code.gson:gson:2.8.9'
+  implementation 'com.rudderstack.android.sdk:core:[1.26.0, 2.0.0)'
+}
+
+react {
+  jsRootDir = file("../src/")
+  libraryName = "RudderSdkReactNative"
+  codegenJavaPackageName = "com.rudderstack.ruddersdkreactnative"
 }
