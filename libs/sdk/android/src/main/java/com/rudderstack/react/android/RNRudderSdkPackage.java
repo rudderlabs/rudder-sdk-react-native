@@ -39,24 +39,4 @@ public class RNRudderSdkPackage extends BaseReactPackage {
             }
         };
     }
-
-
-//    private static Application applicationContext;
-//
-//    @Override
-//    public List<NativeModule> createNativeModules(ReactApplicationContext reactContext) {
-//        System.out.println("Abhishek: Java");
-//        applicationContext = (Application) reactContext.getApplicationContext();
-//        return Arrays.<NativeModule>asList(new RNRudderSdkModule(reactContext));
-//    }
-//
-//    // Deprecated from RN 0.47
-//    public List<Class<? extends JavaScriptModule>> createJSModules() {
-//        return Collections.emptyList();
-//    }
-//
-//    @Override
-//    public List<ViewManager> createViewManagers(ReactApplicationContext reactContext) {
-//        return Collections.emptyList();
-//    }
 }

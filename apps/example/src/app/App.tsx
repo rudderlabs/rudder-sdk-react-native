@@ -28,7 +28,6 @@ import appsflyer, {
   setOneLinkCustomDomains,
   setOptions,
 } from '@rudderstack/rudder-integration-appsflyer-react-native';
-import DBEncryption from '@rudderstack/rudder-plugin-db-encryption-react-native';
 // @ts-ignore
 import { TEST_DATAPLANE_URL, TEST_WRITE_KEY, APPSFLYER_DEV_KEY, APPSFLYER_APPLE_ID } from '@env';
 import RudderEvents from './RudderEvents';
@@ -90,7 +89,6 @@ const getGlobalOptions = () => {
 };
 
 const initRudderReactNativeSDK = async () => {
-  const dbEncryption = new DBEncryption('versys', false);
   const options = getGlobalOptions();
 
   const config = {
@@ -102,7 +100,10 @@ const initRudderReactNativeSDK = async () => {
     enableBackgroundMode: true,
     trackAppLifecycleEvents: true,
     autoSessionTracking: true,
-    dbEncryption: dbEncryption,
+    dbEncryption: {
+      key: 'versys',
+      enable: false,
+    },
     enableGzip: true,
     withFactories: [
       appsflyer,

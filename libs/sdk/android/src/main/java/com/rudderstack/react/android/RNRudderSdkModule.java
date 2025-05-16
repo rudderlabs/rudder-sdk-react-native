@@ -8,8 +8,6 @@ import androidx.annotation.Nullable;
 
 import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.ReactApplicationContext;
-import com.facebook.react.bridge.ReactContextBaseJavaModule;
-import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.bridge.Callback;
 import com.facebook.react.module.annotations.ReactModule;
@@ -28,8 +26,6 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import java.lang.InterruptedException;
 
 @ReactModule(name = RNRudderSdkModule.NAME)
 public class RNRudderSdkModule extends NativeRudderSdkReactNativeSpec {
@@ -54,11 +50,6 @@ public class RNRudderSdkModule extends NativeRudderSdkReactNativeSpec {
     @Override
     public String getName() {
         return NAME;
-    }
-
-    @Override
-    public double multiply(double a, double b) {
-        return a * b;
     }
 
     @Override
@@ -184,23 +175,28 @@ public class RNRudderSdkModule extends NativeRudderSdkReactNativeSpec {
         rudderClient.group(groupId, Utility.convertReadableMapToTraits(traits), Utility.convertReadableMapToOptions(options));
     }
 
-//    // Migrated from Callbacks to Promise to support ES2016's async/await syntax on the RN Side
-//    @ReactMethod
-//    public void getRudderContext(Promise promise) throws JSONException {
-//        if (!isRudderClientInitializedAndReady()) {
-//            promise.resolve(null);
-//            return;
-//        }
-//
-//        RudderContext rudderContext = rudderClient.getRudderContext();
-//        if (rudderContext == null) {
-//            promise.resolve(null);
-//            return;
-//        }
-//        Gson gson = new Gson();
-//        JSONObject contextJson = new JSONObject(gson.toJson(rudderContext));
-//        promise.resolve(Utility.convertJSONObjectToWriteAbleMap(contextJson));
-//    }
+    // Migrated from Callbacks to Promise to support ES2016's async/await syntax on the RN Side
+    @Override
+    public void getRudderContext(Promise promise) {
+        if (!isRudderClientInitializedAndReady()) {
+            promise.resolve(null);
+            return;
+        }
+
+        RudderContext rudderContext = rudderClient.getRudderContext();
+        if (rudderContext == null) {
+            promise.resolve(null);
+            return;
+        }
+        Gson gson = new Gson();
+        JSONObject contextJson = null;
+        try {
+            contextJson = new JSONObject(gson.toJson(rudderContext));
+            promise.resolve(Utility.convertJSONObjectToWriteAbleMap(contextJson));
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     @Override
     public void reset(boolean clearAnonymousId, Promise promise) {
