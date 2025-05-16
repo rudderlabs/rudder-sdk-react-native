@@ -2,7 +2,7 @@ import { Platform } from 'react-native';
 import AsyncLock from 'async-lock';
 
 import { configure } from './RudderConfiguration';
-import bridge, { Configuration } from './NativeBridge';
+import bridge, { Configuration } from './NativeRudderSdkReactNative';
 import { logInit, logDebug, logError, logWarn } from './Logger';
 import { SDK_VERSION, ENABLE_GZIP } from './Constants';
 import IRudderContext from './IRudderContext';
@@ -331,14 +331,15 @@ async function optOut(optOut: boolean) {
 
 // eslint-disable-next-line @typescript-eslint/ban-types
 async function registerCallback(name: string, callback: Function) {
-  if (name) {
-    bridge.registerCallback(name, callback);
-  }
+  // if (name) {
+  //   bridge.registerCallback(name, callback);
+  // }
 }
 
 async function getRudderContext(): Promise<IRudderContext | null> {
-  const context: IRudderContext | null = await bridge.getRudderContext();
-  return context ?? null;
+  // const context: IRudderContext | null = await bridge.getRudderContext();
+  // return context ?? null;
+  return null;
 }
 
 async function startSession(sessionId?: number): Promise<void> {

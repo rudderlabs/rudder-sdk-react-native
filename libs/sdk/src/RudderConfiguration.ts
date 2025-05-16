@@ -1,4 +1,4 @@
-import { Configuration } from './NativeBridge';
+import { Configuration } from './NativeRudderSdkReactNative';
 import {
   DATA_PLANE_URL,
   CONTROL_PLANE_URL,
@@ -35,7 +35,7 @@ export const configure = async (
     recordScreenViews = RECORD_SCREEN_VIEWS,
     collectDeviceId = COLLECT_DEVICE_ID,
     enableGzip = ENABLE_GZIP,
-    dbEncryption,
+    // dbEncryption,
     withFactories = [],
   }: Configuration,
 ): Promise<Configuration> => {
@@ -50,9 +50,9 @@ export const configure = async (
     );
   }
 
-  if (dbEncryption !== undefined) {
-    await dbEncryption.addDBEncryptionPlugin(dbEncryption.key, dbEncryption.enable);
-  }
+  // if (dbEncryption !== undefined) {
+  //   await dbEncryption.addDBEncryptionPlugin(dbEncryption.key, dbEncryption.enable);
+  // }
 
   const config = {
     writeKey,
