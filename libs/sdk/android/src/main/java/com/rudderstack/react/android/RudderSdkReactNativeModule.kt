@@ -1,7 +1,8 @@
-package com.rudderstack.ruddersdkreactnative
+package com.rudderstack.react.android;
 
 import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.module.annotations.ReactModule
+import com.rudderstack.ruddersdkreactnative.NativeRudderSdkReactNativeSpec
 
 @ReactModule(name = RudderSdkReactNativeModule.NAME)
 class RudderSdkReactNativeModule(reactContext: ReactApplicationContext) :

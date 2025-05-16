@@ -1,4 +1,4 @@
-package com.rudderstack.ruddersdkreactnative
+package com.rudderstack.react.android;
 
 import com.facebook.react.BaseReactPackage
 import com.facebook.react.bridge.NativeModule

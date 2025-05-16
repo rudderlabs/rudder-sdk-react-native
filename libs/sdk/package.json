@@ -2,7 +2,6 @@
   "name": "@rudderstack/rudder-sdk-react-native",
   "version": "2.1.0",
   "description": "Rudder React Native SDK",
-  "main": "src/index",
   "codegenConfig": {
     "name": "RudderSdkReactNativeSpec",
     "type": "modules",
