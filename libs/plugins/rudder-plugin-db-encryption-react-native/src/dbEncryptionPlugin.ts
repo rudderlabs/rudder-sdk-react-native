@@ -1,7 +1,6 @@
-import { IDBEncryption } from '@rudderstack/rudder-sdk-react-native';
 import bridge from './bridge';
 
-class DBEncryption implements IDBEncryption {
+class DBEncryption {
   key: string;
   enable: boolean;
   constructor(key: string, enable: boolean) {
@@ -10,8 +9,8 @@ class DBEncryption implements IDBEncryption {
   }
 
   // Add the encryption plugin
-  async addDBEncryptionPlugin(key: string, enable: boolean): Promise<void> {
-    await bridge.setup(key, enable);
+  async addDBEncryptionPlugin(): Promise<void> {
+    await bridge.setup(this.key, this.enable);
   }
 }
 

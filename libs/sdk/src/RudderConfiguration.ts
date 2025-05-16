@@ -16,6 +16,8 @@ import {
   COLLECT_DEVICE_ID,
   ENABLE_GZIP,
 } from './Constants';
+import DBEncryptionPlugin from '@rudderstack/rudder-plugin-db-encryption-react-native';
+import dbEncryptionPlugin from '@rudderstack/rudder-plugin-db-encryption-react-native';
 
 export const configure = async (
   writeKey: string,
@@ -35,7 +37,7 @@ export const configure = async (
     recordScreenViews = RECORD_SCREEN_VIEWS,
     collectDeviceId = COLLECT_DEVICE_ID,
     enableGzip = ENABLE_GZIP,
-    // dbEncryption,
+    dbEncryption,
     withFactories = [],
   }: Configuration,
 ): Promise<Configuration> => {
@@ -50,9 +52,10 @@ export const configure = async (
     );
   }
 
-  // if (dbEncryption !== undefined) {
-  //   await dbEncryption.addDBEncryptionPlugin(dbEncryption.key, dbEncryption.enable);
-  // }
+  if (dbEncryption !== undefined) {
+    const encryptionPluginInstance = new DBEncryptionPlugin(dbEncryption.key, dbEncryption.enable);
+    encryptionPluginInstance.addDBEncryptionPlugin();
+  }
 
   const config = {
     writeKey,
