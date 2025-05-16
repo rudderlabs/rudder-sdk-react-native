@@ -2,24 +2,24 @@
   "name": "@rudderstack/rudder-sdk-react-native",
   "version": "2.1.0",
   "description": "Rudder React Native SDK",
-  "keywords": [
-    "react-native",
-    "rudder"
-  ],
-  "author": {
-    "name": "RudderStack"
+  "main": "src/index",
+  "codegenConfig": {
+    "name": "RudderSdkReactNativeSpec",
+    "type": "modules",
+    "jsSrcsDir": "src"
   },
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/rudderlabs/rudder-sdk-react-native.git"
+  "author": " <> ()",
+  "license": "UNLICENSED",
+  "homepage": "#readme",
+  "devDependencies": {
+    "@react-native/babel-preset": "0.79.2",
+    "@types/react": "^19.0.0",
+    "react": "19.0.0",
+    "react-native": "0.79.2"
   },
-  "bugs": {
-    "url": "https://github.com/rudderlabs/rudder-sdk-react-native/issues"
-  },
-  "homepage": "https://github.com/rudderlabs/rudder-sdk-react-native#readme",
-  "peerDependencies": {
-    "react-native": ">= 0.41.2 < 0.80.0 || ^0.0.0-0",
-    "react": "^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0"
+  "create-react-native-library": {
+    "languages": "kotlin-objc",
+    "type": "turbo-module",
+    "version": "0.50.3"
   }
 }
