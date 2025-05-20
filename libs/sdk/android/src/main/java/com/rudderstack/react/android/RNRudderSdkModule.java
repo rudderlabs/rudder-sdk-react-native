@@ -19,7 +19,6 @@ import com.rudderstack.android.sdk.core.RudderIntegration;
 import com.rudderstack.android.sdk.core.RudderLogger;
 import com.rudderstack.android.sdk.core.RudderProperty;
 import com.rudderstack.android.sdk.core.RudderMessageBuilder;
-import com.rudderstack.ruddersdkreactnative.NativeBridgeSpec;
 
 import org.json.JSONException;
 import org.json.JSONObject;

@@ -75,5 +75,5 @@ dependencies {
 react {
   jsRootDir = file("../src/")
   libraryName = "RudderSdkReactNative"
-  codegenJavaPackageName = "com.rudderstack.ruddersdkreactnative"
+  codegenJavaPackageName = "com.rudderstack.react.android"
 }
