@@ -330,10 +330,10 @@ async function optOut(optOut: boolean) {
 }
 
 // eslint-disable-next-line @typescript-eslint/ban-types
-async function registerCallback(name: string, callback: Function) {
-  // if (name) {
-  //   bridge.registerCallback(name, callback);
-  // }
+async function registerCallback(name: string, callback: (data: unknown) => void) {
+  if (name) {
+    bridge.registerCallback(name, callback);
+  }
 }
 
 async function getRudderContext(): Promise<IRudderContext | null> {

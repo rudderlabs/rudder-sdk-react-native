@@ -42,8 +42,8 @@ export interface Spec extends TurboModule {
   putAdvertisingId(id: string): Promise<void>;
   clearAdvertisingId(): Promise<void>;
   putAnonymousId(id: string): Promise<void>;
-  // registerCallback(integrationName: string, callback: Function): Promise<void>; // Not TurboModule compatible
-  getRudderContext(): Promise<IRudderContext | null>; // Not TurboModule compatible if IRudderContext is not a supported type
+  registerCallback(name: string, callback: (data: unknown) => void): void;
+  getRudderContext(): Promise<IRudderContext | null>;
   startSession(sessionId?: string): Promise<void>;
   endSession(): Promise<void>;
   getSessionId(): Promise<number | null>;

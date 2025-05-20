@@ -283,10 +283,10 @@ public class RNRudderSdkModule extends NativeRudderSdkReactNativeSpec {
         }
     }
 
-//    @ReactMethod
-//    public void registerCallback(String name, Callback callback) {
-//        integrationCallbacks.put(name, callback);
-//    }
+    @Override
+    public void registerCallback(String name, Callback callback) {
+        integrationCallbacks.put(name, callback);
+    }
 
     Activity getCurrentActivityFromReact() {
         return getCurrentActivity();
