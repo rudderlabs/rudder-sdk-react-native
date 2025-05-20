@@ -39,12 +39,6 @@ android {
     buildConfig true
   }
 
-  buildTypes {
-    release {
-      minifyEnabled false
-    }
-  }
-
   lintOptions {
     disable "GradleCompatible"
   }
