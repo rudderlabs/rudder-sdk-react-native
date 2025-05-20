@@ -2,7 +2,7 @@ import { Platform } from 'react-native';
 import AsyncLock from 'async-lock';
 
 import { configure } from './RudderConfiguration';
-import bridge, { Configuration } from './NativeRudderSdkReactNative';
+import bridge, { Configuration } from './NativeBridge';
 import { logInit, logDebug, logError, logWarn } from './Logger';
 import { SDK_VERSION, ENABLE_GZIP } from './Constants';
 import IRudderContext from './IRudderContext';
