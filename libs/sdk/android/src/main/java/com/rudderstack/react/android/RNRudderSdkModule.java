@@ -107,6 +107,7 @@ public class RNRudderSdkModule extends NativeBridgeSpec {
     @Override
     public void track(String event, ReadableMap properties, ReadableMap options, Promise promise) {
         if (!isRudderClientInitializedAndReady()) {
+            promise.resolve(null);
             return;
         }
         userSessionPlugin.saveEventTimestamp();
@@ -115,17 +116,20 @@ public class RNRudderSdkModule extends NativeBridgeSpec {
                 .setProperty(Utility.convertReadableMapToMap(properties))
                 .setRudderOption(Utility.convertReadableMapToOptions(options))
                 .build());
+        promise.resolve(null);
     }
 
     @Override
     public void screen(String event, @Nullable ReadableMap properties, @Nullable ReadableMap options, Promise promise) {
         if (!isRudderClientInitializedAndReady()) {
+            promise.resolve(null);
             return;
         }
         userSessionPlugin.saveEventTimestamp();
         RudderProperty property = new RudderProperty();
         property.putValue(Utility.convertReadableMapToMap(properties));
         rudderClient.screen(event, property, Utility.convertReadableMapToOptions(options));
+        promise.resolve(null);
     }
 
     @Override
@@ -133,45 +137,55 @@ public class RNRudderSdkModule extends NativeBridgeSpec {
         if (!TextUtils.isEmpty(token)) {
             RudderClient.putDeviceToken(token);
         }
+        promise.resolve(null);
     }
 
     @Override
     public void identify(String userId, @Nullable ReadableMap traits, @Nullable ReadableMap options, Promise promise) {
         if (!isRudderClientInitializedAndReady()) {
+            promise.resolve(null);
             return;
         }
         userSessionPlugin.saveEventTimestamp();
         if (TextUtils.isEmpty(userId)) {
             rudderClient.identify(Utility.convertReadableMapToTraits(traits), Utility.convertReadableMapToOptions(options));
+            promise.resolve(null);
             return;
         }
         rudderClient.identify(userId, Utility.convertReadableMapToTraits(traits), Utility.convertReadableMapToOptions(options));
+        promise.resolve(null);
     }
 
     @Override
     public void alias(String newId, @Nullable String previousId, @Nullable ReadableMap options, Promise promise) {
         if (!isRudderClientInitializedAndReady()) {
+            promise.resolve(null);
             return;
         }
         if (TextUtils.isEmpty(newId)) {
             RudderLogger.logWarn("Dropping the Alias call as newId can not be empty");
+            promise.resolve(null);
             return;
         }
         userSessionPlugin.saveEventTimestamp();
         rudderClient.alias(newId, previousId, Utility.convertReadableMapToOptions(options));
+        promise.resolve(null);
     }
 
     @Override
     public void group(String groupId, @Nullable ReadableMap traits, @Nullable ReadableMap options, Promise promise) {
         if (!isRudderClientInitializedAndReady()) {
+            promise.resolve(null);
             return;
         }
         if (TextUtils.isEmpty(groupId)) {
             RudderLogger.logWarn("Dropping the Group call as groupId can not be empty");
+            promise.resolve(null);
             return;
         }
         userSessionPlugin.saveEventTimestamp();
         rudderClient.group(groupId, Utility.convertReadableMapToTraits(traits), Utility.convertReadableMapToOptions(options));
+        promise.resolve(null);
     }
 
     // Migrated from Callbacks to Promise to support ES2016's async/await syntax on the RN Side
@@ -193,32 +207,38 @@ public class RNRudderSdkModule extends NativeBridgeSpec {
             contextJson = new JSONObject(gson.toJson(rudderContext));
             promise.resolve(Utility.convertJSONObjectToWriteAbleMap(contextJson));
         } catch (JSONException e) {
-            throw new RuntimeException(e);
+            promise.reject(e);
         }
     }
 
     @Override
     public void reset(boolean clearAnonymousId, Promise promise) {
         if (!isRudderClientInitializedAndReady()) {
+            promise.resolve(null);
             return;
         }
         rudderClient.reset(clearAnonymousId);
+        promise.resolve(null);
     }
 
     @Override
     public void flush(Promise promise) {
         if (!isRudderClientInitializedAndReady()) {
+            promise.resolve(null);
             return;
         }
         rudderClient.flush();
+        promise.resolve(null);
     }
 
     @Override
     public void optOut(boolean optOut, Promise promise) {
         if (!isRudderClientInitializedAndReady()) {
+            promise.resolve(null);
             return;
         }
         rudderClient.optOut(optOut);
+        promise.resolve(null);
     }
 
     @Override
@@ -226,14 +246,17 @@ public class RNRudderSdkModule extends NativeBridgeSpec {
         if (!TextUtils.isEmpty(id)) {
             RudderClient.putAdvertisingId(id);
         }
+        promise.resolve(null);
     }
 
     @Override
     public void clearAdvertisingId(Promise promise) {
         if (!isRudderClientInitializedAndReady()) {
+            promise.resolve(null);
             return;
         }
         rudderClient.clearAdvertisingId();
+        promise.resolve(null);
     }
 
     @Override
@@ -241,30 +264,36 @@ public class RNRudderSdkModule extends NativeBridgeSpec {
         if (!TextUtils.isEmpty(id)) {
             RudderClient.putAnonymousId(id);
         }
+        promise.resolve(null);
     }
 
     @Override
     public void startSession(@Nullable String sessionId, Promise promise) {
         if (!isRudderClientInitializedAndReady()) {
+            promise.resolve(null);
             return;
         }
         userSessionPlugin.enableManualSessionParams();
         if (sessionId.length() == 0) {
             userSessionPlugin.startSession();
             RudderLogger.logVerbose("RNRudderSdkModule: startSession: starting manual session");
+            promise.resolve(null);
             return;
         }
         userSessionPlugin.startSession(Long.parseLong(sessionId));
         RudderLogger.logVerbose("RNRudderSdkModule: startSession: starting manual session with id: " + sessionId);
+        promise.resolve(null);
     }
 
     @Override
     public void endSession(Promise promise) {
         if (!isRudderClientInitializedAndReady()) {
+            promise.resolve(null);
             return;
         }
         userSessionPlugin.endSession();
         RudderLogger.logVerbose("RNRudderSdkModule: endSession: ending session");
+        promise.resolve(null);
     }
 
     @Override
