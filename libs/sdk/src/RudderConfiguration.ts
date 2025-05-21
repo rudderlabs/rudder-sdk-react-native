@@ -1,4 +1,4 @@
-import { Configuration } from './NativeRNBridge';
+import { Configuration } from './NativeBridge';
 import {
   DATA_PLANE_URL,
   CONTROL_PLANE_URL,

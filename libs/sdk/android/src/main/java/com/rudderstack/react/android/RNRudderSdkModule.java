@@ -27,7 +27,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @ReactModule(name = RNRudderSdkModule.NAME)
-public class RNRudderSdkModule extends NativeRNBridgeSpec {
+public class RNRudderSdkModule extends NativeBridgeSpec {
 
     public static final String NAME = "RNRudderSdkModule";
     private final ReactApplicationContext reactContext;
