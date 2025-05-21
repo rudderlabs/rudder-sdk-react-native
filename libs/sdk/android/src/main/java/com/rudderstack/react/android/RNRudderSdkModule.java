@@ -118,14 +118,14 @@ public class RNRudderSdkModule extends NativeBridgeSpec {
     }
 
     @Override
-    public void screen(String name, @Nullable ReadableMap properties, @Nullable ReadableMap options, Promise promise) {
+    public void screen(String event, @Nullable ReadableMap properties, @Nullable ReadableMap options, Promise promise) {
         if (!isRudderClientInitializedAndReady()) {
             return;
         }
         userSessionPlugin.saveEventTimestamp();
         RudderProperty property = new RudderProperty();
         property.putValue(Utility.convertReadableMapToMap(properties));
-        rudderClient.screen(name, property, Utility.convertReadableMapToOptions(options));
+        rudderClient.screen(event, property, Utility.convertReadableMapToOptions(options));
     }
 
     @Override

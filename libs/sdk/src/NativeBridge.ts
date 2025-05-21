@@ -29,7 +29,7 @@ export interface Configuration {
 }
 
 export interface Spec extends TurboModule {
-  setup(config: Configuration, rudderOptionsMap: dictionary): Promise<void>;
+  setup(configuration: Configuration, options: dictionary): Promise<void>;
   track(event: string, properties: dictionary, options: dictionary | null): Promise<void>;
   screen(name: string, properties: dictionary, options: dictionary): Promise<void>;
   identify(userId: string, traits: dictionary, options: dictionary): Promise<void>;
@@ -42,7 +42,7 @@ export interface Spec extends TurboModule {
   putAdvertisingId(id: string): Promise<void>;
   clearAdvertisingId(): Promise<void>;
   putAnonymousId(id: string): Promise<void>;
-  registerCallback(name: string, callback: (data: unknown) => void): void;
+  registerCallback(integrationName: string, callback: (data: unknown) => void): void;
   getRudderContext(): Promise<IRudderContext | null>;
   startSession(sessionId?: string): Promise<void>;
   endSession(): Promise<void>;

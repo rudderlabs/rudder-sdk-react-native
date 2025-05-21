@@ -17,7 +17,6 @@ import {
   ENABLE_GZIP,
 } from './Constants';
 import DBEncryptionPlugin from '@rudderstack/rudder-plugin-db-encryption-react-native';
-import dbEncryptionPlugin from '@rudderstack/rudder-plugin-db-encryption-react-native';
 
 export const configure = async (
   writeKey: string,
@@ -53,8 +52,11 @@ export const configure = async (
   }
 
   if (dbEncryption !== undefined) {
-    const encryptionPluginInstance = new DBEncryptionPlugin(dbEncryption.key, dbEncryption.enable);
-    encryptionPluginInstance.addDBEncryptionPlugin();
+    const dbEncryptionPluginInstance = new DBEncryptionPlugin(
+      dbEncryption.key,
+      dbEncryption.enable,
+    );
+    dbEncryptionPluginInstance.addDBEncryptionPlugin();
   }
 
   const config = {
