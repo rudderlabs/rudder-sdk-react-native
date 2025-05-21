@@ -3,7 +3,7 @@
   "version": "2.1.0",
   "description": "Rudder React Native SDK",
   "codegenConfig": {
-    "name": "RudderSdkReactNativeSpec",
+    "name": "RNRudderSdkModuleSpec",
     "type": "modules",
     "jsSrcsDir": "src"
   },

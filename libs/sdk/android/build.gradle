@@ -1,6 +1,6 @@
 buildscript {
   ext.getExtOrDefault = {name ->
-    return rootProject.ext.has(name) ? rootProject.ext.get(name) : project.properties['RudderSdkReactNative_' + name]
+    return rootProject.ext.has(name) ? rootProject.ext.get(name) : project.properties['RNRudderSdkModule_' + name]
   }
 
   repositories {
@@ -22,7 +22,7 @@ apply plugin: "kotlin-android"
 apply plugin: "com.facebook.react"
 
 def getExtOrIntegerDefault(name) {
-  return rootProject.ext.has(name) ? rootProject.ext.get(name) : (project.properties["RudderSdkReactNative_" + name]).toInteger()
+  return rootProject.ext.has(name) ? rootProject.ext.get(name) : (project.properties["RNRudderSdkModule_" + name]).toInteger()
 }
 
 android {
@@ -74,6 +74,6 @@ dependencies {
 
 react {
   jsRootDir = file("../src/")
-  libraryName = "RudderSdkReactNative"
+  libraryName = "RNRudderSdkModule"
   codegenJavaPackageName = "com.rudderstack.react.android"
 }
