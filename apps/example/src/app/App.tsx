@@ -117,6 +117,10 @@ const initRudderReactNativeSDK = async () => {
     ],
   };
 
+  rc.registerCallback('Amplitude', () => {
+    console.log('RudderRNSDK: Amplitude integration is ready.');
+  });
+
   await rc.setup(TEST_WRITE_KEY, config, options);
 };
 

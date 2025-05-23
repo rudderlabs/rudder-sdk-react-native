@@ -1,6 +1,8 @@
-import { NativeModules } from 'react-native';
-import IDBEncryption from './IDBEncryption';
+import type { TurboModule } from 'react-native';
+import { TurboModuleRegistry } from 'react-native';
 import IRudderContext from './IRudderContext';
+
+type dictionary = { [key: string]: unknown } | null;
 
 export interface Configuration {
   dataPlaneUrl?: string;
@@ -18,38 +20,18 @@ export interface Configuration {
   enableBackgroundMode?: boolean;
   collectDeviceId?: boolean;
   enableGzip?: boolean;
-  dbEncryption?: IDBEncryption;
+  dbEncryption?: unknown;
   // eslint-disable-next-line @typescript-eslint/ban-types
   withFactories?: Array<Record<string, unknown> | Function>;
 }
 
-export interface Bridge {
-  setup(configuration: Configuration, options: Record<string, unknown> | null): Promise<void>;
-  track(
-    event: string,
-    properties: Record<string, unknown> | null,
-    options: Record<string, unknown> | null,
-  ): Promise<void>;
-  screen(
-    name: string,
-    properties: Record<string, unknown> | null,
-    options: Record<string, unknown> | null,
-  ): Promise<void>;
-  identify(
-    userId: string,
-    traits: Record<string, unknown> | null,
-    options: Record<string, unknown> | null,
-  ): Promise<void>;
-  alias(
-    newId: string,
-    previousId: string | null,
-    options: Record<string, unknown> | null,
-  ): Promise<void>;
-  group(
-    groupId: string,
-    traits: Record<string, unknown> | null,
-    options: Record<string, unknown> | null,
-  ): Promise<void>;
+export interface Spec extends TurboModule {
+  setup(configuration: Configuration, options: dictionary): Promise<void>;
+  track(event: string, properties: dictionary, options: dictionary | null): Promise<void>;
+  screen(name: string, properties: dictionary, options: dictionary): Promise<void>;
+  identify(userId: string, traits: dictionary, options: dictionary): Promise<void>;
+  alias(newId: string, previousId: string | null, options: dictionary): Promise<void>;
+  group(groupId: string, traits: dictionary, options: dictionary): Promise<void>;
   reset(clearAnonymousId: boolean): Promise<void>;
   flush(): Promise<void>;
   optOut(optOut: boolean): Promise<void>;
@@ -57,18 +39,11 @@ export interface Bridge {
   putAdvertisingId(id: string): Promise<void>;
   clearAdvertisingId(): Promise<void>;
   putAnonymousId(id: string): Promise<void>;
-  // eslint-disable-next-line @typescript-eslint/ban-types
-  registerCallback(integrationName: string, callback: Function): Promise<void>;
+  registerCallback(integrationName: string, callback: (data: unknown) => void): void;
   getRudderContext(): Promise<IRudderContext | null>;
   startSession(sessionId?: string): Promise<void>;
   endSession(): Promise<void>;
   getSessionId(): Promise<number | null>;
 }
 
-const bridge: Bridge = NativeModules.RNRudderSdkModule;
-
-if (!bridge) {
-  throw new Error('Failed to load Rudderlabs native module.');
-}
-
-export default bridge;
+export default TurboModuleRegistry.getEnforcing<Spec>('RNRudderSdkModule');

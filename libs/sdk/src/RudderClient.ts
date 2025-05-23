@@ -330,7 +330,7 @@ async function optOut(optOut: boolean) {
 }
 
 // eslint-disable-next-line @typescript-eslint/ban-types
-async function registerCallback(name: string, callback: Function) {
+async function registerCallback(name: string, callback: (data: unknown) => void) {
   if (name) {
     bridge.registerCallback(name, callback);
   }
