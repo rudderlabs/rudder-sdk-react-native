@@ -45,11 +45,6 @@
             "glob": "LICENSE.md",
             "input": ".",
             "output": "."
-          },
-          {
-            "glob": "libs/rudder-integration-braze-react-native/src",
-            "input": ".",
-            "output": "."
           }
         ],
         "updateBuildableProjectDepsInPackageJson": true,
