@@ -45,6 +45,11 @@
             "glob": "LICENSE.md",
             "input": ".",
             "output": "."
+          },
+          {
+            "glob": "libs/rudder-integration-appsflyer-react-native/src",
+            "input": ".",
+            "output": "."
           }
         ],
         "updateBuildableProjectDepsInPackageJson": true,

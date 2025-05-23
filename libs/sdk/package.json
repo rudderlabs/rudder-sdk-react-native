@@ -26,5 +26,6 @@
     "name": "RNRudderSdkModuleSpec",
     "type": "modules",
     "jsSrcsDir": "src"
-  }
+  },
+  "react-native": "./src/index.ts"
 }

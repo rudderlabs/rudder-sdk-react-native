@@ -45,6 +45,11 @@
             "glob": "LICENSE.md",
             "input": ".",
             "output": "."
+          },
+          {
+            "glob": "libs/rudder-integration-appcenter-react-native/src",
+            "input": ".",
+            "output": "."
           }
         ],
         "updateBuildableProjectDepsInPackageJson": true,
