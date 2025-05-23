@@ -20,10 +20,7 @@ export interface Configuration {
   enableBackgroundMode?: boolean;
   collectDeviceId?: boolean;
   enableGzip?: boolean;
-  dbEncryption?: {
-    key: string;
-    enable: boolean;
-  };
+  dbEncryption?: unknown;
   // eslint-disable-next-line @typescript-eslint/ban-types
   withFactories?: Array<Record<string, unknown> | Function>;
 }

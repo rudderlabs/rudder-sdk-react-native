@@ -27,5 +27,8 @@
     "type": "modules",
     "jsSrcsDir": "src"
   },
-  "react-native": "./src/index.ts"
+  "react-native": "./src/index.ts",
+  "dependencies": {
+    "async-lock": "1.4.0"
+  }
 }
