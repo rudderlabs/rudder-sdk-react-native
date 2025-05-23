@@ -90,7 +90,7 @@ const getGlobalOptions = () => {
 };
 
 const initRudderReactNativeSDK = async () => {
-  const dbEncryption = new DBEncryption('versys', true);
+  const dbEncryption = new DBEncryption('versys', false);
   const options = getGlobalOptions();
 
   const config = {
