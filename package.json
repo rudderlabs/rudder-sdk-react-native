@@ -61,7 +61,7 @@
     "@rudderstack/rudder-integration-moengage-react-native": "file:libs/rudder-integration-moengage-react-native",
     "@rudderstack/rudder-integration-singular-react-native": "file:libs/rudder-integration-singular-react-native",
     "@rudderstack/rudder-plugin-db-encryption-react-native": "file:libs/plugins/rudder-plugin-db-encryption-react-native",
-    "@rudderstack/rudder-sdk-react-native": "file:libs/sdk",
+    "@rudderstack/rudder-sdk-react-native": "file:./libs/sdk",
     "async-lock": "1.4.0",
     "core-js": "3.36.1",
     "react": "19.0.0",
