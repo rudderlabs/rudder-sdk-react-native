@@ -26,7 +26,7 @@ export interface Configuration {
 }
 
 export interface Spec extends TurboModule {
-  setup(configuration: Configuration, options: dictionary): Promise<void>;
+  setup(configuration: dictionary, options: dictionary): Promise<void>;
   track(event: string, properties: dictionary, options: dictionary | null): Promise<void>;
   screen(name: string, properties: dictionary, options: dictionary): Promise<void>;
   identify(userId: string, traits: dictionary, options: dictionary): Promise<void>;
