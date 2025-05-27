@@ -6,7 +6,7 @@
 #import "RNParamsConfigurator.h"
 #import "RNUserSessionPlugin.h"
 
-@interface RNRudderSdkModule : NSObject <NativeBridgeSpec> {
+@interface RNRudderSdkModule : NSObject <NativeRudderBridgeSpec> {
   RNApplicationLifeCycleManager *applicationLifeCycleManager;
   RNBackGroundModeManager *backGroundModeManager;
   RNPreferenceManager *preferenceManager;
