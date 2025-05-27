@@ -119,7 +119,7 @@ async function setup(
   await lock.acquire('lock', async function (done) {
     const config = await configure(writeKey, configuration);
     logDebug('setup: created config');
-    await bridge.setup(config, options);
+    await bridge.setup(config as Record<string, unknown>, options);
     logDebug('setup: setup completed');
     done();
   });
