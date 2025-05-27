@@ -1,6 +1,4 @@
 #import "RNRudderSdkModule.h"
-
-#import "RNRudderSdkModule.h"
 #import "RNRudderAnalytics.h"
 #import "RSClient.h"
 #import "RSConfig.h"

@@ -7,12 +7,12 @@
 #import "RNUserSessionPlugin.h"
 
 @interface RNRudderSdkModule : NSObject <NativeBridgeSpec> {
+  RNApplicationLifeCycleManager *applicationLifeCycleManager;
+  RNBackGroundModeManager *backGroundModeManager;
+  RNPreferenceManager *preferenceManager;
+  RNParamsConfigurator *configParams;
   BOOL initialized;
-  RNParamsConfigurator* configParams;
-  RNPreferenceManager* preferenceManager;
-  RNUserSessionPlugin* session;
-  RNBackGroundModeManager* backGroundModeManager;
-  RNApplicationLifeCycleManager* applicationLifeCycleManager;
+  RNUserSessionPlugin *session;
 }
 
 @end
