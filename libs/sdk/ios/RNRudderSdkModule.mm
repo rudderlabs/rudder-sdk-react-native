@@ -17,27 +17,13 @@ RCT_EXPORT_MODULE()
     return std::make_shared<facebook::react::NativeRudderBridgeSpecJSI>(params);
 }
 
-+ (BOOL)requiresMainQueueSetup
-{
-  return YES;
-}
-
 - (dispatch_queue_t)methodQueue
 {
   return dispatch_get_main_queue();
 }
 
--(BOOL) isRudderClientInitializedAndReady {
-  if (self->initialized == NO || [RSClient sharedInstance] == nil) {
-    [RSLogger logWarn:@"Dropping the call as RudderClient is not initialized yet. Please use `await` keyword with the setup call"];
-    return NO;
-  }
-  return YES;
-}
-
 - (void)setup:(NSDictionary * _Nullable)configuration options:(NSDictionary * _Nullable)options resolve:(nonnull RCTPromiseResolveBlock)resolve reject:(nonnull RCTPromiseRejectBlock)reject {
   if (![self isRudderClientInitializedAndReady]) {
-    
     self->configParams = [[RNParamsConfigurator alloc] initWithConfig:configuration];
     RSConfigBuilder *configBuilder = [self->configParams handleConfig];
     
@@ -69,12 +55,15 @@ RCT_EXPORT_MODULE()
   resolve(nil);
 }
 
-- (void)track:(NSString *)event
-   properties:(NSDictionary *)properties
-      options:(NSDictionary *)options
-      resolve:(RCTPromiseResolveBlock)resolve
-       reject:(RCTPromiseRejectBlock)reject
-{
+-(BOOL) isRudderClientInitializedAndReady {
+  if (self->initialized == NO || [RSClient sharedInstance] == nil) {
+    [RSLogger logWarn:@"Dropping the call as RudderClient is not initialized yet. Please use `await` keyword with the setup call"];
+    return NO;
+  }
+  return YES;
+}
+
+- (void)track:(NSString *)event properties:(NSDictionary *)properties options:(NSDictionary *)options resolve:(RCTPromiseResolveBlock)resolve reject:(RCTPromiseRejectBlock)reject {
   if (![self isRudderClientInitializedAndReady]) {
     resolve(nil);
     return;
@@ -89,12 +78,7 @@ RCT_EXPORT_MODULE()
   resolve(nil);
 }
 
-- (void)screen:(NSString *)name
-    properties:(NSDictionary *)properties
-       options:(NSDictionary *)options
-       resolve:(RCTPromiseResolveBlock)resolve
-        reject:(RCTPromiseRejectBlock)reject
-{
+- (void)screen:(NSString *)name properties:(NSDictionary *)properties options:(NSDictionary *)options resolve:(RCTPromiseResolveBlock)resolve reject:(RCTPromiseRejectBlock)reject {
   if (![self isRudderClientInitializedAndReady]) {
     resolve(nil);
     return;
@@ -104,12 +88,7 @@ RCT_EXPORT_MODULE()
   resolve(nil);
 }
 
-- (void)identify:(NSString *)userId
-          traits:(NSDictionary *)traits
-         options:(NSDictionary *)options
-         resolve:(RCTPromiseResolveBlock)resolve
-          reject:(RCTPromiseRejectBlock)reject
-{
+- (void)identify:(NSString *)userId traits:(NSDictionary *)traits options:(NSDictionary *)options resolve:(RCTPromiseResolveBlock)resolve reject:(RCTPromiseRejectBlock)reject {
   if (![self isRudderClientInitializedAndReady]) {
     resolve(nil);
     return;
@@ -123,12 +102,7 @@ RCT_EXPORT_MODULE()
   resolve(nil);
 }
 
-- (void)alias:(NSString *)newId
-   previousId:(NSString *)previousId
-      options:(NSDictionary *)options
-      resolve:(RCTPromiseResolveBlock)resolve
-       reject:(RCTPromiseRejectBlock)reject
-{
+- (void)alias:(NSString *)newId previousId:(NSString *)previousId options:(NSDictionary *)options resolve:(RCTPromiseResolveBlock)resolve reject:(RCTPromiseRejectBlock)reject {
   if (![self isRudderClientInitializedAndReady]) {
     resolve(nil);
     return;
@@ -143,12 +117,7 @@ RCT_EXPORT_MODULE()
   resolve(nil);
 }
 
-- (void)group:(NSString *)groupId
-       traits:(NSDictionary *)traits
-      options:(NSDictionary *)options
-      resolve:(RCTPromiseResolveBlock)resolve
-       reject:(RCTPromiseRejectBlock)reject
-{
+- (void)group:(NSString *)groupId traits:(NSDictionary *)traits options:(NSDictionary *)options resolve:(RCTPromiseResolveBlock)resolve reject:(RCTPromiseRejectBlock)reject {
   if (![self isRudderClientInitializedAndReady]) {
     resolve(nil);
     return;
@@ -163,20 +132,14 @@ RCT_EXPORT_MODULE()
   resolve(nil);
 }
 
-- (void)putDeviceToken:(NSString *)token
-               resolve:(RCTPromiseResolveBlock)resolve
-                reject:(RCTPromiseRejectBlock)reject
-{
+- (void)putDeviceToken:(NSString *)token resolve:(RCTPromiseResolveBlock)resolve reject:(RCTPromiseRejectBlock)reject {
   if (token != nil && [token length] != 0) {
     [RSClient putDeviceToken:token];
   }
   resolve(nil);
 }
 
-- (void)reset:(BOOL)clearAnonymousId
-      resolve:(RCTPromiseResolveBlock)resolve
-       reject:(RCTPromiseRejectBlock)reject
-{
+- (void)reset:(BOOL)clearAnonymousId resolve:(RCTPromiseResolveBlock)resolve reject:(RCTPromiseRejectBlock)reject {
   if (![self isRudderClientInitializedAndReady]) {
     resolve(nil);
     return;
@@ -185,9 +148,7 @@ RCT_EXPORT_MODULE()
   resolve(nil);
 }
 
-- (void)flush:(RCTPromiseResolveBlock)resolve
-       reject:(RCTPromiseRejectBlock)reject
-{
+- (void)flush:(RCTPromiseResolveBlock)resolve reject:(RCTPromiseRejectBlock)reject {
   if (![self isRudderClientInitializedAndReady]) {
     resolve(nil);
     return;
@@ -196,10 +157,7 @@ RCT_EXPORT_MODULE()
   resolve(nil);
 }
 
-- (void)optOut:(BOOL)optOut
-       resolve:(RCTPromiseResolveBlock)resolve
-        reject:(RCTPromiseRejectBlock)reject
-{
+- (void)optOut:(BOOL)optOut resolve:(RCTPromiseResolveBlock)resolve reject:(RCTPromiseRejectBlock)reject {
   if (![self isRudderClientInitializedAndReady]) {
     resolve(nil);
     return;
@@ -208,17 +166,12 @@ RCT_EXPORT_MODULE()
   resolve(nil);
 }
 
-- (void)putAdvertisingId:(NSString *)id
-resolve:(RCTPromiseResolveBlock)resolve
-reject:(RCTPromiseRejectBlock)reject
-{
+- (void)putAdvertisingId:(NSString *)id resolve:(RCTPromiseResolveBlock)resolve reject:(RCTPromiseRejectBlock)reject {
   [RSClient putAdvertisingId:id];
   resolve(nil);
 }
 
-- (void)clearAdvertisingId:(RCTPromiseResolveBlock)resolve
-                    reject:(RCTPromiseRejectBlock)reject
-{
+- (void)clearAdvertisingId:(RCTPromiseResolveBlock)resolve reject:(RCTPromiseRejectBlock)reject {
   if (![self isRudderClientInitializedAndReady]) {
     resolve(nil);
     return;
@@ -227,18 +180,19 @@ reject:(RCTPromiseRejectBlock)reject
   resolve(nil);
 }
 
-- (void)putAnonymousId:(NSString *)id
-resolve:(RCTPromiseResolveBlock)resolve
-reject:(RCTPromiseRejectBlock)reject
-{
+- (void)putAnonymousId:(NSString *)id resolve:(RCTPromiseResolveBlock)resolve reject:(RCTPromiseRejectBlock)reject {
   if (id != nil && [id length] != 0) {
     [RSClient putAnonymousId:id];
   }
   resolve(nil);
 }
 
-- (void)getRudderContext:(RCTPromiseResolveBlock)resolve
-                  reject:(RCTPromiseRejectBlock)reject
+- (void)registerCallback:(nonnull NSString *)integrationName callback:(nonnull RCTResponseSenderBlock)callback {
+  // we will trigger the callback directly because ios native sdk's deal with static references
+  callback(@[]);
+}
+
+- (void)getRudderContext:(RCTPromiseResolveBlock)resolve reject:(RCTPromiseRejectBlock)reject
 {
   if (![self isRudderClientInitializedAndReady]) {
     resolve(nil);
@@ -248,10 +202,7 @@ reject:(RCTPromiseRejectBlock)reject
   resolve(context);
 }
 
-- (void)startSession:(NSString *)sessionId
-             resolve:(RCTPromiseResolveBlock)resolve
-              reject:(RCTPromiseRejectBlock)reject
-{
+- (void)startSession:(NSString *)sessionId resolve:(RCTPromiseResolveBlock)resolve reject:(RCTPromiseRejectBlock)reject {
   if (![self isRudderClientInitializedAndReady]) {
     resolve(nil);
     return;
@@ -267,32 +218,23 @@ reject:(RCTPromiseRejectBlock)reject
   resolve(nil);
 }
 
-- (void)endSession:(RCTPromiseResolveBlock)resolve
-            reject:(RCTPromiseRejectBlock)reject
-{
+- (void)endSession:(RCTPromiseResolveBlock)resolve reject:(RCTPromiseRejectBlock)reject {
   if (![self isRudderClientInitializedAndReady]) {
     resolve(nil);
     return;
   }
   [self->session endSession];
-  [RSLogger logVerbose:@"setup: ending session"];
+  [RSLogger logVerbose:@"Ending session"];
   resolve(nil);
 }
 
-- (void)getSessionId:(RCTPromiseResolveBlock)resolve
-              reject:(RCTPromiseRejectBlock)reject
-{
+- (void)getSessionId:(RCTPromiseResolveBlock)resolve reject:(RCTPromiseRejectBlock)reject {
   if (![self isRudderClientInitializedAndReady]) {
     resolve(nil);
     return;
   }
   NSNumber *sessionId = [self->session getSessionId];
   resolve(sessionId);
-}
-
-- (void)registerCallback:(nonnull NSString *)integrationName callback:(nonnull RCTResponseSenderBlock)callback {
-    // we will trigger the callback directly because ios native sdk's deal with static references
-  callback(@[]);
 }
 
 -(RSOption*) getRudderOptionsObject:(NSDictionary *) optionsDict {
@@ -316,6 +258,7 @@ reject:(RCTPromiseRejectBlock)reject
   return options;
 }
 
+// For legacy reason we are still supporting "externalIds". First priority is given to "externalId".
 - (NSDictionary *)removeExternalIdsIfExternalIdExists:(NSDictionary *)optionsDict {
   if (optionsDict == nil) return nil;
   
