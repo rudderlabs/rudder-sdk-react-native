@@ -13,7 +13,10 @@ public class RNRudderSdkPackage extends BaseReactPackage {
 
     @Override
     public NativeModule getModule(String name, ReactApplicationContext reactContext) {
-        return new RNRudderSdkModule(reactContext);
+        if (RNRudderSdkModule.NAME.equals(name)) {
+            return new RNRudderSdkModule(reactContext);
+        }
+        return null;
     }
 
     @Override
