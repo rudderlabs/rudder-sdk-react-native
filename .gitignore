@@ -117,3 +117,5 @@ apps/example-e2e/artifacts
 
 storybook-static
 migrations.json
+.cursor/rules/nx-rules.mdc
+.github/instructions/nx.instructions.md
