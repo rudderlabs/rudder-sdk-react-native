@@ -1,5 +1,6 @@
 package com.rudderstack.react.android;
 
+import java.com.rudderstack.react.android.RNRudderSdkModule;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -13,7 +14,7 @@ public class RNRudderSdkPackage extends BaseReactPackage {
 
     @Override
     public NativeModule getModule(String name, ReactApplicationContext reactContext) {
-        if (RNRudderSdkModule.NAME.equals(name)) {
+        if (RNRudderSdkModuleImpl.NAME.equals(name)) {
             return new RNRudderSdkModule(reactContext);
         }
         return null;
@@ -24,14 +25,15 @@ public class RNRudderSdkPackage extends BaseReactPackage {
         return new ReactModuleInfoProvider() {
             @Override
             public Map<String, ReactModuleInfo> getReactModuleInfos() {
+                boolean isTurboModule = BuildConfig.IS_NEW_ARCHITECTURE_ENABLED;
                 Map<String, ReactModuleInfo> moduleInfos = new HashMap<>();
-                moduleInfos.put(RNRudderSdkModule.NAME, new ReactModuleInfo(
-                        RNRudderSdkModule.NAME,
-                        RNRudderSdkModule.NAME,
+                moduleInfos.put(RNRudderSdkModuleImpl.NAME, new ReactModuleInfo(
+                        RNRudderSdkModuleImpl.NAME,
+                        RNRudderSdkModuleImpl.NAME,
                         false,  // canOverrideExistingModule
                         false,  // needsEagerInit
                         false,  // isCxxModule
-                        true    // isTurboModule
+                        isTurboModule    // isTurboModule
                 ));
                 return moduleInfos;
             }
