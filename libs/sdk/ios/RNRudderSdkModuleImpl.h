@@ -1,10 +1,10 @@
 #import <Foundation/Foundation.h>
-#import <React/RCTBridgeModule.h>
 #import "RNApplicationLifeCycleManager.h"
 #import "RNBackGroundModeManager.h"
 #import "RNPreferenceManager.h"
 #import "RNParamsConfigurator.h"
 #import "RNUserSessionPlugin.h"
+#import <React/RCTBridge.h>
 
 @interface RNRudderSdkModuleImpl : NSObject {
   RNApplicationLifeCycleManager *applicationLifeCycleManager;
@@ -15,7 +15,7 @@
   RNUserSessionPlugin *session;
 }
 
-- (instancetype)initWithBridge:(id)bridge;
+- (instancetype)initWithBridge:(RCTBridge *)bridge;
 
 - (NSString *)getName;
 - (BOOL)isRudderClientInitializedAndReady;
