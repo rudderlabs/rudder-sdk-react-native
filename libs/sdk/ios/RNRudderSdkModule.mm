@@ -40,48 +40,28 @@ RCT_EXPORT_MODULE();
 
   // New Architecture
 
-- (void)alias:(nonnull NSString *)newId previousId:(NSString * _Nullable)previousId options:(NSDictionary * _Nullable)options resolve:(nonnull RCTPromiseResolveBlock)resolve reject:(nonnull RCTPromiseRejectBlock)reject {
-  [moduleImpl alias:newId previousId:previousId options:options resolver:resolve rejecter:reject];
+- (void)setup:(NSDictionary * _Nullable)configuration options:(NSDictionary * _Nullable)options resolve:(nonnull RCTPromiseResolveBlock)resolve reject:(nonnull RCTPromiseRejectBlock)reject {
+  [moduleImpl setup:configuration options:options resolver:resolve rejecter:reject];
 }
 
-- (void)clearAdvertisingId:(nonnull RCTPromiseResolveBlock)resolve reject:(nonnull RCTPromiseRejectBlock)reject {
-  [moduleImpl clearAdvertisingId:resolve rejecter:reject];
+- (void)track:(nonnull NSString *)event properties:(NSDictionary * _Nullable)properties options:(NSDictionary * _Nullable)options resolve:(nonnull RCTPromiseResolveBlock)resolve reject:(nonnull RCTPromiseRejectBlock)reject {
+  [moduleImpl track:event properties:properties options:options resolver:resolve rejecter:reject];
 }
 
-- (void)endSession:(nonnull RCTPromiseResolveBlock)resolve reject:(nonnull RCTPromiseRejectBlock)reject {
-  [moduleImpl endSession:resolve rejecter:reject];
-}
-
-- (void)flush:(nonnull RCTPromiseResolveBlock)resolve reject:(nonnull RCTPromiseRejectBlock)reject {
-  [moduleImpl flush:resolve rejecter:reject];
-}
-
-- (void)getRudderContext:(nonnull RCTPromiseResolveBlock)resolve reject:(nonnull RCTPromiseRejectBlock)reject {
-  [moduleImpl getRudderContext:resolve rejecter:reject];
-}
-
-- (void)getSessionId:(nonnull RCTPromiseResolveBlock)resolve reject:(nonnull RCTPromiseRejectBlock)reject {
-  [moduleImpl getSessionId:resolve rejecter:reject];
-}
-
-- (void)group:(nonnull NSString *)groupId traits:(NSDictionary * _Nullable)traits options:(NSDictionary * _Nullable)options resolve:(nonnull RCTPromiseResolveBlock)resolve reject:(nonnull RCTPromiseRejectBlock)reject {
-  [moduleImpl group:groupId traits:traits options:options resolver:resolve rejecter:reject];
+- (void)screen:(nonnull NSString *)name properties:(NSDictionary * _Nullable)properties options:(NSDictionary * _Nullable)options resolve:(nonnull RCTPromiseResolveBlock)resolve reject:(nonnull RCTPromiseRejectBlock)reject {
+  [moduleImpl screen:name properties:properties options:options resolver:resolve rejecter:reject];
 }
 
 - (void)identify:(nonnull NSString *)userId traits:(NSDictionary * _Nullable)traits options:(NSDictionary * _Nullable)options resolve:(nonnull RCTPromiseResolveBlock)resolve reject:(nonnull RCTPromiseRejectBlock)reject {
   [moduleImpl identify:userId traits:traits options:options resolver:resolve rejecter:reject];
 }
 
-- (void)optOut:(BOOL)optOut resolve:(nonnull RCTPromiseResolveBlock)resolve reject:(nonnull RCTPromiseRejectBlock)reject {
-  [moduleImpl optOut:optOut resolver:resolve rejecter:reject];
+- (void)alias:(nonnull NSString *)newId previousId:(NSString * _Nullable)previousId options:(NSDictionary * _Nullable)options resolve:(nonnull RCTPromiseResolveBlock)resolve reject:(nonnull RCTPromiseRejectBlock)reject {
+  [moduleImpl alias:newId previousId:previousId options:options resolver:resolve rejecter:reject];
 }
 
-- (void)putAdvertisingId:(nonnull NSString *)id resolve:(nonnull RCTPromiseResolveBlock)resolve reject:(nonnull RCTPromiseRejectBlock)reject {
-  [moduleImpl putAdvertisingId:id resolver:resolve rejecter:reject];
-}
-
-- (void)putAnonymousId:(nonnull NSString *)id resolve:(nonnull RCTPromiseResolveBlock)resolve reject:(nonnull RCTPromiseRejectBlock)reject {
-  [moduleImpl putAnonymousId:id resolver:resolve rejecter:reject];
+- (void)group:(nonnull NSString *)groupId traits:(NSDictionary * _Nullable)traits options:(NSDictionary * _Nullable)options resolve:(nonnull RCTPromiseResolveBlock)resolve reject:(nonnull RCTPromiseRejectBlock)reject {
+  [moduleImpl group:groupId traits:traits options:options resolver:resolve rejecter:reject];
 }
 
 - (void)putDeviceToken:(nonnull NSString *)token resolve:(nonnull RCTPromiseResolveBlock)resolve reject:(nonnull RCTPromiseRejectBlock)reject {
@@ -92,24 +72,44 @@ RCT_EXPORT_MODULE();
   [moduleImpl reset:clearAnonymousId resolver:resolve rejecter:reject];
 }
 
-- (void)screen:(nonnull NSString *)name properties:(NSDictionary * _Nullable)properties options:(NSDictionary * _Nullable)options resolve:(nonnull RCTPromiseResolveBlock)resolve reject:(nonnull RCTPromiseRejectBlock)reject {
-  [moduleImpl screen:name properties:properties options:options resolver:resolve rejecter:reject];
+- (void)flush:(nonnull RCTPromiseResolveBlock)resolve reject:(nonnull RCTPromiseRejectBlock)reject {
+  [moduleImpl flush:resolve rejecter:reject];
 }
 
-- (void)setup:(NSDictionary * _Nullable)configuration options:(NSDictionary * _Nullable)options resolve:(nonnull RCTPromiseResolveBlock)resolve reject:(nonnull RCTPromiseRejectBlock)reject {
-  [moduleImpl setup:configuration options:options resolver:resolve rejecter:reject];
+- (void)optOut:(BOOL)optOut resolve:(nonnull RCTPromiseResolveBlock)resolve reject:(nonnull RCTPromiseRejectBlock)reject {
+  [moduleImpl optOut:optOut resolver:resolve rejecter:reject];
+}
+
+- (void)putAdvertisingId:(nonnull NSString *)id resolve:(nonnull RCTPromiseResolveBlock)resolve reject:(nonnull RCTPromiseRejectBlock)reject {
+  [moduleImpl putAdvertisingId:id resolver:resolve rejecter:reject];
+}
+
+- (void)clearAdvertisingId:(nonnull RCTPromiseResolveBlock)resolve reject:(nonnull RCTPromiseRejectBlock)reject {
+  [moduleImpl clearAdvertisingId:resolve rejecter:reject];
+}
+
+- (void)putAnonymousId:(nonnull NSString *)id resolve:(nonnull RCTPromiseResolveBlock)resolve reject:(nonnull RCTPromiseRejectBlock)reject {
+  [moduleImpl putAnonymousId:id resolver:resolve rejecter:reject];
+}
+
+- (void)registerCallback:(nonnull NSString *)integrationName callback:(nonnull RCTResponseSenderBlock)callback {
+  [moduleImpl registerCallback:integrationName callback:callback];
+}
+
+- (void)getRudderContext:(nonnull RCTPromiseResolveBlock)resolve reject:(nonnull RCTPromiseRejectBlock)reject {
+  [moduleImpl getRudderContext:resolve rejecter:reject];
 }
 
 - (void)startSession:(nonnull NSString *)sessionId resolve:(nonnull RCTPromiseResolveBlock)resolve reject:(nonnull RCTPromiseRejectBlock)reject {
   [moduleImpl startSession:sessionId resolver:resolve rejecter:reject];
 }
 
-- (void)track:(nonnull NSString *)event properties:(NSDictionary * _Nullable)properties options:(NSDictionary * _Nullable)options resolve:(nonnull RCTPromiseResolveBlock)resolve reject:(nonnull RCTPromiseRejectBlock)reject {
-  [moduleImpl track:event properties:properties options:options resolver:resolve rejecter:reject];
+- (void)endSession:(nonnull RCTPromiseResolveBlock)resolve reject:(nonnull RCTPromiseRejectBlock)reject {
+  [moduleImpl endSession:resolve rejecter:reject];
 }
 
-- (void)registerCallback:(nonnull NSString *)integrationName callback:(nonnull RCTResponseSenderBlock)callback {
-  [moduleImpl registerCallback:integrationName callback:callback];
+- (void)getSessionId:(nonnull RCTPromiseResolveBlock)resolve reject:(nonnull RCTPromiseRejectBlock)reject {
+  [moduleImpl getSessionId:resolve rejecter:reject];
 }
 
 - (std::shared_ptr<facebook::react::TurboModule>)getTurboModule:
