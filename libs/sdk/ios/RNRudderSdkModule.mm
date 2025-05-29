@@ -18,16 +18,16 @@ RCT_EXPORT_MODULE();
 @synthesize bridge = _bridge;
 
 - (instancetype)init {
-    self = [super init];
-    if (self) {
-        moduleImpl = nil;
-    }
-    return self;
+  self = [super init];
+  if (self) {
+    moduleImpl = nil;
+  }
+  return self;
 }
 
 - (void)setBridge:(RCTBridge *)bridge {
-    _bridge = bridge;
-    moduleImpl = [[RNRudderSdkModuleImpl alloc] initWithBridge:bridge];
+  _bridge = bridge;
+  moduleImpl = [[RNRudderSdkModuleImpl alloc] initWithBridge:bridge];
 }
 
 - (dispatch_queue_t)methodQueue
@@ -35,7 +35,7 @@ RCT_EXPORT_MODULE();
   return dispatch_get_main_queue();
 }
 
-// Thanks to this guard, we won't compile this code when we build for the old architecture.
+  // Thanks to this guard, we won't compile this code when we build for the old architecture.
 #ifdef RCT_NEW_ARCH_ENABLED
 
   // New Architecture
@@ -108,13 +108,12 @@ RCT_EXPORT_MODULE();
   [moduleImpl track:event properties:properties options:options resolver:resolve rejecter:reject];
 }
 
-- (void)registerCallback:(nonnull NSString *)integrationName callback:(nonnull RCTResponseSenderBlock)callback { 
+- (void)registerCallback:(nonnull NSString *)integrationName callback:(nonnull RCTResponseSenderBlock)callback {
   [moduleImpl registerCallback:integrationName callback:callback];
 }
 
 - (std::shared_ptr<facebook::react::TurboModule>)getTurboModule:
-(const facebook::react::ObjCTurboModule::InitParams &)params
-{
+(const facebook::react::ObjCTurboModule::InitParams &)params {
   return std::make_shared<facebook::react::NativeRudderBridgeSpecJSI>(params);
 }
 
@@ -122,53 +121,43 @@ RCT_EXPORT_MODULE();
 
   // Legacy Architecture
 
-RCT_EXPORT_METHOD(setup:(NSDictionary*)config options:(NSDictionary*) _options resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
-{
+RCT_EXPORT_METHOD(setup:(NSDictionary*)config options:(NSDictionary*) _options resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject) {
   [moduleImpl setup:config options:_options resolver:resolve rejecter:reject];
 }
 
-RCT_EXPORT_METHOD(track:(NSString*)_event properties:(NSDictionary*)_properties options:(NSDictionary*)_options resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
-{
+RCT_EXPORT_METHOD(track:(NSString*)_event properties:(NSDictionary*)_properties options:(NSDictionary*)_options resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject) {
   [moduleImpl track:_event properties:_properties options:_options resolver:resolve rejecter:reject];
 }
 
-RCT_EXPORT_METHOD(screen:(NSString*)_event properties:(NSDictionary*)_properties options:(NSDictionary*)_options resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
-{
+RCT_EXPORT_METHOD(screen:(NSString*)_event properties:(NSDictionary*)_properties options:(NSDictionary*)_options resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject) {
   [moduleImpl screen:_event properties:_properties options:_options resolver:resolve rejecter:reject];
 }
 
-RCT_EXPORT_METHOD(identify:(NSString*)_userId traits:(NSDictionary*)_traits options:(NSDictionary*)_options resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
-{
+RCT_EXPORT_METHOD(identify:(NSString*)_userId traits:(NSDictionary*)_traits options:(NSDictionary*)_options resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject) {
   [moduleImpl identify:_userId traits:_traits options:_options resolver:resolve rejecter:reject];
 }
 
-RCT_EXPORT_METHOD(alias:(NSString*)_newId previousId:(NSString*)_previousId options:(NSDictionary*)_options resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
-{
+RCT_EXPORT_METHOD(alias:(NSString*)_newId previousId:(NSString*)_previousId options:(NSDictionary*)_options resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject) {
   [moduleImpl alias:_newId previousId:_previousId options:_options resolver:resolve rejecter:reject];
 }
 
-RCT_EXPORT_METHOD(group:(NSString*)_groupId traits:(NSDictionary*)_traits options:(NSDictionary*)_options resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
-{
+RCT_EXPORT_METHOD(group:(NSString*)_groupId traits:(NSDictionary*)_traits options:(NSDictionary*)_options resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject) {
   [moduleImpl group:_groupId traits:_traits options:_options resolver:resolve rejecter:reject];
 }
 
-RCT_EXPORT_METHOD(putDeviceToken:(NSString*)token resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
-{
+RCT_EXPORT_METHOD(putDeviceToken:(NSString*)token resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject) {
   [moduleImpl putDeviceToken:token resolver:resolve rejecter:reject];
 }
 
-RCT_EXPORT_METHOD(reset:(BOOL)clearAnonymousId resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
-{
+RCT_EXPORT_METHOD(reset:(BOOL)clearAnonymousId resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject) {
   [moduleImpl reset:clearAnonymousId resolver:resolve rejecter:reject];
 }
 
-RCT_EXPORT_METHOD(flush:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
-{
+RCT_EXPORT_METHOD(flush:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject) {
   [moduleImpl flush:resolve rejecter:reject];
 }
 
-RCT_EXPORT_METHOD(optOut:(BOOL)optOut resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
-{
+RCT_EXPORT_METHOD(optOut:(BOOL)optOut resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject) {
   [moduleImpl optOut:optOut resolver:resolve rejecter:reject];
 }
 
@@ -184,13 +173,11 @@ RCT_EXPORT_METHOD(putAnonymousId:(NSString*)id resolver:(RCTPromiseResolveBlock)
   [moduleImpl putAnonymousId:id resolver:resolve rejecter:reject];
 }
 
-RCT_EXPORT_METHOD(registerCallback:(NSString *)name callback: (RCTResponseSenderBlock)callback)
-{
+RCT_EXPORT_METHOD(registerCallback:(NSString *)name callback: (RCTResponseSenderBlock)callback) {
   [moduleImpl registerCallback:name callback:callback];
 }
 
-RCT_EXPORT_METHOD(getRudderContext:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
-{
+RCT_EXPORT_METHOD(getRudderContext:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject) {
   [moduleImpl getRudderContext:resolve rejecter:reject];
 }
 
