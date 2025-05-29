@@ -23,14 +23,6 @@
     return @"RNRudderSdkModule";
 }
 
--(BOOL)isRudderClientInitializedAndReady {
-    if (self->initialized == NO || [RSClient sharedInstance] == nil) {
-        [RSLogger logWarn:@"Dropping the call as RudderClient is not initialized yet. Please use `await` keyword with the setup call"];
-        return NO;
-    }
-    return YES;
-}
-
 - (void)setup:(NSDictionary*)config options:(NSDictionary*)_options resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject {
     if (![self isRudderClientInitializedAndReady]) {
         self->configParams = [[RNParamsConfigurator alloc] initWithConfig:config];
@@ -69,6 +61,14 @@
         [RSLogger logDebug:@"Rudder Client already initialized, Ignoring the new setup call"];
     }
     resolve(nil);
+}
+
+-(BOOL)isRudderClientInitializedAndReady {
+  if (self->initialized == NO || [RSClient sharedInstance] == nil) {
+    [RSLogger logWarn:@"Dropping the call as RudderClient is not initialized yet. Please use `await` keyword with the setup call"];
+    return NO;
+  }
+  return YES;
 }
 
 - (void)track:(NSString*)_event properties:(NSDictionary*)_properties options:(NSDictionary*)_options resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject {
@@ -201,6 +201,7 @@
     callback(@[]);
 }
 
+  // Migrated from Callbacks to Promise to support ES2016's async/await syntax on the RN Side
 - (void)getRudderContext:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject {
     if (![self isRudderClientInitializedAndReady]) {
         resolve(nil);
@@ -251,24 +252,24 @@
 }
 
 -(RSOption*) getRudderOptionsObject:(NSDictionary *) optionsDict {
-    RSOption * options = [[RSOption alloc]init];
-    @try {
-        optionsDict = [self removeExternalIdsIfExternalIdExists:optionsDict];
-        for (NSString *key in optionsDict) {
-            if ([key isEqualToString:@"externalId"]) {
-                [self setExternalId:key withOptionsDict:optionsDict andOptions:options];
-            } else if ([key isEqualToString:@"externalIds"]) {
-                [self setExternalId:key withOptionsDict:optionsDict andOptions:options];
-            } else if ([key isEqualToString:@"integrations"]) {
-                [self setIntegrations:optionsDict andOptions:options];
-            } else {
-                [self setCustomContext:key withOptionsDict:optionsDict options:options];
-            }
-        }
-    } @catch (NSException *exception) {
-        [RSLogger logWarn:[NSString stringWithFormat:@"Error occured while handling options object: %@", exception]];
+  RSOption * options = [[RSOption alloc]init];
+  @try {
+    optionsDict = [self removeExternalIdsIfExternalIdExists:optionsDict];
+    for (NSString *key in optionsDict) {
+      if ([key isEqualToString:@"externalId"]) {
+        [self setExternalId:key withOptionsDict:optionsDict andOptions:options];
+      } else if ([key isEqualToString:@"externalIds"]) {
+        [self setExternalId:key withOptionsDict:optionsDict andOptions:options];
+      } else if ([key isEqualToString:@"integrations"]) {
+        [self setIntegrations:optionsDict andOptions:options];
+      } else {
+        [self setCustomContext:key withOptionsDict:optionsDict options:options];
+      }
     }
-    return options;
+  } @catch (NSException *exception) {
+    [RSLogger logWarn:[NSString stringWithFormat:@"Error occured while handling options object: %@", exception]];
+  }
+  return options;
 }
 
 // For legacy reason we are still supporting "externalIds". First priority is given to "externalId".
