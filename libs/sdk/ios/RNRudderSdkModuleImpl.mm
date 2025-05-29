@@ -261,7 +261,7 @@
       }
     }
   } @catch (NSException *exception) {
-    [RSLogger logWarn:[NSString stringWithFormat:@"Error occured while handling options object: %@", exception]];
+    [RSLogger logWarn:[NSString stringWithFormat:@"Error occurred while handling options object: %@", exception]];
   }
   return options;
 }

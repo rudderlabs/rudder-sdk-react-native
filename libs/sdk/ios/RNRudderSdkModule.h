@@ -9,7 +9,7 @@
 
 #else
 
-  // Legacy Archietecture
+  // Legacy Architecture
 #if __has_include("RCTBridgeModule.h")
 #import "RCTBridgeModule.h"
 #else
