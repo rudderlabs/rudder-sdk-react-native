@@ -3,11 +3,21 @@
 #import "RSClient.h"
 #import "RSConfig.h"
 #import "RSLogger.h"
-#import "RSOption.h"
 #import "RSMessageBuilder.h"
+#import "RNApplicationLifeCycleManager.h"
+#import "RNBackGroundModeManager.h"
+#import "RNPreferenceManager.h"
+#import "RNParamsConfigurator.h"
+#import "RNUserSessionPlugin.h"
 
 @implementation RNRudderSdkModuleImpl {
-  RCTBridge *bridge;
+    RCTBridge *bridge;
+    RNApplicationLifeCycleManager *applicationLifeCycleManager;
+    RNBackGroundModeManager *backGroundModeManager;
+    RNPreferenceManager *preferenceManager;
+    RNParamsConfigurator *configParams;
+    BOOL initialized;
+    RNUserSessionPlugin *session;
 }
 
 - (instancetype)initWithBridge:(RCTBridge *)bridge {
