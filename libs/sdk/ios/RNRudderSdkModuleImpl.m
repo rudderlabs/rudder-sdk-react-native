@@ -10,10 +10,10 @@
   RCTBridge *bridge;
 }
 
-- (instancetype)initWithBridge:(RCTBridge *)_bridge {
+- (instancetype)initWithBridge:(RCTBridge *)bridge {
   self = [super init];
   if (self) {
-    bridge = _bridge;
+    self->bridge = bridge;
     self->initialized = NO;
   }
   return self;
@@ -23,7 +23,7 @@
   return @"RNRudderSdkModule";
 }
 
-- (void)setup:(NSDictionary*)config options:(NSDictionary*)_options resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject {
+- (void)setup:(NSDictionary*)config options:(NSDictionary*)options resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject {
   if (![self isRudderClientInitializedAndReady]) {
     self->configParams = [[RNParamsConfigurator alloc] initWithConfig:config];
     RSConfigBuilder *configBuilder = [self->configParams handleConfig];
@@ -32,7 +32,7 @@
     self->preferenceManager = [RNPreferenceManager getInstance];
     [self->preferenceManager migrateAppInfoPreferencesWhenRNPrefDoesNotExist];
     
-    [RSClient getInstance:self->configParams.writeKey config:[RNRudderAnalytics buildWithIntegrations:configBuilder] options:[self getRudderOptionsObject:_options]];
+    [RSClient getInstance:self->configParams.writeKey config:[RNRudderAnalytics buildWithIntegrations:configBuilder] options:[self getRudderOptionsObject:options]];
     
     [RSLogger logDebug:@"setup: Initiating RNUserSessionPlugin"];
     self->session = [[RNUserSessionPlugin alloc] initWithAutomaticSessionTrackingStatus:self->configParams.autoSessionTracking withLifecycleEventsTrackingStatus:self->configParams.trackLifeCycleEvents withSessionTimeout:self->configParams.sessionTimeout];
@@ -65,73 +65,73 @@
   return YES;
 }
 
-- (void)track:(NSString*)_event properties:(NSDictionary*)_properties options:(NSDictionary*)_options resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject {
+- (void)track:(NSString*)event properties:(NSDictionary*)properties options:(NSDictionary*)options resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject {
   if (![self isRudderClientInitializedAndReady]) {
     resolve(nil);
     return;
   }
   [self->session saveEventTimestamp];
   RSMessageBuilder* builder = [[RSMessageBuilder alloc] init];
-  [builder setEventName:_event];
-  [builder setPropertyDict:_properties];
-  [builder setRSOption:[self getRudderOptionsObject:_options]];
+  [builder setEventName:event];
+  [builder setPropertyDict:properties];
+  [builder setRSOption:[self getRudderOptionsObject:options]];
   
   [[RSClient sharedInstance] trackWithBuilder:builder];
   resolve(nil);
 }
 
-- (void)screen:(NSString*)_event properties:(NSDictionary*)_properties options:(NSDictionary*)_options resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject {
+- (void)screen:(NSString*)event properties:(NSDictionary*)properties options:(NSDictionary*)options resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject {
   if (![self isRudderClientInitializedAndReady]) {
     resolve(nil);
     return;
   }
   [self->session saveEventTimestamp];
-  [[RSClient sharedInstance] screen:_event properties:_properties options:[self getRudderOptionsObject:_options]];
+  [[RSClient sharedInstance] screen:event properties:properties options:[self getRudderOptionsObject:options]];
   resolve(nil);
 }
 
-- (void)identify:(NSString*)_userId traits:(NSDictionary*)_traits options:(NSDictionary*)_options resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject {
+- (void)identify:(NSString*)userId traits:(NSDictionary*)traits options:(NSDictionary*)options resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject {
   if (![self isRudderClientInitializedAndReady]) {
     resolve(nil);
     return;
   }
   [self->session saveEventTimestamp];
-  if([_userId isEqual:@""]) {
-    [[RSClient sharedInstance] identify:nil traits:_traits options:[self getRudderOptionsObject:_options]];
+  if([userId isEqual:@""]) {
+    [[RSClient sharedInstance] identify:nil traits:traits options:[self getRudderOptionsObject:options]];
     resolve(nil);
     return;
   }
-  [[RSClient sharedInstance] identify:_userId traits:_traits options:[self getRudderOptionsObject:_options]];
+  [[RSClient sharedInstance] identify:userId traits:traits options:[self getRudderOptionsObject:options]];
   resolve(nil);
 }
 
-- (void)alias:(NSString*)_newId previousId:(NSString*)_previousId options:(NSDictionary*)_options resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject {
+- (void)alias:(NSString*)newId previousId:(NSString*)previousId options:(NSDictionary*)options resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject {
   if (![self isRudderClientInitializedAndReady]) {
     resolve(nil);
     return;
   }
-  if([_newId isEqual:@""]) {
+  if([newId isEqual:@""]) {
     [RSLogger logWarn:@"Dropping the Alias call as newId can not be empty"];
     resolve(nil);
     return;
   }
   [self->session saveEventTimestamp];
-  [[RSClient sharedInstance] alias:_newId previousId:_previousId options:[self getRudderOptionsObject:_options]];
+  [[RSClient sharedInstance] alias:newId previousId:previousId options:[self getRudderOptionsObject:options]];
   resolve(nil);
 }
 
-- (void)group:(NSString*)_groupId traits:(NSDictionary*)_traits options:(NSDictionary*)_options resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject {
+- (void)group:(NSString*)groupId traits:(NSDictionary*)traits options:(NSDictionary*)options resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject {
   if (![self isRudderClientInitializedAndReady]) {
     resolve(nil);
     return;
   }
-  if([_groupId isEqual:@""]) {
+  if([groupId isEqual:@""]) {
     [RSLogger logWarn:@"Dropping the Group call as groupId can not be empty"];
     resolve(nil);
     return;
   }
   [self->session saveEventTimestamp];
-  [[RSClient sharedInstance] group:_groupId traits:_traits options:[self getRudderOptionsObject:_options]];
+  [[RSClient sharedInstance] group:groupId traits:traits options:[self getRudderOptionsObject:options]];
   resolve(nil);
 }
 
