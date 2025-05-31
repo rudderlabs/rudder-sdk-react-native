@@ -26,8 +26,7 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-@ReactModule(name = RNRudderSdkModule.NAME)
-public class RNRudderSdkModule extends NativeRudderBridgeSpec {
+public class RNRudderSdkModuleImpl {
 
     public static final String NAME = "RNRudderSdkModule";
     private final ReactApplicationContext reactContext;
@@ -38,20 +37,17 @@ public class RNRudderSdkModule extends NativeRudderBridgeSpec {
     private boolean initialized = false;
     private final Application application;
 
-    public RNRudderSdkModule(ReactApplicationContext reactContext) {
-        super(reactContext);
+    public RNRudderSdkModuleImpl(ReactApplicationContext reactContext, Application application) {
         this.reactContext = reactContext;
-        this.application = (Application) this.reactContext.getApplicationContext();
+        this.application = application;
         RNPreferenceManager preferenceManager = RNPreferenceManager.getInstance(this.application);
         preferenceManager.migrateAppInfoPreferencesWhenRNPrefDoesNotExist();
     }
 
-    @Override
     public String getName() {
         return NAME;
     }
 
-    @Override
     public void setup(ReadableMap config, ReadableMap rudderOptionsMap, Promise promise) {
         if (!isRudderClientInitializedAndReady()) {
             // create the config object
@@ -104,7 +100,6 @@ public class RNRudderSdkModule extends NativeRudderBridgeSpec {
         return true;
     }
 
-    @Override
     public void track(String event, ReadableMap properties, ReadableMap options, Promise promise) {
         if (!isRudderClientInitializedAndReady()) {
             promise.resolve(null);
@@ -119,7 +114,6 @@ public class RNRudderSdkModule extends NativeRudderBridgeSpec {
         promise.resolve(null);
     }
 
-    @Override
     public void screen(String event, @Nullable ReadableMap properties, @Nullable ReadableMap options, Promise promise) {
         if (!isRudderClientInitializedAndReady()) {
             promise.resolve(null);
@@ -132,7 +126,6 @@ public class RNRudderSdkModule extends NativeRudderBridgeSpec {
         promise.resolve(null);
     }
 
-    @Override
     public void putDeviceToken(String token, Promise promise) {
         if (!TextUtils.isEmpty(token)) {
             RudderClient.putDeviceToken(token);
@@ -140,7 +133,6 @@ public class RNRudderSdkModule extends NativeRudderBridgeSpec {
         promise.resolve(null);
     }
 
-    @Override
     public void identify(String userId, @Nullable ReadableMap traits, @Nullable ReadableMap options, Promise promise) {
         if (!isRudderClientInitializedAndReady()) {
             promise.resolve(null);
@@ -156,7 +148,7 @@ public class RNRudderSdkModule extends NativeRudderBridgeSpec {
         promise.resolve(null);
     }
 
-    @Override
+
     public void alias(String newId, @Nullable String previousId, @Nullable ReadableMap options, Promise promise) {
         if (!isRudderClientInitializedAndReady()) {
             promise.resolve(null);
@@ -172,7 +164,6 @@ public class RNRudderSdkModule extends NativeRudderBridgeSpec {
         promise.resolve(null);
     }
 
-    @Override
     public void group(String groupId, @Nullable ReadableMap traits, @Nullable ReadableMap options, Promise promise) {
         if (!isRudderClientInitializedAndReady()) {
             promise.resolve(null);
@@ -189,7 +180,6 @@ public class RNRudderSdkModule extends NativeRudderBridgeSpec {
     }
 
     // Migrated from Callbacks to Promise to support ES2016's async/await syntax on the RN Side
-    @Override
     public void getRudderContext(Promise promise) {
         if (!isRudderClientInitializedAndReady()) {
             promise.resolve(null);
@@ -211,7 +201,6 @@ public class RNRudderSdkModule extends NativeRudderBridgeSpec {
         }
     }
 
-    @Override
     public void reset(boolean clearAnonymousId, Promise promise) {
         if (!isRudderClientInitializedAndReady()) {
             promise.resolve(null);
@@ -221,7 +210,6 @@ public class RNRudderSdkModule extends NativeRudderBridgeSpec {
         promise.resolve(null);
     }
 
-    @Override
     public void flush(Promise promise) {
         if (!isRudderClientInitializedAndReady()) {
             promise.resolve(null);
@@ -231,7 +219,6 @@ public class RNRudderSdkModule extends NativeRudderBridgeSpec {
         promise.resolve(null);
     }
 
-    @Override
     public void optOut(boolean optOut, Promise promise) {
         if (!isRudderClientInitializedAndReady()) {
             promise.resolve(null);
@@ -241,7 +228,6 @@ public class RNRudderSdkModule extends NativeRudderBridgeSpec {
         promise.resolve(null);
     }
 
-    @Override
     public void putAdvertisingId(String id, Promise promise) {
         if (!TextUtils.isEmpty(id)) {
             RudderClient.putAdvertisingId(id);
@@ -249,7 +235,6 @@ public class RNRudderSdkModule extends NativeRudderBridgeSpec {
         promise.resolve(null);
     }
 
-    @Override
     public void clearAdvertisingId(Promise promise) {
         if (!isRudderClientInitializedAndReady()) {
             promise.resolve(null);
@@ -259,7 +244,6 @@ public class RNRudderSdkModule extends NativeRudderBridgeSpec {
         promise.resolve(null);
     }
 
-    @Override
     public void putAnonymousId(String id, Promise promise) {
         if (!TextUtils.isEmpty(id)) {
             RudderClient.putAnonymousId(id);
@@ -267,7 +251,6 @@ public class RNRudderSdkModule extends NativeRudderBridgeSpec {
         promise.resolve(null);
     }
 
-    @Override
     public void startSession(@Nullable String sessionId, Promise promise) {
         if (!isRudderClientInitializedAndReady()) {
             promise.resolve(null);
@@ -285,7 +268,6 @@ public class RNRudderSdkModule extends NativeRudderBridgeSpec {
         promise.resolve(null);
     }
 
-    @Override
     public void endSession(Promise promise) {
         if (!isRudderClientInitializedAndReady()) {
             promise.resolve(null);
@@ -296,7 +278,6 @@ public class RNRudderSdkModule extends NativeRudderBridgeSpec {
         promise.resolve(null);
     }
 
-    @Override
     public void getSessionId(Promise promise) {
         if (!isRudderClientInitializedAndReady()) {
             promise.resolve(null);
@@ -311,13 +292,15 @@ public class RNRudderSdkModule extends NativeRudderBridgeSpec {
         }
     }
 
-    @Override
     public void registerCallback(String name, Callback callback) {
         integrationCallbacks.put(name, callback);
     }
 
     Activity getCurrentActivityFromReact() {
-        return getCurrentActivity();
+        if (reactContext != null) {
+            return reactContext.getCurrentActivity();
+        }
+        return null;
     }
 
     class NativeCallBack implements RudderClient.Callback {
@@ -338,3 +321,4 @@ public class RNRudderSdkModule extends NativeRudderBridgeSpec {
         }
     }
 }
+
