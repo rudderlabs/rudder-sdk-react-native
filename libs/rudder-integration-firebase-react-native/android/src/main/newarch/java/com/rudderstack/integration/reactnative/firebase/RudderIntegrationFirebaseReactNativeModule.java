@@ -1,11 +1,14 @@
 package com.rudderstack.integration.reactnative.firebase;
 
+import androidx.annotation.NonNull;
+
 import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.ReactApplicationContext;
-import com.facebook.react.bridge.ReactContextBaseJavaModule;
-import com.facebook.react.bridge.ReactMethod;
+import com.facebook.react.module.annotations.ReactModule;
+import com.rudderstack.integration.reactnative.firebase.NativeFirebaseBridgeSpec;
 
-public class RudderIntegrationFirebaseReactNativeModule extends ReactContextBaseJavaModule {
+@ReactModule(name = RudderIntegrationFirebaseReactNativeModuleImpl.NAME)
+public class RudderIntegrationFirebaseReactNativeModule extends NativeFirebaseBridgeSpec {
 
     private final RudderIntegrationFirebaseReactNativeModuleImpl moduleImpl;
 
@@ -14,12 +17,13 @@ public class RudderIntegrationFirebaseReactNativeModule extends ReactContextBase
         this.moduleImpl = new RudderIntegrationFirebaseReactNativeModuleImpl(reactContext);
     }
 
+    @NonNull
     @Override
     public String getName() {
         return moduleImpl.getName();
     }
 
-    @ReactMethod
+    @Override
     public void setup(Promise promise) {
         moduleImpl.setup(promise);
     }
