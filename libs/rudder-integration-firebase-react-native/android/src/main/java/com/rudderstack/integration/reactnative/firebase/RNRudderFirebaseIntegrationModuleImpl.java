@@ -8,18 +8,15 @@ public class RNRudderFirebaseIntegrationModuleImpl {
 
     public static final String NAME = "RNRudderFirebaseIntegrationModule";
 
-    public RNRudderFirebaseIntegrationModuleImpl() {}
+    public RNRudderFirebaseIntegrationModuleImpl() {
+    }
 
     public String getName() {
         return NAME;
     }
 
     public void setup(Promise promise) {
-        try {
-            RNRudderAnalytics.addIntegration(FirebaseIntegrationFactory.FACTORY);
-            promise.resolve(null);
-        } catch (Exception e) {
-            promise.reject("ERROR", e.getMessage());
-        }
+        RNRudderAnalytics.addIntegration(FirebaseIntegrationFactory.FACTORY);
+        promise.resolve(null);
     }
 }
