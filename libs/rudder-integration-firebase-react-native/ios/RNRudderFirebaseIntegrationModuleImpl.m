@@ -18,10 +18,6 @@
     return self;
 }
 
-- (NSString *)getName {
-    return @"RNRudderFirebaseIntegrationModule";
-}
-
 - (void)setup:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject {
     [RNRudderAnalytics addIntegration:[RudderFirebaseFactory instance]];
     resolve(nil);
