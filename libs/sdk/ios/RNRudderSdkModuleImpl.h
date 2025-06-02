@@ -6,7 +6,6 @@
 
 - (instancetype)initWithBridge:(RCTBridge *)bridge;
 
-- (NSString *)getName;
 - (BOOL)isRudderClientInitializedAndReady;
 
 // Main methods
