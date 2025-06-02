@@ -4,12 +4,13 @@ import android.app.Activity;
 import android.app.Application;
 import android.text.TextUtils;
 
+import androidx.annotation.Nullable;
+
 import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.ReactApplicationContext;
-import com.facebook.react.bridge.ReactContextBaseJavaModule;
-import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.bridge.Callback;
+import com.facebook.react.module.annotations.ReactModule;
 import com.google.gson.Gson;
 import com.rudderstack.android.sdk.core.RudderClient;
 import com.rudderstack.android.sdk.core.RudderConfig;
@@ -25,10 +26,9 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-import java.lang.InterruptedException;
+public class RNRudderSdkModuleImpl {
 
-public class RNRudderSdkModule extends ReactContextBaseJavaModule {
-
+    public static final String NAME = "RNRudderSdkModule";
     private final ReactApplicationContext reactContext;
     private static Map<String, Callback> integrationCallbacks = new HashMap<>();
 
@@ -37,21 +37,18 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
     private boolean initialized = false;
     private final Application application;
 
-    public RNRudderSdkModule(ReactApplicationContext reactContext) {
-        super(reactContext);
+    public RNRudderSdkModuleImpl(ReactApplicationContext reactContext, Application application) {
         this.reactContext = reactContext;
-        this.application = (Application) this.reactContext.getApplicationContext();
+        this.application = application;
         RNPreferenceManager preferenceManager = RNPreferenceManager.getInstance(this.application);
         preferenceManager.migrateAppInfoPreferencesWhenRNPrefDoesNotExist();
     }
 
-    @Override
     public String getName() {
-        return "RNRudderSdkModule";
+        return NAME;
     }
 
-    @ReactMethod
-    public void setup(ReadableMap config, ReadableMap rudderOptionsMap, Promise promise) throws InterruptedException {
+    public void setup(ReadableMap config, ReadableMap rudderOptionsMap, Promise promise) {
         if (!isRudderClientInitializedAndReady()) {
             // create the config object
             RNParamsConfigurator configParams = new RNParamsConfigurator(config);
@@ -103,9 +100,9 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
         return true;
     }
 
-    @ReactMethod
-    public void track(String event, ReadableMap properties, ReadableMap options) {
+    public void track(String event, ReadableMap properties, ReadableMap options, Promise promise) {
         if (!isRudderClientInitializedAndReady()) {
+            promise.resolve(null);
             return;
         }
         userSessionPlugin.saveEventTimestamp();
@@ -114,68 +111,76 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
                 .setProperty(Utility.convertReadableMapToMap(properties))
                 .setRudderOption(Utility.convertReadableMapToOptions(options))
                 .build());
+        promise.resolve(null);
     }
 
-    @ReactMethod
-    public void screen(String event, ReadableMap properties, ReadableMap options) {
+    public void screen(String event, @Nullable ReadableMap properties, @Nullable ReadableMap options, Promise promise) {
         if (!isRudderClientInitializedAndReady()) {
+            promise.resolve(null);
             return;
         }
         userSessionPlugin.saveEventTimestamp();
         RudderProperty property = new RudderProperty();
         property.putValue(Utility.convertReadableMapToMap(properties));
         rudderClient.screen(event, property, Utility.convertReadableMapToOptions(options));
+        promise.resolve(null);
     }
 
-    @ReactMethod
-    public void putDeviceToken(String token) {
+    public void putDeviceToken(String token, Promise promise) {
         if (!TextUtils.isEmpty(token)) {
             RudderClient.putDeviceToken(token);
         }
+        promise.resolve(null);
     }
 
-    @ReactMethod
-    public void identify(String userId, ReadableMap traits, ReadableMap options) {
+    public void identify(String userId, @Nullable ReadableMap traits, @Nullable ReadableMap options, Promise promise) {
         if (!isRudderClientInitializedAndReady()) {
+            promise.resolve(null);
             return;
         }
         userSessionPlugin.saveEventTimestamp();
         if (TextUtils.isEmpty(userId)) {
             rudderClient.identify(Utility.convertReadableMapToTraits(traits), Utility.convertReadableMapToOptions(options));
+            promise.resolve(null);
             return;
         }
         rudderClient.identify(userId, Utility.convertReadableMapToTraits(traits), Utility.convertReadableMapToOptions(options));
+        promise.resolve(null);
     }
 
-    @ReactMethod
-    public void alias(String newId, String previousId, ReadableMap options) {
+
+    public void alias(String newId, @Nullable String previousId, @Nullable ReadableMap options, Promise promise) {
         if (!isRudderClientInitializedAndReady()) {
+            promise.resolve(null);
             return;
         }
         if (TextUtils.isEmpty(newId)) {
             RudderLogger.logWarn("Dropping the Alias call as newId can not be empty");
+            promise.resolve(null);
             return;
         }
         userSessionPlugin.saveEventTimestamp();
         rudderClient.alias(newId, previousId, Utility.convertReadableMapToOptions(options));
+        promise.resolve(null);
     }
 
-    @ReactMethod
-    public void group(String groupId, ReadableMap traits, ReadableMap options) {
+    public void group(String groupId, @Nullable ReadableMap traits, @Nullable ReadableMap options, Promise promise) {
         if (!isRudderClientInitializedAndReady()) {
+            promise.resolve(null);
             return;
         }
         if (TextUtils.isEmpty(groupId)) {
             RudderLogger.logWarn("Dropping the Group call as groupId can not be empty");
+            promise.resolve(null);
             return;
         }
         userSessionPlugin.saveEventTimestamp();
         rudderClient.group(groupId, Utility.convertReadableMapToTraits(traits), Utility.convertReadableMapToOptions(options));
+        promise.resolve(null);
     }
 
     // Migrated from Callbacks to Promise to support ES2016's async/await syntax on the RN Side
-    @ReactMethod
-    public void getRudderContext(Promise promise) throws JSONException {
+    public void getRudderContext(Promise promise) {
         if (!isRudderClientInitializedAndReady()) {
             promise.resolve(null);
             return;
@@ -187,81 +192,92 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
             return;
         }
         Gson gson = new Gson();
-        JSONObject contextJson = new JSONObject(gson.toJson(rudderContext));
-        promise.resolve(Utility.convertJSONObjectToWriteAbleMap(contextJson));
+        JSONObject contextJson = null;
+        try {
+            contextJson = new JSONObject(gson.toJson(rudderContext));
+            promise.resolve(Utility.convertJSONObjectToWriteAbleMap(contextJson));
+        } catch (JSONException e) {
+            promise.reject(e);
+        }
     }
 
-    @ReactMethod
-    public void reset(boolean clearAnonymousId) {
+    public void reset(boolean clearAnonymousId, Promise promise) {
         if (!isRudderClientInitializedAndReady()) {
+            promise.resolve(null);
             return;
         }
         rudderClient.reset(clearAnonymousId);
+        promise.resolve(null);
     }
 
-    @ReactMethod
-    public void flush() {
+    public void flush(Promise promise) {
         if (!isRudderClientInitializedAndReady()) {
+            promise.resolve(null);
             return;
         }
         rudderClient.flush();
+        promise.resolve(null);
     }
 
-    @ReactMethod
-    public void optOut(boolean optOut) {
+    public void optOut(boolean optOut, Promise promise) {
         if (!isRudderClientInitializedAndReady()) {
+            promise.resolve(null);
             return;
         }
         rudderClient.optOut(optOut);
+        promise.resolve(null);
     }
 
-    @ReactMethod
-    public void putAdvertisingId(String id) {
+    public void putAdvertisingId(String id, Promise promise) {
         if (!TextUtils.isEmpty(id)) {
             RudderClient.putAdvertisingId(id);
         }
+        promise.resolve(null);
     }
 
-    @ReactMethod
-    public void clearAdvertisingId() {
+    public void clearAdvertisingId(Promise promise) {
         if (!isRudderClientInitializedAndReady()) {
+            promise.resolve(null);
             return;
         }
         rudderClient.clearAdvertisingId();
+        promise.resolve(null);
     }
 
-    @ReactMethod
-    public void putAnonymousId(String id) {
+    public void putAnonymousId(String id, Promise promise) {
         if (!TextUtils.isEmpty(id)) {
             RudderClient.putAnonymousId(id);
         }
+        promise.resolve(null);
     }
 
-    @ReactMethod
-    public void startSession(String sessionId) {
+    public void startSession(@Nullable String sessionId, Promise promise) {
         if (!isRudderClientInitializedAndReady()) {
+            promise.resolve(null);
             return;
         }
         userSessionPlugin.enableManualSessionParams();
         if (sessionId.length() == 0) {
             userSessionPlugin.startSession();
             RudderLogger.logVerbose("RNRudderSdkModule: startSession: starting manual session");
+            promise.resolve(null);
             return;
         }
         userSessionPlugin.startSession(Long.parseLong(sessionId));
         RudderLogger.logVerbose("RNRudderSdkModule: startSession: starting manual session with id: " + sessionId);
+        promise.resolve(null);
     }
 
-    @ReactMethod
-    public void endSession() {
+    public void endSession(Promise promise) {
         if (!isRudderClientInitializedAndReady()) {
+            promise.resolve(null);
             return;
         }
         userSessionPlugin.endSession();
         RudderLogger.logVerbose("RNRudderSdkModule: endSession: ending session");
+        promise.resolve(null);
     }
 
-    @ReactMethod
     public void getSessionId(Promise promise) {
         if (!isRudderClientInitializedAndReady()) {
             promise.resolve(null);
@@ -276,13 +292,15 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
         }
     }
 
-    @ReactMethod
     public void registerCallback(String name, Callback callback) {
         integrationCallbacks.put(name, callback);
     }
 
     Activity getCurrentActivityFromReact() {
-        return getCurrentActivity();
+        if (reactContext != null) {
+            return reactContext.getCurrentActivity();
+        }
+        return null;
     }
 
     class NativeCallBack implements RudderClient.Callback {
@@ -303,3 +321,4 @@ public class RNRudderSdkModule extends ReactContextBaseJavaModule {
         }
     }
 }
+

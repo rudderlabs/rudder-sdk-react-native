@@ -16,11 +16,11 @@ public class RNLifeCycleEventListener implements LifecycleEventListener {
     private int noOfActivities;
     private boolean fromBackground = false;
     private final RNUserSessionPlugin userSessionPlugin;
-    private final RNRudderSdkModule instance;
+    private final RNRudderSdkModuleImpl instance;
     private final boolean trackLifeCycleEvents;
     private boolean recordScreenViews;
 
-    RNLifeCycleEventListener(Application application, RNUserSessionPlugin userSessionPlugin, RNRudderSdkModule instance, boolean trackLifeCycleEvents, boolean recordScreenViews) {
+    RNLifeCycleEventListener(Application application, RNUserSessionPlugin userSessionPlugin, RNRudderSdkModuleImpl instance, boolean trackLifeCycleEvents, boolean recordScreenViews) {
         this.userSessionPlugin = userSessionPlugin;
         this.instance = instance;
         this.trackLifeCycleEvents = trackLifeCycleEvents;
