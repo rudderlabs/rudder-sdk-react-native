@@ -1,9 +1,10 @@
-package com.rudderstack.integration.reactnative.firebase;
+package java.com.rudderstack.integration.reactnative.firebase;
 
 import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
+import com.rudderstack.integration.reactnative.firebase.RNRudderFirebaseIntegrationModuleImpl;
 
 public class RNRudderFirebaseIntegrationModule extends ReactContextBaseJavaModule {
 
@@ -11,7 +12,7 @@ public class RNRudderFirebaseIntegrationModule extends ReactContextBaseJavaModul
 
     public RNRudderFirebaseIntegrationModule(ReactApplicationContext reactContext) {
         super(reactContext);
-        this.moduleImpl = new RNRudderFirebaseIntegrationModuleImpl(reactContext);
+        this.moduleImpl = new RNRudderFirebaseIntegrationModuleImpl();
     }
 
     @Override
