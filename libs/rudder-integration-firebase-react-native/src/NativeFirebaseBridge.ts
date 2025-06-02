@@ -5,4 +5,4 @@ export interface Spec extends TurboModule {
   setup(): Promise<void>;
 }
 
-export default TurboModuleRegistry.getEnforcing<Spec>('RudderIntegrationFirebaseReactNative');
+export default TurboModuleRegistry.getEnforcing<Spec>('RNRudderFirebaseIntegrationModule');

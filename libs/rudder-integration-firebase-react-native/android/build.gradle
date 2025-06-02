@@ -24,7 +24,7 @@ ext {
 
 buildscript {
   ext.getExtOrDefault = {name ->
-    return rootProject.ext.has(name) ? rootProject.ext.get(name) : project.properties['RudderIntegrationFirebaseReactNative_' + name]
+    return rootProject.ext.has(name) ? rootProject.ext.get(name) : project.properties['RNRudderFirebaseIntegrationModule_' + name]
   }
 
   repositories {
@@ -51,7 +51,7 @@ if (isNewArchitectureEnabled()) {
 }
 
 def getExtOrIntegerDefault(name) {
-  return rootProject.ext.has(name) ? rootProject.ext.get(name) : (project.properties["RudderIntegrationFirebaseReactNative_" + name]).toInteger()
+  return rootProject.ext.has(name) ? rootProject.ext.get(name) : (project.properties["RNRudderFirebaseIntegrationModule_" + name]).toInteger()
 }
 
 android {
@@ -113,7 +113,7 @@ dependencies {
 if (isNewArchitectureEnabled()) {
   react {
     jsRootDir = file("../src/")
-    libraryName = "RudderIntegrationFirebaseReactNative"
+    libraryName = "RNRudderFirebaseIntegrationModule"
     codegenJavaPackageName = "com.rudderstack.integration.reactnative.firebase"
   }
 }

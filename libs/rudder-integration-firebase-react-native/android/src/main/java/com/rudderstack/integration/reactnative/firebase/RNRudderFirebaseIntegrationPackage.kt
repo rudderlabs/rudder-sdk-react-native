@@ -7,11 +7,11 @@ import com.facebook.react.module.model.ReactModuleInfo
 import com.facebook.react.module.model.ReactModuleInfoProvider
 import java.util.HashMap
 
-class RudderIntegrationFirebaseReactNativePackage : BaseReactPackage() {
+class RNRudderFirebaseIntegrationPackage : BaseReactPackage() {
 
     override fun getModule(name: String, reactContext: ReactApplicationContext): NativeModule? {
-        return if (name == RudderIntegrationFirebaseReactNativeModuleImpl.NAME) {
-            RudderIntegrationFirebaseReactNativeModule(reactContext)
+        return if (name == RNRudderFirebaseIntegrationModuleImpl.NAME) {
+            RNRudderFirebaseIntegrationModule(reactContext)
         } else {
             null
         }
@@ -21,9 +21,9 @@ class RudderIntegrationFirebaseReactNativePackage : BaseReactPackage() {
         return ReactModuleInfoProvider {
             val isTurboModule = BuildConfig.IS_NEW_ARCHITECTURE_ENABLED
             val moduleInfos: MutableMap<String, ReactModuleInfo> = HashMap()
-            moduleInfos[RudderIntegrationFirebaseReactNativeModuleImpl.NAME] = ReactModuleInfo(
-                RudderIntegrationFirebaseReactNativeModuleImpl.NAME,
-                RudderIntegrationFirebaseReactNativeModuleImpl.NAME,
+            moduleInfos[RNRudderFirebaseIntegrationModuleImpl.NAME] = ReactModuleInfo(
+                RNRudderFirebaseIntegrationModuleImpl.NAME,
+                RNRudderFirebaseIntegrationModuleImpl.NAME,
                 false,  // canOverrideExistingModule
                 false,  // needsEagerInit
                 false,  // isCxxModule

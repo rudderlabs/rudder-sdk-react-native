@@ -1,7 +1,7 @@
 #import <Foundation/Foundation.h>
 #import <React/RCTBridge.h>
 
-@interface RudderIntegrationFirebaseReactNativeModuleImpl : NSObject
+@interface RNRudderFirebaseIntegrationModuleImpl : NSObject
 
 - (instancetype)initWithBridge:(RCTBridge *)bridge;
 - (NSString *)getName;

@@ -5,13 +5,13 @@ import com.facebook.react.bridge.ReactApplicationContext;
 import com.rudderstack.android.integration.firebase.FirebaseIntegrationFactory;
 import com.rudderstack.react.android.RNRudderAnalytics;
 
-public class RudderIntegrationFirebaseReactNativeModuleImpl {
+public class RNRudderFirebaseIntegrationModuleImpl {
 
-    public static final String NAME = "RudderIntegrationFirebaseReactNative";
+    public static final String NAME = "RNRudderFirebaseIntegrationModule";
 
     private final ReactApplicationContext reactContext;
 
-    public RudderIntegrationFirebaseReactNativeModuleImpl(ReactApplicationContext reactContext) {
+    public RNRudderFirebaseIntegrationModuleImpl(ReactApplicationContext reactContext) {
         this.reactContext = reactContext;
     }
 

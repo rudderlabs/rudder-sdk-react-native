@@ -5,13 +5,13 @@ import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 
-public class RudderIntegrationFirebaseReactNativeModule extends ReactContextBaseJavaModule {
+public class RNRudderFirebaseIntegrationModule extends ReactContextBaseJavaModule {
 
-    private final RudderIntegrationFirebaseReactNativeModuleImpl moduleImpl;
+    private final RNRudderFirebaseIntegrationModuleImpl moduleImpl;
 
-    public RudderIntegrationFirebaseReactNativeModule(ReactApplicationContext reactContext) {
+    public RNRudderFirebaseIntegrationModule(ReactApplicationContext reactContext) {
         super(reactContext);
-        this.moduleImpl = new RudderIntegrationFirebaseReactNativeModuleImpl(reactContext);
+        this.moduleImpl = new RNRudderFirebaseIntegrationModuleImpl(reactContext);
     }
 
     @Override

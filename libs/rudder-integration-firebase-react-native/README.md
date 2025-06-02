@@ -11,8 +11,8 @@
 ## Usage
 
 ```javascript
-import RudderIntegrationFirebaseReactNative from '@rudderstack/rudder-integration-firebase-react-native';
+import RNRudderFirebaseIntegrationModule from '@rudderstack/rudder-integration-firebase-react-native';
 
 // TODO: What to do with the module?
-RudderIntegrationFirebaseReactNative;
+RNRudderFirebaseIntegrationModule;
 ```

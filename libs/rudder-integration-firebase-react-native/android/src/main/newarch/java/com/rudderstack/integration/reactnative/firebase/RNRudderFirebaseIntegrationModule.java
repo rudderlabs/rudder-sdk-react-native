@@ -7,14 +7,14 @@ import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.module.annotations.ReactModule;
 import com.rudderstack.integration.reactnative.firebase.NativeFirebaseBridgeSpec;
 
-@ReactModule(name = RudderIntegrationFirebaseReactNativeModuleImpl.NAME)
-public class RudderIntegrationFirebaseReactNativeModule extends NativeFirebaseBridgeSpec {
+@ReactModule(name = RNRudderFirebaseIntegrationModuleImpl.NAME)
+public class RNRudderFirebaseIntegrationModule extends NativeFirebaseBridgeSpec {
 
-    private final RudderIntegrationFirebaseReactNativeModuleImpl moduleImpl;
+    private final RNRudderFirebaseIntegrationModuleImpl moduleImpl;
 
-    public RudderIntegrationFirebaseReactNativeModule(ReactApplicationContext reactContext) {
+    public RNRudderFirebaseIntegrationModule(ReactApplicationContext reactContext) {
         super(reactContext);
-        this.moduleImpl = new RudderIntegrationFirebaseReactNativeModuleImpl(reactContext);
+        this.moduleImpl = new RNRudderFirebaseIntegrationModuleImpl(reactContext);
     }
 
     @NonNull

@@ -1,11 +1,11 @@
-#import "RudderIntegrationFirebaseReactNative.h"
-#import "RudderIntegrationFirebaseReactNativeModuleImpl.h"
+#import "RNRudderFirebaseIntegrationModule.h"
+#import "RNRudderFirebaseIntegrationModuleImpl.h"
 
 #ifdef RCT_NEW_ARCH_ENABLED
-#import "RudderIntegrationFirebaseReactNativeSpec/RudderIntegrationFirebaseReactNativeSpec.h"
+#import "RNRudderFirebaseIntegrationModuleSpec/RNRudderFirebaseIntegrationModuleSpec.h"
 #endif
 
-@implementation RudderIntegrationFirebaseReactNative
+@implementation RNRudderFirebaseIntegrationModule
 
 RCT_EXPORT_MODULE();
 
@@ -21,7 +21,7 @@ RCT_EXPORT_MODULE();
 
 - (void)setBridge:(RCTBridge *)bridge {
   _bridge = bridge;
-  moduleImpl = [[RudderIntegrationFirebaseReactNativeModuleImpl alloc] initWithBridge:bridge];
+  moduleImpl = [[RNRudderFirebaseIntegrationModuleImpl alloc] initWithBridge:bridge];
 }
 
 - (dispatch_queue_t)methodQueue

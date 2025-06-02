@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/rudderlabs/rudder-sdk-react-native#readme",
   "codegenConfig": {
-    "name": "RudderIntegrationFirebaseReactNativeSpec",
+    "name": "RNRudderFirebaseIntegrationModuleSpec",
     "type": "modules",
     "jsSrcsDir": "src"
   },
