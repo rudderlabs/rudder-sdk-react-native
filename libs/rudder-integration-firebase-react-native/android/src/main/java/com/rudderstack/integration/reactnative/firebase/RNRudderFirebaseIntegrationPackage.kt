@@ -23,12 +23,12 @@ class RNRudderFirebaseIntegrationPackage : BaseReactPackage() {
             val isTurboModule = BuildConfig.IS_NEW_ARCHITECTURE_ENABLED
             val moduleInfos: MutableMap<String, ReactModuleInfo> = HashMap()
             moduleInfos[RNRudderFirebaseIntegrationModuleImpl.NAME] = ReactModuleInfo(
-                name = RNRudderFirebaseIntegrationModuleImpl.NAME,
-                className = RNRudderFirebaseIntegrationModuleImpl.NAME,
-                canOverrideExistingModule = false,
-                needsEagerInit = false,
-                isCxxModule = false,
-                isTurboModule = isTurboModule
+                RNRudderFirebaseIntegrationModuleImpl.NAME,
+                RNRudderFirebaseIntegrationModuleImpl.NAME,
+                false,  // canOverrideExistingModule
+                false,  // needsEagerInit
+                false,  // isCxxModule
+                isTurboModule    // isTurboModule
             )
             moduleInfos
         }
