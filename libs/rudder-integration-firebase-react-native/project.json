@@ -45,6 +45,11 @@
             "glob": "LICENSE.md",
             "input": ".",
             "output": "."
+          },
+          {
+            "glob": "libs/sdk/src",
+            "input": ".",
+            "output": "."
           }
         ],
         "updateBuildableProjectDepsInPackageJson": true,
