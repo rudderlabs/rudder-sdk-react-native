@@ -1,5 +1,4 @@
 #import "RNRudderFirebaseIntegrationModule.h"
-#import "RNRudderFirebaseIntegrationModuleImpl.h"
 
 #ifdef RCT_NEW_ARCH_ENABLED
 #import "RNRudderFirebaseIntegrationModuleSpec/RNRudderFirebaseIntegrationModuleSpec.h"
