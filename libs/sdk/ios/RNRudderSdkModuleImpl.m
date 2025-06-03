@@ -29,10 +29,6 @@
   return self;
 }
 
-- (NSString *)getName {
-  return @"RNRudderSdkModule";
-}
-
 - (void)setup:(NSDictionary*)config options:(NSDictionary*)options resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject {
   if (![self isRudderClientInitializedAndReady]) {
     self->configParams = [[RNParamsConfigurator alloc] initWithConfig:config];
