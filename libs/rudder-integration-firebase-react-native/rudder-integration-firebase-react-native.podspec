@@ -15,15 +15,12 @@ Pod::Spec.new do |s|
   s.platforms    = { :ios => "9.0" }
   s.source       = { :git => "https://github.com/rudderlabs/rudder-sdk-react-native.git", :tag => "master" }
 
-  s.source_files = "ios/**/*.{h,c,m,mm,swift}"
+  s.source_files = "ios/**/*.{h,m,mm,swift}"
   s.requires_arc = true
-  s.static_framework = true 
-
-  s.ios.deployment_target = '12.0'
-  s.tvos.deployment_target = '11.0'
+  s.static_framework = true
 
   s.dependency "React"
-  s.dependency "Rudder-Firebase", "~> 3.1"
+  s.dependency "Rudder-Firebase", "~> 3.6"
   s.dependency 'RNRudderSdk'
 
   install_modules_dependencies(s)
