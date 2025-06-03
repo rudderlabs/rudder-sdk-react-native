@@ -20,6 +20,7 @@
 
 #endif
 
+  @private
   RNRudderFirebaseIntegrationModuleImpl *moduleImpl;
 }
 

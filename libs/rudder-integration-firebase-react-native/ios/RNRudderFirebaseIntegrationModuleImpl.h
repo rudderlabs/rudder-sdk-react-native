@@ -1,4 +1,5 @@
 #import <Foundation/Foundation.h>
+#import <React/RCTBridge.h>
 
 @interface RNRudderFirebaseIntegrationModuleImpl : NSObject
 
