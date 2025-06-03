@@ -9,19 +9,12 @@
 
 RCT_EXPORT_MODULE();
 
-@synthesize bridge = _bridge;
-
 - (instancetype)init {
   self = [super init];
   if (self) {
-    moduleImpl = nil;
+    moduleImpl = [[RNRudderFirebaseIntegrationModuleImpl alloc] init];
   }
   return self;
-}
-
-- (void)setBridge:(RCTBridge *)bridge {
-  _bridge = bridge;
-  moduleImpl = [[RNRudderFirebaseIntegrationModuleImpl alloc] initWithBridge:bridge];
 }
 
 - (dispatch_queue_t)methodQueue

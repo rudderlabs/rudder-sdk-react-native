@@ -6,17 +6,7 @@
 @import Rudder_Firebase;
 #endif
 
-@implementation RNRudderFirebaseIntegrationModuleImpl {
-    RCTBridge *bridge;
-}
-
-- (instancetype)initWithBridge:(RCTBridge *)bridge {
-    self = [super init];
-    if (self) {
-        self->bridge = bridge;
-    }
-    return self;
-}
+@implementation RNRudderFirebaseIntegrationModuleImpl
 
 - (void)setup:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject {
     [RNRudderAnalytics addIntegration:[RudderFirebaseFactory instance]];
