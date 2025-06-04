@@ -2,7 +2,7 @@ apply plugin: "com.android.application"
 apply plugin: "org.jetbrains.kotlin.android"
 apply plugin: "com.facebook.react"
 
-// For Firebase, uncomment this line:
+// To use Firebase, uncomment this line:
 //  apply plugin: 'com.google.gms.google-services'
 // To fetch value from .env file keep this line:
 apply from: project(':react-native-config').projectDir.getPath() + "/dotenv.gradle"

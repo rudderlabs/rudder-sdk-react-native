@@ -20,8 +20,14 @@
     "url": "https://github.com/rudderlabs/rudder-sdk-react-native/issues"
   },
   "homepage": "https://github.com/rudderlabs/rudder-sdk-react-native#readme",
+  "codegenConfig": {
+    "name": "RNRudderFirebaseIntegrationModuleSpec",
+    "type": "modules",
+    "jsSrcsDir": "src"
+  },
+  "react-native": "./src/index.ts",
   "peerDependencies": {
-    "react": "^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0",
-    "react-native": ">= 0.41.2 < 0.80.0 || ^0.0.0-0"
+    "react": ">= 16.8.0",
+    "react-native": ">= 0.74.0"
   }
 }

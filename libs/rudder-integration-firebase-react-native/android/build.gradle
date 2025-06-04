@@ -1,50 +1,97 @@
-// android/build.gradle
-
-// based on:
-//
-// * https://github.com/facebook/react-native/blob/0.60-stable/template/android/build.gradle
-//   original location:
-//   - https://github.com/facebook/react-native/blob/0.58-stable/local-cli/templates/HelloWorld/android/build.gradle
-//
-// * https://github.com/facebook/react-native/blob/0.60-stable/template/android/app/build.gradle
-//   original location:
-//   - https://github.com/facebook/react-native/blob/0.58-stable/local-cli/templates/HelloWorld/android/app/build.gradle
-
-def packageJson = new groovy.json.JsonSlurper().parseText(file('../package.json').text)
-version = packageJson.version
-
-ext {
-  DEFAULT_COMPILE_SDK_VERSION = 31
-  DEFAULT_MIN_SDK_VERSION = 21
-  DEFAULT_TARGET_SDK_VERSION = 31
-  VERSION_CODE = 2
-  VERSION_NAME = version
-  GROUP_NAME = 'com.rudderstack.integration.reactnative.firebase'
-}
-
 buildscript {
+  ext.getExtOrDefault = {name ->
+    return rootProject.ext.has(name) ? rootProject.ext.get(name) : project.properties['RNRudderFirebaseIntegrationModule_' + name]
+  }
+
   repositories {
     google()
     mavenCentral()
   }
 
   dependencies {
-    classpath("com.android.tools.build:gradle:7.2.2")
+    classpath("com.android.tools.build:gradle:8.7.2")
+    // noinspection DifferentKotlinGradleVersion
+    classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${getExtOrDefault('kotlinVersion')}"
   }
 }
 
-apply from: "$projectDir/common_task.gradle"
+def isNewArchitectureEnabled() {
+  return rootProject.hasProperty("newArchEnabled") && rootProject.getProperty("newArchEnabled") == "true"
+}
+
+apply plugin: "com.android.library"
+apply plugin: "kotlin-android"
+
+if (isNewArchitectureEnabled()) {
+  apply plugin: "com.facebook.react"
+}
+
+def getExtOrIntegerDefault(name) {
+  return rootProject.ext.has(name) ? rootProject.ext.get(name) : (project.properties["RNRudderFirebaseIntegrationModule_" + name]).toInteger()
+}
+
+android {
+  namespace "com.rudderstack.integration.reactnative.firebase"
+
+  compileSdkVersion getExtOrIntegerDefault("compileSdkVersion")
+
+  defaultConfig {
+    minSdkVersion getExtOrIntegerDefault("minSdkVersion")
+    targetSdkVersion getExtOrIntegerDefault("targetSdkVersion")
+
+    buildConfigField "boolean", "IS_NEW_ARCHITECTURE_ENABLED", isNewArchitectureEnabled().toString()
+  }
+
+  buildFeatures {
+    buildConfig true
+  }
+
+  lintOptions {
+    disable "GradleCompatible"
+  }
+
+  compileOptions {
+    sourceCompatibility JavaVersion.VERSION_1_8
+    targetCompatibility JavaVersion.VERSION_1_8
+  }
+
+  sourceSets {
+    main {
+      if (isNewArchitectureEnabled()) {
+        java.srcDirs += ['src/main/newarch']
+      } else {
+        java.srcDirs += ['src/main/oldarch']
+      }
+    }
+  }
+}
+
+repositories {
+  mavenCentral()
+  google()
+}
+
+def kotlin_version = getExtOrDefault("kotlinVersion")
 
 dependencies {
-    //noinspection GradleDynamicVersion
-    implementation 'com.facebook.react:react-native:+'
+    implementation "com.facebook.react:react-android"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
     // rudderstack dependencies
     implementation project(path: ':rudderstack_rudder-sdk-react-native')  // From node_modules
-    implementation 'com.rudderstack.android.sdk:core:[1.13.0, 2.0.0)'
-    implementation 'com.rudderstack.android.integration:firebase:[3.0.0,4.0)'
+    implementation 'com.rudderstack.android.sdk:core:[1.26.0, 2.0.0)'
+    implementation 'com.rudderstack.android.integration:firebase:[3.3.0,4.0)'
 
     // firebase dependencies
-    implementation 'com.google.firebase:firebase-analytics:18.0.0'
+    implementation platform('com.google.firebase:firebase-bom:[33.5.1, 34.0)')
+    implementation 'com.google.firebase:firebase-analytics'
+}
+
+if (isNewArchitectureEnabled()) {
+  react {
+    jsRootDir = file("../src/")
+    libraryName = "RNRudderFirebaseIntegrationModule"
+    codegenJavaPackageName = "com.rudderstack.integration.reactnative.firebase"
+  }
 }
 

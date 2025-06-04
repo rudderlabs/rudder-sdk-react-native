@@ -11,8 +11,13 @@
 ## Usage
 
 ```javascript
-import RudderIntegrationFirebaseReactNative from '@rudderstack/rudder-integration-firebase-react-native';
+import firebase from '@rudderstack/rudder-integration-firebase-react-native';
 
-// TODO: What to do with the module?
-RudderIntegrationFirebaseReactNative;
+const config = {
+  dataPlaneUrl: TEST_DATAPLANE_URL,
+  logLevel: RUDDER_LOG_LEVEL.VERBOSE,
+  withFactories: [firebase],
+};
+
+await rc.setup(TEST_WRITE_KEY, config, options);
 ```
