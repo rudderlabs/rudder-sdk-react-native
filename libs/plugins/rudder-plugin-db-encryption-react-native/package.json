@@ -1,7 +1,7 @@
 {
   "name": "@rudderstack/rudder-plugin-db-encryption-react-native",
   "title": "Rudder Plugin DBEncryption React Native",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "Rudder React Native DBEncryption Plugin support for Android and iOS",
   "keywords": [
     "react-native",

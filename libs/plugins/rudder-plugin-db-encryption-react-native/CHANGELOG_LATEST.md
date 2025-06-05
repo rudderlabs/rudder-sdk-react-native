@@ -1,5 +1,5 @@
-## [1.4.0](https://github.com/rudderlabs/rudder-sdk-react-native/compare/rudder-plugin-db-encryption-react-native@1.3.2...rudder-plugin-db-encryption-react-native@1.4.0) (2025-04-29)
+## [1.4.1](https://github.com/rudderlabs/rudder-sdk-react-native/compare/rudder-plugin-db-encryption-react-native@1.4.0...rudder-plugin-db-encryption-react-native@1.4.1) (2025-06-05)
 
-### Features
+### Bug Fixes
 
-- add React 19 support and resolve Snyk vulnerability ([#418](https://github.com/rudderlabs/rudder-sdk-react-native/issues/418)) ([793ae17](https://github.com/rudderlabs/rudder-sdk-react-native/commit/793ae17076d8f69404877eec07fea1b49c3ce304))
+- add dummy commit to trigger changelog generation ([#452](https://github.com/rudderlabs/rudder-sdk-react-native/issues/452)) ([80fd898](https://github.com/rudderlabs/rudder-sdk-react-native/commit/80fd898f084ee9290cbeb72fad6b852127aabf21))
