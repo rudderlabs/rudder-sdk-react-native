@@ -1,9 +1,3 @@
-import { NativeModules } from 'react-native';
+import NativeFirebaseBridge from './NativeFirebaseBridge';
 
-const { RudderIntegrationFirebaseReactNative } = NativeModules;
-
-if (!RudderIntegrationFirebaseReactNative) {
-  throw new Error('Unable to import Rudder-Firebase native module');
-}
-
-export default RudderIntegrationFirebaseReactNative;
+export default NativeFirebaseBridge;

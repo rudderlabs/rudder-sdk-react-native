@@ -1,4 +1,4 @@
-import { Configuration } from './NativeBridge';
+import { Configuration } from './NativeRudderBridge';
 import {
   DATA_PLANE_URL,
   CONTROL_PLANE_URL,
@@ -16,6 +16,8 @@ import {
   COLLECT_DEVICE_ID,
   ENABLE_GZIP,
 } from './Constants';
+
+import IDBEncryption from './IDBEncryption';
 
 export const configure = async (
   writeKey: string,
@@ -51,7 +53,10 @@ export const configure = async (
   }
 
   if (dbEncryption !== undefined) {
-    await dbEncryption.addDBEncryptionPlugin(dbEncryption.key, dbEncryption.enable);
+    await (dbEncryption as IDBEncryption).addDBEncryptionPlugin(
+      (dbEncryption as IDBEncryption).key,
+      (dbEncryption as IDBEncryption).enable,
+    );
   }
 
   const config = {

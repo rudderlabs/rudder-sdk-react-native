@@ -1,24 +1,26 @@
+#import "RNRudderSdkModuleImpl.h"
 
+  // Thanks to this guard, we won't import this header when we build for the old architecture.
+#ifdef RCT_NEW_ARCH_ENABLED
+
+  // New Architecture
+#import "RNRudderSdkModuleSpec/RNRudderSdkModuleSpec.h"
+@interface RNRudderSdkModule : NSObject <NativeRudderBridgeSpec> {
+
+#else
+
+  // Legacy Architecture
 #if __has_include("RCTBridgeModule.h")
 #import "RCTBridgeModule.h"
 #else
 #import <React/RCTBridgeModule.h>
 #endif
-#import "RNApplicationLifeCycleManager.h"
-#import "RNBackGroundModeManager.h"
-#import "RNPreferenceManager.h"
-#import "RNParamsConfigurator.h"
-#import "RNUserSessionPlugin.h"
 
 @interface RNRudderSdkModule : NSObject <RCTBridgeModule> {
-    RNApplicationLifeCycleManager *applicationLifeCycleManager;
-    RNBackGroundModeManager *backGroundModeManager;
-    RNPreferenceManager *preferenceManager;
-    RNParamsConfigurator *configParams;
-    BOOL initialized;
-    RNUserSessionPlugin *session;
+
+#endif
+
+  RNRudderSdkModuleImpl *moduleImpl;
 }
 
-
 @end
-  

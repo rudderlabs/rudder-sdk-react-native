@@ -2,7 +2,7 @@ import { Platform } from 'react-native';
 import AsyncLock from 'async-lock';
 
 import { configure } from './RudderConfiguration';
-import bridge, { Configuration } from './NativeBridge';
+import bridge, { Configuration } from './NativeRudderBridge';
 import { logInit, logDebug, logError, logWarn } from './Logger';
 import { SDK_VERSION, ENABLE_GZIP } from './Constants';
 import IRudderContext from './IRudderContext';
@@ -119,7 +119,7 @@ async function setup(
   await lock.acquire('lock', async function (done) {
     const config = await configure(writeKey, configuration);
     logDebug('setup: created config');
-    await bridge.setup(config, options);
+    await bridge.setup(config as Record<string, unknown>, options);
     logDebug('setup: setup completed');
     done();
   });
@@ -330,7 +330,7 @@ async function optOut(optOut: boolean) {
 }
 
 // eslint-disable-next-line @typescript-eslint/ban-types
-async function registerCallback(name: string, callback: Function) {
+async function registerCallback(name: string, callback: (data: unknown) => void) {
   if (name) {
     bridge.registerCallback(name, callback);
   }

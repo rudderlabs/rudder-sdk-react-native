@@ -2,6 +2,19 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [3.0.0](https://github.com/rudderlabs/rudder-sdk-react-native/compare/example-2.0.0...example-3.0.0) (2025-06-05)
+
+
+### ⚠ BREAKING CHANGES
+
+* **firebase:** add support for new react native architecture (#450)
+* add support for new architecture (#446)
+
+### Features
+
+* add support for new architecture ([#446](https://github.com/rudderlabs/rudder-sdk-react-native/issues/446)) ([17f381f](https://github.com/rudderlabs/rudder-sdk-react-native/commit/17f381f161f16549815c955bae85d8a10da6d130)), closes [#448](https://github.com/rudderlabs/rudder-sdk-react-native/issues/448)
+* **firebase:** add support for new react native architecture ([#450](https://github.com/rudderlabs/rudder-sdk-react-native/issues/450)) ([4fe8551](https://github.com/rudderlabs/rudder-sdk-react-native/commit/4fe8551a952f910c825c27be2cc5027d6803d75c))
+
 ## [2.0.0](https://github.com/rudderlabs/rudder-sdk-react-native/compare/example-1.0.0...example-2.0.0) (2025-04-29)
 
 

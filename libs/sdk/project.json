@@ -45,6 +45,11 @@
             "glob": "LICENSE.md",
             "input": ".",
             "output": "."
+          },
+          {
+            "glob": "libs/sdk/src",
+            "input": ".",
+            "output": "."
           }
         ],
         "updateBuildableProjectDepsInPackageJson": true,
@@ -94,7 +99,7 @@
     "github": {
       "executor": "@jscutlery/semver:github",
       "options": {
-        "tag": "rudder-sdk-react-native@2.1.0",
+        "tag": "rudder-sdk-react-native@3.0.0",
         "notesFile": "./libs/sdk/CHANGELOG_LATEST.md"
       }
     },

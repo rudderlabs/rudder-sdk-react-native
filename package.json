@@ -1,6 +1,6 @@
 {
   "name": "@rudderstack/rudder-sdk-react-native-monorepo",
-  "version": "2.33.0",
+  "version": "2.34.0",
   "description": "Rudder React Native SDK monorepo",
   "keywords": [
     "react-native",
@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/rudderlabs/rudder-sdk-react-native#readme",
   "scripts": {
-    "setup": "gem install xcpretty && npm i && nx sync-deps example && nx ensure-symlink example && cd apps/example/ios && pod repo update && pod install",
+    "setup": "gem install xcpretty && npm i && nx sync-deps example && nx ensure-symlink example && cd apps/example/ios && bundle install && bundle exec pod install",
     "setup:ci": "npm i && nx sync-deps example && nx ensure-symlink example && nx run rudder-sdk-react-native:build",
     "start": "nx serve",
     "bundle:ci": "nx bundle-android example && nx bundle-ios example",
@@ -49,7 +49,7 @@
   "private": true,
   "dependencies": {
     "@babel/runtime": "7.27.0",
-    "@react-navigation/native": "7.1.6",
+    "@react-navigation/native": "7.1.10",
     "@react-navigation/native-stack": "7.2.1",
     "@rudderstack/rudder-integration-amplitude-react-native": "file:libs/rudder-integration-amplitude-react-native",
     "@rudderstack/rudder-integration-appcenter-react-native": "file:libs/rudder-integration-appcenter-react-native",
@@ -61,7 +61,7 @@
     "@rudderstack/rudder-integration-moengage-react-native": "file:libs/rudder-integration-moengage-react-native",
     "@rudderstack/rudder-integration-singular-react-native": "file:libs/rudder-integration-singular-react-native",
     "@rudderstack/rudder-plugin-db-encryption-react-native": "file:libs/plugins/rudder-plugin-db-encryption-react-native",
-    "@rudderstack/rudder-sdk-react-native": "file:libs/sdk",
+    "@rudderstack/rudder-sdk-react-native": "file:./libs/sdk",
     "async-lock": "1.4.0",
     "core-js": "3.36.1",
     "react": "19.0.0",

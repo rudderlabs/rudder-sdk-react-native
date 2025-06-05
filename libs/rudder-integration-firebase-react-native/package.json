@@ -1,7 +1,7 @@
 {
   "name": "@rudderstack/rudder-integration-firebase-react-native",
   "title": "Rudder Integration Firebase React Native",
-  "version": "1.2.0",
+  "version": "2.0.0",
   "description": "Rudder React Native SDK Firebase Device mode support for Android and iOS",
   "keywords": [
     "react-native",
@@ -20,8 +20,14 @@
     "url": "https://github.com/rudderlabs/rudder-sdk-react-native/issues"
   },
   "homepage": "https://github.com/rudderlabs/rudder-sdk-react-native#readme",
+  "codegenConfig": {
+    "name": "RNRudderFirebaseIntegrationModuleSpec",
+    "type": "modules",
+    "jsSrcsDir": "src"
+  },
+  "react-native": "./src/index.ts",
   "peerDependencies": {
-    "react": "^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0",
-    "react-native": ">= 0.41.2 < 0.80.0 || ^0.0.0-0"
+    "react": ">= 16.8.0",
+    "react-native": ">= 0.74.0"
   }
 }
