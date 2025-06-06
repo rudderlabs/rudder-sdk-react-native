@@ -7,7 +7,7 @@
     "@testing-library/jest-native": "*",
     "@testing-library/react-native": "*",
     "react": "*",
-    "react-native": "*",
+    "react-native": "0.78.2",
     "metro-config": "*",
     "@react-native-async-storage/async-storage": "*",
     "@rudderstack/rudder-sdk-react-native": "*",
