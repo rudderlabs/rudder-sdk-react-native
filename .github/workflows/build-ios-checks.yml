@@ -21,7 +21,7 @@ jobs:
           java-version: '17'
 
       - name: Setup Ruby
-        uses: ruby/setup-ruby@28233a011b6bb8633ea908d76c6d23aab6518b5c #v1.233.0
+        uses: ruby/setup-ruby@a4effe49ee8ee5b8b5091268c473a4628afb5651 #v1.233.0
         with:
           ruby-version: '3.3.2'
 
