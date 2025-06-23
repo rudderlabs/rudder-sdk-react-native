@@ -8,7 +8,7 @@
     "@testing-library/react-native": "*",
     "react": "*",
     "react-native": "*",
-    "metro-config": "*",
+    "metro-config": "0.82.4",
     "@react-native-async-storage/async-storage": "*",
     "@rudderstack/rudder-sdk-react-native": "*",
     "@rudderstack/rudder-plugin-db-encryption-react-native": "*",
