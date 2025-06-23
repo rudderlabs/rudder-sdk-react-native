@@ -6,7 +6,7 @@
     "@react-native/metro-config": "*",
     "@testing-library/jest-native": "*",
     "@testing-library/react-native": "*",
-    "react": "*",
+    "react": "19.1.0",
     "react-native": "*",
     "metro-config": "*",
     "@react-native-async-storage/async-storage": "*",
