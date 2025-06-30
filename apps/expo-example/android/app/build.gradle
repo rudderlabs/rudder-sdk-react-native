@@ -90,7 +90,8 @@ android {
     namespace "com.expoexample"
     defaultConfig {
         applicationId "com.expoexample"
-        minSdkVersion rootProject.ext.minSdkVersion
+        // Needed for Rudder-Braze integration
+        minSdkVersion 25 //rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"

@@ -1,5 +1,22 @@
 PODS:
+  - Amplitude (8.19.2):
+    - AnalyticsConnector (~> 1.0.0)
+  - AnalyticsConnector (1.0.3)
+  - AppCenter (5.0.6):
+    - AppCenter/Analytics (= 5.0.6)
+    - AppCenter/Crashes (= 5.0.6)
+  - AppCenter/Analytics (5.0.6):
+    - AppCenter/Core
+  - AppCenter/Core (5.0.6)
+  - AppCenter/Crashes (5.0.6):
+    - AppCenter/Core
+  - AppsFlyerFramework (6.14.6):
+    - AppsFlyerFramework/Main (= 6.14.6)
+  - AppsFlyerFramework/Main (6.14.6)
   - boost (1.84.0)
+  - BrazeKit (11.1.1)
+  - CleverTap-iOS-SDK (4.2.2):
+    - SDWebImage (~> 5.11)
   - DoubleConversion (1.1.6)
   - EXConstants (17.1.6):
     - ExpoModulesCore
@@ -64,12 +81,142 @@ PODS:
     - ReactCommon/turbomodule/core
     - Yoga
   - fast_float (6.1.4)
+  - FBAEMKit (17.0.3):
+    - FBSDKCoreKit_Basics (= 17.0.3)
   - FBLazyVector (0.79.4)
+  - FBSDKCoreKit (17.0.3):
+    - FBAEMKit (= 17.0.3)
+    - FBSDKCoreKit_Basics (= 17.0.3)
+  - FBSDKCoreKit_Basics (17.0.3)
+  - FirebaseAnalytics (11.4.0):
+    - FirebaseAnalytics/AdIdSupport (= 11.4.0)
+    - FirebaseCore (~> 11.0)
+    - FirebaseInstallations (~> 11.0)
+    - GoogleUtilities/AppDelegateSwizzler (~> 8.0)
+    - GoogleUtilities/MethodSwizzler (~> 8.0)
+    - GoogleUtilities/Network (~> 8.0)
+    - "GoogleUtilities/NSData+zlib (~> 8.0)"
+    - nanopb (~> 3.30910.0)
+  - FirebaseAnalytics/AdIdSupport (11.4.0):
+    - FirebaseCore (~> 11.0)
+    - FirebaseInstallations (~> 11.0)
+    - GoogleAppMeasurement (= 11.4.0)
+    - GoogleUtilities/AppDelegateSwizzler (~> 8.0)
+    - GoogleUtilities/MethodSwizzler (~> 8.0)
+    - GoogleUtilities/Network (~> 8.0)
+    - "GoogleUtilities/NSData+zlib (~> 8.0)"
+    - nanopb (~> 3.30910.0)
+  - FirebaseCore (11.15.0):
+    - FirebaseCoreInternal (~> 11.15.0)
+    - GoogleUtilities/Environment (~> 8.1)
+    - GoogleUtilities/Logger (~> 8.1)
+  - FirebaseCoreInternal (11.15.0):
+    - "GoogleUtilities/NSData+zlib (~> 8.1)"
+  - FirebaseInstallations (11.15.0):
+    - FirebaseCore (~> 11.15.0)
+    - GoogleUtilities/Environment (~> 8.1)
+    - GoogleUtilities/UserDefaults (~> 8.1)
+    - PromisesObjC (~> 2.4)
   - fmt (11.0.2)
   - glog (0.3.5)
+  - GoogleAppMeasurement (11.4.0):
+    - GoogleAppMeasurement/AdIdSupport (= 11.4.0)
+    - GoogleUtilities/AppDelegateSwizzler (~> 8.0)
+    - GoogleUtilities/MethodSwizzler (~> 8.0)
+    - GoogleUtilities/Network (~> 8.0)
+    - "GoogleUtilities/NSData+zlib (~> 8.0)"
+    - nanopb (~> 3.30910.0)
+  - GoogleAppMeasurement/AdIdSupport (11.4.0):
+    - GoogleAppMeasurement/WithoutAdIdSupport (= 11.4.0)
+    - GoogleUtilities/AppDelegateSwizzler (~> 8.0)
+    - GoogleUtilities/MethodSwizzler (~> 8.0)
+    - GoogleUtilities/Network (~> 8.0)
+    - "GoogleUtilities/NSData+zlib (~> 8.0)"
+    - nanopb (~> 3.30910.0)
+  - GoogleAppMeasurement/WithoutAdIdSupport (11.4.0):
+    - GoogleUtilities/AppDelegateSwizzler (~> 8.0)
+    - GoogleUtilities/MethodSwizzler (~> 8.0)
+    - GoogleUtilities/Network (~> 8.0)
+    - "GoogleUtilities/NSData+zlib (~> 8.0)"
+    - nanopb (~> 3.30910.0)
+  - GoogleUtilities (8.1.0):
+    - GoogleUtilities/AppDelegateSwizzler (= 8.1.0)
+    - GoogleUtilities/Environment (= 8.1.0)
+    - GoogleUtilities/Logger (= 8.1.0)
+    - GoogleUtilities/MethodSwizzler (= 8.1.0)
+    - GoogleUtilities/Network (= 8.1.0)
+    - "GoogleUtilities/NSData+zlib (= 8.1.0)"
+    - GoogleUtilities/Privacy (= 8.1.0)
+    - GoogleUtilities/Reachability (= 8.1.0)
+    - GoogleUtilities/SwizzlerTestHelpers (= 8.1.0)
+    - GoogleUtilities/UserDefaults (= 8.1.0)
+  - GoogleUtilities/AppDelegateSwizzler (8.1.0):
+    - GoogleUtilities/Environment
+    - GoogleUtilities/Logger
+    - GoogleUtilities/Network
+    - GoogleUtilities/Privacy
+  - GoogleUtilities/Environment (8.1.0):
+    - GoogleUtilities/Privacy
+  - GoogleUtilities/Logger (8.1.0):
+    - GoogleUtilities/Environment
+    - GoogleUtilities/Privacy
+  - GoogleUtilities/MethodSwizzler (8.1.0):
+    - GoogleUtilities/Logger
+    - GoogleUtilities/Privacy
+  - GoogleUtilities/Network (8.1.0):
+    - GoogleUtilities/Logger
+    - "GoogleUtilities/NSData+zlib"
+    - GoogleUtilities/Privacy
+    - GoogleUtilities/Reachability
+  - "GoogleUtilities/NSData+zlib (8.1.0)":
+    - GoogleUtilities/Privacy
+  - GoogleUtilities/Privacy (8.1.0)
+  - GoogleUtilities/Reachability (8.1.0):
+    - GoogleUtilities/Logger
+    - GoogleUtilities/Privacy
+  - GoogleUtilities/SwizzlerTestHelpers (8.1.0):
+    - GoogleUtilities/MethodSwizzler
+  - GoogleUtilities/UserDefaults (8.1.0):
+    - GoogleUtilities/Logger
+    - GoogleUtilities/Privacy
   - hermes-engine (0.79.4):
     - hermes-engine/Pre-built (= 0.79.4)
   - hermes-engine/Pre-built (0.79.4)
+  - MetricsReporter (2.0.0):
+    - RSCrashReporter (= 1.0.1)
+    - RudderKit (= 1.4.0)
+  - MoEngage-iOS-SDK (9.18.0):
+    - MoEngage-iOS-SDK/Core (= 9.18.0)
+  - MoEngage-iOS-SDK/Core (9.18.0):
+    - MoEngageAnalytics (= 4.18.0)
+    - MoEngageCore (= 9.18.0)
+    - MoEngageMessaging (= 4.18.0)
+    - MoEngageObjCUtils (= 3.18.0)
+    - MoEngageSDK (= 9.18.0)
+    - MoEngageSecurity (= 1.10.0)
+  - MoEngageAnalytics (4.18.0):
+    - MoEngageCore
+    - MoEngageObjCUtils
+  - MoEngageCore (9.18.0):
+    - MoEngageSecurity
+  - MoEngageMessaging (4.18.0):
+    - MoEngageAnalytics
+    - MoEngageCore
+    - MoEngageObjCUtils
+  - MoEngageObjCUtils (3.18.0):
+    - MoEngageCore
+  - MoEngageSDK (9.18.0):
+    - MoEngageAnalytics
+    - MoEngageCore
+    - MoEngageMessaging
+    - MoEngageObjCUtils
+  - MoEngageSecurity (1.10.0)
+  - nanopb (3.30910.0):
+    - nanopb/decode (= 3.30910.0)
+    - nanopb/encode (= 3.30910.0)
+  - nanopb/decode (3.30910.0)
+  - nanopb/encode (3.30910.0)
+  - PromisesObjC (2.4.0)
   - RCT-Folly (2024.11.18.00):
     - boost
     - DoubleConversion
@@ -1716,7 +1863,142 @@ PODS:
     - React-logger (= 0.79.4)
     - React-perflogger (= 0.79.4)
     - React-utils (= 0.79.4)
+  - RNRudderSdk (3.0.0):
+    - DoubleConversion
+    - glog
+    - hermes-engine
+    - RCT-Folly (= 2024.11.18.00)
+    - RCTRequired
+    - RCTTypeSafety
+    - React-Core
+    - React-debug
+    - React-Fabric
+    - React-featureflags
+    - React-graphics
+    - React-hermes
+    - React-ImageManager
+    - React-jsi
+    - React-NativeModulesApple
+    - React-RCTFabric
+    - React-renderercss
+    - React-rendererdebug
+    - React-utils
+    - ReactCodegen
+    - ReactCommon/turbomodule/bridging
+    - ReactCommon/turbomodule/core
+    - Rudder (< 2.0.0, >= 1.31.0)
+    - Yoga
+  - RSCrashReporter (1.0.1)
+  - Rudder (1.31.1):
+    - MetricsReporter (= 2.0.0)
+  - Rudder-Amplitude (1.2.0):
+    - Amplitude (= 8.19.2)
+    - Rudder (~> 1.12)
+  - Rudder-AppCenter (1.0.1):
+    - AppCenter
+    - Rudder
+  - Rudder-Appsflyer (2.7.0):
+    - AppsFlyerFramework (~> 6.14.5)
+    - Rudder (~> 1.12)
+  - Rudder-Braze (4.0.0):
+    - BrazeKit (~> 11.1.1)
+    - Rudder (~> 1.26)
+  - Rudder-CleverTap (1.1.2):
+    - CleverTap-iOS-SDK (~> 4.2)
+    - Rudder (~> 1.12)
+  - Rudder-Facebook (2.2.1):
+    - FBSDKCoreKit (~> 17.0.2)
+    - Rudder (~> 1.12)
+  - Rudder-Firebase (3.6.0):
+    - FirebaseAnalytics (~> 11.4.0)
+    - Rudder (~> 1.29)
+  - rudder-integration-amplitude-react-native (1.2.0):
+    - React
+    - RNRudderSdk
+    - Rudder-Amplitude
+  - rudder-integration-appcenter-react-native (1.2.0):
+    - React
+    - RNRudderSdk
+    - Rudder-AppCenter
+  - rudder-integration-appsflyer-react-native (1.7.0):
+    - React
+    - RNRudderSdk
+    - Rudder-Appsflyer (>= 2.2.0)
+  - rudder-integration-braze-react-native (2.0.0):
+    - React
+    - RNRudderSdk
+    - Rudder-Braze (~> 4.0)
+  - rudder-integration-clevertap-react-native (1.2.0):
+    - CleverTap-iOS-SDK
+    - React
+    - RNRudderSdk
+    - Rudder-CleverTap (~> 1.1.2)
+  - rudder-integration-facebook-react-native (1.1.0):
+    - React
+    - RNRudderSdk
+    - Rudder-Facebook (< 3.0.0, >= 2.2.1)
+  - rudder-integration-firebase-react-native (2.0.0):
+    - DoubleConversion
+    - glog
+    - hermes-engine
+    - RCT-Folly (= 2024.11.18.00)
+    - RCTRequired
+    - RCTTypeSafety
+    - React
+    - React-Core
+    - React-debug
+    - React-Fabric
+    - React-featureflags
+    - React-graphics
+    - React-hermes
+    - React-ImageManager
+    - React-jsi
+    - React-NativeModulesApple
+    - React-RCTFabric
+    - React-renderercss
+    - React-rendererdebug
+    - React-utils
+    - ReactCodegen
+    - ReactCommon/turbomodule/bridging
+    - ReactCommon/turbomodule/core
+    - RNRudderSdk
+    - Rudder-Firebase (~> 3.6)
+    - Yoga
+  - rudder-integration-moengage-react-native (1.2.0):
+    - React
+    - RNRudderSdk
+    - Rudder-Moengage
+  - rudder-integration-singular-react-native (1.2.0):
+    - React
+    - RNRudderSdk
+    - Rudder-Singular
+  - Rudder-Moengage (2.3.0):
+    - MoEngage-iOS-SDK (= 9.18.0)
+    - Rudder (~> 1.12)
+  - rudder-plugin-db-encryption-react-native (1.4.1):
+    - React
+    - RNRudderSdk
+    - Rudder (< 2.0.0, >= 1.24.1)
+    - RudderDatabaseEncryption
+  - Rudder-Singular (1.1.0):
+    - Rudder (~> 1.0)
+    - Singular-SDK (= 12.5.0)
+  - RudderDatabaseEncryption (1.1.0):
+    - Rudder (~> 1.21)
+    - SQLCipher (~> 4.0)
+  - RudderKit (1.4.0)
+  - SDWebImage (5.21.1):
+    - SDWebImage/Core (= 5.21.1)
+  - SDWebImage/Core (5.21.1)
+  - Singular-SDK (12.5.0):
+    - Singular-SDK/Main (= 12.5.0)
+  - Singular-SDK/Main (12.5.0)
   - SocketRocket (0.7.1)
+  - SQLCipher (4.9.0):
+    - SQLCipher/standard (= 4.9.0)
+  - SQLCipher/common (4.9.0)
+  - SQLCipher/standard (4.9.0):
+    - SQLCipher/common
   - Yoga (0.0.0)
 
 DEPENDENCIES:
@@ -1731,8 +2013,10 @@ DEPENDENCIES:
   - ExpoModulesCore (from `../node_modules/expo-modules-core`)
   - fast_float (from `../node_modules/react-native/third-party-podspecs/fast_float.podspec`)
   - FBLazyVector (from `../node_modules/react-native/Libraries/FBLazyVector`)
+  - FirebaseCore
   - fmt (from `../node_modules/react-native/third-party-podspecs/fmt.podspec`)
   - glog (from `../node_modules/react-native/third-party-podspecs/glog.podspec`)
+  - GoogleUtilities
   - hermes-engine (from `../node_modules/react-native/sdks/hermes-engine/hermes-engine.podspec`)
   - RCT-Folly (from `../node_modules/react-native/third-party-podspecs/RCT-Folly.podspec`)
   - RCT-Folly/Fabric (from `../node_modules/react-native/third-party-podspecs/RCT-Folly.podspec`)
@@ -1798,11 +2082,64 @@ DEPENDENCIES:
   - ReactAppDependencyProvider (from `build/generated/ios`)
   - ReactCodegen (from `build/generated/ios`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
+  - "RNRudderSdk (from `../node_modules/@rudderstack/rudder-sdk-react-native`)"
+  - Rudder-CleverTap (= 1.1.2)
+  - "rudder-integration-amplitude-react-native (from `../node_modules/@rudderstack/rudder-integration-amplitude-react-native`)"
+  - "rudder-integration-appcenter-react-native (from `../node_modules/@rudderstack/rudder-integration-appcenter-react-native`)"
+  - "rudder-integration-appsflyer-react-native (from `../node_modules/@rudderstack/rudder-integration-appsflyer-react-native`)"
+  - "rudder-integration-braze-react-native (from `../node_modules/@rudderstack/rudder-integration-braze-react-native`)"
+  - "rudder-integration-clevertap-react-native (from `../node_modules/@rudderstack/rudder-integration-clevertap-react-native`)"
+  - "rudder-integration-facebook-react-native (from `../node_modules/@rudderstack/rudder-integration-facebook-react-native`)"
+  - "rudder-integration-firebase-react-native (from `../node_modules/@rudderstack/rudder-integration-firebase-react-native`)"
+  - "rudder-integration-moengage-react-native (from `../node_modules/@rudderstack/rudder-integration-moengage-react-native`)"
+  - "rudder-integration-singular-react-native (from `../node_modules/@rudderstack/rudder-integration-singular-react-native`)"
+  - "rudder-plugin-db-encryption-react-native (from `../node_modules/@rudderstack/rudder-plugin-db-encryption-react-native`)"
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
   trunk:
+    - Amplitude
+    - AnalyticsConnector
+    - AppCenter
+    - AppsFlyerFramework
+    - BrazeKit
+    - CleverTap-iOS-SDK
+    - FBAEMKit
+    - FBSDKCoreKit
+    - FBSDKCoreKit_Basics
+    - FirebaseAnalytics
+    - FirebaseCore
+    - FirebaseCoreInternal
+    - FirebaseInstallations
+    - GoogleAppMeasurement
+    - GoogleUtilities
+    - MetricsReporter
+    - MoEngage-iOS-SDK
+    - MoEngageAnalytics
+    - MoEngageCore
+    - MoEngageMessaging
+    - MoEngageObjCUtils
+    - MoEngageSDK
+    - MoEngageSecurity
+    - nanopb
+    - PromisesObjC
+    - RSCrashReporter
+    - Rudder
+    - Rudder-Amplitude
+    - Rudder-AppCenter
+    - Rudder-Appsflyer
+    - Rudder-Braze
+    - Rudder-CleverTap
+    - Rudder-Facebook
+    - Rudder-Firebase
+    - Rudder-Moengage
+    - Rudder-Singular
+    - RudderDatabaseEncryption
+    - RudderKit
+    - SDWebImage
+    - Singular-SDK
     - SocketRocket
+    - SQLCipher
 
 EXTERNAL SOURCES:
   boost:
@@ -1958,11 +2295,39 @@ EXTERNAL SOURCES:
     :path: build/generated/ios
   ReactCommon:
     :path: "../node_modules/react-native/ReactCommon"
+  RNRudderSdk:
+    :path: "../node_modules/@rudderstack/rudder-sdk-react-native"
+  rudder-integration-amplitude-react-native:
+    :path: "../node_modules/@rudderstack/rudder-integration-amplitude-react-native"
+  rudder-integration-appcenter-react-native:
+    :path: "../node_modules/@rudderstack/rudder-integration-appcenter-react-native"
+  rudder-integration-appsflyer-react-native:
+    :path: "../node_modules/@rudderstack/rudder-integration-appsflyer-react-native"
+  rudder-integration-braze-react-native:
+    :path: "../node_modules/@rudderstack/rudder-integration-braze-react-native"
+  rudder-integration-clevertap-react-native:
+    :path: "../node_modules/@rudderstack/rudder-integration-clevertap-react-native"
+  rudder-integration-facebook-react-native:
+    :path: "../node_modules/@rudderstack/rudder-integration-facebook-react-native"
+  rudder-integration-firebase-react-native:
+    :path: "../node_modules/@rudderstack/rudder-integration-firebase-react-native"
+  rudder-integration-moengage-react-native:
+    :path: "../node_modules/@rudderstack/rudder-integration-moengage-react-native"
+  rudder-integration-singular-react-native:
+    :path: "../node_modules/@rudderstack/rudder-integration-singular-react-native"
+  rudder-plugin-db-encryption-react-native:
+    :path: "../node_modules/@rudderstack/rudder-plugin-db-encryption-react-native"
   Yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
 SPEC CHECKSUMS:
+  Amplitude: 1c9fca37993bd5742cf7c121d432bf8bf5a28ccb
+  AnalyticsConnector: a53214d38ae22734c6266106c0492b37832633a9
+  AppCenter: 395cc12b428b8fdf12e9f92294d93a55bac389e4
+  AppsFlyerFramework: bef4087719ce689835bbf408c61e2bcc5d4b8bd8
   boost: 7e761d76ca2ce687f7cc98e698152abd03a18f90
+  BrazeKit: 879da791a0f4e247846a06c6de95f8b93f4579df
+  CleverTap-iOS-SDK: 36c21b8a671d87a0f9c7b389b339d02528bbe4d7
   DoubleConversion: cb417026b2400c8f53ae97020b2be961b59470cb
   EXConstants: 9f310f44bfedba09087042756802040e464323c0
   Expo: d8192e2b8d8df04a44affce7e908137a892933d1
@@ -1972,10 +2337,29 @@ SPEC CHECKSUMS:
   ExpoKeepAwake: bf0811570c8da182bfb879169437d4de298376e7
   ExpoModulesCore: d431ffe83c8673d02cb38425594a5f5480fd3061
   fast_float: 06eeec4fe712a76acc9376682e4808b05ce978b6
+  FBAEMKit: 9900b2edd99a2d21629a6277e6166f14c6215799
   FBLazyVector: 15c28682af535aa55b9b31e64deff54b7ed7d453
+  FBSDKCoreKit: 0791f8f68a8630931a4c12aa23a56cc021551596
+  FBSDKCoreKit_Basics: 46d6b472c0dd0a5a7e972c025033d1c567f54eb4
+  FirebaseAnalytics: 3feef9ae8733c567866342a1000691baaa7cad49
+  FirebaseCore: efb3893e5b94f32b86e331e3bd6dadf18b66568e
+  FirebaseCoreInternal: 9afa45b1159304c963da48addb78275ef701c6b4
+  FirebaseInstallations: 317270fec08a5d418fdbc8429282238cab3ac843
   fmt: a40bb5bd0294ea969aaaba240a927bd33d878cdd
   glog: 5683914934d5b6e4240e497e0f4a3b42d1854183
+  GoogleAppMeasurement: 987769c4ca6b968f2479fbcc9fe3ce34af454b8e
+  GoogleUtilities: 00c88b9a86066ef77f0da2fab05f65d7768ed8e1
   hermes-engine: 8b5a5eb386b990287d072fd7b6f6ebd9544dd251
+  MetricsReporter: 364b98791e868b10e9d512eb50af28d8c11e5cdb
+  MoEngage-iOS-SDK: f46670869777750ebfa07431c51a4e433a11b578
+  MoEngageAnalytics: 23402db29e1aa78f13849663b296193015ddc941
+  MoEngageCore: 00f1e8227baf57a71aec17e13028025f6f619b06
+  MoEngageMessaging: 99adeace55f36510360cfb19536a8c89b2d0988c
+  MoEngageObjCUtils: 19568f63b653daeb28ba18bafff4b8f176907fee
+  MoEngageSDK: 1ea19a0de8ff4c7237c041a27cdced4f400f949f
+  MoEngageSecurity: 195e23d58a49c08e1ba83de4691f1add42dda00b
+  nanopb: fad817b59e0457d11a5dfbde799381cd727c1275
+  PromisesObjC: f5707f49cb48b9636751c5b2e7d227e43fba9f47
   RCT-Folly: e78785aa9ba2ed998ea4151e314036f6c49e6d82
   RCTDeprecation: 0418ac97b9f53b2e37f473da1663ef3061e46beb
   RCTRequired: b9fde7f981b11aa898f03a70d3d4d36b80f1b16d
@@ -2038,9 +2422,36 @@ SPEC CHECKSUMS:
   ReactAppDependencyProvider: bf62814e0fde923f73fc64b7e82d76c63c284da9
   ReactCodegen: f891084749d03b8af8a244cefaa492e491b763fd
   ReactCommon: c7d636ec1b9801ff4ee83cce8e0bf74a1610fc3f
+  RNRudderSdk: 05e350d8a48ba624b2b0891237926780eb7ffb3f
+  RSCrashReporter: 6b8376ac729b0289ebe0908553e5f56d8171f313
+  Rudder: 352cb3417238fb84cc083826d9a5a7cc91efaa69
+  Rudder-Amplitude: d308b2bce1237c3cfdf3274458130f36815067db
+  Rudder-AppCenter: 9eca9241e3707a0e9610714dd91dc8da4bae7e1f
+  Rudder-Appsflyer: d7eb1497781a64e4228c97edc1cc3c7893b6ced0
+  Rudder-Braze: 0bdbacc1fb37b556f0f7cbd62ecb255498443105
+  Rudder-CleverTap: a0085aab472e0e60930c4301ef80bae5ff187e98
+  Rudder-Facebook: 24c9309373f13212d1139938aad86faa2914d342
+  Rudder-Firebase: d66ed5a8ef4a7dde1d6ce2997e6cfac262c098be
+  rudder-integration-amplitude-react-native: cdc31956c0f597e70bf64c8472926c486c16b594
+  rudder-integration-appcenter-react-native: e3e0e21942a9d6c120ad0228bd7988ccdd1e809a
+  rudder-integration-appsflyer-react-native: 861ad1a4f4782712f5a3ca706f809005cdd561f1
+  rudder-integration-braze-react-native: ec817420429791b8f3f5207a09deeb4b822d8778
+  rudder-integration-clevertap-react-native: b5f311e791017297436d491040c07a7289f6b56d
+  rudder-integration-facebook-react-native: 63ea95a5ac12b9cb8caba8c86687b1b78b60c4db
+  rudder-integration-firebase-react-native: 47d0229425722bc4031a8b4cc11758976380918c
+  rudder-integration-moengage-react-native: 7e215217d21c4e4e323571ce30cf82ac6ebb23ff
+  rudder-integration-singular-react-native: ae84b85d34cfd423328711c34ccf7a4dfebfdc55
+  Rudder-Moengage: 453bbddbf4aeb48d9517229ce8f2b0250acc457c
+  rudder-plugin-db-encryption-react-native: 9b130f1ec65263c9b13e3ef77bcfb82e4e897014
+  Rudder-Singular: 0685fcfd797962d7681a5f05e48c249dd6a11228
+  RudderDatabaseEncryption: 95b436538412958eda771f5d81bd970a9ffe4eec
+  RudderKit: f272f9872183946452ac94cd7bb2244a71e6ca8f
+  SDWebImage: f29024626962457f3470184232766516dee8dfea
+  Singular-SDK: 198466328cf193d4fba7b1d49b666b2f8f21e2d6
   SocketRocket: d4aabe649be1e368d1318fdf28a022d714d65748
+  SQLCipher: 31878d8ebd27e5c96db0b7cb695c96e9f8ad77da
   Yoga: a6cb833e04fb8c59a012b49fb1d040fcb0cbb633
 
-PODFILE CHECKSUM: 28b0752ecbab21d9ceda7427593376548038c092
+PODFILE CHECKSUM: 14d091714e38074df3be2a6f08d23ed8b01977bd
 
 COCOAPODS: 1.16.2
