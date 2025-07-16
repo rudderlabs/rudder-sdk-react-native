@@ -1,28 +1,10 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useEffect } from 'react';
-import { StyleSheet, Text, View, Button, Platform } from 'react-native';
+import { StyleSheet, View, Button, Platform } from 'react-native';
 import { WRITE_KEY, DATA_PLANE_URL } from '@env';
 
 import rudderClient, { RUDDER_LOG_LEVEL } from '@rudderstack/rudder-sdk-react-native';
-
-import DBEncryption from '@rudderstack/rudder-plugin-db-encryption-react-native';
-
-import amplitude from '@rudderstack/rudder-integration-amplitude-react-native';
-import braze from '@rudderstack/rudder-integration-braze-react-native';
-
-import appcenter, {
-  enableAnalytics,
-  disableAnalytics,
-} from '@rudderstack/rudder-integration-appcenter-react-native';
-import appsflyer, {
-  setOptions,
-  getAppsFlyerId,
-} from '@rudderstack/rudder-integration-appsflyer-react-native';
-import clevertap from '@rudderstack/rudder-integration-clevertap-react-native';
-import moengage from '@rudderstack/rudder-integration-moengage-react-native';
-import facebook from '@rudderstack/rudder-integration-facebook-react-native';
 import firebase from '@rudderstack/rudder-integration-firebase-react-native';
-import singular from '@rudderstack/rudder-integration-singular-react-native';
 
 const identifyWithExternalId = async () => {
   const options = {
@@ -233,63 +215,22 @@ const disableAppCenterAnalytics = async () => {
   await disableAnalytics();
 };
 
-const appsFlyerInitialization = async () => {
-  // TODO: get all secret details in .env file
-  setOptions({
-    devKey: 'APPSFLYER_DEV_KEY',
-    isDebug: true,
-  });
-};
-
-const getGlobalOptions = () => {
-  return {
-    integrations: {
-      // specifying destination by its display name
-      Mixpanel: false,
-    },
-    // custom contexts
-    tier: {
-      category: 'premium',
-      type: 'gold',
-    },
-  };
-};
-
 function RudderStackAPIs() {
   console.log(WRITE_KEY);
   console.log(DATA_PLANE_URL);
 
   useEffect(() => {
-    // appsFlyerInitialization();
-
-    const dbEncryption = new DBEncryption('versys', false);
-
     const rudderInitialise = async () => {
       await rudderClient.setup(
         WRITE_KEY,
         {
           dataPlaneUrl: DATA_PLANE_URL,
           logLevel: RUDDER_LOG_LEVEL.VERBOSE,
-          recordScreenViews: false,
-          enableBackgroundMode: true,
-          trackAppLifecycleEvents: true,
-          autoSessionTracking: true,
-          dbEncryption: dbEncryption,
-          enableGzip: true,
           withFactories: [
-            amplitude,
-            appcenter,
-            appsflyer,
-            braze,
-            clevertap,
-            facebook,
             // This requires additional setup in iOS and Android i.e., adding GoogleService-Info.plist and google-services.json files respectively
-            // firebase,
-            moengage,
-            singular,
+            firebase,
           ],
-        },
-        // getGlobalOptions()
+        }
       );
       console.log('SDK is initalised');
     };

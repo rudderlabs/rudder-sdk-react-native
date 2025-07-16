@@ -36,9 +36,7 @@ target 'expoexample' do
 
   pod 'FirebaseCore', :modular_headers => true
   pod 'GoogleUtilities', :modular_headers => true
-
-  # This is to solve the iOS errors
-  pod 'Rudder-CleverTap', '1.1.2'
+  $FirebaseSDKVersion = '11.4.0'
 
   use_react_native!(
     :path => config[:reactNativePath],

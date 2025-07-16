@@ -1,24 +1,16 @@
 # RudderStack React Native SDK - Expo Example App
 
-This is a comprehensive Expo React Native sample application demonstrating the integration of **RudderStack React Native SDK** with multiple RudderStack integrations for analytics and marketing platforms.
+This is an Expo React Native sample application demonstrating the integration of **RudderStack React Native SDK** with Firebase Analytics integration.
 
 ## Overview
 
-This example app showcases how to implement RudderStack's customer data platform capabilities in an Expo React Native application, featuring multiple destination integrations and advanced SDK features like database encryption, session management, and opt-out controls.
+This example app showcases how to implement RudderStack's customer data platform capabilities in an Expo React Native application, featuring Firebase Analytics integration and core SDK features.
 
-## Supported RudderStack Integrations
+## Supported RudderStack Integration
 
-This Expo app supports **9 major RudderStack integrations**:
+This Expo app demonstrates integration with:
 
-1. **[Rudder Amplitude](https://www.rudderstack.com/docs/destinations/streaming-destinations/amplitude/device-mode/)** - Product analytics platform
-2. **[Rudder AppCenter](https://www.rudderstack.com/docs/destinations/streaming-destinations/appcenter/)** - Mobile app analytics and crash reporting
-3. **[Rudder AppsFlyer](https://www.rudderstack.com/docs/destinations/streaming-destinations/appsflyer/)** - Mobile attribution and marketing analytics
-4. **[Rudder Braze](https://www.rudderstack.com/docs/destinations/streaming-destinations/braze/device-mode/)** - Customer engagement platform
-5. **[Rudder CleverTap](https://www.rudderstack.com/docs/destinations/streaming-destinations/clevertap/)** - Mobile marketing and engagement platform
-6. **[Rudder Facebook App Events](https://www.rudderstack.com/docs/destinations/streaming-destinations/facebook-app-events/)** - Meta's analytics platform
-7. **[Rudder Firebase](https://www.rudderstack.com/docs/destinations/streaming-destinations/firebase/)** - Google's app analytics
-8. **[Rudder MoEngage](https://www.rudderstack.com/docs/destinations/streaming-destinations/moengage/)** - Customer engagement platform
-9. **[Rudder Singular](https://www.rudderstack.com/docs/destinations/streaming-destinations/singular/device-mode/)** - Mobile attribution and marketing analytics
+1. **[Rudder Firebase](https://www.rudderstack.com/docs/destinations/streaming-destinations/firebase/)** - Google's Firebase Analytics platform
 
 ## Prerequisites
 
@@ -54,38 +46,26 @@ This Expo app supports **9 major RudderStack integrations**:
 
 ### Android Configuration
 
-1. **Update `android/build.gradle`** - Add repository for Singular:
-
-   ```gradle
-   allprojects {
-       repositories {
-           maven { url 'https://maven.singular.net/' }
-       }
-   }
-   ```
-
-2. **Update minimum SDK version** to 25 in your Android configuration
-
-3. (Optional) **Add SQLCipher dependencies** in `app/build.gradle`:
-   ```gradle
-   implementation "net.zetetic:sqlcipher-android:4.5.6@aar"
-   implementation "androidx.sqlite:sqlite:2.3.1"
-   ```
+1. **Add Firebase configuration file**:
+   - Place your `google-services.json` file in the `android/app/` directory
+   - This file is required for Firebase Analytics integration
 
 ### iOS Configuration
 
-1. **Add to `Podfile`**:
+1. **Add Firebase configuration file**:
+   - Place your `GoogleService-Info.plist` file in the `ios/` directory
+   - This file is required for Firebase Analytics integration
+
+2. **Firebase dependencies are already configured** in the `Podfile`:
 
    ```ruby
    # Firebase iOS setup
    pod 'FirebaseCore', :modular_headers => true
    pod 'GoogleUtilities', :modular_headers => true
-
-   # CleverTap fix
-   pod 'Rudder-CleverTap', '1.1.2'
+   $FirebaseSDKVersion = '11.4.0'
    ```
 
-2. **Run pod install**:
+3. **Run pod install**:
    ```bash
    cd ios && pod install
    ```
@@ -152,9 +132,8 @@ This example app demonstrates the following RudderStack SDK capabilities:
 
 ### Advanced Features
 
-- **Database Encryption** - Secure local data storage
 - **Session Management** - Manual session control
-- **External ID Support** - Link with external systems (e.g., Braze)
+- **External ID Support** - Link with external systems
 - **Opt-out Controls** - Privacy compliance
 - **Advertising ID Management** - Handle platform advertising IDs
 - **Context Retrieval** - Access RudderStack context data
@@ -162,9 +141,7 @@ This example app demonstrates the following RudderStack SDK capabilities:
 
 ### Integration-Specific Features
 
-- **AppsFlyer** - Attribution callbacks and custom domains
-- **AppCenter** - Analytics enable/disable controls
-- **Braze** - External ID integration
+- **Firebase Analytics** - Google Analytics integration for mobile apps
 
 ## Environment Configuration
 
@@ -174,10 +151,6 @@ The app uses environment variables for configuration. Update your `.env` file wi
 # RudderStack Configuration
 WRITE_KEY=your_write_key_here
 DATA_PLANE_URL=https://your-data-plane-url.com
-
-# Integration-Specific Keys (if needed)
-APPSFLYER_DEV_KEY=your_appsflyer_dev_key
-APPSFLYER_APPLE_ID=your_apple_app_id
 ```
 
 ## Testing the Integration
@@ -190,11 +163,11 @@ APPSFLYER_APPLE_ID=your_apple_app_id
 
 ## Integration Configuration
 
-To enable specific integrations:
+To configure Firebase Analytics:
 
-1. **Uncomment the desired integration** in `RudderStackAPIs.js` in the `withFactories` array
-2. **Configure destination settings** in your RudderStack dashboard
-3. **Add platform-specific configuration** as mentioned in the setup sections
+1. **Firebase integration is already enabled** in `RudderStackAPIs.js` in the `withFactories` array
+2. **Configure Firebase destination** in your RudderStack dashboard
+3. **Add Firebase configuration files** as mentioned in the platform-specific setup sections
 
 ## Troubleshooting
 
@@ -202,9 +175,9 @@ To enable specific integrations:
 
 - **Build failures**: Ensure all platform-specific configurations are applied
 - **Network errors**: Check `DATA_PLANE_URL` and network connectivity
-- **Integration not receiving data**: Verify destination configuration in RudderStack dashboard
-- **iOS build issues**: Ensure pods are installed and Kotlin version is updated
-- **Android SQLCipher errors**: Verify SQLCipher dependencies are added
+- **Firebase integration not receiving data**: Verify Firebase destination configuration in RudderStack dashboard and ensure Firebase configuration files are properly added
+- **iOS build issues**: Ensure pods are installed and Firebase configuration is properly set up
+- **Android build issues**: Ensure `google-services.json` is placed in the correct directory
 
 ### Debug Mode
 
