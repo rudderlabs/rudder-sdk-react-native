@@ -142,6 +142,7 @@ This example app demonstrates the following RudderStack SDK capabilities:
 ### Integration-Specific Features
 
 - **Firebase Analytics** - Google Analytics integration for mobile apps
+- **Firebase On-Device Conversion Measurement** - Attribution tracking for phone numbers and email addresses
 
 ## Environment Configuration
 
@@ -168,6 +169,22 @@ To configure Firebase Analytics:
 1. **Firebase integration is already enabled** in `RudderStackAPIs.js` in the `withFactories` array
 2. **Configure Firebase destination** in your RudderStack dashboard
 3. **Add Firebase configuration files** as mentioned in the platform-specific setup sections
+
+### Firebase On-Device Conversion Measurement
+
+The app demonstrates Firebase's on-device conversion measurement capabilities by automatically initiating measurement for:
+- Phone number conversion tracking: `+15555555555`
+- Email address conversion tracking: `user@example.com`
+
+```javascript
+import analytics from "@react-native-firebase/analytics";
+
+// Initialize conversion measurement during SDK setup
+analytics().initiateOnDeviceConversionMeasurementWithPhoneNumber('+15555555555');
+analytics().initiateOnDeviceConversionMeasurementWithEmailAddress('user@example.com');
+```
+
+These calls are made during SDK initialization and help with attribution tracking for conversion events.
 
 ## Troubleshooting
 

@@ -6,6 +6,8 @@ import { WRITE_KEY, DATA_PLANE_URL } from '@env';
 import rudderClient, { RUDDER_LOG_LEVEL } from '@rudderstack/rudder-sdk-react-native';
 import firebase from '@rudderstack/rudder-integration-firebase-react-native';
 
+import analytics from "@react-native-firebase/analytics";
+
 const identifyWithExternalId = async () => {
   const options = {
     externalIds: [
@@ -233,6 +235,9 @@ function RudderStackAPIs() {
         }
       );
       console.log('SDK is initalised');
+
+      analytics().initiateOnDeviceConversionMeasurementWithPhoneNumber('+15555555555');
+      analytics().initiateOnDeviceConversionMeasurementWithEmailAddress('user@example.com');
     };
     rudderInitialise().catch(console.error);
   }, []);
