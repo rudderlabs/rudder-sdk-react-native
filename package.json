@@ -18,7 +18,7 @@
   "homepage": "https://github.com/rudderlabs/rudder-sdk-react-native#readme",
   "scripts": {
     "setup": "gem install xcpretty && npm i && nx sync-deps example && nx ensure-symlink example && cd apps/example/ios && bundle install && bundle exec pod install",
-    "setup:ci": "npm i --include=optional && nx sync-deps example && nx ensure-symlink example && nx run rudder-sdk-react-native:build",
+    "setup:ci": "npm cache clean --force && npm i --include=optional && nx sync-deps example && nx ensure-symlink example && nx run rudder-sdk-react-native:build",
     "start": "nx serve",
     "bundle:ci": "nx bundle-android example && nx bundle-ios example",
     "run:android": "nx run-android example",
