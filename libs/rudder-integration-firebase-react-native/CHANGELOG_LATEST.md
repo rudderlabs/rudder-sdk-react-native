@@ -1,9 +1,5 @@
-## [2.0.0](https://github.com/rudderlabs/rudder-sdk-react-native/compare/rudder-integration-firebase-react-native@1.2.0...rudder-integration-firebase-react-native@2.0.0) (2025-06-05)
-
-### ⚠ BREAKING CHANGES
-
-- **firebase:** add support for new react native architecture (#450)
+## [2.1.0](https://github.com/rudderlabs/rudder-sdk-react-native/compare/rudder-integration-firebase-react-native@2.0.0...rudder-integration-firebase-react-native@2.1.0) (2025-07-29)
 
 ### Features
 
-- **firebase:** add support for new react native architecture ([#450](https://github.com/rudderlabs/rudder-sdk-react-native/issues/450)) ([4fe8551](https://github.com/rudderlabs/rudder-sdk-react-native/commit/4fe8551a952f910c825c27be2cc5027d6803d75c))
+- update Rudder-Firebase integration to the latest version ([#466](https://github.com/rudderlabs/rudder-sdk-react-native/issues/466)) ([71770ae](https://github.com/rudderlabs/rudder-sdk-react-native/commit/71770ae381306153382315033f43df42db022038))
