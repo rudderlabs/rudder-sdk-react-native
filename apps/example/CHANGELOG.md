@@ -2,6 +2,13 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [3.1.0](https://github.com/rudderlabs/rudder-sdk-react-native/compare/example-3.0.0...example-3.1.0) (2025-07-29)
+
+
+### Features
+
+* update Rudder-Firebase integration to the latest version ([#466](https://github.com/rudderlabs/rudder-sdk-react-native/issues/466)) ([71770ae](https://github.com/rudderlabs/rudder-sdk-react-native/commit/71770ae381306153382315033f43df42db022038))
+
 ## [3.0.0](https://github.com/rudderlabs/rudder-sdk-react-native/compare/example-2.0.0...example-3.0.0) (2025-06-05)
 
 
