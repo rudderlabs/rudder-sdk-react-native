@@ -159,6 +159,9 @@
     "cross-spawn": "7.0.6",
     "koa": "3.0.1"
   },
+  "optionalDependencies": {
+    "@nx/nx-linux-x64-gnu": "19.8.14"
+  },
   "lint-staged": {
     "*.{js,ts,tsx}": "eslint --cache --fix",
     "*.{json,js,md,ts,tsx}": "prettier --write"
