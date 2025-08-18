@@ -21,7 +21,7 @@ jobs:
           java-version: '17'
 
       - name: Setup Ruby
-        uses: ruby/setup-ruby@28233a011b6bb8633ea908d76c6d23aab6518b5c #v1.233.0
+        uses: ruby/setup-ruby@829114fc20da43a41d27359103ec7a63020954d4 #v1.233.0
 
       - name: Setup Node
         uses: actions/setup-node@v4
