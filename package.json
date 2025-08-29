@@ -67,7 +67,7 @@
     "react": "19.0.0",
     "react-native": "0.79.1",
     "react-native-safe-area-context": "4.14.1",
-    "react-native-screens": "4.0.0",
+    "react-native-screens": "4.13.1",
     "tslib": "2.8.1"
   },
   "devDependencies": {
