@@ -63,7 +63,7 @@
     "@rudderstack/rudder-plugin-db-encryption-react-native": "file:libs/plugins/rudder-plugin-db-encryption-react-native",
     "@rudderstack/rudder-sdk-react-native": "file:./libs/sdk",
     "async-lock": "1.4.0",
-    "core-js": "3.36.1",
+    "core-js": "3.45.0",
     "react": "19.0.0",
     "react-native": "0.79.1",
     "react-native-safe-area-context": "4.14.1",
