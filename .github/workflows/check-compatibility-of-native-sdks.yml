@@ -41,7 +41,7 @@ jobs:
           java-version: '17'
 
       - name: Setup Ruby
-        uses: ruby/setup-ruby@28233a011b6bb8633ea908d76c6d23aab6518b5c #v1.233.0
+        uses: ruby/setup-ruby@cf7216d52fba1017929b4d7162fabe2b30af5b49 #v1.233.0
 
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -146,7 +146,7 @@ jobs:
         run: cat apps/example/ios/Podfile
 
       - name: Setup Ruby
-        uses: ruby/setup-ruby@28233a011b6bb8633ea908d76c6d23aab6518b5c #v1.233.0
+        uses: ruby/setup-ruby@cf7216d52fba1017929b4d7162fabe2b30af5b49 #v1.233.0
 
       - name: Setup CocoaPods
         uses: maxim-lobanov/setup-cocoapods@8e97e1e98e6ccf42564fdf5622c8feec74199377 #v1
@@ -235,7 +235,7 @@ jobs:
         run: cat apps/example/ios/Podfile
 
       - name: Setup Ruby
-        uses: ruby/setup-ruby@28233a011b6bb8633ea908d76c6d23aab6518b5c #v1.233.0
+        uses: ruby/setup-ruby@cf7216d52fba1017929b4d7162fabe2b30af5b49 #v1.233.0
 
       - name: Setup CocoaPods
         uses: maxim-lobanov/setup-cocoapods@8e97e1e98e6ccf42564fdf5622c8feec74199377 #v1
@@ -324,7 +324,7 @@ jobs:
         run: cat apps/example/ios/Podfile
 
       - name: Setup Ruby
-        uses: ruby/setup-ruby@28233a011b6bb8633ea908d76c6d23aab6518b5c #v1.233.0
+        uses: ruby/setup-ruby@cf7216d52fba1017929b4d7162fabe2b30af5b49 #v1.233.0
 
       - name: Setup CocoaPods
         uses: maxim-lobanov/setup-cocoapods@8e97e1e98e6ccf42564fdf5622c8feec74199377 #v1
@@ -413,7 +413,7 @@ jobs:
         run: cat apps/example/ios/Podfile
 
       - name: Setup Ruby
-        uses: ruby/setup-ruby@28233a011b6bb8633ea908d76c6d23aab6518b5c #v1.233.0
+        uses: ruby/setup-ruby@cf7216d52fba1017929b4d7162fabe2b30af5b49 #v1.233.0
 
       - name: Setup CocoaPods
         uses: maxim-lobanov/setup-cocoapods@8e97e1e98e6ccf42564fdf5622c8feec74199377 #v1
