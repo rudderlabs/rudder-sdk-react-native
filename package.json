@@ -147,17 +147,14 @@
     "typescript": "5.0.4"
   },
   "overrides": {
-    "micromatch": "4.0.8",
     "@nx/devkit": "19.4.1",
-    "svgo": "3.3.2",
-    "rimraf": "6.0.1",
-    "trim-newlines": "3.0.1",
-    "semver-regex": "4.0.5",
-    "git-raw-commits": "2.0.11",
-    "dot-prop": "5.3.0",
-    "got": "11.8.6",
     "cross-spawn": "7.0.6",
+    "dot-prop": "5.3.0",
+    "git-raw-commits": "2.0.11",
+    "got": "11.8.6",
     "koa": "3.0.1",
+    "semver-regex": "4.0.5",
+    "trim-newlines": "3.0.1",
     "tmp": "0.2.5",
     "@conventional-changelog/git-client": "2.5.1"
   },
