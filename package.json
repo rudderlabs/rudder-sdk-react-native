@@ -34,7 +34,7 @@
     "clean": "rm -rf node_modules/.cache && nx reset && rm -rf reports && rm -rf dist",
     "check:lint": "nx run-many --target=lint --parallel=1",
     "check:lint:ci": "nx run-many --target=lint --parallel=1 --configuration=ci",
-    "check:security": "npm audit --recursive --audit-level=high",
+    "check:security": "npm audit --audit-level=high",
     "format": "prettier --write .",
     "lint:fix": "nx lint --configuration=fix",
     "prepare": "husky install",
@@ -157,7 +157,9 @@
     "dot-prop": "5.3.0",
     "got": "11.8.6",
     "cross-spawn": "7.0.6",
-    "koa": "3.0.1"
+    "koa": "3.0.1",
+    "tmp": "0.2.5",
+    "@conventional-changelog/git-client": "2.5.1"
   },
   "optionalDependencies": {
     "@nx/nx-linux-x64-gnu": "19.8.14"
