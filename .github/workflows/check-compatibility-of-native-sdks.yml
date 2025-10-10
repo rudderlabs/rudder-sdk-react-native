@@ -29,6 +29,11 @@ jobs:
     runs-on: macos-latest
 
     steps:
+      - name: Harden the runner (Audit all outbound calls)
+        uses: step-security/harden-runner@f4a75cfd619ee5ce8d5b864b0d183aff3c69b55a # v2.13.1
+        with:
+          egress-policy: audit
+
       - name: Checkout source branch
         uses: actions/checkout@v4
         with:
@@ -121,6 +126,11 @@ jobs:
     name: Default iOS Build Test
     runs-on: macos-latest
     steps:
+      - name: Harden the runner (Audit all outbound calls)
+        uses: step-security/harden-runner@f4a75cfd619ee5ce8d5b864b0d183aff3c69b55a # v2.13.1
+        with:
+          egress-policy: audit
+
       - name: Checkout source branch
         uses: actions/checkout@v4
         with:
@@ -196,6 +206,11 @@ jobs:
     name: iOS Build Test When 'use_frameworks!' is used
     runs-on: macos-latest
     steps:
+      - name: Harden the runner (Audit all outbound calls)
+        uses: step-security/harden-runner@f4a75cfd619ee5ce8d5b864b0d183aff3c69b55a # v2.13.1
+        with:
+          egress-policy: audit
+
       - name: Checkout source branch
         uses: actions/checkout@v4
         with:
@@ -285,6 +300,11 @@ jobs:
     name: iOS Build Test When 'use_frameworks! :linkage=> :static' is used
     runs-on: macos-latest
     steps:
+      - name: Harden the runner (Audit all outbound calls)
+        uses: step-security/harden-runner@f4a75cfd619ee5ce8d5b864b0d183aff3c69b55a # v2.13.1
+        with:
+          egress-policy: audit
+
       - name: Checkout source branch
         uses: actions/checkout@v4
         with:
@@ -374,6 +394,11 @@ jobs:
     name: iOS Build Test When 'use_frameworks! :linkage => :dynamic' is used
     runs-on: macos-latest
     steps:
+      - name: Harden the runner (Audit all outbound calls)
+        uses: step-security/harden-runner@f4a75cfd619ee5ce8d5b864b0d183aff3c69b55a # v2.13.1
+        with:
+          egress-policy: audit
+
       - name: Checkout source branch
         uses: actions/checkout@v4
         with:
