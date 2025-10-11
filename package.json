@@ -154,9 +154,7 @@
     "got": "11.8.6",
     "koa": "3.0.1",
     "semver-regex": "4.0.5",
-    "trim-newlines": "3.0.1",
-    "tmp": "0.2.5",
-    "@conventional-changelog/git-client": "2.5.1"
+    "trim-newlines": "3.0.1"
   },
   "optionalDependencies": {
     "@nx/nx-linux-x64-gnu": "19.8.14"
