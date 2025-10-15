@@ -1884,7 +1884,7 @@ PODS:
     - React
     - RNRudderSdk
     - Rudder-Facebook (< 3.0.0, >= 2.2.1)
-  - rudder-integration-firebase-react-native (2.0.0):
+  - rudder-integration-firebase-react-native (2.1.0):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -2356,7 +2356,7 @@ SPEC CHECKSUMS:
   rudder-integration-braze-react-native: ec817420429791b8f3f5207a09deeb4b822d8778
   rudder-integration-clevertap-react-native: b5f311e791017297436d491040c07a7289f6b56d
   rudder-integration-facebook-react-native: 63ea95a5ac12b9cb8caba8c86687b1b78b60c4db
-  rudder-integration-firebase-react-native: 35a6caaa3d4e1f94fa51a88c75d80ea8b3238d53
+  rudder-integration-firebase-react-native: fce94ed612ffd43be5cb363147a3462642497cf4
   rudder-integration-moengage-react-native: 7e215217d21c4e4e323571ce30cf82ac6ebb23ff
   rudder-integration-singular-react-native: ae84b85d34cfd423328711c34ccf7a4dfebfdc55
   Rudder-Moengage: c30465e23740673495ff853eed607a5641f22c5c
@@ -2372,4 +2372,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: d5c7fc5793a66c71dac7498d4f0213b01a7bbdcc
 
-COCOAPODS: 1.16.2
+COCOAPODS: 1.13.0
