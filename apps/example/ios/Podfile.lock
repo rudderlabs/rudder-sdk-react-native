@@ -14,7 +14,7 @@ PODS:
     - AppsFlyerFramework/Main (= 6.14.6)
   - AppsFlyerFramework/Main (6.14.6)
   - boost (1.84.0)
-  - BrazeKit (11.1.1)
+  - BrazeKit (12.0.3)
   - CleverTap-iOS-SDK (4.2.2):
     - SDWebImage (~> 5.11)
   - DoubleConversion (1.1.6)
@@ -1847,8 +1847,8 @@ PODS:
   - Rudder-Appsflyer (2.7.0):
     - AppsFlyerFramework (~> 6.14.5)
     - Rudder (~> 1.12)
-  - Rudder-Braze (4.0.0):
-    - BrazeKit (~> 11.1.1)
+  - Rudder-Braze (4.1.0):
+    - BrazeKit (~> 12.0.0)
     - Rudder (~> 1.26)
   - Rudder-CleverTap (1.1.2):
     - CleverTap-iOS-SDK (~> 4.2)
@@ -1856,7 +1856,7 @@ PODS:
   - Rudder-Facebook (2.2.1):
     - FBSDKCoreKit (~> 17.0.2)
     - Rudder (~> 1.12)
-  - Rudder-Firebase (3.7.0):
+  - Rudder-Firebase (3.8.0):
     - FirebaseAnalytics (~> 11.15.0)
     - Rudder (~> 1.29)
   - rudder-integration-amplitude-react-native (1.2.0):
@@ -1909,7 +1909,7 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - RNRudderSdk
-    - Rudder-Firebase (~> 3.7)
+    - Rudder-Firebase (~> 3.8)
     - Yoga
   - rudder-integration-moengage-react-native (1.2.0):
     - React
@@ -1934,17 +1934,17 @@ PODS:
     - Rudder (~> 1.21)
     - SQLCipher (~> 4.0)
   - RudderKit (1.4.0)
-  - SDWebImage (5.21.1):
-    - SDWebImage/Core (= 5.21.1)
-  - SDWebImage/Core (5.21.1)
+  - SDWebImage (5.21.2):
+    - SDWebImage/Core (= 5.21.2)
+  - SDWebImage/Core (5.21.2)
   - Singular-SDK (12.5.0):
     - Singular-SDK/Main (= 12.5.0)
   - Singular-SDK/Main (12.5.0)
   - SocketRocket (0.7.1)
-  - SQLCipher (4.9.0):
-    - SQLCipher/standard (= 4.9.0)
-  - SQLCipher/common (4.9.0)
-  - SQLCipher/standard (4.9.0):
+  - SQLCipher (4.10.0):
+    - SQLCipher/standard (= 4.10.0)
+  - SQLCipher/common (4.10.0)
+  - SQLCipher/standard (4.10.0):
     - SQLCipher/common
   - Yoga (0.0.0)
 
@@ -2254,7 +2254,7 @@ SPEC CHECKSUMS:
   AppCenter: 395cc12b428b8fdf12e9f92294d93a55bac389e4
   AppsFlyerFramework: bef4087719ce689835bbf408c61e2bcc5d4b8bd8
   boost: 7e761d76ca2ce687f7cc98e698152abd03a18f90
-  BrazeKit: 879da791a0f4e247846a06c6de95f8b93f4579df
+  BrazeKit: 44fab385edca94faaf96d7ce9f020b9c2ad3505e
   CleverTap-iOS-SDK: 36c21b8a671d87a0f9c7b389b339d02528bbe4d7
   DoubleConversion: cb417026b2400c8f53ae97020b2be961b59470cb
   fast_float: 06eeec4fe712a76acc9376682e4808b05ce978b6
@@ -2346,17 +2346,17 @@ SPEC CHECKSUMS:
   Rudder-Amplitude: d308b2bce1237c3cfdf3274458130f36815067db
   Rudder-AppCenter: 9eca9241e3707a0e9610714dd91dc8da4bae7e1f
   Rudder-Appsflyer: d7eb1497781a64e4228c97edc1cc3c7893b6ced0
-  Rudder-Braze: 0bdbacc1fb37b556f0f7cbd62ecb255498443105
+  Rudder-Braze: ea867202f0a253f0767d218a25e1f24aab947de0
   Rudder-CleverTap: a0085aab472e0e60930c4301ef80bae5ff187e98
   Rudder-Facebook: 24c9309373f13212d1139938aad86faa2914d342
-  Rudder-Firebase: e0943244b3de198102ff082b14c970732ac0e0ba
+  Rudder-Firebase: 7e80a7dfd39dbe35d8cb7c0ac12e57b43b690e6d
   rudder-integration-amplitude-react-native: cdc31956c0f597e70bf64c8472926c486c16b594
   rudder-integration-appcenter-react-native: e3e0e21942a9d6c120ad0228bd7988ccdd1e809a
   rudder-integration-appsflyer-react-native: 861ad1a4f4782712f5a3ca706f809005cdd561f1
   rudder-integration-braze-react-native: ec817420429791b8f3f5207a09deeb4b822d8778
   rudder-integration-clevertap-react-native: b5f311e791017297436d491040c07a7289f6b56d
   rudder-integration-facebook-react-native: 63ea95a5ac12b9cb8caba8c86687b1b78b60c4db
-  rudder-integration-firebase-react-native: fce94ed612ffd43be5cb363147a3462642497cf4
+  rudder-integration-firebase-react-native: 5100fa51d445139e49e6d425caea981e0104f52a
   rudder-integration-moengage-react-native: 7e215217d21c4e4e323571ce30cf82ac6ebb23ff
   rudder-integration-singular-react-native: ae84b85d34cfd423328711c34ccf7a4dfebfdc55
   Rudder-Moengage: c30465e23740673495ff853eed607a5641f22c5c
@@ -2364,12 +2364,12 @@ SPEC CHECKSUMS:
   Rudder-Singular: 0685fcfd797962d7681a5f05e48c249dd6a11228
   RudderDatabaseEncryption: 95b436538412958eda771f5d81bd970a9ffe4eec
   RudderKit: f272f9872183946452ac94cd7bb2244a71e6ca8f
-  SDWebImage: f29024626962457f3470184232766516dee8dfea
+  SDWebImage: 9f177d83116802728e122410fb25ad88f5c7608a
   Singular-SDK: 198466328cf193d4fba7b1d49b666b2f8f21e2d6
   SocketRocket: d4aabe649be1e368d1318fdf28a022d714d65748
-  SQLCipher: 31878d8ebd27e5c96db0b7cb695c96e9f8ad77da
+  SQLCipher: eb79c64049cb002b4e9fcb30edb7979bf4706dfc
   Yoga: d15f5aa644c466e917569ac43b19cbf17975239a
 
 PODFILE CHECKSUM: d5c7fc5793a66c71dac7498d4f0213b01a7bbdcc
 
-COCOAPODS: 1.13.0
+COCOAPODS: 1.16.2
