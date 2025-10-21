@@ -35,7 +35,7 @@ jobs:
           egress-policy: audit
 
       - name: Checkout source branch
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           fetch-depth: 0
 
@@ -132,7 +132,7 @@ jobs:
           egress-policy: audit
 
       - name: Checkout source branch
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           fetch-depth: 0
 
@@ -212,7 +212,7 @@ jobs:
           egress-policy: audit
 
       - name: Checkout source branch
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           fetch-depth: 0
 
@@ -306,7 +306,7 @@ jobs:
           egress-policy: audit
 
       - name: Checkout source branch
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           fetch-depth: 0
 
@@ -400,7 +400,7 @@ jobs:
           egress-policy: audit
 
       - name: Checkout source branch
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           fetch-depth: 0
 
