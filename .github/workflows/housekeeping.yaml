@@ -19,7 +19,7 @@ jobs:
         with:
           egress-policy: audit
 
-      - uses: actions/stale@v9
+      - uses: actions/stale@v10
         with:
           repo-token: ${{ github.token }}
           operations-per-run: 200
