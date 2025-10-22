@@ -81,7 +81,7 @@
     "@nx/cypress": "19.8.14",
     "@nx/detox": "19.8.14",
     "@nx/devkit": "19.4.1",
-    "@nx/jest": "19.8.14",
+    "@nx/jest": "21.6.5",
     "@nx/js": "19.4.1",
     "@nx/playwright": "19.4.1",
     "@nx/react-native": "19.4.1",
