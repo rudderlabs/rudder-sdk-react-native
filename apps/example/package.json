@@ -3,7 +3,7 @@
   "version": "3.2.0",
   "private": true,
   "dependencies": {
-    "@react-native/metro-config": "*",
+    "@react-native/metro-config": "0.81.4",
     "@testing-library/jest-native": "*",
     "@testing-library/react-native": "*",
     "react": "*",
