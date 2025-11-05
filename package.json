@@ -89,7 +89,7 @@
     "@nx/storybook": "19.4.1",
     "@nx/web": "19.4.1",
     "@nx/webpack": "19.8.14",
-    "@playwright/test": "1.52.0",
+    "@playwright/test": "1.56.1",
     "@react-native-async-storage/async-storage": "1.23.1",
     "@react-native-community/cli": "18.0.0",
     "@react-native-community/cli-platform-android": "18.0.0",
