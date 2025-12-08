@@ -42,5 +42,5 @@ dependencies {
     // rudderstack dependencies
     implementation project(path: ':rudderstack_rudder-sdk-react-native')  // From node_modules
     implementation 'com.rudderstack.android.sdk:core:[1.27.1, 2.0.0)'
-    implementation 'com.rudderstack.android.integration:braze:[2.0.0,3.0.0)'
+    implementation 'com.rudderstack.android.integration:braze:[2.1.0,3.0.0)'
 }
