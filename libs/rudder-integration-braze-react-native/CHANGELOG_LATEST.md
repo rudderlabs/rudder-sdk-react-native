@@ -1,10 +1,7 @@
-## [2.0.0](https://github.com/rudderlabs/rudder-sdk-react-native/compare/rudder-integration-braze-react-native@1.3.0...rudder-integration-braze-react-native@2.0.0) (2025-04-29)
+## [2.1.0](https://github.com/rudderlabs/rudder-sdk-react-native/compare/rudder-integration-braze-react-native@2.0.0...rudder-integration-braze-react-native@2.1.0) (2025-12-08)
 
-### ⚠ BREAKING CHANGES
-
-- update the braze integration to the latest version (#419)
 
 ### Features
 
-- add React 19 support and resolve Snyk vulnerability ([#418](https://github.com/rudderlabs/rudder-sdk-react-native/issues/418)) ([793ae17](https://github.com/rudderlabs/rudder-sdk-react-native/commit/793ae17076d8f69404877eec07fea1b49c3ce304))
-- update the braze integration to the latest version ([#419](https://github.com/rudderlabs/rudder-sdk-react-native/issues/419)) ([5f6b715](https://github.com/rudderlabs/rudder-sdk-react-native/commit/5f6b715150f86b513282297584a70841ea6c7377))
+* **braze:** bump braze android and ios sdk minimum version to the latest ([#525](https://github.com/rudderlabs/rudder-sdk-react-native/issues/525)) ([ef7001a](https://github.com/rudderlabs/rudder-sdk-react-native/commit/ef7001aee8061e0c87e20ff33be5ca98d26145ae))
+
