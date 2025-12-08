@@ -2,17 +2,17 @@ PODS:
   - Amplitude (8.19.2):
     - AnalyticsConnector (~> 1.0.0)
   - AnalyticsConnector (1.0.3)
-  - AppCenter (5.0.6):
-    - AppCenter/Analytics (= 5.0.6)
-    - AppCenter/Crashes (= 5.0.6)
-  - AppCenter/Analytics (5.0.6):
+  - AppCenter (5.10.0):
+    - AppCenter/Analytics (= 5.10.0)
+    - AppCenter/Crashes (= 5.10.0)
+  - AppCenter/Analytics (5.10.0):
     - AppCenter/Core
-  - AppCenter/Core (5.0.6)
-  - AppCenter/Crashes (5.0.6):
+  - AppCenter/Core (5.10.0)
+  - AppCenter/Crashes (5.10.0):
     - AppCenter/Core
-  - AppsFlyerFramework (6.14.6):
-    - AppsFlyerFramework/Main (= 6.14.6)
-  - AppsFlyerFramework/Main (6.14.6)
+  - AppsFlyerFramework (6.17.8):
+    - AppsFlyerFramework/Main (= 6.17.8)
+  - AppsFlyerFramework/Main (6.17.8)
   - boost (1.84.0)
   - BrazeKit (12.0.3)
   - CleverTap-iOS-SDK (4.2.2):
@@ -1844,10 +1844,10 @@ PODS:
   - Rudder-AppCenter (1.0.1):
     - AppCenter
     - Rudder
-  - Rudder-Appsflyer (2.7.0):
-    - AppsFlyerFramework (~> 6.14.5)
+  - Rudder-Appsflyer (3.0.0):
+    - AppsFlyerFramework (~> 6.14)
     - Rudder (~> 1.12)
-  - Rudder-Braze (4.1.0):
+  - Rudder-Braze (4.2.0):
     - BrazeKit (~> 12.0.0)
     - Rudder (~> 1.26)
   - Rudder-CleverTap (1.1.2):
@@ -1874,7 +1874,7 @@ PODS:
   - rudder-integration-braze-react-native (2.0.0):
     - React
     - RNRudderSdk
-    - Rudder-Braze (~> 4.0)
+    - Rudder-Braze (~> 4.2)
   - rudder-integration-clevertap-react-native (1.2.0):
     - CleverTap-iOS-SDK
     - React
@@ -1934,9 +1934,9 @@ PODS:
     - Rudder (~> 1.21)
     - SQLCipher (~> 4.0)
   - RudderKit (1.4.0)
-  - SDWebImage (5.21.2):
-    - SDWebImage/Core (= 5.21.2)
-  - SDWebImage/Core (5.21.2)
+  - SDWebImage (5.21.5):
+    - SDWebImage/Core (= 5.21.5)
+  - SDWebImage/Core (5.21.5)
   - Singular-SDK (12.5.0):
     - Singular-SDK/Main (= 12.5.0)
   - Singular-SDK/Main (12.5.0)
@@ -2251,8 +2251,8 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   Amplitude: 1c9fca37993bd5742cf7c121d432bf8bf5a28ccb
   AnalyticsConnector: a53214d38ae22734c6266106c0492b37832633a9
-  AppCenter: 395cc12b428b8fdf12e9f92294d93a55bac389e4
-  AppsFlyerFramework: bef4087719ce689835bbf408c61e2bcc5d4b8bd8
+  AppCenter: 7eb0ba42c148a5efb36dbdf0da15b64a9c3ce317
+  AppsFlyerFramework: 63577b60d6b9fcdab60135289979e7d1c9ec79b9
   boost: 7e761d76ca2ce687f7cc98e698152abd03a18f90
   BrazeKit: 44fab385edca94faaf96d7ce9f020b9c2ad3505e
   CleverTap-iOS-SDK: 36c21b8a671d87a0f9c7b389b339d02528bbe4d7
@@ -2345,15 +2345,15 @@ SPEC CHECKSUMS:
   Rudder: 352cb3417238fb84cc083826d9a5a7cc91efaa69
   Rudder-Amplitude: d308b2bce1237c3cfdf3274458130f36815067db
   Rudder-AppCenter: 9eca9241e3707a0e9610714dd91dc8da4bae7e1f
-  Rudder-Appsflyer: d7eb1497781a64e4228c97edc1cc3c7893b6ced0
-  Rudder-Braze: ea867202f0a253f0767d218a25e1f24aab947de0
+  Rudder-Appsflyer: 040cdb332dc9428a750dc3e7ff80564ccac7e51c
+  Rudder-Braze: 14c462b26f3bc2ded77d962d4c19ddd872029d4d
   Rudder-CleverTap: a0085aab472e0e60930c4301ef80bae5ff187e98
   Rudder-Facebook: 24c9309373f13212d1139938aad86faa2914d342
   Rudder-Firebase: 7e80a7dfd39dbe35d8cb7c0ac12e57b43b690e6d
   rudder-integration-amplitude-react-native: cdc31956c0f597e70bf64c8472926c486c16b594
   rudder-integration-appcenter-react-native: e3e0e21942a9d6c120ad0228bd7988ccdd1e809a
   rudder-integration-appsflyer-react-native: 861ad1a4f4782712f5a3ca706f809005cdd561f1
-  rudder-integration-braze-react-native: ec817420429791b8f3f5207a09deeb4b822d8778
+  rudder-integration-braze-react-native: d0adb40bd2e94dc674845b90c4c48ca07a2e0dd6
   rudder-integration-clevertap-react-native: b5f311e791017297436d491040c07a7289f6b56d
   rudder-integration-facebook-react-native: 63ea95a5ac12b9cb8caba8c86687b1b78b60c4db
   rudder-integration-firebase-react-native: 9c52f9b30694066375f1ab3f6a024e79d42ac524
@@ -2364,7 +2364,7 @@ SPEC CHECKSUMS:
   Rudder-Singular: 0685fcfd797962d7681a5f05e48c249dd6a11228
   RudderDatabaseEncryption: 95b436538412958eda771f5d81bd970a9ffe4eec
   RudderKit: f272f9872183946452ac94cd7bb2244a71e6ca8f
-  SDWebImage: 9f177d83116802728e122410fb25ad88f5c7608a
+  SDWebImage: e9c98383c7572d713c1a0d7dd2783b10599b9838
   Singular-SDK: 198466328cf193d4fba7b1d49b666b2f8f21e2d6
   SocketRocket: d4aabe649be1e368d1318fdf28a022d714d65748
   SQLCipher: eb79c64049cb002b4e9fcb30edb7979bf4706dfc
