@@ -22,7 +22,7 @@
     "@rudderstack/rudder-sdk-react-native": "^3.0.0",
     "expo": "~53.0.13",
     "expo-status-bar": "~2.2.3",
-    "react": "19.0.0",
+    "react": "19.2.3",
     "react-native": "0.79.4"
   },
   "devDependencies": {
