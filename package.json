@@ -48,9 +48,9 @@
   },
   "private": true,
   "dependencies": {
-    "@babel/runtime": "7.27.0",
-    "@react-navigation/native": "7.1.21",
-    "@react-navigation/native-stack": "7.2.1",
+    "@babel/runtime": "7.28.4",
+    "@react-navigation/native": "7.1.26",
+    "@react-navigation/native-stack": "7.9.0",
     "@rudderstack/rudder-integration-amplitude-react-native": "file:libs/rudder-integration-amplitude-react-native",
     "@rudderstack/rudder-integration-appcenter-react-native": "file:libs/rudder-integration-appcenter-react-native",
     "@rudderstack/rudder-integration-appsflyer-react-native": "file:libs/rudder-integration-appsflyer-react-native",
@@ -63,11 +63,11 @@
     "@rudderstack/rudder-plugin-db-encryption-react-native": "file:libs/plugins/rudder-plugin-db-encryption-react-native",
     "@rudderstack/rudder-sdk-react-native": "file:./libs/sdk",
     "async-lock": "1.4.0",
-    "core-js": "3.36.1",
+    "core-js": "3.47.0",
     "react": "19.2.3",
-    "react-native": "0.79.1",
+    "react-native": "0.83.1",
     "react-native-safe-area-context": "4.14.1",
-    "react-native-screens": "4.0.0",
+    "react-native-screens": "4.19.0",
     "tslib": "2.8.1"
   },
   "devDependencies": {
