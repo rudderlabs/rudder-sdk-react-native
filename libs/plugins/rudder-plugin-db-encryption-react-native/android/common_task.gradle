@@ -91,7 +91,7 @@ afterEvaluate { project ->
         def javaCompileTask = variant.javaCompileProvider.get()
 
         task "jar${name}"(type: Jar, dependsOn: javaCompileTask) {
-            from javaCompileTask.destinationDir
+            from javaCompileTask.hasProperty('destinationDirectory') ? javaCompileTask.destinationDirectory : javaCompileTask.destinationDir
         }
     }
 }
