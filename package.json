@@ -152,7 +152,6 @@
     "git-raw-commits": "2.0.11",
     "dot-prop": "5.3.0",
     "got": "11.8.6",
-    "cross-spawn": "7.0.6",
     "koa": "3.0.3",
     "tmp": "0.2.5",
     "@conventional-changelog/git-client": "2.5.1",
