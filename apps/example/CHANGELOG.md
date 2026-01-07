@@ -2,6 +2,27 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [3.3.0](https://github.com/rudderlabs/rudder-sdk-react-native/compare/example-3.2.0...example-3.3.0) (2025-12-08)
+
+
+### Features
+
+* **braze:** bump braze android and ios sdk minimum version to the latest ([#525](https://github.com/rudderlabs/rudder-sdk-react-native/issues/525)) ([ef7001a](https://github.com/rudderlabs/rudder-sdk-react-native/commit/ef7001aee8061e0c87e20ff33be5ca98d26145ae))
+
+## [3.2.0](https://github.com/rudderlabs/rudder-sdk-react-native/compare/example-3.1.0...example-3.2.0) (2025-10-15)
+
+
+### Features
+
+* **firebase:** bump the minimum rudder-firebase version to the latest version ([#494](https://github.com/rudderlabs/rudder-sdk-react-native/issues/494)) ([e308884](https://github.com/rudderlabs/rudder-sdk-react-native/commit/e30888462c111d54a46dafe463726bde1cbd5368))
+
+## [3.1.0](https://github.com/rudderlabs/rudder-sdk-react-native/compare/example-3.0.0...example-3.1.0) (2025-07-29)
+
+
+### Features
+
+* update Rudder-Firebase integration to the latest version ([#466](https://github.com/rudderlabs/rudder-sdk-react-native/issues/466)) ([71770ae](https://github.com/rudderlabs/rudder-sdk-react-native/commit/71770ae381306153382315033f43df42db022038))
+
 ## [3.0.0](https://github.com/rudderlabs/rudder-sdk-react-native/compare/example-2.0.0...example-3.0.0) (2025-06-05)
 
 

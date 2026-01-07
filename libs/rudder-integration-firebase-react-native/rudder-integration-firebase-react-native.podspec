@@ -20,7 +20,7 @@ Pod::Spec.new do |s|
   s.static_framework = true
 
   s.dependency "React"
-  s.dependency "Rudder-Firebase", "~> 3.6"
+  s.dependency "Rudder-Firebase", "~> 3.8"
   s.dependency 'RNRudderSdk'
 
   install_modules_dependencies(s)
