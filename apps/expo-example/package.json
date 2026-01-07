@@ -20,10 +20,10 @@
     "@rudderstack/rudder-integration-singular-react-native": "^1.2.0",
     "@rudderstack/rudder-plugin-db-encryption-react-native": "^1.4.1",
     "@rudderstack/rudder-sdk-react-native": "^3.0.0",
-    "expo": "~53.0.13",
-    "expo-status-bar": "~2.2.3",
-    "react": "19.2.3",
-    "react-native": "0.79.4"
+    "expo": "~54.0.31",
+    "expo-status-bar": "~3.0.9",
+    "react": "19.1.0",
+    "react-native": "0.81.5"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
