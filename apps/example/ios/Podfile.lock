@@ -3125,7 +3125,7 @@ SPEC CHECKSUMS:
   GoogleAdsOnDeviceConversion: 2be6297a4f048459e0ae17fad9bfd2844e10cf64
   GoogleAppMeasurement: 700dce7541804bec33db590a5c496b663fbe2539
   GoogleUtilities: 00c88b9a86066ef77f0da2fab05f65d7768ed8e1
-  hermes-engine: f548bb08f876a42b5a40512249ebf6428e0f5e66
+  hermes-engine: 426578ac4ddc767d1f43adb5fef1c2035cd0d1aa
   MetricsReporter: 364b98791e868b10e9d512eb50af28d8c11e5cdb
   MoEngage-iOS-SDK: fe5e6039e6381017b756d8cc72b6d9a11112abc1
   nanopb: fad817b59e0457d11a5dfbde799381cd727c1275
@@ -3229,7 +3229,7 @@ SPEC CHECKSUMS:
   Singular-SDK: 198466328cf193d4fba7b1d49b666b2f8f21e2d6
   SocketRocket: d4aabe649be1e368d1318fdf28a022d714d65748
   SQLCipher: eb79c64049cb002b4e9fcb30edb7979bf4706dfc
-  Yoga: 5456bb010373068fc92221140921b09d126b116e
+  Yoga: 5bd0956bf9cb16f75101e78b5e852c7577bc5a45
 
 PODFILE CHECKSUM: d5c7fc5793a66c71dac7498d4f0213b01a7bbdcc
 
