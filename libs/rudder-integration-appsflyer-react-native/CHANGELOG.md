@@ -2,6 +2,13 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [1.8.0](https://github.com/rudderlabs/rudder-sdk-react-native/compare/rudder-integration-appsflyer-react-native@1.7.0...rudder-integration-appsflyer-react-native@1.8.0) (2026-01-14)
+
+
+### Features
+
+* add React Native 0.83 and Gradle 9.0 compatibility ([#540](https://github.com/rudderlabs/rudder-sdk-react-native/issues/540)) ([9d93202](https://github.com/rudderlabs/rudder-sdk-react-native/commit/9d93202c784f401dbf16c5c58e7546467a3829fd))
+
 ## [1.7.0](https://github.com/rudderlabs/rudder-sdk-react-native/compare/rudder-integration-appsflyer-react-native@1.6.1...rudder-integration-appsflyer-react-native@1.7.0) (2025-04-29)
 
 
