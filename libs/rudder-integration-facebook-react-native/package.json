@@ -1,7 +1,7 @@
 {
   "name": "@rudderstack/rudder-integration-facebook-react-native",
   "title": "RudderStack Facebook React Native Integration",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "RudderStack React Native SDK Facebook Device mode integration for Android and iOS",
   "keywords": [
     "react-native",
