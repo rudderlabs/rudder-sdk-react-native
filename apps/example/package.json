@@ -1,6 +1,6 @@
 {
   "name": "example",
-  "version": "3.3.0",
+  "version": "3.4.0",
   "private": true,
   "dependencies": {
     "@react-native/metro-config": "*",
@@ -9,7 +9,6 @@
     "react": "*",
     "react-native": "*",
     "metro-config": "*",
-    "@react-native-async-storage/async-storage": "*",
     "@rudderstack/rudder-sdk-react-native": "*",
     "@rudderstack/rudder-plugin-db-encryption-react-native": "*",
     "@rudderstack/rudder-integration-amplitude-react-native": "*",
