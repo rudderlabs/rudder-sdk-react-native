@@ -135,7 +135,7 @@
     "jest-react-native": "18.0.0",
     "jest-sonar": "0.2.16",
     "lcov-result-merger": "4.1.0",
-    "lint-staged": "13.2.0",
+    "lint-staged": "16.2.7",
     "ngx-deploy-npm": "9.0.0",
     "nx": "19.4.1",
     "prettier": "2.8.8",
