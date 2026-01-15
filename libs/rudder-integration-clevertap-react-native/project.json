@@ -95,7 +95,7 @@
     "github": {
       "executor": "@jscutlery/semver:github",
       "options": {
-        "tag": "rudder-integration-clevertap-react-native@1.2.0",
+        "tag": "rudder-integration-clevertap-react-native@1.3.0",
         "notesFile": "./libs/rudder-integration-clevertap-react-native/CHANGELOG_LATEST.md"
       }
     },
