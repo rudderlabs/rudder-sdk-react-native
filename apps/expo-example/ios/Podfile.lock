@@ -18,6 +18,9 @@ PODS:
     - SDWebImage (~> 5.11)
   - EXConstants (18.0.13):
     - ExpoModulesCore
+  - EXJSONUtils (0.15.0)
+  - EXManifests (1.0.10):
+    - ExpoModulesCore
   - Expo (54.0.31):
     - ExpoModulesCore
     - hermes-engine
@@ -38,6 +41,177 @@ PODS:
     - React-rendererdebug
     - React-utils
     - ReactAppDependencyProvider
+    - ReactCodegen
+    - ReactCommon/turbomodule/bridging
+    - ReactCommon/turbomodule/core
+    - ReactNativeDependencies
+    - Yoga
+  - expo-dev-client (6.0.20):
+    - EXManifests
+    - expo-dev-launcher
+    - expo-dev-menu
+    - expo-dev-menu-interface
+    - EXUpdatesInterface
+  - expo-dev-launcher (6.0.20):
+    - EXManifests
+    - expo-dev-launcher/Main (= 6.0.20)
+    - expo-dev-menu
+    - expo-dev-menu-interface
+    - ExpoModulesCore
+    - EXUpdatesInterface
+    - hermes-engine
+    - RCTRequired
+    - RCTTypeSafety
+    - React-Core
+    - React-Core-prebuilt
+    - React-debug
+    - React-Fabric
+    - React-featureflags
+    - React-graphics
+    - React-ImageManager
+    - React-jsi
+    - React-jsinspector
+    - React-NativeModulesApple
+    - React-RCTAppDelegate
+    - React-RCTFabric
+    - React-renderercss
+    - React-rendererdebug
+    - React-utils
+    - ReactAppDependencyProvider
+    - ReactCodegen
+    - ReactCommon/turbomodule/bridging
+    - ReactCommon/turbomodule/core
+    - ReactNativeDependencies
+    - Yoga
+  - expo-dev-launcher/Main (6.0.20):
+    - EXManifests
+    - expo-dev-launcher/Unsafe
+    - expo-dev-menu
+    - expo-dev-menu-interface
+    - ExpoModulesCore
+    - EXUpdatesInterface
+    - hermes-engine
+    - RCTRequired
+    - RCTTypeSafety
+    - React-Core
+    - React-Core-prebuilt
+    - React-debug
+    - React-Fabric
+    - React-featureflags
+    - React-graphics
+    - React-ImageManager
+    - React-jsi
+    - React-jsinspector
+    - React-NativeModulesApple
+    - React-RCTAppDelegate
+    - React-RCTFabric
+    - React-renderercss
+    - React-rendererdebug
+    - React-utils
+    - ReactAppDependencyProvider
+    - ReactCodegen
+    - ReactCommon/turbomodule/bridging
+    - ReactCommon/turbomodule/core
+    - ReactNativeDependencies
+    - Yoga
+  - expo-dev-launcher/Unsafe (6.0.20):
+    - EXManifests
+    - expo-dev-menu
+    - expo-dev-menu-interface
+    - ExpoModulesCore
+    - EXUpdatesInterface
+    - hermes-engine
+    - RCTRequired
+    - RCTTypeSafety
+    - React-Core
+    - React-Core-prebuilt
+    - React-debug
+    - React-Fabric
+    - React-featureflags
+    - React-graphics
+    - React-ImageManager
+    - React-jsi
+    - React-jsinspector
+    - React-NativeModulesApple
+    - React-RCTAppDelegate
+    - React-RCTFabric
+    - React-renderercss
+    - React-rendererdebug
+    - React-utils
+    - ReactAppDependencyProvider
+    - ReactCodegen
+    - ReactCommon/turbomodule/bridging
+    - ReactCommon/turbomodule/core
+    - ReactNativeDependencies
+    - Yoga
+  - expo-dev-menu (7.0.18):
+    - expo-dev-menu/Main (= 7.0.18)
+    - expo-dev-menu/ReactNativeCompatibles (= 7.0.18)
+    - hermes-engine
+    - RCTRequired
+    - RCTTypeSafety
+    - React-Core
+    - React-Core-prebuilt
+    - React-debug
+    - React-Fabric
+    - React-featureflags
+    - React-graphics
+    - React-ImageManager
+    - React-jsi
+    - React-NativeModulesApple
+    - React-RCTFabric
+    - React-renderercss
+    - React-rendererdebug
+    - React-utils
+    - ReactCodegen
+    - ReactCommon/turbomodule/bridging
+    - ReactCommon/turbomodule/core
+    - ReactNativeDependencies
+    - Yoga
+  - expo-dev-menu-interface (2.0.0)
+  - expo-dev-menu/Main (7.0.18):
+    - EXManifests
+    - expo-dev-menu-interface
+    - ExpoModulesCore
+    - hermes-engine
+    - RCTRequired
+    - RCTTypeSafety
+    - React-Core
+    - React-Core-prebuilt
+    - React-debug
+    - React-Fabric
+    - React-featureflags
+    - React-graphics
+    - React-ImageManager
+    - React-jsi
+    - React-jsinspector
+    - React-NativeModulesApple
+    - React-RCTFabric
+    - React-renderercss
+    - React-rendererdebug
+    - React-utils
+    - ReactCodegen
+    - ReactCommon/turbomodule/bridging
+    - ReactCommon/turbomodule/core
+    - ReactNativeDependencies
+    - Yoga
+  - expo-dev-menu/ReactNativeCompatibles (7.0.18):
+    - hermes-engine
+    - RCTRequired
+    - RCTTypeSafety
+    - React-Core
+    - React-Core-prebuilt
+    - React-debug
+    - React-Fabric
+    - React-featureflags
+    - React-graphics
+    - React-ImageManager
+    - React-jsi
+    - React-NativeModulesApple
+    - React-RCTFabric
+    - React-renderercss
+    - React-rendererdebug
+    - React-utils
     - ReactCodegen
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
@@ -74,6 +248,8 @@ PODS:
     - ReactCommon/turbomodule/core
     - ReactNativeDependencies
     - Yoga
+  - EXUpdatesInterface (2.0.0):
+    - ExpoModulesCore
   - FBAEMKit (17.0.3):
     - FBSDKCoreKit_Basics (= 17.0.3)
   - FBLazyVector (0.81.5)
@@ -1843,7 +2019,7 @@ PODS:
     - React-utils (= 0.81.5)
     - ReactNativeDependencies
   - ReactNativeDependencies (0.81.5)
-  - RNRudderSdk (3.0.0):
+  - RNRudderSdk (3.0.1):
     - hermes-engine
     - RCTRequired
     - RCTTypeSafety
@@ -1890,32 +2066,32 @@ PODS:
   - Rudder-Firebase (3.8.0):
     - FirebaseAnalytics (~> 11.15.0)
     - Rudder (~> 1.29)
-  - rudder-integration-amplitude-react-native (1.2.0):
+  - rudder-integration-amplitude-react-native (1.3.0):
     - React
     - RNRudderSdk
     - Rudder-Amplitude
-  - rudder-integration-appcenter-react-native (1.2.0):
+  - rudder-integration-appcenter-react-native (1.3.0):
     - React
     - RNRudderSdk
     - Rudder-AppCenter
-  - rudder-integration-appsflyer-react-native (1.7.0):
+  - rudder-integration-appsflyer-react-native (1.8.0):
     - React
     - RNRudderSdk
     - Rudder-Appsflyer (>= 2.2.0)
-  - rudder-integration-braze-react-native (2.0.0):
+  - rudder-integration-braze-react-native (2.2.0):
     - React
     - RNRudderSdk
-    - Rudder-Braze (~> 4.0)
-  - rudder-integration-clevertap-react-native (1.2.0):
+    - Rudder-Braze (~> 4.2)
+  - rudder-integration-clevertap-react-native (1.3.0):
     - CleverTap-iOS-SDK
     - React
     - RNRudderSdk
     - Rudder-CleverTap (~> 1.1.2)
-  - rudder-integration-facebook-react-native (1.1.0):
+  - rudder-integration-facebook-react-native (1.2.0):
     - React
     - RNRudderSdk
     - Rudder-Facebook (< 3.0.0, >= 2.2.1)
-  - rudder-integration-firebase-react-native (2.0.0):
+  - rudder-integration-firebase-react-native (2.2.0):
     - hermes-engine
     - RCTRequired
     - RCTTypeSafety
@@ -1938,20 +2114,20 @@ PODS:
     - ReactCommon/turbomodule/core
     - ReactNativeDependencies
     - RNRudderSdk
-    - Rudder-Firebase (~> 3.6)
+    - Rudder-Firebase (~> 3.8)
     - Yoga
-  - rudder-integration-moengage-react-native (1.2.0):
+  - rudder-integration-moengage-react-native (1.3.0):
     - React
     - RNRudderSdk
     - Rudder-Moengage
-  - rudder-integration-singular-react-native (1.2.0):
+  - rudder-integration-singular-react-native (1.3.0):
     - React
     - RNRudderSdk
     - Rudder-Singular
   - Rudder-Moengage (2.3.0):
     - MoEngage-iOS-SDK (= 9.18.0)
     - Rudder (~> 1.12)
-  - rudder-plugin-db-encryption-react-native (1.4.1):
+  - rudder-plugin-db-encryption-react-native (1.5.0):
     - React
     - RNRudderSdk
     - Rudder (< 2.0.0, >= 1.24.1)
@@ -1978,12 +2154,19 @@ PODS:
 
 DEPENDENCIES:
   - EXConstants (from `../node_modules/expo/node_modules/expo-constants/ios`)
+  - EXJSONUtils (from `../node_modules/expo-json-utils/ios`)
+  - EXManifests (from `../node_modules/expo-manifests/ios`)
   - Expo (from `../node_modules/expo`)
+  - expo-dev-client (from `../node_modules/expo-dev-client/ios`)
+  - expo-dev-launcher (from `../node_modules/expo-dev-launcher`)
+  - expo-dev-menu (from `../node_modules/expo-dev-menu`)
+  - expo-dev-menu-interface (from `../node_modules/expo-dev-menu-interface/ios`)
   - ExpoAsset (from `../node_modules/expo/node_modules/expo-asset/ios`)
   - ExpoFileSystem (from `../node_modules/expo/node_modules/expo-file-system/ios`)
   - ExpoFont (from `../node_modules/expo/node_modules/expo-font/ios`)
   - ExpoKeepAwake (from `../node_modules/expo/node_modules/expo-keep-awake/ios`)
   - ExpoModulesCore (from `../node_modules/expo-modules-core`)
+  - EXUpdatesInterface (from `../node_modules/expo-updates-interface/ios`)
   - FBLazyVector (from `../node_modules/react-native/Libraries/FBLazyVector`)
   - FirebaseCore
   - GoogleUtilities
@@ -2115,8 +2298,20 @@ SPEC REPOS:
 EXTERNAL SOURCES:
   EXConstants:
     :path: "../node_modules/expo/node_modules/expo-constants/ios"
+  EXJSONUtils:
+    :path: "../node_modules/expo-json-utils/ios"
+  EXManifests:
+    :path: "../node_modules/expo-manifests/ios"
   Expo:
     :path: "../node_modules/expo"
+  expo-dev-client:
+    :path: "../node_modules/expo-dev-client/ios"
+  expo-dev-launcher:
+    :path: "../node_modules/expo-dev-launcher"
+  expo-dev-menu:
+    :path: "../node_modules/expo-dev-menu"
+  expo-dev-menu-interface:
+    :path: "../node_modules/expo-dev-menu-interface/ios"
   ExpoAsset:
     :path: "../node_modules/expo/node_modules/expo-asset/ios"
   ExpoFileSystem:
@@ -2127,6 +2322,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/expo/node_modules/expo-keep-awake/ios"
   ExpoModulesCore:
     :path: "../node_modules/expo-modules-core"
+  EXUpdatesInterface:
+    :path: "../node_modules/expo-updates-interface/ios"
   FBLazyVector:
     :path: "../node_modules/react-native/Libraries/FBLazyVector"
   hermes-engine:
@@ -2293,12 +2490,19 @@ SPEC CHECKSUMS:
   BrazeKit: 44fab385edca94faaf96d7ce9f020b9c2ad3505e
   CleverTap-iOS-SDK: 36c21b8a671d87a0f9c7b389b339d02528bbe4d7
   EXConstants: fce59a631a06c4151602843667f7cfe35f81e271
+  EXJSONUtils: 1d3e4590438c3ee593684186007028a14b3686cd
+  EXManifests: a8d97683e5c7a3b026ffbd58559c64dc655b747b
   Expo: 04993fbd7b06dc98ffac58da8847298470dc3db1
+  expo-dev-client: 425ee077d6754a98cfe3a2e2410d29b440b24c9d
+  expo-dev-launcher: a4f4cdef064ab1fb8621e5b8c7c457cd6e9568c3
+  expo-dev-menu: 05b18812110c175814c6af0d09dd658abcc5e00d
+  expo-dev-menu-interface: 600df12ea01efecdd822daaf13cc0ac091775533
   ExpoAsset: f867e55ceb428aab99e1e8c082b5aee7c159ea18
   ExpoFileSystem: 858a44267a3e6e9057e0888ad7c7cfbf55d52063
   ExpoFont: 35ac6191ed86bbf56b3ebd2d9154eda9fad5b509
   ExpoKeepAwake: 55f75eca6499bb9e4231ebad6f3e9cb8f99c0296
   ExpoModulesCore: f3da4f1ab5a8375d0beafab763739dbee8446583
+  EXUpdatesInterface: 5adf50cb41e079c861da6d9b4b954c3db9a50734
   FBAEMKit: 9900b2edd99a2d21629a6277e6166f14c6215799
   FBLazyVector: e95a291ad2dadb88e42b06e0c5fb8262de53ec12
   FBSDKCoreKit: 0791f8f68a8630931a4c12aa23a56cc021551596
@@ -2385,7 +2589,7 @@ SPEC CHECKSUMS:
   ReactCodegen: 7d4593f7591f002d137fe40cef3f6c11f13c88cc
   ReactCommon: 08810150b1206cc44aecf5f6ae19af32f29151a8
   ReactNativeDependencies: 71ce9c28beb282aa720ea7b46980fff9669f428a
-  RNRudderSdk: 806d0e111ad4eef9139d2b4116ff9c029afa2dd1
+  RNRudderSdk: c05574fe8c173c2ccac84dab28794f8530c251a5
   RSCrashReporter: 6b8376ac729b0289ebe0908553e5f56d8171f313
   Rudder: 352cb3417238fb84cc083826d9a5a7cc91efaa69
   Rudder-Amplitude: d308b2bce1237c3cfdf3274458130f36815067db
@@ -2395,17 +2599,17 @@ SPEC CHECKSUMS:
   Rudder-CleverTap: a0085aab472e0e60930c4301ef80bae5ff187e98
   Rudder-Facebook: 24c9309373f13212d1139938aad86faa2914d342
   Rudder-Firebase: 7e80a7dfd39dbe35d8cb7c0ac12e57b43b690e6d
-  rudder-integration-amplitude-react-native: cdc31956c0f597e70bf64c8472926c486c16b594
-  rudder-integration-appcenter-react-native: e3e0e21942a9d6c120ad0228bd7988ccdd1e809a
-  rudder-integration-appsflyer-react-native: 861ad1a4f4782712f5a3ca706f809005cdd561f1
-  rudder-integration-braze-react-native: ec817420429791b8f3f5207a09deeb4b822d8778
-  rudder-integration-clevertap-react-native: b5f311e791017297436d491040c07a7289f6b56d
-  rudder-integration-facebook-react-native: 63ea95a5ac12b9cb8caba8c86687b1b78b60c4db
-  rudder-integration-firebase-react-native: 319f02b5dfbd3dcf82bbff03c33d4bd7db63adf3
-  rudder-integration-moengage-react-native: 7e215217d21c4e4e323571ce30cf82ac6ebb23ff
-  rudder-integration-singular-react-native: ae84b85d34cfd423328711c34ccf7a4dfebfdc55
+  rudder-integration-amplitude-react-native: c797e5a14f2845f94418d6dd26dab075d70d337c
+  rudder-integration-appcenter-react-native: 96f1abec6399f86156c04175dccdda9d0a9021a7
+  rudder-integration-appsflyer-react-native: b5129ad2b3e5905d1908c724a63a1d60f5898dc5
+  rudder-integration-braze-react-native: e66e97c29e44752cfa1f35aa4832172eb8ebf69f
+  rudder-integration-clevertap-react-native: 4ad230969d8a4d4e9bea9fc1398d0a770225c35d
+  rudder-integration-facebook-react-native: 588e54789db1a694304bce2450be355f88a71081
+  rudder-integration-firebase-react-native: 923deae6649d509eec1d31faa4fad979eef45274
+  rudder-integration-moengage-react-native: 933fcddabf35a921aa05fbcb047b98a6e019a128
+  rudder-integration-singular-react-native: 3850aea08da6900fc1d79b307b35ab83660f1508
   Rudder-Moengage: 453bbddbf4aeb48d9517229ce8f2b0250acc457c
-  rudder-plugin-db-encryption-react-native: 9b130f1ec65263c9b13e3ef77bcfb82e4e897014
+  rudder-plugin-db-encryption-react-native: 27b4e17cc1276e2c2de6b3c00c2930e8ace23329
   Rudder-Singular: 0685fcfd797962d7681a5f05e48c249dd6a11228
   RudderDatabaseEncryption: 95b436538412958eda771f5d81bd970a9ffe4eec
   RudderKit: f272f9872183946452ac94cd7bb2244a71e6ca8f
