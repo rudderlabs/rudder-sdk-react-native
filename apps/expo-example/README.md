@@ -206,6 +206,18 @@ To enable specific integrations:
 - **iOS build issues**: Ensure pods are installed and Kotlin version is updated
 - **Android SQLCipher errors**: Verify SQLCipher dependencies are added
 
+### Android Emulator: "Failed to connect to localhost" Error
+
+If the Expo Dev Client shows "Failed to connect to localhost/127.0.0.1:8081" when trying to connect to Metro bundler, you need to set up port forwarding. The Android emulator runs in its own network namespace where `localhost` refers to the emulator itself, not your host machine.
+
+Run this command to forward port 8081 from the emulator to your host:
+
+```bash
+adb reverse tcp:8081 tcp:8081
+```
+
+After running this command, enter `http://localhost:8081` in the URL field and tap "Connect" in the Expo Dev Client to connect to Metro.
+
 ### Debug Mode
 
 The app is configured with verbose logging. Check your development console for detailed SDK operation logs.

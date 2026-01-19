@@ -21,6 +21,7 @@
     "@rudderstack/rudder-plugin-db-encryption-react-native": "1.5.0",
     "@rudderstack/rudder-sdk-react-native": "3.0.1",
     "expo": "54.0.31",
+    "expo-dev-client": "6.0.20",
     "expo-status-bar": "3.0.9",
     "react": "19.1.0",
     "react-native": "0.81.5"
