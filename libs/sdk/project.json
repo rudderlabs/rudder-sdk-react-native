@@ -5,6 +5,12 @@
   "projectType": "library",
   "tags": [],
   "targets": {
+    "type-check": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "tsc -p libs/sdk/tsconfig.lib.json --noEmit"
+      }
+    },
     "build": {
       "executor": "@nx/rollup:rollup",
       "outputs": ["{options.outputPath}"],
@@ -57,6 +63,7 @@
       }
     },
     "lint": {
+      "dependsOn": ["type-check"],
       "executor": "@nx/eslint:lint",
       "outputs": ["{options.outputFile}"],
       "options": {
