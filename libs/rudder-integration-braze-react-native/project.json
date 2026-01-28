@@ -92,7 +92,7 @@
     "github": {
       "executor": "@jscutlery/semver:github",
       "options": {
-        "tag": "rudder-integration-braze-react-native@2.2.0",
+        "tag": "rudder-integration-braze-react-native@2.3.0",
         "notesFile": "./libs/rudder-integration-braze-react-native/CHANGELOG_LATEST.md"
       }
     },
