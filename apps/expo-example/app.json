@@ -2,6 +2,12 @@
   "expo": {
     "name": "expo-example",
     "slug": "expo-example",
-    "version": "1.0.0"
+    "version": "1.0.0",
+    "android": {
+      "package": "com.rudderstack.expoexample"
+    },
+    "ios": {
+      "bundleIdentifier": "com.rudderstack.expoexample"
+    }
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "@rudderstack/rudder-sdk-react-native-monorepo",
-  "version": "2.38.0",
+  "version": "2.39.0",
   "description": "Rudder React Native SDK monorepo",
   "keywords": [
     "react-native",
@@ -32,8 +32,8 @@
     "test": "nx run-many --target=test --parallel=1 && ./node_modules/.bin/lcov-result-merger '**/coverage/lcov.info' 'merged-lcov.info'",
     "test:ci": "nx run-many --target=test --parallel=1 --configuration=ci && ./node_modules/.bin/lcov-result-merger '**/coverage/lcov.info' 'merged-lcov.info'",
     "clean": "rm -rf node_modules/.cache && nx reset && rm -rf reports && rm -rf dist",
-    "check:lint": "nx run-many --target=lint --parallel=1",
-    "check:lint:ci": "nx run-many --target=lint --parallel=1 --configuration=ci",
+    "check:lint": "nx run-many --target=type-check --parallel=1 && nx run-many --target=lint --parallel=1",
+    "check:lint:ci": "nx run-many --target=type-check --parallel=1 && nx run-many --target=lint --parallel=1 --configuration=ci",
     "check:security": "npm audit --audit-level=high",
     "format": "prettier --write .",
     "lint:fix": "nx lint --configuration=fix",

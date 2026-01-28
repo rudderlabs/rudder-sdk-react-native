@@ -9,25 +9,26 @@
     "web": "expo start --web"
   },
   "dependencies": {
-    "@rudderstack/rudder-integration-amplitude-react-native": "^1.2.0",
-    "@rudderstack/rudder-integration-appcenter-react-native": "^1.2.0",
-    "@rudderstack/rudder-integration-appsflyer-react-native": "^1.7.0",
-    "@rudderstack/rudder-integration-braze-react-native": "^2.0.0",
-    "@rudderstack/rudder-integration-clevertap-react-native": "^1.2.0",
-    "@rudderstack/rudder-integration-facebook-react-native": "^1.1.0",
-    "@rudderstack/rudder-integration-firebase-react-native": "^2.0.0",
-    "@rudderstack/rudder-integration-moengage-react-native": "^1.2.0",
-    "@rudderstack/rudder-integration-singular-react-native": "^1.2.0",
-    "@rudderstack/rudder-plugin-db-encryption-react-native": "^1.4.1",
-    "@rudderstack/rudder-sdk-react-native": "^3.0.0",
-    "expo": "~53.0.13",
-    "expo-status-bar": "~2.2.3",
-    "react": "19.2.3",
-    "react-native": "0.79.4"
+    "@rudderstack/rudder-integration-amplitude-react-native": "1.3.0",
+    "@rudderstack/rudder-integration-appcenter-react-native": "1.3.0",
+    "@rudderstack/rudder-integration-appsflyer-react-native": "1.8.0",
+    "@rudderstack/rudder-integration-braze-react-native": "2.2.0",
+    "@rudderstack/rudder-integration-clevertap-react-native": "1.3.0",
+    "@rudderstack/rudder-integration-facebook-react-native": "1.2.0",
+    "@rudderstack/rudder-integration-firebase-react-native": "2.2.0",
+    "@rudderstack/rudder-integration-moengage-react-native": "1.3.0",
+    "@rudderstack/rudder-integration-singular-react-native": "1.3.0",
+    "@rudderstack/rudder-plugin-db-encryption-react-native": "1.5.0",
+    "@rudderstack/rudder-sdk-react-native": "3.0.1",
+    "expo": "54.0.31",
+    "expo-status-bar": "3.0.9",
+    "react": "19.1.0",
+    "react-native": "0.81.5"
   },
   "devDependencies": {
-    "@babel/core": "^7.20.0",
-    "react-native-dotenv": "^3.4.11"
+    "@babel/core": "7.27.7",
+    "react-native-dotenv": "3.4.11",
+    "expo-dev-client": "6.0.20"
   },
   "private": true
 }
