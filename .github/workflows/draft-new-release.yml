@@ -93,19 +93,32 @@ jobs:
           echo "Current version: $CURRENT_VERSION_VALUE"
           echo "New version: $NEW_VERSION_VALUE"
           git fetch --no-tags --prune --depth=100 origin master
-          npm run release
+          npm run release -- --skip.commit --skip.tag
           ./scripts/sync-tags-in-nx-projects.sh
           ./scripts/generate-last-release-changelog.sh
           ./scripts/update-rn-sdk-version-in-constants-file.sh
           npm run bump-version:monorepo
           npx replace $CURRENT_VERSION_VALUE $NEW_VERSION_VALUE sonar-project.properties
           npm i
-          git add .
-          git commit -m "chore: sync versions and generate release logs"
 
-      - name: Push new versions in release branch
+      - name: Get list of changed files
+        id: changed-files
         run: |
-          git push --follow-tags
+          # Get all changed files and format them for the signed commit action
+          changed_files=$(git diff --name-only | tr '\n' '\n')
+          echo "files<<EOF" >> $GITHUB_OUTPUT
+          echo "$changed_files" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: Create verified commit via API
+        uses: ryancyq/github-signed-commit@e9f3b28c80da7be66d24b8f501a5abe82a6b855f # v1.2.0
+        env:
+          GH_TOKEN: ${{ steps.generate-token.outputs.token }}
+        with:
+          branch-name: ${{ steps.create-release.outputs.branch_name }}
+          commit-message: 'chore: sync versions and generate release logs'
+          files: ${{ steps.changed-files.outputs.files }}
+          tag: 'v${{ steps.create-release.outputs.new_version }}'
 
       - name: Create pull request into master
         uses: repo-sync/pull-request@7e79a9f5dc3ad0ce53138f01df2fad14a04831c5 #v2
