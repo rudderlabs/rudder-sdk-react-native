@@ -72,11 +72,17 @@ jobs:
           git config user.name "GitHub actions"
           git config user.email noreply@github.com
 
-      - name: Create Monorepo Release Tag
-        id: create_monorepo_release
+      - name: Create Monorepo Release Tag via API
+        env:
+          GH_TOKEN: ${{ steps.generate-token.outputs.token }}
         run: |
-          git tag -a v${{ steps.extract-version.outputs.release_version }} -m "chore: release v${{ steps.extract-version.outputs.release_version }}"
-          git push origin refs/tags/v${{ steps.extract-version.outputs.release_version }}
+          # Get the commit SHA of HEAD on master
+          COMMIT_SHA=$(git rev-parse HEAD)
+          # Create lightweight tag via GitHub API (tags created via API are shown as verified)
+          gh api repos/${{ github.repository }}/git/refs \
+            --method POST \
+            -f ref="refs/tags/v${{ steps.extract-version.outputs.release_version }}" \
+            -f sha="$COMMIT_SHA"
 
       - name: Get the two latest versions
         run: |

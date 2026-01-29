@@ -44,7 +44,7 @@ jobs:
       - name: Create branch
         uses: peterjgrainger/action-create-branch@10c7d268152480ae859347db45dc69086cef1d9c # v3.0.0
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
         with:
           branch: 'fix/updateMinimumSdkVersions-${{ env.CURRENT_DATE }}'
 
@@ -53,31 +53,53 @@ jobs:
           git fetch
           git checkout fix/updateMinimumSdkVersions-${{ env.CURRENT_DATE }}
 
-      # In order to make a commit, we need to initialize a user.
-      # You may choose to write something less generic here if you want, it doesn't matter functionality wise.
-      - name: Initialize mandatory git config
-        run: |
-          git config user.name "GitHub actions"
-          git config user.email noreply@github.com
-
       - name: Update Android SDK Version
         if: github.event.inputs.android_minimum_version != ''
+        env:
+          ANDROID_MIN_VERSION: ${{ github.event.inputs.android_minimum_version }}
         run: |
-          minimum_version='${{ github.event.inputs.android_minimum_version }}'
-          sed -i "s/com.rudderstack.android.sdk:core:\[[0-9.]*,[0-9]*/com.rudderstack.android.sdk:core:\[$minimum_version,/" libs/sdk/android/build.gradle
-          git add .
-          git commit -m "fix(rudder-sdk-react-native): update minimum Android SDK versions"
+          sed -i "s/com.rudderstack.android.sdk:core:\[[0-9.]*,[0-9]*/com.rudderstack.android.sdk:core:\[$ANDROID_MIN_VERSION,/" libs/sdk/android/build.gradle
 
       - name: Update iOS SDK Version
         if: github.event.inputs.ios_minimum_version != ''
+        env:
+          IOS_MIN_VERSION: ${{ github.event.inputs.ios_minimum_version }}
         run: |
-          minimum_version='${{ github.event.inputs.ios_minimum_version }}'
-          sed -i "s/\"Rudder\", '[>= ]*[0-9.]*[0-9]*/\"Rudder\", '>= $minimum_version/" libs/sdk/RNRudderSdk.podspec
-          git add .
-          git commit -m "fix(rudder-sdk-react-native): update minimum iOS SDK versions"
+          sed -i "s/\"Rudder\", '[>= ]*[0-9.]*[0-9]*/\"Rudder\", '>= $IOS_MIN_VERSION/" libs/sdk/RNRudderSdk.podspec
 
-      - name: Push Changes
-        run: git push
+      - name: Get list of changed files
+        id: changed-files
+        run: |
+          # Get all changed files and format them for the signed commit action
+          changed_files=$(git diff --name-only | tr '\n' '\n')
+          echo "files<<EOF" >> $GITHUB_OUTPUT
+          echo "$changed_files" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: Build commit message
+        id: commit-message
+        env:
+          ANDROID_VERSION: ${{ github.event.inputs.android_minimum_version }}
+          IOS_VERSION: ${{ github.event.inputs.ios_minimum_version }}
+        run: |
+          msg="fix(rudder-sdk-react-native): update minimum SDK versions"
+          if [ -n "$ANDROID_VERSION" ] && [ -n "$IOS_VERSION" ]; then
+            msg="fix(rudder-sdk-react-native): update minimum Android and iOS SDK versions"
+          elif [ -n "$ANDROID_VERSION" ]; then
+            msg="fix(rudder-sdk-react-native): update minimum Android SDK versions"
+          elif [ -n "$IOS_VERSION" ]; then
+            msg="fix(rudder-sdk-react-native): update minimum iOS SDK versions"
+          fi
+          echo "message=$msg" >> $GITHUB_OUTPUT
+
+      - name: Create verified commit via API
+        uses: ryancyq/github-signed-commit@e9f3b28c80da7be66d24b8f501a5abe82a6b855f # v1.2.0
+        env:
+          GH_TOKEN: ${{ steps.generate-token.outputs.token }}
+        with:
+          branch-name: fix/updateMinimumSdkVersions-${{ env.CURRENT_DATE }}
+          commit-message: ${{ steps.commit-message.outputs.message }}
+          files: ${{ steps.changed-files.outputs.files }}
 
       - name: Create pull request into develop
         uses: repo-sync/pull-request@7e79a9f5dc3ad0ce53138f01df2fad14a04831c5 # v2.12.1
