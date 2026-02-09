@@ -29,6 +29,7 @@ jobs:
         with:
           app-id: ${{ vars.RELEASE_APP_ID }}
           private-key: ${{ secrets.RELEASE_PRIVATE_KEY }}
+          repositories: rudder-sdk-react-native
           permission-contents: write # to create commits, tags, and releases
           permission-pull-requests: write # to create and update PRs
 
