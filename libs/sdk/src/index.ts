@@ -3,6 +3,7 @@ import { RUDDER_LOG_LEVEL } from './Logger';
 import IDBEncryption from './IDBEncryption';
 import IRudderContext from './IRudderContext';
 
+// Added comment to trigger sonar cloud analysis on this file.
 export { RUDDER_LOG_LEVEL };
 export type { IDBEncryption, IRudderContext };
 export default rudderClient;
