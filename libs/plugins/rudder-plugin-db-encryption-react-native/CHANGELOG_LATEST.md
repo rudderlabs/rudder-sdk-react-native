@@ -1,7 +1,7 @@
-## [1.5.0](https://github.com/rudderlabs/rudder-sdk-react-native/compare/rudder-plugin-db-encryption-react-native@1.4.1...rudder-plugin-db-encryption-react-native@1.5.0) (2026-01-15)
+## [1.5.1](https://github.com/rudderlabs/rudder-sdk-react-native/compare/rudder-plugin-db-encryption-react-native@1.5.0...rudder-plugin-db-encryption-react-native@1.5.1) (2026-03-05)
 
 
-### Features
+### Bug Fixes
 
-* add React Native 0.83 and Gradle 9.0 compatibility ([#540](https://github.com/rudderlabs/rudder-sdk-react-native/issues/540)) ([9d93202](https://github.com/rudderlabs/rudder-sdk-react-native/commit/9d93202c784f401dbf16c5c58e7546467a3829fd))
+* add dummy commit to trigger changelog generation ([#583](https://github.com/rudderlabs/rudder-sdk-react-native/issues/583)) ([0af86f7](https://github.com/rudderlabs/rudder-sdk-react-native/commit/0af86f7cd3baab87b1edae3de7d9b5dbd839220b))
 
