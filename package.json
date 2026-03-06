@@ -159,7 +159,8 @@
     "minimatch": "10.2.4",
     "serialize-javascript": "7.0.3",
     "lodash": "4.17.23",
-    "esbuild": "0.25.0"
+    "esbuild": "0.25.0",
+    "@tootallnate/once": "3.0.1"
   },
   "optionalDependencies": {
     "@nx/nx-linux-x64-gnu": "19.8.14"
