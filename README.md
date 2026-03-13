@@ -1,5 +1,7 @@
 # What is RudderStack?
 
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/rudderlabs/rudder-sdk-react-native)
+
 [RudderStack](https://rudderstack.com/) is a **customer data pipeline** tool for collecting, routing and processing data from your websites, apps, cloud tools, and data warehouse.
 
 More information on RudderStack can be found [here](https://github.com/rudderlabs/rudder-server).
