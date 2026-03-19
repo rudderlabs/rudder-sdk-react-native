@@ -1,6 +1,6 @@
 {
   "name": "@rudderstack/rudder-sdk-react-native-monorepo",
-  "version": "2.40.0",
+  "version": "2.41.0",
   "description": "Rudder React Native SDK monorepo",
   "keywords": [
     "react-native",
@@ -91,9 +91,9 @@
     "@nx/webpack": "19.8.14",
     "@playwright/test": "1.57.0",
     "@react-native-async-storage/async-storage": "1.23.1",
-    "@react-native-community/cli": "20.0.2",
-    "@react-native-community/cli-platform-android": "20.0.2",
-    "@react-native-community/cli-platform-ios": "20.0.2",
+    "@react-native-community/cli": "20.1.2",
+    "@react-native-community/cli-platform-android": "20.1.2",
+    "@react-native-community/cli-platform-ios": "20.1.2",
     "@react-native/babel-preset": "0.83.1",
     "@react-native/eslint-config": "0.83.1",
     "@react-native/metro-config": "0.83.1",
@@ -155,7 +155,6 @@
     "koa": "3.1.2",
     "tmp": "0.2.5",
     "@conventional-changelog/git-client": "2.5.1",
-    "fast-xml-parser": "5.4.1",
     "minimatch": "10.2.4",
     "serialize-javascript": "7.0.3",
     "lodash": "4.17.23",

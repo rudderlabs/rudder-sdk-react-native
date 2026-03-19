@@ -10,11 +10,11 @@ PODS:
   - AppCenter/Core (5.12.0)
   - AppCenter/Crashes (5.12.0):
     - AppCenter/Core
-  - AppsFlyerFramework (6.17.8):
-    - AppsFlyerFramework/Main (= 6.17.8)
-  - AppsFlyerFramework/Main (6.17.8)
+  - AppsFlyerFramework (6.17.9):
+    - AppsFlyerFramework/Main (= 6.17.9)
+  - AppsFlyerFramework/Main (6.17.9)
   - boost (1.84.0)
-  - BrazeKit (13.3.0)
+  - BrazeKit (14.0.3)
   - CleverTap-iOS-SDK (4.2.2):
     - SDWebImage (~> 5.11)
   - DoubleConversion (1.1.6)
@@ -126,9 +126,6 @@ PODS:
   - hermes-engine (0.14.0):
     - hermes-engine/Pre-built (= 0.14.0)
   - hermes-engine/Pre-built (0.14.0)
-  - MetricsReporter (2.0.1):
-    - RSCrashReporter (= 1.0.1)
-    - RudderKit (= 1.4.0)
   - MoEngage-iOS-SDK (9.7.0)
   - nanopb (3.30910.0):
     - nanopb/decode (= 3.30910.0)
@@ -2607,7 +2604,7 @@ PODS:
     - React-perflogger (= 0.83.1)
     - React-utils (= 0.83.1)
     - SocketRocket
-  - RNRudderSdk (3.0.1):
+  - RNRudderSdk (3.0.3):
     - boost
     - DoubleConversion
     - fast_float
@@ -2636,9 +2633,7 @@ PODS:
     - Rudder (< 2.0.0, >= 1.31.0)
     - SocketRocket
     - Yoga
-  - RSCrashReporter (1.0.1)
-  - Rudder (1.31.2):
-    - MetricsReporter (= 2.0.1)
+  - Rudder (1.32.0)
   - Rudder-Amplitude (1.2.0):
     - Amplitude (= 8.19.2)
     - Rudder (~> 1.12)
@@ -2648,8 +2643,8 @@ PODS:
   - Rudder-Appsflyer (3.0.0):
     - AppsFlyerFramework (~> 6.14)
     - Rudder (~> 1.12)
-  - Rudder-Braze (4.3.0):
-    - BrazeKit (~> 13.3)
+  - Rudder-Braze (4.4.0):
+    - BrazeKit (< 15.0.0, >= 14.0.1)
     - Rudder (~> 1.26)
   - Rudder-CleverTap (1.1.2):
     - CleverTap-iOS-SDK (~> 4.2)
@@ -2672,10 +2667,10 @@ PODS:
     - React
     - RNRudderSdk
     - Rudder-Appsflyer (>= 2.2.0)
-  - rudder-integration-braze-react-native (2.2.0):
+  - rudder-integration-braze-react-native (2.3.0):
     - React
     - RNRudderSdk
-    - Rudder-Braze (~> 4.3)
+    - Rudder-Braze (~> 4.4)
   - rudder-integration-clevertap-react-native (1.3.0):
     - CleverTap-iOS-SDK
     - React
@@ -2727,7 +2722,7 @@ PODS:
   - Rudder-Moengage (2.1.1):
     - MoEngage-iOS-SDK (~> 9.5)
     - Rudder (~> 1.12)
-  - rudder-plugin-db-encryption-react-native (1.5.0):
+  - rudder-plugin-db-encryption-react-native (1.5.1):
     - React
     - RNRudderSdk
     - Rudder (< 2.0.0, >= 1.24.1)
@@ -2738,10 +2733,9 @@ PODS:
   - RudderDatabaseEncryption (1.1.0):
     - Rudder (~> 1.21)
     - SQLCipher (~> 4.0)
-  - RudderKit (1.4.0)
-  - SDWebImage (5.21.5):
-    - SDWebImage/Core (= 5.21.5)
-  - SDWebImage/Core (5.21.5)
+  - SDWebImage (5.21.7):
+    - SDWebImage/Core (= 5.21.7)
+  - SDWebImage/Core (5.21.7)
   - Singular-SDK (12.5.0):
     - Singular-SDK/Main (= 12.5.0)
   - Singular-SDK/Main (12.5.0)
@@ -2868,11 +2862,9 @@ SPEC REPOS:
     - GoogleAdsOnDeviceConversion
     - GoogleAppMeasurement
     - GoogleUtilities
-    - MetricsReporter
     - MoEngage-iOS-SDK
     - nanopb
     - PromisesObjC
-    - RSCrashReporter
     - Rudder
     - Rudder-Amplitude
     - Rudder-AppCenter
@@ -2884,7 +2876,6 @@ SPEC REPOS:
     - Rudder-Moengage
     - Rudder-Singular
     - RudderDatabaseEncryption
-    - RudderKit
     - SDWebImage
     - Singular-SDK
     - SocketRocket
@@ -3075,9 +3066,9 @@ SPEC CHECKSUMS:
   Amplitude: 1c9fca37993bd5742cf7c121d432bf8bf5a28ccb
   AnalyticsConnector: a53214d38ae22734c6266106c0492b37832633a9
   AppCenter: 38e27eb52113bff74426db9f500726933c8d2fd7
-  AppsFlyerFramework: 63577b60d6b9fcdab60135289979e7d1c9ec79b9
+  AppsFlyerFramework: 4f9a8237d40e9093941aef760cd77d606238aedd
   boost: 7e761d76ca2ce687f7cc98e698152abd03a18f90
-  BrazeKit: 53ac2d77c7d5ab54ab73df75c9058ae89236fc54
+  BrazeKit: 3f92e7b676f20b9a4aeb8246d46dfa461ceb73cd
   CleverTap-iOS-SDK: 36c21b8a671d87a0f9c7b389b339d02528bbe4d7
   DoubleConversion: cb417026b2400c8f53ae97020b2be961b59470cb
   fast_float: b32c788ed9c6a8c584d114d0047beda9664e7cc6
@@ -3094,8 +3085,7 @@ SPEC CHECKSUMS:
   GoogleAdsOnDeviceConversion: 2be6297a4f048459e0ae17fad9bfd2844e10cf64
   GoogleAppMeasurement: 700dce7541804bec33db590a5c496b663fbe2539
   GoogleUtilities: 00c88b9a86066ef77f0da2fab05f65d7768ed8e1
-  hermes-engine: 7d8daefbeb56bdbb5f7e5b0853ec8420ffe11a88
-  MetricsReporter: b76937c31c06e81316ec1f9049ee069ca69faea0
+  hermes-engine: 701bfd13826d0c19a9fc949ba911a99cd943b09b
   MoEngage-iOS-SDK: fe5e6039e6381017b756d8cc72b6d9a11112abc1
   nanopb: fad817b59e0457d11a5dfbde799381cd727c1275
   PromisesObjC: f5707f49cb48b9636751c5b2e7d227e43fba9f47
@@ -3169,31 +3159,29 @@ SPEC CHECKSUMS:
   ReactAppDependencyProvider: 0eb286cc274abb059ee601b862ebddac2e681d01
   ReactCodegen: b8e56b780fffe6edd6405be0af4a1e3049a937f7
   ReactCommon: ac934cb340aee91282ecd6f273a26d24d4c55cae
-  RNRudderSdk: d14d2703f41da466775e92ae777e34f97869d788
-  RSCrashReporter: 6b8376ac729b0289ebe0908553e5f56d8171f313
-  Rudder: d18a99cafd24734d516dfb3db65634a0962a5ce7
+  RNRudderSdk: 1b901cf8481c21a213e937bf7218bc78b9c98439
+  Rudder: fcd39cc69aeb05880a789b6ffdaf4ea93f6448a2
   Rudder-Amplitude: d308b2bce1237c3cfdf3274458130f36815067db
   Rudder-AppCenter: 9eca9241e3707a0e9610714dd91dc8da4bae7e1f
   Rudder-Appsflyer: 040cdb332dc9428a750dc3e7ff80564ccac7e51c
-  Rudder-Braze: 35a09584a3a07b505477ade64b9adf0274c7516e
+  Rudder-Braze: 2371de6a4fbee74df5a2e9656995675a667062b9
   Rudder-CleverTap: a0085aab472e0e60930c4301ef80bae5ff187e98
   Rudder-Facebook: 24c9309373f13212d1139938aad86faa2914d342
   Rudder-Firebase: 203c7cbeb7c59e42538c6899f7138c6760e4b77b
   rudder-integration-amplitude-react-native: c797e5a14f2845f94418d6dd26dab075d70d337c
   rudder-integration-appcenter-react-native: 96f1abec6399f86156c04175dccdda9d0a9021a7
   rudder-integration-appsflyer-react-native: b5129ad2b3e5905d1908c724a63a1d60f5898dc5
-  rudder-integration-braze-react-native: 931d408feb70101c19a4d80bd2d50d5db68c1233
+  rudder-integration-braze-react-native: 17279356627fa659b0711c9ba4760ce1fbde8ac1
   rudder-integration-clevertap-react-native: 4ad230969d8a4d4e9bea9fc1398d0a770225c35d
   rudder-integration-facebook-react-native: 588e54789db1a694304bce2450be355f88a71081
   rudder-integration-firebase-react-native: 1804860c2a77846b800788f4c7e3acd473f75f62
   rudder-integration-moengage-react-native: 933fcddabf35a921aa05fbcb047b98a6e019a128
   rudder-integration-singular-react-native: 3850aea08da6900fc1d79b307b35ab83660f1508
   Rudder-Moengage: c30465e23740673495ff853eed607a5641f22c5c
-  rudder-plugin-db-encryption-react-native: 27b4e17cc1276e2c2de6b3c00c2930e8ace23329
+  rudder-plugin-db-encryption-react-native: 2bd7b55c251b316704d276d0f7ab193ca0aa223a
   Rudder-Singular: 0685fcfd797962d7681a5f05e48c249dd6a11228
   RudderDatabaseEncryption: 95b436538412958eda771f5d81bd970a9ffe4eec
-  RudderKit: f272f9872183946452ac94cd7bb2244a71e6ca8f
-  SDWebImage: e9c98383c7572d713c1a0d7dd2783b10599b9838
+  SDWebImage: e9fc87c1aab89a8ab1bbd74eba378c6f53be8abf
   Singular-SDK: 198466328cf193d4fba7b1d49b666b2f8f21e2d6
   SocketRocket: d4aabe649be1e368d1318fdf28a022d714d65748
   SQLCipher: eb79c64049cb002b4e9fcb30edb7979bf4706dfc
