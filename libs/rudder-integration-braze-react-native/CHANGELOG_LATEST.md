@@ -1,7 +1,7 @@
-## [2.3.0](https://github.com/rudderlabs/rudder-sdk-react-native/compare/rudder-integration-braze-react-native@2.2.0...rudder-integration-braze-react-native@2.3.0) (2026-01-28)
+## [2.4.0](https://github.com/rudderlabs/rudder-sdk-react-native/compare/rudder-integration-braze-react-native@2.3.0...rudder-integration-braze-react-native@2.4.0) (2026-03-19)
 
 
 ### Features
 
-* **braze:** upgrade Rudder-Braze minimum version to 4.3 ([#562](https://github.com/rudderlabs/rudder-sdk-react-native/issues/562)) ([ad8dbc3](https://github.com/rudderlabs/rudder-sdk-react-native/commit/ad8dbc38b54fc2a875441621b02cb3c3aa78104e))
+* update braze integration minimum version in android and ios ([#596](https://github.com/rudderlabs/rudder-sdk-react-native/issues/596)) ([cd147fe](https://github.com/rudderlabs/rudder-sdk-react-native/commit/cd147fe56b3d5c5b976f56f342335254fbc6ab25))
 
