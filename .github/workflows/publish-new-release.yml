@@ -9,6 +9,8 @@ on:
 
 jobs:
   release:
+    permissions:
+      contents: read # GITHUB_TOKEN only needs read access, App Token handles all write operations
     name: Publish new release
     runs-on: ubuntu-latest
     if: (startsWith(github.event.pull_request.head.ref, 'release/') || startsWith(github.event.pull_request.head.ref, 'hotfix-release/')) && github.event.pull_request.merged == true # only merged pull requests must trigger this job
@@ -17,6 +19,16 @@ jobs:
         uses: step-security/harden-runner@95d9a5deda9de15063e7595e9719c11c38c90ae2 # v2.13.2
         with:
           egress-policy: audit
+
+      - name: Generate GitHub App Token
+        id: generate-token
+        uses: actions/create-github-app-token@67018539274d69449ef7c02e8e71183d1719ab42 # v2.1.4
+        with:
+          app-id: ${{ vars.RELEASE_APP_ID }}
+          private-key: ${{ secrets.RELEASE_PRIVATE_KEY }}
+          repositories: rudder-sdk-react-native
+          permission-contents: write # to create commits, tags, and releases
+          permission-pull-requests: write # to create and update PRs
 
       - name: Extract version from branch name (for release branches)
         id: extract-version
@@ -31,6 +43,7 @@ jobs:
         uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
         with:
           fetch-depth: 0
+          token: ${{ steps.generate-token.outputs.token }}
 
       - name: Get the latest version tag
         id: extract-previous-version
@@ -60,11 +73,17 @@ jobs:
           git config user.name "GitHub actions"
           git config user.email noreply@github.com
 
-      - name: Create Monorepo Release Tag
-        id: create_monorepo_release
+      - name: Create Monorepo Release Tag via API
+        env:
+          GH_TOKEN: ${{ steps.generate-token.outputs.token }}
         run: |
-          git tag -a v${{ steps.extract-version.outputs.release_version }} -m "chore: release v${{ steps.extract-version.outputs.release_version }}"
-          git push origin refs/tags/v${{ steps.extract-version.outputs.release_version }}
+          # Get the commit SHA of HEAD on master
+          COMMIT_SHA=$(git rev-parse HEAD)
+          # Create lightweight tag via GitHub API (tags created via API are shown as verified)
+          gh api repos/${{ github.repository }}/git/refs \
+            --method POST \
+            -f ref="refs/tags/v${{ steps.extract-version.outputs.release_version }}" \
+            -f sha="$COMMIT_SHA"
 
       - name: Get the two latest versions
         run: |
@@ -91,7 +110,7 @@ jobs:
         with:
           source_branch: 'master'
           destination_branch: 'develop'
-          github_token: ${{ secrets.PAT }}
+          github_token: ${{ steps.generate-token.outputs.token }}
           pr_title: 'chore(release): pulling master into develop post release v${{ steps.extract-version.outputs.release_version }}'
           pr_body: ':crown: *An automated PR*'
           pr_reviewer: '@rudderlabs/sdk-rn'
