@@ -83,7 +83,7 @@ dependencies {
     implementation 'com.rudderstack.android.integration:firebase:[3.6.0,4.0)'
 
     // firebase dependencies
-    implementation platform('com.google.firebase:firebase-bom:[34.11.0, 35.0)')
+    implementation platform('com.google.firebase:firebase-bom:34.11.0')
     implementation 'com.google.firebase:firebase-analytics'
 }
 
