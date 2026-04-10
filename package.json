@@ -158,10 +158,9 @@
     "minimatch": "10.2.4",
     "serialize-javascript": "7.0.5",
     "lodash": "4.18.1",
-    "esbuild": "0.25.0",
-    "@tootallnate/once": "3.0.1",
     "vite": "6.4.2",
-    "picomatch": "2.3.1"
+    "esbuild": "0.25.0",
+    "@tootallnate/once": "3.0.1"
   },
   "optionalDependencies": {
     "@nx/nx-linux-x64-gnu": "19.8.14"
