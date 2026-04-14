@@ -45,6 +45,7 @@ jobs:
           npm run setup:ci
 
       - name: Get the two latest versions
+        id: get-versions
         run: |
           CURRENT_VERSION=$(git tag -l "v*" --sort=-version:refname | head -n 1)
           LAST_VERSION=$(git tag -l "v*" --sort=-version:refname | head -n 2 | awk 'NR == 2 { print $1 }')
@@ -52,14 +53,14 @@ jobs:
           echo "Current version: $CURRENT_VERSION"
           echo "Previous version: $LAST_VERSION"
 
-          # zizmor: ignore[github-env]  # git-tag-derived values, not user-controlled
-          echo "current_version=$(echo $CURRENT_VERSION)" >> $GITHUB_ENV
-          # zizmor: ignore[github-env]  # git-tag-derived values, not user-controlled
-          echo "last_version=$(echo $LAST_VERSION)" >> $GITHUB_ENV
-          # zizmor: ignore[github-env]  # date command output, not user-controlled
-          echo "DATE=$(date)" >> $GITHUB_ENV
+          echo "current_version=$(echo $CURRENT_VERSION)" >> "$GITHUB_OUTPUT"
+          echo "last_version=$(echo $LAST_VERSION)" >> "$GITHUB_OUTPUT"
+          echo "DATE=$(date)" >> "$GITHUB_OUTPUT"
 
       - name: Build & Publish affected packages
+        env:
+          current_version: ${{ steps.get-versions.outputs.current_version }}
+          last_version: ${{ steps.get-versions.outputs.last_version }}
         run: |
           npm run deploy:npm -- --base=$last_version --head=$current_version
 
@@ -69,6 +70,8 @@ jobs:
         env:
           PROJECT_NAME: 'React Native SDK npm packages'
           NPM_PACKAGE_URL: 'https://www.npmjs.com/search?q=%40rudderstack'
+          DATE: ${{ steps.get-versions.outputs.DATE }}
+          current_version: ${{ steps.get-versions.outputs.current_version }}
         with:
           method: chat.postMessage
           payload-templated: true
