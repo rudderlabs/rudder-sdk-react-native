@@ -5,8 +5,8 @@ module.exports = {
   moduleFileExtensions: ['ts', 'js', 'html', 'tsx', 'jsx'],
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
   moduleNameMapper: {
-    '.svg': '@nrwl/react-native/plugins/jest/svg-mock',
-    '.png': '@nrwl/react-native/plugins/jest/svg-mock',
+    '.svg': '@nx/react-native/plugins/jest/svg-mock',
+    '.png': '@nx/react-native/plugins/jest/svg-mock',
   },
   collectCoverageFrom: ['src/**/*.{ts,tsx}', '!**/*.test.{ts,tsx}', '!**/test/*.{ts,tsx}'],
   coverageReporters: ['json', 'text', ['lcov', { projectRoot: '/' }], 'clover'],
