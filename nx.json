@@ -57,12 +57,12 @@
   },
   "defaultProject": "example",
   "pluginsConfig": {
-    "@nrwl/js": {
+    "@nx/js": {
       "analyzeSourceFiles": true
     }
   },
   "generators": {
-    "@nrwl/js:library": {
+    "@nx/js:library": {
       "buildable": true,
       "publishable": true
     }
