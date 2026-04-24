@@ -5,6 +5,9 @@ on:
     branches: ['develop', 'master']
     types: ['opened', 'reopened', 'edited', 'synchronize']
 
+permissions:
+  contents: read
+
 jobs:
   check_pr_title:
     name: Check PR title
