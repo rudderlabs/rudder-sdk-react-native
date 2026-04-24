@@ -52,8 +52,11 @@ jobs:
           echo "Current version: $CURRENT_VERSION"
           echo "Previous version: $LAST_VERSION"
 
+          # zizmor: ignore[github-env]  # git-tag-derived values, not user-controlled
           echo "current_version=$(echo $CURRENT_VERSION)" >> $GITHUB_ENV
+          # zizmor: ignore[github-env]  # git-tag-derived values, not user-controlled
           echo "last_version=$(echo $LAST_VERSION)" >> $GITHUB_ENV
+          # zizmor: ignore[github-env]  # date command output, not user-controlled
           echo "DATE=$(date)" >> $GITHUB_ENV
 
       - name: Build & Publish affected packages
