@@ -82,8 +82,10 @@ jobs:
 
       - name: Update beta Android SDK version in integrations and SDK packages build.gradle file
         if: github.event.inputs.is_android_beta_version == 'true'
+        env:
+          ANDROID_VERSION: ${{ github.event.inputs.android_version }}
         run: |
-          BETA__VERSION='${{ github.event.inputs.android_version }}'
+          BETA__VERSION="$ANDROID_VERSION"
 
           for dir in "libs"/*; do
             if [ "$dir" == "libs/plugins" ]; then
@@ -95,8 +97,10 @@ jobs:
 
       - name: Update Released Android SDK version in integrations and SDK packages build.gradle file
         if: github.event.inputs.is_android_beta_version == 'false'
+        env:
+          ANDROID_VERSION: ${{ github.event.inputs.android_version }}
         run: |
-          MINIMUM_VERSION='${{ github.event.inputs.android_version }}'
+          MINIMUM_VERSION="$ANDROID_VERSION"
 
           for dir in "libs"/*; do
             if [ "$dir" == "libs/plugins" ]; then
@@ -150,10 +154,12 @@ jobs:
           mv Podfile.tmp Podfile
 
       - name: Add Rudder pod in Podfile
+        env:
+          IOS_VERSION: ${{ github.event.inputs.ios_version }}
         run: |
           cd apps/example/ios
           sed -i '' -e "/target 'Example' do/a\\
-            pod 'Rudder', '${{ github.event.inputs.ios_version }}'" Podfile
+            pod 'Rudder', '$IOS_VERSION'" Podfile
 
       - name: Display Podfile
         run: cat apps/example/ios/Podfile
@@ -230,10 +236,12 @@ jobs:
           mv Podfile.tmp Podfile
 
       - name: Add Rudder pod in Podfile
+        env:
+          IOS_VERSION: ${{ github.event.inputs.ios_version }}
         run: |
           cd apps/example/ios
           sed -i '' -e "/target 'Example' do/a\\
-            pod 'Rudder', '${{ github.event.inputs.ios_version }}'" Podfile
+            pod 'Rudder', '$IOS_VERSION'" Podfile
 
       - name: Add use_frameworks! in Podfile
         run: |
@@ -324,10 +332,12 @@ jobs:
           mv Podfile.tmp Podfile
 
       - name: Add Rudder pod in Podfile
+        env:
+          IOS_VERSION: ${{ github.event.inputs.ios_version }}
         run: |
           cd apps/example/ios
           sed -i '' -e "/target 'Example' do/a\\
-            pod 'Rudder', '${{ github.event.inputs.ios_version }}'" Podfile
+            pod 'Rudder', '$IOS_VERSION'" Podfile
 
       - name: Add use_frameworks! :linkage=> :static in Podfile
         run: |
@@ -418,10 +428,12 @@ jobs:
           mv Podfile.tmp Podfile
 
       - name: Add Rudder pod in Podfile
+        env:
+          IOS_VERSION: ${{ github.event.inputs.ios_version }}
         run: |
           cd apps/example/ios
           sed -i '' -e "/target 'Example' do/a\\
-            pod 'Rudder', '${{ github.event.inputs.ios_version }}'" Podfile
+            pod 'Rudder', '$IOS_VERSION'" Podfile
 
       - name: Add use_frameworks! :linkage => :dynamic in Podfile
         run: |
