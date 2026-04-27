@@ -22,6 +22,9 @@ on:
         default: false
         type: boolean
 
+permissions:
+  contents: read
+
 jobs:
   android-configure-build_gradle:
     name: Android build test

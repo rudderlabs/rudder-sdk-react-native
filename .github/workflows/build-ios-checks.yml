@@ -5,6 +5,9 @@ on:
     branches: ['develop', 'master']
     types: ['opened', 'reopened', 'synchronize']
 
+permissions:
+  contents: read
+
 jobs:
   build:
     name: Check iOS Build
