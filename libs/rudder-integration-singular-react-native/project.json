@@ -14,7 +14,8 @@
         "project": "libs/rudder-integration-singular-react-native/package.json",
         "entryFile": "libs/rudder-integration-singular-react-native/src/index.ts",
         "external": ["react/jsx-runtime", "react-native"],
-        "rollupConfig": "@nrwl/react/plugins/bundle-rollup",
+        "rollupConfig": "@nx/react/plugins/bundle-rollup",
+        "babelUpwardRootMode": true,
         "assets": [
           {
             "glob": "libs/rudder-integration-singular-react-native/README.md",

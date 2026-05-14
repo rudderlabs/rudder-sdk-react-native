@@ -12,7 +12,7 @@ Pod::Spec.new do |s|
   s.homepage     = "https://rudderstack.com/"
   s.license      = "MIT"
   s.authors      = { "RudderStack" => "sdk@rudderstack.com" }
-  s.platforms    = { :ios => "9.0" }
+  s.platforms    = { :ios => "15.0" }
   s.source       = { :git => "https://github.com/rudderlabs/rudder-sdk-react-native.git", :tag => "master" }
 
   s.source_files = "ios/**/*.{h,m,mm,swift}"
@@ -20,7 +20,7 @@ Pod::Spec.new do |s|
   s.static_framework = true
 
   s.dependency "React"
-  s.dependency "Rudder-Firebase", "~> 3.8"
+  s.dependency "Rudder-Firebase", "~> 3.9"
   s.dependency 'RNRudderSdk'
 
   install_modules_dependencies(s)
