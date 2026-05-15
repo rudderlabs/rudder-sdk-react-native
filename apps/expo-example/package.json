@@ -29,7 +29,7 @@
     "@babel/core": "7.27.7",
     "babel-preset-expo": "55.0.21",
     "react-native-dotenv": "3.4.11",
-    "expo-dev-client": "55.0.33"
+    "expo-dev-client": "55.0.34"
   },
   "private": true
 }

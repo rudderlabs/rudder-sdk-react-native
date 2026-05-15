@@ -46,15 +46,15 @@ PODS:
     - ReactCommon/turbomodule/core
     - ReactNativeDependencies
     - Yoga
-  - expo-dev-client (55.0.33):
+  - expo-dev-client (55.0.34):
     - EXManifests
     - expo-dev-launcher
     - expo-dev-menu
     - expo-dev-menu-interface
     - EXUpdatesInterface
-  - expo-dev-launcher (55.0.34):
+  - expo-dev-launcher (55.0.35):
     - EXManifests
-    - expo-dev-launcher/Main (= 55.0.34)
+    - expo-dev-launcher/Main (= 55.0.35)
     - expo-dev-menu
     - expo-dev-menu-interface
     - ExpoModulesCore
@@ -83,7 +83,7 @@ PODS:
     - ReactCommon/turbomodule/core
     - ReactNativeDependencies
     - Yoga
-  - expo-dev-launcher/Main (55.0.34):
+  - expo-dev-launcher/Main (55.0.35):
     - EXManifests
     - expo-dev-launcher/Unsafe
     - expo-dev-menu
@@ -114,7 +114,7 @@ PODS:
     - ReactCommon/turbomodule/core
     - ReactNativeDependencies
     - Yoga
-  - expo-dev-launcher/Unsafe (55.0.34):
+  - expo-dev-launcher/Unsafe (55.0.35):
     - EXManifests
     - expo-dev-menu
     - expo-dev-menu-interface
@@ -144,8 +144,8 @@ PODS:
     - ReactCommon/turbomodule/core
     - ReactNativeDependencies
     - Yoga
-  - expo-dev-menu (55.0.28):
-    - expo-dev-menu/Main (= 55.0.28)
+  - expo-dev-menu (55.0.29):
+    - expo-dev-menu/Main (= 55.0.29)
     - hermes-engine
     - RCTRequired
     - RCTTypeSafety
@@ -168,7 +168,7 @@ PODS:
     - ReactNativeDependencies
     - Yoga
   - expo-dev-menu-interface (55.0.2)
-  - expo-dev-menu/Main (55.0.28):
+  - expo-dev-menu/Main (55.0.29):
     - EXManifests
     - expo-dev-menu-interface
     - ExpoModulesCore
@@ -2648,9 +2648,9 @@ SPEC CHECKSUMS:
   EXJSONUtils: 04bc3807d351331a5fe154ce1da596ec15d99169
   EXManifests: 35b26ca30c8a6bd427d1cba20348cd3c43684bb2
   Expo: 16f3bba63c001ae67319631affd50e83c429d7c6
-  expo-dev-client: feba6f7be1640072de1f77c5cc8342d292bcfce0
-  expo-dev-launcher: 8b60faae5715d49afa48c86ae7422a6ffd3426ce
-  expo-dev-menu: a84da48edce4ed67b32c7f492763129587003960
+  expo-dev-client: 9bbef86bf3a35f9b5c96380c3b6d530ffca7b2c7
+  expo-dev-launcher: e5f7b4126250fe44c21dcf9ff27fe8993edd857e
+  expo-dev-menu: f118542e1f0cf8e6b285571cfb4f9a806183a5d9
   expo-dev-menu-interface: 833795f4c98a674d36cbc12b11b21756c38e01e8
   ExpoAsset: 7721c5c4ae2a7c3c8147a046727ac6c020b05648
   ExpoDomWebView: b2e9d601f9cb77d3c97da73234e175b64be91928
