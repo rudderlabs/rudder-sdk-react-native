@@ -19,6 +19,7 @@ public class RNRudderSprigIntegrationModuleImpl {
     public static final String NAME = "RNRudderSprigIntegrationModule";
 
     private final ReactApplicationContext reactContext;
+    private boolean callbacksRegistered = false;
 
     public RNRudderSprigIntegrationModuleImpl(ReactApplicationContext reactContext) {
         this.reactContext = reactContext;
@@ -35,6 +36,9 @@ public class RNRudderSprigIntegrationModuleImpl {
     }
 
     private void registerActivityCallbacks() {
+        if (callbacksRegistered) {
+            return;
+        }
         Application application = RudderClient.getApplication();
         if (application == null) {
             return;
@@ -87,5 +91,6 @@ public class RNRudderSprigIntegrationModuleImpl {
                 // NO-OP
             }
         });
+        callbacksRegistered = true;
     }
 }
