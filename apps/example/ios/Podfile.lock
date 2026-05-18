@@ -2772,6 +2772,37 @@ PODS:
     - React
     - RNRudderSdk
     - Rudder-Singular
+  - rudder-integration-sprig-react-native (1.0.0):
+    - boost
+    - DoubleConversion
+    - fast_float
+    - fmt
+    - glog
+    - hermes-engine
+    - RCT-Folly
+    - RCT-Folly/Fabric
+    - RCTRequired
+    - RCTTypeSafety
+    - React
+    - React-Core
+    - React-debug
+    - React-Fabric
+    - React-featureflags
+    - React-graphics
+    - React-ImageManager
+    - React-jsi
+    - React-NativeModulesApple
+    - React-RCTFabric
+    - React-renderercss
+    - React-rendererdebug
+    - React-utils
+    - ReactCodegen
+    - ReactCommon/turbomodule/bridging
+    - ReactCommon/turbomodule/core
+    - RNRudderSdk
+    - Rudder-Sprig (~> 1.0)
+    - SocketRocket
+    - Yoga
   - Rudder-Moengage (2.1.1):
     - MoEngage-iOS-SDK (~> 9.5)
     - Rudder (~> 1.12)
@@ -2783,6 +2814,9 @@ PODS:
   - Rudder-Singular (1.1.0):
     - Rudder (~> 1.0)
     - Singular-SDK (= 12.5.0)
+  - Rudder-Sprig (1.1.0):
+    - Rudder (~> 1.29)
+    - UserLeapKit (~> 4.29)
   - RudderDatabaseEncryption (1.1.0):
     - Rudder (~> 1.21)
     - SQLCipher (~> 4.0)
@@ -2798,6 +2832,7 @@ PODS:
   - SQLCipher/common (4.10.0)
   - SQLCipher/standard (4.10.0):
     - SQLCipher/common
+  - UserLeapKit (4.30.0)
   - Yoga (0.0.0)
 
 DEPENDENCIES:
@@ -2884,6 +2919,7 @@ DEPENDENCIES:
   - ReactCodegen (from `build/generated/ios/ReactCodegen`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
   - "RNRudderSdk (from `../node_modules/@rudderstack/rudder-sdk-react-native`)"
+  - Rudder
   - Rudder-CleverTap (= 1.1.2)
   - "rudder-integration-amplitude-react-native (from `../node_modules/@rudderstack/rudder-integration-amplitude-react-native`)"
   - "rudder-integration-appcenter-react-native (from `../node_modules/@rudderstack/rudder-integration-appcenter-react-native`)"
@@ -2894,6 +2930,7 @@ DEPENDENCIES:
   - "rudder-integration-firebase-react-native (from `../node_modules/@rudderstack/rudder-integration-firebase-react-native`)"
   - "rudder-integration-moengage-react-native (from `../node_modules/@rudderstack/rudder-integration-moengage-react-native`)"
   - "rudder-integration-singular-react-native (from `../node_modules/@rudderstack/rudder-integration-singular-react-native`)"
+  - "rudder-integration-sprig-react-native (from `../node_modules/@rudderstack/rudder-integration-sprig-react-native`)"
   - "rudder-plugin-db-encryption-react-native (from `../node_modules/@rudderstack/rudder-plugin-db-encryption-react-native`)"
   - SocketRocket (~> 0.7.1)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
@@ -2929,11 +2966,13 @@ SPEC REPOS:
     - Rudder-Firebase
     - Rudder-Moengage
     - Rudder-Singular
+    - Rudder-Sprig
     - RudderDatabaseEncryption
     - SDWebImage
     - Singular-SDK
     - SocketRocket
     - SQLCipher
+    - UserLeapKit
 
 EXTERNAL SOURCES:
   boost:
@@ -3113,6 +3152,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@rudderstack/rudder-integration-moengage-react-native"
   rudder-integration-singular-react-native:
     :path: "../node_modules/@rudderstack/rudder-integration-singular-react-native"
+  rudder-integration-sprig-react-native:
+    :path: "../node_modules/@rudderstack/rudder-integration-sprig-react-native"
   rudder-plugin-db-encryption-react-native:
     :path: "../node_modules/@rudderstack/rudder-plugin-db-encryption-react-native"
   Yoga:
@@ -3234,16 +3275,19 @@ SPEC CHECKSUMS:
   rudder-integration-firebase-react-native: 10c9da2623b0a5aebabab981c47213b41d54fdcf
   rudder-integration-moengage-react-native: 933fcddabf35a921aa05fbcb047b98a6e019a128
   rudder-integration-singular-react-native: 3850aea08da6900fc1d79b307b35ab83660f1508
+  rudder-integration-sprig-react-native: 181db017659fbd6b95b4eacbdf32ac20e2649f08
   Rudder-Moengage: c30465e23740673495ff853eed607a5641f22c5c
   rudder-plugin-db-encryption-react-native: 2bd7b55c251b316704d276d0f7ab193ca0aa223a
   Rudder-Singular: 0685fcfd797962d7681a5f05e48c249dd6a11228
+  Rudder-Sprig: 03d885e2a72b278110b5ed54b586e71b8eadcaa4
   RudderDatabaseEncryption: 95b436538412958eda771f5d81bd970a9ffe4eec
   SDWebImage: e9fc87c1aab89a8ab1bbd74eba378c6f53be8abf
   Singular-SDK: 198466328cf193d4fba7b1d49b666b2f8f21e2d6
   SocketRocket: d4aabe649be1e368d1318fdf28a022d714d65748
   SQLCipher: eb79c64049cb002b4e9fcb30edb7979bf4706dfc
+  UserLeapKit: 357bc3d94f8eaa75aa963b408862f819e43fa245
   Yoga: e6489bbfdab9b98f8d51993484d6bd40216b7834
 
-PODFILE CHECKSUM: cf5866083031f65ac373889ae9e77698c5033ba9
+PODFILE CHECKSUM: 3080c99ddb474cb18474c41be09ea0c38c12640c
 
 COCOAPODS: 1.16.2

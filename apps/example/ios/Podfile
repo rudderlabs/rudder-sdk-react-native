@@ -36,6 +36,10 @@ target 'Example' do
     pod 'FirebaseCore', :modular_headers => true
     pod 'GoogleUtilities', :modular_headers => true
 
+    # Rudder-Sprig is implemented in Swift and depends on the Objective-C Rudder pod.
+    # Generate a module map for Rudder so the Swift pod can `import Rudder`.
+    pod 'Rudder', :modular_headers => true
+
     # This is added to resolve the build error. Once we update the MoEngage iOS SDK to the latest version, we can remove this.
     pod 'MoEngage-iOS-SDK', '9.7.0'
 
