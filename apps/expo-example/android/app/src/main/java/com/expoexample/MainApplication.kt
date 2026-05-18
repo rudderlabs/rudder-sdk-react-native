@@ -1,4 +1,4 @@
-package com.rudderstack.expoexample
+package com.expoexample
 
 import android.app.Application
 import android.content.res.Configuration

@@ -1,4 +1,4 @@
-package com.rudderstack.expoexample
+package com.expoexample
 
 import android.os.Build
 import android.os.Bundle
