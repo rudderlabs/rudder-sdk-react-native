@@ -24,14 +24,15 @@ __attribute__((objc_runtime_name("_TtC12Rudder_Sprig18RudderSprigFactory")))
     [RNRudderAnalytics addIntegration:factory];
 
     // Provide the host app's root view controller so trackAndPresent surveys can show.
+    // Resolve only after the VC is wired, so JS callers awaiting setup() can safely
+    // fire survey-triggering events on the next tick.
     dispatch_async(dispatch_get_main_queue(), ^{
         UIViewController *rootVC = [self currentRootViewController];
         if (rootVC != nil) {
             [factory setViewController:rootVC];
         }
+        resolve(nil);
     });
-
-    resolve(nil);
 }
 
 - (UIViewController *)currentRootViewController {
