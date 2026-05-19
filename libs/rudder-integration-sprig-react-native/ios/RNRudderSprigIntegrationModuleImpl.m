@@ -17,11 +17,18 @@ __attribute__((objc_runtime_name("_TtC12Rudder_Sprig18RudderSprigFactory")))
 - (void)setViewController:(UIViewController *)viewController;
 @end
 
-@implementation RNRudderSprigIntegrationModuleImpl
+@implementation RNRudderSprigIntegrationModuleImpl {
+    BOOL _integrationRegistered;
+}
 
 - (void)setup:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject {
     RudderSprigFactory *factory = [RudderSprigFactory instance];
-    [RNRudderAnalytics addIntegration:factory];
+    // Guard against re-registration on hot reload / repeated setup() calls (mirrors
+    // the Android `callbacksRegistered` guard in RNRudderSprigIntegrationModuleImpl.java).
+    if (!_integrationRegistered) {
+        [RNRudderAnalytics addIntegration:factory];
+        _integrationRegistered = YES;
+    }
 
     // Provide the host app's root view controller so trackAndPresent surveys can show.
     // Resolve only after the VC is wired, so JS callers awaiting setup() can safely
@@ -56,7 +63,14 @@ __attribute__((objc_runtime_name("_TtC12Rudder_Sprig18RudderSprigFactory")))
             break;
         }
     }
-    return keyWindow.rootViewController;
+    // Walk the presentation chain so we hand Sprig the topmost VC. If the host
+    // app already has a modal up (login sheet, paywall, etc.), presenting the
+    // survey from rootViewController would throw "already presenting".
+    UIViewController *vc = keyWindow.rootViewController;
+    while (vc.presentedViewController != nil) {
+        vc = vc.presentedViewController;
+    }
+    return vc;
 }
 
 @end
