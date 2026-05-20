@@ -10,41 +10,42 @@ public final class RNRudderSprigIntegrationModuleImpl: NSObject {
     private var integrationRegistered = false
 
     @objc public func setup(_ resolve: @escaping RCTPromiseResolveBlock,
-                            rejecter reject: @escaping RCTPromiseRejectBlock) {
+                            rejecter _: @escaping RCTPromiseRejectBlock) {
         let factory = RudderSprigFactory.instance
 
-        // Guard against re-registration on hot reload / repeated setup() calls
-        // (mirrors the Android `callbacksRegistered` guard in the Java impl).
-        if !integrationRegistered {
-            RNRudderAnalytics.addIntegration(factory)
-            integrationRegistered = true
-        }
+        // Hop to main: UIScene APIs are main-thread-only, and we want the
+        // register-once guard plus the VC-wire to be observed in the same
+        // serial step (mirrors the Android `callbacksRegistered` guard).
+        DispatchQueue.main.async { [weak self] in
+            guard let self else {
+                resolve(nil)
+                return
+            }
 
-        // Provide the host app's root view controller so trackAndPresent surveys can show.
-        // Resolve only after the VC is wired, so JS callers awaiting setup() can safely
-        // fire survey-triggering events on the next tick.
-        DispatchQueue.main.async {
+            if !self.integrationRegistered {
+                RNRudderAnalytics.addIntegration(factory)
+                self.integrationRegistered = true
+            }
+
             if let rootVC = self.currentRootViewController() {
                 factory.setViewController(rootVC)
+            } else {
+                RSLogger.logWarn("Sprig: no foreground key window at setup; surveys will not present until a view controller is wired.")
             }
             resolve(nil)
         }
     }
 
     private func currentRootViewController() -> UIViewController? {
-        var keyWindow: UIWindow?
-        for scene in UIApplication.shared.connectedScenes {
-            guard scene.activationState == .foregroundActive,
-                  let windowScene = scene as? UIWindowScene else { continue }
-            if let found = windowScene.windows.first(where: { $0.isKeyWindow }) {
-                keyWindow = found
-                break
-            }
-        }
+        let keyWindow = UIApplication.shared.connectedScenes
+            .compactMap { $0 as? UIWindowScene }
+            .filter { $0.activationState == .foregroundActive }
+            .flatMap(\.windows)
+            .first(where: \.isKeyWindow)
 
-        // Walk the presentation chain so we hand Sprig the topmost VC. If the host
-        // app already has a modal up (login sheet, paywall, etc.), presenting the
-        // survey from rootViewController would throw "already presenting".
+        // Walk the presentation chain so we hand Sprig the topmost VC. If the
+        // host app already has a modal up (login sheet, paywall, etc.),
+        // presenting from rootViewController would throw "already presenting".
         var vc = keyWindow?.rootViewController
         while let presented = vc?.presentedViewController {
             vc = presented
