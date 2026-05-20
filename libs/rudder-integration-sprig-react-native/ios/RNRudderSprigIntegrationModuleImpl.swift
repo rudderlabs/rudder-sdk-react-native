@@ -5,7 +5,7 @@ import RNRudderSdk
 import Rudder
 import Rudder_Sprig
 
-@objc(RNRudderSprigIntegrationModuleImpl)
+@objc
 public final class RNRudderSprigIntegrationModuleImpl: NSObject {
     private var integrationRegistered = false
 
@@ -27,7 +27,7 @@ public final class RNRudderSprigIntegrationModuleImpl: NSObject {
                 self.integrationRegistered = true
             }
 
-            if let rootVC = self.currentRootViewController() {
+            if let rootVC = Self.currentRootViewController() {
                 factory.setViewController(rootVC)
             } else {
                 RSLogger.logWarn("Sprig: no foreground key window at setup; surveys will not present until a view controller is wired.")
@@ -35,8 +35,10 @@ public final class RNRudderSprigIntegrationModuleImpl: NSObject {
             resolve(nil)
         }
     }
+}
 
-    private func currentRootViewController() -> UIViewController? {
+private extension RNRudderSprigIntegrationModuleImpl {
+    static func currentRootViewController() -> UIViewController? {
         let keyWindow = UIApplication.shared.connectedScenes
             .compactMap { $0 as? UIWindowScene }
             .filter { $0.activationState == .foregroundActive }
