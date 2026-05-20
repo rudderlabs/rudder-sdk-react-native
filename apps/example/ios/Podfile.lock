@@ -3257,7 +3257,7 @@ SPEC CHECKSUMS:
   ReactAppDependencyProvider: 87593e9dfdba8dac1d7b2af1af05f0eff2a05684
   ReactCodegen: 2bb9b8e8177e7874b0db65e65444134f637e8c71
   ReactCommon: 5f2db7556b60816bdc5761a359539bacd2d0250d
-  RNRudderSdk: 1b901cf8481c21a213e937bf7218bc78b9c98439
+  RNRudderSdk: e02793c587a73b77230e9d42724a09073bfb22a7
   Rudder: fcd39cc69aeb05880a789b6ffdaf4ea93f6448a2
   Rudder-Amplitude: d308b2bce1237c3cfdf3274458130f36815067db
   Rudder-AppCenter: 9eca9241e3707a0e9610714dd91dc8da4bae7e1f
@@ -3275,7 +3275,7 @@ SPEC CHECKSUMS:
   rudder-integration-firebase-react-native: 10c9da2623b0a5aebabab981c47213b41d54fdcf
   rudder-integration-moengage-react-native: 933fcddabf35a921aa05fbcb047b98a6e019a128
   rudder-integration-singular-react-native: 3850aea08da6900fc1d79b307b35ab83660f1508
-  rudder-integration-sprig-react-native: 181db017659fbd6b95b4eacbdf32ac20e2649f08
+  rudder-integration-sprig-react-native: 9383a2e2c339451650c6a736840457420c07bea2
   Rudder-Moengage: c30465e23740673495ff853eed607a5641f22c5c
   rudder-plugin-db-encryption-react-native: 2bd7b55c251b316704d276d0f7ab193ca0aa223a
   Rudder-Singular: 0685fcfd797962d7681a5f05e48c249dd6a11228
@@ -3288,6 +3288,6 @@ SPEC CHECKSUMS:
   UserLeapKit: 357bc3d94f8eaa75aa963b408862f819e43fa245
   Yoga: e6489bbfdab9b98f8d51993484d6bd40216b7834
 
-PODFILE CHECKSUM: 3080c99ddb474cb18474c41be09ea0c38c12640c
+PODFILE CHECKSUM: 241169280e2760ad4707747052c0d3b38b17a37b
 
 COCOAPODS: 1.16.2

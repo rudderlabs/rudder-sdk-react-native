@@ -18,6 +18,8 @@ Pod::Spec.new do |s|
   s.source_files = "ios/**/*.{h,m,mm,swift}"
   s.requires_arc = true
   s.static_framework = true
+  s.swift_version = "5.0"
+  s.module_name = "rudder_integration_sprig_react_native"
 
   s.dependency "React"
   s.dependency "Rudder-Sprig", "~> 1.0"
