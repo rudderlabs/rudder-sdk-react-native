@@ -2,6 +2,7 @@ package com.rudderstack.integration.reactnative.sprig;
 
 import android.app.Activity;
 import android.app.Application;
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -11,7 +12,6 @@ import androidx.fragment.app.FragmentActivity;
 import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.rudderstack.android.integration.sprig.SprigIntegrationFactory;
-import com.rudderstack.android.sdk.core.RudderClient;
 import com.rudderstack.react.android.RNRudderAnalytics;
 
 public class RNRudderSprigIntegrationModuleImpl {
@@ -39,10 +39,17 @@ public class RNRudderSprigIntegrationModuleImpl {
         if (callbacksRegistered) {
             return;
         }
-        Application application = RudderClient.getApplication();
-        if (application == null) {
+        // Resolve Application from the React context — NOT from RudderClient.getApplication().
+        // setup() is invoked from inside `withFactories` during rc.setup(), which runs *before*
+        // the native RudderClient is initialized, so RudderClient.getApplication() returns null
+        // at this point and we'd silently skip registration. The Sprig factory's own lifecycle
+        // callbacks are no-ops on resume, so without these our `currentActivity` stays null and
+        // events take the `sprig.track()` branch (no UI) instead of `sprig.trackAndPresent()`.
+        Context appContext = reactContext.getApplicationContext();
+        if (!(appContext instanceof Application)) {
             return;
         }
+        Application application = (Application) appContext;
 
         // Seed factory with the currently visible activity so surveys can present immediately
         // after setup, instead of waiting for the next resume.
