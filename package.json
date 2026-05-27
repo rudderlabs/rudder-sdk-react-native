@@ -154,7 +154,7 @@
     "dot-prop": "5.3.0",
     "got": "11.8.6",
     "koa": "3.1.2",
-    "tmp": "0.2.5",
+    "tmp": "0.2.6",
     "@conventional-changelog/git-client": "2.5.1",
     "minimatch": "10.2.4",
     "test-exclude": {
