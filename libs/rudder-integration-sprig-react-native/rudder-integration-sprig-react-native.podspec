@@ -22,7 +22,7 @@ Pod::Spec.new do |s|
   s.module_name = "rudder_integration_sprig_react_native"
 
   s.dependency "React"
-  s.dependency "Rudder-Sprig", "~> 1.0"
+  s.dependency "Rudder-Sprig", "~> 1.1"
   s.dependency 'RNRudderSdk'
 
   install_modules_dependencies(s)

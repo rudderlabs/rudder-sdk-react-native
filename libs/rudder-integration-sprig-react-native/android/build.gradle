@@ -80,7 +80,7 @@ dependencies {
     // rudderstack dependencies
     implementation project(path: ':rudderstack_rudder-sdk-react-native')  // From node_modules
     implementation 'com.rudderstack.android.sdk:core:[1.26.0, 2.0.0)'
-    implementation 'com.rudderstack.android.integration:sprig:[1.0.0,2.0)'
+    implementation 'com.rudderstack.android.integration:sprig:[1.1.0,2.0)'
 
     // AndroidX FragmentActivity is provided transitively, but declare it explicitly
     // since we cast the host activity to it in the module impl.
