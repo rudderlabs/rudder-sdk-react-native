@@ -17,11 +17,7 @@ Pod::Spec.new do |s|
   s.source       = { :git => "https://github.com/rudderlabs/rudder-sdk-react-native.git", :tag => "master" }
 
   s.source_files = "ios/**/*.{h,m,mm,cpp}"
-  # Expose RNRudderAnalytics.h so Swift integrations can `import RNRudderSdk`
-  # and call RNRudderAnalytics.addIntegration(_:). All other headers are
-  # effectively private (CocoaPods treats only public_header_files as public
-  # when this key is set).
-  s.public_header_files = "ios/RNRudderAnalytics.h"
+  s.private_header_files = "ios/**/*.h"
 
   s.ios.deployment_target = '12.0'
   s.tvos.deployment_target = '11.0'
