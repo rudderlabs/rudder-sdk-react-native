@@ -15,10 +15,9 @@ Pod::Spec.new do |s|
   s.platforms    = { :ios => "15.0" }
   s.source       = { :git => "https://github.com/rudderlabs/rudder-sdk-react-native.git", :tag => "master" }
 
-  s.source_files = "ios/**/*.{h,m,mm,swift}"
+  s.source_files = "ios/**/*.{h,m,mm}"
   s.requires_arc = true
   s.static_framework = true
-  s.swift_version = "5.0"
   s.module_name = "rudder_integration_sprig_react_native"
 
   s.dependency "React"

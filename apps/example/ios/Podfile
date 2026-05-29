@@ -36,13 +36,11 @@ target 'Example' do
     pod 'FirebaseCore', :modular_headers => true
     pod 'GoogleUtilities', :modular_headers => true
 
-    # The Sprig RN integration is implemented in Swift and imports `Rudder`,
-    # `Rudder_Sprig`, and `RNRudderSdk`. CocoaPods needs module maps for any
-    # Objective-C pod consumed by a Swift pod when building as static libs.
-    # (RNRudderSdk is autolinked by use_native_modules! above, but autolinking
-    # does not set :modular_headers, so we annotate it explicitly here.)
+    # Rudder-Sprig is a Swift pod that imports `Rudder`. Until the Rudder
+    # podspec ships with `DEFINES_MODULE = YES` (SDK-4916), CocoaPods needs
+    # this annotation to generate a module map for Rudder in non-framework
+    # mode. Drop this line once the Rudder podspec change is released.
     pod 'Rudder', :modular_headers => true
-    pod 'RNRudderSdk', :path => '../node_modules/@rudderstack/rudder-sdk-react-native', :modular_headers => true
 
     # This is added to resolve the build error. Once we update the MoEngage iOS SDK to the latest version, we can remove this.
     pod 'MoEngage-iOS-SDK', '9.7.0'

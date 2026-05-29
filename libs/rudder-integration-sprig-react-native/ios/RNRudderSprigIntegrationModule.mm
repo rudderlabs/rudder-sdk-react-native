@@ -1,5 +1,5 @@
 #import "RNRudderSprigIntegrationModule.h"
-#import "rudder_integration_sprig_react_native-Swift.h"
+#import "RNRudderSprigIntegrationModuleImpl.h"
 
 #ifdef RCT_NEW_ARCH_ENABLED
 #import "RNRudderSprigIntegrationModuleSpec/RNRudderSprigIntegrationModuleSpec.h"
