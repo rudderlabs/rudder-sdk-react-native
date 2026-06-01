@@ -2686,7 +2686,7 @@ PODS:
     - Rudder (< 2.0.0, >= 1.31.0)
     - SocketRocket
     - Yoga
-  - Rudder (1.32.0)
+  - Rudder (1.32.1)
   - Rudder-Amplitude (1.2.0):
     - Amplitude (= 8.19.2)
     - Rudder (~> 1.12)
@@ -2919,7 +2919,6 @@ DEPENDENCIES:
   - ReactCodegen (from `build/generated/ios/ReactCodegen`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
   - "RNRudderSdk (from `../node_modules/@rudderstack/rudder-sdk-react-native`)"
-  - Rudder
   - Rudder-CleverTap (= 1.1.2)
   - "rudder-integration-amplitude-react-native (from `../node_modules/@rudderstack/rudder-integration-amplitude-react-native`)"
   - "rudder-integration-appcenter-react-native (from `../node_modules/@rudderstack/rudder-integration-appcenter-react-native`)"
@@ -3257,8 +3256,8 @@ SPEC CHECKSUMS:
   ReactAppDependencyProvider: 87593e9dfdba8dac1d7b2af1af05f0eff2a05684
   ReactCodegen: 2bb9b8e8177e7874b0db65e65444134f637e8c71
   ReactCommon: 5f2db7556b60816bdc5761a359539bacd2d0250d
-  RNRudderSdk: e02793c587a73b77230e9d42724a09073bfb22a7
-  Rudder: fcd39cc69aeb05880a789b6ffdaf4ea93f6448a2
+  RNRudderSdk: 1b901cf8481c21a213e937bf7218bc78b9c98439
+  Rudder: c57dc7d3fb87374562d37a84dfce71836c4b12e7
   Rudder-Amplitude: d308b2bce1237c3cfdf3274458130f36815067db
   Rudder-AppCenter: 9eca9241e3707a0e9610714dd91dc8da4bae7e1f
   Rudder-Appsflyer: dcefa779746771d8af96a2b70c45b3f4a1cc18e5
@@ -3288,6 +3287,6 @@ SPEC CHECKSUMS:
   UserLeapKit: 357bc3d94f8eaa75aa963b408862f819e43fa245
   Yoga: e6489bbfdab9b98f8d51993484d6bd40216b7834
 
-PODFILE CHECKSUM: 612536a4074cbe71d1d07e78084521039ae70788
+PODFILE CHECKSUM: cf5866083031f65ac373889ae9e77698c5033ba9
 
 COCOAPODS: 1.16.2
