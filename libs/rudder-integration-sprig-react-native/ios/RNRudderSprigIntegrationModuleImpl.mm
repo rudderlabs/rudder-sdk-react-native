@@ -34,19 +34,51 @@
         if (!strongSelf->_integrationRegistered) {
             [RNRudderAnalytics addIntegration:factory];
             strongSelf->_integrationRegistered = YES;
+
+            NSNotificationCenter *nc = NSNotificationCenter.defaultCenter;
+            [nc addObserver:strongSelf
+                   selector:@selector(refreshSurveyHost:)
+                       name:UISceneDidActivateNotification
+                     object:nil];
+            [nc addObserver:strongSelf
+                   selector:@selector(refreshSurveyHost:)
+                       name:UIWindowDidBecomeKeyNotification
+                     object:nil];
         }
 
-        UIViewController *rootVC = [RNRudderSprigIntegrationModuleImpl currentRootViewController];
-        if (rootVC) {
-            SEL setVC = NSSelectorFromString(@"setViewController:");
-            if ([factory respondsToSelector:setVC]) {
-                ((void (*)(id, SEL, UIViewController *))objc_msgSend)(factory, setVC, rootVC);
-            }
-        } else {
-            [RSLogger logWarn:@"Sprig: no foreground key window at setup; surveys will not present until a view controller is wired."];
-        }
+        [RNRudderSprigIntegrationModuleImpl applyCurrentViewControllerTo:factory];
         resolve(nil);
     });
+}
+
+- (void)refreshSurveyHost:(NSNotification *)note {
+    id factory = [RNRudderSprigIntegrationModuleImpl sprigFactoryInstance];
+    if (!factory) {
+        return;
+    }
+    if ([NSThread isMainThread]) {
+        [RNRudderSprigIntegrationModuleImpl applyCurrentViewControllerTo:factory];
+    } else {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [RNRudderSprigIntegrationModuleImpl applyCurrentViewControllerTo:factory];
+        });
+    }
+}
+
+- (void)dealloc {
+    [NSNotificationCenter.defaultCenter removeObserver:self];
+}
+
++ (void)applyCurrentViewControllerTo:(id)factory {
+    UIViewController *vc = [RNRudderSprigIntegrationModuleImpl currentRootViewController];
+    if (!vc) {
+        [RSLogger logWarn:@"Sprig: no foreground key window yet; will retry when one becomes active."];
+        return;
+    }
+    SEL setVC = NSSelectorFromString(@"setViewController:");
+    if ([factory respondsToSelector:setVC]) {
+        ((void (*)(id, SEL, UIViewController *))objc_msgSend)(factory, setVC, vc);
+    }
 }
 
 + (id)sprigFactoryInstance {
