@@ -19,6 +19,7 @@ import facebook from '@rudderstack/rudder-integration-facebook-react-native';
 import firebase from '@rudderstack/rudder-integration-firebase-react-native';
 import moengage from '@rudderstack/rudder-integration-moengage-react-native';
 import singular from '@rudderstack/rudder-integration-singular-react-native';
+import sprig from '@rudderstack/rudder-integration-sprig-react-native';
 import appsflyer, {
   onAppOpenAttribution,
   onAttributionFailure,
@@ -114,6 +115,7 @@ const initRudderReactNativeSDK = async () => {
       firebase,
       moengage,
       singular,
+      sprig,
     ],
   };
 

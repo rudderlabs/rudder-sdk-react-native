@@ -60,6 +60,7 @@
     "@rudderstack/rudder-integration-firebase-react-native": "file:libs/rudder-integration-firebase-react-native",
     "@rudderstack/rudder-integration-moengage-react-native": "file:libs/rudder-integration-moengage-react-native",
     "@rudderstack/rudder-integration-singular-react-native": "file:libs/rudder-integration-singular-react-native",
+    "@rudderstack/rudder-integration-sprig-react-native": "file:libs/rudder-integration-sprig-react-native",
     "@rudderstack/rudder-plugin-db-encryption-react-native": "file:libs/plugins/rudder-plugin-db-encryption-react-native",
     "@rudderstack/rudder-sdk-react-native": "file:./libs/sdk",
     "async-lock": "1.4.1",
@@ -153,7 +154,7 @@
     "dot-prop": "5.3.0",
     "got": "11.8.6",
     "koa": "3.1.2",
-    "tmp": "0.2.5",
+    "tmp": "0.2.6",
     "@conventional-changelog/git-client": "2.5.1",
     "minimatch": "10.2.4",
     "test-exclude": {
@@ -166,12 +167,15 @@
     "@tootallnate/once": "3.0.1",
     "axios": "1.16.0",
     "fast-xml-parser": "5.8.0",
-    "brace-expansion": "5.0.5",
+    "brace-expansion": "5.0.6",
     "handlebars": "4.7.9",
     "path-to-regexp": "0.1.13",
     "yaml": "2.8.3",
     "picomatch": "4.0.4",
-    "webpack": "5.106.2"
+    "webpack": "5.106.2",
+    "qs": "6.15.2",
+    "uuid": "11.1.1",
+    "ws": "8.20.1"
   },
   "optionalDependencies": {
     "@nx/nx-linux-x64-gnu": "20.8.4"
@@ -196,6 +200,7 @@
         "rudder-integration-firebase-react-native",
         "rudder-integration-moengage-react-native",
         "rudder-integration-singular-react-native",
+        "rudder-integration-sprig-react-native",
         "rudder-sdk-react-native",
         "rudder-sdk-react-native-monorepo",
         "example"
