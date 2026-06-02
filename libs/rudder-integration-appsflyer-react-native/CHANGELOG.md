@@ -2,6 +2,13 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [1.9.0](https://github.com/rudderlabs/rudder-sdk-react-native/compare/rudder-integration-appsflyer-react-native@1.8.0...rudder-integration-appsflyer-react-native@1.9.0) (2026-06-02)
+
+
+### Features
+
+* **firebase:** update firebase integration minimum version for iOS and Android ([#610](https://github.com/rudderlabs/rudder-sdk-react-native/issues/610)) ([fb32dd9](https://github.com/rudderlabs/rudder-sdk-react-native/commit/fb32dd9a2df33dfecc80942a05b707dd8bf80163)), closes [#614](https://github.com/rudderlabs/rudder-sdk-react-native/issues/614) [#611](https://github.com/rudderlabs/rudder-sdk-react-native/issues/611)
+
 ## [1.8.0](https://github.com/rudderlabs/rudder-sdk-react-native/compare/rudder-integration-appsflyer-react-native@1.7.0...rudder-integration-appsflyer-react-native@1.8.0) (2026-01-15)
 
 
