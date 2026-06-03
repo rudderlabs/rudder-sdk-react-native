@@ -1,6 +1,6 @@
 {
   "name": "example",
-  "version": "3.6.0",
+  "version": "3.7.0",
   "private": true,
   "dependencies": {
     "@react-native/metro-config": "*",
@@ -20,6 +20,7 @@
     "@rudderstack/rudder-integration-firebase-react-native": "*",
     "@rudderstack/rudder-integration-moengage-react-native": "*",
     "@rudderstack/rudder-integration-singular-react-native": "*",
+    "@rudderstack/rudder-integration-sprig-react-native": "*",
     "react-native-config": "*",
     "async-lock": "*"
   },

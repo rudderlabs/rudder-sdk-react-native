@@ -14,7 +14,8 @@
         "project": "libs/rudder-integration-moengage-react-native/package.json",
         "entryFile": "libs/rudder-integration-moengage-react-native/src/index.ts",
         "external": ["react/jsx-runtime", "react-native"],
-        "rollupConfig": "@nrwl/react/plugins/bundle-rollup",
+        "rollupConfig": "@nx/react/plugins/bundle-rollup",
+        "babelUpwardRootMode": true,
         "assets": [
           {
             "glob": "libs/rudder-integration-moengage-react-native/README.md",
@@ -95,7 +96,7 @@
     "github": {
       "executor": "@jscutlery/semver:github",
       "options": {
-        "tag": "rudder-integration-moengage-react-native@1.3.0",
+        "tag": "rudder-integration-moengage-react-native@1.4.0",
         "notesFile": "./libs/rudder-integration-moengage-react-native/CHANGELOG_LATEST.md"
       }
     },

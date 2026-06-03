@@ -27,7 +27,7 @@ target 'Example' do
   use_react_native!(
     # https://github.com/facebook/react-native/issues/44401#issuecomment-2127009364
     privacy_file_aggregation_enabled: false,
-    :path => "../../#{config[:reactNativePath]}", # I've commented out the next line and added this line to resolve the build error caused by the use of use_frameworks! on react-native v0.73.x, due to yoga header path issue, refer here: https://github.com/facebook/react-native/issues/41938#issuecomment-1925888879.
+    :path => config[:reactNativePath],
     # An absolute path to your application root.
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )

@@ -44,6 +44,9 @@
       "@rudderstack/rudder-integration-singular-react-native": [
         "libs/rudder-integration-singular-react-native/src/index.ts"
       ],
+      "@rudderstack/rudder-integration-sprig-react-native": [
+        "libs/rudder-integration-sprig-react-native/src/index.ts"
+      ],
       "@rudderstack/rudder-plugin-db-encryption-react-native": [
         "libs/plugins/rudder-plugin-db-encryption-react-native/src/index.ts"
       ],

@@ -7,6 +7,9 @@ on:
     types:
       - closed
 
+permissions:
+  contents: write
+
 jobs:
   release:
     name: Publish new release
@@ -14,16 +17,17 @@ jobs:
     if: (startsWith(github.event.pull_request.head.ref, 'release/') || startsWith(github.event.pull_request.head.ref, 'hotfix-release/')) && github.event.pull_request.merged == true # only merged pull requests must trigger this job
     steps:
       - name: Harden the runner (Audit all outbound calls)
-        uses: step-security/harden-runner@95d9a5deda9de15063e7595e9719c11c38c90ae2 # v2.13.2
+        uses: step-security/harden-runner@fa2e9d605c4eeb9fcad4c99c224cee0c6c7f3594 # v2.16.0
         with:
           egress-policy: audit
 
       - name: Extract version from branch name (for release branches)
         id: extract-version
+        env:
+          BRANCH_NAME: ${{ github.event.pull_request.head.ref }}
         run: |
-          BRANCH_NAME="${{ github.event.pull_request.head.ref }}"
-          VERSION=${BRANCH_NAME#hotfix-}
-          VERSION=${VERSION#release/}
+          VERSION="${BRANCH_NAME#hotfix-}"
+          VERSION="${VERSION#release/}"
 
           echo "release_version=$VERSION" >> $GITHUB_OUTPUT
 
@@ -62,9 +66,11 @@ jobs:
 
       - name: Create Monorepo Release Tag
         id: create_monorepo_release
+        env:
+          RELEASE_VERSION: ${{ steps.extract-version.outputs.release_version }}
         run: |
-          git tag -a v${{ steps.extract-version.outputs.release_version }} -m "chore: release v${{ steps.extract-version.outputs.release_version }}"
-          git push origin refs/tags/v${{ steps.extract-version.outputs.release_version }}
+          git tag -a "v${RELEASE_VERSION}" -m "chore: release v${RELEASE_VERSION}"
+          git push origin "refs/tags/v${RELEASE_VERSION}"
 
       - name: Get the two latest versions
         run: |

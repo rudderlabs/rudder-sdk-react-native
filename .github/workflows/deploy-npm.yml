@@ -2,7 +2,7 @@ name: Deploy to NPM
 
 on:
   workflow_dispatch:
-  workflow_run:
+  workflow_run: # zizmor: ignore[dangerous-triggers]
     workflows: ['Publish new github release']
     types:
       - completed
@@ -18,7 +18,7 @@ jobs:
     if: startsWith(github.ref, 'refs/tags/v') || startsWith(github.ref, 'refs/heads/master') || github.event.workflow_run.conclusion == 'success'
     steps:
       - name: Harden the runner (Audit all outbound calls)
-        uses: step-security/harden-runner@95d9a5deda9de15063e7595e9719c11c38c90ae2 # v2.13.2
+        uses: step-security/harden-runner@fa2e9d605c4eeb9fcad4c99c224cee0c6c7f3594 # v2.16.0
         with:
           egress-policy: audit
 
@@ -45,6 +45,7 @@ jobs:
           npm run setup:ci
 
       - name: Get the two latest versions
+        id: get-versions
         run: |
           CURRENT_VERSION=$(git tag -l "v*" --sort=-version:refname | head -n 1)
           LAST_VERSION=$(git tag -l "v*" --sort=-version:refname | head -n 2 | awk 'NR == 2 { print $1 }')
@@ -52,11 +53,14 @@ jobs:
           echo "Current version: $CURRENT_VERSION"
           echo "Previous version: $LAST_VERSION"
 
-          echo "current_version=$(echo $CURRENT_VERSION)" >> $GITHUB_ENV
-          echo "last_version=$(echo $LAST_VERSION)" >> $GITHUB_ENV
-          echo "DATE=$(date)" >> $GITHUB_ENV
+          echo "current_version=$(echo $CURRENT_VERSION)" >> "$GITHUB_OUTPUT"
+          echo "last_version=$(echo $LAST_VERSION)" >> "$GITHUB_OUTPUT"
+          echo "DATE=$(date)" >> "$GITHUB_OUTPUT"
 
       - name: Build & Publish affected packages
+        env:
+          current_version: ${{ steps.get-versions.outputs.current_version }}
+          last_version: ${{ steps.get-versions.outputs.last_version }}
         run: |
           npm run deploy:npm -- --base=$last_version --head=$current_version
 
@@ -66,6 +70,8 @@ jobs:
         env:
           PROJECT_NAME: 'React Native SDK npm packages'
           NPM_PACKAGE_URL: 'https://www.npmjs.com/search?q=%40rudderstack'
+          DATE: ${{ steps.get-versions.outputs.DATE }}
+          current_version: ${{ steps.get-versions.outputs.current_version }}
         with:
           method: chat.postMessage
           payload-templated: true

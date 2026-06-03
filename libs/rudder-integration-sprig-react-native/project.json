@@ -1,0 +1,120 @@
+{
+  "name": "rudder-integration-sprig-react-native",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/rudder-integration-sprig-react-native/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/rollup:rollup",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/rudder-integration-sprig-react-native",
+        "tsConfig": "libs/rudder-integration-sprig-react-native/tsconfig.lib.json",
+        "project": "libs/rudder-integration-sprig-react-native/package.json",
+        "entryFile": "libs/rudder-integration-sprig-react-native/src/index.ts",
+        "external": ["react/jsx-runtime", "react-native"],
+        "rollupConfig": "@nx/react/plugins/bundle-rollup",
+        "babelUpwardRootMode": true,
+        "assets": [
+          {
+            "glob": "libs/rudder-integration-sprig-react-native/README.md",
+            "input": ".",
+            "output": "."
+          },
+          {
+            "glob": "libs/rudder-integration-sprig-react-native/android",
+            "input": ".",
+            "output": "."
+          },
+          {
+            "glob": "libs/rudder-integration-sprig-react-native/ios",
+            "input": ".",
+            "output": "."
+          },
+          {
+            "glob": "libs/rudder-integration-sprig-react-native/rudder-integration-sprig-react-native.podspec",
+            "input": ".",
+            "output": "."
+          },
+          {
+            "glob": "libs/rudder-integration-sprig-react-native/CHANGELOG.md",
+            "input": ".",
+            "output": "."
+          },
+          {
+            "glob": "LICENSE.md",
+            "input": ".",
+            "output": "."
+          },
+          {
+            "glob": "libs/rudder-integration-sprig-react-native/src",
+            "input": ".",
+            "output": "."
+          }
+        ],
+        "updateBuildableProjectDepsInPackageJson": true,
+        "buildableProjectDepsInPackageJsonType": "dependencies"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/rudder-integration-sprig-react-native/src/**/*.{ts,tsx,js,jsx}"]
+      },
+      "configurations": {
+        "ci": {
+          "format": "json",
+          "force": true,
+          "outputFile": "/reports/eslint/rudder-integration-sprig-react-native.eslint.results.json"
+        },
+        "fix": {
+          "fix": true
+        }
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "libs/rudder-integration-sprig-react-native/jest.config.ts",
+        "passWithNoTests": true,
+        "coverage": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true
+        }
+      }
+    },
+    "version": {
+      "executor": "@jscutlery/semver:version",
+      "options": {
+        "baseBranch": "master",
+        "preset": "conventional",
+        "tagPrefix": "{projectName}@",
+        // TODO: REMOVE after the first 1.0.0 release ships. @jscutlery/semver is
+        // tag-based and falls back to 0.0.0 when no prior tag exists; this forces
+        // 0.0.0 -> 1.0.0 on the first release. If left in, every subsequent release
+        // will be a forced major bump (1.0.0 -> 2.0.0 -> 3.0.0 ...).
+        "releaseAs": "major"
+      }
+    },
+    "github": {
+      "executor": "@jscutlery/semver:github",
+      "options": {
+        "tag": "rudder-integration-sprig-react-native@1.0.0",
+        "notesFile": "./libs/rudder-integration-sprig-react-native/CHANGELOG_LATEST.md"
+      }
+    },
+    "deploy": {
+      "executor": "ngx-deploy-npm:deploy",
+      "options": {
+        "distFolderPath": "dist/libs/rudder-integration-sprig-react-native",
+        "access": "public"
+      },
+      "dependsOn": ["build"]
+    }
+  }
+}

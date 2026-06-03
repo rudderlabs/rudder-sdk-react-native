@@ -1,0 +1,33 @@
+{
+  "name": "@rudderstack/rudder-integration-sprig-react-native",
+  "title": "Rudder Integration Sprig React Native",
+  "version": "1.0.0",
+  "description": "Rudder React Native SDK Sprig Device mode support for Android and iOS",
+  "keywords": [
+    "react-native",
+    "rudder",
+    "sprig"
+  ],
+  "author": {
+    "name": "RudderStack"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rudderlabs/rudder-sdk-react-native.git"
+  },
+  "bugs": {
+    "url": "https://github.com/rudderlabs/rudder-sdk-react-native/issues"
+  },
+  "homepage": "https://github.com/rudderlabs/rudder-sdk-react-native#readme",
+  "codegenConfig": {
+    "name": "RNRudderSprigIntegrationModuleSpec",
+    "type": "modules",
+    "jsSrcsDir": "src"
+  },
+  "react-native": "./src/index.ts",
+  "peerDependencies": {
+    "react": ">= 16.8.0",
+    "react-native": ">= 0.74.0"
+  }
+}

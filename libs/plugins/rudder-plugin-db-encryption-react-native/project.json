@@ -14,7 +14,8 @@
         "project": "libs/plugins/rudder-plugin-db-encryption-react-native/package.json",
         "entryFile": "libs/plugins/rudder-plugin-db-encryption-react-native/src/index.ts",
         "external": ["react/jsx-runtime", "react-native"],
-        "rollupConfig": "@nrwl/react/plugins/bundle-rollup",
+        "rollupConfig": "@nx/react/plugins/bundle-rollup",
+        "babelUpwardRootMode": true,
         "assets": [
           {
             "glob": "libs/plugins/rudder-plugin-db-encryption-react-native/README.md",
@@ -95,7 +96,7 @@
     "github": {
       "executor": "@jscutlery/semver:github",
       "options": {
-        "tag": "rudder-plugin-db-encryption-react-native@1.5.1",
+        "tag": "rudder-plugin-db-encryption-react-native@1.6.0",
         "notesFile": "./libs/plugins/rudder-plugin-db-encryption-react-native/CHANGELOG_LATEST.md"
       }
     },

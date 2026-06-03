@@ -22,7 +22,7 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '12.0'
   s.tvos.deployment_target = '11.0'
   
-  s.dependency "Rudder", '>= 1.31.0', '< 2.0.0'
+  s.dependency "Rudder", '>= 1.32.1', '< 2.0.0'
 
  install_modules_dependencies(s)
 end
