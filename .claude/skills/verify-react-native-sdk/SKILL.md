@@ -191,6 +191,147 @@ npx nx build-ios-ci example
 
 This invokes `xcodebuild -workspace Example.xcworkspace -scheme Example -configuration Release CODE_SIGNING_ALLOWED=NO -verbose`. Expected: `** BUILD SUCCEEDED **`. If it fails with `Failed to get the SHA-1 for: /tmp/.../src/main.tsx`, you're running from a `/tmp` worktree — re-run from the canonical repo path. The `/tmp → /private/tmp` symlink trips Metro's projectRoot crawler when invoked via Xcode's PhaseScript (but not via Nx's `@nx/react-native:bundle` executor). Not a regression — env-specific.
 
+## Phase 6.5 — Native iOS sub-track (conditional on diff)
+
+**Activate this phase only if the diff touches any of**:
+
+- `*.podspec` (any package)
+- `Podfile` or `Podfile.lock`
+- `libs/**/ios/**` (any native Obj-C / Obj-C++ / Swift code)
+
+If your diff is JS/TS-only, or only touches Android/Kotlin, skip Phase 6.5 entirely.
+
+### 6.5a — Podspec hygiene lint (cheap; do first)
+
+Repo design rule: **customers must never need to edit their Podfile beyond choosing a `use_frameworks!` / `:linkage` mode**. Expo apps have no `ios/` directory at all, so any "add this line to your Podfile" instruction is a non-starter.
+
+For each changed `*.podspec`, grep for red flags that would push work onto the consumer:
+
+```bash
+grep -nE 'modular_headers|HEADER_SEARCH_PATHS|pod_target_xcconfig|user_target_xcconfig' libs/<changed-lib>/*.podspec
+```
+
+Manually review each hit. Patterns that are red flags:
+
+- `HEADER_SEARCH_PATHS` pointing at another pod's `${PODS_CONFIGURATION_BUILD_DIR}/<OtherPod>/...` — this path layout differs per `use_frameworks!` mode (see G9)
+- Any xcconfig the consumer would have to mirror in their own Podfile to make their app build
+- Forcing `:modular_headers => true` on the consumer for a transitive dependency
+
+Patterns that are usually fine:
+
+- `s.dependency` lines (CocoaPods resolves transitively without consumer action)
+- `s.requires_arc`, `s.static_framework`, `s.module_name`, `s.platforms` — pure declarative metadata
+- `s.compiler_flags` scoped to the pod itself
+
+### 6.5b — Pod-in-isolation build (fast; ~30s)
+
+Before the 8-10 min full-app build, verify the affected pod compiles by itself. From `apps/example/ios`:
+
+```bash
+bundle exec pod install
+xcodebuild -workspace Example.xcworkspace -scheme <PodName> -configuration Debug \
+  -destination 'generic/platform=iOS Simulator' build CODE_SIGNING_ALLOWED=NO 2>&1 | tail -30
+```
+
+Replace `<PodName>` with the pod under test (e.g. `rudder-sdk-react-native`, `Rudder-Sprig`, `rudder-integration-firebase-react-native`). Expected: `** BUILD SUCCEEDED **`.
+
+If this fails but the example-app build passes, you've probably hit Xcode's cached-`.o` trap (G1) — wipe DerivedData and retry.
+
+### 6.5c — 4-mode `use_frameworks!` matrix
+
+Customers consume our pods in all four CocoaPods linkage modes. A podspec or native-code change can silently break three of them while the default keeps passing.
+
+The modes (`apps/example/ios/Podfile` lines 21-23):
+
+| Mode                   | Podfile directive                                                   |
+| ---------------------- | ------------------------------------------------------------------- |
+| Default (static libs)  | _(no `use_frameworks!` line)_                                       |
+| Static frameworks      | `use_frameworks! :linkage => :static`                               |
+| Dynamic frameworks     | `use_frameworks! :linkage => :dynamic`                              |
+| Bare `use_frameworks!` | ≡ `:linkage => :dynamic` in modern CocoaPods (covered by row above) |
+
+**Where to run the matrix**: if `apps/example` builds cleanly in all 4 modes on `develop` baseline, use it. If `apps/example` is blocked by pre-existing framework-mode rot (currently the case — see G5), **use the fresh-app harness (6.5d) instead**. Don't try to fix `apps/example`'s rot inside an unrelated PR.
+
+For each mode:
+
+```bash
+# 1. Edit ios/Podfile to set the mode (or unset for default)
+# 2. Full per-mode wipe (CocoaPods caches mode-specific resolutions)
+rm -rf ios/Pods ios/Podfile.lock
+rm -rf ~/Library/Developer/Xcode/DerivedData/<AppName>-*
+# 3. Reinstall pods + build + launch
+(cd ios && bundle exec pod install)
+npx react-native run-ios --simulator='iPhone 17 Pro'
+# 4. Confirm: BUILD SUCCEEDED + visible "init OK" string on screen (process-alive ≠ init-succeeded; see G8)
+```
+
+Pass criteria: all 4 modes build, launch, and show the SDK-init confirmation string.
+
+### 6.5d — Fresh-RN-app-outside-Nx harness (escape hatch)
+
+Use when any of:
+
+- `apps/example` is blocked by pre-existing rot (G5 framework modes, G8 Firebase plist) and you can't get a clean signal there
+- You need to confirm a failure is from your change vs. pre-existing repo state
+- You want to validate the real-customer install path: packed tarball + `npm install` in a vanilla RN app
+
+Use a non-`/tmp` path to avoid G3:
+
+```bash
+HARNESS=~/work/RNVerifyHarness
+RN_VERSION=$(node -p "require('./libs/sdk/package.json').peerDependencies['react-native'].match(/[\d.]+/)[0]")
+
+# 1. Init a fresh RN app at the RN version libs/sdk targets
+npx @react-native-community/cli@latest init RNVerifyHarness --version "$RN_VERSION" --directory "$HARNESS"
+
+# 2. Pack each changed lib from the monorepo root
+for lib in libs/<changed-lib-1> libs/<changed-lib-2>; do
+  (cd "$lib" && npm pack --pack-destination "$HARNESS")
+done
+
+# 3. Install tarballs in the fresh app
+cd "$HARNESS"
+npm install ./*.tgz
+
+# 4. (Optional) If you have unreleased changes to rudder-sdk-ios or rudder-sdk-android,
+#    point at them locally:
+#      ios/Podfile:    pod 'Rudder', :path => '/abs/path/to/rudder-sdk-ios'
+#      android/build.gradle: implementation project(':rudder-sdk-android-local')
+```
+
+Minimal `App.tsx` — render a visible string after `setup` resolves so you can tell init succeeded:
+
+```tsx
+import React, { useEffect, useState } from 'react';
+import { Text, View } from 'react-native';
+import rudderClient from '@rudderstack/rudder-sdk-react-native';
+// import any factories under test, e.g.: import sprig from '@rudderstack/rudder-integration-sprig-react-native';
+
+export default function App() {
+  const [status, setStatus] = useState('initializing...');
+  useEffect(() => {
+    rudderClient
+      .setup('TEST_WRITE_KEY', {
+        dataPlaneUrl: 'https://hosted.rudderlabs.com',
+        withFactories: [
+          /* sprig */
+        ],
+      })
+      .then(() => setStatus('Rudder init OK'))
+      .catch((e) => setStatus('Rudder init FAILED: ' + e.message));
+  }, []);
+  return (
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <Text>{status}</Text>
+    </View>
+  );
+}
+```
+
+Now run the 4-mode matrix from 6.5c in this harness. Pass criteria for each mode: `BUILD SUCCEEDED` + simulator screenshot shows "Rudder init OK".
+
+Keep the harness directory around for reviewers — note its path in the PR description so anyone can reproduce.
+
 ## Phase 7 — End-to-end launch tests (recommended; need a booted sim + emulator)
 
 Phase 6 only proves the app _builds_. This phase proves it _launches, renders, and initialises the SDK at runtime_ — which is what historical RN-upgrade PRs in this repo (e.g. #540) ticked off as their final test plan item. Run both unless you have a specific reason to skip.
@@ -346,11 +487,12 @@ Skip this phase entirely unless the change touches deploy-flow files (`scripts/d
 **Cause**: `apps/example/android/app/src/main/java/com/example/MainApplication.kt:30` reads a BuildConfig field that requires the env var at build time. CI populates it via `apps/example/.env`; locally that field is empty.
 **Fix**: Set `MOENGAGE_ANDROID_APP_ID=DUMMY_FOR_BUILD_VERIFICATION` in `apps/example/.env` for verification purposes. Don't commit it.
 
-### G5. `use_frameworks!` is already broken (pre-existing, not your bug)
+### G5. `use_frameworks!` is already broken in `apps/example` (pre-existing, not your bug)
 
 **Symptom**: Enabling `use_frameworks!` in `apps/example/ios/Podfile` causes either fmt consteval errors (on pre-RN-0.83.5) or `Multiple commands produce ...ReactCommon/.../scrollview/*.h` errors (on RN 0.83.5+).
-**Cause**: Long-running RN + CocoaPods frameworks-mode + new-arch codegen header-collision issue. Documented in [facebook/react-native#34472](https://github.com/facebook/react-native/issues/34472).
-**Status**: Pre-existing in this repo; commented-out by default. Don't assume your change regressed it without testing pre-bump baseline.
+**Cause**: Long-running RN + CocoaPods frameworks-mode + new-arch codegen header-collision issue. Documented in [facebook/react-native#34472](https://github.com/facebook/react-native/issues/34472). The [#52977 reporter's fix](https://github.com/facebook/react-native/issues/52977) (`nx sync-deps` after a fresh install) does NOT resolve our variant — the duplicate registration originates inside a single `React-FabricComponents` target, not from Nx node_modules hoisting.
+**Status**: Pre-existing in `apps/example`; commented-out by default. Don't assume your change regressed it without testing pre-bump baseline.
+**Important**: This applies to `apps/example` only. If your change touches `*.podspec` or `libs/**/ios/**`, you DO still need to verify the 4-mode matrix — just do it in the fresh-app harness (Phase 6.5d), not `apps/example`. "G5 says skip" is not a free pass to skip framework-mode verification for podspec/native-iOS changes.
 
 ### G6. `nx affected` from a fresh single-branch clone
 
@@ -381,6 +523,43 @@ Skip this phase entirely unless the change touches deploy-flow files (`scripts/d
 **Workaround for verification only** (do NOT commit): comment out the `firebase,` entry in the `withFactories` array in `apps/example/src/app/App.tsx`. RN will then render past the launch screen. There may be a _second_ runtime issue downstream (Singular/AppCenter/Braze under x86_64-Rosetta sim per G5) that still blocks full UI render — fixing both is out of scope for any single feature PR.
 **Status**: Pre-existing config rot. The plist hasn't been refreshed for the current bundle ID. **Do not treat a blank-screen iOS launch as a regression from your PR** unless you've confirmed `develop` itself launches cleanly on the same sim (it doesn't, at time of writing).
 
+### G9. Consuming a Swift-backed pod from an Obj-C++ (`.mm`) shim
+
+**Symptom**: An `.mm` file that needs to call into a Swift class from another pod (one exposed via `@objcMembers` or `@objc(Name)`) compiles in default static-libs mode but fails in one or more `use_frameworks!` modes — and every "obvious" `#import` fix shifts the failure to a different mode.
+
+**The traps** (each looks like the right fix; each breaks somewhere):
+
+| Attempt                                                                                                        | Works in                     | Fails in                                                                                                                                                                                                    |
+| -------------------------------------------------------------------------------------------------------------- | ---------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `#import "X-Swift.h"` + `HEADER_SEARCH_PATHS = "${PODS_CONFIGURATION_BUILD_DIR}/X/Swift Compatibility Header"` | default (static libs)        | both framework modes — the file lives inside `X.framework/Headers/` there, not at that flat path                                                                                                            |
+| `#import <X/X-Swift.h>` (angle-bracket / modular form)                                                         | framework modes              | default mode — no umbrella header exists in static-libs layout                                                                                                                                              |
+| `@import X;` in a `.m` file                                                                                    | all 4 modes, if file is `.m` | fails in `.mm` without `-fcxx-modules`; enabling `-fcxx-modules` then breaks codegen TurboModule headers (`facebook::react::TurboModule` resolution, `jsi/jsi.h` semantics, `ObjCTurboModule` declarations) |
+
+**The working pattern — runtime dispatch via `NSClassFromString` + `objc_msgSend`**:
+
+```objc
+#import <objc/message.h>
+
++ (id)factoryInstance {
+    // Try the bare Obj-C class name first (set via @objc(Name) or @objcMembers in Swift).
+    Class cls = NSClassFromString(@"<SwiftClassName>");
+    // Fall back to the Swift-module-qualified runtime name.
+    if (!cls) cls = NSClassFromString(@"<SwiftModuleName>.<SwiftClassName>");
+    if (!cls) return nil;
+    SEL initSel = NSSelectorFromString(@"instance");  // or your factory's entry point
+    if (![cls respondsToSelector:initSel]) return nil;
+    return ((id (*)(Class, SEL))objc_msgSend)(cls, initSel);
+}
+
+// Calling an instance method with arguments:
+SEL sel = NSSelectorFromString(@"setViewController:");
+((void (*)(id, SEL, UIViewController *))objc_msgSend)(factory, sel, vc);
+```
+
+**Why this works**: no compile-time dependency on the Swift pod's generated header layout, so the build is identical across all 4 `use_frameworks!` modes. The trade-off is loss of compile-time symbol checking — accept it; runtime dispatch is the only pattern that works across all modes without forcing consumer Podfile edits (which violates the 6.5a hygiene rule).
+
+**When to reach for this**: any time an `.mm` shim in this repo needs to call into a Swift-backed third-party pod. The pattern generalizes — it's not specific to any one integration.
+
 ## Reporting format
 
 After running, produce a Markdown table with per-phase status. Match this shape:
@@ -402,6 +581,10 @@ After running, produce a Markdown table with per-phase status. Match this shape:
 | 6     | build-android                                                    | ✅     | BUILD SUCCESSFUL in 5m 43s                                                                                             |
 | 6     | build-ios                                                        | ✅     | xcodebuild BUILD SUCCEEDED on Xcode 26.4                                                                               |
 | 6     | build-ios-ci                                                     | ✅     | BUILD SUCCEEDED                                                                                                        |
+| 6.5a  | Podspec hygiene lint                                             | ✅     | No new `HEADER_SEARCH_PATHS` / `modular_headers` requirements introduced                                               |
+| 6.5b  | Pod-in-isolation build (`xcodebuild -scheme <PodName>`)          | ✅     | BUILD SUCCEEDED                                                                                                        |
+| 6.5c  | 4-mode `use_frameworks!` matrix (in fresh-app harness)           | ✅     | default / static / dynamic all build, launch, render "Rudder init OK". Bare ≡ dynamic.                                 |
+| 6.5d  | Fresh-app harness path                                           | ℹ️     | `~/work/RNVerifyHarness` — kept for reviewer reproduction                                                              |
 | 7     | run-android (Pixel_9a) — UI render + RudderSDK init in logcat    | ✅     | "Hello there" rendered; `CloudModeManager` logs present                                                                |
 | 7     | run-ios (iPhone 17 Pro / iOS 26.4) — UI render + SDK init        | ⚠️     | Blank screen; pre-existing G8 (Firebase plist BUNDLE_ID mismatch). Reproduces on `develop` baseline. Not a regression. |
 | 8     | expo-example                                                     | ⏭️     | Skipped — change doesn't touch it                                                                                      |
@@ -410,7 +593,9 @@ After running, produce a Markdown table with per-phase status. Match this shape:
 **Conclusion**: <ready-for-review | needs-fix | needs-manual-verification>
 ```
 
-Use ✅ for pass, ❌ for fail, ⚠️ for environmental/known-issue fail (with reasoning), ⏭️ for intentionally skipped.
+Use ✅ for pass, ❌ for fail, ⚠️ for environmental/known-issue fail (with reasoning), ⏭️ for intentionally skipped, ℹ️ for informational rows (paths, versions, etc.).
+
+For Phase 6.5 rows specifically: if the diff doesn't touch `*.podspec` / `Podfile` / `libs/**/ios/**`, omit them entirely (or collapse to a single `6.5 | Native iOS sub-track | ⏭️ | Not triggered by diff scope` row).
 
 When a check fails, classify it:
 
@@ -418,6 +603,7 @@ When a check fails, classify it:
 - **Local-only environment failure** — CI on Xcode 26.3 expected to pass. Don't block; note in PR description.
 - **Pre-existing condition** — broken on `develop` too. File a separate ticket, don't block.
 - **Manual-only verification needed** — e.g. run-target failures that need devices. Note in PR description; reviewer can run manually.
+- **`apps/example` rot masks the signal** — failure could be either your change or pre-existing example-app rot (G5 framework modes, G8 Firebase plist, G4 MoEngage env). Don't classify further until you re-run the failing check in the fresh-app harness (Phase 6.5d). If the harness passes, downgrade to "pre-existing condition" with a note pointing at the harness output. If it fails there too, escalate to "real regression."
 
 ## Restore the user's state at the end
 
