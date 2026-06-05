@@ -163,7 +163,7 @@ Expected: `BUILD SUCCESSFUL in N s`. The Android build is generally robust to RN
 ### iOS — simulator build (~8-10 min)
 
 ```bash
-npx nx run-ios example --simulator="iPhone 17"
+npx nx run-ios example --simulator="iPhone 17" 2>&1 | tee /tmp/ios-build.log
 ```
 
 Expected:
@@ -176,7 +176,7 @@ If the build fails at `fmt/format.cc` with consteval errors, the toolchain is Xc
 If the build reports `BUILD SUCCEEDED` but you didn't see `fmt.o` being compiled in the log:
 
 ```bash
-grep -c "fmt/" /path/to/build.log    # should be > 0 on a true first-of-investigation
+grep -c "fmt/" /tmp/ios-build.log    # should be > 0 on a true first-of-investigation
 ```
 
 Zero hits means Xcode reused a stale cached `fmt.o`. Repeat the full wipe (Phase 1) and re-run. **This is the cached-fmt.o trap that has fooled past investigations** — a partial DerivedData clean leaves intermediates intact, so `fmt` compiles on the _previous_ toolchain but the resulting binary links into the current build, giving a fake green.
