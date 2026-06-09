@@ -93,12 +93,7 @@
       "options": {
         "baseBranch": "master",
         "preset": "conventional",
-        "tagPrefix": "{projectName}@",
-        // TODO: REMOVE after the first 1.0.0 release ships. @jscutlery/semver is
-        // tag-based and falls back to 0.0.0 when no prior tag exists; this forces
-        // 0.0.0 -> 1.0.0 on the first release. If left in, every subsequent release
-        // will be a forced major bump (1.0.0 -> 2.0.0 -> 3.0.0 ...).
-        "releaseAs": "major"
+        "tagPrefix": "{projectName}@"
       }
     },
     "github": {
