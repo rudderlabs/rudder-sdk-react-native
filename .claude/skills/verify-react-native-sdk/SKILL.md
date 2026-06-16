@@ -74,6 +74,7 @@ Don't hard-code a simulator name — the iPhone models below (`iPhone 17`, `iPho
 SIM_NAME=$(xcrun simctl list devices booted | grep -oE 'iPhone [^(]+' | head -1 | sed 's/ *$//')
 [ -z "$SIM_NAME" ] && SIM_NAME=$(xcrun simctl list devices available | grep -oE 'iPhone [^(]+' | head -1 | sed 's/ *$//')
 echo "Using simulator: ${SIM_NAME:-<none found — boot one first>}"
+[ -n "$SIM_NAME" ] || { echo "ERROR: no iPhone simulator found — create/boot one first"; exit 1; }
 ```
 
 Substitute `"$SIM_NAME"` for the literal `iPhone 17` / `iPhone 17 Pro` strings in Phases 6, 6.5c, and 7.
