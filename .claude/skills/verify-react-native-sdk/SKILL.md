@@ -29,7 +29,7 @@ user-invocable: true
 # Repo root sanity
 test -f package.json && test -d apps/example && test -d libs/sdk && \
   grep -q '"@rudderstack/rudder-sdk-react-native-monorepo"' package.json || \
-  echo "ERROR: not in rudder-sdk-react-native checkout"
+  { echo "ERROR: not in rudder-sdk-react-native checkout"; exit 1; }
 ```
 
 If the user is working in a worktree, **prefer the main repo path** for verification. Worktrees at `/tmp/...` hit a known Metro projectRoot symlink trap during `build-ios-ci` (Metro can't resolve `src/main.tsx` SHA-1 because Xcode PhaseScript follows `/tmp → /private/tmp` differently than Nx does). That failure is environmental, not a real regression — but it'll waste time.
@@ -63,7 +63,20 @@ git status -s
 git stash list
 ```
 
-If there are dirty files, `git stash push -u -m "pre-verify-<date>"` them so the verification runs against the committed state. Restore at the end.
+If there are dirty files, **ask the user before touching them** — don't stash automatically. Show them `git status -s` and confirm whether they want you to `git stash push -u -m "pre-verify-<date>"` so the verification runs against the committed state, or to abort so they can commit/handle the changes first. Only stash with explicit confirmation, and restore at the end.
+
+### Detect an available simulator
+
+Don't hard-code a simulator name — the iPhone models below (`iPhone 17`, `iPhone 17 Pro`) are examples and may not exist on every machine. Resolve a real one up front and reuse it everywhere a `--simulator=` flag appears:
+
+```bash
+# First booted sim, else first available iPhone for the installed runtime
+SIM_NAME=$(xcrun simctl list devices booted | grep -oE 'iPhone [^(]+' | head -1 | sed 's/ *$//')
+[ -z "$SIM_NAME" ] && SIM_NAME=$(xcrun simctl list devices available | grep -oE 'iPhone [^(]+' | head -1 | sed 's/ *$//')
+echo "Using simulator: ${SIM_NAME:-<none found — boot one first>}"
+```
+
+Substitute `"$SIM_NAME"` for the literal `iPhone 17` / `iPhone 17 Pro` strings in Phases 6, 6.5c, and 7.
 
 ## Phase 1 — Full wipe (MANDATORY for first-of-investigation)
 
@@ -163,7 +176,7 @@ Expected: `BUILD SUCCESSFUL in N s`. The Android build is generally robust to RN
 ### iOS — simulator build (~8-10 min)
 
 ```bash
-npx nx run-ios example --simulator="iPhone 17" 2>&1 | tee /tmp/ios-build.log
+npx nx run-ios example --simulator="$SIM_NAME" 2>&1 | tee /tmp/ios-build.log   # $SIM_NAME from Phase 0; e.g. "iPhone 17"
 ```
 
 Expected:
@@ -261,7 +274,7 @@ rm -rf ios/Pods ios/Podfile.lock
 rm -rf ~/Library/Developer/Xcode/DerivedData/<AppName>-*
 # 3. Reinstall pods + build + launch
 (cd ios && bundle exec pod install)
-npx react-native run-ios --simulator='iPhone 17 Pro'
+npx react-native run-ios --simulator="$SIM_NAME"   # $SIM_NAME from Phase 0; e.g. "iPhone 17 Pro"
 # 4. Confirm: BUILD SUCCEEDED + visible "init OK" string on screen (process-alive ≠ init-succeeded; see G8)
 ```
 
@@ -348,7 +361,7 @@ emulator -avd <name> -no-snapshot-save -no-boot-anim &
 adb wait-for-device
 ```
 
-Also ensure Metro is running before launch (Phase 4 leaves it running via `nx run-ios`; if you killed that, start it manually):
+Also ensure Metro is running before launch (Phase 6's `nx run-ios` leaves it running; if you killed that, start it manually):
 
 ```bash
 (cd apps/example && nohup npx react-native start --reset-cache > /tmp/metro.log 2>&1 &)
@@ -369,7 +382,7 @@ Use `npx react-native run-ios` / `run-android` directly — they handle install 
 
 ```bash
 cd apps/example
-npx react-native run-ios --simulator='iPhone 17 Pro' --no-packager   # Metro is already running
+npx react-native run-ios --simulator="$SIM_NAME" --no-packager   # $SIM_NAME from Phase 0; Metro is already running
 npx react-native run-android --no-packager
 cd -
 ```
