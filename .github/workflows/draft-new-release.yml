@@ -81,11 +81,13 @@ jobs:
       - name: Create release branch via API
         env:
           GH_TOKEN: ${{ steps.generate-token.outputs.token }}
+          BRANCH_NAME: ${{ steps.create-release.outputs.branch_name }}
+          REPOSITORY: ${{ github.repository }}
         run: |
           BASE_SHA=$(git rev-parse HEAD)
-          gh api repos/${{ github.repository }}/git/refs \
+          gh api "repos/$REPOSITORY/git/refs" \
             --method POST \
-            -f ref="refs/heads/${{ steps.create-release.outputs.branch_name }}" \
+            -f ref="refs/heads/$BRANCH_NAME" \
             -f sha="$BASE_SHA"
 
       - name: Update changelog & bump version

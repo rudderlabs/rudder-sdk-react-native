@@ -80,13 +80,15 @@ jobs:
       - name: Create Monorepo Release Tag via API
         env:
           GH_TOKEN: ${{ steps.generate-token.outputs.token }}
+          RELEASE_VERSION: ${{ steps.extract-version.outputs.release_version }}
+          REPOSITORY: ${{ github.repository }}
         run: |
           # Get the commit SHA of HEAD on master
           COMMIT_SHA=$(git rev-parse HEAD)
           # Create lightweight tag via GitHub API (tags created via API are shown as verified)
-          gh api repos/${{ github.repository }}/git/refs \
+          gh api "repos/$REPOSITORY/git/refs" \
             --method POST \
-            -f ref="refs/tags/v${{ steps.extract-version.outputs.release_version }}" \
+            -f ref="refs/tags/v$RELEASE_VERSION" \
             -f sha="$COMMIT_SHA"
 
       - name: Get the two latest versions
