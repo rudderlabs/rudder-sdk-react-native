@@ -96,7 +96,7 @@
     "github": {
       "executor": "@jscutlery/semver:github",
       "options": {
-        "tag": "rudder-integration-appsflyer-react-native@1.8.0",
+        "tag": "rudder-integration-appsflyer-react-native@1.9.0",
         "notesFile": "./libs/rudder-integration-appsflyer-react-native/CHANGELOG_LATEST.md"
       }
     },

@@ -2,6 +2,19 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [3.7.0](https://github.com/rudderlabs/rudder-sdk-react-native/compare/example-3.6.0...example-3.7.0) (2026-06-02)
+
+
+### Features
+
+* **firebase:** update firebase integration minimum version for iOS and Android ([#610](https://github.com/rudderlabs/rudder-sdk-react-native/issues/610)) ([fb32dd9](https://github.com/rudderlabs/rudder-sdk-react-native/commit/fb32dd9a2df33dfecc80942a05b707dd8bf80163)), closes [#614](https://github.com/rudderlabs/rudder-sdk-react-native/issues/614) [#611](https://github.com/rudderlabs/rudder-sdk-react-native/issues/611)
+* **sprig:** add Sprig device-mode integration for Android and iOS ([#623](https://github.com/rudderlabs/rudder-sdk-react-native/issues/623)) ([41eeaf5](https://github.com/rudderlabs/rudder-sdk-react-native/commit/41eeaf5ab95fb0d652597aa3ebf94b9c702c2d82))
+
+
+### Bug Fixes
+
+* **deps:** bump react-native to 0.83.9 to unblock iOS build on Xcode 26.4 [SDK-4868] ([#621](https://github.com/rudderlabs/rudder-sdk-react-native/issues/621)) ([63c8fe8](https://github.com/rudderlabs/rudder-sdk-react-native/commit/63c8fe8fb230e6d7d6e14f88270760af7d0dd11c)), closes [fmtlib/fmt#4740](https://github.com/fmtlib/fmt/issues/4740) [facebook/react-native#55601](https://github.com/facebook/react-native/issues/55601)
+
 ## [3.6.0](https://github.com/rudderlabs/rudder-sdk-react-native/compare/example-3.5.0...example-3.6.0) (2026-03-19)
 
 
