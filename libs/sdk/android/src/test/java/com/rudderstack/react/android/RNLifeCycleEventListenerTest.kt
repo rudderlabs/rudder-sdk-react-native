@@ -15,18 +15,6 @@ import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
 
-/**
- * Contract test for the lifecycle-event routing established by SDK-5007.
- *
- * It does NOT reproduce the real transient-Activity overlay end to end; it pins down WHICH source
- * each app-lifecycle event is wired to, guarding against the most likely regression: accidentally
- * moving "Application Opened" / "Application Backgrounded" back onto React's host-activity
- * (LifecycleEventListener) callbacks, which is exactly the bug this PR fixes.
- *
- * Pure JVM test (no emulator / Robolectric): the listener constructor's AppVersion path is
- * neutralized because the mocked Application returns a null PackageManager (AppVersion bails out),
- * and RNPreferenceManager / RudderClient are mocked statically via MockK.
- */
 class RNLifeCycleEventListenerTest {
 
     private val applicationOpened = "Application Opened"
@@ -69,7 +57,7 @@ class RNLifeCycleEventListenerTest {
     // --- React host callbacks must NOT emit app lifecycle events ---
 
     @Test
-    fun onHostPause_doesNotEmitApplicationBackgrounded() {
+    fun `given host activity lifecycle, when onHostPause is called, then Application Backgrounded is not emitted`() {
         listener.onHostPause()
 
         verify(exactly = 0) { rudderClient.track(applicationBackgrounded) }
@@ -77,7 +65,7 @@ class RNLifeCycleEventListenerTest {
     }
 
     @Test
-    fun onHostResume_doesNotEmitApplicationOpened() {
+    fun `given host activity lifecycle, when onHostResume is called, then Application Opened is not emitted`() {
         listener.onHostResume()
 
         verify(exactly = 0) { rudderClient.track(applicationOpened, any<RudderProperty>()) }
@@ -86,14 +74,14 @@ class RNLifeCycleEventListenerTest {
     // --- Process lifecycle callbacks MUST emit app lifecycle events ---
 
     @Test
-    fun onStart_emitsApplicationOpened() {
+    fun `given process lifecycle, when onStart is called, then Application Opened is emitted`() {
         listener.onStart(lifecycleOwner)
 
         verify(exactly = 1) { rudderClient.track(applicationOpened, any<RudderProperty>()) }
     }
 
     @Test
-    fun onStop_emitsApplicationBackgrounded() {
+    fun `given process lifecycle, when onStop is called, then Application Backgrounded is emitted`() {
         listener.onStop(lifecycleOwner)
 
         verify(exactly = 1) { rudderClient.track(applicationBackgrounded) }
@@ -102,7 +90,7 @@ class RNLifeCycleEventListenerTest {
     // --- from_background: false on cold start, true after a background round-trip ---
 
     @Test
-    fun applicationOpened_fromBackgroundReflectsBackgroundRoundTrip() {
+    fun `given a background round-trip, when the app is opened, then from_background is false on cold start and true on resume`() {
         val properties = mutableListOf<RudderProperty>()
 
         listener.onStart(lifecycleOwner) // cold start -> from_background = false
