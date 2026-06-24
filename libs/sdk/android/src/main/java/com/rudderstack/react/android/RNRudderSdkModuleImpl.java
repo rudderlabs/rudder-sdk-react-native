@@ -2,9 +2,12 @@ package com.rudderstack.react.android;
 
 import android.app.Activity;
 import android.app.Application;
+import android.os.Handler;
+import android.os.Looper;
 import android.text.TextUtils;
 
 import androidx.annotation.Nullable;
+import androidx.lifecycle.ProcessLifecycleOwner;
 
 import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.ReactApplicationContext;
@@ -72,7 +75,12 @@ public class RNRudderSdkModuleImpl {
 
             // Track automatic lifecycle and/or screen events
             RNLifeCycleEventListener lifeCycleEventListener = new RNLifeCycleEventListener(this.application, userSessionPlugin, this, configParams.trackLifeCycleEvents, configParams.recordScreenViews);
+            // Screen views stay on RN's host lifecycle (need the current Activity)
             reactContext.addLifecycleEventListener(lifeCycleEventListener);
+            // Application Opened/Backgrounded are tracked at the process level so in-app activity
+            // transitions don't fire spurious events. ProcessLifecycleOwner must be observed on the main thread.
+            new Handler(Looper.getMainLooper()).post(() ->
+                    ProcessLifecycleOwner.get().getLifecycle().addObserver(lifeCycleEventListener));
 
             // RN SDK is initialised
             initialized = true;
