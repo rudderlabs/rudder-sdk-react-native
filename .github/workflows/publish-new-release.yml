@@ -129,23 +129,36 @@ jobs:
 
       - name: Create GitHub Releases
         id: create_release
+        continue-on-error: true
         env:
           HUSKY: 0
           # App token aliased onto GITHUB_TOKEN (the var nx reads); the job's default
           # token is contents:read and cannot create releases.
           GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
         run: |
+          # nx treats package.json / package-lock.json changes as affecting every package.
+          # Ignore them so only genuinely-changed packages get a GitHub release.
+          # Ref: https://github.com/nrwl/nx/issues/15116#issuecomment-1535260119
+          echo package-lock.json >> .nxignore
+          echo package.json >> .nxignore
           npm run release:github -- --base=$last_version --head=$current_version
+          # Restore working copy
+          git checkout -- .nxignore
 
+      # Reviewers are auto-requested via CODEOWNERS (* @rudderlabs/sdk-rn).
+      # continue-on-error: a back-merge hiccup (e.g. PR already open) must not fail the
+      # release after the GitHub releases are already published.
       - name: Create pull request into develop
-        uses: repo-sync/pull-request@7e79a9f5dc3ad0ce53138f01df2fad14a04831c5 #v2
-        with:
-          source_branch: 'master'
-          destination_branch: 'develop'
-          github_token: ${{ steps.generate-token.outputs.token }}
-          pr_title: 'chore(release): pulling master into develop post release v${{ steps.extract-version.outputs.release_version }}'
-          pr_body: ':crown: *An automated PR*'
-          pr_reviewer: '@rudderlabs/sdk-rn'
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ steps.generate-token.outputs.token }}
+          RELEASE_VERSION: ${{ steps.extract-version.outputs.release_version }}
+        run: |
+          gh pr create \
+            --base develop \
+            --head master \
+            --title "chore(release): pulling master into develop post release v$RELEASE_VERSION" \
+            --body ":crown: *An automated PR*"
 
       - name: Delete hotfix release branch
         uses: koj-co/delete-merged-action@63a03c35810a8a7d4840d18793c0f68ff8b59450 # master
