@@ -77,19 +77,43 @@ jobs:
           git config user.name "GitHub actions"
           git config user.email noreply@github.com
 
+      # Sole creator of the monorepo v<version> tag (draft only creates per-package tags).
+      # Idempotent: exits 0 if the tag already points at this commit, fails if it points
+      # elsewhere so re-runs don't leave a mispointed tag.
       - name: Create Monorepo Release Tag via API
         env:
           GH_TOKEN: ${{ steps.generate-token.outputs.token }}
           RELEASE_VERSION: ${{ steps.extract-version.outputs.release_version }}
           REPOSITORY: ${{ github.repository }}
         run: |
-          # Get the commit SHA of HEAD on master
           COMMIT_SHA=$(git rev-parse HEAD)
-          # Create lightweight tag via GitHub API (tags created via API are shown as verified)
-          gh api "repos/$REPOSITORY/git/refs" \
-            --method POST \
-            -f ref="refs/tags/v$RELEASE_VERSION" \
-            -f sha="$COMMIT_SHA"
+          encoded=$(printf '%s' "v${RELEASE_VERSION}" | jq -sRr @uri)
+          if existing_ref=$(gh api "repos/${REPOSITORY}/git/ref/tags/${encoded}" 2>/dev/null); then
+            existing_type=$(printf '%s' "$existing_ref" | jq -r '.object.type')
+            existing_obj=$(printf '%s' "$existing_ref" | jq -r '.object.sha')
+            if [ "$existing_type" = "tag" ]; then
+              existing_commit=$(gh api "repos/${REPOSITORY}/git/tags/${existing_obj}" --jq '.object.sha')
+            else
+              existing_commit="$existing_obj"
+            fi
+            if [ "$existing_commit" = "$COMMIT_SHA" ]; then
+              echo "Tag v${RELEASE_VERSION} already points at ${COMMIT_SHA}, nothing to do"
+              exit 0
+            fi
+            echo "::error::Tag v${RELEASE_VERSION} exists on origin but points at ${existing_commit} (expected ${COMMIT_SHA})"
+            exit 1
+          fi
+
+          tag_obj_sha=$(gh api --method POST "repos/${REPOSITORY}/git/tags" \
+            -f "tag=v${RELEASE_VERSION}" \
+            -f "message=chore(monorepo): release v${RELEASE_VERSION}" \
+            -f "object=${COMMIT_SHA}" \
+            -f "type=commit" \
+            --jq '.sha')
+
+          gh api --method POST "repos/${REPOSITORY}/git/refs" \
+            -f "ref=refs/tags/v${RELEASE_VERSION}" \
+            -f "sha=${tag_obj_sha}"
 
       - name: Get the two latest versions
         run: |
@@ -107,7 +131,9 @@ jobs:
         id: create_release
         env:
           HUSKY: 0
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # App token aliased onto GITHUB_TOKEN (the var nx reads); the job's default
+          # token is contents:read and cannot create releases.
+          GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
         run: |
           npm run release:github -- --base=$last_version --head=$current_version
 

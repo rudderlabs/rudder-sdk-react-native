@@ -47,6 +47,12 @@ jobs:
         run: |
           npm run setup:ci
 
+      # Git needs an author identity for the merge/version steps below.
+      - name: Initialize mandatory git config
+        run: |
+          git config user.name "GitHub actions"
+          git config user.email noreply@github.com
+
       # Calculate the next release version based on conventional semantic release
       - name: Create release branch
         id: create-release
@@ -122,7 +128,73 @@ jobs:
           branch-name: ${{ steps.create-release.outputs.branch_name }}
           commit-message: 'chore: sync versions and generate release logs'
           files: ${{ steps.changed-files.outputs.files }}
-          tag: 'v${{ steps.create-release.outputs.new_version }}'
+
+      # Create per-package tags (rudder-sdk-react-native@x.y.z, etc.) at the release
+      # branch HEAD for packages whose version changed. The monorepo v<version> tag is
+      # created by publish-new-release.yml instead. Idempotent: skips if the tag already
+      # points at the release SHA, fails if it points elsewhere.
+      - name: Push release tags to release branch HEAD
+        env:
+          GH_TOKEN: ${{ steps.generate-token.outputs.token }}
+          BRANCH_NAME: ${{ steps.create-release.outputs.branch_name }}
+          REPO: ${{ github.repository }}
+        run: |
+          git fetch origin "$BRANCH_NAME"
+          git fetch --no-tags origin master
+          release_sha=$(git rev-parse "origin/$BRANCH_NAME")
+          echo "Release branch HEAD: $release_sha"
+
+          for pj in libs/*/project.json libs/plugins/*/project.json; do
+            tag=$(jq -r '.targets.github.options.tag // empty' "$pj")
+            [ -z "$tag" ] && continue
+
+            pkg_dir=$(dirname "$pj")
+            current_version=$(git show "origin/${BRANCH_NAME}:${pkg_dir}/package.json" 2>/dev/null | jq -r '.version // empty' 2>/dev/null || echo "")
+            prev_version=$(git show "origin/master:${pkg_dir}/package.json" 2>/dev/null | jq -r '.version // empty' 2>/dev/null || echo "")
+
+            if [ -z "$current_version" ]; then
+              echo "::error::Unable to read version for ${pkg_dir}; refusing to tag ${tag}"
+              exit 1
+            fi
+
+            if [ -n "$prev_version" ] && [ "$current_version" = "$prev_version" ]; then
+              echo "Skipping ${tag} — version unchanged vs origin/master"
+              continue
+            fi
+
+            encoded=$(printf '%s' "$tag" | jq -sRr @uri)
+            if existing_ref=$(gh api "repos/${REPO}/git/ref/tags/${encoded}" 2>/dev/null); then
+              existing_type=$(printf '%s' "$existing_ref" | jq -r '.object.type')
+              existing_obj=$(printf '%s' "$existing_ref" | jq -r '.object.sha')
+              if [ "$existing_type" = "tag" ]; then
+                existing_commit=$(gh api "repos/${REPO}/git/tags/${existing_obj}" --jq '.object.sha')
+              else
+                existing_commit="$existing_obj"
+              fi
+              if [ "$existing_commit" = "$release_sha" ]; then
+                echo "Tag ${tag} already points at ${release_sha}, skipping"
+                continue
+              fi
+              echo "::error::Tag ${tag} exists on origin but points at ${existing_commit} (expected ${release_sha})"
+              exit 1
+            fi
+
+            echo "Creating annotated tag ${tag} -> ${release_sha}"
+
+            pkg_scope="${tag%@*}"
+            pkg_version="${tag##*@}"
+
+            tag_obj_sha=$(gh api --method POST "repos/${REPO}/git/tags" \
+              -f "tag=${tag}" \
+              -f "message=chore(${pkg_scope}): release version ${pkg_version}" \
+              -f "object=${release_sha}" \
+              -f "type=commit" \
+              --jq '.sha')
+
+            gh api --method POST "repos/${REPO}/git/refs" \
+              -f "ref=refs/tags/${tag}" \
+              -f "sha=${tag_obj_sha}"
+          done
 
       - name: Create pull request into master
         uses: repo-sync/pull-request@7e79a9f5dc3ad0ce53138f01df2fad14a04831c5 #v2
