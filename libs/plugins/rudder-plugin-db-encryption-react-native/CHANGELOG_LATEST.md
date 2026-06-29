@@ -1,9 +1,7 @@
-## [1.6.0](https://github.com/rudderlabs/rudder-sdk-react-native/compare/rudder-plugin-db-encryption-react-native@1.5.1...rudder-plugin-db-encryption-react-native@1.6.0) (2026-06-02)
+## [1.6.1](https://github.com/rudderlabs/rudder-sdk-react-native/compare/rudder-plugin-db-encryption-react-native@1.6.0...rudder-plugin-db-encryption-react-native@1.6.1) (2026-06-25)
 
-### Features
-
-- align with Nx 20 plugin path renames; bundled output preserves native async/await instead of downleveling to ES5 helpers ([#610](https://github.com/rudderlabs/rudder-sdk-react-native/issues/610)) ([fb32dd9](https://github.com/rudderlabs/rudder-sdk-react-native/commit/fb32dd9a2df33dfecc80942a05b707dd8bf80163))
 
 ### Bug Fixes
 
-- add dummy commit to trigger changelog generation ([#626](https://github.com/rudderlabs/rudder-sdk-react-native/issues/626)) ([4ef5a21](https://github.com/rudderlabs/rudder-sdk-react-native/commit/4ef5a21dcfe2a5a7fb931c44a99f8b94ba2027f6))
+* add dummy commit to trigger db-encryption changelog generation ([#635](https://github.com/rudderlabs/rudder-sdk-react-native/issues/635)) ([4404b09](https://github.com/rudderlabs/rudder-sdk-react-native/commit/4404b092b96f09691a6283948ce0a43506845c9b)), closes [#626](https://github.com/rudderlabs/rudder-sdk-react-native/issues/626) [#583](https://github.com/rudderlabs/rudder-sdk-react-native/issues/583)
+
