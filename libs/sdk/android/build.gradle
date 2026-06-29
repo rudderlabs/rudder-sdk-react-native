@@ -64,6 +64,12 @@ android {
       }
     }
   }
+
+  testOptions {
+    // Let stubbed android.jar methods (e.g. android.util.Log) return defaults instead of
+    // throwing, so JVM unit tests can run without Robolectric.
+    unitTests.returnDefaultValues = true
+  }
 }
 
 repositories {
@@ -78,6 +84,12 @@ dependencies {
   implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
   implementation 'com.google.code.gson:gson:2.13.1'
   implementation 'com.rudderstack.android.sdk:core:[1.26.0, 2.0.0)'
+  implementation 'androidx.lifecycle:lifecycle-process:2.6.1'
+
+  // Pure-JVM unit tests (no emulator/Robolectric). MockK's mockkStatic(...) intercepts the
+  // static RudderClient/RNPreferenceManager factory methods.
+  testImplementation 'junit:junit:4.13.2'
+  testImplementation 'io.mockk:mockk:1.13.13'
 }
 
 if (isNewArchitectureEnabled()) {

@@ -1,6 +1,6 @@
 {
   "name": "@rudderstack/rudder-sdk-react-native",
-  "version": "3.1.0",
+  "version": "3.1.1",
   "description": "Rudder React Native SDK",
   "keywords": [
     "react-native",
@@ -29,6 +29,7 @@
   },
   "react-native": "./src/index.ts",
   "dependencies": {
+    "@types/async-lock": "1.4.2",
     "async-lock": "1.4.0"
   }
 }
