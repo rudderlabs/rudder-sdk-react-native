@@ -14,7 +14,7 @@ PODS:
     - AppsFlyerFramework/Main (= 6.18.0)
   - AppsFlyerFramework/Main (6.18.0)
   - boost (1.84.0)
-  - BrazeKit (14.1.0)
+  - BrazeKit (14.2.1)
   - CleverTap-iOS-SDK (4.2.2):
     - SDWebImage (~> 5.11)
   - DoubleConversion (1.1.6)
@@ -2696,7 +2696,7 @@ PODS:
   - Rudder-Appsflyer (3.1.0):
     - AppsFlyerFramework (~> 6.14)
     - Rudder (~> 1.12)
-  - Rudder-Braze (4.4.0):
+  - Rudder-Braze (4.5.0):
     - BrazeKit (< 15.0.0, >= 14.0.1)
     - Rudder (~> 1.26)
   - Rudder-CleverTap (1.1.2):
@@ -2723,7 +2723,7 @@ PODS:
   - rudder-integration-braze-react-native (2.4.0):
     - React
     - RNRudderSdk
-    - Rudder-Braze (~> 4.4)
+    - Rudder-Braze (~> 4.5)
   - rudder-integration-clevertap-react-native (1.3.0):
     - CleverTap-iOS-SDK
     - React
@@ -3164,7 +3164,7 @@ SPEC CHECKSUMS:
   AppCenter: 38e27eb52113bff74426db9f500726933c8d2fd7
   AppsFlyerFramework: c1e1e4cd3b98ffdca2fe32b17ae93909e409b6ab
   boost: 7e761d76ca2ce687f7cc98e698152abd03a18f90
-  BrazeKit: ef0a5193484c1a49f06c2520cedce7b2c3e1d9e4
+  BrazeKit: 0be39d61821a82edc34625c7f53cf358065deee6
   CleverTap-iOS-SDK: 36c21b8a671d87a0f9c7b389b339d02528bbe4d7
   DoubleConversion: cb417026b2400c8f53ae97020b2be961b59470cb
   fast_float: b32c788ed9c6a8c584d114d0047beda9664e7cc6
@@ -3261,7 +3261,7 @@ SPEC CHECKSUMS:
   Rudder-Amplitude: d308b2bce1237c3cfdf3274458130f36815067db
   Rudder-AppCenter: 9eca9241e3707a0e9610714dd91dc8da4bae7e1f
   Rudder-Appsflyer: dcefa779746771d8af96a2b70c45b3f4a1cc18e5
-  Rudder-Braze: 2371de6a4fbee74df5a2e9656995675a667062b9
+  Rudder-Braze: 7472471785e2821b83be81adec1a79a7edabac19
   Rudder-CleverTap: a0085aab472e0e60930c4301ef80bae5ff187e98
   Rudder-Facebook: 24c9309373f13212d1139938aad86faa2914d342
   Rudder-Firebase: 876e5c2271915513315ce91c497ae5335b787950
