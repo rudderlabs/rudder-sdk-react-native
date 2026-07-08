@@ -1,9 +1,8 @@
-## [3.1.0](https://github.com/rudderlabs/rudder-sdk-react-native/compare/rudder-sdk-react-native@3.0.3...rudder-sdk-react-native@3.1.0) (2026-06-02)
+## [3.1.1](https://github.com/rudderlabs/rudder-sdk-react-native/compare/rudder-sdk-react-native@3.1.0...rudder-sdk-react-native@3.1.1) (2026-06-25)
 
-### Features
-
-- align with Nx 20 plugin path renames; bundled output preserves native async/await instead of downleveling to ES5 helpers ([#610](https://github.com/rudderlabs/rudder-sdk-react-native/issues/610)) ([fb32dd9](https://github.com/rudderlabs/rudder-sdk-react-native/commit/fb32dd9a2df33dfecc80942a05b707dd8bf80163))
 
 ### Bug Fixes
 
-- **sdk:** bump Rudder-iOS SDK minimum version to 1.32.1 so customers always get DEFINES_MODULE ([#625](https://github.com/rudderlabs/rudder-sdk-react-native/issues/625)) ([043495c](https://github.com/rudderlabs/rudder-sdk-react-native/commit/043495cc770b81445ffe43ee41975cc0b5918571))
+* add async-lock type declarations dependency ([f12e031](https://github.com/rudderlabs/rudder-sdk-react-native/commit/f12e031c446b5d17554473d108efe954f3ceac25))
+* **android:** track app lifecycle at process level ([#633](https://github.com/rudderlabs/rudder-sdk-react-native/issues/633)) ([42ba7c5](https://github.com/rudderlabs/rudder-sdk-react-native/commit/42ba7c545c6472620d8ece2a6db3e171795c59b8))
+

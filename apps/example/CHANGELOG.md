@@ -2,6 +2,13 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [3.7.1](https://github.com/rudderlabs/rudder-sdk-react-native/compare/example-3.7.0...example-3.7.1) (2026-06-25)
+
+
+### Bug Fixes
+
+* **example:** remove unused whatsNextYCoord setter ([#629](https://github.com/rudderlabs/rudder-sdk-react-native/issues/629)) ([6ed4b16](https://github.com/rudderlabs/rudder-sdk-react-native/commit/6ed4b161d65d19c1b0a5e6ca503bfae3d7159004))
+
 ## [3.7.0](https://github.com/rudderlabs/rudder-sdk-react-native/compare/example-3.6.0...example-3.7.0) (2026-06-02)
 
 

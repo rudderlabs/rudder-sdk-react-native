@@ -1,7 +1,7 @@
 {
   "name": "@rudderstack/rudder-integration-sprig-react-native",
   "title": "Rudder Integration Sprig React Native",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Rudder React Native SDK Sprig Device mode support for Android and iOS",
   "keywords": [
     "react-native",
