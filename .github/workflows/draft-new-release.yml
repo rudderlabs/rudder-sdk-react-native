@@ -201,7 +201,7 @@ jobs:
               -f "sha=${tag_obj_sha}"
           done
 
-      # Reviewers are auto-requested via CODEOWNERS (* @rudderlabs/sdk-rn).
+      # Reviewers are auto-requested via CODEOWNERS.
       # Idempotent: skip if a PR for this branch already exists (e.g. a re-run).
       - name: Create pull request into master
         env:

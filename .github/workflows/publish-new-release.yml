@@ -145,7 +145,7 @@ jobs:
           # Restore working copy
           git checkout -- .nxignore
 
-      # Reviewers are auto-requested via CODEOWNERS (* @rudderlabs/sdk-rn).
+      # Reviewers are auto-requested via CODEOWNERS.
       # continue-on-error: a back-merge hiccup (e.g. PR already open) must not fail the
       # release after the GitHub releases are already published.
       - name: Create pull request into develop
