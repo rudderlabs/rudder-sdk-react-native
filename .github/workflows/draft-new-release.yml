@@ -125,7 +125,7 @@ jobs:
       # without committing. This action packages all working-tree changes (files: .) into
       # one verified commit on the release branch.
       - name: Create verified commit via API
-        uses: ryancyq/github-signed-commit@6afa32d8aa9819faddc248e6258e9c11ec05ecc8 # v1.4.0
+        uses: ryancyq/github-signed-commit@cb9b21ee83578fe8e26a9eda530015aedf0c7c5b # v1.4.1
         env:
           GH_TOKEN: ${{ steps.generate-token.outputs.token }}
         with:
