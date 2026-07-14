@@ -57,12 +57,36 @@ jobs:
           echo "last_version=$(echo $LAST_VERSION)" >> "$GITHUB_OUTPUT"
           echo "DATE=$(date)" >> "$GITHUB_OUTPUT"
 
+      # continue-on-error: on a partial release, changelog regeneration marks
+      # unchanged packages as nx-affected; their `npm publish` is rejected with
+      # "cannot publish over previously published version". Those rejections are
+      # expected — the verify step below catches genuine publish failures.
       - name: Build & Publish affected packages
+        continue-on-error: true
         env:
           current_version: ${{ steps.get-versions.outputs.current_version }}
           last_version: ${{ steps.get-versions.outputs.last_version }}
         run: |
           npm run deploy:npm -- --base=$last_version --head=$current_version
+
+      # Every package with a deploy target must have its package.json version live
+      # on npm: unchanged packages resolve to their old (published) version, bumped
+      # packages to the new one — so a genuine publish failure fails the job here.
+      - name: Verify published versions on npm
+        run: |
+          FAILED=0
+          for proj in $(grep -rl '"deploy"' --include=project.json libs); do
+            pkg="$(dirname "$proj")/package.json"
+            NAME=$(node -p "require('./$pkg').name")
+            VERSION=$(node -p "require('./$pkg').version")
+            if npm view "$NAME@$VERSION" version >/dev/null 2>&1; then
+              echo "✅ $NAME@$VERSION is live on npm"
+            else
+              echo "❌ $NAME@$VERSION is NOT on npm"
+              FAILED=1
+            fi
+          done
+          exit $FAILED
 
       - name: Send message to Slack channel
         id: slack
