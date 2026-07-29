@@ -7,6 +7,7 @@ Thanks for taking the time and for your help in improving this project!
 - [**RudderStack Contributor Agreement**](#rudderstack-contributor-agreement)
 - [**Contribute to this project**](#contribute-to-this-project)
 - [**Committing**](#committing)
+- [**Release process**](#release-process)
 - [**Conventional commit messages format for React-Native monorepo**](#conventional-commit-messages-format-for-react-native-monorepo)
 - [**Installing and setting up RudderStack**](#installing-and-setting-up-rudderstack)
 - [**Getting help**](#getting-help)
