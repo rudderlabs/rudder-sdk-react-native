@@ -2,10 +2,13 @@ name: Deploy to NPM
 
 on:
   workflow_dispatch:
-  workflow_run: # zizmor: ignore[dangerous-triggers]
-    workflows: ['Publish new github release']
-    types:
-      - completed
+    inputs:
+      release_tag:
+        description: Existing v-prefixed monorepo release tag to publish
+        required: true
+        type: string
+  release:
+    types: [published]
 
 permissions:
   id-token: write
@@ -14,88 +17,131 @@ permissions:
 jobs:
   deploy-npm:
     name: Deploy to NPM
+    if: github.event_name == 'workflow_dispatch' || startsWith(github.event.release.tag_name, 'v')
     runs-on: ubuntu-latest
-    if: startsWith(github.ref, 'refs/tags/v') || startsWith(github.ref, 'refs/heads/master') || github.event.workflow_run.conclusion == 'success'
+    environment: release
     steps:
       - name: Harden the runner (Audit all outbound calls)
-        uses: step-security/harden-runner@fa2e9d605c4eeb9fcad4c99c224cee0c6c7f3594 # v2.16.0
+        uses: step-security/harden-runner@bf7454d06d71f1098171f2acdf0cd4708d7b5920 # v2.20.0
         with:
           egress-policy: audit
 
-      - name: Checkout source branch
+      - name: Resolve release tag
+        id: release
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          EVENT_TAG: ${{ github.event.release.tag_name }}
+          INPUT_TAG: ${{ inputs.release_tag }}
+        run: |
+          tag="$EVENT_TAG"
+          if [[ "$EVENT_NAME" == "workflow_dispatch" ]]; then
+            tag="$INPUT_TAG"
+          fi
+
+          if [[ ! "$tag" =~ ^v[0-9]+\.[0-9]+\.[0-9]+([.-][0-9A-Za-z.-]+)?$ ]]; then
+            echo "Release tag $tag is not a valid monorepo release tag."
+            exit 1
+          fi
+
+          echo "tag=$tag" >> "$GITHUB_OUTPUT"
+
+      - name: Checkout release tag
         uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
         with:
+          ref: ${{ steps.release.outputs.tag }}
           fetch-depth: 0
-
-      - name: Checkout to master
-        if: github.event.workflow_run.conclusion == 'success'
-        run: git checkout master
 
       - name: Setup Node
         uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6.4.0
         with:
-          node-version-file: '.nvmrc'
-          cache: 'npm'
+          node-version-file: .nvmrc
+          cache: npm
 
       - name: Install node_modules
         env:
           HUSKY: 0
         run: |
-          rm -rf node_modules
           npm run setup:ci
 
-      - name: Get the two latest versions
-        id: get-versions
-        run: |
-          CURRENT_VERSION=$(git tag -l "v*" --sort=-version:refname | head -n 1)
-          LAST_VERSION=$(git tag -l "v*" --sort=-version:refname | head -n 2 | awk 'NR == 2 { print $1 }')
-
-          echo "Current version: $CURRENT_VERSION"
-          echo "Previous version: $LAST_VERSION"
-
-          echo "current_version=$(echo $CURRENT_VERSION)" >> "$GITHUB_OUTPUT"
-          echo "last_version=$(echo $LAST_VERSION)" >> "$GITHUB_OUTPUT"
-          echo "DATE=$(date)" >> "$GITHUB_OUTPUT"
-
-      # continue-on-error: on a partial release, changelog regeneration marks
-      # unchanged packages as nx-affected; their `npm publish` is rejected with
-      # "cannot publish over previously published version". Those rejections are
-      # expected — the verify step below catches genuine publish failures.
-      - name: Build & Publish affected packages
-        continue-on-error: true
+      - name: Resolve release range
+        id: range
         env:
-          current_version: ${{ steps.get-versions.outputs.current_version }}
-          last_version: ${{ steps.get-versions.outputs.last_version }}
+          CURRENT_TAG: ${{ steps.release.outputs.tag }}
         run: |
-          npm run deploy:npm -- --base=$last_version --head=$current_version
+          previous_tag=$(git tag -l "v*" --sort=-version:refname |
+            grep -Fxv "$CURRENT_TAG" |
+            head -n 1)
 
-      # Every package with a deploy target must have its package.json version live
-      # on npm: unchanged packages resolve to their old (published) version, bumped
-      # packages to the new one — so a genuine publish failure fails the job here.
-      - name: Verify published versions on npm
+          if [[ -z "$previous_tag" ]]; then
+            echo "Unable to find the previous monorepo release tag."
+            exit 1
+          fi
+
+          echo "current=$CURRENT_TAG" >> "$GITHUB_OUTPUT"
+          echo "previous=$previous_tag" >> "$GITHUB_OUTPUT"
+          echo "Publishing packages changed between $previous_tag and $CURRENT_TAG."
+
+      - name: Build and publish changed packages
+        env:
+          CURRENT_TAG: ${{ steps.range.outputs.current }}
+          PREVIOUS_TAG: ${{ steps.range.outputs.previous }}
         run: |
-          FAILED=0
-          for proj in $(grep -rl '"deploy"' --include=project.json libs); do
-            pkg="$(dirname "$proj")/package.json"
-            NAME=$(node -p "require('./$pkg').name")
-            VERSION=$(node -p "require('./$pkg').version")
-            if npm view "$NAME@$VERSION" version >/dev/null 2>&1; then
-              echo "✅ $NAME@$VERSION is live on npm"
-            else
-              echo "❌ $NAME@$VERSION is NOT on npm"
-              FAILED=1
+          while IFS= read -r project; do
+            package_json="$(dirname "$project")/package.json"
+            previous_version=$(git show "$PREVIOUS_TAG:$package_json" 2>/dev/null |
+              jq -r '.version // empty' || true)
+            current_version=$(jq -r '.version' "$package_json")
+
+            if [[ "$previous_version" == "$current_version" ]]; then
+              echo "Skipping $package_json; version remains $current_version."
+              continue
             fi
-          done
-          exit $FAILED
+
+            name=$(node -p "require('./$package_json').name")
+            project_name=$(jq -r '.name' "$project")
+
+            if npm view "$name@$current_version" version >/dev/null 2>&1; then
+              echo "$name@$current_version is already live on npm; skipping."
+              continue
+            fi
+
+            echo "Publishing $name from $previous_version to $current_version."
+            npx nx run "$project_name:deploy"
+          done < <(grep -rl '"deploy"' --include=project.json libs | sort)
+
+      - name: Verify changed package versions on npm
+        env:
+          PREVIOUS_TAG: ${{ steps.range.outputs.previous }}
+        run: |
+          failed=0
+          while IFS= read -r project; do
+            package_json="$(dirname "$project")/package.json"
+            previous_version=$(git show "$PREVIOUS_TAG:$package_json" 2>/dev/null |
+              jq -r '.version // empty' || true)
+            current_version=$(jq -r '.version' "$package_json")
+
+            if [[ "$previous_version" == "$current_version" ]]; then
+              continue
+            fi
+
+            name=$(node -p "require('./$package_json').name")
+            if npm view "$name@$current_version" version >/dev/null 2>&1; then
+              echo "$name@$current_version is live on npm."
+            else
+              echo "$name@$current_version is not live on npm."
+              failed=1
+            fi
+          done < <(grep -rl '"deploy"' --include=project.json libs | sort)
+
+          exit "$failed"
 
       - name: Send message to Slack channel
-        id: slack
-        uses: slackapi/slack-github-action@91efab103c0de0a537f72a35f6b8cda0ee76bf0a  #v2.1.1
+        continue-on-error: true
+        uses: slackapi/slack-github-action@91efab103c0de0a537f72a35f6b8cda0ee76bf0a # v2.1.1
         env:
-          PROJECT_NAME: 'React Native SDK npm packages'
-          NPM_PACKAGE_URL: 'https://www.npmjs.com/search?q=%40rudderstack'
-          DATE: ${{ steps.get-versions.outputs.DATE }}
-          current_version: ${{ steps.get-versions.outputs.current_version }}
+          PROJECT_NAME: React Native SDK npm packages
+          NPM_PACKAGE_URL: https://www.npmjs.com/search?q=%40rudderstack
+          VERSION: ${{ steps.range.outputs.current }}
         with:
           method: chat.postMessage
           payload-templated: true
@@ -104,22 +150,13 @@ jobs:
           payload: |
             {
               "channel": "${{ secrets.SLACK_RELEASE_CHANNEL_ID }}",
+              "text": "New release: ${{ env.PROJECT_NAME }} ${{ env.VERSION }}",
               "blocks": [
-                {
-                  "type": "header",
-                  "text": {
-                    "type": "plain_text",
-                    "text": "New release: ${{ env.PROJECT_NAME }}"
-                  }
-                },
-                {
-                  "type": "divider"
-                },
                 {
                   "type": "section",
                   "text": {
                     "type": "mrkdwn",
-                    "text": "*Release: <${{ env.NPM_PACKAGE_URL }}|Latest Packages>*\n${{ env.DATE }}"
+                    "text": "🚀 *${{ env.PROJECT_NAME }}* published for ${{ env.VERSION }}.\n*Packages:* ${{ env.NPM_PACKAGE_URL }}"
                   }
                 }
               ]
