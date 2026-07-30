@@ -1,6 +1,6 @@
 # release-please creates package tags, the v-prefixed monorepo tag, and GitHub
-# Releases from master. This workflow handles repository-specific post-release
-# behavior once the monorepo release is published.
+# Releases from develop. This workflow sends the repository-specific
+# notification once the monorepo release is published.
 
 name: Post Release
 
@@ -12,8 +12,8 @@ permissions:
   contents: read
 
 jobs:
-  post-release:
-    name: Notify and back-merge
+  notify-release:
+    name: Notify release
     if: startsWith(github.event.release.tag_name, 'v')
     runs-on: ubuntu-latest
     environment: release
@@ -22,62 +22,6 @@ jobs:
         uses: step-security/harden-runner@bf7454d06d71f1098171f2acdf0cd4708d7b5920 # v2.20.0
         with:
           egress-policy: audit
-
-      - name: Generate GitHub App token
-        id: generate-token
-        uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
-        with:
-          client-id: ${{ vars.RELEASE_APP_CLIENT_ID }}
-          private-key: ${{ secrets.RELEASE_PRIVATE_KEY }}
-          repositories: ${{ github.event.repository.name }}
-          permission-contents: write
-          permission-pull-requests: write
-
-      - name: Checkout master
-        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
-        with:
-          token: ${{ steps.generate-token.outputs.token }}
-          ref: master
-          fetch-depth: 0
-          persist-credentials: false
-
-      - name: Validate monorepo release tag
-        env:
-          TAG: ${{ github.event.release.tag_name }}
-        run: |
-          if [[ ! "$TAG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+([.-][0-9A-Za-z.-]+)?$ ]]; then
-            echo "Release tag $TAG is not a monorepo release tag."
-            exit 1
-          fi
-
-          git fetch --force origin "refs/tags/${TAG}:refs/tags/${TAG}"
-          if ! git merge-base --is-ancestor "${TAG}^{commit}" HEAD; then
-            echo "Release tag $TAG does not point to a commit on master."
-            exit 1
-          fi
-
-      - name: Raise back-merge pull request
-        env:
-          GH_TOKEN: ${{ steps.generate-token.outputs.token }}
-          VERSION: ${{ github.event.release.tag_name }}
-        run: |
-          existing_pr=$(gh pr list \
-            --base develop \
-            --head master \
-            --state open \
-            --json url \
-            --jq '.[0].url // empty')
-
-          if [[ -n "$existing_pr" ]]; then
-            echo "Back-merge pull request already exists: $existing_pr"
-            exit 0
-          fi
-
-          gh pr create \
-            --base develop \
-            --head master \
-            --title "chore(release): pulling master into develop post release $VERSION" \
-            --body "Automated back-merge of monorepo release $VERSION from \`master\` into \`develop\`."
 
       - name: Send message to Slack channel
         continue-on-error: true

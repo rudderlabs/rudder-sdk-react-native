@@ -29,21 +29,14 @@ We prefer squash or rebase commits so that all changes from a branch are committ
 
 ## Release process
 
-The repository intentionally uses two long-lived branches:
-
-- `develop` is the active integration branch for regular changes.
-- `master` is the release branch consumed by release-please.
-
-To prepare a release, run the **Promote Release Candidate** workflow from
-`develop` or a `hotfix/*` branch. It opens a promotion PR into `master`
-without changing versions. After that PR is merged, release-please creates or
-updates one monorepo release PR containing only packages with user-facing
-changes.
+The repository uses `develop` as its integration and release branch.
+release-please monitors `develop` and creates or updates one monorepo release
+PR containing only packages with user-facing changes.
 
 Merging the release-please PR creates the `v`-prefixed monorepo tag, the
 independent `package-name@version` tags, and their GitHub Releases. The
 monorepo release triggers npm publication for packages whose `package.json`
-version changed, then opens the `master` → `develop` back-merge PR.
+version changed and sends the release notification.
 
 ## Conventional commit messages format for React-Native monorepo
 

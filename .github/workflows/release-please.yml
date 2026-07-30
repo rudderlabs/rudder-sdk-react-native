@@ -3,7 +3,7 @@ name: Release Please
 on:
   push:
     branches:
-      - master
+      - develop
 
 permissions:
   contents: read
@@ -33,6 +33,6 @@ jobs:
         uses: googleapis/release-please-action@45996ed1f6d02564a971a2fa1b5860e934307cf7 # v5.0.0
         with:
           token: ${{ steps.generate-token.outputs.token }}
-          target-branch: master
+          target-branch: develop
           config-file: release-please-config.json
           manifest-file: .release-please-manifest.json
