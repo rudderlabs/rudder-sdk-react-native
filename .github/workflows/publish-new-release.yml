@@ -1,5 +1,5 @@
 # release-please creates package tags, the v-prefixed monorepo tag, and GitHub
-# Releases from develop. This workflow sends the repository-specific
+# Releases from master. This workflow sends the repository-specific
 # notification once the monorepo release is published.
 
 name: Post Release

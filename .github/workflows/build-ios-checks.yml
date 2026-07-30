@@ -2,7 +2,7 @@ name: Check iOS Build
 
 on:
   pull_request:
-    branches: ['develop', 'master']
+    branches: ['master']
     types: ['opened', 'reopened', 'synchronize']
 
 permissions:

@@ -42,7 +42,7 @@
     "commit-msg": "commitlint --edit",
     "commit": "git-cz",
     "bump-version:monorepo": "npm version minor --git-tag-version false",
-    "release": "nx affected --base=origin/develop --target=version --parallel=1 --skipCommitTypes=docs,ci,chore",
+    "release": "nx affected --base=origin/master --target=version --parallel=1 --skipCommitTypes=docs,ci,chore",
     "release:github": "nx affected --target=github --parallel=1 --exclude=example --skipCommitTypes=docs,ci,chore",
     "deploy:npm": "nx affected --target=deploy --parallel=1 --exclude=example --skipCommitTypes=docs,ci,chore"
   },

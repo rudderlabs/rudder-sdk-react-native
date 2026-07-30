@@ -2,7 +2,7 @@ name: Check Android Build
 
 on:
   pull_request:
-    branches: ['develop', 'master']
+    branches: ['master']
     types: ['opened', 'reopened', 'synchronize']
 
 permissions:

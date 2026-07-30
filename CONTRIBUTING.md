@@ -25,12 +25,12 @@ For more information on the different ways in which you can contribute to Rudder
 
 ## Committing
 
-We prefer squash or rebase commits so that all changes from a branch are committed to `develop` as a single commit. All pull requests are squashed when merged, but rebasing prior to merge gives you better control over the commit message.
+We prefer squash or rebase commits so that all changes from a branch are committed to `master` as a single commit. All pull requests are squashed when merged, but rebasing prior to merge gives you better control over the commit message.
 
 ## Release process
 
-The repository uses `develop` as its integration and release branch.
-release-please monitors `develop` and creates or updates one monorepo release
+The repository uses `master` as its integration and release branch.
+release-please monitors `master` and creates or updates one monorepo release
 PR containing only packages with user-facing changes.
 
 Merging the release-please PR creates the `v`-prefixed monorepo tag, the

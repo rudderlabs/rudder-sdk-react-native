@@ -3,9 +3,9 @@ name: 'Unit Tests, Coverage & Sonar'
 on:
   workflow_dispatch:
   push:
-    branches: ['develop', 'master']
+    branches: ['master']
   pull_request:
-    branches: ['develop', 'master']
+    branches: ['master']
     types: ['opened', 'reopened', 'synchronize']
 
 permissions:
