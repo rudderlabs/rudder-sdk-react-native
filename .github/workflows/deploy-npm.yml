@@ -2,11 +2,6 @@ name: Deploy to NPM
 
 on:
   workflow_dispatch:
-    inputs:
-      release_tag:
-        description: Existing v-prefixed monorepo release tag to publish
-        required: true
-        type: string
   release:
     types: [published]
 
@@ -17,7 +12,7 @@ permissions:
 jobs:
   deploy-npm:
     name: Deploy to NPM
-    if: github.event_name == 'workflow_dispatch' || startsWith(github.event.release.tag_name, 'v')
+    if: github.ref_type == 'tag' && startsWith(github.ref_name, 'v')
     runs-on: ubuntu-latest
     environment: release
     steps:
@@ -26,24 +21,17 @@ jobs:
         with:
           egress-policy: audit
 
-      - name: Resolve release tag
+      - name: Validate release tag
         id: release
         env:
-          EVENT_NAME: ${{ github.event_name }}
-          EVENT_TAG: ${{ github.event.release.tag_name }}
-          INPUT_TAG: ${{ inputs.release_tag }}
+          RELEASE_TAG: ${{ github.ref_name }}
         run: |
-          tag="$EVENT_TAG"
-          if [[ "$EVENT_NAME" == "workflow_dispatch" ]]; then
-            tag="$INPUT_TAG"
-          fi
-
-          if [[ ! "$tag" =~ ^v[0-9]+\.[0-9]+\.[0-9]+([.-][0-9A-Za-z.-]+)?$ ]]; then
-            echo "Release tag $tag is not a valid monorepo release tag."
+          if [[ ! "$RELEASE_TAG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+([.-][0-9A-Za-z.-]+)?$ ]]; then
+            echo "Release tag $RELEASE_TAG is not a valid monorepo release tag."
             exit 1
           fi
 
-          echo "tag=$tag" >> "$GITHUB_OUTPUT"
+          echo "tag=$RELEASE_TAG" >> "$GITHUB_OUTPUT"
 
       - name: Checkout release tag
         uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
