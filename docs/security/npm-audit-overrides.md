@@ -17,18 +17,21 @@ The compatible upgrades below remove all high and critical findings without usin
 | Package | Pinned version | Advisory |
 | --- | --- | --- |
 | `adm-zip` | `0.6.0` | [GHSA-xcpc-8h2w-3j85](https://github.com/advisories/GHSA-xcpc-8h2w-3j85) |
-| `axios` | `1.19.0` | [GHSA-gcfj-64vw-6mp9](https://github.com/advisories/GHSA-gcfj-64vw-6mp9) and related Axios advisories fixed in 1.18.0+ |
-| `brace-expansion` | `5.0.9` | [GHSA-3jxr-9vmj-r5cp](https://github.com/advisories/GHSA-3jxr-9vmj-r5cp), [GHSA-mh99-v99m-4gvg](https://github.com/advisories/GHSA-mh99-v99m-4gvg) |
-| `fast-uri` | `3.1.5` | [GHSA-v2hh-gcrm-f6hx](https://github.com/advisories/GHSA-v2hh-gcrm-f6hx), [GHSA-4c8g-83qw-93j6](https://github.com/advisories/GHSA-4c8g-83qw-93j6) |
-| `immutable` | `5.1.9` | [GHSA-v56q-mh7h-f735](https://github.com/advisories/GHSA-v56q-mh7h-f735), [GHSA-xvcm-6775-5m9r](https://github.com/advisories/GHSA-xvcm-6775-5m9r) |
-| `js-yaml` | `4.3.1` | [GHSA-52cp-r559-cp3m](https://github.com/advisories/GHSA-52cp-r559-cp3m) |
-| `postcss` | `8.5.25` | [GHSA-r28c-9q8g-f849](https://github.com/advisories/GHSA-r28c-9q8g-f849) |
-| `shell-quote` | `1.10.0` | [GHSA-395f-4hp3-45gv](https://github.com/advisories/GHSA-395f-4hp3-45gv) |
+| `axios` | `1.18.0` | [GHSA-gcfj-64vw-6mp9](https://github.com/advisories/GHSA-gcfj-64vw-6mp9) and related Axios advisories fixed in 1.18.0+ |
+| `brace-expansion` | `5.0.8` | [GHSA-3jxr-9vmj-r5cp](https://github.com/advisories/GHSA-3jxr-9vmj-r5cp), [GHSA-mh99-v99m-4gvg](https://github.com/advisories/GHSA-mh99-v99m-4gvg) |
+| `fast-uri` | `3.1.4` | [GHSA-v2hh-gcrm-f6hx](https://github.com/advisories/GHSA-v2hh-gcrm-f6hx), [GHSA-4c8g-83qw-93j6](https://github.com/advisories/GHSA-4c8g-83qw-93j6) |
+| `immutable` | `5.1.8` | [GHSA-v56q-mh7h-f735](https://github.com/advisories/GHSA-v56q-mh7h-f735), [GHSA-xvcm-6775-5m9r](https://github.com/advisories/GHSA-xvcm-6775-5m9r) |
+| `js-yaml` | `4.3.0` | [GHSA-52cp-r559-cp3m](https://github.com/advisories/GHSA-52cp-r559-cp3m) |
+| `postcss` | `8.5.18` | [GHSA-r28c-9q8g-f849](https://github.com/advisories/GHSA-r28c-9q8g-f849) |
+| `shell-quote` | `1.9.0` | [GHSA-395f-4hp3-45gv](https://github.com/advisories/GHSA-395f-4hp3-45gv) |
 | `svgo` | `2.8.3` and `3.3.4` | [GHSA-2p49-hgcm-8545](https://github.com/advisories/GHSA-2p49-hgcm-8545) |
 
 SVGO is intentionally overridden by vulnerable version range. The dependency tree
 contains both SVGO 2 and SVGO 3 consumers, so forcing one major version globally
 would be less safe than applying the patched release within each existing major.
+The other overrides likewise use the oldest patched versions available when this
+remediation was prepared. This both minimizes compatibility drift and satisfies the
+repository's four-day StepSecurity package cooldown.
 
 ## Impact and maintenance
 
