@@ -2,6 +2,13 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [2.6.0](https://github.com/rudderlabs/rudder-sdk-react-native/compare/rudder-integration-braze-react-native@2.5.0...rudder-integration-braze-react-native@2.6.0) (2026-08-03)
+
+
+### Features
+
+* **braze:** raise native braze integration minimum versions ([#641](https://github.com/rudderlabs/rudder-sdk-react-native/issues/641)) ([4270b49](https://github.com/rudderlabs/rudder-sdk-react-native/commit/4270b494ea80a9d5f40d5f300452fa9d3eb9a931))
+
 ## [2.5.0](https://github.com/rudderlabs/rudder-sdk-react-native/compare/rudder-integration-braze-react-native@2.4.0...rudder-integration-braze-react-native@2.5.0) (2026-06-02)
 
 
