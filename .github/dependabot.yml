@@ -4,13 +4,13 @@ updates:
     directory: "/" 
     schedule:
       interval: "weekly"
-    target-branch: "develop"
+    target-branch: "master"
 
   - package-ecosystem: "npm"
     directory: "/" 
     schedule:
       interval: "weekly"
-    target-branch: "develop"
+    target-branch: "master"
     groups:
       npm-prod-deps:
         patterns:
