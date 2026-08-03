@@ -7,6 +7,7 @@ Thanks for taking the time and for your help in improving this project!
 - [**RudderStack Contributor Agreement**](#rudderstack-contributor-agreement)
 - [**Contribute to this project**](#contribute-to-this-project)
 - [**Committing**](#committing)
+- [**Release process**](#release-process)
 - [**Conventional commit messages format for React-Native monorepo**](#conventional-commit-messages-format-for-react-native-monorepo)
 - [**Installing and setting up RudderStack**](#installing-and-setting-up-rudderstack)
 - [**Getting help**](#getting-help)
@@ -24,7 +25,18 @@ For more information on the different ways in which you can contribute to Rudder
 
 ## Committing
 
-We prefer squash or rebase commits so that all changes from a branch are committed to master as a single commit. All pull requests are squashed when merged, but rebasing prior to merge gives you better control over the commit message.
+We prefer squash or rebase commits so that all changes from a branch are committed to `master` as a single commit. All pull requests are squashed when merged, but rebasing prior to merge gives you better control over the commit message.
+
+## Release process
+
+The repository uses `master` as its integration and release branch.
+release-please monitors `master` and creates or updates one monorepo release
+PR containing only packages with user-facing changes.
+
+Merging the release-please PR creates the `v`-prefixed monorepo tag, the
+independent `package-name@version` tags, and their GitHub Releases. The
+monorepo release triggers npm publication for packages whose `package.json`
+version changed and sends the release notification.
 
 ## Conventional commit messages format for React-Native monorepo
 
