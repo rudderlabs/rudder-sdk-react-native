@@ -107,7 +107,7 @@ Each command should be a separate Bash call so you can capture pass/fail individ
 npx nx run-many --target=lint --skip-nx-cache
 ```
 
-Expected: `Successfully ran target lint for N projects` (N = number of Nx projects in the workspace). Warnings are fine (4 warnings, 0 errors is current baseline on `develop`).
+Expected: `Successfully ran target lint for N projects` (N = number of Nx projects in the workspace). Warnings are fine (4 warnings, 0 errors is current baseline on `master`).
 
 ```bash
 npx nx run-many --target=type-check --skip-nx-cache
@@ -149,7 +149,7 @@ Expected: `Successfully ran target build for N projects` where N = total Nx proj
 npx nx pod-install example
 npx nx sync-deps example
 npx nx ensure-symlink example
-npx nx affected --target=version --base=origin/develop --head=HEAD --dry-run
+npx nx affected --target=version --base=origin/master --head=HEAD --dry-run
 ```
 
 The `affected --target=version --dry-run` typically prints `No tasks were run` for a feature branch with no `version`-eligible commits — that's healthy. **Do NOT** run `nx version` itself; it creates a commit.
@@ -264,7 +264,7 @@ The modes (`apps/example/ios/Podfile` lines 21-23):
 | Dynamic frameworks     | `use_frameworks! :linkage => :dynamic`                              |
 | Bare `use_frameworks!` | ≡ `:linkage => :dynamic` in modern CocoaPods (covered by row above) |
 
-**Where to run the matrix**: if `apps/example` builds cleanly in all 4 modes on `develop` baseline, use it. If `apps/example` is blocked by pre-existing framework-mode rot (currently the case — see G5), **use the fresh-app harness (6.5d) instead**. Don't try to fix `apps/example`'s rot inside an unrelated PR.
+**Where to run the matrix**: if `apps/example` builds cleanly in all 4 modes on the `master` baseline, use it. If `apps/example` is blocked by pre-existing framework-mode rot (currently the case — see G5), **use the fresh-app harness (6.5d) instead**. Don't try to fix `apps/example`'s rot inside an unrelated PR.
 
 For each mode:
 
@@ -425,7 +425,7 @@ xcrun simctl spawn $SIM_ID log show --last 60s --predicate "processImagePath CON
 
 If either platform fails to render or initialise the SDK, **do not conclude this is a regression from your change** until you've checked:
 
-- The same launch on `develop` baseline (does it have the same problem?)
+- The same launch on the `master` baseline (does it have the same problem?)
 - The known gotchas G8 (iOS Firebase plist) and G5 (use_frameworks)
 - `apps/example/.env` actually contains a working `TEST_WRITE_KEY` (an empty value silently breaks `rc.setup()`)
 
@@ -508,11 +508,11 @@ Skip this phase entirely unless the change touches deploy-flow files (`scripts/d
 **Status**: Pre-existing in `apps/example`; commented-out by default. Don't assume your change regressed it without testing pre-bump baseline.
 **Important**: This applies to `apps/example` only. If your change touches `*.podspec` or `libs/**/ios/**`, you DO still need to verify the 4-mode matrix — just do it in the fresh-app harness (Phase 6.5d), not `apps/example`. "G5 says skip" is not a free pass to skip framework-mode verification for podspec/native-iOS changes.
 
-### G6. `nx affected` from a fresh single-branch clone
+### G6. `nx affected` requires an up-to-date `master` ref
 
-**Symptom**: `nx affected --base=origin/develop` errors with "unknown revision".
-**Cause**: Fresh clones default to fetching only the current branch. `origin/develop` ref doesn't exist locally.
-**Fix**: `git remote set-branches --add origin develop && git fetch origin develop`.
+**Symptom**: `nx affected --base=origin/master` errors with "unknown revision".
+**Cause**: The local checkout does not have an up-to-date `origin/master` remote-tracking ref.
+**Fix**: `git fetch origin master`.
 
 ### G7. `xcpretty` ruby version mismatch
 
@@ -535,7 +535,7 @@ Skip this phase entirely unless the change touches deploy-flow files (`scripts/d
 ```
 
 **Workaround for verification only** (do NOT commit): comment out the `firebase,` entry in the `withFactories` array in `apps/example/src/app/App.tsx`. RN will then render past the launch screen. There may be a _second_ runtime issue downstream (Singular/AppCenter/Braze under x86_64-Rosetta sim per G5) that still blocks full UI render — fixing both is out of scope for any single feature PR.
-**Status**: Pre-existing config rot. The plist hasn't been refreshed for the current bundle ID. **Do not treat a blank-screen iOS launch as a regression from your PR** unless you've confirmed `develop` itself launches cleanly on the same sim (it doesn't, at time of writing).
+**Status**: Pre-existing config rot. The plist hasn't been refreshed for the current bundle ID. **Do not treat a blank-screen iOS launch as a regression from your PR** unless you've confirmed `master` itself launches cleanly on the same sim (it doesn't, at time of writing).
 
 ### G9. Consuming a Swift-backed pod from an Obj-C++ (`.mm`) shim
 
@@ -600,7 +600,7 @@ After running, produce a Markdown table with per-phase status. Match this shape:
 | 6.5c  | 4-mode `use_frameworks!` matrix (in fresh-app harness)           | ✅     | default / static / dynamic all build, launch, render "Rudder init OK". Bare ≡ dynamic.                                 |
 | 6.5d  | Fresh-app harness path                                           | ℹ️     | `~/work/RNVerifyHarness` — kept for reviewer reproduction                                                              |
 | 7     | run-android (Pixel_9a) — UI render + RudderSDK init in logcat    | ✅     | "Hello there" rendered; `CloudModeManager` logs present                                                                |
-| 7     | run-ios (iPhone 17 Pro / iOS 26.4) — UI render + SDK init        | ⚠️     | Blank screen; pre-existing G8 (Firebase plist BUNDLE_ID mismatch). Reproduces on `develop` baseline. Not a regression. |
+| 7     | run-ios (iPhone 17 Pro / iOS 26.4) — UI render + SDK init        | ⚠️     | Blank screen; pre-existing G8 (Firebase plist BUNDLE_ID mismatch). Reproduces on `master` baseline. Not a regression.  |
 | 8     | expo-example                                                     | ⏭️     | Skipped — change doesn't touch it                                                                                      |
 | 9     | dry-run deploys                                                  | ⏭️     | Skipped — no deploy-flow files touched                                                                                 |
 
@@ -615,7 +615,7 @@ When a check fails, classify it:
 
 - **Real regression** — must fix before merge. Block PR.
 - **Local-only environment failure** — CI on Xcode 26.3 expected to pass. Don't block; note in PR description.
-- **Pre-existing condition** — broken on `develop` too. File a separate ticket, don't block.
+- **Pre-existing condition** — broken on `master` too. File a separate ticket, don't block.
 - **Manual-only verification needed** — e.g. run-target failures that need devices. Note in PR description; reviewer can run manually.
 - **`apps/example` rot masks the signal** — failure could be either your change or pre-existing example-app rot (G5 framework modes, G8 Firebase plist, G4 MoEngage env). Don't classify further until you re-run the failing check in the fresh-app harness (Phase 6.5d). If the harness passes, downgrade to "pre-existing condition" with a note pointing at the harness output. If it fails there too, escalate to "real regression."
 
