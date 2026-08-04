@@ -183,7 +183,7 @@
     "launch-editor": "2.14.1",
     "js-yaml": "4.3.0",
     "adm-zip": "0.6.0",
-    "fast-uri": "4.1.2",
+    "fast-uri": "3.1.5",
     "immutable": "5.1.8",
     "postcss": "8.5.18",
     "shell-quote": "1.9.0",
