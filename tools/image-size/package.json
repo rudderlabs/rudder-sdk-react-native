@@ -1,0 +1,16 @@
+{
+  "name": "image-size",
+  "version": "2.0.3",
+  "description": "Patched image-size subset for Metro asset dimension detection",
+  "main": "index.cjs",
+  "types": "index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./index.d.ts",
+      "default": "./index.cjs",
+      "require": "./index.cjs",
+      "import": "./index.cjs"
+    }
+  },
+  "license": "MIT"
+}
