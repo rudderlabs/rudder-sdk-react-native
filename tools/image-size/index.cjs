@@ -1,15 +1,20 @@
 'use strict';
 
+const fs = require('fs');
+
 const supportedTypes = ['png', 'jpg', 'gif', 'webp', 'bmp', 'svg'];
 
 function toBuffer(input) {
   if (Buffer.isBuffer(input)) {
     return input;
   }
+  if (typeof input === 'string') {
+    return fs.readFileSync(input);
+  }
   if (input instanceof Uint8Array) {
     return Buffer.from(input.buffer, input.byteOffset, input.byteLength);
   }
-  throw new TypeError('Expected a Buffer or Uint8Array');
+  throw new TypeError('Expected a file path, Buffer, or Uint8Array');
 }
 
 function readUInt24LE(buffer, offset) {
@@ -202,7 +207,8 @@ function imageSize(input) {
 
 function disableTypes() {}
 
-exports.default = imageSize;
-exports.imageSize = imageSize;
-exports.disableTypes = disableTypes;
-exports.types = supportedTypes;
+module.exports = imageSize;
+module.exports.default = imageSize;
+module.exports.imageSize = imageSize;
+module.exports.disableTypes = disableTypes;
+module.exports.types = supportedTypes;
