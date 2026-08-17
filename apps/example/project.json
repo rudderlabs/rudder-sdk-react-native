@@ -113,7 +113,7 @@
         "ci": {
           "format": "json",
           "force": true,
-          "outputFile": "/reports/eslint/example.eslint.results.json"
+          "outputFile": "reports/eslint/example.eslint.results.json"
         },
         "fix": {
           "fix": true
