@@ -47,7 +47,7 @@
     },
     "bundle-ios": {
       "executor": "@nx/react-native:bundle",
-      "dependsOn": ["ensure-symlink", "prepare-ios-bundle-output-dir"],
+      "dependsOn": ["ensure-symlink"],
       "outputs": ["{options.bundleOutput}"],
       "options": {
         "entryFile": "src/main.tsx",
@@ -75,7 +75,7 @@
     },
     "bundle-android": {
       "executor": "@nx/react-native:bundle",
-      "dependsOn": ["ensure-symlink", "prepare-android-bundle-output-dir"],
+      "dependsOn": ["ensure-symlink"],
       "outputs": ["{options.bundleOutput}"],
       "options": {
         "entryFile": "src/main.tsx",
@@ -91,18 +91,6 @@
       "executor": "@nx/react-native:ensure-symlink",
       "options": {}
     },
-    "prepare-android-bundle-output-dir": {
-      "executor": "nx:run-commands",
-      "options": {
-        "command": "rm -rf dist/apps/example/android && mkdir -p dist/apps/example"
-      }
-    },
-    "prepare-ios-bundle-output-dir": {
-      "executor": "nx:run-commands",
-      "options": {
-        "command": "rm -rf dist/apps/example/ios && mkdir -p dist/apps/example"
-      }
-    },
     "lint": {
       "executor": "@nx/eslint:lint",
       "outputs": ["{options.outputFile}"],
@@ -113,7 +101,7 @@
         "ci": {
           "format": "json",
           "force": true,
-          "outputFile": "reports/eslint/example.eslint.results.json"
+          "outputFile": "/reports/eslint/example.eslint.results.json"
         },
         "fix": {
           "fix": true
