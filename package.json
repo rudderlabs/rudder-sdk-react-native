@@ -118,6 +118,7 @@
     "commitlint": "17.5.1",
     "conventional-changelog-cli": "5.0.0",
     "conventional-github-releaser": "3.1.5",
+    "cypress": "13.13.0",
     "detox": "20.50.1",
     "eslint": "8.57.1",
     "eslint-config-prettier": "10.1.8",
@@ -180,20 +181,14 @@
     "http-proxy-middleware": "3.0.7",
     "joi": "17.13.4",
     "launch-editor": "2.14.1",
-    "js-yaml": "4.3.1",
+    "js-yaml": "4.3.0",
     "adm-zip": "0.6.0",
     "fast-uri": "3.1.5",
     "immutable": "5.1.8",
-    "postcss": "8.5.26",
+    "postcss": "8.5.18",
     "shell-quote": "1.9.0",
     "svgo@>=1.0.0 <2.8.3": "2.8.3",
-    "svgo@>=3.0.0 <3.3.4": "3.3.4",
-    "nanoid": "3.3.18",
-    "webpack-dev-server": "5.2.6",
-    "express": {
-      "body-parser": "1.20.6"
-    },
-    "image-size": "file:tools/image-size"
+    "svgo@>=3.0.0 <3.3.4": "3.3.4"
   },
   "optionalDependencies": {
     "@nx/nx-linux-x64-gnu": "20.8.4"
