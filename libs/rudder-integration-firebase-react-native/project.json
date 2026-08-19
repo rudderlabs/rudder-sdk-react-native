@@ -69,7 +69,7 @@
         "ci": {
           "format": "json",
           "force": true,
-          "outputFile": "/reports/eslint/rudder-integration-firebase-react-native.eslint.results.json"
+          "outputFile": "reports/eslint/rudder-integration-firebase-react-native.eslint.results.json"
         },
         "fix": {
           "fix": true

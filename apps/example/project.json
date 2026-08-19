@@ -47,12 +47,18 @@
     },
     "bundle-ios": {
       "executor": "@nx/react-native:bundle",
-      "dependsOn": ["ensure-symlink"],
+      "dependsOn": ["ensure-symlink", "prepare-ios-bundle-output-dir"],
       "outputs": ["{options.bundleOutput}"],
       "options": {
         "entryFile": "src/main.tsx",
         "platform": "ios",
         "bundleOutput": "dist/apps/example/ios/main.jsbundle"
+      }
+    },
+    "prepare-ios-bundle-output-dir": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "node -e \"const fs=require('fs');fs.rmSync('dist/apps/example/ios',{recursive:true,force:true});fs.mkdirSync('dist/apps/example',{recursive:true});\""
       }
     },
     "run-android": {
@@ -75,12 +81,18 @@
     },
     "bundle-android": {
       "executor": "@nx/react-native:bundle",
-      "dependsOn": ["ensure-symlink"],
+      "dependsOn": ["ensure-symlink", "prepare-android-bundle-output-dir"],
       "outputs": ["{options.bundleOutput}"],
       "options": {
         "entryFile": "src/main.tsx",
         "platform": "android",
         "bundleOutput": "dist/apps/example/android/main.jsbundle"
+      }
+    },
+    "prepare-android-bundle-output-dir": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "node -e \"const fs=require('fs');fs.rmSync('dist/apps/example/android',{recursive:true,force:true});fs.mkdirSync('dist/apps/example',{recursive:true});\""
       }
     },
     "sync-deps": {
@@ -101,7 +113,7 @@
         "ci": {
           "format": "json",
           "force": true,
-          "outputFile": "/reports/eslint/example.eslint.results.json"
+          "outputFile": "reports/eslint/example.eslint.results.json"
         },
         "fix": {
           "fix": true
