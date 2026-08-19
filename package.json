@@ -34,7 +34,7 @@
     "clean": "rm -rf node_modules/.cache && nx reset && rm -rf reports && rm -rf dist",
     "check:lint": "nx run-many --target=type-check --parallel=1 && nx run-many --target=lint --parallel=1",
     "check:lint:ci": "nx run-many --target=type-check --parallel=1 && nx run-many --target=lint --parallel=1 --configuration=ci",
-    "check:security": "npm audit --audit-level=high",
+    "check:security": "npm audit --omit=dev --audit-level=high",
     "format": "prettier --write .",
     "lint:fix": "nx lint --configuration=fix",
     "prepare": "husky install",
@@ -181,14 +181,16 @@
     "http-proxy-middleware": "3.0.7",
     "joi": "17.13.4",
     "launch-editor": "2.14.1",
-    "js-yaml": "4.3.0",
+    "js-yaml": "4.3.1",
     "adm-zip": "0.6.0",
     "fast-uri": "3.1.5",
     "immutable": "5.1.8",
     "postcss": "8.5.18",
     "shell-quote": "1.9.0",
     "svgo@>=1.0.0 <2.8.3": "2.8.3",
-    "svgo@>=3.0.0 <3.3.4": "3.3.4"
+    "svgo@>=3.0.0 <3.3.4": "3.3.4",
+    "nanoid": "3.3.18",
+    "image-size": "file:tools/image-size"
   },
   "optionalDependencies": {
     "@nx/nx-linux-x64-gnu": "20.8.4"
