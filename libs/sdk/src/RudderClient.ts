@@ -79,7 +79,7 @@ function validateConfiguration(configuration: Configuration) {
     delete configuration.collectDeviceId;
   }
   if (
-    typeof configuration.trackDeepLinks !== 'undefined' &&
+    configuration.trackDeepLinks !== undefined &&
     typeof configuration.trackDeepLinks !== 'boolean'
   ) {
     logWarn(
