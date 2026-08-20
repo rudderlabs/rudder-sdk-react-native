@@ -4,7 +4,7 @@ import AsyncLock from 'async-lock';
 import { configure } from './RudderConfiguration';
 import bridge, { Configuration } from './NativeRudderBridge';
 import { logInit, logDebug, logError, logWarn } from './Logger';
-import { SDK_VERSION, ENABLE_GZIP } from './Constants';
+import { SDK_VERSION, ENABLE_GZIP, TRACK_DEEP_LINKS } from './Constants';
 import IRudderContext from './IRudderContext';
 import { filterNaN } from './FilterNaN';
 
@@ -77,6 +77,15 @@ function validateConfiguration(configuration: Configuration) {
   if (configuration.collectDeviceId && typeof configuration.collectDeviceId != 'boolean') {
     logWarn("setup : 'collectDeviceId' must be a boolean. Falling back to the default value");
     delete configuration.collectDeviceId;
+  }
+  if (
+    configuration.trackDeepLinks !== undefined &&
+    typeof configuration.trackDeepLinks !== 'boolean'
+  ) {
+    logWarn(
+      `setup : 'trackDeepLinks' must be a boolean. Falling back to the default value ${TRACK_DEEP_LINKS}`,
+    );
+    delete configuration.trackDeepLinks;
   }
   if (
     typeof configuration.enableGzip !== 'undefined' &&
