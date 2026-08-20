@@ -74,7 +74,7 @@
         "ci": {
           "format": "json",
           "force": true,
-          "outputFile": "/reports/eslint/sdk.eslint.results.json"
+          "outputFile": "reports/eslint/sdk.eslint.results.json"
         },
         "fix": {
           "fix": true
