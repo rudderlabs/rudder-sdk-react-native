@@ -16,30 +16,31 @@
         "external": ["react/jsx-runtime", "react-native"],
         "rollupConfig": "@nx/react/plugins/bundle-rollup",
         "babelUpwardRootMode": true,
+        "useLegacyTypescriptPlugin": true,
         "assets": [
           {
-            "glob": "libs/plugins/rudder-plugin-db-encryption-react-native/README.md",
-            "input": ".",
+            "glob": "README.md",
+            "input": "libs/plugins/rudder-plugin-db-encryption-react-native",
             "output": "."
           },
           {
-            "glob": "libs/plugins/rudder-plugin-db-encryption-react-native/android",
-            "input": ".",
+            "glob": "**/*",
+            "input": "libs/plugins/rudder-plugin-db-encryption-react-native/android",
+            "output": "android"
+          },
+          {
+            "glob": "**/*",
+            "input": "libs/plugins/rudder-plugin-db-encryption-react-native/ios",
+            "output": "ios"
+          },
+          {
+            "glob": "rudder-plugin-db-encryption-react-native.podspec",
+            "input": "libs/plugins/rudder-plugin-db-encryption-react-native",
             "output": "."
           },
           {
-            "glob": "libs/plugins/rudder-plugin-db-encryption-react-native/ios",
-            "input": ".",
-            "output": "."
-          },
-          {
-            "glob": "libs/plugins/rudder-plugin-db-encryption-react-native/rudder-plugin-db-encryption-react-native.podspec",
-            "input": ".",
-            "output": "."
-          },
-          {
-            "glob": "libs/plugins/rudder-plugin-db-encryption-react-native/CHANGELOG.md",
-            "input": ".",
+            "glob": "CHANGELOG.md",
+            "input": "libs/plugins/rudder-plugin-db-encryption-react-native",
             "output": "."
           },
           {

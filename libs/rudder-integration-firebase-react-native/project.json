@@ -18,28 +18,28 @@
         "babelUpwardRootMode": true,
         "assets": [
           {
-            "glob": "libs/rudder-integration-firebase-react-native/README.md",
-            "input": ".",
+            "glob": "README.md",
+            "input": "libs/rudder-integration-firebase-react-native",
             "output": "."
           },
           {
-            "glob": "libs/rudder-integration-firebase-react-native/android",
-            "input": ".",
+            "glob": "**/*",
+            "input": "libs/rudder-integration-firebase-react-native/android",
+            "output": "android"
+          },
+          {
+            "glob": "**/*",
+            "input": "libs/rudder-integration-firebase-react-native/ios",
+            "output": "ios"
+          },
+          {
+            "glob": "rudder-integration-firebase-react-native.podspec",
+            "input": "libs/rudder-integration-firebase-react-native",
             "output": "."
           },
           {
-            "glob": "libs/rudder-integration-firebase-react-native/ios",
-            "input": ".",
-            "output": "."
-          },
-          {
-            "glob": "libs/rudder-integration-firebase-react-native/rudder-integration-firebase-react-native.podspec",
-            "input": ".",
-            "output": "."
-          },
-          {
-            "glob": "libs/rudder-integration-firebase-react-native/CHANGELOG.md",
-            "input": ".",
+            "glob": "CHANGELOG.md",
+            "input": "libs/rudder-integration-firebase-react-native",
             "output": "."
           },
           {
@@ -48,9 +48,9 @@
             "output": "."
           },
           {
-            "glob": "libs/rudder-integration-firebase-react-native/src",
-            "input": ".",
-            "output": "."
+            "glob": "**/*",
+            "input": "libs/rudder-integration-firebase-react-native/src",
+            "output": "src"
           }
         ],
         "updateBuildableProjectDepsInPackageJson": true,
