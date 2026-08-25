@@ -47,6 +47,11 @@
             "glob": "LICENSE.md",
             "input": ".",
             "output": "."
+          },
+          {
+            "glob": "**/*",
+            "input": "libs/plugins/rudder-plugin-db-encryption-react-native/src",
+            "output": "src"
           }
         ],
         "updateBuildableProjectDepsInPackageJson": true,
