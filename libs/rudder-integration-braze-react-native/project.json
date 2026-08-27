@@ -18,28 +18,28 @@
         "babelUpwardRootMode": true,
         "assets": [
           {
-            "glob": "libs/rudder-integration-braze-react-native/README.md",
-            "input": ".",
+            "glob": "README.md",
+            "input": "libs/rudder-integration-braze-react-native",
             "output": "."
           },
           {
-            "glob": "libs/rudder-integration-braze-react-native/android",
-            "input": ".",
+            "glob": "**/*",
+            "input": "libs/rudder-integration-braze-react-native/android",
+            "output": "android"
+          },
+          {
+            "glob": "**/*",
+            "input": "libs/rudder-integration-braze-react-native/ios",
+            "output": "ios"
+          },
+          {
+            "glob": "rudder-integration-braze-react-native.podspec",
+            "input": "libs/rudder-integration-braze-react-native",
             "output": "."
           },
           {
-            "glob": "libs/rudder-integration-braze-react-native/ios",
-            "input": ".",
-            "output": "."
-          },
-          {
-            "glob": "libs/rudder-integration-braze-react-native/rudder-integration-braze-react-native.podspec",
-            "input": ".",
-            "output": "."
-          },
-          {
-            "glob": "libs/rudder-integration-braze-react-native/CHANGELOG.md",
-            "input": ".",
+            "glob": "CHANGELOG.md",
+            "input": "libs/rudder-integration-braze-react-native",
             "output": "."
           },
           {

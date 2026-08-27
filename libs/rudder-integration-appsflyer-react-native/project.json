@@ -18,28 +18,28 @@
         "babelUpwardRootMode": true,
         "assets": [
           {
-            "glob": "libs/rudder-integration-appsflyer-react-native/README.md",
-            "input": ".",
+            "glob": "README.md",
+            "input": "libs/rudder-integration-appsflyer-react-native",
             "output": "."
           },
           {
-            "glob": "libs/rudder-integration-appsflyer-react-native/android",
-            "input": ".",
+            "glob": "**/*",
+            "input": "libs/rudder-integration-appsflyer-react-native/android",
+            "output": "android"
+          },
+          {
+            "glob": "**/*",
+            "input": "libs/rudder-integration-appsflyer-react-native/ios",
+            "output": "ios"
+          },
+          {
+            "glob": "rudder-integration-appsflyer-react-native.podspec",
+            "input": "libs/rudder-integration-appsflyer-react-native",
             "output": "."
           },
           {
-            "glob": "libs/rudder-integration-appsflyer-react-native/ios",
-            "input": ".",
-            "output": "."
-          },
-          {
-            "glob": "libs/rudder-integration-appsflyer-react-native/rudder-integration-appsflyer-react-native.podspec",
-            "input": ".",
-            "output": "."
-          },
-          {
-            "glob": "libs/rudder-integration-appsflyer-react-native/CHANGELOG.md",
-            "input": ".",
+            "glob": "CHANGELOG.md",
+            "input": "libs/rudder-integration-appsflyer-react-native",
             "output": "."
           },
           {

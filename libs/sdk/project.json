@@ -24,28 +24,28 @@
         "babelUpwardRootMode": true,
         "assets": [
           {
-            "glob": "libs/sdk/ios",
-            "input": ".",
+            "glob": "**/*",
+            "input": "libs/sdk/ios",
+            "output": "ios"
+          },
+          {
+            "glob": "**/*",
+            "input": "libs/sdk/android",
+            "output": "android"
+          },
+          {
+            "glob": "RNRudderSdk.podspec",
+            "input": "libs/sdk",
             "output": "."
           },
           {
-            "glob": "libs/sdk/android",
-            "input": ".",
+            "glob": "README.md",
+            "input": "libs/sdk",
             "output": "."
           },
           {
-            "glob": "libs/sdk/RNRudderSdk.podspec",
-            "input": ".",
-            "output": "."
-          },
-          {
-            "glob": "libs/sdk/README.md",
-            "input": ".",
-            "output": "."
-          },
-          {
-            "glob": "libs/sdk/CHANGELOG.md",
-            "input": ".",
+            "glob": "CHANGELOG.md",
+            "input": "libs/sdk",
             "output": "."
           },
           {
@@ -54,9 +54,9 @@
             "output": "."
           },
           {
-            "glob": "libs/sdk/src",
-            "input": ".",
-            "output": "."
+            "glob": "**/*",
+            "input": "libs/sdk/src",
+            "output": "src"
           }
         ],
         "updateBuildableProjectDepsInPackageJson": true,
