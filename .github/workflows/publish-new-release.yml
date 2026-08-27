@@ -25,7 +25,7 @@ jobs:
 
       - name: Send message to Slack channel
         continue-on-error: true
-        uses: slackapi/slack-github-action@485a9d42d3a73031f12ec201c457e2162c45d02d # v2.0.0
+        uses: slackapi/slack-github-action@dcb1066f776dd043e64d0e8ba94ca15cc7e1875d # v4.0.0
         env:
           PROJECT_NAME: React Native SDK monorepo
           RELEASE_URL: ${{ github.event.release.html_url }}
