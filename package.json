@@ -1,6 +1,6 @@
 {
   "name": "@rudderstack/rudder-sdk-react-native-monorepo",
-  "version": "2.44.0",
+  "version": "2.45.0",
   "description": "Rudder React Native SDK monorepo",
   "keywords": [
     "react-native",
@@ -162,7 +162,7 @@
     },
     "serialize-javascript": "7.0.5",
     "lodash": "4.18.1",
-    "vite": "6.4.2",
+    "vite": "7.3.6",
     "esbuild": "0.25.0",
     "@tootallnate/once": "3.0.1",
     "axios": "1.18.0",
@@ -190,7 +190,6 @@
     "postcss": "8.5.23",
     "webpack-dev-server": "5.2.6",
     "vitest": "3.2.6",
-    "vite": "7.3.6",
     "shell-quote": "1.9.0",
     "svgo@>=1.0.0 <2.8.3": "2.8.3",
     "svgo@>=3.0.0 <3.3.4": "3.3.4"

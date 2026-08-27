@@ -2,6 +2,13 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [1.0.2](https://github.com/rudderlabs/rudder-sdk-react-native/compare/rudder-integration-sprig-react-native@1.0.1...rudder-integration-sprig-react-native@1.0.2) (2026-08-27)
+
+
+### Bug Fixes
+
+* **build:** restore packaged assets in libs after nx 22 migration ([#691](https://github.com/rudderlabs/rudder-sdk-react-native/issues/691)) ([cfb510a](https://github.com/rudderlabs/rudder-sdk-react-native/commit/cfb510a37213c89f72bc3ecb8302c04a5dec05dd))
+
 ## [1.0.1](https://github.com/rudderlabs/rudder-sdk-react-native/compare/rudder-integration-sprig-react-native@1.0.0...rudder-integration-sprig-react-native@1.0.1) (2026-06-25)
 
 
