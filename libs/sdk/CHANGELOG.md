@@ -2,6 +2,13 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [3.2.1](https://github.com/rudderlabs/rudder-sdk-react-native/compare/rudder-sdk-react-native@3.2.0...rudder-sdk-react-native@3.2.1) (2026-09-04)
+
+
+### Bug Fixes
+
+* sdk-413 resolve react native eslint warnings ([#699](https://github.com/rudderlabs/rudder-sdk-react-native/issues/699)) ([1c61949](https://github.com/rudderlabs/rudder-sdk-react-native/commit/1c61949366860bb0312d1b55e8ebfda1e8fa12fe))
+
 ## [3.2.0](https://github.com/rudderlabs/rudder-sdk-react-native/compare/rudder-sdk-react-native@3.1.1...rudder-sdk-react-native@3.2.0) (2026-08-27)
 
 
