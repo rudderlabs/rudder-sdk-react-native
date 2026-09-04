@@ -1,3 +1,4 @@
+import { Platform } from 'react-native';
 import rudderClient from './RudderClient';
 import bridge from './NativeRudderBridge';
 import { DATA_PLANE_URL } from './Constants';
@@ -67,5 +68,31 @@ describe('rudderClient setup configuration validation', () => {
       expect.objectContaining({ trackDeepLinks: true }),
       null,
     );
+  });
+});
+
+describe('rudderClient device token routing', () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
+  afterEach(() => {
+    jest.restoreAllMocks();
+  });
+
+  it('uses the iOS token on iOS', async () => {
+    jest.replaceProperty(Platform, 'OS', 'ios');
+
+    await rudderClient.putDeviceToken('android-token', 'ios-token');
+
+    expect(mockedBridge.putDeviceToken).toHaveBeenCalledWith('ios-token');
+  });
+
+  it('uses the Android token on Android', async () => {
+    jest.replaceProperty(Platform, 'OS', 'android');
+
+    await rudderClient.putDeviceToken('android-token', 'ios-token');
+
+    expect(mockedBridge.putDeviceToken).toHaveBeenCalledWith('android-token');
   });
 });

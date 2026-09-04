@@ -11,7 +11,7 @@ import { filterNaN } from './FilterNaN';
 const lock = new AsyncLock();
 
 function validateConfiguration(configuration: Configuration) {
-  if (configuration.controlPlaneUrl && typeof configuration.controlPlaneUrl != 'string') {
+  if (configuration.controlPlaneUrl && typeof configuration.controlPlaneUrl !== 'string') {
     logWarn("setup : 'controlPlaneUrl' must be a string. Falling back to the default value");
     delete configuration.controlPlaneUrl;
   }
@@ -44,22 +44,22 @@ function validateConfiguration(configuration: Configuration) {
   }
   if (
     configuration.trackAppLifecycleEvents &&
-    typeof configuration.trackAppLifecycleEvents != 'boolean'
+    typeof configuration.trackAppLifecycleEvents !== 'boolean'
   ) {
     logWarn(
       "setup : 'trackAppLifecycleEvents' must be a boolen. Falling back to the default value",
     );
     delete configuration.trackAppLifecycleEvents;
   }
-  if (configuration.recordScreenViews && typeof configuration.recordScreenViews != 'boolean') {
+  if (configuration.recordScreenViews && typeof configuration.recordScreenViews !== 'boolean') {
     logWarn("setup : 'recordScreenViews' must be a boolen. Falling back to the default value");
     delete configuration.recordScreenViews;
   }
-  if (configuration.autoCollectAdvertId && typeof configuration.autoCollectAdvertId != 'boolean') {
+  if (configuration.autoCollectAdvertId && typeof configuration.autoCollectAdvertId !== 'boolean') {
     logWarn("setup : 'autoCollectAdvertId' must be a boolen. Falling back to the default value");
     delete configuration.autoCollectAdvertId;
   }
-  if (configuration.autoSessionTracking && typeof configuration.autoSessionTracking != 'boolean') {
+  if (configuration.autoSessionTracking && typeof configuration.autoSessionTracking !== 'boolean') {
     logWarn("setup : 'autoSessionTracking' must be a boolen. Falling back to the default value");
     delete configuration.autoSessionTracking;
   }
@@ -69,12 +69,12 @@ function validateConfiguration(configuration: Configuration) {
   }
   if (
     configuration.enableBackgroundMode &&
-    typeof configuration.enableBackgroundMode != 'boolean'
+    typeof configuration.enableBackgroundMode !== 'boolean'
   ) {
     logWarn("setup : 'enableBackgroundMode' must be a boolen. Falling back to the default value");
     delete configuration.enableBackgroundMode;
   }
-  if (configuration.collectDeviceId && typeof configuration.collectDeviceId != 'boolean') {
+  if (configuration.collectDeviceId && typeof configuration.collectDeviceId !== 'boolean') {
     logWarn("setup : 'collectDeviceId' must be a boolean. Falling back to the default value");
     delete configuration.collectDeviceId;
   }
@@ -89,7 +89,7 @@ function validateConfiguration(configuration: Configuration) {
   }
   if (
     typeof configuration.enableGzip !== 'undefined' &&
-    typeof configuration.enableGzip != 'boolean'
+    typeof configuration.enableGzip !== 'boolean'
   ) {
     logWarn(
       `setup : 'enableGzip' must be a boolean. Falling back to the default value ${ENABLE_GZIP}`,
@@ -104,15 +104,11 @@ async function setup(
   configuration: Configuration = {},
   options: Record<string, unknown> | null = null,
 ) {
-  if (writeKey == undefined || typeof writeKey != 'string' || writeKey == '') {
+  if (typeof writeKey !== 'string' || writeKey === '') {
     logError('setup: writeKey is incorrect. Aborting');
     return;
   }
-  if (
-    !configuration.dataPlaneUrl ||
-    typeof configuration.dataPlaneUrl != 'string' ||
-    configuration.dataPlaneUrl! == ''
-  ) {
+  if (typeof configuration.dataPlaneUrl !== 'string' || configuration.dataPlaneUrl === '') {
     logError('setup: dataPlaneUrl is incorrect. Aborting');
     return;
   }
@@ -140,11 +136,11 @@ async function track(
   properties: Record<string, unknown> | null = null,
   options: Record<string, unknown> | null = null,
 ) {
-  if (event == undefined) {
+  if (event === undefined || event === null) {
     logWarn("track: Mandatory field 'event' missing");
     return;
   }
-  if (typeof event != 'string') {
+  if (typeof event !== 'string') {
     logWarn("track: 'event' must be a string");
     return;
   }
@@ -157,11 +153,11 @@ async function screen(
   properties: Record<string, unknown> | null = null,
   options: Record<string, unknown> | null = null,
 ) {
-  if (name == undefined) {
+  if (name === undefined || name === null) {
     logWarn("screen: Mandatory field 'name' missing");
     return;
   }
-  if (typeof name != 'string') {
+  if (typeof name !== 'string') {
     logWarn("screen: 'name' must be a string");
     return;
   }
@@ -183,7 +179,7 @@ async function identify(
   traitsOrOptions: Record<string, unknown> | null = null,
   options: Record<string, unknown> | null = null,
 ) {
-  if (userIdOrTraits == undefined) {
+  if (userIdOrTraits === undefined || userIdOrTraits === null) {
     logWarn('identify: atleast one of userId or traits is required');
     return;
   }
@@ -191,12 +187,12 @@ async function identify(
   let _userId;
   let _traits;
   let _options;
-  if (typeof userIdOrTraits == 'string') {
+  if (typeof userIdOrTraits === 'string') {
     // userIdOrTraits contains userId
     _userId = userIdOrTraits;
     _traits = traitsOrOptions;
     _options = options;
-  } else if (typeof userIdOrTraits == 'object') {
+  } else if (typeof userIdOrTraits === 'object') {
     // userIdOrTraits contains traits
     _userId = '';
     _traits = userIdOrTraits;
@@ -215,11 +211,11 @@ async function group(
   traits: Record<string, unknown> | null = null,
   options: Record<string, unknown> | null = null,
 ) {
-  if (groupId == undefined) {
+  if (groupId === undefined || groupId === null) {
     logWarn("group: Mandatory field 'groupId' missing");
     return;
   }
-  if (typeof groupId != 'string') {
+  if (typeof groupId !== 'string') {
     logWarn("group: 'groupId' must be a string");
     return;
   }
@@ -268,7 +264,7 @@ async function putDeviceToken(token: string): Promise<void>;
  */
 async function putDeviceToken(androidToken: string, iOSToken: string): Promise<void>;
 async function putDeviceToken(token: string, iOSToken: string | null = null): Promise<void> {
-  if (Platform.OS == 'ios' && iOSToken) {
+  if (Platform.OS === 'ios' && iOSToken) {
     bridge.putDeviceToken(iOSToken);
   } else if (token) {
     bridge.putDeviceToken(token);
