@@ -1,5 +1,19 @@
 # Changelog
 
+## [2.46.0](https://github.com/rudderlabs/rudder-sdk-react-native/compare/v2.45.0...v2.46.0) (2026-09-04)
+
+
+### Bug Fixes
+
+* sdk-413 resolve react native eslint warnings ([#699](https://github.com/rudderlabs/rudder-sdk-react-native/issues/699)) ([1c61949](https://github.com/rudderlabs/rudder-sdk-react-native/commit/1c61949366860bb0312d1b55e8ebfda1e8fa12fe))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @rudderstack/rudder-sdk-react-native bumped from file:./libs/sdk to 3.2.1
+
 ## [2.45.0](https://github.com/rudderlabs/rudder-sdk-react-native/compare/v2.44.0...v2.45.0) (2026-08-27)
 
 
