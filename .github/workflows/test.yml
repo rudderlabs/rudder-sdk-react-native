@@ -62,8 +62,7 @@ jobs:
         run: |
           npm run test:ci
 
-      # Fork PRs do not receive repository secrets. Dependabot uses its own
-      # configured SONAR_TOKEN and remains eligible for analysis.
+      # Fork PRs do not receive the SONAR_TOKEN secret required for analysis.
       - name: SonarQube Scan
         if: >-
           github.event_name != 'pull_request' ||
