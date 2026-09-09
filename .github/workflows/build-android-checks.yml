@@ -43,13 +43,8 @@ jobs:
         run: |
           npm run setup:ci
 
-      - name: Add .env file
-        run: |
-          pwd
-          echo '${{secrets.DOT_ENV}}' > apps/example/.env
-          echo "$( < apps/example/.env)"
-          cd apps/example/
-          ls -li
+      - name: Configure example for build verification
+        run: cp apps/example/.env.sample apps/example/.env
 
       - name: Bundle apps
         run: |
