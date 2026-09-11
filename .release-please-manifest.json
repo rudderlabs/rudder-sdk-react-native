@@ -1,6 +1,6 @@
 {
-  ".": "2.45.0",
-  "libs/sdk": "3.2.0",
+  ".": "2.46.0",
+  "libs/sdk": "3.2.1",
   "libs/plugins/rudder-plugin-db-encryption-react-native": "1.6.2",
   "libs/rudder-integration-amplitude-react-native": "1.4.1",
   "libs/rudder-integration-appcenter-react-native": "1.4.1",
