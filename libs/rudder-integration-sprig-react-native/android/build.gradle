@@ -20,7 +20,15 @@ def isNewArchitectureEnabled() {
 }
 
 apply plugin: "com.android.library"
-apply plugin: "kotlin-android"
+// AGP 9 ships built-in Kotlin support and registers the `kotlin` extension itself.
+// Applying the Kotlin plugin on top of it fails configuration with
+// "Cannot add extension with name 'kotlin'". Asking for the extension covers every
+// way built-in Kotlin can be turned on -- the global default, the
+// android.builtInKotlin property, and the per-module com.android.built-in-kotlin
+// plugin -- without reading an AGP version number.
+if (project.extensions.findByName('kotlin') == null) {
+    apply plugin: "kotlin-android"
+}
 
 if (isNewArchitectureEnabled()) {
   apply plugin: "com.facebook.react"
@@ -56,11 +64,17 @@ android {
   }
 
   sourceSets {
+    // AGP's built-in Kotlin does not read java.srcDirs for Kotlin sources,
+    // so each directory is mirrored into kotlin.srcDirs below. Without that a
+    // .kt file added to newarch or oldarch would be dropped from the build
+    // with no error on AGP 9.
     main {
       if (isNewArchitectureEnabled()) {
         java.srcDirs += ['src/main/newarch']
+        kotlin.srcDirs += ['src/main/newarch']
       } else {
         java.srcDirs += ['src/main/oldarch']
+        kotlin.srcDirs += ['src/main/oldarch']
       }
     }
   }
