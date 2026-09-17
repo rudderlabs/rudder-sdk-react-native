@@ -66,12 +66,24 @@ jobs:
             ${{ runner.os }}-pods-
 
       - name: Install Pods
+        working-directory: apps/example/ios
         run: |
-          cd apps/example/ios && \
-          pod install --repo-update && \
-          cd .. && \
-          cd .. && \
-          cd ..
+          max_attempts=3
+
+          for ((attempt = 1; attempt <= max_attempts; attempt++)); do
+            if pod install --repo-update; then
+              break
+            fi
+
+            if [ "$attempt" -eq "$max_attempts" ]; then
+              echo "CocoaPods installation failed after ${max_attempts} attempts."
+              exit 1
+            fi
+
+            delay=$((attempt * 15))
+            echo "CocoaPods installation failed on attempt ${attempt}/${max_attempts}. Retrying in ${delay} seconds."
+            sleep "$delay"
+          done
 
       - name: Bundle apps
         run: |
