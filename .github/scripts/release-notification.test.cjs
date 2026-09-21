@@ -68,12 +68,7 @@ test('one notification follows verification and requires changed packages', () =
   assert.equal(send.if, prepare.if);
   assert.equal(send.with['payload-file-path'], '${{ runner.temp }}/release-notification.json');
   assert.equal(send.with['payload-templated'], undefined);
-  const notifications = fs
-    .readdirSync(workflows)
-    .filter((file) => /\.ya?ml$/.test(file))
-    .flatMap((file) =>
-      Object.values(YAML.parse(fs.readFileSync(path.join(workflows, file), 'utf8')).jobs),
-    )
+  const notifications = Object.values(workflow.jobs)
     .flatMap((job) => job.steps || [])
     .filter((step) => step.with?.method === 'chat.postMessage');
   assert.equal(notifications.length, 1);
