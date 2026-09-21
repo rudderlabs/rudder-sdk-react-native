@@ -71,7 +71,7 @@ jobs:
           max_attempts=3
 
           for ((attempt = 1; attempt <= max_attempts; attempt++)); do
-            if pod install --repo-update; then
+            if pod install; then
               break
             fi
 
