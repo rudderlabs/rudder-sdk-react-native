@@ -100,10 +100,12 @@ jobs:
           done < <(grep -rl '"deploy"' --include=project.json libs | sort)
 
       - name: Verify changed package versions on npm
+        id: verify
         env:
           PREVIOUS_TAG: ${{ steps.range.outputs.previous }}
         run: |
           failed=0
+          : > "$RUNNER_TEMP/released-packages.txt"
           while IFS= read -r project; do
             package_json="$(dirname "$project")/package.json"
             previous_version=$(git show "$PREVIOUS_TAG:$package_json" 2>/dev/null |
@@ -117,37 +119,41 @@ jobs:
             name=$(node -p "require('./$package_json').name")
             if npm view "$name@$current_version" version >/dev/null 2>&1; then
               echo "$name@$current_version is live on npm."
+              printf '• <https://www.npmjs.com/package/%s/v/%s|%s %s>\n' \
+                "$name" "$current_version" "$name" "$current_version" >> "$RUNNER_TEMP/released-packages.txt"
             else
               echo "$name@$current_version is not live on npm."
               failed=1
             fi
           done < <(grep -rl '"deploy"' --include=project.json libs | sort)
 
-          exit "$failed"
+          if [[ "$failed" != 0 ]]; then
+            exit "$failed"
+          fi
+
+          if [[ -s "$RUNNER_TEMP/released-packages.txt" ]]; then
+            echo "has_packages=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Prepare release notification
+        if: steps.verify.outputs.has_packages == 'true'
+        env:
+          SLACK_CHANNEL_ID: ${{ secrets.SLACK_RELEASE_CHANNEL_ID }}
+          RELEASE_URL: ${{ github.event.release.html_url }}
+        run: |
+          jq -n \
+            --arg channel "$SLACK_CHANNEL_ID" \
+            --arg release_url "$RELEASE_URL" \
+            --rawfile packages "$RUNNER_TEMP/released-packages.txt" \
+            '{channel: $channel, text: ("🚀 *React Native SDK packages are available on npm.*\n" + $packages + "\n<" + $release_url + "|Release notes>"), unfurl_links: false, unfurl_media: false}' \
+            > "$RUNNER_TEMP/release-notification.json"
 
       - name: Send message to Slack channel
+        if: steps.verify.outputs.has_packages == 'true'
         continue-on-error: true
         uses: slackapi/slack-github-action@91efab103c0de0a537f72a35f6b8cda0ee76bf0a # v2.1.1
-        env:
-          PROJECT_NAME: React Native SDK npm packages
-          NPM_PACKAGE_URL: https://www.npmjs.com/search?q=%40rudderstack
-          VERSION: ${{ steps.range.outputs.current }}
         with:
           method: chat.postMessage
-          payload-templated: true
           retries: rapid
           token: ${{ secrets.SLACK_BOT_TOKEN }}
-          payload: |
-            {
-              "channel": "${{ secrets.SLACK_RELEASE_CHANNEL_ID }}",
-              "text": "New release: ${{ env.PROJECT_NAME }} ${{ env.VERSION }}",
-              "blocks": [
-                {
-                  "type": "section",
-                  "text": {
-                    "type": "mrkdwn",
-                    "text": "🚀 *${{ env.PROJECT_NAME }}* published for ${{ env.VERSION }}.\n*Packages:* ${{ env.NPM_PACKAGE_URL }}"
-                  }
-                }
-              ]
-            }
+          payload-file-path: ${{ runner.temp }}/release-notification.json

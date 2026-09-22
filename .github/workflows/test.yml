@@ -62,6 +62,9 @@ jobs:
         run: |
           npm run test:ci
 
+      - name: Test release notifications
+        run: node --test .github/scripts/release-notification.test.cjs
+
       # Fork PRs do not receive the SONAR_TOKEN secret required for analysis.
       - name: SonarQube Scan
         if: >-
