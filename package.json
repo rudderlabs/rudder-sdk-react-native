@@ -48,7 +48,7 @@
   },
   "private": true,
   "dependencies": {
-    "@babel/runtime": "7.28.4",
+    "@babel/runtime": "8.0.5",
     "@react-navigation/native": "7.1.26",
     "@react-navigation/native-stack": "7.9.0",
     "@rudderstack/rudder-integration-amplitude-react-native": "file:libs/rudder-integration-amplitude-react-native",
@@ -197,7 +197,7 @@
     "svgo@>=4.0.0 <4.1.0": "4.1.0"
   },
   "optionalDependencies": {
-    "@nx/nx-linux-x64-gnu": "22.7.8"
+    "@nx/nx-linux-x64-gnu": "23.2.1"
   },
   "lint-staged": {
     "*.{js,ts,tsx}": "eslint --cache --fix",
