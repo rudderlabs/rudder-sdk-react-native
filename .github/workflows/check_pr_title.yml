@@ -5,13 +5,19 @@ on:
     branches: ['master']
     types: ['opened', 'reopened', 'edited', 'synchronize']
 
-permissions:
-  contents: read
+permissions: {}
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.run_id }}
+  cancel-in-progress: true
 
 jobs:
   check_pr_title:
     name: Check PR title
     runs-on: ubuntu-latest
+    timeout-minutes: 5
+    # v2 reads the title from the event payload, so the job needs no token.
+    permissions: {}
 
     steps:
       - name: Harden the runner (Audit all outbound calls)
@@ -19,8 +25,8 @@ jobs:
         with:
           egress-policy: audit
 
-      - name: Checkout source branch
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-
       - name: Check PR title
-        uses: rudderlabs/github-action-check-pr-title@0a83071336f7d6417249629f67a64530fcecda2e # v1.0.11
+        uses: rudderlabs/github-action-check-pr-title@3967756a96b89133e6cd700a8384a1e2b95cb21c # v2.0.3
+        with:
+          # v1 rejected a subject that starts with a capital letter. Keep that rule.
+          subjectPattern: ^(?![A-Z]).+$
