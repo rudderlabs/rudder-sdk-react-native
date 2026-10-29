@@ -25,6 +25,9 @@ for manifest in (root / "libs").rglob("package.json"):
         raise SystemExit(f"Android autolinking omitted {name}")
     if Path(dependency["root"]).resolve() != manifest.parent.resolve():
         raise SystemExit(f"Consumer uses a published copy instead of local {name}")
+    source_dir = dependency["platforms"]["android"].get("sourceDir")
+    if not source_dir or Path(source_dir).resolve() != (manifest.parent / "android").resolve():
+        raise SystemExit(f"Consumer uses a different Android source directory for {name}")
     expected.append(name)
 if not expected:
     raise SystemExit("No local Android libraries were checked")
