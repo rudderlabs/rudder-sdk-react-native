@@ -113,7 +113,18 @@ jobs:
       - name: Prepare published Expo consumer
         if: matrix.context == 'published-expo'
         working-directory: apps/expo-example
-        run: npm ci --ignore-scripts --no-audit --no-fund
+        run: |
+          npm ci --ignore-scripts --no-audit --no-fund
+          # Older published integrations contain empty, non-executable wrapper placeholders.
+          # Keep every nonempty JAR for the action's normal checksum validation.
+          python3 - <<'PY'
+          from pathlib import Path
+
+          for jar in Path('node_modules/@rudderstack').glob('rudder-integration-*/android/**/gradle-wrapper.jar'):
+              if jar.is_file() and jar.stat().st_size == 0:
+                  jar.unlink()
+                  print(f'Removed empty wrapper placeholder: {jar}')
+          PY
 
       - name: Grant execute permission for gradlew
         working-directory: ${{ matrix.root }}

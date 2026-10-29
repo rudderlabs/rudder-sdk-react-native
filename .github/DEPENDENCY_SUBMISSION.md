@@ -9,7 +9,7 @@ Dependency changes on `master`, weekly refreshes, manual runs and pull requests 
 
 Runtime scope is limited to the `:app` project's non-test runtime configurations. These configurations include the linked native libraries. Dependencies used only by included React Native and Expo Gradle plugin builds remain development-scoped.
 
-The pinned Gradle action is on the organization allowlist as of 2026-10-29. Wrapper validation remains enabled. The consumer apps provide the executable wrappers used for resolution; empty legacy wrapper JAR placeholders under `libs` have been removed.
+The pinned Gradle action is on the organization allowlist as of 2026-10-29. Wrapper validation remains enabled. The consumer apps provide the executable wrappers used for resolution; empty legacy wrapper JAR placeholders under `libs` have been removed. Expo preparation also removes zero-byte wrapper placeholders from older published integration packages. Every nonempty JAR remains subject to checksum validation.
 
 After merge, inspect both artifacts and verify actual Maven ingestion at the source revision. Confirm that local native modules remain linked and that published package versions match the Expo lock. Build dependencies resolved during configuration are included; test dependencies of external included build tooling are not separately certified by this workflow.
 
