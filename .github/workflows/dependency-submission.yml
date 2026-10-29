@@ -74,6 +74,8 @@ jobs:
     timeout-minutes: 45
     env:
       # Keep test/build dependencies in the graph, with development scope.
+      # The app graph includes linked libraries; included Gradle plugins are build tooling.
+      DEPENDENCY_GRAPH_RUNTIME_INCLUDE_PROJECTS: ':app'
       DEPENDENCY_GRAPH_RUNTIME_INCLUDE_CONFIGURATIONS: '.*[Rr]untimeClasspath'
       DEPENDENCY_GRAPH_RUNTIME_EXCLUDE_CONFIGURATIONS: '.*[Tt]est.*'
     steps:
