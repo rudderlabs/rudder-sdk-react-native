@@ -13,6 +13,6 @@ The pinned Gradle action is on the organization allowlist as of 2026-10-29. Wrap
 
 After merge, inspect both artifacts and verify actual Maven ingestion at the source revision. Confirm that local native modules remain linked and that published package versions match the Expo lock. Build dependencies resolved during configuration are included; test dependencies of external included build tooling are not separately certified by this workflow.
 
-Submission does not prove Gradle updater traversal into npm-linked library manifests. No speculative Gradle updater roots or CocoaPods changes are included. Existing npm and Actions configuration remains unchanged.
+Submission does not prove Gradle updater traversal into npm-linked library manifests. No speculative Gradle updater roots or CocoaPods changes are included. The existing Dependabot npm and GitHub Actions updater configuration remains unchanged. The root npm manifest and lockfile include security updates needed for the existing audit check, including Nx 22.7.12, Vitest 4.1.12, and compatible navigation parser dependencies. Updated versions meet the seven-day cutoff of 2026-10-22T18:11:52Z. Validation covers a clean install, SDK build, all 13 test targets, type checks, lint, both JavaScript bundles, navigation path parsing, and an audit with zero high or critical findings.
 
 Rollback: remove this workflow and its local-consumer guard. Preserve native alerts and existing updater configuration. Previously submitted snapshots may remain until superseded or removed.
