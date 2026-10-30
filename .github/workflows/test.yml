@@ -36,8 +36,10 @@ jobs:
         with:
           ruby-version: '3.3.2'
 
+      # Replaces NiftyStack/install-cocoapods-action, which calls actions/cache by tag (SEC-784).
+      # 1.16.2 matches apps/example/Gemfile and the Podfile.lock files.
       - name: Setup CocoaPods
-        uses: NiftyStack/install-cocoapods-action@d886e873d6cb61e14ef64a31ce8615f3c0f18c85 #1.0.1
+        run: gem install cocoapods -v 1.16.2 --no-document
 
       - name: Setup Node
         uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
