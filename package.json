@@ -160,6 +160,15 @@
       ".": "$glob",
       "minimatch": "11.0.5"
     },
+    "@jest/reporters@30": {
+      "glob": "$glob"
+    },
+    "jest-config@30": {
+      "glob": "$glob"
+    },
+    "jest-runtime@30": {
+      "glob": "$glob"
+    },
     "test-exclude": {
       "minimatch": "^3.1.2"
     },
