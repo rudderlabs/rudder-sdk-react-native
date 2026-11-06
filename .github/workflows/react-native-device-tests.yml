@@ -1,0 +1,54 @@
+name: React Native device tests
+on:
+  pull_request:
+    branches: [master]
+    types: [opened, reopened, synchronize]
+
+permissions: {}
+
+concurrency:
+  group: rn-device-tests-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    name: React Native device tests
+    if: github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - name: Harden runner
+        uses: step-security/harden-runner@e14015d583714f6e62063499dc959a02595150a1 # v2.21.1
+        with:
+          egress-policy: audit
+
+      - name: Get token for the mobile test workflow
+        id: token
+        uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
+        with:
+          client-id: ${{ vars.RELEASE_APP_CLIENT_ID }}
+          private-key: ${{ secrets.RELEASE_PRIVATE_KEY }}
+          owner: rudderlabs
+          repositories: rudder-mobile-sdk-test
+          permission-actions: write
+
+      - name: Run both device tests and report their result
+        env:
+          GH_TOKEN: ${{ steps.token.outputs.token }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          RIG: rudderlabs/rudder-mobile-sdk-test
+        run: |
+          run_id=$(gh api --method POST "repos/$RIG/actions/workflows/react-native-pr.yaml/dispatches" \
+            -f ref=main -F return_run_details=true -f "inputs[sdk_ref]=$HEAD_SHA" \
+            -f "inputs[pr_number]=$PR_NUMBER" --jq '.workflow_run_id')
+          [[ "$run_id" =~ ^[0-9]+$ ]]
+          echo "[Device test run](https://github.com/$RIG/actions/runs/$run_id)" >> "$GITHUB_STEP_SUMMARY"
+          while true; do
+            verdict=$(gh api "repos/$RIG/actions/runs/$run_id" --jq 'if .status == "completed" then .conclusion else "waiting" end')
+            case "$verdict" in
+              success) exit 0 ;;
+              waiting) sleep 20 ;;
+              *) echo "::error::Device tests ended with $verdict"; exit 1 ;;
+            esac
+          done
