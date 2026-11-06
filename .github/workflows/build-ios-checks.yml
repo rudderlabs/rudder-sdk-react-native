@@ -15,15 +15,15 @@ jobs:
 
     steps:
       - name: Harden the runner (Audit all outbound calls)
-        uses: step-security/harden-runner@fa2e9d605c4eeb9fcad4c99c224cee0c6c7f3594 # v2.16.0
+        uses: step-security/harden-runner@e14015d583714f6e62063499dc959a02595150a1 # v2.21.1
         with:
           egress-policy: audit
 
       - name: Checkout
-        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
       - name: Setup Java
-        uses: actions/setup-java@b6effb05e454b25005698d916606bdc6ffcbf961 # v5.7.0
+        uses: actions/setup-java@de7274f081f381c8f8158605e0321c36c376e2e6 # v6.0.1
         with:
           distribution: 'zulu'
           java-version: '17'
@@ -43,7 +43,7 @@ jobs:
           xcode-version: latest-stable
 
       - name: Setup Node
-        uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6.4.0
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
           node-version-file: '.nvmrc'
           cache: 'npm'
@@ -66,12 +66,24 @@ jobs:
             ${{ runner.os }}-pods-
 
       - name: Install Pods
+        working-directory: apps/example/ios
         run: |
-          cd apps/example/ios && \
-          pod install --repo-update && \
-          cd .. && \
-          cd .. && \
-          cd ..
+          max_attempts=3
+
+          for ((attempt = 1; attempt <= max_attempts; attempt++)); do
+            if pod install; then
+              break
+            fi
+
+            if [ "$attempt" -eq "$max_attempts" ]; then
+              echo "CocoaPods installation failed after ${max_attempts} attempts."
+              exit 1
+            fi
+
+            delay=$((attempt * 15))
+            echo "CocoaPods installation failed on attempt ${attempt}/${max_attempts}. Retrying in ${delay} seconds."
+            sleep "$delay"
+          done
 
       - name: Bundle apps
         run: |

@@ -1,0 +1,189 @@
+name: Gradle Dependency Submission
+
+on:
+  push:
+    branches: [master]
+    paths:
+      - '**/*.gradle'
+      - '**/*.gradle.kts'
+      - '**/gradle.properties'
+      - '**/gradle.lockfile'
+      - '**/gradle/dependency-locks/**'
+      - 'gradle/**'
+      - 'gradlew*'
+      - 'scripts/**'
+      - '.github/scripts/**'
+      - '.github/gradle/**'
+      - '**/package.json'
+      - '**/package-lock.json'
+      - '**/project.json'
+      - 'nx.json'
+      - '.nvmrc'
+      - '.npmrc'
+      - 'libs/**'
+      - 'apps/**'
+      - '**/gradle/**'
+      - '**/gradlew*'
+      - '.github/workflows/dependency-submission.yml'
+  pull_request:
+    paths:
+      - '**/*.gradle'
+      - '**/*.gradle.kts'
+      - '**/gradle.properties'
+      - '**/gradle.lockfile'
+      - '**/gradle/dependency-locks/**'
+      - 'gradle/**'
+      - 'gradlew*'
+      - 'scripts/**'
+      - '.github/scripts/**'
+      - '.github/gradle/**'
+      - '**/package.json'
+      - '**/package-lock.json'
+      - '**/project.json'
+      - 'nx.json'
+      - '.nvmrc'
+      - '.npmrc'
+      - 'libs/**'
+      - 'apps/**'
+      - '**/gradle/**'
+      - '**/gradlew*'
+      - '.github/workflows/dependency-submission.yml'
+  schedule:
+    - cron: '23 6 * * 1' # Weekly refresh for dependencies with version ranges.
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  generate-dependency-graph:
+    name: Generate graph (${{ matrix.context }})
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - context: local
+            root: apps/example/android
+          - context: published-expo
+            root: apps/expo-example/android
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      # Keep test/build dependencies in the graph, with development scope.
+      # The app graph includes linked libraries; included Gradle plugins are build tooling.
+      DEPENDENCY_GRAPH_RUNTIME_INCLUDE_PROJECTS: ':app'
+      DEPENDENCY_GRAPH_RUNTIME_INCLUDE_CONFIGURATIONS: '.*[Rr]untimeClasspath'
+      DEPENDENCY_GRAPH_RUNTIME_EXCLUDE_CONFIGURATIONS: '.*[Tt]est.*'
+    steps:
+      - name: Harden the runner
+        uses: step-security/harden-runner@e14015d583714f6e62063499dc959a02595150a1 # v2.21.1
+        with:
+          egress-policy: audit
+
+      - name: Checkout code
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@de7274f081f381c8f8158605e0321c36c376e2e6 # v6.0.1
+        with:
+          java-version: '17'
+          distribution: temurin
+
+      - name: Set up Node
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version-file: .nvmrc
+
+      - name: Prepare local Nx consumer
+        if: matrix.context == 'local'
+        env:
+          NX_DAEMON: 'false'
+        run: |
+          npm ci --ignore-scripts --no-audit --no-fund
+          npx --no-install nx sync-deps example
+          npx --no-install nx ensure-symlink example
+          python3 .github/scripts/check-local-android-consumer.py
+
+      - name: Prepare published Expo consumer
+        if: matrix.context == 'published-expo'
+        working-directory: apps/expo-example
+        run: |
+          npm ci --ignore-scripts --no-audit --no-fund
+          # Older published integrations contain empty, non-executable wrapper placeholders.
+          # Keep every nonempty JAR for the action's normal checksum validation.
+          python3 - <<'PY'
+          from pathlib import Path
+
+          for jar in Path('node_modules/@rudderstack').glob('rudder-integration-*/android/**/gradle-wrapper.jar'):
+              if jar.is_file() and jar.stat().st_size == 0:
+                  jar.unlink()
+                  print(f'Removed empty wrapper placeholder: {jar}')
+          PY
+
+      - name: Grant execute permission for gradlew
+        working-directory: ${{ matrix.root }}
+        run: chmod +x gradlew
+
+      - name: Generate and save dependency graph
+        uses: gradle/actions/dependency-submission@8da46b539cd8fe6ab27ca75128919a18d757604c # v6.4.1
+        with:
+          build-root-directory: ${{ matrix.root }}
+          dependency-resolution-task: :ForceDependencyResolutionPlugin_resolveAllDependencies
+          dependency-graph: generate-and-upload
+          artifact-retention-days: 7
+          cache-provider: basic
+          validate-wrappers: true
+          additional-arguments: >-
+            --no-configuration-cache --no-configure-on-demand --no-daemon
+            --init-script ${{ github.workspace }}/.github/gradle/verify-dependency-resolution.init.gradle
+
+      - name: Check dependency inventory
+        shell: python
+        run: |
+          import json
+          from pathlib import Path
+
+          reports = list(Path('dependency-graph-reports').rglob('*.json'))
+          if not reports:
+              raise SystemExit('No dependency graph snapshot was generated')
+          packages = []
+          for report in reports:
+              snapshot = json.loads(report.read_text())
+              for manifest in snapshot['manifests'].values():
+                  packages.extend(manifest['resolved'].values())
+          maven = [p for p in packages if p['package_url'].startswith('pkg:maven/')]
+          if not maven:
+              raise SystemExit('The dependency graph contains no Maven packages')
+          if {p.get('relationship') for p in maven} != {'direct', 'indirect'}:
+              raise SystemExit('Expected both direct and indirect Maven dependencies')
+          if {p.get('scope') for p in maven} != {'runtime', 'development'}:
+              raise SystemExit('Expected runtime and development dependency scopes')
+          print(f'Validated {len(reports)} snapshots with {len(maven)} Maven entries')
+
+  submit-dependency-graph:
+    name: Submit dependency graph
+    needs: generate-dependency-graph
+    # Manual runs on other branches and all pull requests only generate artifacts.
+    if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    steps:
+      - name: Harden the runner
+        uses: step-security/harden-runner@e14015d583714f6e62063499dc959a02595150a1 # v2.21.1
+        with:
+          egress-policy: audit
+
+      # Read artifacts from this successful run; no checkout or Gradle execution.
+      - name: Download and submit dependency graph
+        uses: gradle/actions/dependency-submission@8da46b539cd8fe6ab27ca75128919a18d757604c # v6.4.1
+        with:
+          dependency-graph: download-and-submit
+          cache-disabled: true
