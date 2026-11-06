@@ -147,6 +147,7 @@
     "typescript": "5.9.3"
   },
   "overrides": {
+    "proxy-addr": "2.0.8",
     "trim-newlines": "3.0.1",
     "semver-regex": "4.0.5",
     "git-raw-commits": "2.0.11",
