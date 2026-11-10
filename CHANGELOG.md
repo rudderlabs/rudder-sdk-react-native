@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.47.0](https://github.com/rudderlabs/rudder-sdk-react-native/compare/v2.46.0...v2.47.0) (2026-11-10)
+
+
+### Bug Fixes
+
+* **deps:** resolve vulnerable glob in nx jest tooling ([d5e0dc9](https://github.com/rudderlabs/rudder-sdk-react-native/commit/d5e0dc999826209a0403faaf4bde6409a73f5991))
+* **example:** override shell-quote to patched 1.11.0 ([#743](https://github.com/rudderlabs/rudder-sdk-react-native/issues/743)) ([7fb6ca9](https://github.com/rudderlabs/rudder-sdk-react-native/commit/7fb6ca961e97179a5fe24afd154125fbfe406301))
+
 ## [2.46.0](https://github.com/rudderlabs/rudder-sdk-react-native/compare/v2.45.0...v2.46.0) (2026-09-21)
 
 
