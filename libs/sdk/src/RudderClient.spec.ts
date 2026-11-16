@@ -42,6 +42,15 @@ describe('rudderClient setup configuration validation', () => {
     consoleLogSpy.mockRestore();
   });
 
+  it.each([
+    ['', DATA_PLANE_URL],
+    ['write-key', ''],
+  ])('rejects setup with a missing write key or data plane URL', async (writeKey, dataPlaneUrl) => {
+    await rudderClient.setup(writeKey, { dataPlaneUrl });
+
+    expect(mockedBridge.setup).not.toHaveBeenCalled();
+  });
+
   it('preserves explicit false for trackDeepLinks', async () => {
     await rudderClient.setup('write-key', {
       dataPlaneUrl: DATA_PLANE_URL,
