@@ -1,8 +1,8 @@
 .eslintrc.json
 babel.config.json
-CHANGELOG.md
+/CHANGELOG.md
 jest.config.ts
-README.md
+/README.md
 test-setup.ts
 tsconfig.json
 tsconfig.lib.json

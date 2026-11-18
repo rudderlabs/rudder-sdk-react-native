@@ -2,6 +2,25 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [3.2.1](https://github.com/rudderlabs/rudder-sdk-react-native/compare/rudder-sdk-react-native@3.2.0...rudder-sdk-react-native@3.2.1) (2026-09-21)
+
+
+### Bug Fixes
+
+* sdk-413 resolve react native eslint warnings ([#699](https://github.com/rudderlabs/rudder-sdk-react-native/issues/699)) ([1c61949](https://github.com/rudderlabs/rudder-sdk-react-native/commit/1c61949366860bb0312d1b55e8ebfda1e8fa12fe))
+
+## [3.2.0](https://github.com/rudderlabs/rudder-sdk-react-native/compare/rudder-sdk-react-native@3.1.1...rudder-sdk-react-native@3.2.0) (2026-08-27)
+
+
+### Features
+
+* sdk-5301 expose android deep link tracking config ([#685](https://github.com/rudderlabs/rudder-sdk-react-native/issues/685)) ([2092dc2](https://github.com/rudderlabs/rudder-sdk-react-native/commit/2092dc26a2e7bb3daa3ac9d5694fbd4a4992869c))
+
+
+### Bug Fixes
+
+* **build:** restore packaged assets in libs after nx 22 migration ([#691](https://github.com/rudderlabs/rudder-sdk-react-native/issues/691)) ([cfb510a](https://github.com/rudderlabs/rudder-sdk-react-native/commit/cfb510a37213c89f72bc3ecb8302c04a5dec05dd))
+
 ## [3.1.1](https://github.com/rudderlabs/rudder-sdk-react-native/compare/rudder-sdk-react-native@3.1.0...rudder-sdk-react-native@3.1.1) (2026-06-25)
 
 

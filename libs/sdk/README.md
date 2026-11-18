@@ -1,3 +1,12 @@
+<p align="center">
+  <a href="https://rudderstack.com/">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="https://cdn.rudderlabs.com/brand/logo_watermark_dark.png">
+      <img alt="RudderStack" width="512" src="https://cdn.rudderlabs.com/brand/logo_watermark_light.png">
+    </picture>
+  </a>
+</p>
+
 # What is RudderStack?
 
 [RudderStack](https://rudderstack.com/) is a **customer data pipeline** tool for collecting, routing and processing data from your websites, apps, cloud tools, and data warehouse.

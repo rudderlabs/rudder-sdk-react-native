@@ -80,7 +80,10 @@ class RNParamsConfigurator {
         if (config.hasKey("collectDeviceId")) {
             configBuilder.withCollectDeviceId(config.getBoolean("collectDeviceId"));
         }
-        if(config.hasKey("enableGzip")) {
+        if (config.hasKey("trackDeepLinks")) {
+            configBuilder.withTrackDeepLinks(config.getBoolean("trackDeepLinks"));
+        }
+        if (config.hasKey("enableGzip")) {
             configBuilder.withGzip(config.getBoolean("enableGzip"));
         }
         return configBuilder;

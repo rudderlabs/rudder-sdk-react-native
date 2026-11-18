@@ -14,6 +14,7 @@ import {
   SESSION_TIMEOUT,
   ENABLE_BACKGROUND_MODE,
   COLLECT_DEVICE_ID,
+  TRACK_DEEP_LINKS,
   ENABLE_GZIP,
 } from './Constants';
 
@@ -36,6 +37,7 @@ export const configure = async (
     trackAppLifecycleEvents = TRACK_LIFECYCLE_EVENTS,
     recordScreenViews = RECORD_SCREEN_VIEWS,
     collectDeviceId = COLLECT_DEVICE_ID,
+    trackDeepLinks = TRACK_DEEP_LINKS,
     enableGzip = ENABLE_GZIP,
     dbEncryption,
     withFactories = [],
@@ -75,6 +77,7 @@ export const configure = async (
     enableBackgroundMode,
     recordScreenViews,
     collectDeviceId,
+    trackDeepLinks,
     enableGzip,
   };
 

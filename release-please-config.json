@@ -1,0 +1,165 @@
+{
+  "$schema": "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/config.json",
+  "last-release-sha": "089cd2477828558fef33f5dd215bede4449d1991",
+  "always-link-local": false,
+  "plugins": [
+    {
+      "type": "node-workspace"
+    }
+  ],
+  "always-update": true,
+  "changelog-sections": [
+    {
+      "type": "feat",
+      "section": "Features",
+      "hidden": false
+    },
+    {
+      "type": "fix",
+      "section": "Bug Fixes",
+      "hidden": false
+    }
+  ],
+  "packages": {
+    ".": {
+      "release-type": "node",
+      "package-name": "@rudderstack/rudder-sdk-react-native-monorepo",
+      "include-component-in-tag": false,
+      "include-v-in-tag": true,
+      "versioning": "always-bump-minor",
+      "changelog-path": "CHANGELOG.md",
+      "extra-files": [
+        {
+          "type": "generic",
+          "path": "sonar-project.properties"
+        }
+      ]
+    },
+    "libs/sdk": {
+      "release-type": "node",
+      "package-name": "@rudderstack/rudder-sdk-react-native",
+      "component": "rudder-sdk-react-native",
+      "include-component-in-tag": true,
+      "include-v-in-tag": false,
+      "include-v-in-release-name": false,
+      "tag-separator": "@",
+      "changelog-path": "CHANGELOG.md",
+      "extra-files": [
+        {
+          "type": "generic",
+          "path": "src/Constants.ts"
+        }
+      ]
+    },
+    "libs/plugins/rudder-plugin-db-encryption-react-native": {
+      "release-type": "node",
+      "package-name": "@rudderstack/rudder-plugin-db-encryption-react-native",
+      "component": "rudder-plugin-db-encryption-react-native",
+      "include-component-in-tag": true,
+      "include-v-in-tag": false,
+      "include-v-in-release-name": false,
+      "tag-separator": "@",
+      "changelog-path": "CHANGELOG.md"
+    },
+    "libs/rudder-integration-amplitude-react-native": {
+      "release-type": "node",
+      "package-name": "@rudderstack/rudder-integration-amplitude-react-native",
+      "component": "rudder-integration-amplitude-react-native",
+      "include-component-in-tag": true,
+      "include-v-in-tag": false,
+      "include-v-in-release-name": false,
+      "tag-separator": "@",
+      "changelog-path": "CHANGELOG.md"
+    },
+    "libs/rudder-integration-appcenter-react-native": {
+      "release-type": "node",
+      "package-name": "@rudderstack/rudder-integration-appcenter-react-native",
+      "component": "rudder-integration-appcenter-react-native",
+      "include-component-in-tag": true,
+      "include-v-in-tag": false,
+      "include-v-in-release-name": false,
+      "tag-separator": "@",
+      "changelog-path": "CHANGELOG.md"
+    },
+    "libs/rudder-integration-appsflyer-react-native": {
+      "release-type": "node",
+      "package-name": "@rudderstack/rudder-integration-appsflyer-react-native",
+      "component": "rudder-integration-appsflyer-react-native",
+      "include-component-in-tag": true,
+      "include-v-in-tag": false,
+      "include-v-in-release-name": false,
+      "tag-separator": "@",
+      "changelog-path": "CHANGELOG.md"
+    },
+    "libs/rudder-integration-braze-react-native": {
+      "release-type": "node",
+      "package-name": "@rudderstack/rudder-integration-braze-react-native",
+      "component": "rudder-integration-braze-react-native",
+      "include-component-in-tag": true,
+      "include-v-in-tag": false,
+      "include-v-in-release-name": false,
+      "tag-separator": "@",
+      "changelog-path": "CHANGELOG.md"
+    },
+    "libs/rudder-integration-clevertap-react-native": {
+      "release-type": "node",
+      "package-name": "@rudderstack/rudder-integration-clevertap-react-native",
+      "component": "rudder-integration-clevertap-react-native",
+      "include-component-in-tag": true,
+      "include-v-in-tag": false,
+      "include-v-in-release-name": false,
+      "tag-separator": "@",
+      "changelog-path": "CHANGELOG.md"
+    },
+    "libs/rudder-integration-facebook-react-native": {
+      "release-type": "node",
+      "package-name": "@rudderstack/rudder-integration-facebook-react-native",
+      "component": "rudder-integration-facebook-react-native",
+      "include-component-in-tag": true,
+      "include-v-in-tag": false,
+      "include-v-in-release-name": false,
+      "tag-separator": "@",
+      "changelog-path": "CHANGELOG.md"
+    },
+    "libs/rudder-integration-firebase-react-native": {
+      "release-type": "node",
+      "package-name": "@rudderstack/rudder-integration-firebase-react-native",
+      "component": "rudder-integration-firebase-react-native",
+      "include-component-in-tag": true,
+      "include-v-in-tag": false,
+      "include-v-in-release-name": false,
+      "tag-separator": "@",
+      "changelog-path": "CHANGELOG.md"
+    },
+    "libs/rudder-integration-moengage-react-native": {
+      "release-type": "node",
+      "package-name": "@rudderstack/rudder-integration-moengage-react-native",
+      "component": "rudder-integration-moengage-react-native",
+      "include-component-in-tag": true,
+      "include-v-in-tag": false,
+      "include-v-in-release-name": false,
+      "tag-separator": "@",
+      "changelog-path": "CHANGELOG.md"
+    },
+    "libs/rudder-integration-singular-react-native": {
+      "release-type": "node",
+      "package-name": "@rudderstack/rudder-integration-singular-react-native",
+      "component": "rudder-integration-singular-react-native",
+      "include-component-in-tag": true,
+      "include-v-in-tag": false,
+      "include-v-in-release-name": false,
+      "tag-separator": "@",
+      "changelog-path": "CHANGELOG.md"
+    },
+    "libs/rudder-integration-sprig-react-native": {
+      "release-type": "node",
+      "package-name": "@rudderstack/rudder-integration-sprig-react-native",
+      "component": "rudder-integration-sprig-react-native",
+      "include-component-in-tag": true,
+      "include-v-in-tag": false,
+      "include-v-in-release-name": false,
+      "tag-separator": "@",
+      "changelog-path": "CHANGELOG.md"
+    }
+  }
+}

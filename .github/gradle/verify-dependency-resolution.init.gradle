@@ -1,0 +1,55 @@
+import org.gradle.api.artifacts.result.UnresolvedDependencyResult
+import org.gradle.api.artifacts.component.ProjectComponentSelector
+import org.gradle.api.artifacts.component.ModuleComponentSelector
+
+// Check the same project configurations that the submission plugin resolves.
+gradle.beforeProject { project ->
+    project.tasks.configureEach { task ->
+        if (task.name == 'ForceDependencyResolutionPlugin_resolveProjectDependencies') {
+            task.doLast {
+                def safelyResolvable = null
+                try {
+                    safelyResolvable = Class.forName('org.gradle.internal.deprecation.DeprecatableConfiguration')
+                        .getMethod('canSafelyBeResolved')
+                } catch (ReflectiveOperationException ignored) {
+                    // Match the plugin's fallback on older Gradle versions.
+                }
+                def failures = []
+                project.configurations.each { configuration ->
+                    def canResolve = safelyResolvable == null ? configuration.canBeResolved : safelyResolvable.invoke(configuration)
+                    if (canResolve) {
+                        configuration.incoming.resolutionResult.allDependencies.each { dependency ->
+                            if (dependency instanceof UnresolvedDependencyResult) {
+                                def attempted = dependency.attempted
+                                def cause = dependency.failure.cause
+                                def variantError = cause?.class?.name == 'org.gradle.internal.component.resolution.failure.exception.VariantSelectionByAttributesException'
+                                def metadata = configuration.name.endsWith('DependenciesMetadata') &&
+                                    cause?.message?.contains("use during 'kotlin-metadata'")
+                                def localVariant = attempted instanceof ProjectComponentSelector &&
+                                    project.rootProject.findProject(attempted.projectPath) != null &&
+                                    cause?.message?.contains("cannot choose between the following variants of project ${attempted.projectPath}")
+                                def reactVariant = attempted instanceof ModuleComponentSelector &&
+                                    attempted.group == 'com.facebook.react' &&
+                                    attempted.module in ['react-android', 'hermes-android'] &&
+                                    cause?.message?.contains('There are several available matching variants of com.facebook.')
+                                // React Native's included build has a formatting-only ktfmt
+                                // configuration without repositories. It is not an SDK dependency.
+                                def includedFormatter = gradle.parent != null && project.path == ':' &&
+                                    configuration.name == 'ktfmt' && attempted instanceof ModuleComponentSelector &&
+                                    attempted.group == 'com.facebook' && attempted.module == 'ktfmt' &&
+                                    attempted.version == '0.54' &&
+                                    dependency.failure.message.contains('because no repositories are defined')
+                                if (!includedFormatter && !(variantError && metadata && (localVariant || reactVariant))) {
+                                    failures << "${project.path}:${configuration.name}: ${attempted} (${dependency.failure.message})"
+                                }
+                            }
+                        }
+                    }
+                }
+                if (!failures.empty) {
+                    throw new GradleException('Dependency graph resolution is incomplete:\n' + failures.join('\n'))
+                }
+            }
+        }
+    }
+}

@@ -2,6 +2,20 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [1.6.2](https://github.com/rudderlabs/rudder-sdk-react-native/compare/rudder-plugin-db-encryption-react-native@1.6.1...rudder-plugin-db-encryption-react-native@1.6.2) (2026-08-27)
+
+
+### Bug Fixes
+
+* **build:** restore packaged assets in libs after nx 22 migration ([#691](https://github.com/rudderlabs/rudder-sdk-react-native/issues/691)) ([cfb510a](https://github.com/rudderlabs/rudder-sdk-react-native/commit/cfb510a37213c89f72bc3ecb8302c04a5dec05dd))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * peerDependencies
+    * @rudderstack/rudder-sdk-react-native bumped from >=1.11.0 to >=3.2.0
+
 ## [1.6.1](https://github.com/rudderlabs/rudder-sdk-react-native/compare/rudder-plugin-db-encryption-react-native@1.6.0...rudder-plugin-db-encryption-react-native@1.6.1) (2026-06-25)
 
 
