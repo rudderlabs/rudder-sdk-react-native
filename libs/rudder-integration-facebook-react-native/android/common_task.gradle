@@ -9,7 +9,10 @@ def safeExtGet(prop, fallback) {
 apply plugin: 'com.android.library'
 
 android {
-  namespace GROUP_NAME
+  // AGP 7.0+ supports namespace; older AGP uses the manifest package.
+  if (project.android.hasProperty('namespace')) {
+    namespace GROUP_NAME
+  }
   compileSdkVersion safeExtGet('compileSdkVersion', DEFAULT_COMPILE_SDK_VERSION)
   defaultConfig {
     minSdkVersion safeExtGet('minSdkVersion', DEFAULT_MIN_SDK_VERSION)
