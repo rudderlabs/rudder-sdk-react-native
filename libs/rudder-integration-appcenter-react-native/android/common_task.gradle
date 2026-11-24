@@ -6,22 +6,8 @@ def safeExtGet(prop, fallback) {
         rootProject.ext.has(prop) ? rootProject.ext.get(prop) : fallback
     }
 
-buildscript {
-    if (project == rootProject) {
-        repositories {
-            google()
-            mavenCentral()
-        }
-        dependencies {
-            classpath 'com.google.gms:google-services:4.3.14'
-        }
-    }
-}
-
-apply plugin: 'com.android.library'
-
 android {
-    // AGP 7.0+ supports namespace; older AGP uses the manifest package.
+    // Keep the manifest package for AGP versions without the namespace property.
     if (project.android.hasProperty('namespace')) {
         namespace GROUP_NAME
     }
