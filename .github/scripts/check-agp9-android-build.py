@@ -48,6 +48,76 @@ class KotlinAndroidModule:
     has_newarch: bool
 
 
+def strip_groovy_comments(text: str) -> str:
+    """Remove Groovy // line comments and /* */ block comments while preserving string literals."""
+    out: list[str] = []
+    i = 0
+    n = len(text)
+    while i < n:
+        ch = text[i]
+        nxt = text[i + 1] if i + 1 < n else ""
+
+        # Line comment: // ... (preserve newline so line-based regexes stay accurate)
+        if ch == "/" and nxt == "/":
+            i += 2
+            while i < n and text[i] != "\n":
+                i += 1
+            continue
+
+        # Block comment: /* ... */ (replace with space/newlines to preserve token boundaries)
+        if ch == "/" and nxt == "*":
+            i += 2
+            out.append(" ")
+            while i < n:
+                if text[i] == "*" and i + 1 < n and text[i + 1] == "/":
+                    i += 2
+                    break
+                if text[i] == "\n":
+                    out.append("\n")
+                i += 1
+            continue
+
+        # Triple-quoted string literals ('''...''' or """...""")
+        if ch in ("'", '"') and text[i : i + 3] == ch * 3:
+            quote = ch * 3
+            out.append(quote)
+            i += 3
+            while i < n:
+                if text[i] == "\\" and i + 1 < n:
+                    out.append(text[i : i + 2])
+                    i += 2
+                    continue
+                if text[i : i + 3] == quote:
+                    out.append(quote)
+                    i += 3
+                    break
+                out.append(text[i])
+                i += 1
+            continue
+
+        # Single- or double-quoted string literals
+        if ch in ("'", '"'):
+            quote = ch
+            out.append(quote)
+            i += 1
+            while i < n:
+                if text[i] == "\\" and i + 1 < n:
+                    out.append(text[i : i + 2])
+                    i += 2
+                    continue
+                out.append(text[i])
+                if text[i] == quote or text[i] == "\n":
+                    i += 1
+                    break
+                i += 1
+            continue
+
+        out.append(ch)
+        i += 1
+
+    return "".join(out)
+
+
 def discover_kotlin_android_modules(repo_root: Path) -> list[KotlinAndroidModule]:
     modules: list[KotlinAndroidModule] = []
     libs_root = repo_root / "libs"
@@ -58,7 +128,7 @@ def discover_kotlin_android_modules(repo_root: Path) -> list[KotlinAndroidModule
             continue
 
         android_dir = build_gradle.parent
-        text = build_gradle.read_text(encoding="utf-8")
+        text = strip_groovy_comments(build_gradle.read_text(encoding="utf-8"))
         has_kt_files = any(android_dir.rglob("*.kt"))
         references_kotlin = bool(
             re.search(r"\bkotlin-android\b|\bkotlin\.srcDirs\b|\bkotlin\.directories\b", text)
@@ -93,7 +163,7 @@ def assert_kotlin_src_dirs_mirrored(repo_root: Path, modules: list[KotlinAndroid
     """Verify every module that registers newarch/oldarch mirrors it into kotlin sources."""
     for module in modules:
         build_gradle = repo_root / module.rel_dir / "build.gradle"
-        text = build_gradle.read_text(encoding="utf-8")
+        text = strip_groovy_comments(build_gradle.read_text(encoding="utf-8"))
         for arch_dir, present in (
             ("src/main/newarch", module.has_newarch),
             ("src/main/oldarch", module.has_oldarch),
