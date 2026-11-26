@@ -6,25 +6,11 @@ def safeExtGet(prop, fallback) {
   rootProject.ext.has(prop) ? rootProject.ext.get(prop) : fallback
 }
 
-buildscript {
-  // The Android Gradle plugin is only required when opening the android folder stand-alone.
-  // This avoids unnecessary downloads and potential conflicts when the library is included as a
-  // module dependency in an application project.
-  // ref: https://docs.gradle.org/current/userguide/tutorial_using_tasks.html#sec:build_script_external_dependencies
-  if (project == rootProject) {
-    repositories {
-      google()
-      mavenCentral()
-    }
-    dependencies {
-      classpath 'com.android.tools.build:gradle:7.2.2'
-    }
-  }
-}
-
-apply plugin: 'com.android.library'
-
 android {
+  // Keep the manifest package for AGP versions without the namespace property.
+  if (project.android.hasProperty('namespace')) {
+    namespace GROUP_NAME
+  }
   compileSdkVersion safeExtGet('compileSdkVersion', DEFAULT_COMPILE_SDK_VERSION)
   defaultConfig {
     minSdkVersion safeExtGet('minSdkVersion', DEFAULT_MIN_SDK_VERSION)

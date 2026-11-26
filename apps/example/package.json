@@ -3,11 +3,11 @@
   "version": "3.7.1",
   "private": true,
   "dependencies": {
-    "@react-native/metro-config": "*",
-    "@testing-library/jest-native": "*",
-    "@testing-library/react-native": "*",
-    "react": "*",
-    "react-native": "*",
+    "@react-native/metro-config": "0.83.1",
+    "@testing-library/jest-native": "5.4.3",
+    "@testing-library/react-native": "13.3.3",
+    "react": "19.2.3",
+    "react-native": "0.79.7",
     "metro-config": "0.83.8",
     "@rudderstack/rudder-sdk-react-native": "*",
     "@rudderstack/rudder-plugin-db-encryption-react-native": "*",
@@ -21,8 +21,8 @@
     "@rudderstack/rudder-integration-moengage-react-native": "*",
     "@rudderstack/rudder-integration-singular-react-native": "*",
     "@rudderstack/rudder-integration-sprig-react-native": "*",
-    "react-native-config": "*",
-    "async-lock": "*"
+    "react-native-config": "1.6.1",
+    "async-lock": "1.4.1"
   },
   "overrides": {
     "unset-value": "2.0.1",
@@ -39,5 +39,8 @@
     "ws@>=6.0.0 <7.0.0": "6.2.4",
     "ws@>=7.0.0 <8.0.0": "7.5.11",
     "yaml": "2.8.3"
+  },
+  "devDependencies": {
+    "react-test-renderer": "19.2.3"
   }
 }

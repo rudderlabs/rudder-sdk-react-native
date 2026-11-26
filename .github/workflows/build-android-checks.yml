@@ -53,3 +53,7 @@ jobs:
       - name: Execute android build check
         run: |
           npm run build:android
+
+      - name: Run Android SDK wrapper unit tests
+        working-directory: apps/example/android
+        run: ./gradlew :rudderstack_rudder-sdk-react-native:testDebugUnitTest

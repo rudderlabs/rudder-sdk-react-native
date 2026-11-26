@@ -22,17 +22,6 @@ ext {
   GROUP_NAME = 'com.rudderstack.integration.reactnative.clevertap'
 }
 
-buildscript {
-  repositories {
-    google()
-    mavenCentral()
-  }
-
-  dependencies {
-    classpath("com.android.tools.build:gradle:7.2.2")
-  }
-}
-
 apply from: "$projectDir/common_task.gradle"
 
 dependencies {
