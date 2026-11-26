@@ -27,7 +27,7 @@ apply plugin: "com.android.library"
 // android.builtInKotlin property, and the per-module com.android.built-in-kotlin
 // plugin -- without reading an AGP version number.
 if (project.extensions.findByName('kotlin') == null) {
-    apply plugin: "kotlin-android"
+  apply plugin: "kotlin-android"
 }
 
 if (isNewArchitectureEnabled()) {
