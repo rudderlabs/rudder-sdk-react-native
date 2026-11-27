@@ -85,13 +85,15 @@ npx react-native spm
 Xcode resolves the packages before any build step runs, so without this the build stops at "Resolve Package Graph". To run it automatically, add `"postinstall": "react-native spm"` to the app's `package.json` scripts.
 
 - SPM is all-or-nothing for React Native libraries: every one of them in your app needs a `Package.swift`.
+- `spm add --deintegrate` removes CocoaPods from the whole app, including pods for your own native code. Their lines stay in `ios/Podfile`, but they are no longer linked. To keep them, remove the leftover React Native lines from the Podfile (such as the arguments of `use_react_native!(` and the `react_native_post_install(...)` call), run `pod install`, and open `ios/<YourApp>.xcworkspace` instead. Don't add `use_react_native!` back: React Native must come from either SPM or CocoaPods.
 - Upgrade the SDK and the integrations together. Each integration's SPM package depends on the SDK's, so it needs SDK 3.3.0 or later.
 - The DB encryption plugin (`@rudderstack/rudder-plugin-db-encryption-react-native`) supports CocoaPods only. With it installed, `spm add` stops with `Package.swift is missing`, so keep that app on CocoaPods.
 - React Native's experimental remote SPM mode (`RN_SPM_REMOTE_URL`) isn't supported yet.
 - To go back to CocoaPods:
-  1. Run `npx react-native spm deinit`.
-  2. Restore the original `ios/Podfile`, for example with `git checkout -- ios/Podfile`. `spm add --deintegrate` removed the React Native lines from it, `deinit` doesn't put them back, and `pod install` fails on what's left.
-  3. Run `pod install` in the `ios` folder.
+  1. Remove the `react-native spm` `postinstall` script from `package.json`, if you added one. Otherwise every `npm install` runs it, and on a CocoaPods app it fails with `… is CocoaPods-integrated`.
+  2. Run `npx react-native spm deinit`.
+  3. Restore `ios/Podfile` from the commit before the SPM migration, for example with `git checkout <commit-before-migration> -- ios/Podfile`. `spm add --deintegrate` removed the React Native lines from it, `deinit` doesn't put them back, and `pod install` fails on what's left. Then add back any `pod` lines you added to the Podfile after the migration.
+  4. Run `pod install` in the `ios` folder.
 
 ## Import `RudderClient`
 
