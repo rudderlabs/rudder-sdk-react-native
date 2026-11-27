@@ -12,7 +12,10 @@ This plugin supports CocoaPods only. It has no Swift Package Manager (SPM) suppo
 
 - Keep an app that uses this plugin on CocoaPods.
 - If you don't use the plugin, uninstall it before you move the app to SPM.
-- To move an SPM app back to CocoaPods, run `npx react-native spm deinit`, then `pod install` in the `ios` folder.
+- To move an SPM app back to CocoaPods:
+  1. Run `npx react-native spm deinit`.
+  2. Restore the original `ios/Podfile`, for example with `git checkout -- ios/Podfile`. `spm add --deintegrate` removed the React Native lines from it, and `deinit` doesn't put them back.
+  3. Run `pod install` in the `ios` folder.
 
 ## Usage
 
