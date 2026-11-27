@@ -16,10 +16,11 @@ Pod::Spec.new do |s|
   s.source       = { :git => "https://github.com/rudderlabs/rudder-sdk-react-native.git", :tag => "master" }
 
   s.source_files = "ios/**/*.{h,c,m,swift}"
+  s.exclude_files = "ios/include/**/*"
   s.requires_arc = true
 
   s.dependency "React"
-  s.dependency "Rudder-CleverTap", "~> 1.1.2"
+  s.dependency "Rudder-CleverTap", ">= 1.4.1", "< 2.0"
   s.dependency 'CleverTap-iOS-SDK'
   s.dependency 'RNRudderSdk'
 
