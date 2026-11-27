@@ -7,6 +7,16 @@ updates:
     open-pull-requests-limit: 0
     cooldown:
       default-days: 7
+      exclude:
+        - "rudderlabs/*"
+    groups:
+      actions-security:
+        applies-to: security-updates
+        patterns:
+          - "*"
+      actions:
+        patterns:
+          - "*"
 
   - package-ecosystem: "npm"
     directory: "/"
@@ -15,7 +25,15 @@ updates:
     open-pull-requests-limit: 0
     cooldown:
       default-days: 7
+      exclude:
+        - "@rudderlabs/*"
+        - "@rudderstack/*"
     groups:
+      npm-security:
+        applies-to: security-updates
+        patterns:
+          - "*"
+
       npm-prod-deps:
         applies-to: version-updates
         patterns:
@@ -57,6 +75,14 @@ updates:
     open-pull-requests-limit: 0
     cooldown:
       default-days: 7
+      exclude:
+        - "@rudderlabs/*"
+        - "@rudderstack/*"
+    groups:
+      npm-security:
+        applies-to: security-updates
+        patterns:
+          - "*"
 
   - package-ecosystem: "npm"
     directory: "/apps/expo-example"
@@ -65,5 +91,13 @@ updates:
     open-pull-requests-limit: 0
     cooldown:
       default-days: 7
+      exclude:
+        - "@rudderlabs/*"
+        - "@rudderstack/*"
+    groups:
+      npm-security:
+        applies-to: security-updates
+        patterns:
+          - "*"
 
   # Security updates remain separate; version update PRs are paused above.
