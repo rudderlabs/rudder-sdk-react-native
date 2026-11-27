@@ -2,6 +2,18 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [2.4.0](https://github.com/rudderlabs/rudder-sdk-react-native/compare/rudder-integration-firebase-react-native@2.3.1...rudder-integration-firebase-react-native@2.4.0) (2026-11-27)
+
+
+### Features
+
+* **firebase:** add swift package manager support ([#761](https://github.com/rudderlabs/rudder-sdk-react-native/issues/761)) ([44a7196](https://github.com/rudderlabs/rudder-sdk-react-native/commit/44a7196af82f436246c20f65393564af3fa1a859))
+
+
+### Bug Fixes
+
+* **android:** skip explicit Kotlin plugin when AGP registers the kotlin extension ([#696](https://github.com/rudderlabs/rudder-sdk-react-native/issues/696)) ([e0af869](https://github.com/rudderlabs/rudder-sdk-react-native/commit/e0af869c062303983988a9ed46dfe9f18f8e6788))
+
 ## [2.3.1](https://github.com/rudderlabs/rudder-sdk-react-native/compare/rudder-integration-firebase-react-native@2.3.0...rudder-integration-firebase-react-native@2.3.1) (2026-08-27)
 
 

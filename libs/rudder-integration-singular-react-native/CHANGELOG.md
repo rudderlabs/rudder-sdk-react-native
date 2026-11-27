@@ -2,6 +2,20 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [1.5.0](https://github.com/rudderlabs/rudder-sdk-react-native/compare/rudder-integration-singular-react-native@1.4.1...rudder-integration-singular-react-native@1.5.0) (2026-11-27)
+
+
+### Features
+
+* **singular:** add swift package manager support ([#763](https://github.com/rudderlabs/rudder-sdk-react-native/issues/763)) ([9d3cb74](https://github.com/rudderlabs/rudder-sdk-react-native/commit/9d3cb74160b62505ecd45c08e07f8f86542ea571))
+
+
+### Bug Fixes
+
+* **android:** remove legacy AGP classpaths from integration libraries ([#750](https://github.com/rudderlabs/rudder-sdk-react-native/issues/750)) ([b46d204](https://github.com/rudderlabs/rudder-sdk-react-native/commit/b46d2049e5383d48339955f07e0ffafffd1e5a87))
+* remove the react-native peer upper bound from integrations ([#751](https://github.com/rudderlabs/rudder-sdk-react-native/issues/751)) ([6c8df76](https://github.com/rudderlabs/rudder-sdk-react-native/commit/6c8df76a3f4d347d29b256ef832d462a89353ce4))
+* sdk-7055 remove the react-native peer upper bound from integrations ([6c8df76](https://github.com/rudderlabs/rudder-sdk-react-native/commit/6c8df76a3f4d347d29b256ef832d462a89353ce4))
+
 ## [1.4.1](https://github.com/rudderlabs/rudder-sdk-react-native/compare/rudder-integration-singular-react-native@1.4.0...rudder-integration-singular-react-native@1.4.1) (2026-08-27)
 
 

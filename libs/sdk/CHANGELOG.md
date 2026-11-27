@@ -2,6 +2,18 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [3.3.0](https://github.com/rudderlabs/rudder-sdk-react-native/compare/rudder-sdk-react-native@3.2.1...rudder-sdk-react-native@3.3.0) (2026-11-27)
+
+
+### Features
+
+* **sdk:** add swift package manager support ([#754](https://github.com/rudderlabs/rudder-sdk-react-native/issues/754)) ([ff12e72](https://github.com/rudderlabs/rudder-sdk-react-native/commit/ff12e72c40f51323b70537865c0c61169aebd214))
+
+
+### Bug Fixes
+
+* **android:** skip explicit Kotlin plugin when AGP registers the kotlin extension ([#696](https://github.com/rudderlabs/rudder-sdk-react-native/issues/696)) ([e0af869](https://github.com/rudderlabs/rudder-sdk-react-native/commit/e0af869c062303983988a9ed46dfe9f18f8e6788))
+
 ## [3.2.1](https://github.com/rudderlabs/rudder-sdk-react-native/compare/rudder-sdk-react-native@3.2.0...rudder-sdk-react-native@3.2.1) (2026-09-21)
 
 
