@@ -23,13 +23,13 @@ npx --yes "@react-native-community/cli@${RN_CLI_VERSION}" init "$APP" \
   --skip-install --install-pods false --skip-git-init
 
 cd "$APP"
-npm install --no-audit --no-fund
+npm install --no-audit --no-fund --ignore-scripts
 # The DB encryption plugin is CocoaPods-only, so it is not installed here.
 find "$TARBALLS" -name '*.tgz' ! -name '*db-encryption*' -print0 \
-  | xargs -0 npm install --no-audit --no-fund
+  | xargs -0 npm install --no-audit --no-fund --ignore-scripts
 cp "$HERE/App.tsx" App.tsx
 
-npx react-native spm add --deintegrate
+npx --no-install react-native spm add --deintegrate
 
 xcodebuild -project "ios/${APP}.xcodeproj" -scheme "$APP" \
   -configuration Release -sdk iphonesimulator \
