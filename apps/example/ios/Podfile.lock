@@ -127,7 +127,32 @@ PODS:
   - hermes-engine (0.14.1):
     - hermes-engine/Pre-built (= 0.14.1)
   - hermes-engine/Pre-built (0.14.1)
-  - MoEngage-iOS-SDK (9.7.0)
+  - MoEngage-iOS-SDK (9.18.0):
+    - MoEngage-iOS-SDK/Core (= 9.18.0)
+  - MoEngage-iOS-SDK/Core (9.18.0):
+    - MoEngageAnalytics (= 4.18.0)
+    - MoEngageCore (= 9.18.0)
+    - MoEngageMessaging (= 4.18.0)
+    - MoEngageObjCUtils (= 3.18.0)
+    - MoEngageSDK (= 9.18.0)
+    - MoEngageSecurity (= 1.10.0)
+  - MoEngageAnalytics (4.18.0):
+    - MoEngageCore
+    - MoEngageObjCUtils
+  - MoEngageCore (9.18.0):
+    - MoEngageSecurity
+  - MoEngageMessaging (4.18.0):
+    - MoEngageAnalytics
+    - MoEngageCore
+    - MoEngageObjCUtils
+  - MoEngageObjCUtils (3.18.0):
+    - MoEngageCore
+  - MoEngageSDK (9.18.0):
+    - MoEngageAnalytics
+    - MoEngageCore
+    - MoEngageMessaging
+    - MoEngageObjCUtils
+  - MoEngageSecurity (1.10.0)
   - nanopb (3.30910.0):
     - nanopb/decode (= 3.30910.0)
     - nanopb/encode (= 3.30910.0)
@@ -2767,7 +2792,7 @@ PODS:
   - rudder-integration-moengage-react-native (1.3.0):
     - React
     - RNRudderSdk
-    - Rudder-Moengage
+    - Rudder-Moengage (< 3.0, >= 2.5.0)
   - rudder-integration-singular-react-native (1.3.0):
     - React
     - RNRudderSdk
@@ -2803,8 +2828,8 @@ PODS:
     - Rudder-Sprig (~> 1.1)
     - SocketRocket
     - Yoga
-  - Rudder-Moengage (2.1.1):
-    - MoEngage-iOS-SDK (~> 9.5)
+  - Rudder-Moengage (2.5.0):
+    - MoEngage-iOS-SDK (= 9.18.0)
     - Rudder (~> 1.12)
   - rudder-plugin-db-encryption-react-native (1.5.1):
     - React
@@ -2845,7 +2870,6 @@ DEPENDENCIES:
   - glog (from `../node_modules/react-native/third-party-podspecs/glog.podspec`)
   - GoogleUtilities
   - hermes-engine (from `../node_modules/react-native/sdks/hermes-engine/hermes-engine.podspec`)
-  - MoEngage-iOS-SDK (= 9.7.0)
   - RCT-Folly (from `../node_modules/react-native/third-party-podspecs/RCT-Folly.podspec`)
   - RCTDeprecation (from `../node_modules/react-native/ReactApple/Libraries/RCTFoundation/RCTDeprecation`)
   - RCTRequired (from `../node_modules/react-native/Libraries/Required`)
@@ -2953,6 +2977,12 @@ SPEC REPOS:
     - GoogleAppMeasurement
     - GoogleUtilities
     - MoEngage-iOS-SDK
+    - MoEngageAnalytics
+    - MoEngageCore
+    - MoEngageMessaging
+    - MoEngageObjCUtils
+    - MoEngageSDK
+    - MoEngageSecurity
     - nanopb
     - PromisesObjC
     - Rudder
@@ -3182,7 +3212,13 @@ SPEC CHECKSUMS:
   GoogleAppMeasurement: 01e991b4c0c025dd66558dbc5133b5d70ccdf88e
   GoogleUtilities: 00c88b9a86066ef77f0da2fab05f65d7768ed8e1
   hermes-engine: 69c6f6e8ed361f7b017e4f710e3b05dcc419ddb4
-  MoEngage-iOS-SDK: fe5e6039e6381017b756d8cc72b6d9a11112abc1
+  MoEngage-iOS-SDK: f46670869777750ebfa07431c51a4e433a11b578
+  MoEngageAnalytics: 23402db29e1aa78f13849663b296193015ddc941
+  MoEngageCore: 00f1e8227baf57a71aec17e13028025f6f619b06
+  MoEngageMessaging: 99adeace55f36510360cfb19536a8c89b2d0988c
+  MoEngageObjCUtils: 19568f63b653daeb28ba18bafff4b8f176907fee
+  MoEngageSDK: 1ea19a0de8ff4c7237c041a27cdced4f400f949f
+  MoEngageSecurity: 195e23d58a49c08e1ba83de4691f1add42dda00b
   nanopb: fad817b59e0457d11a5dfbde799381cd727c1275
   PromisesObjC: f5707f49cb48b9636751c5b2e7d227e43fba9f47
   RCT-Folly: b29feb752b08042c62badaef7d453f3bb5e6ae23
@@ -3275,7 +3311,7 @@ SPEC CHECKSUMS:
   rudder-integration-moengage-react-native: 933fcddabf35a921aa05fbcb047b98a6e019a128
   rudder-integration-singular-react-native: 3850aea08da6900fc1d79b307b35ab83660f1508
   rudder-integration-sprig-react-native: 8853cf24c001c8968e59d14ec9a33f177e444a9f
-  Rudder-Moengage: c30465e23740673495ff853eed607a5641f22c5c
+  Rudder-Moengage: ed5eb0d4788470c3349ea86e034f417e7778fe35
   rudder-plugin-db-encryption-react-native: 2bd7b55c251b316704d276d0f7ab193ca0aa223a
   Rudder-Singular: 0685fcfd797962d7681a5f05e48c249dd6a11228
   Rudder-Sprig: 03d885e2a72b278110b5ed54b586e71b8eadcaa4
@@ -3287,6 +3323,6 @@ SPEC CHECKSUMS:
   UserLeapKit: 357bc3d94f8eaa75aa963b408862f819e43fa245
   Yoga: e6489bbfdab9b98f8d51993484d6bd40216b7834
 
-PODFILE CHECKSUM: cf5866083031f65ac373889ae9e77698c5033ba9
+PODFILE CHECKSUM: faae613c804bc89532e9cef1c82006c7c832fa12
 
 COCOAPODS: 1.16.2
