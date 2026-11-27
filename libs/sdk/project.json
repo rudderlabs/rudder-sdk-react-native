@@ -39,6 +39,11 @@
             "output": "."
           },
           {
+            "glob": "Package.swift",
+            "input": "libs/sdk",
+            "output": "."
+          },
+          {
             "glob": "README.md",
             "input": "libs/sdk",
             "output": "."

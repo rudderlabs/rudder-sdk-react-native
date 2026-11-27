@@ -31,5 +31,8 @@
   "dependencies": {
     "@types/async-lock": "1.4.2",
     "async-lock": "1.4.0"
+  },
+  "swiftpmConfig": {
+    "name": "RNRudderSdk"
   }
 }

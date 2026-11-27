@@ -18,6 +18,7 @@ Pod::Spec.new do |s|
 
   s.source_files = "ios/**/*.{h,m,mm,cpp}"
   s.private_header_files = "ios/**/*.h"
+  s.exclude_files = "ios/include/**/*"
 
   s.ios.deployment_target = '12.0'
   s.tvos.deployment_target = '11.0'
