@@ -7,6 +7,12 @@ updates:
     open-pull-requests-limit: 0
     cooldown:
       default-days: 7
+      exclude:
+        - "rudderlabs/*"
+    groups:
+      actions:
+        patterns:
+          - "*"
 
   - package-ecosystem: "npm"
     directory: "/"
@@ -15,6 +21,9 @@ updates:
     open-pull-requests-limit: 0
     cooldown:
       default-days: 7
+      exclude:
+        - "@rudderlabs/*"
+        - "@rudderstack/*"
     groups:
       npm-prod-deps:
         applies-to: version-updates
@@ -57,6 +66,9 @@ updates:
     open-pull-requests-limit: 0
     cooldown:
       default-days: 7
+      exclude:
+        - "@rudderlabs/*"
+        - "@rudderstack/*"
 
   - package-ecosystem: "npm"
     directory: "/apps/expo-example"
@@ -65,5 +77,8 @@ updates:
     open-pull-requests-limit: 0
     cooldown:
       default-days: 7
+      exclude:
+        - "@rudderlabs/*"
+        - "@rudderstack/*"
 
   # Security updates remain separate; version update PRs are paused above.
