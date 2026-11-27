@@ -2,6 +2,22 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [1.6.3](https://github.com/rudderlabs/rudder-sdk-react-native/compare/rudder-plugin-db-encryption-react-native@1.6.2...rudder-plugin-db-encryption-react-native@1.6.3) (2026-11-27)
+
+
+### Bug Fixes
+
+* **android:** remove legacy AGP classpaths from integration libraries ([#750](https://github.com/rudderlabs/rudder-sdk-react-native/issues/750)) ([b46d204](https://github.com/rudderlabs/rudder-sdk-react-native/commit/b46d2049e5383d48339955f07e0ffafffd1e5a87))
+* remove the react-native peer upper bound from integrations ([#751](https://github.com/rudderlabs/rudder-sdk-react-native/issues/751)) ([6c8df76](https://github.com/rudderlabs/rudder-sdk-react-native/commit/6c8df76a3f4d347d29b256ef832d462a89353ce4))
+* sdk-7055 remove the react-native peer upper bound from integrations ([6c8df76](https://github.com/rudderlabs/rudder-sdk-react-native/commit/6c8df76a3f4d347d29b256ef832d462a89353ce4))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * peerDependencies
+    * @rudderstack/rudder-sdk-react-native bumped from >=1.11.0 to >=3.3.0
+
 ## [1.6.2](https://github.com/rudderlabs/rudder-sdk-react-native/compare/rudder-plugin-db-encryption-react-native@1.6.1...rudder-plugin-db-encryption-react-native@1.6.2) (2026-08-27)
 
 

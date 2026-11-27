@@ -2,6 +2,24 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [2.0.0](https://github.com/rudderlabs/rudder-sdk-react-native/compare/rudder-integration-clevertap-react-native@1.4.1...rudder-integration-clevertap-react-native@2.0.0) (2026-11-27)
+
+
+### ⚠ BREAKING CHANGES
+
+* **clevertap:** add swift package manager support ([#759](https://github.com/rudderlabs/rudder-sdk-react-native/issues/759))
+
+### Features
+
+* **clevertap:** add swift package manager support ([#759](https://github.com/rudderlabs/rudder-sdk-react-native/issues/759)) ([ceb2f17](https://github.com/rudderlabs/rudder-sdk-react-native/commit/ceb2f17d24c9f311a09eebe31b0cf0ea6b26335d))
+
+
+### Bug Fixes
+
+* **android:** remove legacy AGP classpaths from integration libraries ([#750](https://github.com/rudderlabs/rudder-sdk-react-native/issues/750)) ([b46d204](https://github.com/rudderlabs/rudder-sdk-react-native/commit/b46d2049e5383d48339955f07e0ffafffd1e5a87))
+* remove the react-native peer upper bound from integrations ([#751](https://github.com/rudderlabs/rudder-sdk-react-native/issues/751)) ([6c8df76](https://github.com/rudderlabs/rudder-sdk-react-native/commit/6c8df76a3f4d347d29b256ef832d462a89353ce4))
+* sdk-7055 remove the react-native peer upper bound from integrations ([6c8df76](https://github.com/rudderlabs/rudder-sdk-react-native/commit/6c8df76a3f4d347d29b256ef832d462a89353ce4))
+
 ## [1.4.1](https://github.com/rudderlabs/rudder-sdk-react-native/compare/rudder-integration-clevertap-react-native@1.4.0...rudder-integration-clevertap-react-native@1.4.1) (2026-08-27)
 
 

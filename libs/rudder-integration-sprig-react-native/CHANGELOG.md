@@ -2,6 +2,18 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [1.1.0](https://github.com/rudderlabs/rudder-sdk-react-native/compare/rudder-integration-sprig-react-native@1.0.2...rudder-integration-sprig-react-native@1.1.0) (2026-11-27)
+
+
+### Features
+
+* **sprig:** add swift package manager support ([#764](https://github.com/rudderlabs/rudder-sdk-react-native/issues/764)) ([6c25353](https://github.com/rudderlabs/rudder-sdk-react-native/commit/6c25353452c2e22212298cf37ab7e0e1d202f3d3))
+
+
+### Bug Fixes
+
+* **android:** skip explicit Kotlin plugin when AGP registers the kotlin extension ([#696](https://github.com/rudderlabs/rudder-sdk-react-native/issues/696)) ([e0af869](https://github.com/rudderlabs/rudder-sdk-react-native/commit/e0af869c062303983988a9ed46dfe9f18f8e6788))
+
 ## [1.0.2](https://github.com/rudderlabs/rudder-sdk-react-native/compare/rudder-integration-sprig-react-native@1.0.1...rudder-integration-sprig-react-native@1.0.2) (2026-08-27)
 
 
