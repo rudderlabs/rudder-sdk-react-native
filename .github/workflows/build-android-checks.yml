@@ -57,3 +57,28 @@ jobs:
       - name: Run Android SDK wrapper unit tests
         working-directory: apps/example/android
         run: ./gradlew :rudderstack_rudder-sdk-react-native:testDebugUnitTest
+
+  agp9-compatibility:
+    name: Check Android AGP 9 Compatibility
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Harden the runner (Audit all outbound calls)
+        uses: step-security/harden-runner@e14015d583714f6e62063499dc959a02595150a1 # v2.21.1
+        with:
+          egress-policy: audit
+
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Setup Java
+        uses: actions/setup-java@de7274f081f381c8f8158605e0321c36c376e2e6 # v6.0.1
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Verify AGP 9 compatibility for Kotlin Android modules
+        run: python3 .github/scripts/check-agp9-android-build.py
