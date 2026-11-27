@@ -15,7 +15,7 @@ PODS:
   - AppsFlyerFramework/Main (6.18.0)
   - boost (1.84.0)
   - BrazeKit (14.2.1)
-  - CleverTap-iOS-SDK (4.2.2):
+  - CleverTap-iOS-SDK (7.1.1):
     - SDWebImage (~> 5.11)
   - DoubleConversion (1.1.6)
   - fast_float (8.0.0)
@@ -2699,9 +2699,9 @@ PODS:
   - Rudder-Braze (4.5.0):
     - BrazeKit (< 15.0.0, >= 14.0.1)
     - Rudder (~> 1.26)
-  - Rudder-CleverTap (1.1.2):
-    - CleverTap-iOS-SDK (~> 4.2)
-    - Rudder (~> 1.12)
+  - Rudder-CleverTap (1.4.1):
+    - CleverTap-iOS-SDK (~> 7.1.1)
+    - Rudder (~> 1.31)
   - Rudder-Facebook (2.2.1):
     - FBSDKCoreKit (~> 17.0.2)
     - Rudder (~> 1.12)
@@ -2728,7 +2728,7 @@ PODS:
     - CleverTap-iOS-SDK
     - React
     - RNRudderSdk
-    - Rudder-CleverTap (~> 1.1.2)
+    - Rudder-CleverTap (< 2.0, >= 1.4.1)
   - rudder-integration-facebook-react-native (1.2.0):
     - React
     - RNRudderSdk
@@ -2919,7 +2919,6 @@ DEPENDENCIES:
   - ReactCodegen (from `build/generated/ios/ReactCodegen`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
   - "RNRudderSdk (from `../node_modules/@rudderstack/rudder-sdk-react-native`)"
-  - Rudder-CleverTap (= 1.1.2)
   - "rudder-integration-amplitude-react-native (from `../node_modules/@rudderstack/rudder-integration-amplitude-react-native`)"
   - "rudder-integration-appcenter-react-native (from `../node_modules/@rudderstack/rudder-integration-appcenter-react-native`)"
   - "rudder-integration-appsflyer-react-native (from `../node_modules/@rudderstack/rudder-integration-appsflyer-react-native`)"
@@ -3165,7 +3164,7 @@ SPEC CHECKSUMS:
   AppsFlyerFramework: c1e1e4cd3b98ffdca2fe32b17ae93909e409b6ab
   boost: 7e761d76ca2ce687f7cc98e698152abd03a18f90
   BrazeKit: 0be39d61821a82edc34625c7f53cf358065deee6
-  CleverTap-iOS-SDK: 36c21b8a671d87a0f9c7b389b339d02528bbe4d7
+  CleverTap-iOS-SDK: 8ee6dc5c6f3952f39c837e64ba24f0053f0d6196
   DoubleConversion: cb417026b2400c8f53ae97020b2be961b59470cb
   fast_float: b32c788ed9c6a8c584d114d0047beda9664e7cc6
   FBAEMKit: 9900b2edd99a2d21629a6277e6166f14c6215799
@@ -3262,7 +3261,7 @@ SPEC CHECKSUMS:
   Rudder-AppCenter: 9eca9241e3707a0e9610714dd91dc8da4bae7e1f
   Rudder-Appsflyer: dcefa779746771d8af96a2b70c45b3f4a1cc18e5
   Rudder-Braze: 7472471785e2821b83be81adec1a79a7edabac19
-  Rudder-CleverTap: a0085aab472e0e60930c4301ef80bae5ff187e98
+  Rudder-CleverTap: e1ac2e79a653fa982afd15da685591c3c3515ce5
   Rudder-Facebook: 24c9309373f13212d1139938aad86faa2914d342
   Rudder-Firebase: 876e5c2271915513315ce91c497ae5335b787950
   rudder-integration-amplitude-react-native: c797e5a14f2845f94418d6dd26dab075d70d337c
@@ -3287,6 +3286,6 @@ SPEC CHECKSUMS:
   UserLeapKit: 357bc3d94f8eaa75aa963b408862f819e43fa245
   Yoga: e6489bbfdab9b98f8d51993484d6bd40216b7834
 
-PODFILE CHECKSUM: cf5866083031f65ac373889ae9e77698c5033ba9
+PODFILE CHECKSUM: 632ff12589bdb258d454286da45c5cf0139e507d
 
 COCOAPODS: 1.16.2
