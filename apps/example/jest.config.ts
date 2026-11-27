@@ -9,7 +9,7 @@ module.exports = {
     '.png': '@nx/react-native/plugins/jest/svg-mock',
   },
   collectCoverageFrom: ['src/**/*.{ts,tsx}', '!**/*.test.{ts,tsx}', '!**/test/*.{ts,tsx}'],
-  coverageReporters: ['json', 'text', ['lcov', { projectRoot: '/' }], 'clover'],
+  coverageReporters: ['json', 'text', ['lcov', { projectRoot: process.cwd() }], 'clover'],
   coverageThreshold: {
     global: {
       branches: 0,
