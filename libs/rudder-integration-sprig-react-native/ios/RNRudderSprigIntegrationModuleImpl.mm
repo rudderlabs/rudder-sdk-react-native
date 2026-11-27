@@ -1,6 +1,10 @@
 #import "RNRudderSprigIntegrationModuleImpl.h"
 #import <RNRudderSdk/RNRudderAnalytics.h>
+#if __has_include(<Rudder/RSLogger.h>)
 #import <Rudder/RSLogger.h>
+#else
+#import "RSLogger.h"
+#endif
 #import <UIKit/UIKit.h>
 #import <objc/message.h>
 

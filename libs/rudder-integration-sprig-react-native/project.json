@@ -38,6 +38,11 @@
             "output": "."
           },
           {
+            "glob": "Package.swift",
+            "input": "libs/rudder-integration-sprig-react-native",
+            "output": "."
+          },
+          {
             "glob": "CHANGELOG.md",
             "input": "libs/rudder-integration-sprig-react-native",
             "output": "."

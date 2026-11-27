@@ -29,5 +29,11 @@
   "peerDependencies": {
     "react": ">= 16.8.0",
     "react-native": ">= 0.74.0"
+  },
+  "swiftpmConfig": {
+    "name": "RNRudderSprigIntegrationModule",
+    "dependencies": [
+      "@rudderstack/rudder-sdk-react-native"
+    ]
   }
 }
