@@ -4,14 +4,18 @@
 
 `$ npm install @rudderstack/rudder-plugin-db-encryption-react-native --save`
 
-### Mostly automatic installation
+Run `pod install` inside the `ios` directory of your project.
 
-`$ react-native link rudder-plugin-db-encryption-react-native`
+### iOS: CocoaPods only
 
-Run `pod install` inside the `ios` directory of your project adding `@rudderstack/rudder-plugin-db-encryption-react-native` to your project.
+This plugin supports CocoaPods only. It has no Swift Package Manager (SPM) support yet, so `npx react-native spm add` stops with `Package.swift is missing` in an app that has it installed.
+
+- Keep an app that uses this plugin on CocoaPods.
+- If you don't use the plugin, uninstall it before you move the app to SPM.
+- To move an SPM app back to CocoaPods, run `npx react-native spm deinit`, then `pod install` in the `ios` folder.
 
 ## Usage
 
 ```javascript
-import RudderIntegrationAppcenterReactNative from '@rudderstack/rudder-plugin-db-encryption-react-native';
+import DBEncryption from '@rudderstack/rudder-plugin-db-encryption-react-native';
 ```

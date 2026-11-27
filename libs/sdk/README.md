@@ -46,6 +46,26 @@ allprojects {
 pod install
 ```
 
+To use Swift Package Manager instead of CocoaPods, see [Swift Package Manager (iOS)](#swift-package-manager-ios).
+
+## Swift Package Manager (iOS)
+
+React Native 0.87 and later can link native libraries with Swift Package Manager (SPM) instead of CocoaPods. The SDK supports SPM from version 3.3.0, and so does each RudderStack integration.
+
+To move your app from CocoaPods to SPM, run this from the app's root folder:
+
+```
+npx react-native spm add --deintegrate
+```
+
+This removes CocoaPods from the iOS project and links every React Native library through SPM. From then on, open `ios/<YourApp>.xcodeproj` in Xcode.
+
+- SPM is all-or-nothing for React Native libraries: every one of them in your app needs a `Package.swift`.
+- Upgrade the SDK and the integrations together. Each integration's SPM package depends on the SDK's, so it needs SDK 3.3.0 or later.
+- The DB encryption plugin (`@rudderstack/rudder-plugin-db-encryption-react-native`) supports CocoaPods only. With it installed, `spm add` stops with `Package.swift is missing`, so keep that app on CocoaPods.
+- React Native's experimental remote SPM mode (`RN_SPM_REMOTE_URL`) isn't supported yet.
+- To go back to CocoaPods, run `npx react-native spm deinit`, then `pod install` in the `ios` folder.
+
 ## Import `RudderClient`
 
 Add the below line to `import` the rudderClient.
