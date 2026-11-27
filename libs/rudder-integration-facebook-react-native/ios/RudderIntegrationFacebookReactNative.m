@@ -1,7 +1,11 @@
 #import "RudderIntegrationFacebookReactNative.h"
 #import <RNRudderSdk/RNRudderAnalytics.h>
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
-#import <RudderFacebookFactory.h>
+#if __has_include(<Rudder-Facebook/RudderFacebookFactory.h>)
+#import <Rudder-Facebook/RudderFacebookFactory.h>
+#else
+@import Rudder_Facebook;
+#endif
 
 @implementation RudderIntegrationFacebookReactNative
 
