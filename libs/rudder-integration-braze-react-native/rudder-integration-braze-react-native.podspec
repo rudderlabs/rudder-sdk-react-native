@@ -16,6 +16,7 @@ Pod::Spec.new do |s|
   s.source       = { :git => "https://github.com/rudderlabs/rudder-sdk-react-native.git", :tag => "master" }
 
   s.source_files = "ios/**/*.{h,c,m,swift}"
+  s.exclude_files = "ios/include/**/*"
   s.requires_arc = true
   s.static_framework = true 
 
